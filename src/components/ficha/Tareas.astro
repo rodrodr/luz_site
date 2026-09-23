@@ -1,0 +1,34 @@
+---
+/**
+ * «Hoy puede»: SOLO las tareas que el explorador publicado cumple (comprobadas en `estudio_lyt_explorador.md`), cada una
+ * con su [Copiar la consulta] · [Abrir el explorador ↗]. La ficha decide cuáles entran (p. ej., Tendencia solo en las
+ * etapas I a III) y pasa el texto ya resuelto. El ordinal lo pone un contador de CSS: ningún número se teclea.
+ * La frase ↺ 5 va UNA vez, al final de la lista, no en cada tarea.
+ */
+import { t } from '../../lib/i18n';
+import CopiarConsulta from '../CopiarConsulta.astro';
+import type { Lang } from '../../lib/idiomas';
+
+interface Tarea { texto: string; consulta?: string; filtros?: string; recuento?: string }
+interface Props { lang: Lang; tareas: Tarea[] }
+const { lang, tareas } = Astro.props;
+---
+<ol class="tareas" role="list">
+  {tareas.map((ta) => (
+    <li>
+      <p class="tarea-texto" set:html={ta.texto} />
+      {(ta.consulta || ta.filtros) && <CopiarConsulta lang={lang} consulta={ta.consulta} filtros={ta.filtros} recuento={ta.recuento} aviso={false} compacta />}
+    </li>
+  ))}
+</ol>
+<p class="nota tareas-fija" set:html={t(lang, 'comun.fija.enlace')} />
+
+<style>
+  .tareas { list-style: none; margin: 0; padding: 0; counter-reset: tarea; max-width: 46rem; }
+  .tareas li { counter-increment: tarea; position: relative; padding: 1.05rem 0 1.15rem 3.2rem; border-top: 1px solid var(--hair); }
+  .tareas li:first-child { border-top-color: var(--ink-2); }
+  .tareas li::before { content: counter(tarea, decimal-leading-zero); position: absolute; left: 0; top: 1.35rem; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .tarea-texto { margin: 0; font-size: var(--fs-lede); line-height: 1.34; }
+  .tareas-fija { margin-top: 1rem; padding-left: 3.2rem; }
+  @media (max-width: 30rem) { .tareas li, .tareas-fija { padding-left: 2.3rem; } }
+</style>

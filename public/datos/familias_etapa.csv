@@ -1,0 +1,70 @@
+etapa,familia,clave,palabras_v2,filas_v2,diputados,pct_palabras,pct_filas
+I,Socialista,socialista,1647892,5083,102,0.139902,0.148782
+I,Catalanista de izquierda,catalanista_de_izquierda,378620,1045,27,0.032144,0.030588
+I,Galleguista,galleguista,107232,158,5,0.009104,0.004625
+I,Nacionalista Gallego,nacionalista_gallego,16818,20,1,0.001428,0.000585
+I,Republicanos,republicanos,6037985,18685,194,0.512611,0.546921
+I,Leonesista,leonesista,3788,8,1,0.000322,0.000234
+I,Radical Izquierda Republicana,radical_izquierda_republicana,28,3,1,2e-06,8.8e-05
+I,Liberales,liberales,1439486,4091,42,0.122209,0.119746
+I,Agrarios,agrarios,84328,279,6,0.007159,0.008166
+I,Catalanista de derecha,catalanista_de_derecha,97505,153,4,0.008278,0.004478
+I,Nacionalista Vasco,nacionalista_vasco,187316,508,6,0.015903,0.014869
+I,Conservadores,conservadores,1382691,3369,17,0.117387,0.098613
+I,Derecha autoritaria,derecha_autoritaria,5633,8,1,0.000478,0.000234
+I,Carlistas,carlistas,381454,717,11,0.032385,0.020987
+I,Sin identificar,sin_identificar,8109,37,0,0.000688,0.001083
+II,Comunista,comunista,51017,144,1,0.006098,0.006546
+II,Socialista,socialista,942421,1815,53,0.112639,0.082504
+II,Catalanista de izquierda,catalanista_de_izquierda,257694,678,13,0.0308,0.03082
+II,Galleguista,galleguista,31912,89,2,0.003814,0.004046
+II,Republicanos,republicanos,2090017,6577,88,0.2498,0.298968
+II,Centro,centro,26418,40,1,0.003157,0.001818
+II,Republicano Independiente,republicano_independiente,30218,111,1,0.003612,0.005046
+II,Republicanos Autonomista,republicanos_autonomista,121112,262,6,0.014475,0.01191
+II,Liberales,liberales,511111,1308,14,0.061088,0.059457
+II,Agrarios,agrarios,205376,576,12,0.024547,0.026183
+II,Catalanista de derecha,catalanista_de_derecha,478360,863,20,0.057174,0.039229
+II,Nacionalista,nacionalista,6550,26,1,0.000783,0.001182
+II,Nacionalista Vasco,nacionalista_vasco,131624,449,9,0.015732,0.02041
+II,Independiente,independiente,82,1,1,1e-05,4.5e-05
+II,Conservadores,conservadores,2316175,6683,133,0.27683,0.303787
+II,Conservadores Agraria,conservadores_agraria,585,4,1,7e-05,0.000182
+II,Derecha autoritaria,derecha_autoritaria,611503,1130,14,0.073087,0.051366
+II,Carlistas,carlistas,432245,971,16,0.051662,0.044138
+II,Fascista,fascista,87779,174,2,0.010491,0.007909
+II,Renovación Española,renovacion_espanola,1575,6,1,0.000188,0.000273
+II,Sin identificar,sin_identificar,32998,92,1,0.003944,0.004182
+III,Anarcosindicalista,anarcosindicalista,11637,18,1,0.007559,0.006166
+III,Comunista,comunista,37231,49,10,0.024185,0.016787
+III,Socialista,socialista,177383,397,45,0.115226,0.136005
+III,Catalanista de izquierda,catalanista_de_izquierda,35500,67,13,0.02306,0.022953
+III,Galleguista,galleguista,10639,20,3,0.006911,0.006852
+III,Republicanos,republicanos,437650,1010,76,0.284292,0.346009
+III,Centro,centro,1299,6,4,0.000844,0.002055
+III,Liberales,liberales,106967,151,11,0.069484,0.05173
+III,Agrarios,agrarios,64217,130,4,0.041715,0.044536
+III,Catalanista de derecha,catalanista_de_derecha,102975,145,11,0.066891,0.049675
+III,Nacionalista Vasco,nacionalista_vasco,627,6,2,0.000407,0.002055
+III,Independiente,independiente,97,4,1,6.3e-05,0.00137
+III,Conservadores,conservadores,401663,659,43,0.260915,0.225762
+III,Derecha autoritaria,derecha_autoritaria,114563,190,10,0.074419,0.065091
+III,Carlistas,carlistas,28294,45,8,0.018379,0.015416
+III,Fascista,fascista,5274,7,1,0.003426,0.002398
+III,Sin identificar,sin_identificar,3424,15,0,0.002224,0.005139
+IV,Anarcosindicalista,anarcosindicalista,6418,7,1,0.068004,0.056
+IV,Comunista,comunista,11141,7,3,0.118048,0.056
+IV,Socialista,socialista,39107,34,12,0.41437,0.272
+IV,Catalanista de izquierda,catalanista_de_izquierda,10175,27,5,0.107812,0.216
+IV,Republicanos,republicanos,15721,35,15,0.166577,0.28
+IV,Liberales,liberales,2462,3,2,0.026087,0.024
+IV,Nacionalista Vasco,nacionalista_vasco,7999,7,4,0.084756,0.056
+IV,Independiente,independiente,1354,5,1,0.014347,0.04
+V,Comunista,comunista,2248,1,1,0.03461,0.009709
+V,Socialista,socialista,22338,35,7,0.34391,0.339806
+V,Catalanista de izquierda,catalanista_de_izquierda,1516,3,2,0.02334,0.029126
+V,Galleguista,galleguista,3128,6,2,0.048158,0.058252
+V,Nacionalista Gallego,nacionalista_gallego,1194,1,1,0.018383,0.009709
+V,Republicanos,republicanos,29830,48,11,0.459255,0.466019
+V,Centro,centro,396,4,1,0.006097,0.038835
+V,Nacionalista Vasco,nacionalista_vasco,4303,5,2,0.066248,0.048544

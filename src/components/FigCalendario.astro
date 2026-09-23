@@ -1,0 +1,546 @@
+---
+/**
+ * F01 · Calendario de las 755 sesiones, UNA familia en tres escalas (plan § F01 y § F16; DESIGN.md § Sistema de figuras):
+ *  · `compacta` (F01c, Inicio): una celda por mes con el tono de sus palabras (5 clases por cuantiles sin interpolar, con
+ *    los cortes impresos); cada bloque de etapa enlaza su ficha; hasta tres anotaciones editoriales al margen.
+ *  · `completa` (F01, Las Cortes): dentro de cada mes, una barra por sesión (las dos de un mismo día, medias barras); la
+ *    altura, palabras o diputados (una conmutación, con radios y CSS); las sesiones con puerta llevan anillo y enlazan.
+ *  · `etapa` (F01e, fichas): el bloque de una etapa a todo el ancho y, bajo cada fila de año, las bandas F16 de
+ *    presidente titular y de Gobierno (metadatos del proyecto; lo marcado «verificar» va con trazo discontinuo). Un clic
+ *    (o Intro) en un tramo resalta sus sesiones. Uso: `<FigCalendario lang={lang} escala="etapa" etapa="I" />`.
+ * Capas: datos del exportador (`sesiones.json`, `meses.json`, `calendario.json`, `etapas.json`) → geometría pura
+ * (`viz/geom/calendario.ts`) → este componente (formas en HTML de rejilla, todo el texto en HTML, cifras con `data-k`
+ * y `data-base`) → la isla común (`scripts/figuras.ts`: nota emergente por plantilla, teclado, toque) → la isla propia
+ * (`scripts/fig-calendario.ts`: ficha breve de una sesión, lista de un mes al tocarlo, resalte de F16).
+ * Sin JS: el calendario entero, cada etapa y cada puerta son enlaces, y la Tabla y los Datos se abren con sus radios.
+ * El marco es el de `FiguraMarco` (mismas clases), con el título y la pregunta de cada escala (`inicio.f01c.*`,
+ * `fig.F01.*`, `fig.F01e.*`): FiguraMarco toma el título de la familia del registro y F01c/F01e no tienen familia propia.
+ */
+import Pestanas from './Pestanas.astro';
+import Sello from './Sello.astro';
+import { t, plano, rotulo, existe, plantillaNota } from '../lib/i18n';
+import { fmt, escapa, marcaPendiente } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { rutaDatos, rutaLeame, rutaImagen } from '../lib/figuras';
+import { url, recurso, PAGINAS, ETAPAS } from '../lib/rutas';
+import { citaFigura, huella } from '../lib/cita';
+import { mesLargo, fechaCorta } from '../lib/formato';
+import { LANGS, type Lang } from '../lib/idiomas';
+import { filasMeses } from '../viz/tabla-calendario';
+import {
+  rejilla, filasTabla, cabe,
+  type MesDato, type SesionDato, type CalendarioDato, type Celda, type Barra, type Segmento, type Bloque,
+} from '../viz/geom/calendario';
+
+type Escala = 'compacta' | 'completa' | 'etapa';
+interface Props { lang: Lang; escala?: Escala; etapa?: 'I' | 'II' | 'III' | 'IV' | 'V'; id?: string }
+const { lang, escala = 'completa', etapa, id } = Astro.props;
+if (escala === 'etapa' && !etapa) throw new Error('FigCalendario escala="etapa" necesita la prop `etapa` (I…V).');
+
+interface EtapaReg { id: string; slug: string; sigla: string; presidentes: { clave: string; corto: string; sesiones: number }[]; gobiernos: { id: string; nombre: string; sesiones: number; primera: string; ultima: string }[] }
+interface EtapasDato { etapas: EtapaReg[]; presidentes: { clave: string; nombre: string; corto: string; verificar: boolean }[]; gobiernos: { id: string; nombre: string; verificar: boolean }[] }
+const S = dato<{ sesiones: SesionDato[] }>('sesiones');
+const M = dato<{ meses: MesDato[] }>('meses');
+const CAL = dato<CalendarioDato>('calendario');
+const ET = dato<EtapasDato>('etapas');
+const listo = !!(S && M && CAL && ET);
+
+const ANCLA = id ?? { compacta: 'f01c', completa: 'calendario', etapa: 'calendario-etapa' }[escala];
+const CODIGO = { compacta: 'F01c', completa: 'F01', etapa: 'F01e' }[escala];
+const FAM = { compacta: 'inicio.f01c', completa: 'fig.F01', etapa: 'fig.F01e' }[escala];
+const tituloId = `${ANCLA}-titulo`;
+const o = (k: string, ctx = {}) => (existe(k) ? t(lang, k, ctx) : marcaPendiente(k, 'copy'));
+const n = (x: number) => fmt.n(x, lang);
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const conBarras = escala !== 'compacta';
+const bandas = escala === 'etapa';
+
+// ── plantillas de la nota emergente (tres líneas: qué · cifras · base). Los huecos del copy llevan nombres largos
+//    ({{palabras}}); en los atributos, letras (data-v-p), para que 755 barras no pesen de más.
+const CORTOS: Record<string, string> = { mes: 'm', sesiones: 's', filas: 'r', palabras: 'p', diputados: 'u', fecha: 'f', num: 's', diario: 'd', p1: 'a', p2: 'b', nombre: 'n', desde: 'a', hasta: 'b', n: 'k' };
+const pl = (clave: string, extra: Record<string, string> = {}) =>
+  existe(clave) ? Object.entries(extra).reduce((s, [k, v]) => s.split(`{${k}}`).join(v),
+    plantillaNota(lang, clave, [...Object.keys(CORTOS), ...Object.keys(extra)])).replace(/\{(\w+)\}/g, (x, k: string) => (CORTOS[k] ? `{${CORTOS[k]}}` : x)) : `⟦${clave}⟧`;
+const PL = {
+  mes: pl('fig.F01.nota.mes'), mesUna: pl('fig.F01.nota.mes_una'), mesVacio: pl('fig.F01.nota.mes_vacio'),
+  base: pl('fig.F01.nota.base'), baseVacio: pl('fig.F01.nota.base_vacio'),
+  ses: pl('fig.F01.nota.sesion'), puerta: existe('fig.F01.nota.puerta') ? plano(lang, 'fig.F01.nota.puerta') : '',
+  tramo: pl('fig.F16.nota'), tramoUna: pl('fig.F16.nota_una').replace('{f}', '{a}'),
+  tramoB: pl('fig.F16.nota.base'), tramoVer: pl('fig.F16.nota.verificar'),
+};
+// En los metadatos del proyecto el número del Diario coincide con el de la sesión en las 755 (se comprueba abajo): la
+// plantilla usa {s} y solo una barra que no coincidiera traería su `data-v-d` y su propia línea de base.
+const sesB = (sigla: string, conPaginas: boolean, propio = false) => pl(conPaginas ? 'fig.F01.nota.sesion.base' : 'fig.F01.nota.sesion_sin_paginas.base', { sigla }).replace(propio ? '\u0000' : '{d}', '{s}');
+
+let R: ReturnType<typeof rejilla> | null = null;
+let etReg: Record<string, EtapaReg> = {};
+if (listo) {
+  R = rejilla(M!.meses, S!.sesiones, CAL!, escala === 'etapa' ? etapa : undefined);
+  etReg = Object.fromEntries(ET!.etapas.map((e) => [e.id, e]));
+}
+const slugDe = (e: string) => ETAPAS.find((x) => x.id === e)!.slug;
+const nombreEtapa = (e: string) => (escala === 'compacta' ? o(`comun.etapa.${e}.nombre`) : o(`cortes.etapa.${e}.nombre`));
+const puertaTitulo = (slug: string) => (existe(`inicio.puertas.${slug}.que`) ? plano(lang, `inicio.puertas.${slug}.que`) : slug);
+
+// ── anotaciones editoriales (solo F01c): junto a la fila del mes con más palabras, del primer mes vacío o la primera.
+function filaAnotada(b: Bloque): number | null {
+  if (!existe(`inicio.f01c.anota.${b.id}`)) return null;
+  const conMax = b.filas.find((f) => f.celdas.some((c) => c?.mes === CAL!.mes_max.mes));
+  if (conMax) return conMax.anio;
+  const vacia = b.filas.find((f) => f.celdas.some((c) => c?.estado === 'sin_sesion'));
+  return (vacia ?? b.filas[0]).anio;
+}
+
+// ── celdas y barras (HTML en cadena: 755 barras con atributos de ámbito pesarían de más; el estilo va con :global) ──
+const at = (k: string, v: string | number) => ` data-v-${k}="${escapa(String(v))}"`;
+function celdaHtml(c: Celda | null, b: Bloque): string {
+  if (!c) return '<span class="c fuera" aria-hidden="true"></span>';
+  const d = c.dato;
+  const mes = cap(mesLargo(c.mes, lang));
+  if (c.estado !== 'sesion') {
+    return `<span class="c vacio" data-nota${conBarras ? '' : ' data-paso'} data-n style="--n:${c.n}"${at('m', mes)} data-plantilla="${escapa(PL.mesVacio)}" data-plantilla-b="${escapa(PL.baseVacio)}" data-mes="${c.mes}"></span>`;
+  }
+  const una = d.sesiones === 1 ? ` data-plantilla="${escapa(PL.mesUna)}"` : '';
+  const vals = at('m', mes) + at('s', n(d.sesiones)) + at('r', n(d.filas)) + at('p', n(d.pal)) + at('u', n(d.dip));
+  if (!conBarras) return `<span class="c q${c.clase}" data-nota data-paso data-n style="--n:${c.n}"${vals}${una}></span>`;
+  const sigla = etReg[b.id]?.sigla ?? '';
+  const conPag = c.barras.every((x) => !!x.s.meta.paginas);
+  const barras = c.barras.map((x) => barraHtml(x, sigla, conPag)).join('');
+  return `<span class="c q${c.clase}" data-nota data-n style="--n:${c.n}"${vals}${una} data-mes="${c.mes}"><span class="bs" data-plantilla="${escapa(PL.ses)}" data-plantilla-t="{f}" data-plantilla-b="${escapa(sesB(sigla, conPag))}">${barras}</span></span>`;
+}
+// Cada puerta se enlaza UNA vez por figura, desde su primera barra: las demás sesiones de la misma puerta son barras
+// sin enlace (con su línea de puerta en la nota). Varios enlaces iguales de 1-8 px, casi pegados, eran objetivos que
+// se pisaban (WCAG 2.5.8).
+const puertasEnlazadas = new Set<string>();
+function barraHtml(x: Barra, sigla: string, conPagCelda: boolean): string {
+  const s = x.s;
+  const repite = !!x.puerta && puertasEnlazadas.has(x.puerta);
+  if (x.puerta) puertasEnlazadas.add(x.puerta);
+  const pag = s.meta.paginas;
+  let v = at('f', fechaCorta(s.f)) + at('s', s.s) + at('r', n(s.filas)) + at('p', n(s.pal)) + at('u', n(s.dip));
+  if (s.meta.num != null && s.meta.num !== s.s) v += at('d', s.meta.num);
+  if (pag) v += at('a', pag[0]) + at('b', pag[1]);
+  const estilo = ` style="--h:${x.h.toFixed(3).replace(/^0/, '')};--u:${x.u.toFixed(3).replace(/^0/, '')}"`;
+  const f16 = bandas ? ` data-pr="${s.meta.pres ?? ''}" data-go="${s.meta.gob ?? ''}"` : '';
+  const orden = bandas ? ` data-orden="${x.orden}"` : '';
+  // Una barra cuya ranura no casa con la de su mes (páginas verificadas o no) trae su propia línea de base.
+  const numPropio = s.meta.num != null && s.meta.num !== s.s;
+  const propiaB = !!pag !== conPagCelda || numPropio ? sesB(sigla, !!pag, numPropio) : '';
+  if (x.puerta && !repite) {
+    const b = `${propiaB || sesB(sigla, !!pag)}${PL.puerta ? ` · ${PL.puerta}` : ''}`;
+    const aria = `${fechaCorta(s.f)} · ${puertaTitulo(x.puerta)}`;
+    return `<a class="b p${x.doble ? ' d' : ''}" href="${url(lang, `${PAGINAS.sesiones}/${x.puerta}`)}" tabindex="-1" aria-label="${escapa(aria)}" data-nota data-paso${orden}${v}${f16} data-plantilla-b="${escapa(b)}"${estilo}></a>`;
+  }
+  // la barra que repite puerta conserva su línea de puerta en la nota, sin enlace
+  const bRep = repite ? `${propiaB || sesB(sigla, !!pag)}${PL.puerta ? ` · ${PL.puerta}` : ''}` : propiaB;
+  return `<i class="b${x.doble ? ' d' : ''}" data-nota data-paso${orden}${v}${f16}${bRep ? ` data-plantilla-b="${escapa(bRep)}"` : ''}${estilo}></i>`;
+}
+function bandaHtml(segs: Segmento[], banda: 'presidente' | 'gobierno', base: number): string {
+  const nombres = Object.fromEntries(ET!.presidentes.map((p) => [p.clave, p.nombre]));
+  const piezas = segs.map((g, i) => {
+    const tr = g.tramo;
+    const rotuloTramo = banda === 'presidente' ? tr.corto : tr.corto;
+    const quepo = cabe(g, rotuloTramo);
+    const ai = Math.floor(g.a + 1e-9), bi = Math.floor(g.b - 1e-9);
+    const nombre = banda === 'presidente' ? (nombres[tr.clave] ?? tr.nombre) : tr.nombre;
+    const una = tr.sesiones === 1;
+    const clase = ['tr', tr.verificar ? 'ver' : '', g.viene ? 'viene' : '', g.sigue ? 'sigue' : '', quepo.ancho ? 'cabe-a' : '', quepo.medio ? 'cabe-m' : '', quepo.estrecho ? 'cabe-e' : ''].filter(Boolean).join(' ');
+    const v = at('n', nombre) + at('a', fechaCorta(tr.desde)) + at('b', fechaCorta(tr.hasta)) + at('k', n(tr.sesiones));
+    const pls = (una ? ` data-plantilla="${escapa(PL.tramoUna)}"` : '') + (tr.verificar ? ` data-plantilla-b="${escapa(PL.tramoVer)}"` : '');
+    const flecha = g.sigue ? '<svg class="icono" aria-hidden="true" focusable="false"><use href="#i-flecha"></use></svg>' : '';
+    return `<span class="${clase}" data-nota data-paso data-orden="${base + i}" data-resalta="${banda === 'presidente' ? 'pr' : 'go'}:${tr.clave}"${v}${pls} style="--a:${g.a.toFixed(4)};--b:${g.b.toFixed(4)};--ai:${ai};--bi:${bi}"><span class="tr-r">${escapa(rotuloTramo)}</span>${flecha}</span>`;
+  }).join('');
+  return `<div class="banda" data-banda="${banda}" data-plantilla="${escapa(PL.tramo)}" data-plantilla-t="{n}" data-plantilla-b="${escapa(PL.tramoB)}"><span class="banda-rot" aria-hidden="true">${escapa(plano(lang, `fig.F16.banda.${banda}`))}</span><div class="pista">${piezas}</div></div>`;
+}
+
+let bloquesHtml = '';
+let saltoHtml = '';
+let resalteCss = '';
+if (R) {
+  let ordenTramo = 100000;
+  const cuerpo = R.bloques.map((b) => {
+    const tot = t(lang, 'fig.F01.cabecera', { vars: { n: fmt.clave(`etapa.${b.id}.sesiones`, lang), palabras: fmt.clave(`etapa.${b.id}.palabras`, lang) } });
+    const ficha = url(lang, `${PAGINAS.cortes}/${slugDe(b.id)}`);
+    const tip = existe('inicio.f01c.nota.etapa') && escala === 'compacta'
+      ? ` data-tip="${escapa(plano(lang, 'inicio.f01c.nota.etapa', { vars: { etapa: plano(lang, `comun.etapa.${b.id}.nombre`), n: n(b.sesiones) } }))}"` : '';
+    const nombre = escala === 'etapa'
+      ? `<span class="cal-nombre"><span class="cal-rom">${b.id}</span> ${nombreEtapa(b.id)}</span>`
+      : `<a class="cal-nombre" href="${ficha}"${tip}><span class="cal-rom">${b.id}</span> ${nombreEtapa(b.id)}</a>`;
+    const dice = escala === 'completa' && existe(`cortes.calendario.dice.${b.id}`) ? `<p class="cal-dice">${t(lang, `cortes.calendario.dice.${b.id}`)}${(b.id === 'IV' || b.id === 'V') && existe('fig.F01.salvedad.extractos') ? ` <span class="cal-extracto">${t(lang, 'fig.F01.salvedad.extractos')}</span>` : ''}</p>` : '';
+    const anotada = escala === 'compacta' ? filaAnotada(b) : null;
+    const filas = b.filas.map((f) => {
+      const nota = anotada === f.anio ? `<p class="cal-nota">${t(lang, `inicio.f01c.anota.${b.id}`)}</p>` : '';
+      const fila = `<div class="cal-fila"><time class="cal-anio" datetime="${f.anio}">${f.anio}</time>${f.celdas.map((c) => celdaHtml(c, b)).join('')}${nota}</div>`;
+      if (!bandas) return fila;
+      const bp = bandaHtml(f.presidente, 'presidente', ordenTramo); ordenTramo += f.presidente.length;
+      const bg = bandaHtml(f.gobierno, 'gobierno', ordenTramo + 50000); ordenTramo += f.gobierno.length;
+      return `<div class="cal-anio-grupo">${fila}${bp}${bg}</div>`;
+    }).join('');
+    const aria = plano(lang, 'fig.F01.cabecera', { vars: { n: n(b.sesiones), palabras: n(b.palabras) } });
+    return `<div class="cal-etapa" data-etapa="${b.id}" data-recorre tabindex="0" role="group" aria-label="${escapa(`${b.id} · ${plano(lang, `comun.etapa.${b.id}.nombre`)} · ${aria}`)}"><div class="cal-cab">${nombre}<span class="cal-tot">${tot}</span>${dice}</div>${filas}</div>`;
+  });
+  if (R.salto && escala !== 'etapa') {
+    const texto = escala === 'completa' && existe('cortes.calendario.dice.hueco')
+      ? t(lang, 'cortes.calendario.dice.hueco')
+      : t(lang, 'fig.F01.salto', { vars: { desde: fmt.clave('meses.salto.desde', lang, 'mes'), hasta: fmt.clave('meses.salto.hasta', lang, 'mes'), n: fmt.clave('meses.salto', lang) } });
+    saltoHtml = `<div class="cal-salto"><span class="cal-anio" aria-hidden="true">//</span><p>${texto}</p></div>`;
+  }
+  // El salto va entre la guerra (IV) y México (V).
+  const iV = R.bloques.findIndex((b) => b.id === 'V');
+  bloquesHtml = iV > 0 ? [...cuerpo.slice(0, iV), saltoHtml, ...cuerpo.slice(iV)].join('') : cuerpo.join('');
+  if (bandas) {
+    const sel = `#${ANCLA}`;
+    const claves = new Set<string>();
+    R.bloques.forEach((b) => b.filas.forEach((f) => { f.presidente.forEach((g) => claves.add(`pr:${g.tramo.clave}`)); f.gobierno.forEach((g) => claves.add(`go:${g.tramo.clave}`)); }));
+    resalteCss = [...claves].map((k) => {
+      const [tipo, c] = k.split(':');
+      return `${sel}[data-resaltado="${k}"] .b:not([data-${tipo}="${c}"]){opacity:var(--atenua)}${sel}[data-resaltado="${k}"] .tr:not([data-resalta="${k}"]){opacity:.55}${sel}[data-resaltado="${k}"] .tr[data-resalta="${k}"]{outline:2px solid var(--accent);outline-offset:1px}`;
+    }).join('');
+  }
+}
+
+// ── leyenda ──
+const clases = CAL?.clases ?? [];
+const rango = (i: number) => `${fmt.dato(clases[i].desde, n(clases[i].desde), `f01.clase.${i}.desde`, 'V2')}–${fmt.dato(clases[i].hasta, n(clases[i].hasta), `f01.clase.${i}.hasta`, 'V2')}`;
+
+// ── tabla ──
+const tabla = listo ? filasTabla(M!.meses, escala === 'etapa' ? etapa : undefined) : [];
+const regE = escala === 'etapa' && listo ? etReg[etapa!] : null;
+const presNombre = Object.fromEntries((ET?.presidentes ?? []).map((p) => [p.clave, p]));
+const gobNombre = Object.fromEntries((ET?.gobiernos ?? []).map((g) => [g.id, g]));
+const tramosE = (banda: 'presidente' | 'gobierno') => (CAL?.tramos[banda] ?? []).filter((x) => x.etapa === etapa);
+
+// Las filas de la tabla, en cadena (sin los atributos de ámbito en cada celda): viz/tabla-calendario.ts.
+const filasMesesHtml = filasMeses(lang, tabla, escala !== 'etapa');
+
+// ── datos ──
+const archivosF01 = ['sesiones', 'meses'];
+const archivos = [
+  ...archivosF01.flatMap((a) => [rutaDatos(a, 'csv'), rutaDatos(a, 'xlsx')]),
+  ...(bandas ? [rutaDatos('presidencia_gobierno', 'csv'), rutaDatos('presidencia_gobierno', 'xlsx')] : []),
+  ...LANGS.map((l) => rutaLeame('F01', l)),
+  ...(bandas ? LANGS.map((l) => rutaLeame('F16', l)) : []),
+];
+const posicion = plano(lang, 'comun.isla.posicion', { vars: { i: '{i}', total: '{total}' } });
+const cerrar = existe('comun.isla.cerrar') ? plano(lang, 'comun.isla.cerrar') : undefined;
+const bases = bandas ? (['V2', 'proyecto'] as const) : (['V2', 'proyecto'] as const);
+const salvedadF01 = existe('fig.F01.salvedad') ? plano(lang, 'fig.F01.salvedad') : '';
+const [salv1, ...salvResto] = salvedadF01.split(/(?<=\.)\s+/);
+const sub: Record<string, string> = etapa ? { etapa: slugDe(etapa) } : {};
+const breve = {
+  titulo: pl('fig.F01.breve.titulo'), mes: pl('fig.F01.breve.mes'),
+  como: existe('fig.F01.breve.como') ? t(lang, 'fig.F01.breve.como') : '', cerrar: existe('fig.F01.breve.cerrar') ? plano(lang, 'fig.F01.breve.cerrar') : '',
+  puerta: existe('fig.F01.nota.puerta') ? plano(lang, 'fig.F01.nota.puerta') : '',
+};
+---
+{listo ? (
+  <figure class:list={['figura', 'fig-cal', `fig-cal--${escala}`]} id={ANCLA} data-figura="F01" data-escala={escala} data-base="V2 proyecto"
+    data-plantilla={PL.mes} data-plantilla-t="{m}" data-plantilla-b={PL.base} data-posicion={posicion} data-cerrar={cerrar} aria-labelledby={tituloId}>
+    <Pestanas lang={lang} id={ANCLA} etiquetadoPor={tituloId}>
+      <header class="fig-cabeza" slot="cabeza">
+        <p class="fig-sellos"><Sello lang={lang} base="V2" /><Sello lang={lang} base="proyecto" /></p>
+        <h3 class="fig-titulo" id={tituloId}><span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">{CODIGO}</span><Fragment set:html={o(`${FAM}.titulo`)} /></h3>
+      </header>
+      {existe(`${FAM}.pregunta`) && <p class="fig-pregunta" slot="pregunta" set:html={t(lang, `${FAM}.pregunta`)} />}
+      {conBarras && (
+        <fieldset class="fig-conmuta" slot="barra">
+          <legend set:html={t(lang, 'fig.F01.conmuta.titulo')} />
+          <label><input type="radio" name={`${ANCLA}-altura`} value="palabras" checked /><span set:html={t(lang, 'fig.F01.conmuta.palabras')} /></label>
+          <label><input type="radio" name={`${ANCLA}-altura`} value="diputados" /><span set:html={t(lang, 'fig.F01.conmuta.diputados')} /></label>
+        </fieldset>
+      )}
+
+      <div slot="grafico" class="fig-lienzo">
+        <p class="sr-only" set:html={o(`${FAM}.alt`)} />
+        <div class="cal-ley">
+          <div class="cal-ley-tono">
+            <p class="cal-ley-t" set:html={o('fig.F01.leyenda.tono')} />
+            <ol role="list">
+              {clases.map((c) => <li><i class={`c q${c.i}`} aria-hidden="true"></i><span set:html={rango(c.i)} /></li>)}
+            </ol>
+          </div>
+          <ul class="cal-ley-aus" role="list">
+            {conBarras && <li class="ley-altura"><i class="muestra-barras" aria-hidden="true"><b></b><b></b><b></b></i><span class="alt-p" set:html={o('fig.F01.leyenda.altura')} /><span class="alt-u" set:html={o('fig.F01.leyenda.altura_dip')} /></li>}
+            <li><i class="c vacio" aria-hidden="true"></i><span set:html={o('fig.F01.leyenda.sin_sesion')} /></li>
+            {escala === 'completa' && <li class="ley-puerta"><i class="muestra-anillo" aria-hidden="true"></i><span set:html={o('fig.F01.leyenda.puerta')} /></li>}
+            {conBarras && <li><i class="muestra-doble" aria-hidden="true"><b></b><b></b></i><span set:html={o('fig.F01.leyenda.doble')} /></li>}
+            {escala !== 'etapa' && <li><i class="muestra-salto" aria-hidden="true">//</i><span set:html={o('fig.F01.leyenda.salto')} /></li>}
+            {bandas && <li class="ley-bandas"><i class="muestra-bandas" aria-hidden="true"><b></b><b></b></i><span set:html={o('fig.F16.leyenda.bandas')} /></li>}
+            {bandas && <li><i class="muestra-ver" aria-hidden="true"></i><span set:html={o('fig.F16.leyenda.verificar')} /></li>}
+          </ul>
+        </div>
+        <div class="cal" data-entra-fig>
+          <div class="cal-meses" aria-hidden="true"><span></span>{['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'].map((m) => <span>{m}</span>)}</div>
+          <Fragment set:html={bloquesHtml} />
+        </div>
+        {conBarras && (
+          <div class="cal-breve" data-breve hidden aria-live="polite" data-t-titulo={breve.titulo} data-t-mes={breve.mes} data-t-como={breve.como} data-t-cerrar={breve.cerrar} data-t-puerta={breve.puerta}></div>
+        )}
+        {escala === 'etapa' && existe('fig.F01e.ver_todo') && (
+          <p class="cal-ver-todo"><a href={url(lang, `${PAGINAS.cortes}#calendario`)} set:html={rotulo(lang, 'fig.F01e.ver_todo')} /></p>
+        )}
+      </div>
+
+      <div slot="tabla">
+        <div class="fig-desliza" tabindex="0" role="region" aria-labelledby={`${ANCLA}-tabla-t`}>
+          <table class="fig-tabla">
+            <caption id={`${ANCLA}-tabla-t`}><span class="fig-rotulo-tabla" set:html={o('fig.F01.tabla.titulo')} /></caption>
+            <thead><tr>
+              <th scope="col" set:html={o('fig.F01.tabla.col.mes')} />
+              {escala !== 'etapa' && <th scope="col" set:html={o('fig.F01.tabla.col.etapa')} />}
+              <th scope="col" class="num" set:html={o('fig.F01.tabla.col.sesiones')} />
+              <th scope="col" class="num" set:html={o('fig.F01.tabla.col.filas')} />
+              <th scope="col" class="num" set:html={o('fig.F01.tabla.col.palabras')} />
+              <th scope="col" class="num" set:html={o('fig.F01.tabla.col.diputados')} />
+            </tr></thead>
+            <tbody data-k="meses.csv" data-base="V2" set:html={filasMesesHtml} />
+          </table>
+        </div>
+        {bandas && regE && (
+          <div class="cal-f16-tabla">
+            {(['presidente', 'gobierno'] as const).map((banda) => (
+              <div class="fig-desliza" tabindex="0" role="region" aria-label={plano(lang, banda === 'presidente' ? 'fig.F16.tabla.presidentes' : 'fig.F16.tabla.gobiernos')}>
+                <table class="fig-tabla">
+                  <caption><span class="fig-rotulo-tabla" set:html={o(banda === 'presidente' ? 'fig.F16.tabla.presidentes' : 'fig.F16.tabla.gobiernos')} /></caption>
+                  <thead><tr>
+                    <th scope="col" set:html={o('fig.F16.tabla.col.nombre')} />
+                    <th scope="col" set:html={o('fig.F16.tabla.col.desde')} />
+                    <th scope="col" set:html={o('fig.F16.tabla.col.hasta')} />
+                    <th scope="col" class="num" set:html={o('fig.F16.tabla.col.sesiones')} />
+                  </tr></thead>
+                  <tbody data-k="presidencia_gobierno.csv" data-base="proyecto">
+                    {tramosE(banda).map((tr) => (
+                      <tr class:list={[{ 'por-verificar': tr.verificar }]}>
+                        <th scope="row">{banda === 'presidente' ? (presNombre[tr.clave]?.nombre ?? tr.nombre) : (gobNombre[tr.clave]?.nombre ?? tr.nombre)}{tr.verificar && <span class="ver-rot" set:html={' · ' + plano(lang, 'fig.F16.leyenda.verificar')} />}</th>
+                        <td><time datetime={tr.desde}>{fechaCorta(tr.desde)}</time></td>
+                        <td><time datetime={tr.hasta}>{fechaCorta(tr.hasta)}</time></td>
+                        <td class="num">{n(tr.sesiones)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
+        )}
+        <p class="nota fig-pie-tabla" set:html={t(lang, 'comun.fig.tabla.nota')} />
+      </div>
+
+      <div slot="datos">
+        <div class="fig-datos">
+          <div class="fig-descarga">
+            <a class="boton" href={recurso(rutaDatos('sesiones', 'csv'))} download set:html={rotulo(lang, 'comun.boton.datos_figura')} />
+            <p class="nota" set:html={t(lang, 'comun.fig.datos.nota')} />
+            <p class="nota" set:html={t(lang, 'comun.fija.sin_formulario')} />
+            <ul class="fig-archivos" role="list">
+              {archivos.map((a) => <li><a href={recurso(a)} download>{a.replace(/^datos\//, '')}</a></li>)}
+            </ul>
+            {escala === 'completa' && (
+              <>
+                <p class="botones">
+                  <a class="boton sec" href={recurso(rutaImagen('F01', lang, 'svg'))} download set:html={rotulo(lang, 'comun.boton.imagen') + ' · SVG'} />
+                  <a class="boton sec" href={recurso(rutaImagen('F01', lang, 'png'))} download set:html={rotulo(lang, 'comun.boton.imagen') + ' · PNG'} />
+                </p>
+                <p class="nota" set:html={t(lang, 'comun.fig.imagen.nota')} />
+              </>
+            )}
+          </div>
+          <dl class="fig-leame">
+            <dt set:html={t(lang, 'comun.fig.base')} />
+            <dd>
+              {bases.map((b) => { const h = huella(b); return <><Sello lang={lang} base={b} />{h.huella && <> · <span set:html={t(lang, 'comun.sello.huella')} />: <code>{h.huella}</code></>}<br /></>; })}
+              {huella('V2').fecha && <span set:html={t(lang, 'comun.sello.exportado', { vars: { fecha: `<time datetime="${huella('V2').fecha}">${huella('V2').fecha}</time>` } })} />}
+            </dd>
+            <dt set:html={t(lang, 'comun.cita.titulo')} />
+            <dd set:html={citaFigura(lang, 'F01', Astro.site)} />
+            {bandas && <dd set:html={citaFigura(lang, 'F16', Astro.site, sub)} />}
+          </dl>
+        </div>
+      </div>
+    </Pestanas>
+    <figcaption class="fig-pie">
+      <p class="fig-salvedad">
+        <span class="fig-salvedad-rotulo" set:html={t(lang, 'comun.fig.salvedad')} />
+        <b>{salv1}</b> {salvResto.join(' ')}
+        {bandas && (etapa === 'IV' || etapa === 'V') && existe('fig.F01.salvedad.extractos') && <> <Fragment set:html={t(lang, 'fig.F01.salvedad.extractos')} /></>}
+        {bandas && existe('fig.F16.salvedad') && <> <Fragment set:html={t(lang, 'fig.F16.salvedad')} /></>}
+      </p>
+      <p class="fig-teclado" data-solo-isla hidden id={`${ANCLA}-teclado`} set:html={t(lang, 'comun.fig.teclado')} />
+      {escala !== 'etapa' && existe('comun.isla.tactil') && <p class="fig-teclado fig-tactil" data-solo-isla hidden set:html={t(lang, 'comun.isla.tactil')} />}
+    </figcaption>
+    {resalteCss && <style is:inline set:html={resalteCss}></style>}
+  </figure>
+) : (
+  <div class="fig-hueco" data-todo-fig={CODIGO}><p set:html={marcaPendiente('sesiones.json · meses.json · calendario.json', 'dato')} /></div>
+)}
+
+<script>
+  import '../scripts/figuras.ts';
+  import '../scripts/fig-calendario.ts';
+</script>
+
+<style>
+  .fig-cal { --g: 3px; --anio: 2.6rem; --alto: clamp(1.45rem, 2.4vw, 1.9rem); }
+  .fig-cal--completa, .fig-cal--etapa { --alto: clamp(2.1rem, 3.6vw, 3.1rem); }
+  .fig-sellos { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .6rem; }
+  .fig-salvedad-rotulo { display: block; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); margin-bottom: .2rem; }
+  .fig-salvedad b { font-weight: 600; color: var(--ink); }
+
+  /* ── leyenda: los cortes impresos bajo cada muestra; la ausencia, con su propio símbolo ── */
+  .cal-ley { display: flex; flex-wrap: wrap; gap: var(--e4) var(--e6); align-items: flex-end; margin-bottom: var(--e5); }
+  .cal-ley-t { font-size: var(--fs-small); color: var(--ink-2); margin: 0 0 .45rem; max-width: 34rem; }
+  .cal-ley ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); width: min(100%, 44rem); gap: 0 .5rem; }
+  .cal-ley ol li { display: grid; gap: .3rem; font: 400 var(--fs-mono-s)/1.25 var(--mono); color: var(--ink-2); min-width: 0; }
+  .cal-ley ol li span { padding-right: .35rem; overflow-wrap: anywhere; }
+  .cal-ley ol li .c { width: 100%; height: .8rem; }
+  .cal-ley-aus { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem var(--e5); font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--ink-2); }
+  .cal-ley-aus li { display: inline-flex; align-items: center; gap: .5rem; }
+  .cal-ley-aus .c { width: 1.1rem; height: .8rem; display: inline-block; flex: none; }
+  @media (min-width: 64rem) { .cal-ley ol li span { white-space: nowrap; } }
+  .muestra-salto { font: 400 .9rem/1 var(--mono); color: var(--mute); font-style: normal; letter-spacing: -.08em; }
+  .muestra-anillo { width: .7rem; height: .7rem; border: 1.5px solid var(--accent); border-radius: 50%; flex: none; }
+  .muestra-barras, .muestra-doble { display: inline-flex; align-items: flex-end; gap: 1px; height: .9rem; flex: none; }
+  .muestra-barras b, .muestra-doble b { display: block; width: 3px; background: var(--rampa-3); }
+  .muestra-barras b:nth-child(1) { height: 45%; } .muestra-barras b:nth-child(2) { height: 100%; } .muestra-barras b:nth-child(3) { height: 70%; }
+  .muestra-doble b { width: 2px; height: 80%; }
+  .muestra-ver { width: 1.4rem; height: .8rem; border: 1px dashed var(--ausencia-trazo); flex: none; }
+  .muestra-bandas { display: grid; gap: 2px; width: 1.4rem; flex: none; }
+  .muestra-bandas b { display: block; height: .38rem; border: 1px solid var(--hair-2); background: var(--bg-2); }
+  .muestra-bandas b + b { background: none; }
+  .ley-altura { flex-basis: 100%; }
+  .alt-u { display: none; }
+  .fig-cal:has(input[value='diputados']:checked) .alt-u { display: inline; }
+  .fig-cal:has(input[value='diputados']:checked) .alt-p { display: none; }
+
+  /* ── rejilla: año × mes, agrupada por etapa (DESIGN.md: meses en números romanos, ejes en mono apagado) ── */
+  .cal { position: relative; display: grid; gap: var(--e5); }
+  .cal :global(.cal-meses), .cal :global(.cal-fila) { display: grid; grid-template-columns: var(--anio) repeat(12, minmax(0, 1fr)); column-gap: var(--g); align-items: end; }
+  .cal-meses { font: 400 .75rem/1 var(--mono); color: var(--mute); text-align: center; padding-block: .3rem .45rem; border-bottom: 1px solid var(--hair); }
+  .cal :global(.cal-etapa) { display: grid; gap: var(--g); border-radius: var(--radio); min-width: 0; }
+  .cal :global(.cal-etapa:focus-visible) { outline: 3px solid var(--focus); outline-offset: 6px; }
+  .cal :global(.cal-cab) { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .15rem var(--e4); margin-bottom: .45rem; padding-left: calc(var(--anio) + var(--g)); }
+  .cal :global(.cal-nombre) { font: 500 1.02rem/1.25 var(--text); color: var(--ink); text-decoration-color: var(--hair-2); text-underline-offset: .22em; }
+  .cal :global(a.cal-nombre:hover) { text-decoration-color: var(--accent); }
+  .cal :global(.cal-rom) { font: italic 600 1.15em/1 var(--display); color: var(--accent); margin-right: .15em; }
+  .cal :global(.cal-tot) { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .cal :global(.cal-dice) { flex-basis: 100%; margin: .2rem 0 0; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); max-width: 44rem; }
+  .cal :global(.cal-extracto) { color: var(--mute); }
+  .cal :global(.cal-anio) { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); align-self: center; }
+
+  /* celdas del mes: tono en oro (5 clases); la ausencia, contorno sin relleno; fuera de etapa, nada */
+  .cal :global(.c) { display: block; height: var(--alto); border-radius: 1px; min-width: 0; position: relative; }
+  .fig-cal :global(.c.q0) { background: var(--rampa-0); } .fig-cal :global(.c.q1) { background: var(--rampa-1); }
+  .fig-cal :global(.c.q2) { background: var(--rampa-2); } .fig-cal :global(.c.q3) { background: var(--rampa-3); }
+  .fig-cal :global(.c.q4) { background: var(--rampa-4); }
+  .fig-cal :global(.c.vacio) { box-shadow: inset 0 0 0 1px var(--ausencia-trazo); background: none; }
+  .cal :global(.c.fuera) { visibility: hidden; }
+  .cal :global(.c[data-nota]) { cursor: crosshair; }
+  .cal :global(.c.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; z-index: 2; }
+
+  /* anotaciones editoriales (F01c): al margen en escritorio, entre filas en el móvil; trazo oro que las une a su fila */
+  .cal :global(.cal-nota) { grid-column: 2 / -1; font-size: .95rem; line-height: 1.4; color: var(--ink-2); margin: .35rem 0 .55rem; max-width: 34rem; text-wrap: pretty; }
+  .cal :global(.cal-nota::before) { content: ''; display: inline-block; width: .9rem; height: 1px; background: var(--accent); vertical-align: middle; margin-right: .5rem; }
+
+  .cal :global(.cal-salto) { display: grid; grid-template-columns: var(--anio) 1fr; column-gap: var(--g); align-items: baseline; padding-block: var(--e3); border-block: 1px dashed var(--ausencia-trazo); }
+  .cal :global(.cal-salto .cal-anio) { font-size: 1rem; letter-spacing: -.08em; }
+  .cal :global(.cal-salto p) { margin: 0; font-size: .95rem; color: var(--ink-2); max-width: 44rem; }
+
+  /* ── barras por sesión (F01 y F01e): el mes es una superficie; la barra, del tono de su mes; la altura, palabras ── */
+  .fig-cal--completa .cal :global(.c:is(.q0, .q1, .q2, .q3, .q4)),
+  .fig-cal--etapa .cal :global(.c:is(.q0, .q1, .q2, .q3, .q4)) { background: var(--bg-2); box-shadow: inset 0 -1px 0 var(--hair-2); }
+  .fig-cal :global(.bs) { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 0; }
+  .fig-cal :global(.b) { display: block; flex: 1 1 0; min-width: 0; height: max(2px, calc(var(--h) * 100%)); background: var(--c-barra, var(--rampa-2)); position: relative; }
+  .fig-cal :global(.b.d) { flex-grow: .5; }
+  .fig-cal :global(.q0) { --c-barra: var(--rampa-0); } .fig-cal :global(.q1) { --c-barra: var(--rampa-1); }
+  .fig-cal :global(.q2) { --c-barra: var(--rampa-2); } .fig-cal :global(.q3) { --c-barra: var(--rampa-3); }
+  .fig-cal :global(.q4) { --c-barra: var(--rampa-4); }
+  .fig-cal :global(.b + .b) { box-shadow: inset 1px 0 0 var(--bg-2); }
+  .fig-cal:has(input[value='diputados']:checked) :global(.b) { height: max(2px, calc(var(--u) * 100%)); --c-barra: var(--ink-2); }
+  .fig-cal:has(input[value='diputados']:checked) .cal-ley-tono { opacity: .45; }
+  .fig-cal :global(.b.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; z-index: 3; }
+  .fig-cal :global(a.b) { display: block; }
+  /* Los anillos de las puertas, desde 48 rem (por debajo, la puerta se ve en la lista del mes y en su nota). */
+  @media (min-width: 48rem) {
+    .fig-cal :global(a.b.p::before) {
+      content: ''; position: absolute; left: 50%; bottom: calc(100% + 3px); width: 7px; height: 7px; transform: translateX(-50%);
+      border: 1.5px solid var(--accent); border-radius: 50%; background: var(--bg);
+    }
+    .fig-cal :global(.b + .b) { box-shadow: inset 1px 0 0 var(--bg-2); }
+  }
+
+  /* ── F16: dos bandas bajo cada fila de año, alineadas con las ranuras de las barras (calc con la calle) ── */
+  .cal :global(.cal-anio-grupo) { display: grid; gap: 2px; margin-bottom: var(--e3); }
+  .cal :global(.banda) { display: grid; grid-template-columns: var(--anio) minmax(0, 1fr); column-gap: var(--g); align-items: center; }
+  .cal :global(.banda-rot) { font: 400 .74rem/1 var(--text); color: var(--mute); overflow: hidden; display: none; }
+  .cal :global(.pista) { grid-column: 2; position: relative; height: 1.45rem; }
+  .cal :global(.tr) {
+    --col: calc((100% - 11 * var(--g)) / 12);
+    position: absolute; top: 0; bottom: 0;
+    left: calc(var(--col) * var(--a) + var(--ai) * var(--g));
+    width: max(3px, calc(var(--col) * (var(--b) - var(--a)) + (var(--bi) - var(--ai)) * var(--g)));
+    display: flex; align-items: center; gap: .2rem; padding: 0 .35rem; overflow: hidden; white-space: nowrap;
+    border: 1px solid var(--hair-2); border-radius: 1px; background: var(--bg-2);
+    font: 400 .8rem/1 var(--text); color: var(--ink-2); cursor: pointer;
+  }
+  .cal :global(.banda[data-banda='gobierno'] .tr) { background: none; }
+  .cal :global(.tr.ver) { border: 1px dashed var(--ausencia-trazo); background: none; }
+  .cal :global(.tr.viene) { border-left-style: dotted; }
+  .cal :global(.tr.sigue) { border-right-style: dotted; }
+  .cal :global(.tr .icono) { width: .7rem; height: .7rem; flex: none; margin-left: auto; color: var(--mute); }
+  .cal :global(.tr-r) { overflow: hidden; text-overflow: clip; display: none; }
+  .cal :global(.tr.cabe-e .tr-r) { display: inline; }
+  @media (min-width: 64rem) { .cal :global(.tr.cabe-m .tr-r) { display: inline; } }
+  @media (min-width: 80rem) { .cal :global(.tr.cabe-a .tr-r) { display: inline; } }
+  .cal :global(.tr.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; z-index: 2; }
+  .cal :global(.tr:hover) { color: var(--ink); border-color: var(--ink-2); }
+
+  /* ficha breve de una sesión (o la lista de un mes, al tocarlo): bajo la figura, con su botón de cierre */
+  .cal-breve { margin-top: var(--e5); padding: var(--e4) var(--e5); border: 1px solid var(--hair-2); border-radius: var(--radio); background: var(--bg-2); max-width: 44rem; }
+  .cal-breve[hidden] { display: none; }
+  .cal-breve :global(h4) { font: 600 1.05rem/1.3 var(--text); margin: 0 0 .4rem; }
+  .cal-breve :global(p) { margin: .3rem 0; font-size: var(--fs-small); color: var(--ink-2); }
+  .cal-breve :global(.breve-datos) { font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--ink-2); }
+  .cal-breve :global(ul) { list-style: none; margin: .4rem 0; padding: 0; font: 400 var(--fs-mono-s)/1.5 var(--mono); }
+  .cal-breve :global(li) { padding: .25rem 0; border-bottom: 1px solid var(--hair); }
+  .cal-breve :global(button) { min-height: 2.75rem; }
+  .cal-ver-todo { margin: var(--e5) 0 0; }
+
+  .cal-sesiones { margin-top: var(--e6); }
+  .cal-sesiones summary { cursor: pointer; min-height: 2.75rem; display: flex; align-items: center; font-weight: 600; }
+  .cal-f16-tabla { display: grid; gap: var(--e6); margin-top: var(--e6); }
+  .ver-rot { color: var(--mute); font-weight: 400; }
+  .fig-cal :global(.t-hueco th) { color: var(--mute); font-weight: 400; }
+
+  @media (min-width: 64rem) {
+    .fig-cal { --anio: 3rem; --g: 4px; }
+    .fig-cal--etapa { --anio: 5.2rem; }
+    .cal :global(.banda-rot) { display: block; }
+    .cal-meses { font-size: .75rem; }
+    /* F01c: la columna 14 es el margen de las anotaciones, fila a fila */
+    .fig-cal--compacta .cal :global(.cal-meses), .fig-cal--compacta .cal :global(.cal-fila) { grid-template-columns: var(--anio) repeat(12, minmax(0, 1fr)) minmax(12rem, 16rem); }
+    .fig-cal--compacta .cal :global(.cal-cab) { max-width: calc(100% - 16rem - var(--g)); }
+    .fig-cal--compacta .cal :global(.cal-salto) { max-width: calc(100% - 16rem - var(--g)); }
+    .fig-cal--compacta .cal :global(.cal-nota) { grid-column: 14; grid-row: 1; margin: 0 0 -4rem var(--e5); font-size: .9rem; align-self: start; }
+  }
+  /* En el móvil, el dato no baja de 0,75 rem (DESIGN.md: suelo absoluto). Para que quepa, los meses se rotulan de tres
+     en tres (I · IV · VII · X), y los cortes de la leyenda se parten en dos líneas. */
+  @media (max-width: 30rem) {
+    .fig-cal { --g: 2px; --anio: 2.2rem; }
+    .cal-meses span:not(:nth-child(3n + 2)) { visibility: hidden; }
+    /* «315.122–» cabe entero en su columna (8 caracteres a 12 px): el corte cae detrás de la raya, no antes. */
+    .cal-ley ol { gap: 0 .3rem; }
+    .cal-ley ol li span { padding-right: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .fig-cal :global(.b), .fig-cal :global(.tr) { transition: opacity var(--t-estado) var(--ease), height var(--t-estado) var(--ease); }
+  }
+  @media print { .cal-breve { display: none; } }
+  /* Colores forzados (alto contraste): el sistema anula los fondos y la figura se quedaba vacía. Las marcas y las
+     muestras conservan su rampa (la del tema que pide el sistema) y la ausencia pasa de sombra interior (que el modo
+     anula) a contorno. La Tabla sigue siendo la base accesible. */
+  @media (forced-colors: active) {
+    .fig-cal :global(:is(.b, .c:is(.q0, .q1, .q2, .q3, .q4), .tr)), .cal-ley :global(.c), .cal-ley-aus :global(i b) { forced-color-adjust: none; }
+    .fig-cal :global(.c.vacio), .cal-ley-aus :global(.c.vacio) { outline: 1px solid CanvasText; outline-offset: -1px; }
+    .fig-cal:has(input[value='diputados']:checked) :global(.b) { --c-barra: CanvasText; }
+  }
+</style>

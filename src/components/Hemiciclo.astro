@@ -1,0 +1,188 @@
+---
+/**
+ * H · Hemiciclo de 1936 (plan § Fichas de figura · H). Portada de Inicio y de la raíz. Es PORTADA, no figura de datos:
+ * sin pestañas, sin descarga y SIN NINGUNA CIFRA. El dibujo no se toca: es el de `aecpa2026/landing/hero_svg.py`,
+ * portado aquí línea a línea (muro, pupitres de los pasillos, mesa presidencial y un rectángulo por escaño).
+ *
+ *  · Dato: `src/data/hemiciclo_1936.json` (lo copia el exportador; es el ÚNICO archivo que se toma de `figs/data/`).
+ *    En la vista previa, si el exportador aún no lo ha escrito, se lee de su origen (contrato § Rutas, «Portada»).
+ *  · Color: cada escaño toma `var(--g-<minoría>)`; las dos paletas (oscuro y claro) son tokens (tokens.json › hemiciclo).
+ *  · Interacción, SOLO CSS: cinco radios (Todos · Derechas · Centro · Izquierdas · Gobierno) y, además, pasar el
+ *    puntero por la leyenda o dar el foco a un radio atenúa el resto con `--atenua` (calibrado por tema).
+ *  · Textos (comun.md § 8): `comun.hemiciclo.titulo` y `.desc` (nombre accesible del SVG), `.pie` (salvedad
+ *    rotulada), `.plano` (crédito del plano), `.bloques.aria`, `.bloque.{todos,der,cen,izq,gob}` y `.g.<minoría>`;
+ *    `.rotulo`, si existe. En español, si falta `.g.<minoría>`, vale el nombre que trae el JSON (dato del croquis).
+ *
+ * Variantes: `portada` (Inicio: leyenda, radios, rótulo y pie) · `raiz` (el selector de lengua: solo el dibujo).
+ */
+import { readFileSync, existsSync } from 'node:fs';
+import { dato } from '../lib/datos';
+import { t, plano, existe } from '../lib/i18n';
+import { escapa, marcaPendiente } from '../lib/cifras';
+import type { Lang } from '../lib/idiomas';
+import tokens from '../styles/tokens.json';
+
+interface Grupo { nombre: string; bloque: 'der' | 'cen' | 'izq' | 'gob'; color: string; color_claro?: string }
+interface Hemi {
+  geom: { cx: number; yc: number; ytop: number; wall: number; aisles: number[] };
+  rows: [string, number, number, number][];
+  groups: Record<string, Grupo>;
+  orden: string[];
+  seats: { x: number; y: number; rot: number; g?: string }[];
+  mesa?: string;
+}
+interface Props { lang: Lang; variante?: 'portada' | 'raiz'; id?: string }
+const { lang, variante = 'portada', id = 'hemiciclo' } = Astro.props;
+const ESTRICTO = process.env.STRICT === '1';
+
+// Origen de la vista previa (solo lectura, nunca se copia desde aquí: la copia es del exportador).
+const ORIGEN = '/Users/rodrodr/Dropbox/Apps/aecpa2026/figs/data/hemiciclo_1936.json';
+let J = dato<Hemi>('hemiciclo_1936');
+let prestado = false;
+if (!J) {
+  if (ESTRICTO) throw new Error('Falta src/data/hemiciclo_1936.json: lo copia el exportador (exportador/modulos/base.py).');
+  if (existsSync(ORIGEN)) { J = JSON.parse(readFileSync(ORIGEN, 'utf8')) as Hemi; prestado = true; }
+}
+
+const BLOQUES = ['der', 'cen', 'izq', 'gob'] as const;
+let svg = '';
+let css = '';
+if (J) {
+  const { cx: CX, yc: YC, ytop: YTOP, wall: WALL, aisles: AISLES } = J.geom;
+  const upath = (R: number) => `M${(CX - R).toFixed(1)},${YTOP} V${YC} A${R},${R} 0 0 0 ${(CX + R).toFixed(1)},${YC} V${YTOP}`;
+  const w = 12.6, h = 15.0;
+  const out: string[] = [];
+  out.push(`<svg class="hemi" xmlns="http://www.w3.org/2000/svg" viewBox="272 58 658 606" focusable="false" role="img" aria-labelledby="${id}-t ${id}-d" preserveAspectRatio="xMidYMid meet">`);
+  out.push(`<title id="${id}-t">${escapa(plano(lang, 'comun.hemiciclo.titulo'))}</title>`);
+  out.push(`<desc id="${id}-d">${escapa(plano(lang, 'comun.hemiciclo.desc'))}</desc>`);
+  out.push('<g class="hemi-str" fill="none" stroke="currentColor" stroke-linecap="round">');
+  out.push(`<path d="${upath(WALL)}" stroke-width="1.6"/>`);
+  for (const [, , , Rd] of J.rows) out.push(`<path d="${upath(Rd)}" stroke-width="0.7"/><path d="${upath(Rd + 3)}" stroke-width="0.7"/>`);
+  for (const a of AISLES) {
+    for (const [, , , Rd] of J.rows) {
+      const tt = (a * Math.PI) / 180, x = CX + Rd * Math.cos(tt), y = YC + Rd * Math.sin(tt);
+      out.push(`<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${(a - 90).toFixed(1)})"><rect x="-6" y="-4" width="12" height="8" stroke-width="0.6"/><line x1="-2" y1="-4" x2="-2" y2="4" stroke-width="0.5"/><line x1="2" y1="-4" x2="2" y2="4" stroke-width="0.5"/></g>`);
+    }
+  }
+  out.push('</g>');
+  // La mesa llega como SVG del propio JSON (dibujo paramétrico): se quitan sus comentarios, que no son para el lector.
+  if (J.mesa) out.push(`<g class="hemi-mesa" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">${J.mesa.replace(/<!--[\s\S]*?-->/g, '')}</g>`);
+  // La Cámara se sienta (DESIGN.md, momento 1): cada escaño lleva su retardo `--o`, calculado aquí desde su radio y su
+  // ángulo (de la tribuna hacia fuera, fila a fila, y dentro de la fila de un extremo al otro). Solo lo usa el CSS de
+  // movimiento; sin él, o con menos movimiento, la Cámara está entera desde el principio.
+  const polar = J.seats.map((s) => ({ r: Math.hypot(s.x - CX, s.y - YC), a: (Math.atan2(s.y - YC, s.x - CX) * 180) / Math.PI }));
+  const rmin = Math.min(...polar.map((p) => p.r)), rmax = Math.max(...polar.map((p) => p.r));
+  out.push('<g class="hemi-seats">');
+  J.seats.forEach((s, i) => {
+    const g = s.g ?? '';
+    const b = g ? J.groups[g]?.bloque ?? '' : '';
+    const o = Math.round(((polar[i].r - rmin) / (rmax - rmin || 1)) * 900 + (((polar[i].a + 180) % 360) / 180) * 160);
+    out.push(`<g transform="translate(${s.x},${s.y}) rotate(${s.rot})" data-g="${g}" data-b="${b}" style="--o:${o}"><rect x="${(-w / 2).toFixed(1)}" y="${(-h / 2).toFixed(1)}" width="${w}" height="${h}" rx="2.2" fill="${g ? `var(--g-${g})` : 'none'}"/></g>`);
+  });
+  out.push('</g></svg>');
+  // El plano se traza: cada ruta de la estructura mide 1 para el `stroke-dasharray` del movimiento.
+  svg = out.join('').replace(/<path d=/g, '<path pathLength="1" d=');
+
+  // Resalte por minoría al pasar por la leyenda: una regla por grupo (18), generada aquí, no escrita a mano.
+  const sel = `#${id}`;
+  css = J.orden.map((k) =>
+    `${sel}:has(.leg-grupo[data-g="${k}"]:hover) .hemi-seats > g:not([data-g="${k}"]) { opacity: var(--atenua); }`).join('\n');
+  css += '\n' + BLOQUES.map((b) => [
+    `${sel}:has(input[value="${b}"]:checked) .hemi-seats > g:not([data-b="${b}"]),`,
+    `${sel}:has(input[value="${b}"]:focus-visible) .hemi-seats > g:not([data-b="${b}"]),`,
+    `${sel}:has(.leg-bloque[data-b="${b}"] > .leg-cabeza:hover) .hemi-seats > g:not([data-b="${b}"]) { opacity: var(--atenua); }`,
+    `${sel}:has(input[value="${b}"]:checked) .leg-bloque:not([data-b="${b}"]) { opacity: .5; }`,
+  ].join('\n')).join('\n');
+}
+
+// Comprobación: los tokens del tema traen las 18 minorías del JSON.
+if (J && ESTRICTO) {
+  const faltan = J.orden.filter((k) => !(k in tokens.hemiciclo.oscuro) || !(k in tokens.hemiciclo.claro));
+  if (faltan.length) throw new Error(`tokens.json › hemiciclo no trae: ${faltan.join(', ')}`);
+}
+
+function nombreGrupo(k: string): string {
+  const clave = `comun.hemiciclo.g.${k}`;
+  if (existe(clave)) return t(lang, clave);
+  if (ESTRICTO) throw new Error(`Falta «${clave}» en el copy.`);
+  const nombre = J?.groups[k]?.nombre ?? k;
+  return lang === 'es' ? escapa(nombre) : `<span lang="es" data-sin-traducir>${escapa(nombre)}</span>`;
+}
+const gruposDe = (b: string) => (J ? J.orden.filter((k) => J!.groups[k]?.bloque === b) : []);
+---
+{J ? (
+  <figure class:list={['hemi-fig', variante]} id={id} data-figura="H" data-base="croquis" data-prestado={prestado ? 'vista-previa' : undefined}>
+    {variante === 'portada' && existe('comun.hemiciclo.rotulo') && <p class="hemi-rotulo asiento" set:html={t(lang, 'comun.hemiciclo.rotulo')} />}
+    <div class="hemi-lienzo" set:html={svg} />
+    {variante === 'portada' && (
+      <div class="hemi-leyenda">
+        <fieldset class="hemi-radios no-imprimir">
+          <legend class="sr-only" set:html={t(lang, 'comun.hemiciclo.bloques.aria')} />
+          <label class="leg-todos"><input type="radio" name={`${id}-bloque`} value="todos" checked /><span set:html={t(lang, 'comun.hemiciclo.bloque.todos')} /></label>
+        </fieldset>
+        <div class="leyenda">
+          {BLOQUES.map((b) => (
+            <div class="leg-bloque" data-b={b}>
+              <label class="leg-cabeza"><input type="radio" name={`${id}-bloque`} value={b} /><span set:html={t(lang, `comun.hemiciclo.bloque.${b}`)} /></label>
+              <ul role="list">
+                {gruposDe(b).map((k) => (
+                  <li class="leg-grupo" data-g={k}><i style={`background: var(--g-${k})`} aria-hidden="true"></i><span set:html={nombreGrupo(k)} /></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+    {variante === 'portada' && <figcaption class="hemi-pie"><span set:html={t(lang, 'comun.hemiciclo.pie')} />{existe('comun.hemiciclo.plano') && <span class="hemi-plano" set:html={' ' + t(lang, 'comun.hemiciclo.plano')} />}</figcaption>}
+    <style is:inline set:html={css}></style>
+  </figure>
+) : (
+  <div class="fig-hueco" data-todo-fig="H"><p set:html={marcaPendiente('hemiciclo_1936.json')} /></div>
+)}
+
+<style>
+  .hemi-fig { margin: 0; min-width: 0; color: var(--mute); }
+  .hemi-rotulo { text-align: right; color: var(--mute); margin: 0 0 .5rem; }
+  .hemi-lienzo :global(.hemi) { width: 100%; height: auto; max-height: 68vh; display: block; }
+  .hemi-lienzo :global(.hemi-str), .hemi-lienzo :global(.hemi-mesa) { opacity: .8; }
+  .hemi-lienzo :global(.hemi-seats rect) { stroke: var(--bg); stroke-width: .8; }
+  .raiz .hemi-lienzo :global(.hemi) { max-height: 42vh; }
+
+  .hemi-leyenda { margin-top: .9rem; }
+  .hemi-radios { border: 0; margin: 0 0 .3rem; padding: 0; }
+  .leyenda { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--e4) var(--e5); align-items: start; font: 400 .88rem/1.35 var(--text); color: var(--ink-2); }
+  /* Los bloques son radios (sin JS): el rótulo, subrayado en filete y en oro cuando está elegido. */
+  .leg-cabeza, .leg-todos { position: relative; display: inline-flex; align-items: center; gap: .45rem; min-height: 2.75rem; cursor: pointer; font: 600 1rem/1.2 var(--text); color: var(--ink); }
+  .leg-cabeza input, .leg-todos input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+  .leg-cabeza span, .leg-todos span { text-decoration: underline; text-decoration-color: var(--hair-2); text-underline-offset: .25em; }
+  .leg-cabeza:hover span, .leg-todos:hover span { text-decoration-color: var(--accent); }
+  .leg-cabeza input:checked + span, .leg-todos input:checked + span { text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+  .leg-cabeza input:focus-visible + span, .leg-todos input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .leg-todos { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .leyenda ul { list-style: none; margin: 0; padding: 0; }
+  .leg-grupo { display: flex; align-items: baseline; gap: .45rem; min-width: 0; cursor: default; padding-block: .05rem; }
+  .leg-grupo span { min-width: 0; overflow-wrap: anywhere; }
+  /* El filete hace visible el cuadro aunque el color sea oscuro. */
+  .leg-grupo i { flex: 0 0 .62rem; width: .62rem; height: .78rem; border-radius: 1.5px; transform: translateY(.08rem); }
+  .leg-grupo:hover span { color: var(--ink); }
+  .hemi-pie { margin: .9rem 0 0; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); max-width: 40rem; }
+  .hemi-pie :global(em) { font-style: italic; }
+
+  @media (max-width: 61.25rem) {
+    .hemi-rotulo { text-align: left; }
+    .leyenda { grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); }
+    .hemi-lienzo :global(.hemi) { max-height: 46vh; }
+  }
+  @media (max-width: 32.5rem) { .leyenda { grid-template-columns: 1fr 1fr; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hemi-lienzo :global(.hemi-seats > g), .leg-bloque { transition: opacity var(--t-estado) var(--ease); }
+    /* 1 · La Cámara se sienta: el plano se traza (1,5 s) y los escaños se ocupan de la tribuna hacia fuera (≤ 1,6 s). */
+    .hemi-lienzo :global(.hemi-str path), .hemi-lienzo :global(.hemi-mesa path) { stroke-dasharray: 1; animation: hemi-trazo 1.5s var(--ease) both; }
+    .hemi-lienzo :global(.hemi-seats > g > rect) { transform-box: fill-box; transform-origin: center; animation: hemi-asiento .55s var(--ease) backwards; animation-delay: calc(500ms + var(--o, 0) * 1ms); }
+    @keyframes hemi-trazo { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes hemi-asiento { from { opacity: 0; transform: scale(.35); } }
+    /* En la raíz, sin ceremonia. */
+    .raiz .hemi-lienzo :global(path), .raiz .hemi-lienzo :global(rect) { animation: none; }
+  }
+</style>

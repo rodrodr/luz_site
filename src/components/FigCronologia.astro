@@ -1,0 +1,377 @@
+---
+/**
+ * F27 «Luz y taquígrafos», diez veces · F28 Lo que el Diario calla (grupo 4, El Diario; plan § F27 y F28).
+ * Dos líneas de tiempo con la misma gramática, de julio de 1931 a julio de 1936, una columna por mes:
+ *  · Dato: `src/data/diario.json` (exportador/modulos/diario.py): cada fila con su fecha, sus dos ids y el orador según
+ *    la base; el estado de cada mes, de `meses.json` (con sesión: barra llena; sin sesión: contorno; la ausencia se
+ *    dibuja, no se colorea). El texto de cada cita sale del copy (`fig.F27.cita.N`, comprobado letra a letra).
+ *  · Marca: F27, un punto de oro por fila. F28, tres formas, no solo tres colores: la orden de la Presidencia, punto
+ *    lleno; la acotación del taquígrafo, rombo en trazo; la petición de un diputado, círculo en contorno. La fila ajena
+ *    no se dibuja: va en la Tabla, rotulada. Las marcas de un mismo mes se apilan.
+ *  · Rótulos directos en escritorio (fecha en mono y nombre); en el móvil la línea se parte en seis años de doce meses
+ *    y los rótulos se quedan en la Tabla. F28 lleva una lupa por días de la primavera de 1936, donde caen diez de las
+ *    trece marcas. Anotaciones editoriales: dos o tres, con su trazo de oro.
+ *  · Isla genérica: la línea es UNA parada de tabulación; ← → Inicio Fin recorren las marcas en orden cronológico y la
+ *    nota dice la cita, la fecha, quién y los dos ids. Sin JS la figura se lee entera y la Tabla trae las citas.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano, plantillaNota, existe } from '../lib/i18n';
+import { fmt, marcaPendiente } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { celdas, anios, colocar, lupa, nColumnas, xColumna, LUPA, type MesEstado } from '../viz/geom/cronologia';
+import type { Lang } from '../lib/idiomas';
+
+// Alias de tipo y no interfaz: así cabe en el `Evento` genérico de la geometría (firma con índice).
+type Fila = {
+  tipo?: 'orden' | 'acotacion' | 'peticion' | 'ajena';
+  n: number; fecha: string; mes: string; num_session: number; id_v2: number; id_v3: number;
+  rotulo: string; orador: string; corto: string; preside?: string; fragmento: string;
+};
+interface Props { lang: Lang; id: 'F27' | 'F28' }
+const { lang, id } = Astro.props;
+const D = dato<{ f27: Fila[]; f28: Fila[] }>('diario');
+const M = dato<{ meses: MesEstado[] }>('meses');
+const es27 = id === 'F27';
+const filas: Fila[] = (es27 ? D?.f27 : D?.f28) ?? [];
+const dibujadas = filas.filter((f) => f.tipo !== 'ajena');
+const cs = M ? celdas(M.meses) : [];
+const fam = `fig.${id}`;
+const o = (c: string, ctx = {}) => (existe(c) ? t(lang, c, ctx) : marcaPendiente(c, 'copy'));
+
+// La clave de la cita de cada fila en el copy (texto comprobado letra a letra en citas.md).
+const claveCita = (f: Fila) => (es27 ? `fig.F27.cita.${f.n}` : f.tipo === 'orden' || f.tipo === 'acotacion' ? `fig.F28.cita.${f.tipo}.${f.n}` : `fig.F28.cita.${f.tipo}`);
+const sinComillas = (s: string) => s.replace(/^\s*«\s*/, '').replace(/\s*»\s*$/, '');
+const fragmento = (f: Fila) => (existe(claveCita(f)) ? sinComillas(plano(lang, claveCita(f))) : f.fragmento);
+// F27: quien habla según la base; la fila de tres palabras se rotula como la imprime el Diario (la base lo identifica
+// con otra grafía, D-22 pendiente).
+const atribuida = (f: Fila) => es27 && f.id_v2 === 71330;
+const orador = (f: Fila) => (atribuida(f) ? plano(lang, 'fig.F27.orador.atribuido') : f.orador || f.rotulo);
+const nombreRotulo = (f: Fila) => (atribuida(f) ? f.rotulo.replace(/^El Sr\.\s*/, '').replace(/:$/, '') : f.corto || f.orador);
+
+// Notas emergentes (DESIGN.md § Nota emergente): la cita · la fecha y quién · los dos ids.
+// Los atributos HTML no distinguen mayúsculas: el hueco de la V2 se llama `v2` (data-v-v2).
+const huecos = ['fragmento', 'fecha', 'orador', 'preside', 'v2', 'v3'];
+const notaT = plantillaNota(lang, `${fam}.nota.t`, huecos);
+const notaB = plantillaNota(lang, `${fam}.nota.b`, huecos);
+const notaD = (f: Fila) => plantillaNota(lang, es27 ? 'fig.F27.nota' : `fig.F28.nota.${f.tipo}`, huecos);
+
+// Rótulos directos (escritorio): ancho supuesto en columnas de ~13 px (la más estrecha: una figura de 48 rem).
+const anchoRotulo = (f: Fila) => {
+  if (!es27) return null;
+  const nombre = nombreRotulo(f);
+  return Math.ceil(Math.max(84, nombre.length * 7.4) / 13) + 1;
+};
+const marcas = cs.length ? colocar(dibujadas, cs, anchoRotulo) : [];
+// F28: los rótulos van por mes fuera de la lupa (y la lupa rotula sus días).
+const enLupa = (f: Fila) => f.fecha >= LUPA.desde && f.fecha <= LUPA.hasta;
+const rotulosMes = !es27 ? [...new Map(marcas.filter((m) => !enLupa(m.ev)).map((m) => [m.ev.mes, m])).values()] : [];
+const L = !es27 ? lupa(dibujadas) : null;
+const lupaCols = !es27 && cs.length ? cs.filter((c) => c.mes >= LUPA.desde.slice(0, 7) && c.mes <= LUPA.hasta.slice(0, 7)) : [];
+const aniosLinea = anios(cs);
+const total = nColumnas();
+
+// Anotaciones editoriales (como mucho tres; DESIGN.md § Anotaciones): la columna a la que se anclan.
+const col = (mes: string) => cs.find((c) => c.mes === mes)?.c ?? 1;
+const anotaciones = es27
+  ? [
+      { k: 'fig.F27.anota.balbontin', c: col('1932-04') },
+      { k: 'fig.F27.anota.grito', c: col('1934-06') },
+      { k: 'fig.F27.anota.guerra', c: col('1936-07') },
+    ]
+  : [];
+// Filas de las anotaciones en escritorio: cada una ocupa ~27 % del ancho a la derecha de su ancla (o a la izquierda,
+// si va al final); si choca con otra de su fila, baja.
+function filasAnota<T extends { x: number }>(xs: T[]): (T & { fila: number; derecha: boolean })[] {
+  const ocup: [number, number][][] = [];
+  return xs.map((a) => {
+    const derecha = a.x > 72;
+    const tramo: [number, number] = derecha ? [a.x - 29, a.x] : [a.x - 2, a.x + 27];
+    let fila = ocup.findIndex((f) => f.every(([p, q]) => tramo[1] <= p || tramo[0] >= q));
+    if (fila < 0) { ocup.push([]); fila = ocup.length - 1; }
+    ocup[fila].push(tramo);
+    return { ...a, fila, derecha };
+  });
+}
+const anotas = filasAnota(anotaciones.map((a) => ({ ...a, x: xColumna(a.c) })));
+const filasAnotas = Math.max(0, ...anotas.map((a) => a.fila));
+const alt = plano(lang, `${fam}.alt`);
+const datosNota = (f: Fila) => ({
+  'data-v-fragmento': fragmento(f),
+  'data-v-fecha': fmt.fechaLarga(f.fecha, lang),
+  'data-v-orador': orador(f),
+  'data-v-preside': f.preside ?? '',
+  'data-v-v2': fmt.id(f.id_v2, lang),
+  'data-v-v3': fmt.id(f.id_v3, lang),
+  'data-plantilla': notaD(f),
+});
+const tipoTexto = (f: Fila) => (f.tipo ? o(`fig.F28.tipo.${f.tipo}`) : '');
+---
+<FiguraMarco lang={lang} id={id} plantilla={notaD(filas[0] ?? ({ tipo: 'orden' } as Fila))} plantillaT={notaT} plantillaB={notaB}>
+  <div slot="grafico" class:list={['cr', { 'cr-f28': !es27 }]}>
+    {!D || !M ? (
+      <p class="nota" set:html={marcaPendiente(!D ? 'diario.json' : 'meses.json', 'dato')} />
+    ) : (
+      <>
+        <ul class="cr-leyenda" role="list">
+          {es27 ? (
+            <li><span class="cr-glifo" data-tipo="fila" aria-hidden="true" /><span set:html={o('fig.F27.leyenda')} /></li>
+          ) : (
+            ['orden', 'acotacion', 'peticion'].map((tp) => (
+              <li><span class="cr-glifo" data-tipo={tp} aria-hidden="true" /><span set:html={o(`fig.F28.leyenda.${tp}`)} /></li>
+            ))
+          )}
+          <li class="cr-leyenda-mes"><span class="cr-muestra" data-estado="sesion" aria-hidden="true" /><span set:html={o('fig.F27.meses.con')} /></li>
+          <li class="cr-leyenda-mes"><span class="cr-muestra" data-estado="sin_sesion" aria-hidden="true" /><span set:html={o('fig.F27.meses.sin')} /></li>
+        </ul>
+
+        <div class="cr-marco">
+          {es27 && (
+            <div class="cr-rotulos" aria-hidden="true">
+              {marcas.filter((m) => m.nivel !== null).map((m) => (
+                <span class:list={['cr-rotulo', { derecha: m.derecha }]} style={`--x: ${xColumna(m.celda.c).toFixed(3)}%; --nivel: ${m.nivel}`}>
+                  <time class="cr-rotulo-fecha" datetime={m.ev.fecha}>{fmt.fechaCorta(m.ev.fecha)}</time>
+                  <span class:list={['cr-rotulo-nombre', { versal: atribuida(m.ev) }]}>{nombreRotulo(m.ev)}</span>
+                </span>
+              ))}
+            </div>
+          )}
+          {!es27 && (
+            <div class="cr-rotulos cr-rotulos-bajos" aria-hidden="true">
+              {rotulosMes.map((m) => (
+                <span class="cr-rotulo" style={`--x: ${xColumna(m.celda.c).toFixed(3)}%; --nivel: 0`}>
+                  <time class="cr-rotulo-fecha" datetime={m.celda.mes}>{m.celda.romano}-{m.celda.anio}</time>
+                  <span class="cr-rotulo-nombre">{m.ev.preside}</span>
+                </span>
+              ))}
+            </div>
+          )}
+          <div class="cr-linea" role="group" tabindex="0" data-recorre aria-label={alt} style={`--cols: ${total}`}>
+            <div class="cr-rejilla">
+              <span class="cr-cab" aria-hidden="true">
+                {['I', 'IV', 'VII', 'X'].map((r, i) => <span style={`--m: ${i * 3 + 1}`}>{r}</span>)}
+              </span>
+              {aniosLinea.map((y) => <time class="cr-anio" aria-hidden="true" datetime={String(y.anio)} style={`--c: ${y.c}; --a: ${y.a}`}>{y.anio}</time>)}
+              {cs.map((c) => (
+                <div class="cr-mes" data-estado={c.estado} data-mes={c.mes} style={`--c: ${c.c}; --m: ${c.m}; --a: ${c.a}`}>
+                  {marcas.filter((m) => m.celda.mes === c.mes).map((m) => (
+                    <span class="cr-marca" data-tipo={m.ev.tipo ?? 'fila'} data-paso data-nota data-orden={m.orden} style={`--p: ${m.pila}`} {...datosNota(m.ev)} />
+                  ))}
+                </div>
+              ))}
+              {lupaCols.length > 0 && (
+                <span class="cr-llave" aria-hidden="true" style={`--c0: ${lupaCols[0].c}; --c1: ${lupaCols[lupaCols.length - 1].c}; --a0: ${lupaCols[0].a}`} />
+              )}
+            </div>
+          </div>
+        </div>
+
+        {es27 && (
+          <ol class="cr-anotas" role="list" style={`--filas: ${filasAnotas}`}>
+            {anotas.map((a) => (
+              <li class:list={['cr-anota', { derecha: a.derecha }]} style={`--x: ${a.x.toFixed(3)}%; --fila: ${a.fila}`}>
+                <span class="cr-anota-trazo" aria-hidden="true" />
+                <p class="nota" set:html={o(a.k)} />
+              </li>
+            ))}
+          </ol>
+        )}
+
+        {L && (
+          <div class="cr-lupa" aria-hidden="true">
+            <p class="cr-lupa-titulo" set:html={o('fig.F28.lupa')} />
+            <div class="cr-lupa-pista">
+              {L.meses.map((m) => <span class="cr-lupa-mes" style={`--x: ${m.x.toFixed(3)}%`}>{m.romano}</span>)}
+              {L.marcas.map((m) => (
+                <span class="cr-marca" data-tipo={m.ev.tipo} data-nota style={`--x: ${m.x.toFixed(3)}%; --p: ${m.pila}`} {...datosNota(m.ev)} />
+              ))}
+            </div>
+            <div class="cr-lupa-dias">
+              {L.grupos.map((g) => {
+                // El rótulo del día nombra a quien dio la orden; si ese día no hubo orden, a quien presidía.
+                const delDia = L.marcas.filter((m) => m.ev.fecha === g.fecha).map((m) => m.ev);
+                const primero = delDia.find((e) => e.tipo === 'orden') ?? delDia[0];
+                return (
+                  <span class:list={['cr-lupa-dia', { fin: g.x > 85, inicio: g.x < 15 }]} style={`--x: ${g.x.toFixed(3)}%; --nivel: ${g.nivel}`}>
+                    <time class="cr-rotulo-fecha" datetime={g.fecha}>{fmt.fechaCorta(g.fecha).replace(/-\d{4}$/, '')}</time>
+                    <span class="cr-rotulo-nombre">{primero?.preside}</span>
+                  </span>
+                );
+              })}
+            </div>
+            <ol class="cr-anotas cr-anotas-lupa" role="list">
+              <li class="cr-anota" style={`--x: ${(L.grupos.find((g) => g.fecha === '1936-04-15')?.x ?? 0).toFixed(3)}%; --fila: 0`}>
+                <span class="cr-anota-trazo" aria-hidden="true" />
+                <p class="nota" set:html={o('fig.F28.anota.abril')} />
+              </li>
+              <li class="cr-anota derecha" style="--x: 99%; --fila: 0">
+                <span class="cr-anota-trazo" aria-hidden="true" />
+                <p class="nota" set:html={o('fig.F28.anota.primavera')} />
+              </li>
+            </ol>
+          </div>
+        )}
+      </>
+    )}
+  </div>
+
+  <div slot="tabla" class="fig-desliza" tabindex="0" role="region" aria-label={`${plano(lang, `${fam}.titulo`)}. ${plano(lang, 'comun.fig.tabla.nota')}`}>
+    {D && (
+      <table class="fig-tabla cr-tabla">
+        <caption><span class="fig-rotulo-tabla" set:html={t(lang, `${fam}.titulo`)} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={o(`${fam}.tabla.col.fecha`)} />
+            {!es27 && <th scope="col" set:html={o('fig.F28.tabla.col.tipo')} />}
+            <th scope="col" set:html={o(es27 ? 'fig.F27.tabla.col.orador' : 'fig.F28.tabla.col.quien')} />
+            <th scope="col" set:html={o(`${fam}.tabla.col.fragmento`)} />
+            <th scope="col" class="num" set:html={o(`${fam}.tabla.col.filas`)} />
+          </tr>
+        </thead>
+        <tbody>
+          {filas.map((f) => (
+            <tr data-tipo={f.tipo ?? 'fila'}>
+              <td class="cr-t-fecha"><time datetime={f.fecha}>{fmt.fechaCorta(f.fecha)}</time></td>
+              {!es27 && <td class="cr-t-tipo" set:html={tipoTexto(f)} />}
+              <th scope="row" class="cr-t-quien">
+                {es27 ? orador(f) : f.tipo === 'orden' ? f.preside : f.tipo === 'acotacion' ? `${f.preside} · ${f.orador}` : f.orador}
+              </th>
+              <td class="cr-t-cita"><q set:html={fragmento(f)} /></td>
+              <td class="num cr-t-ids">
+                <span set:html={fmt.dato(f.id_v2, fmt.id(f.id_v2, lang), `${id}.${f.tipo ?? 'fila'}.${f.n}.V2`, 'V2')} />
+                <span class="cr-t-sep" aria-hidden="true"> · </span>
+                <span set:html={fmt.dato(f.id_v3, fmt.id(f.id_v3, lang), `${id}.${f.tipo ?? 'fila'}.${f.n}.v3`, 'v3')} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'comun.fig.tabla.nota')} />
+  </div>
+</FiguraMarco>
+
+<style>
+  .cr { --celda-alto: 3.1rem; --punto: .72rem; --franja: .42rem; min-width: 0; }
+  .cr-f28 { --celda-alto: 3.2rem; }
+
+  /* ── leyenda: glifos dibujados, no colores sueltos ─────────────────────────────────────────── */
+  .cr-leyenda { list-style: none; margin: 0 0 var(--e6); padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; font-size: var(--fs-small); color: var(--ink-2); max-width: 52rem; }
+  .cr-leyenda li { display: inline-flex; align-items: baseline; gap: .55rem; }
+  .cr-leyenda-mes { font-size: .9rem; color: var(--mute); }
+  .cr-glifo { flex: none; position: relative; top: .08em; }
+  .cr-muestra { flex: none; display: inline-block; width: 1.3rem; height: var(--franja); }
+
+  /* Las tres formas de marca (DESIGN.md § Estados: la forma dice el tipo; el color no basta). */
+  .cr-glifo, .cr-marca { display: block; width: var(--punto); height: var(--punto); box-sizing: border-box; }
+  /* Acotadas a los glifos: las filas de la Tabla también llevan data-tipo y no deben heredar la forma. */
+  :is(.cr-glifo, .cr-marca):is([data-tipo='fila'], [data-tipo='orden']) { background: var(--accent); border-radius: 50%; }
+  :is(.cr-glifo, .cr-marca)[data-tipo='acotacion'] { background: transparent; border: 2px solid var(--accent); transform: rotate(45deg) scale(.86); border-radius: 1px; }
+  :is(.cr-glifo, .cr-marca)[data-tipo='peticion'] { background: transparent; border: 1.5px solid var(--ink); border-radius: 50%; }
+
+  /* Estado de cada mes: con sesión, franja llena; sin sesión, contorno (la ausencia se dibuja); fuera de etapa, nada. */
+  [data-estado='sesion'].cr-muestra, .cr-mes[data-estado='sesion']::after { background: var(--mute); }
+  [data-estado='sin_sesion'].cr-muestra, .cr-mes[data-estado='sin_sesion']::after { background: transparent; box-shadow: inset 0 0 0 1px var(--ausencia-trazo); }
+
+  /* ── la línea ─────────────────────────────────────────────────────────────────────────────── */
+  .cr-marco { position: relative; min-width: 0; }
+  .cr-linea { position: relative; border-radius: var(--radio); }
+  .cr-linea:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; }
+  .cr-rejilla { display: grid; position: relative; }
+  .cr-mes { position: relative; min-width: 0; display: flex; flex-direction: column-reverse; align-items: center; gap: 3px; padding-bottom: calc(var(--franja) + 5px); }
+  .cr-mes::after { content: ''; position: absolute; left: 1px; right: 1px; bottom: 0; height: var(--franja); }
+  .cr-marca { position: relative; cursor: pointer; flex: none; }
+  /* La diana es mayor que la marca (WCAG 2.5.8; la Tabla es el control equivalente). */
+  .cr-marca::before { content: ''; position: absolute; inset: -.3rem -.35rem; }
+  .cr-marca:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .cr-linea:has(:global(.fig-activa)) .cr-marca:not(:global(.fig-activa)),
+  .cr-lupa-pista:has(:global(.fig-activa)) .cr-marca:not(:global(.fig-activa)) { opacity: var(--atenua); }
+  .cr-anio { display: block; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .cr-cab { display: none; }
+  .cr-llave { display: none; }
+
+  /* Móvil: seis años de doce meses (I–XII), como el calendario de Las Cortes. */
+  .cr-rejilla { grid-template-columns: 2.6rem repeat(12, minmax(0, 1fr)); grid-auto-rows: var(--celda-alto); column-gap: 2px; row-gap: .45rem; }
+  .cr-mes { grid-column: calc(var(--m) + 1); grid-row: calc(var(--a) + 1); }
+  .cr-anio { grid-column: 1; grid-row: calc(var(--a) + 1); align-self: end; padding-bottom: .05rem; }
+  .cr-cab { display: contents; }
+  .cr-cab span { grid-row: 1; grid-column: calc(var(--m) + 1); align-self: end; justify-self: center; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .cr-rejilla { grid-template-rows: 1.2rem; }
+  .cr-rotulos { display: none; }
+
+  /* ── anotaciones ─────────────────────────────────────────────────────────────────────────── */
+  .cr-anotas { list-style: none; margin: var(--e5) 0 0; padding: 0; display: grid; gap: .8rem; }
+  .cr-anota { position: relative; padding-left: 1.4rem; }
+  .cr-anota .nota { margin: 0; max-width: 24rem; color: var(--ink-2); }
+  .cr-anota-trazo { position: absolute; left: 0; top: .72em; width: .9rem; border-top: 1px solid var(--accent); }
+
+  /* ── lupa (F28) ─────────────────────────────────────────────────────────────────────────── */
+  .cr-lupa { margin-top: var(--e6); padding-top: var(--e4); border-top: 1px solid var(--accent); position: relative; }
+  .cr-lupa-titulo { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); margin: 0 0 var(--e4); max-width: none; }
+  .cr-lupa-pista { position: relative; height: 4.3rem; border-bottom: 1px solid var(--hair-2); }
+  .cr-lupa-pista .cr-marca { position: absolute; left: var(--x); bottom: calc(.35rem + var(--p) * (var(--punto) + 4px)); margin-left: calc(var(--punto) / -2); }
+  .cr-lupa-mes { position: absolute; left: var(--x); top: 0; bottom: -1px; border-left: 1px solid var(--hair); padding-left: .3rem; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .cr-lupa-dias { position: relative; height: 4.6rem; }
+  .cr-lupa-dia { position: absolute; left: var(--x); top: calc(.35rem + var(--nivel) * 2.2rem); transform: translateX(-50%); display: grid; justify-items: center; text-align: center; white-space: nowrap; }
+  .cr-lupa-dia::before { content: ''; position: absolute; left: 50%; top: calc(-.35rem - var(--nivel) * 2.2rem); height: calc(.3rem + var(--nivel) * 2.2rem); border-left: 1px solid var(--hair-2); }
+  /* En los bordes, el rótulo se ancla por su lado para no salirse de la figura. */
+  .cr-lupa-dia.fin { transform: translateX(calc(-100% + .3rem)); justify-items: end; text-align: right; }
+  .cr-lupa-dia.fin::before { left: auto; right: .3rem; }
+  .cr-lupa-dia.inicio { transform: translateX(-.3rem); justify-items: start; text-align: left; }
+  .cr-lupa-dia.inicio::before { left: .3rem; }
+  .cr-anotas-lupa { margin-top: var(--e3); }
+  /* En el móvil la lupa rotula solo el día: quién preside va en la nota y en la Tabla. */
+  @media (max-width: 47.99rem) {
+    .cr-lupa-dia .cr-rotulo-nombre { display: none; }
+    .cr-lupa-dias { height: 3rem; }
+    .cr-lupa-dia { top: calc(.35rem + var(--nivel) * 1.3rem); }
+    .cr-lupa-dia::before { top: calc(-.35rem - var(--nivel) * 1.3rem); height: calc(.3rem + var(--nivel) * 1.3rem); }
+  }
+
+  .cr-rotulo-fecha { display: block; font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); }
+  .cr-rotulo-nombre { font: 400 .92rem/1.2 var(--text); color: var(--ink); }
+  .cr-rotulo-nombre.versal { font-size: .76rem; letter-spacing: .07em; font-weight: 560; }
+
+  /* ── tabla ───────────────────────────────────────────────────────────────────────────────── */
+  .cr-tabla td, .cr-tabla th { vertical-align: top; }
+  .cr-t-fecha { white-space: nowrap; }
+  .cr-t-quien { font: 500 var(--fs-small)/1.35 var(--text); min-width: 9rem; }
+  .cr-t-tipo { font: 400 var(--fs-small)/1.35 var(--text); color: var(--ink-2); min-width: 8rem; }
+  .cr-t-cita { font: italic 400 var(--fs-small)/1.45 var(--text); color: var(--ink); min-width: 16rem; max-width: 30rem; }
+  .cr-t-cita q::before, .cr-t-cita q::after { content: none; }
+  .cr-t-ids { white-space: nowrap; }
+  .cr-tabla tr[data-tipo='ajena'] { color: var(--mute); }
+  .cr-tabla tr[data-tipo='ajena'] .cr-t-cita { color: var(--ink-2); }
+
+  /* ── escritorio: una sola fila de 61 meses, con rótulos directos ─────────────────────────── */
+  @media (min-width: 48rem) {
+    .cr-rejilla { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); grid-template-rows: var(--celda-alto) 1.6rem; grid-auto-rows: auto; column-gap: 0; row-gap: .3rem; }
+    .cr-cab { display: none; }
+    .cr-mes { grid-column: var(--c); grid-row: 1; }
+    .cr-mes::after { left: .5px; right: .5px; }
+    .cr-anio { grid-column: var(--c) / span 6; grid-row: 2; align-self: start; border-left: 1px solid var(--hair-2); padding: .15rem 0 0 .3rem; }
+    .cr-rotulos { display: block; position: relative; height: 7.4rem; }
+    .cr-rotulos-bajos { height: 3.2rem; }
+    .cr-rotulo { position: absolute; left: var(--x); bottom: calc(.5rem + var(--nivel) * 2.35rem); display: grid; padding-left: .45rem; white-space: nowrap; }
+    .cr-rotulo.derecha { left: auto; right: calc(100% - var(--x)); padding: 0 .45rem 0 0; justify-items: end; text-align: right; }
+    /* El trazo que une el rótulo con su marca, hasta la línea. */
+    .cr-rotulo::before { content: ''; position: absolute; left: 0; bottom: calc(-.5rem - var(--nivel) * 2.35rem); top: .2rem; border-left: 1px solid var(--hair-2); }
+    .cr-rotulo.derecha::before { left: auto; right: 0; border-left: 0; border-right: 1px solid var(--hair-2); }
+    /* La llave de la lupa: bajo los meses de la primavera de 1936, en oro. */
+    .cr-llave { display: block; grid-row: 2; grid-column: var(--c0) / calc(var(--c1) + 1); align-self: start; height: .45rem; border: 1px solid var(--accent); border-top: 0; margin-top: -.1rem; position: relative; z-index: 1; }
+    /* Anotaciones en una fila, cada una anclada a su mes con un trazo que sube hasta la línea. */
+    .cr-anotas { position: relative; display: block; min-height: calc(5.2rem + var(--filas, 0) * 4.2rem); margin-top: .4rem; }
+    .cr-anota { position: absolute; top: calc(1.4rem + var(--fila) * 4.2rem); left: clamp(0%, calc(var(--x) - .45rem), calc(100% - 16rem)); width: 16rem; padding: 0; }
+    .cr-anota.derecha { left: auto; right: calc(100% - var(--x) - .45rem); text-align: right; }
+    .cr-anota.derecha .cr-anota-trazo { left: auto; right: .45rem; }
+    .cr-anota-trazo { left: .45rem; top: calc(-1.3rem - var(--fila) * 4.2rem); width: 0; height: calc(1.1rem + var(--fila) * 4.2rem); border-top: 0; border-left: 1px solid var(--accent); }
+    .cr-anota .nota { max-width: 16rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .cr-marca { transition: opacity var(--t-estado) var(--ease); }
+  }
+  @media (forced-colors: active) {
+    :is(.cr-glifo, .cr-marca):is([data-tipo='fila'], [data-tipo='orden']) { background: CanvasText; }
+    :is(.cr-glifo, .cr-marca):is([data-tipo='acotacion'], [data-tipo='peticion']) { border-color: CanvasText; }
+    .cr-mes[data-estado='sesion']::after { background: CanvasText; }
+  }
+</style>

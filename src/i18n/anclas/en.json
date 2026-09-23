@@ -1,0 +1,204 @@
+{
+ "comun.pie.depositos": [
+  "comun.fija.diario"
+ ],
+ "afinidades.entrada": [
+  "comun.sello.afin"
+ ],
+ "afinidades.cifras.guerra": [
+  "comun.fija.legislatura"
+ ],
+ "afinidades.datos.trampa": [
+  "comun.fija.formulario"
+ ],
+ "cortes.calendario.dice.V": [
+  "comun.boton.ver_sesiones"
+ ],
+ "cortes.etapas.tabla.pie_leg": [
+  "comun.fija.notabases"
+ ],
+ "cortes.ficha.hoy.recuento": [
+  "comun.fija.enlace"
+ ],
+ "cortes.ficha.contexto.ids": [
+  "comun.fija.ids"
+ ],
+ "cortes.ficha.citar.paginas": [
+  "comun.fija.diario"
+ ],
+ "fig.F01.tabla.sesiones.col.diario": [
+  "comun.fija.tono"
+ ],
+ "fig.F16.banda.gobierno": [
+  "comun.sello.proyecto"
+ ],
+ "cortes.1931.debates.lista": [
+  "comun.fija.sesion48"
+ ],
+ "cortes.1933.tension": [
+  "comun.fija.legislatura"
+ ],
+ "cortes.1936.antes.sumario": [
+  "comun.fija.ocr"
+ ],
+ "cortes.guerra.antes.sumario": [
+  "comun.fija.ocr"
+ ],
+ "cortes.mexico.antes.paris": [
+  "comun.fija.ocr"
+ ],
+ "cortes.mexico.citar.sesion": [
+  "cortes.guerra.citar.sin_paginas"
+ ],
+ "datos.empezar.s1.texto": [
+  "comun.fija.sin_formulario"
+ ],
+ "datos.empezar.s2.peso": [
+  "comun.fija.explorador",
+  "comun.fija.local"
+ ],
+ "datos.empezar.cierre": [
+  "comun.fija.formulario",
+  "comun.fija.ids"
+ ],
+ "datos.camino.entrada": [
+  "comun.fija.formulario.motivo"
+ ],
+ "datos.camino.archivo.readme": [
+  "comun.fija.readme"
+ ],
+ "datos.columnas.speech.dentro": [
+  "comun.fija.legislatura"
+ ],
+ "datos.citar.licencia": [
+  "comun.fija.diario"
+ ],
+ "diario.que_es.ejemplo": [
+  "comun.fija.ocr"
+ ],
+ "diario.series.total": [
+  "comun.sello.proyecto"
+ ],
+ "diario.calla.ausencias.barriga": [
+  "comun.fija.contar"
+ ],
+ "diario.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "explorador.entrada": [
+  "comun.fija.local",
+  "comun.boton.explorador",
+  "comun.fija.notabases"
+ ],
+ "explorador.p4.hitos": [
+  "comun.fija.contar"
+ ],
+ "explorador.busquedas.entrada": [
+  "comun.fija.enlace"
+ ],
+ "explorador.llevar.aviso": [
+  "comun.fija.ids"
+ ],
+ "explorador.no_hace.enlace": [
+  "comun.fija.ocr",
+  "comun.fija.diario"
+ ],
+ "explorador.img.corrida.pie": [
+  "comun.fija.sesion48"
+ ],
+ "inicio.fila.leccion": [
+  "comun.fija.ocr"
+ ],
+ "inicio.empezar.entrada": [
+  "comun.fija.formulario",
+  "comun.fija.formulario.motivo"
+ ],
+ "inicio.empezar.sin_programar": [
+  "comun.fija.explorador",
+  "comun.boton.explorador"
+ ],
+ "inicio.empezar.programar": [
+  "comun.boton.descargar"
+ ],
+ "inicio.empezar.redes": [
+  "comun.boton.ver_afinidades"
+ ],
+ "metodo.03.texto.2": [
+  "comun.fija.ocr",
+  "comun.fija.sesion48"
+ ],
+ "metodo.06.enlace": [
+  "comun.fija.ids"
+ ],
+ "metodo.09.texto": [
+  "comun.fija.contar"
+ ],
+ "metodo.10.enlace": [
+  "comun.fija.readme",
+  "comun.fija.diario"
+ ],
+ "sesiones.puertas.cobertura": [
+  "comun.fija.novalida"
+ ],
+ "sesiones.otra.habla": [
+  "comun.fija.ids"
+ ],
+ "sesiones.entera.paginas": [
+  "comun.sello.proyecto",
+  "comun.fija.ocr"
+ ],
+ "sesiones.puerta.citar.sinpaginas": [
+  "comun.fija.diario"
+ ],
+ "sesiones.antesala-1936.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "sesiones.casas-viejas-1933.no_esta.cita.barriga.pie": [
+  "comun.fija.contar"
+ ],
+ "sesiones.casas-viejas-1933.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "sesiones.cuestion-religiosa-1931.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "sesiones.estatuto-1932.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "sesiones.figueres-1939.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "sesiones.mexico-1945.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "sesiones.pistola-1934.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "sesiones.sufragio-1931.no_esta.pie": [
+  "comun.fija.sesion48"
+ ],
+ "sesiones.sufragio-1931.citar.cita": [
+  "comun.fija.ids",
+  "comun.fija.diario"
+ ],
+ "versiones.meta.descripcion": [
+  "comun.sello.V2",
+  "comun.sello.v3",
+  "comun.sello.proyecto",
+  "comun.sello.afin"
+ ],
+ "versiones.depositadas.texto": [
+  "comun.fija.readme"
+ ],
+ "versiones.v3.texto": [
+  "comun.fija.ids"
+ ]
+}

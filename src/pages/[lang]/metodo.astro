@@ -1,0 +1,149 @@
+---
+/**
+ * G · Método (plan § Plantilla G; narrativa § 12; grupo 4). Lo que preguntaría un revisor, con cada límite en la frase
+ * de su cifra. Diez apartados con índice lateral y banda fija (DESIGN.md, plantilla G). Cada apartado se cierra con un
+ * «Pruébelo» doble: la consulta para el explorador ([Copiar la consulta]) y una línea de Python sobre el CSV depositado.
+ * Copy: `metodo.*` (docs/copy_es/metodo.md). Figuras: F20 (01), F19 (02), F10/F11 (05), F12 (06); en 03, las cinco
+ * filas finales de la sesión 48, literales; en 09, las cuatro cajas vacías de Inicio, en pequeño.
+ */
+import Base from '../../layouts/Base.astro';
+import CabezaPagina from '../../components/CabezaPagina.astro';
+import IndiceLateral from '../../components/IndiceLateral.astro';
+import Seccion from '../../components/Seccion.astro';
+import CopiarConsulta from '../../components/CopiarConsulta.astro';
+import BandaCTA from '../../components/BandaCTA.astro';
+import NotaBases from '../../components/NotaBases.astro';
+import SinSitio from '../../components/SinSitio.astro';
+import FigFila from '../../components/FigFila.astro';
+import FigPasos from '../../components/FigPasos.astro';
+import FigLongitud from '../../components/FigLongitud.astro';
+import FigDespiece from '../../components/FigDespiece.astro';
+import { meta } from '../../lib/pagina';
+import { t, tBloques, plano, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { primera, rotulosConDestino, conDestinos, anclasTras, htmlFija } from '../../lib/lectura';
+import { remata } from '../../lib/remata';
+import { dato } from '../../lib/datos';
+import { PAGINAS } from '../../lib/rutas';
+import { rutasPorIdioma, type Lang } from '../../lib/idiomas';
+
+export const getStaticPaths = rutasPorIdioma;
+const lang = Astro.params.lang as Lang;
+const { titulo, descripcion } = meta(lang, 'metodo');
+const NN = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
+const ids = NN.map((n) => `m${n}`);
+const primeraConsulta = NN.find((n) => existe(`metodo.${n}.pruebelo.consulta`));
+const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
+// 03 · las cinco últimas filas de la sesión 48, literales (exportador/modulos/metodo.py › cola48.json).
+const cola = dato<{ filas: { id_v2: number; id_v3: number; speaker: string; speech: string }[] }>('cola48')?.filas ?? [];
+// 06 · el enlace va DETRÁS de F12, con la frase fija que el copy ancló tras él (plan: texto · F12 · ↺ 4 · enlace).
+const enlace06 = existe('metodo.06.enlace') ? conDestinos(lang, 'metodo.06.enlace', {}) : '';
+const tras06 = anclasTras('metodo.06.enlace').map((f) => htmlFija(lang, f)).join('');
+// 09 · las cuatro cajas vacías de Inicio (inicio.falta.*), en pequeño: las mismas claves, sin redactar aquí.
+const CAJAS = ['tema', 'tono', 'posicion', 'voto'].map((c) => `inicio.falta.${c}`);
+---
+<Base lang={lang} ruta={PAGINAS.metodo} titulo={titulo} descripcion={descripcion}>
+  <CabezaPagina lang={lang} prefijo="metodo" bases={['V2', 'v3', 'proyecto']}>
+    {existe('metodo.pruebelo.carga.texto') && (
+      <details class="carga">
+        <summary><span set:html={t(lang, 'metodo.pruebelo.carga.texto')} /></summary>
+        <div set:html={tBloques(lang, 'metodo.pruebelo.carga.codigo')} />
+      </details>
+    )}
+  </CabezaPagina>
+  <div class="contenedor con-indice" style={`timeline-scope: ${ids.map((i) => `--${i}`).join(', ')}`}>
+    <IndiceLateral lang={lang} titulo={primera(lang, ['metodo.indice.titulo', 'comun.indice.titulo'])} entradas={NN.map((n) => ({ id: `m${n}`, rotulo: primera(lang, [`metodo.indice.${n}`, `metodo.${n}.titulo`]) }))} />
+    <div class="lectura">
+      {NN.map((n) => (
+        <Seccion lang={lang} id={`m${n}`} prefijo={`metodo.${n}`} espera={['titulo', 'entrada']}
+                 excluir={['pruebelo', ...(n === '03' ? ['cola'] : []), ...(n === '06' ? ['enlace'] : [])]} indice>
+          <p slot="antes" class="asiento apartado-n" aria-hidden="true" data-audit-exento="numeración del apartado">{n}</p>
+          {n === '01' && <FigFila lang={lang} />}
+          {n === '02' && <FigPasos lang={lang} />}
+          {n === '03' && cola.length > 0 && (
+            <figure class="cola" aria-labelledby="cola-titulo">
+              <figcaption id="cola-titulo" class="cola-rotulo" set:html={o('metodo.03.cola.rotulo')} />
+              <ol class="cola-filas" role="list">
+                {cola.map((f) => (
+                  <li class="cola-fila" data-audit-exento="texto literal del Diario (sesión 48)">
+                    <span class="cola-quien">{f.speaker}</span> <span class="cola-dicho">{f.speech}</span>
+                  </li>
+                ))}
+              </ol>
+              <p class="asiento cola-asiento">
+                V2 <Fragment set:html={fmt.clave('ses.s48.cola.V2.desde', lang, 'id')} />–<Fragment set:html={fmt.clave('ses.s48.cola.V2.hasta', lang, 'id')} /> ·
+                v3 <Fragment set:html={fmt.clave('ses.s48.cola.v3.desde', lang, 'id')} />–<Fragment set:html={fmt.clave('ses.s48.cola.v3.hasta', lang, 'id')} />
+              </p>
+            </figure>
+          )}
+          {n === '05' && <FigLongitud lang={lang} />}
+          {n === '06' && (
+            <>
+              <FigDespiece lang={lang} />
+              <NotaBases lang={lang} compacta />
+              {tras06 && <Fragment set:html={tras06} />}
+              {enlace06 && <p class="botones" set:html={enlace06} />}
+            </>
+          )}
+          {n === '09' && (
+            <ul class="cajas" role="list">
+              {CAJAS.map((k) => <li class="caja-vacia" set:html={o(k)} />)}
+            </ul>
+          )}
+          <div class="pruebelo">
+            <p class="asiento pruebelo-rotulo" set:html={primera(lang, ['metodo.pruebelo.rotulo', 'comun.pruebelo'])} />
+            <div class="pruebelo-mitades">
+              <div>
+                <p class="rotulo-mitad" set:html={t(lang, 'metodo.pruebelo.rotulo.explorador')} />
+                {existe(`metodo.${n}.pruebelo.consulta`) && <CopiarConsulta lang={lang} consulta={plano(lang, `metodo.${n}.pruebelo.consulta`)} compacta aviso={n === primeraConsulta} />}
+                {existe(`metodo.${n}.pruebelo.explorador`) && <p class="nota" set:html={rotulosConDestino(lang, t(lang, `metodo.${n}.pruebelo.explorador`), `metodo.${n}`)} />}
+              </div>
+              <div>
+                <p class="rotulo-mitad" set:html={t(lang, 'metodo.pruebelo.rotulo.codigo')} />
+                <div class="codigo" set:html={remata(tBloques(lang, `metodo.${n}.pruebelo.codigo`))} />
+              </div>
+            </div>
+          </div>
+        </Seccion>
+      ))}
+    </div>
+  </div>
+  <BandaCTA lang={lang} />
+  <SinSitio lang={lang} prefijo="metodo" usados={['metodo.antetitulo', 'metodo.titulo', 'metodo.entrada', 'metodo.indice', 'metodo.pruebelo', ...NN.map((n) => `metodo.${n}`)]} />
+</Base>
+
+<style>
+  .carga { margin-top: var(--e5); max-width: 46rem; }
+  /* Un desplegable, no un enlace: sin subrayado y con la marca común (base.css § desplegables). */
+  .carga summary { min-height: 2.75rem; display: flex; align-items: center; color: var(--ink-2); font-size: var(--fs-small); }
+  .carga summary:hover { color: var(--ink); }
+  .carga :global(pre) { margin-top: .6rem; }
+
+  /* El número del apartado (la secuencia informa: DESIGN.md § Índice): un asiento en mono, encima del H2. */
+  .apartado-n { order: -1; margin: 0 0 var(--e3); font-size: var(--fs-mono-s); }
+
+  /* Pruébelo: dos mitades, el explorador y el CSV. Rótulos en mono de caja normal (DESIGN.md § La regla del asiento). */
+  .pruebelo { margin-top: var(--e6); padding-top: var(--e4); border-top: 1px dashed var(--hair-2); max-width: 52rem; min-width: 0; }
+  .pruebelo-rotulo { margin: 0 0 var(--e3); color: var(--ink-2); }
+  .pruebelo-mitades { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2rem 2rem; }
+  .pruebelo-mitades > div { min-width: 0; }
+  @media (min-width: 60rem) { .pruebelo-mitades { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .rotulo-mitad { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); margin: 0 0 .5rem; }
+  .codigo { font-size: var(--fs-small); }
+  .codigo :global(pre) { overflow-x: auto; max-width: 100%; }
+
+  /* 03 · la cola de la sesión 48: como la imprimiría el Diario, rótulo y texto, cinco veces. */
+  .cola { margin: var(--e5) 0 var(--e4); padding: var(--e4) 0 0; border-top: 1px solid var(--hair-2); min-width: 0; }
+  .cola-rotulo { font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); margin: 0 0 var(--e3); }
+  .cola-filas { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; counter-reset: cola; }
+  .cola-fila { font: italic 400 1.05rem/1.45 var(--text); color: var(--ink); text-indent: -1.2em; padding-left: 1.2em; }
+  .cola-quien { font-style: normal; color: var(--ink-2); }
+  .cola-fila:last-child .cola-dicho::after { content: ''; display: inline-block; width: 2.2em; margin-left: .3em; border-bottom: 1px dashed var(--ausencia-trazo); vertical-align: .25em; }
+  .cola-asiento { margin: var(--e3) 0 0; }
+
+  /* 09 · las cuatro cajas vacías de Inicio, en pequeño, con filete discontinuo: el vacío es el contenido. */
+  .cajas { list-style: none; margin: var(--e4) 0 var(--e5); padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e3); max-width: 38rem; }
+  @media (max-width: 26rem) { .cajas { grid-template-columns: minmax(0, 1fr); } }
+  .caja-vacia { border: 1px dashed var(--hair-2); border-radius: var(--radio); padding: .8rem .9rem; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); min-height: 5.5rem; }
+  .caja-vacia :global(strong) { display: block; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--ink); margin-bottom: .25rem; }
+</style>

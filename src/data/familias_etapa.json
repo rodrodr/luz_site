@@ -1,0 +1,133 @@
+{
+ "base": "V2",
+ "definicion": "filas V2 sin la Presidencia (parse_speaker del explorador); familia normalizada como el explorador",
+ "orden": [
+  {"familia":"Anarcosindicalista","clave":"anarcosindicalista","posicion":1.0,"color":"ei"},
+  {"familia":"Comunista","clave":"comunista","posicion":1.0,"color":"ei"},
+  {"familia":"Socialista","clave":"socialista","posicion":2.0,"color":"i"},
+  {"familia":"Catalanista de izquierda","clave":"catalanista_de_izquierda","posicion":2.021,"color":"i"},
+  {"familia":"Galleguista","clave":"galleguista","posicion":3.0,"color":"ci"},
+  {"familia":"Nacionalista Gallego","clave":"nacionalista_gallego","posicion":3.0,"color":"ci"},
+  {"familia":"Republicanos","clave":"republicanos","posicion":3.432,"color":"ci"},
+  {"familia":"Centro","clave":"centro","posicion":4.0,"color":"c"},
+  {"familia":"Leonesista","clave":"leonesista","posicion":4.0,"color":"c"},
+  {"familia":"Radical Izquierda Republicana","clave":"radical_izquierda_republicana","posicion":4.0,"color":"c"},
+  {"familia":"Republicano Independiente","clave":"republicano_independiente","posicion":4.0,"color":"c"},
+  {"familia":"Republicanos Autonomista","clave":"republicanos_autonomista","posicion":4.0,"color":"c"},
+  {"familia":"Liberales","clave":"liberales","posicion":4.66,"color":"cd"},
+  {"familia":"Agrarios","clave":"agrarios","posicion":5.0,"color":"cd"},
+  {"familia":"Catalanista de derecha","clave":"catalanista_de_derecha","posicion":5.0,"color":"cd"},
+  {"familia":"Nacionalista","clave":"nacionalista","posicion":5.0,"color":"cd"},
+  {"familia":"Nacionalista Vasco","clave":"nacionalista_vasco","posicion":5.0,"color":"cd"},
+  {"familia":"Independiente","clave":"independiente","posicion":5.053,"color":"cd"},
+  {"familia":"Conservadores","clave":"conservadores","posicion":5.52,"color":"d"},
+  {"familia":"Conservadores Agraria","clave":"conservadores_agraria","posicion":6.0,"color":"d"},
+  {"familia":"Derecha autoritaria","clave":"derecha_autoritaria","posicion":6.992,"color":"ed"},
+  {"familia":"Carlistas","clave":"carlistas","posicion":7.0,"color":"ed"},
+  {"familia":"Fascista","clave":"fascista","posicion":7.0,"color":"ed"},
+  {"familia":"Renovación Española","clave":"renovacion_espanola","posicion":7.0,"color":"ed"},
+  {"familia":"Sin identificar","clave":"sin_identificar","posicion":null,"color":"nc"}
+ ],
+ "umbral_otras": 0.01,
+ "etapas": {
+  "I": {
+   "den_palabras": 11778885,
+   "den_filas": 34164,
+   "familias": [
+    {"familia":"Socialista","clave":"socialista","palabras":1647892,"filas":5083,"diputados":102,"pct_palabras":0.13990220636333575,"pct_filas":0.14878234398782345},
+    {"familia":"Catalanista de izquierda","clave":"catalanista_de_izquierda","palabras":378620,"filas":1045,"diputados":27,"pct_palabras":0.032143959296656685,"pct_filas":0.030587753190492915},
+    {"familia":"Galleguista","clave":"galleguista","palabras":107232,"filas":158,"diputados":5,"pct_palabras":0.009103747935394564,"pct_filas":0.0046247512000936655},
+    {"familia":"Nacionalista Gallego","clave":"nacionalista_gallego","palabras":16818,"filas":20,"diputados":1,"pct_palabras":0.00142780916869466,"pct_filas":0.000585411544315654},
+    {"familia":"Republicanos","clave":"republicanos","palabras":6037985,"filas":18685,"diputados":194,"pct_palabras":0.5126109135117628,"pct_filas":0.5469207352768997},
+    {"familia":"Leonesista","clave":"leonesista","palabras":3788,"filas":8,"diputados":1,"pct_palabras":0.00032159240878911713,"pct_filas":0.00023416461772626156},
+    {"familia":"Radical Izquierda Republicana","clave":"radical_izquierda_republicana","palabras":28,"filas":3,"diputados":1,"pct_palabras":2.3771350174485954e-06,"pct_filas":8.781173164734808e-05},
+    {"familia":"Liberales","clave":"liberales","palabras":1439486,"filas":4091,"diputados":42,"pct_palabras":0.12220902063310746,"pct_filas":0.11974593138976701},
+    {"familia":"Agrarios","clave":"agrarios","palabras":84328,"filas":279,"diputados":6,"pct_palabras":0.007159251491121613,"pct_filas":0.008166491043203371},
+    {"familia":"Catalanista de derecha","clave":"catalanista_de_derecha","palabras":97505,"filas":153,"diputados":4,"pct_palabras":0.008277948209868762,"pct_filas":0.004478398314014752},
+    {"familia":"Nacionalista Vasco","clave":"nacionalista_vasco","palabras":187316,"filas":508,"diputados":6,"pct_palabras":0.015902693676014327,"pct_filas":0.01486945322561761},
+    {"familia":"Conservadores","clave":"conservadores","palabras":1382691,"filas":3369,"diputados":17,"pct_palabras":0.11738725694325057,"pct_filas":0.0986125746399719},
+    {"familia":"Derecha autoritaria","clave":"derecha_autoritaria","palabras":5633,"filas":8,"diputados":1,"pct_palabras":0.00047822862690314065,"pct_filas":0.00023416461772626156},
+    {"familia":"Carlistas","clave":"carlistas","palabras":381454,"filas":717,"diputados":11,"pct_palabras":0.03238455931949416,"pct_filas":0.020987003863716193},
+    {"familia":"Sin identificar","clave":"sin_identificar","palabras":8109,"filas":37,"diputados":0,"pct_palabras":0.0006884352805889522,"pct_filas":0.0010830113569839598}
+   ]
+  },
+  "II": {
+   "den_palabras": 8366772,
+   "den_filas": 21999,
+   "familias": [
+    {"familia":"Comunista","clave":"comunista","palabras":51017,"filas":144,"diputados":1,"pct_palabras":0.00609757263613733,"pct_filas":0.006545752079639984},
+    {"familia":"Socialista","clave":"socialista","palabras":942421,"filas":1815,"diputados":53,"pct_palabras":0.11263854208050608,"pct_filas":0.0825037501704623},
+    {"familia":"Catalanista de izquierda","clave":"catalanista_de_izquierda","palabras":257694,"filas":678,"diputados":13,"pct_palabras":0.03079969192419729,"pct_filas":0.030819582708304923},
+    {"familia":"Galleguista","clave":"galleguista","palabras":31912,"filas":89,"diputados":2,"pct_palabras":0.0038141352483371128,"pct_filas":0.0040456384381108235},
+    {"familia":"Republicanos","clave":"republicanos","palabras":2090017,"filas":6577,"diputados":88,"pct_palabras":0.24979968379680956,"pct_filas":0.2989681349152234},
+    {"familia":"Centro","clave":"centro","palabras":26418,"filas":40,"diputados":1,"pct_palabras":0.0031574901288095336,"pct_filas":0.001818264466566662},
+    {"familia":"Republicano Independiente","clave":"republicano_independiente","palabras":30218,"filas":111,"diputados":1,"pct_palabras":0.003611667677809315,"pct_filas":0.0050456838947224875},
+    {"familia":"Republicanos Autonomista","clave":"republicanos_autonomista","palabras":121112,"filas":262,"diputados":6,"pct_palabras":0.014475355609068825,"pct_filas":0.011909632256011637},
+    {"familia":"Liberales","clave":"liberales","palabras":511111,"filas":1308,"diputados":14,"pct_palabras":0.06108819506495456,"pct_filas":0.059457248056729854},
+    {"familia":"Agrarios","clave":"agrarios","palabras":205376,"filas":576,"diputados":12,"pct_palabras":0.02454662323773135,"pct_filas":0.026183008318559936},
+    {"familia":"Catalanista de derecha","clave":"catalanista_de_derecha","palabras":478360,"filas":863,"diputados":20,"pct_palabras":0.0571737821946146,"pct_filas":0.039229055866175734},
+    {"familia":"Nacionalista","clave":"nacionalista","palabras":6550,"filas":26,"diputados":1,"pct_palabras":0.0007828586699864655,"pct_filas":0.0011818719032683303},
+    {"familia":"Nacionalista Vasco","clave":"nacionalista_vasco","palabras":131624,"filas":449,"diputados":9,"pct_palabras":0.01573175413409138,"pct_filas":0.020410018637210783},
+    {"familia":"Independiente","clave":"independiente","palabras":82,"filas":1,"diputados":1,"pct_palabras":9.800673425784759e-06,"pct_filas":4.5456611664166555e-05},
+    {"familia":"Conservadores","clave":"conservadores","palabras":2316175,"filas":6683,"diputados":133,"pct_palabras":0.2768301801459392,"pct_filas":0.30378653575162506},
+    {"familia":"Conservadores Agraria","clave":"conservadores_agraria","palabras":585,"filas":4,"diputados":1,"pct_palabras":6.991943846444005e-05,"pct_filas":0.00018182644665666622},
+    {"familia":"Derecha autoritaria","clave":"derecha_autoritaria","palabras":611503,"filas":1130,"diputados":14,"pct_palabras":0.07308708782789826,"pct_filas":0.0513659711805082},
+    {"familia":"Carlistas","clave":"carlistas","palabras":432245,"filas":971,"diputados":16,"pct_palabras":0.05166209859668699,"pct_filas":0.044138369925905724},
+    {"familia":"Fascista","clave":"fascista","palabras":87779,"filas":174,"diputados":2,"pct_palabras":0.010491381861487322,"pct_filas":0.007909450429564981},
+    {"familia":"Renovación Española","clave":"renovacion_espanola","palabras":1575,"filas":6,"diputados":1,"pct_palabras":0.00018824464201964628,"pct_filas":0.0002727396699849993},
+    {"familia":"Sin identificar","clave":"sin_identificar","palabras":32998,"filas":92,"diputados":1,"pct_palabras":0.003943934411024945,"pct_filas":0.004182008273103323}
+   ]
+  },
+  "III": {
+   "den_palabras": 1539440,
+   "den_filas": 2919,
+   "familias": [
+    {"familia":"Anarcosindicalista","clave":"anarcosindicalista","palabras":11637,"filas":18,"diputados":1,"pct_palabras":0.007559242321883282,"pct_filas":0.006166495375128468},
+    {"familia":"Comunista","clave":"comunista","palabras":37231,"filas":49,"diputados":10,"pct_palabras":0.024184768487242114,"pct_filas":0.016786570743405275},
+    {"familia":"Socialista","clave":"socialista","palabras":177383,"filas":397,"diputados":45,"pct_palabras":0.11522566647612119,"pct_filas":0.13600548132922233},
+    {"familia":"Catalanista de izquierda","clave":"catalanista_de_izquierda","palabras":35500,"filas":67,"diputados":13,"pct_palabras":0.02306033362781271,"pct_filas":0.022953066118533743},
+    {"familia":"Galleguista","clave":"galleguista","palabras":10639,"filas":20,"diputados":3,"pct_palabras":0.006910954632853505,"pct_filas":0.006851661527920521},
+    {"familia":"Republicanos","clave":"republicanos","palabras":437650,"filas":1010,"diputados":76,"pct_palabras":0.28429169048485164,"pct_filas":0.3460089071599863},
+    {"familia":"Centro","clave":"centro","palabras":1299,"filas":6,"diputados":4,"pct_palabras":0.0008438133347191186,"pct_filas":0.0020554984583761563},
+    {"familia":"Liberales","clave":"liberales","palabras":106967,"filas":151,"diputados":11,"pct_palabras":0.06948435794834486,"pct_filas":0.05173004453579993},
+    {"familia":"Agrarios","clave":"agrarios","palabras":64217,"filas":130,"diputados":4,"pct_palabras":0.04171451956555631,"pct_filas":0.044535799931483384},
+    {"familia":"Catalanista de derecha","clave":"catalanista_de_derecha","palabras":102975,"filas":145,"diputados":11,"pct_palabras":0.06689120719222574,"pct_filas":0.049674546077423776},
+    {"familia":"Nacionalista Vasco","clave":"nacionalista_vasco","palabras":627,"filas":6,"diputados":2,"pct_palabras":0.00040729096294756537,"pct_filas":0.0020554984583761563},
+    {"familia":"Independiente","clave":"independiente","palabras":97,"filas":4,"diputados":1,"pct_palabras":6.30099256872629e-05,"pct_filas":0.0013703323055841042},
+    {"familia":"Conservadores","clave":"conservadores","palabras":401663,"filas":659,"diputados":43,"pct_palabras":0.2609150080548771,"pct_filas":0.22576224734498115},
+    {"familia":"Derecha autoritaria","clave":"derecha_autoritaria","palabras":114563,"filas":190,"diputados":10,"pct_palabras":0.07441861975783402,"pct_filas":0.06509078451524494},
+    {"familia":"Carlistas","clave":"carlistas","palabras":28294,"filas":45,"diputados":8,"pct_palabras":0.018379410694798107,"pct_filas":0.015416238437821172},
+    {"familia":"Fascista","clave":"fascista","palabras":5274,"filas":7,"diputados":1,"pct_palabras":0.003425921114171387,"pct_filas":0.002398081534772182},
+    {"familia":"Sin identificar","clave":"sin_identificar","palabras":3424,"filas":15,"diputados":0,"pct_palabras":0.002224185418074105,"pct_filas":0.0051387461459403904}
+   ]
+  },
+  "IV": {
+   "den_palabras": 94377,
+   "den_filas": 125,
+   "familias": [
+    {"familia":"Anarcosindicalista","clave":"anarcosindicalista","palabras":6418,"filas":7,"diputados":1,"pct_palabras":0.06800385687190735,"pct_filas":0.056},
+    {"familia":"Comunista","clave":"comunista","palabras":11141,"filas":7,"diputados":3,"pct_palabras":0.11804782944997193,"pct_filas":0.056},
+    {"familia":"Socialista","clave":"socialista","palabras":39107,"filas":34,"diputados":12,"pct_palabras":0.4143700265954629,"pct_filas":0.272},
+    {"familia":"Catalanista de izquierda","clave":"catalanista_de_izquierda","palabras":10175,"filas":27,"diputados":5,"pct_palabras":0.10781228477277302,"pct_filas":0.216},
+    {"familia":"Republicanos","clave":"republicanos","palabras":15721,"filas":35,"diputados":15,"pct_palabras":0.16657660235014887,"pct_filas":0.28},
+    {"familia":"Liberales","clave":"liberales","palabras":2462,"filas":3,"diputados":2,"pct_palabras":0.02608686438433093,"pct_filas":0.024},
+    {"familia":"Nacionalista Vasco","clave":"nacionalista_vasco","palabras":7999,"filas":7,"diputados":4,"pct_palabras":0.08475581974421734,"pct_filas":0.056},
+    {"familia":"Independiente","clave":"independiente","palabras":1354,"filas":5,"diputados":1,"pct_palabras":0.014346715831187684,"pct_filas":0.04}
+   ]
+  },
+  "V": {
+   "den_palabras": 64953,
+   "den_filas": 103,
+   "familias": [
+    {"familia":"Comunista","clave":"comunista","palabras":2248,"filas":1,"diputados":1,"pct_palabras":0.034609640817206286,"pct_filas":0.009708737864077669},
+    {"familia":"Socialista","clave":"socialista","palabras":22338,"filas":35,"diputados":7,"pct_palabras":0.34391021199944577,"pct_filas":0.33980582524271846},
+    {"familia":"Catalanista de izquierda","clave":"catalanista_de_izquierda","palabras":1516,"filas":3,"diputados":2,"pct_palabras":0.023339953504841963,"pct_filas":0.02912621359223301},
+    {"familia":"Galleguista","clave":"galleguista","palabras":3128,"filas":6,"diputados":2,"pct_palabras":0.04815789878835466,"pct_filas":0.05825242718446602},
+    {"familia":"Nacionalista Gallego","clave":"nacionalista_gallego","palabras":1194,"filas":1,"diputados":1,"pct_palabras":0.018382522747217217,"pct_filas":0.009708737864077669},
+    {"familia":"Republicanos","clave":"republicanos","palabras":29830,"filas":48,"diputados":11,"pct_palabras":0.45925515372654074,"pct_filas":0.46601941747572817},
+    {"familia":"Centro","clave":"centro","palabras":396,"filas":4,"diputados":1,"pct_palabras":0.006096716087016766,"pct_filas":0.038834951456310676},
+    {"familia":"Nacionalista Vasco","clave":"nacionalista_vasco","palabras":4303,"filas":5,"diputados":2,"pct_palabras":0.06624790232937662,"pct_filas":0.04854368932038835}
+   ]
+  }
+ }
+}

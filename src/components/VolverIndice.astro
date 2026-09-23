@@ -1,0 +1,28 @@
+---
+/**
+ * «Volver al índice», al final de cada apartado de una lectura larga, SOLO por debajo de 64 rem: en el móvil el índice
+ * es un `<details>` al principio y las páginas miden de 20 a 32 pantallas (pulido fase 2, PULIDO.md). El enlace va a
+ * la lista del índice plegado: Chrome abre el `<details>` al navegar a un fragmento de dentro, y la isla de
+ * `IndiceLateral` lo abre en los demás navegadores. Icono dibujado (la flecha del sprite, girada), nunca «↑».
+ */
+import { t, existe } from '../lib/i18n';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+{existe('comun.indice.volver') && (
+  <p class="volver-indice no-imprimir">
+    <a href="#indice-lista"><svg class="icono" aria-hidden="true" focusable="false"><use href="#i-flecha" /></svg><span set:html={t(lang, 'comun.indice.volver')} /></a>
+  </p>
+)}
+
+<style>
+  .volver-indice { display: none; }
+  @media (max-width: 63.99rem) {
+    .volver-indice { display: block; grid-column: 1 / -1; margin: var(--e5) 0 0; font-size: var(--fs-small); max-width: none; }
+    .volver-indice a { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.75rem; color: var(--ink-2); text-decoration-color: var(--hair-2); }
+    .volver-indice a:hover { color: var(--ink); text-decoration-color: var(--accent); }
+    .volver-indice .icono { width: .85em; height: .85em; transform: rotate(-90deg); flex: none; }
+  }
+</style>

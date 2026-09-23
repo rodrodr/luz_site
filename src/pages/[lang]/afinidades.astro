@@ -1,0 +1,202 @@
+---
+/**
+ * K · Afinidades Elegidas (plan § Plantilla K; narrativa § 16; brief de superficie de Explorador y Afinidades). La base
+ * derivada, con su propia pregunta: ¿con quién estaban dispuestos a firmar? Se construye la última (D-3): todas sus
+ * cifras son de CGOCUS V1.1 DEPOSITADA, con su sello, y ninguna sale de esta página.
+ *  · Figura protagonista: F21, las tres redes (sigma.js bajo demanda; póster y tabla sin JS). Secundaria: F22.
+ *  · Tablas del censo (censo = firman + aislados, comprobado en el exportador) y de los ocho archivos del depósito.
+ *  · Hacia la app, solo `#red` y `#diputados` (las únicas vistas que restaura desde la URL).
+ * Copy: `afinidades.*`, `fig.F21.*`, `fig.F22.*` (docs/copy_es/afinidades.md). Datos: exportador/modulos/afinidades.py.
+ */
+import Base from '../../layouts/Base.astro';
+import CabezaPagina from '../../components/CabezaPagina.astro';
+import IndiceLateral from '../../components/IndiceLateral.astro';
+import Seccion from '../../components/Seccion.astro';
+import Cita from '../../components/Cita.astro';
+import SinSitio from '../../components/SinSitio.astro';
+import FigCruces from '../../components/FigCruces.astro';
+import FigRed from '../../components/FigRed.astro';
+import { meta } from '../../lib/pagina';
+import { t, tBloques, existe } from '../../lib/i18n';
+import { fmt, faltaDelInvestigador } from '../../lib/cifras';
+import { primera, anclasTras, htmlFija, rotulosConDestino, conDestinos } from '../../lib/lectura';
+import { remata } from '../../lib/remata';
+import { PAGINAS, url } from '../../lib/rutas';
+import { PENDIENTES_DEL_INVESTIGADOR } from '../../config/enlaces';
+import { citaConjunto, bibtex, ris, jsonldDe } from '../../lib/cita';
+import { rutasPorIdioma, type Lang } from '../../lib/idiomas';
+
+export const getStaticPaths = rutasPorIdioma;
+const lang = Astro.params.lang as Lang;
+const { titulo, descripcion } = meta(lang, 'afinidades');
+const A = (k: string) => `afinidades.${k}`;
+const tras = (k: string) => anclasTras(k).map((f) => htmlFija(lang, f)).join('');
+const B = (k: string) => (existe(k) ? rotulosConDestino(lang, remata(tBloques(lang, k)), k) + tras(k) : '');
+const botones = (k: string, destinos: string[] = []) => `<p class="botones">${conDestinos(lang, k, {}, destinos)}</p>` + tras(k);
+const S = [
+  { id: 'firmar', x: 'firmar' }, { id: 'cifras', x: 'cifras' }, { id: 'cruzar', x: 'cruce' }, { id: 'tres-redes', x: 'redes' },
+  { id: 'puentes', x: 'puentes' }, { id: 'no-mide', x: 'limites' }, { id: 'datos', x: 'datos' },
+];
+// D-3 abierta: CGOCUS V1.1 con su sello. Si se deposita la V2.0, el exportador vuelve a exportar y esto se cierra.
+const d3Abierta = PENDIENTES_DEL_INVESTIGADOR['D-3'] === null;
+const LEGS = [{ c: '1931', r: '1931-1933' }, { c: '1933', r: '1933-1936' }, { c: '1936', r: '1936-1939' }];
+const FILAS = [
+  { k: 'censo', c: 'censo' }, { k: 'firman', c: 'firman' }, { k: 'aislados', c: 'aislados' },
+  { k: 'medidas', c: 'medidas' }, { k: 'relaciones', c: 'relaciones' }, { k: 'fuera', c: 'fuera_censo' },
+];
+const ARCHIVOS = ['readme', 'edgelist', 'cosponsorship', 'metadata', 'metrics', 'roles', 'methodology', 'codebook'];
+---
+<Base lang={lang} ruta={PAGINAS.afinidades} titulo={titulo} descripcion={descripcion} jsonld={jsonldDe('cgocus', lang)}>
+  <!-- Primera vista: la pregunta a la izquierda; qué es la base y de dónde viene su nombre, a la derecha. -->
+  <div class="primera-vista">
+    <CabezaPagina lang={lang} prefijo="afinidades" />
+    <div class="cabeza-lado">
+      {['que_es', 'nombre'].map((k) => <p set:html={rotulosConDestino(lang, t(lang, A(k)), A(k))} />)}
+      <p class="botones" set:html={conDestinos(lang, A('abrir'))} />
+      {d3Abierta && <p class="nota pendiente-d3" data-pendiente="D-3" set:html={faltaDelInvestigador('D-3', 'depositar CGOCUS V2.0')} />}
+    </div>
+  </div>
+  <div class="contenedor con-indice" style={`timeline-scope: ${S.map((s) => `--${s.id}`).join(', ')}`}>
+    <IndiceLateral lang={lang} titulo={t(lang, 'comun.indice.titulo')} entradas={S.map((s) => ({ id: s.id, rotulo: primera(lang, [A(`indice.${s.x}`), A(`${s.x}.titulo`)]) }))} />
+    <div class="lectura">
+
+      <!-- 2 · Firmar no es hablar: qué es una medida y qué es una relación -->
+      <Seccion lang={lang} id="firmar" prefijo={A('firmar')} resto={false} indice>
+        <Fragment set:html={B(A('firmar.medida'))} />
+        <Fragment set:html={B(A('firmar.relacion'))} />
+        <Fragment set:html={B(A('firmar.total'))} />
+        <aside class="al-margen" set:html={B(A('firmar.identificar'))} />
+        <Fragment set:html={B(A('firmar.periodo'))} />
+        <aside class="al-margen" set:html={B(A('firmar.sin_relacion'))} />
+      </Seccion>
+
+      <!-- 3 · Tres legislaturas en cifras: la tabla del censo (censo = firman + aislados) -->
+      <Seccion lang={lang} id="cifras" prefijo={A('cifras')} resto={false} indice>
+        <div class="fig-desliza ancho tabla-censo" tabindex="0" role="region" aria-labelledby="afin-cifras-t">
+          <table class="fig-tabla">
+            <caption id="afin-cifras-t"><span class="fig-rotulo-tabla" set:html={t(lang, A('cifras.tabla.titulo'))} /></caption>
+            <thead>
+              <tr>
+                <th scope="col" set:html={t(lang, A('cifras.tabla.col.leg'))} />
+                {LEGS.map((l) => <th scope="col" class="num">{l.r}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {FILAS.map((f) => (
+                <tr class:list={[{ 'fila-aparte': f.k === 'fuera' }]}>
+                  <th scope="row" set:html={t(lang, A(`cifras.tabla.${f.k}`))} />
+                  {LEGS.map((l) => <td class="num" set:html={fmt.clave(`afin.${l.c}.${f.c}`, lang)} />)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="nota ancho tabla-nota" set:html={t(lang, A('cifras.tabla.nota'))} />
+        <Fragment set:html={B(A('cifras.tres'))} />
+        <Fragment set:html={B(A('cifras.guerra'))} />
+      </Seccion>
+
+      <!-- 4 · ¿Se cruzaba de bloque? F22, con su lectura al margen -->
+      <Seccion lang={lang} id="cruzar" prefijo={A('cruce')} resto={false} indice>
+        <Fragment set:html={B(A('cruce.bloques'))} />
+        <Fragment set:html={B(A('cruce.dos'))} />
+        <Fragment set:html={B(A('cruce.bloque'))} />
+        <Fragment set:html={B(A('cruce.estricto'))} />
+        <FigCruces lang={lang} anotacion={t(lang, A('cruce.concentrado'))} />
+        <Fragment set:html={B(A('cruce.centro'))} />
+        <Fragment set:html={B(A('cruce.centro_1936'))} />
+        <aside class="al-margen" set:html={B(A('cruce.lectura'))} />
+        <Fragment set:html={B(A('cruce.pnv'))} />
+      </Seccion>
+
+      <!-- 5 · Tres redes: F21, la protagonista -->
+      <Seccion lang={lang} id="tres-redes" prefijo={A('redes')} resto={false} indice>
+        <Fragment set:html={B(A('redes.buscar'))} />
+        <FigRed lang={lang} />
+        <Fragment set:html={B(A('redes.aislados'))} />
+        <Fragment set:html={B(A('redes.una'))} />
+        <Fragment set:html={B(A('redes.partidos'))} />
+        <Fragment set:html={B(A('redes.app'))} />
+        <Fragment set:html={botones(A('redes.llamada'))} />
+      </Seccion>
+
+      <!-- 6 · Personas: los puentes -->
+      <Seccion lang={lang} id="puentes" prefijo={A('puentes')} resto={false} indice>
+        <Fragment set:html={B(A('puentes.indice'))} />
+        <aside class="al-margen" set:html={B(A('puentes.que_mide'))} />
+        <ol class="puentes" role="list">
+          {LEGS.map((l) => <li set:html={t(lang, A(`puentes.${l.c}`))} />)}
+        </ol>
+        <aside class="al-margen" set:html={B(A('puentes.lectura'))} />
+        <Fragment set:html={B(A('puentes.roles'))} />
+        <Fragment set:html={B(A('puentes.ficha'))} />
+        <Fragment set:html={botones(A('puentes.llamada'))} />
+      </Seccion>
+
+      <!-- 7 · Lo que no mide, y cómo se mide -->
+      <Seccion lang={lang} id="no-mide" prefijo={A('limites')} resto={false} indice>
+        {['voto', 'guerra', 'truncadas', 'emparejamiento', 'roles', 'ideologia', 'metodologia'].map((k) => <Fragment set:html={B(A(`limites.${k}`))} />)}
+      </Seccion>
+
+      <!-- 8 · Los datos: los ocho archivos del depósito, ↺ 3 encima del botón, la cita tal cual -->
+      <Seccion lang={lang} id="datos" prefijo={A('datos')} resto={false} indice>
+        <div class="fig-desliza ancho" tabindex="0" role="region" aria-labelledby="afin-archivos-t">
+          <table class="fig-tabla tabla-archivos">
+            <caption id="afin-archivos-t" class="sr-only" set:html={t(lang, A('datos.antetitulo'))} />
+            <thead>
+              <tr>
+                <th scope="col" set:html={t(lang, A('datos.tabla.col.archivo'))} />
+                <th scope="col" set:html={t(lang, A('datos.tabla.col.que'))} />
+                <th scope="col" class="num" set:html={t(lang, A('datos.tabla.col.peso'))} />
+              </tr>
+            </thead>
+            <tbody>
+              {ARCHIVOS.map((a) => (
+                <tr>
+                  <th scope="row"><code data-audit-exento="nombre de archivo del depósito de CGOCUS, tal cual" set:html={fmt.clave(`dv.cgocus.${a}.nombre`, lang)} /></th>
+                  <td set:html={t(lang, A(`datos.tabla.${a}`))} />
+                  <td class="num" set:html={fmt.clave(`dv.cgocus.${a}.bytes`, lang, 'peso')} />
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <Fragment set:html={B(A('datos.texto'))} />
+        <Fragment set:html={B(A('datos.trampa'))} />
+        <Fragment set:html={botones(A('datos.descargar'))} />
+        <Cita lang={lang} texto={citaConjunto('cgocus', lang)} bibtex={bibtex('cgocus')} ris={ris('cgocus')} lenguaTexto="en" nota={existe('comun.cita.cgocus.nota') ? t(lang, 'comun.cita.cgocus.nota') : undefined} />
+        <Fragment set:html={B(A('datos.unir'))} />
+        <Fragment set:html={botones(A('datos.llamada'), [url(lang, `${PAGINAS.datos}#unir`)])} />
+      </Seccion>
+    </div>
+  </div>
+  <SinSitio lang={lang} prefijo="afinidades" usados={['afinidades.antetitulo', 'afinidades.titulo', 'afinidades.entrada', 'afinidades.que_es', 'afinidades.nombre', 'afinidades.abrir', 'afinidades.indice', ...S.map((s) => A(s.x))]} />
+</Base>
+
+<style>
+  .pendiente-d3 { margin-top: var(--e4); }
+  /* El sello ↺ 2 que el copy ancla tras la entrada: la forma de `Sello` (el filete dice qué edición es). */
+  .primera-vista :global(.pieza-sello) { margin: var(--e5) 0 0; }
+  .primera-vista :global(.pieza-sello .sello) { display: inline-block; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--ink-2); border: 1px solid var(--accent); border-radius: var(--radio); padding: .2em .55em; }
+  .cabeza-lado { width: min(100% - 2 * var(--gutter), var(--ancho)); margin-inline: auto; padding-bottom: clamp(2rem, 5vw, 4rem); color: var(--ink-2); }
+  .cabeza-lado p { max-width: 34rem; }
+  .cabeza-lado .botones { margin-top: var(--e4); }
+  @media (min-width: 64rem) {
+    .primera-vista {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: end;
+      width: min(100% - 2 * var(--gutter), var(--ancho)); margin-inline: auto;
+    }
+    .primera-vista > :global(.pagina-cabeza) { grid-column: 1 / span 6; width: auto; margin: 0; }
+    .cabeza-lado { grid-column: 8 / -1; width: auto; margin: 0; padding-block: clamp(3rem, 8vw, 7rem) clamp(2rem, 5vw, 4rem); border-top: 1px solid var(--hair); padding-top: var(--e4); align-self: end; margin-bottom: clamp(2rem, 5vw, 4rem); padding-bottom: 0; }
+  }
+  .tabla-censo { margin-top: var(--e3); }
+  .tabla-censo .fig-tabla th[scope='row'] { font-family: var(--text); font-size: .95rem; font-weight: 400; color: var(--ink-2); white-space: normal; min-width: 12rem; }
+  .tabla-censo .fig-tabla td { font-size: .9rem; color: var(--ink); }
+  .tabla-censo tr.fila-aparte > * { border-top: 1px dashed var(--hair-2); color: var(--mute); padding-top: .8rem; }
+  .tabla-nota { margin: .6rem 0 var(--e5); max-width: 40rem; }
+  .tabla-archivos th[scope='row'] code { font-size: .82rem; background: none; padding: 0; overflow-wrap: anywhere; }
+  .tabla-archivos td { font-family: var(--text); font-size: .95rem; color: var(--ink-2); }
+  .tabla-archivos td.num { font-family: var(--mono); font-size: .82rem; }
+  .puentes { list-style: none; margin: var(--e3) 0 var(--e5); padding: 0; border-top: 1px solid var(--hair-2); }
+  .puentes li { padding: .7rem 0; border-bottom: 1px solid var(--hair); max-width: var(--measure); }
+</style>

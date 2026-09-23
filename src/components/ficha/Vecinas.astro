@@ -1,0 +1,56 @@
+---
+/**
+ * La anterior y la siguiente, en orden CRONOLÓGICO, con el índice en el centro (fichas y puertas). No es un orden de
+ * mérito: en los extremos, el hueco queda vacío. Copy (comun.md § 5.7): `comun.vecinas.aria` y, para el lector de
+ * pantalla, `comun.vecinas.<tipo>.anterior|siguiente`. En el centro, el rótulo único del índice: [Ver las Cortes, etapa a
+ * etapa] (`comun.boton.ver_cortes`) en las fichas y [Ver las sesiones y votaciones] (`comun.boton.ver_sesiones`) en las
+ * puertas. Títulos y subtítulos llegan ya resueltos desde la plantilla.
+ * Las flechas van dibujadas (i-flecha, volteada para la anterior): nunca ← ni →. Al ir a la vecina, la página nueva
+ * entra por su lado (movimiento.css › `adelante` · `atras`; el tipo lo pone el guion de Base.astro leyendo `rel`).
+ */
+import { plano, rotulo, aPlano } from '../../lib/i18n';
+import { url, PAGINAS } from '../../lib/rutas';
+import type { Lang } from '../../lib/idiomas';
+
+interface Vecina { href: string; titulo: string; sub?: string }
+interface Props { lang: Lang; tipo: 'etapa' | 'puerta'; anterior?: Vecina | null; siguiente?: Vecina | null }
+const { lang, tipo, anterior, siguiente } = Astro.props;
+const lados = [
+  { v: anterior, rel: 'prev', clave: `comun.vecinas.${tipo}.anterior` },
+  { v: siguiente, rel: 'next', clave: `comun.vecinas.${tipo}.siguiente` },
+] as const;
+const indice = tipo === 'etapa'
+  ? { href: url(lang, PAGINAS.cortes), rotulo: rotulo(lang, 'comun.boton.ver_cortes') }
+  : { href: url(lang, PAGINAS.sesiones), rotulo: rotulo(lang, 'comun.boton.ver_sesiones') };
+---
+<nav class="vecinas no-imprimir" aria-label={plano(lang, 'comun.vecinas.aria')}>
+  <div class="contenedor fila">
+    {lados.map(({ v, rel, clave }) => v ? (
+      <a class:list={['vecina', rel]} href={v.href} rel={rel}>
+        <svg class:list={['flecha', 'icono', { atras: rel === 'prev' }]} aria-hidden="true" focusable="false"><use href="#i-flecha"></use></svg>
+        <span class="sr-only">{plano(lang, clave)}: </span>
+        <span class="nombre" set:html={v.titulo} />{' '}
+        {v.sub && aPlano(v.sub).replace(/[–-]/g, '-') !== aPlano(v.titulo).replace(/[–-]/g, '-') && <span class="sub" set:html={v.sub} />}
+      </a>
+    ) : <span class:list={['vecina', 'vacia', rel]} />)}
+    {' '}
+    <a class="todas" href={indice.href} set:html={indice.rotulo} />
+  </div>
+</nav>
+
+<style>
+  .vecinas { border-top: 1px solid var(--hair-2); margin-top: var(--aire); }
+  .fila { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 clamp(1rem, 4vw, 3rem); padding-block: clamp(1.5rem, 4vw, 3rem) 0; }
+  .vecina { display: grid; gap: .3rem; text-decoration: none; color: var(--ink); align-content: start; min-height: 2.75rem; }
+  .vecina.next { text-align: right; justify-items: end; }
+  .flecha { width: 1.1rem; height: 1.1rem; color: var(--accent); }
+  .nombre { font: italic 500 var(--fs-h3)/1.1 var(--display); text-wrap: balance; overflow-wrap: anywhere; }
+  .sub { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); }
+  a.vecina:hover .nombre { color: var(--accent); }
+  .todas { grid-column: 1 / -1; justify-self: center; margin-top: 1.75rem; display: inline-flex; align-items: center; min-height: 2.75rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .flecha { transition: translate var(--t-puntero) var(--ease); }
+    a.vecina.prev:hover .flecha { translate: -4px 0; }
+    a.vecina.next:hover .flecha { translate: 4px 0; }
+  }
+</style>

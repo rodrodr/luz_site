@@ -1,0 +1,74 @@
+---
+/**
+ * La escalera de descarga (plan § La escalera de descarga y el formulario), titulada por lo que la persona YA sabe
+ * hacer, con el peso rotulado dentro de cada peldaño, de menos a más fricción: sin programar (los datos de cada figura;
+ * el explorador) · con R o Python (el CSV de THQCMI) · con métodos de redes (CGOCUS). El aviso del formulario (↺ 3) va
+ * ENCIMA de los enlaces a Dataverse, nunca en una nota emergente: lo pone el copy con ↺ donde lo quiere, o la sección.
+ *
+ * Cada peldaño es una clave del copy bajo `prefijo`:
+ *   · una unidad sola que empieza por su nombre en negrita («**Sin programar.** Los datos…», Inicio); o
+ *   · una familia `<peldaño>.titulo` + `.texto` + lo demás que cuelgue (`.peso`, `.edicion`, `.accion`…), en su orden (Datos).
+ * Los [rótulos únicos] reciben su destino (comun.md § 3); las frases fijas repetidas con ↺ caen donde las puso el copy.
+ */
+import { t, existe, claves } from '../lib/i18n';
+import { marcaPendiente } from '../lib/cifras';
+import { restoDe, anclasTras, htmlFija, rotulosConDestino } from '../lib/lectura';
+import type { Lang } from '../lib/idiomas';
+
+interface Props {
+  lang: Lang;
+  prefijo: string;
+  peldanos: string[];
+  /** Destinos, por orden, de los [corchetes] de cada peldaño que no son rótulos únicos: `{ s1: [url(…)] }`. */
+  destinos?: Record<string, (string | null)[]>;
+  /** El peldaño cuyo botón es el primario (oro): en Inicio, el explorador (decisión 2 del investigador, 23-09-2026). */
+  primario?: string;
+}
+const { lang, prefijo, peldanos, destinos = {}, primario } = Astro.props;
+const aPrimario = (html: string) => html.replace(/class="boton sec"/, 'class="boton"');
+const tras = (c: string) => anclasTras(c).map((f) => htmlFija(lang, f)).join('');
+
+const escalones = peldanos.map((p) => {
+  const k = `${prefijo}.${p}`;
+  if (existe(`${k}.titulo`)) {
+    const cuerpo = tras(`${k}.titulo`) + restoDe(lang, k, { destinos: destinos[p] ?? [] }).html;
+    return { titulo: t(lang, `${k}.titulo`) + '', cuerpo: p === primario ? aPrimario(cuerpo) : cuerpo, clave: k };
+  }
+  if (existe(k)) {
+    // «**Nombre.** texto»: el nombre en negrita es el título del peldaño.
+    const html = rotulosConDestino(lang, t(lang, k), k);
+    const m = html.match(/^\s*<strong>([\s\S]+?)<\/strong>\s*([\s\S]*)$/);
+    const hijos = claves(`${k}.`, true).length ? restoDe(lang, k, { destinos: destinos[p] ?? [] }).html : '';
+    // El título del peldaño no lleva el punto de la negrita («Sin programar.» → «Sin programar»): es un rótulo.
+    const titulo = m ? m[1].replace(/\s*[.:]\s*$/, '') : '';
+    const cuerpo = `<p>${m ? m[2] : html}</p>` + tras(k) + hijos;
+    return { titulo, cuerpo: p === primario ? aPrimario(cuerpo) : cuerpo, clave: k };
+  }
+  return { titulo: marcaPendiente(k, 'copy'), cuerpo: '', clave: k };
+});
+---
+<ol class="peldanos" role="list" style={`--n: ${escalones.length}`}>
+  {escalones.map((e) => (
+    <li class="peldano">
+      {e.titulo && <h3 set:html={e.titulo} />}
+      <div class="texto" set:html={e.cuerpo} />
+    </li>
+  ))}
+</ol>
+
+<style>
+  .peldanos { list-style: none; margin: clamp(1.5rem, 4vw, 3rem) 0 0; padding: 0; display: grid; gap: clamp(1.75rem, 3vw, 2.5rem); }
+  /* El filete es la huella del peldaño. */
+  .peldano { border-top: 1px solid var(--ink-2); padding-top: 1rem; min-width: 0; }
+  .peldano h3 { margin-bottom: .6em; }
+  .texto :global(p) { margin: 0 0 .7em; max-width: 34rem; }
+  .texto { font-size: clamp(1rem, .96rem + .2vw, 1.1rem); line-height: 1.55; }
+  .texto :global(.botones) { margin-top: .8rem; }
+  @media (min-width: 60rem) {
+    /* La escalera sube hacia la derecha: cada destreza empieza un peldaño más arriba que la anterior. */
+    .peldanos { --peldano: clamp(1.25rem, 2.2vw, 2.25rem); grid-template-columns: repeat(var(--n), minmax(0, 1fr)); align-items: start; }
+    .peldano:nth-last-child(4) { margin-top: calc(3 * var(--peldano)); }
+    .peldano:nth-last-child(3) { margin-top: calc(2 * var(--peldano)); }
+    .peldano:nth-last-child(2) { margin-top: var(--peldano); }
+  }
+</style>

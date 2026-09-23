@@ -1,0 +1,8 @@
+{
+ "version": "CGOCUS V1.1",
+ "legislaturas": [
+  {"clave":"1931","leg":"1931-1933","relaciones":30345,"bloque":10639,"estricto":2150,"centro":8489,"medidas":674,"medidas_estricto":196},
+  {"clave":"1933","leg":"1933-1936","relaciones":27172,"bloque":6260,"estricto":689,"centro":5571,"medidas":767,"medidas_estricto":78},
+  {"clave":"1936","leg":"1936-1939","relaciones":5990,"bloque":442,"estricto":347,"centro":95,"medidas":89,"medidas_estricto":16}
+ ]
+}

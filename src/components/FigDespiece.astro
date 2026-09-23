@@ -1,0 +1,150 @@
+---
+/**
+ * F12 · La fila más larga no es un discurso (grupo 4, Método 06; plan § F12). Tres filas de la V2, cada una partida en
+ * las piezas en que la divide la v3, con las palabras de cada pieza, en una escala común (la fila más larga llena el
+ * ancho): así se ve que la más larga de la V2 es, sobre todo, documentos impresos, y que un discurso iba a nombre de la
+ * Presidencia.
+ *  · Dato: `src/data/despiece.json` (exportador/modulos/metodo.py, desde el mapa V2 → v3 del proyecto, sin publicar).
+ *  · Marca: cada pieza es un tramo de la barra. El tipo va en la forma, no solo en el color: habla del orador, oro
+ *    lleno; turno rescatado, oro con su borde en tinta; Presidencia, tinta segunda; comentario del Diario (tablas,
+ *    documentos, listas), rayado en contorno. Rótulos directos donde caben; si no, en la nota y en la Tabla.
+ *  · Isla genérica: cada fila es UNA parada; ← → recorren sus piezas. La nota: tipo · fila v3 · palabras · comienzo.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano, plantillaNota, existe } from '../lib/i18n';
+import { fmt, marcaPendiente } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { despiece, type FilaLarga } from '../viz/geom/longitud';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<{ filas: FilaLarga[] }>('despiece');
+const filas = D ? despiece(D.filas) : [];
+const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
+const TIPOS = ['habla', 'turno', 'presidencia', 'documento'] as const;
+const rotuloTipo = (tp: string) => (existe(`fig.F12.leyenda.${tp}`) ? plano(lang, `fig.F12.leyenda.${tp}`) : tp);
+const huecos = ['tipo', 'id_v3', 'n', 'comienzo'];
+const plantilla = plantillaNota(lang, 'fig.F12.nota', huecos);
+const [notaT, ...resto] = plantilla.split(' · ');
+const notaD = resto.slice(0, 2).join(' · ');
+const notaB = resto.slice(2).join(' · ');
+// Un rótulo directo cabe si la pieza ocupa al menos el 16 % del ancho.
+const cabe = (w: number) => w >= 16;
+---
+<FiguraMarco lang={lang} id="F12" plantillaT={notaT} plantilla={notaD} plantillaB={notaB}>
+  <div slot="grafico" class="f12">
+    {!D ? <p class="nota" set:html={marcaPendiente('despiece.json', 'dato')} /> : (
+      <>
+        <p class="f12-que nota" set:html={o('fig.F12.que_mide')} />
+        <ul class="f12-leyenda" role="list">
+          {TIPOS.map((tp) => <li><span class="f12-muestra" data-tipo={tp} aria-hidden="true" /><span set:html={o(`fig.F12.leyenda.${tp}`)} /></li>)}
+        </ul>
+        <ol class="f12-filas" role="list">
+          {filas.map((f) => (
+            <li class="f12-fila">
+              <p class="f12-rotulo">
+                <span class="f12-quien"><span set:html={o(`fig.F12.fila.${f.clave}`)} /> <code class="f12-v2rotulo" title={f.rotulo}>{f.rotulo}</code></span>
+                <span class="f12-total" set:html={fmt.dato(f.nwords, fmt.n(f.nwords, lang), `F12.${f.clave}.nwords`, 'V2')} />
+              </p>
+              <div class="f12-barra" role="group" tabindex="0" data-recorre aria-label={plano(lang, `fig.F12.fila.${f.clave}`)} style={`--w: ${f.w.toFixed(3)}%`}>
+                {f.segs.map((s) => (
+                  <span class="f12-seg" data-tipo={s.tipo} data-paso data-nota style={`--xr: ${((s.x / f.w) * 100).toFixed(3)}%; --wr: ${((s.w / f.w) * 100).toFixed(3)}%`}
+                        data-v-tipo={rotuloTipo(s.tipo)} data-v-id_v3={fmt.id(s.id_v3, lang)} data-v-n={fmt.n(s.nwords, lang)} data-v-comienzo={s.comienzo} />
+                ))}
+              </div>
+              <div class="f12-pies" aria-hidden="true">
+                {f.segs.filter((s) => cabe(s.w)).map((s, k, vis) => (
+                  <span class="f12-pie" style={`--hueco: ${(s.x - (k ? vis[k - 1].x + vis[k - 1].w : 0)).toFixed(3)}%; --ws: ${s.w.toFixed(3)}%`}>
+                    <span class="f12-pie-tipo">{rotuloTipo(s.tipo)}</span>
+                    <span class="f12-pie-n" set:html={fmt.dato(s.nwords, fmt.n(s.nwords, lang), `F12.v3.${s.id_v3}`, 'v3')} />
+                  </span>
+                ))}
+              </div>
+              <p class="f12-anota nota"><span class="f12-anota-trazo" aria-hidden="true" /><span set:html={o(`fig.F12.anota.${f.clave}`)} /></p>
+            </li>
+          ))}
+        </ol>
+      </>
+    )}
+  </div>
+
+  <div slot="tabla" class="fig-desliza" tabindex="0" role="region" aria-label={plano(lang, 'fig.F12.titulo')}>
+    {D && (
+      <table class="fig-tabla f12-tabla">
+        <caption><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F12.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={o('fig.F12.tabla.col.v2')} />
+            <th scope="col" set:html={o('fig.F12.tabla.col.v3')} />
+            <th scope="col" set:html={o('fig.F12.tabla.col.tipo')} />
+            <th scope="col" set:html={o('fig.F12.tabla.col.orador')} />
+            <th scope="col" class="num" set:html={o('fig.F12.tabla.col.palabras')} />
+          </tr>
+        </thead>
+        <tbody>
+          {filas.flatMap((f) => f.segs.map((s, k) => (
+            <tr class:list={{ 'f12-t-primera': k === 0 }}>
+              {/* La fila V2 encabeza su grupo de segmentos v3 (rowspan): sin celdas de cabecera vacías (axe empty-table-header). */}
+              {k === 0 && <th scope="row" rowspan={f.segs.length} set:html={fmt.dato(f.id_v2, fmt.id(f.id_v2, lang), `F12.${f.clave}.id`, 'V2')} />}
+              <td set:html={fmt.dato(s.id_v3, fmt.id(s.id_v3, lang), `F12.v3id.${s.id_v3}`, 'v3')} />
+              <td>{rotuloTipo(s.tipo)}</td>
+              <td>{s.orador || s.rotulo}</td>
+              <td class="num" set:html={fmt.dato(s.nwords, fmt.n(s.nwords, lang), `F12.v3.${s.id_v3}`, 'v3')} />
+            </tr>
+          )))}
+        </tbody>
+      </table>
+    )}
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'comun.fig.tabla.nota')} />
+  </div>
+</FiguraMarco>
+
+<style>
+  .f12 { min-width: 0; }
+  .f12-que { margin: 0 0 var(--e4); max-width: 40rem; }
+  .f12-leyenda { list-style: none; margin: 0 0 var(--e6); padding: 0; display: flex; flex-wrap: wrap; gap: .45rem 1.5rem; font-size: var(--fs-small); color: var(--ink-2); }
+  .f12-leyenda li { display: inline-flex; align-items: center; gap: .5rem; }
+  .f12-muestra { display: inline-block; width: 1.3rem; height: .85rem; box-sizing: border-box; }
+
+  /* Tipos de pieza: la forma y el trazo dicen el tipo (DESIGN.md: el color nunca es la única pista). */
+  [data-tipo='habla'] { background: var(--accent); }
+  [data-tipo='turno'] { background: var(--accent); box-shadow: inset 0 0 0 2px var(--ink); }
+  [data-tipo='presidencia'] { background: var(--ink-2); }
+  [data-tipo='documento'] {
+    background: repeating-linear-gradient(135deg, var(--ink-2) 0 1.5px, transparent 1.5px 6px);
+    box-shadow: inset 0 0 0 1px var(--ink-2);
+  }
+
+  .f12-filas { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e6); }
+  .f12-rotulo { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .2rem 1rem; margin: 0 0 .5rem; font-size: var(--fs-small); color: var(--ink); max-width: none; }
+  .f12-total { font: 400 var(--fs-mono)/1.3 var(--mono); color: var(--ink); }
+  /* A nombre de quién va la fila en la V2: el rótulo impreso, tal cual. */
+  .f12-v2rotulo { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--ink-2); border: 1px solid var(--hair-2); border-radius: var(--radio); padding: .05em .4em; margin-left: .3rem; white-space: nowrap; }
+  .f12-total :global(data.cifra) { font-family: var(--mono); }
+  .f12-barra { position: relative; display: flex; height: 2.2rem; width: var(--w); min-width: 2px; border-radius: var(--radio); }
+  .f12-barra:focus-visible { outline: 3px solid var(--focus); outline-offset: 5px; }
+  .f12-seg { position: relative; flex: 0 1 var(--wr); min-width: 4px; cursor: default; }
+  .f12-seg + .f12-seg { border-left: 2px solid var(--bg); }
+  .f12-seg:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; z-index: 1; }
+  .f12-barra:has(:global(.fig-activa)) .f12-seg:not(:global(.fig-activa)) { opacity: var(--atenua); }
+  /* Los pies van EN EL FLUJO, cada uno bajo su pieza (el hueco hasta ella, en margen): con el espaciado de texto
+     aumentado (WCAG 1.4.12) parten en dos líneas y empujan la anotación hacia abajo en vez de recortarse o pisarla. */
+  .f12-pies { display: flex; align-items: start; min-height: 2.4rem; margin-top: .35rem; }
+  .f12-pie { flex: 0 0 var(--ws); margin-left: var(--hueco); min-width: 0; display: grid; align-content: start; padding-left: .35rem; border-left: 1px solid var(--hair-2); box-sizing: border-box; }
+  .f12-pie-tipo { font: 400 .88rem/1.25 var(--text); color: var(--ink-2); overflow-wrap: anywhere; hyphens: auto; text-wrap: pretty; }
+  .f12-pie-n { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--ink); overflow-wrap: anywhere; }
+  .f12-pie-n :global(data.cifra) { font-family: var(--mono); }
+  .f12-anota { position: relative; margin: .5rem 0 0; padding-left: 1.4rem; max-width: 34rem; color: var(--ink-2); }
+  .f12-anota-trazo { position: absolute; left: 0; top: .72em; width: .9rem; border-top: 1px solid var(--accent); }
+  .f12-tabla .f12-t-primera th, .f12-tabla .f12-t-primera td { border-top: 1px solid var(--hair-2); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .f12-seg { transition: opacity var(--t-estado) var(--ease); }
+  }
+  @media (forced-colors: active) {
+    [data-tipo='habla'], [data-tipo='turno'] { background: CanvasText; }
+    [data-tipo='presidencia'] { background: GrayText; }
+    [data-tipo='documento'] { background: Canvas; box-shadow: inset 0 0 0 1px CanvasText; }
+  }
+</style>

@@ -1,0 +1,259 @@
+---
+/**
+ * F10/F11 · Trámite frente a discurso (grupo 4, Método 05; plan § F10 y F11).
+ *  · F10: las filas de la V2 en diez tramos de longitud que se duplican, separando las de la Presidencia (oro, primero)
+ *    de las del resto (tinta segunda). Barras horizontales: los rótulos de tramo se leen enteros a 360 px.
+ *    Conmutadores (radios, sin JS): contar Filas o Palabras; Todas o una legislatura. Las ocho vistas se escriben en la
+ *    compilación y `:has()` enseña una (sin `:has()`, se leen todas, rotuladas).
+ *  · Anotación: el umbral de 50 palabras, con su recuento (`fig.F10.umbral`), en la vista de filas de todas las
+ *    legislaturas, que es la que cuenta la cifra.
+ *  · F11: la curva de concentración (100 puntos) con los dos puntos anotados del copy (10 % y 20 % de las filas).
+ *  · Dato: `src/data/longitud.json` (exportador/modulos/metodo.py). Base V2: nwords; la Presidencia, con el analizador
+ *    de fórmulas del explorador.
+ *  · Isla genérica: cada vista es UNA parada; ← → recorren los tramos y la nota dice tramo · n de den · de la Presidencia.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano, plantillaNota, existe } from '../lib/i18n';
+import { fmt, marcaPendiente } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { barras, curva, type Bloque, type Medida } from '../viz/geom/longitud';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<{ legislaturas: string[]; hist: Record<string, Bloque>; curva: [number, number][]; _meta: { umbral: number } }>('longitud');
+const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
+const MEDIDAS: Medida[] = ['filas', 'palabras'];
+const legs = D?.legislaturas ?? [];
+const mas = existe('fig.F10.tramo.mas') ? plano(lang, 'fig.F10.tramo.mas') : '>';
+const rotuloTramo = (desde: number, hasta: number | null) => (hasta === null ? `${mas} ${fmt.n(desde - 1, lang)}` : `${fmt.n(desde, lang)}–${fmt.n(hasta, lang)}`);
+const huecos = ['tramo', 'n', 'den', 'pres'];
+const nota = (m: Medida) => {
+  const p = plantillaNota(lang, `fig.F10.nota.${m}`, huecos);
+  const [primera, ...resto] = p.split(' · ');
+  return { t: primera, d: resto.join(' · ') };
+};
+const umbral = D?._meta.umbral ?? 50;
+const pctCurva = (p: number) => D?.curva.find(([x]) => x === p)?.[1] ?? 0;
+const puntosCurva = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+const huecosF11 = ['pct_filas', 'pct_palabras'];
+const notaF11 = plantillaNota(lang, 'fig.F11.nota', huecosF11);
+const rotuloLeg = (lg: string) => (lg === 'todas' ? plano(lang, 'fig.F10.filtro.todas') : lg);
+---
+<FiguraMarco lang={lang} id="F10" plantillaT={nota('filas').t} plantilla={nota('filas').d}>
+  <div slot="barra" class="f10-mandos">
+    <fieldset class="fig-conmuta">
+      <legend set:html={o('fig.F10.conmutador.leyenda')} />
+      {MEDIDAS.map((m, i) => <label><input type="radio" name="f10-medida" value={m} checked={i === 0} /><span set:html={o(`fig.F10.conmutador.${m}`)} /></label>)}
+    </fieldset>
+    <fieldset class="fig-conmuta">
+      <legend set:html={o('fig.F10.filtro.leyenda')} />
+      {legs.map((lg, i) => <label><input type="radio" name="f10-leg" value={lg} checked={i === 0} /><span>{rotuloLeg(lg)}</span></label>)}
+    </fieldset>
+  </div>
+
+  <div slot="grafico" class="f10">
+    {!D ? <p class="nota" set:html={marcaPendiente('longitud.json', 'dato')} /> : (
+      <>
+        <ul class="f10-leyenda" role="list">
+          <li><span class="f10-muestra" data-papel="pres" aria-hidden="true" /><span set:html={o('fig.F10.leyenda.presidencia')} /></li>
+          <li><span class="f10-muestra" data-papel="resto" aria-hidden="true" /><span set:html={o('fig.F10.leyenda.resto')} /></li>
+        </ul>
+        {MEDIDAS.map((m) => (
+          <div class="f10-medida" data-medida={m}>
+            {legs.map((lg) => {
+              const B = D.hist[lg];
+              const { barras: bs, tope, valores } = barras(B, m);
+              const den = m === 'filas' ? B.filas : B.palabras;
+              const n = nota(m);
+              return (
+                <div class="f10-leg" data-leg={lg} data-plantilla={n.d} data-plantilla-t={n.t} data-v-den={fmt.n(den, lang)}>
+                  <p class="f10-vista-rotulo nota"><span set:html={o(`fig.F10.conmutador.${m}`)} /> · {rotuloLeg(lg)}</p>
+                  <div class="f10-grafico">
+                    <p class="f10-eje-y nota" set:html={o('fig.F10.eje.x')} />
+                    <ol class="f10-barras" role="list" tabindex="0" data-recorre aria-label={`${plano(lang, 'fig.F10.alt')} ${plano(lang, `fig.F10.conmutador.${m}`)} · ${rotuloLeg(lg)}`}>
+                      {bs.map((b) => (
+                        <li class:list={['f10-fila', { 'f10-tras-umbral': b.desde === umbral + 1 }]} data-paso data-nota
+                            data-v-tramo={rotuloTramo(b.desde, b.hasta)} data-v-n={fmt.n(b.total, lang)} data-v-pres={fmt.n(b.pres, lang)}>
+                          <span class="f10-tramo" data-k="longitud.json › tramo" data-base="V2" set:html={rotuloTramo(b.desde, b.hasta)} />
+                          <span class="f10-pista" aria-hidden="true">
+                            <span class="f10-seg" data-papel="pres" style={`width:${b.wPres.toFixed(2)}%`} />
+                            <span class="f10-seg" data-papel="resto" style={`width:${b.wResto.toFixed(2)}%`} />
+                          </span>
+                          <span class="f10-valor" set:html={fmt.dato(b.total, fmt.n(b.total, lang), `F10.${lg}.${m}.${b.i}`, 'V2')} />
+                        </li>
+                      ))}
+                    </ol>
+                    <div class="f10-eje" aria-hidden="true" data-k={`longitud.json › eje.${m}`} data-base="V2">
+                      {valores.map((v) => <span style={`--x:${((v / tope) * 100).toFixed(2)}%`} set:html={fmt.n(v, lang)} />)}
+                    </div>
+                    <p class="f10-eje-x nota" set:html={o(`fig.F10.eje.y.${m}`)} />
+                  </div>
+                  {m === 'filas' && lg === 'todas' && (
+                    <p class="f10-anota nota"><span class="f10-anota-trazo" aria-hidden="true" /><span set:html={o('fig.F10.umbral')} /></p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ))}
+        <p class="f10-v3 nota" set:html={o('fig.F10.v3')} />
+
+        <section class="f11" aria-labelledby="f11-titulo">
+          <h4 id="f11-titulo" class="f11-titulo" set:html={o('fig.F11.titulo')} />
+          <p class="nota f11-que" set:html={o('fig.F11.que_mide')} />
+          <div class="f11-lienzo">
+            <p class="f11-eje-y nota" set:html={o('fig.F11.eje.y')} />
+            <div class="f11-area" data-plantilla={notaF11} data-plantilla-t="" role="group" tabindex="0" data-recorre aria-label={plano(lang, 'fig.F11.titulo')}>
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                {[25, 50, 75].map((y) => <line x1="0" x2="100" y1={100 - y} y2={100 - y} class="f11-rejilla" vector-effect="non-scaling-stroke" />)}
+                <line x1="0" x2="100" y1="100" y2="100" class="f11-base" vector-effect="non-scaling-stroke" />
+                <path d={curva(D.curva)} class="f11-curva" vector-effect="non-scaling-stroke" />
+              </svg>
+              {[25, 50, 75, 100].map((y) => <span class="f11-y" style={`--y: ${y}%`} data-k="longitud.json › eje.curva" data-base="V2" set:html={fmt.pct(y / 100, lang, 0)} />)}
+              {puntosCurva.map((p) => (
+                <span class:list={['f11-punto', { anotado: p === 10 || p === 20 }]} style={`--x: ${p}%; --y: ${(pctCurva(p) * 100).toFixed(3)}%`}
+                      data-paso data-nota data-v-pct_filas={fmt.pct(p / 100, lang, 0)} data-v-pct_palabras={fmt.pct(pctCurva(p), lang, 1)} />
+              ))}
+            </div>
+            <div class="f11-eje-x" aria-hidden="true" data-k="longitud.json › eje.curva" data-base="V2">
+              {[0, 25, 50, 75, 100].map((x) => <span style={`--x: ${x}%`} set:html={fmt.pct(x / 100, lang, 0)} />)}
+            </div>
+            <p class="f11-eje-x-rotulo nota" set:html={o('fig.F11.eje.x')} />
+          </div>
+          <ul class="f11-anotas" role="list">
+            <li class="f11-anota nota"><span set:html={o('fig.F11.punto.p10')} /></li>
+            <li class="f11-anota nota"><span set:html={o('fig.F11.punto.p20')} /></li>
+          </ul>
+        </section>
+      </>
+    )}
+  </div>
+
+  <div slot="tabla" class="fig-desliza" tabindex="0" role="region" aria-label={plano(lang, 'fig.F10.titulo')}>
+    {D && (
+      <table class="fig-tabla f10-tabla" data-k="longitud.json › tramos" data-base="V2">
+        <caption><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F10.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={o('fig.F10.tabla.col.tramo')} />
+            <th scope="col" class="num" set:html={o('fig.F10.tabla.col.presidencia')} />
+            <th scope="col" class="num" set:html={o('fig.F10.tabla.col.resto')} />
+            <th scope="col" class="num" set:html={o('fig.F10.tabla.col.pal_presidencia')} />
+            <th scope="col" class="num" set:html={o('fig.F10.tabla.col.pal_resto')} />
+          </tr>
+        </thead>
+        {legs.map((lg) => (
+          <tbody>
+            <tr class="f10-t-leg"><th scope="colgroup" colspan="5">{rotuloLeg(lg)}</th></tr>
+            {D.hist[lg].tramos.map((tr, i) => (
+              <tr>
+                <th scope="row" set:html={rotuloTramo(tr.desde, tr.hasta)} />
+                <td class="num">{fmt.n(tr.filas_pres, lang)}</td>
+                <td class="num">{fmt.n(tr.filas_resto, lang)}</td>
+                <td class="num">{fmt.n(tr.pal_pres, lang)}</td>
+                <td class="num">{fmt.n(tr.pal_resto, lang)}</td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
+      </table>
+    )}
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'comun.fig.tabla.nota')} />
+  </div>
+</FiguraMarco>
+
+<style>
+  .f10 { min-width: 0; }
+  .f10-mandos { display: flex; flex-wrap: wrap; gap: 0 2.2rem; }
+  .f10-leyenda { list-style: none; margin: 0 0 var(--e5); padding: 0; display: flex; flex-wrap: wrap; gap: .4rem 1.6rem; font-size: var(--fs-small); color: var(--ink-2); }
+  .f10-leyenda li { display: inline-flex; align-items: center; gap: .5rem; }
+  .f10-muestra { display: inline-block; width: 1.1rem; height: .7rem; }
+  [data-papel='pres'] { background: var(--accent); }
+  [data-papel='resto'] { background: var(--mute); }
+
+  /* Una vista a la vez (medida × legislatura). Sin :has(), las ocho seguidas, cada una con su rótulo. */
+  .f10-vista-rotulo { margin: 1.4rem 0 .6rem; font-family: var(--mono); font-size: var(--fs-mono-s); color: var(--mute); }
+  @supports selector(:has(*)) {
+    .f10-vista-rotulo { display: none; }
+    .f10-medida, .f10-leg { display: none; }
+    :global(.pestanas):has(input[name='f10-medida'][value='filas']:checked) .f10-medida[data-medida='filas'],
+    :global(.pestanas):has(input[name='f10-medida'][value='palabras']:checked) .f10-medida[data-medida='palabras'] { display: block; }
+    :global(.pestanas):has(input[name='f10-leg'][value='todas']:checked) .f10-leg[data-leg='todas'],
+    :global(.pestanas):has(input[name='f10-leg'][value='1931-1933']:checked) .f10-leg[data-leg='1931-1933'],
+    :global(.pestanas):has(input[name='f10-leg'][value='1933-1935']:checked) .f10-leg[data-leg='1933-1935'],
+    :global(.pestanas):has(input[name='f10-leg'][value='1936-1939']:checked) .f10-leg[data-leg='1936-1939'] { display: block; }
+  }
+
+  .f10-grafico { position: relative; --etiq: 6.9rem; --valor: 5.6rem; }
+  .f10-eje-y { margin: 0 0 .4rem; font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); max-width: none; }
+  .f10-barras { list-style: none; margin: 0; padding: 0; border-radius: var(--radio); }
+  .f10-barras:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; }
+  .f10-fila { display: grid; grid-template-columns: var(--etiq) minmax(0, 1fr) var(--valor); align-items: center; column-gap: .7rem; min-height: 2.05rem; border-top: 1px solid var(--hair); cursor: default; }
+  .f10-fila:first-child { border-top: 0; }
+  /* El umbral de 50 palabras: un filete discontinuo entre 21–50 y 51–100 (DESIGN: lo que es interpretación, discontinuo). */
+  .f10-fila.f10-tras-umbral { border-top: 1px dashed var(--accent); }
+  .f10-tramo { font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--ink-2); text-align: right; white-space: nowrap; }
+  .f10-tramo :global(data.cifra) { font-family: var(--mono); }
+  .f10-pista { display: flex; height: .95rem; position: relative; }
+  .f10-seg { display: block; height: 100%; }
+  .f10-seg + .f10-seg { margin-left: 1px; }
+  .f10-valor { font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--ink); text-align: right; white-space: nowrap; }
+  .f10-valor :global(data.cifra) { font-family: var(--mono); }
+  .f10-fila:hover, .f10-fila:global(.fig-activa) { background: var(--bg-2); outline: none; }
+  .f10-barras:has(:global(.fig-activa)) .f10-fila:not(:global(.fig-activa)) .f10-seg { opacity: var(--atenua); }
+  .f10-eje { position: relative; height: 1.5rem; margin: .25rem calc(var(--valor) + .7rem) 0 calc(var(--etiq) + .7rem); border-top: 1px solid var(--hair-2); }
+  .f10-eje span { position: absolute; left: var(--x); top: .25rem; transform: translateX(-50%); font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); white-space: nowrap; }
+  .f10-eje span:first-child { transform: none; }
+  .f10-eje span:last-child { transform: translateX(-100%); }
+  .f10-eje-x { margin: .3rem 0 0 calc(var(--etiq) + .7rem); font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); max-width: none; }
+  .f10-anota { position: relative; margin: var(--e4) 0 0 calc(var(--etiq) + .7rem); padding-left: 1.4rem; max-width: 26rem; color: var(--ink-2); }
+  .f10-anota-trazo { position: absolute; left: 0; top: .72em; width: .9rem; border-top: 1px solid var(--accent); }
+  .f10-v3 { margin: var(--e5) 0 0; max-width: 40rem; color: var(--ink-2); }
+
+  /* ── F11 ── */
+  .f11 { margin-top: var(--e7); padding-top: var(--e5); border-top: 1px solid var(--hair-2); }
+  .f11-titulo { font: 600 var(--fs-body)/1.3 var(--text); margin: 0 0 .3rem; }
+  .f11-que { margin: 0 0 var(--e5); max-width: 40rem; }
+  .f11-lienzo { position: relative; max-width: 44rem; padding-left: 3rem; }
+  .f11-eje-y { margin: 0 0 .5rem -3rem; font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); max-width: none; }
+  .f11-area { position: relative; aspect-ratio: 16 / 6; border-radius: var(--radio); }
+  .f11-area:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; }
+  .f11-area svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .f11-rejilla { stroke: var(--hair); stroke-width: 1; }
+  .f11-base { stroke: var(--hair-2); stroke-width: 1; }
+  .f11-curva { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+  .f11-y { position: absolute; left: -.6rem; bottom: var(--y); transform: translate(-100%, 50%); font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); white-space: nowrap; }
+  .f11-punto { position: absolute; left: var(--x); bottom: var(--y); width: .6rem; height: .6rem; margin: 0 0 -.3rem -.3rem; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--accent); cursor: default; }
+  .f11-punto::before { content: ''; position: absolute; inset: -.55rem; }
+  .f11-punto.anotado { background: var(--accent); }
+  .f11-punto:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .f11-anotas { list-style: none; margin: var(--e5) 0 0; padding: 0 0 0 3rem; display: grid; gap: .5rem; }
+  .f11-anota { position: relative; margin: 0; max-width: 30rem; color: var(--ink-2); padding-left: 1.4rem; }
+  .f11-anota::before { content: ''; position: absolute; left: 0; top: .72em; width: .9rem; border-top: 1px solid var(--accent); }
+  .f11-eje-x { position: relative; height: 1.4rem; margin-top: .35rem; }
+  .f11-eje-x span { position: absolute; left: var(--x); transform: translateX(-50%); font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .f11-eje-x span:first-child { transform: none; }
+  .f11-eje-x span:last-child { transform: translateX(-100%); }
+  .f11-eje-x-rotulo { margin: .2rem 0 0; font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); max-width: none; }
+
+  .f10-t-leg th { font: 600 var(--fs-small)/1.3 var(--text); color: var(--ink); padding-top: 1.1rem; }
+
+  @media (max-width: 30rem) {
+    .f10-grafico { --etiq: 6.2rem; --valor: 3.7rem; }
+    /* En el móvil el eje lleva solo sus extremos: los intermedios no caben sin montarse. */
+    .f10-eje span:not(:first-child):not(:last-child) { display: none; }
+    .f11-area { aspect-ratio: 16 / 10; }
+    .f11-lienzo { padding-left: 2.6rem; }
+    .f11-eje-y { margin-left: -2.6rem; }
+    .f11-anotas { padding-left: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .f10-seg { transition: opacity var(--t-estado) var(--ease); }
+    .f10-fila { transition: background-color var(--t-puntero) var(--ease); }
+  }
+  @media (forced-colors: active) {
+    [data-papel='pres'] { background: CanvasText; }
+    [data-papel='resto'] { background: GrayText; }
+  }
+</style>

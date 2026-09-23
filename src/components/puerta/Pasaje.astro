@@ -1,0 +1,73 @@
+---
+/**
+ * Pasaje del Diario en una puerta de lectura (DESIGN.md § Cita del Diario): el orador en versalitas simuladas encima,
+ * lo que dijo en EB Garamond cursiva con la comilla de apertura colgada DENTRO de su caja, y el asiento debajo (V2 ·
+ * v3 · palabras), en mono. Si la Presidencia precede, va en una línea pequeña, con su cita en cursiva y sus ids.
+ * Nunca se inventa el encabezamiento impreso («El Sr. …:»): el orador es el que escribe el pie del copy.
+ * Antes de pintarla, la cita pasa el ASERTO (`aserto.ts`): cada trozo entre «» está letra a letra en una cita de
+ * `citas.json`, comprobada por el exportador en su fila V2 y en su fila v3. Si no está, la compilación falla.
+ * Copy: `<prefijo>.cita.<nombre>` y su `.pie` («Orador · V2 {{…}} · v3 {{…}} · {{…}} palabras (V2)»).
+ */
+import { t, existe } from '../../lib/i18n';
+import { asertaCita } from './aserto';
+import type { Lang } from '../../lib/idiomas';
+
+interface Uno { clave: string; pie?: string }
+interface Props { lang: Lang; cita: Uno; presidencia?: Uno }
+const { lang, cita, presidencia } = Astro.props;
+
+/** Parte el pie en orador (antes del primer « · ») y asiento (el resto: ids y palabras, con sus marcadores). */
+function partePie(clavePie?: string): { orador: string; asiento: string; preferida: string | null } {
+  if (!clavePie || !existe(clavePie)) return { orador: '', asiento: '', preferida: null };
+  const html = t(lang, clavePie);
+  const i = html.indexOf(' · ');
+  const preferida = html.match(/data-k="cita\.(.+?)\.(?:V2|v3|palabras)"/)?.[1] ?? null;
+  return i < 0 ? { orador: html, asiento: '', preferida } : { orador: html.slice(0, i), asiento: html.slice(i + 3), preferida };
+}
+/** El nombre, en versalitas; lo que lo sigue tras la primera coma («, en la misma fila»), en redonda. */
+const conVersal = (html: string) => {
+  const i = html.indexOf(', ');
+  return i < 0 ? `<span class="versal">${html}</span>` : `<span class="versal">${html.slice(0, i)}</span>${html.slice(i)}`;
+};
+/** «[sic]» es del editor, no del Diario: va en redonda y apagado dentro de la cursiva. */
+const conSic = (html: string) => html.replace(/\[sic\]/g, '<span class="sic">[sic]</span>');
+
+const principal = partePie(cita.pie);
+asertaCita(cita.clave, t(lang, cita.clave), principal.preferida);
+const texto = conSic(t(lang, cita.clave));
+const presi = presidencia ? { ...partePie(presidencia.pie), texto: conSic(t(lang, presidencia.clave)) } : null;
+if (presidencia) asertaCita(presidencia.clave, t(lang, presidencia.clave), presi!.preferida);
+const haySic = /\[sic\]/.test(texto + (presi?.texto ?? ''));
+---
+<figure class="pasaje-diario">
+  {presi && (
+    <p class="presi">
+      {presi.orador && <span class="orador" set:html={conVersal(presi.orador)} />}
+      <span class="dicho" data-audit-exento="cita literal del Diario" set:html={presi.texto} />
+      {presi.asiento && <span class="presi-asiento" set:html={presi.asiento} />}
+    </p>
+  )}
+  {principal.orador && <span class="orador" set:html={conVersal(principal.orador)} />}
+  <blockquote data-audit-exento="cita literal del Diario"><p set:html={texto} /></blockquote>
+  {principal.asiento && <figcaption class="asiento" set:html={principal.asiento} />}
+  {haySic && existe('sesiones.puerta.cita.sic') && <p class="sic-nota" set:html={t(lang, 'sesiones.puerta.cita.sic')} />}
+</figure>
+
+<style>
+  /* La comilla cuelga DENTRO de la caja: el figure reserva su ancho y las letras, el orador y el asiento se alinean. */
+  .pasaje-diario { --fs-pasaje: clamp(1.2rem, 1.02rem + .8vw, 1.72rem); --cuelga: calc(var(--fs-pasaje) * .42); margin: var(--e5) 0 var(--e6); padding-inline-start: var(--cuelga); min-width: 0; }
+  .orador { display: block; color: var(--ink-2); margin-bottom: var(--e2); line-height: 1.35; }
+  blockquote { margin: 0; }
+  blockquote p {
+    font: italic 400 var(--fs-pasaje)/1.32 var(--text); max-width: 34ch; margin: 0; text-wrap: pretty;
+    text-indent: calc(-1 * var(--cuelga));
+  }
+  figcaption.asiento { margin: var(--e3) 0 0; font-size: var(--fs-mono-s); }
+  .presi { display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .6rem; font-size: var(--fs-small); color: var(--ink-2); margin: 0 0 var(--e5); max-width: 40rem; }
+  .presi .orador { display: inline; margin: 0; color: var(--mute); }
+  .presi .dicho { font-style: italic; color: var(--ink); }
+  .presi-asiento { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .presi-asiento :global(data.cifra), figcaption :global(data.cifra) { font-family: var(--mono); }
+  .pasaje-diario :global(.sic) { font-style: normal; font-size: .72em; color: var(--mute); letter-spacing: .02em; }
+  .sic-nota { margin: .4rem 0 0; font-size: var(--fs-small); color: var(--mute); }
+</style>

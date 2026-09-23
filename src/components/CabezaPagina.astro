@@ -1,0 +1,76 @@
+---
+/**
+ * Cabecera de página: miga (opcional) · antetítulo en mono · H1 · entrada(s) · extras. El H1 es una pregunta (Inicio,
+ * Las Cortes, Sesiones, El Diario, Método, Datos, Versiones, Explorador, Afinidades) o el nombre de la etapa o del
+ * hecho (fichas y puertas, con la pregunta en la entrada).
+ * Copy: `<prefijo>.miga` (si existe; si no, la prop `miga`) · `.antetitulo` · `.titulo` (o `.h1`, o la clave `h1`
+ * que pase la página) · `.entrada`, `.entrada.2`… · y las claves que la página nombre en `extras` (`tension`,
+ * `garantia`…), en ese orden. Tras cada una, las frases fijas que el copy repitió con ↺ justo detrás.
+ * `marca`: el numeral romano de la ficha, en contorno, como marca de agua (es marca, no dato).
+ * `bases`: las chapas de las bases que usa la página (↺ 2, `Sello`). En escritorio la cabecera va a DOS COLUMNAS, como
+ * en Datos: título y entrada a la izquierda (7 de 12) y, al margen (9-12), las chapas o el bloque que la página pase
+ * con `.cabeza-margen`.
+ */
+import { t, existe, claves } from '../lib/i18n';
+import { marcaPendiente, type Contexto } from '../lib/cifras';
+import { anclasTras, htmlFija, rotulosConDestino } from '../lib/lectura';
+import type { Lang } from '../lib/idiomas';
+import type { Base } from '../lib/cifras';
+import Sello from './Sello.astro';
+
+interface Props { lang: Lang; prefijo: string; h1?: string; miga?: string; marca?: string; ctx?: Contexto; extras?: string[]; bases?: Base[] }
+const { lang, prefijo, h1, miga, marca, ctx = {}, extras = [], bases = [] } = Astro.props;
+const ESTRICTO = process.env.STRICT === '1';
+const P = (s: string) => `${prefijo}.${s}`;
+const h1Clave = h1 ?? [P('titulo'), P('h1')].find(existe) ?? P('titulo');
+const tras = (c: string) => anclasTras(c).map((f) => htmlFija(lang, f)).join('');
+const o = (c: string) => (existe(c) || ESTRICTO ? t(lang, c, ctx) : marcaPendiente(c, 'copy'));
+const entradas = [P('entrada'), ...claves(P('entrada.'), true).filter((x) => /\.entrada\.\d+$/.test(x))];
+const extrasClaves = extras.map(P).filter(existe);
+// La miga que la página ya compuso (con su enlace) manda; si no hay, la del copy tal cual.
+const migaHtml = miga ?? (existe(P('miga')) ? t(lang, P('miga'), ctx) : undefined);
+---
+<header class="pagina-cabeza contenedor">
+  {marca && <span class="marca-agua" aria-hidden="true">{marca}</span>}
+  {migaHtml && <p class="miga" set:html={migaHtml} />}
+  {existe(P('antetitulo')) && <p class="asiento" set:html={t(lang, P('antetitulo'), ctx)} />}
+  <h1 set:html={o(h1Clave)} />
+  {entradas.map((e, i) => (existe(e) || i === 0) && (
+    <>
+      <p class:list={['lede', { segunda: i > 0 }]} set:html={o(e)} />
+      {tras(e) && <Fragment set:html={tras(e)} />}
+    </>
+  ))}
+  {extrasClaves.map((e) => (
+    <>
+      <p class="extra" set:html={rotulosConDestino(lang, t(lang, e, ctx), e)} />
+      {tras(e) && <Fragment set:html={tras(e)} />}
+    </>
+  ))}
+  {bases.length > 0 && <p class="pieza-sello cabeza-sellos">{bases.map((b) => <Sello lang={lang} base={b} />)}</p>}
+  <slot />
+</header>
+
+<style>
+  .pagina-cabeza { position: relative; isolation: isolate; }
+  .lede.segunda { font-size: var(--fs-body); color: var(--ink-2); margin-top: .6rem; }
+  .extra { margin-top: 1rem; color: var(--ink-2); }
+  .pagina-cabeza { overflow: hidden; }
+  .marca-agua {
+    position: absolute; z-index: -1; right: calc(var(--gutter) * -.2); top: 50%; transform: translateY(-46%); pointer-events: none; user-select: none;
+    font: italic 500 clamp(12rem, 30vw, 30rem)/.8 var(--display); color: transparent; -webkit-text-stroke: 1px var(--hair-2);
+  }
+  @media (max-width: 40rem) { .marca-agua { font-size: 6rem; } }
+
+  .cabeza-sellos { display: flex; flex-wrap: wrap; gap: .4rem; margin: var(--e5) 0 0; }
+  /* Dos columnas desde 64 rem (DESIGN.md § Esquemas; el patrón de Datos): lo que va al margen se apoya abajo, con su
+     filete, a la altura de la entrada. La marca de agua sigue anclada a la cabecera entera. Afinidades ya compone su
+     primera vista a dos columnas (`.primera-vista`), así que su chapa, la del copy, se queda bajo la entrada. */
+  @media (min-width: 64rem) {
+    :global(.pagina-cabeza:has(> :is(.cabeza-sellos, .cabeza-margen))) { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); }
+    :global(.pagina-cabeza:has(> :is(.cabeza-sellos, .cabeza-margen)) > :not(.marca-agua, .cabeza-sellos, .cabeza-margen)) { grid-column: 1 / span 7; }
+    :global(.pagina-cabeza > :is(.cabeza-sellos, .cabeza-margen)) {
+      grid-column: 9 / -1; grid-row: 1 / span 12; align-self: end; margin: 0 0 .5rem; padding-top: var(--e3); border-top: 1px solid var(--hair);
+    }
+  }
+</style>

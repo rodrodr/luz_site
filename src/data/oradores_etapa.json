@@ -1,0 +1,101 @@
+{
+ "etapas": {
+  "I": {
+   "den": 11444854,
+   "filas": 34528,
+   "diputados": 416,
+   "diez": 2427212,
+   "top": [
+    {"puesto":1,"rep_id":89,"nombre":"Manuel Azaña","corto":"Azaña","partido":"AR","familia":"Republicanos","palabras":426392,"filas":417,"pct":0.03725622013177276},
+    {"puesto":2,"rep_id":821,"nombre":"Antonio Royo Villanova","corto":"Royo Villanova","partido":"Agrarios","familia":"Conservadores","palabras":418013,"filas":849,"pct":0.036524100700629294},
+    {"puesto":3,"rep_id":754,"nombre":"Indalecio Prieto","corto":"Prieto","partido":"PSOE","familia":"Socialista","palabras":298318,"filas":635,"pct":0.026065688561863698},
+    {"puesto":4,"rep_id":98,"nombre":"José Antonio Balbontín","corto":"Balbontín","partido":"PRRS","familia":"Republicanos","palabras":277533,"filas":771,"pct":0.02424958850501719},
+    {"puesto":5,"rep_id":672,"nombre":"Eduardo Ortega y Gasset","corto":"Eduardo Ortega y Gasset","partido":"PRRS","familia":"Republicanos","palabras":226570,"filas":581,"pct":0.019796670189064884},
+    {"puesto":6,"rep_id":422,"nombre":"Rafael Guerra del Río","corto":"Guerra del Río","partido":"PRR","familia":"Republicanos","palabras":181936,"filas":726,"pct":0.015896751500718138},
+    {"puesto":7,"rep_id":874,"nombre":"Felipe Sánchez Román","corto":"Sánchez Román","partido":"Indep.","familia":"Republicanos","palabras":165862,"filas":149,"pct":0.014492277489953126},
+    {"puesto":8,"rep_id":209,"nombre":"Santiago Casares Quiroga","corto":"Casares Quiroga","partido":"FRG","familia":"Republicanos","palabras":149448,"filas":431,"pct":0.013058095804454998},
+    {"puesto":9,"rep_id":208,"nombre":"Cándido Casanueva","corto":"Casanueva","partido":"Agrarios","familia":"Conservadores","palabras":147082,"filas":570,"pct":0.01285136533851808},
+    {"puesto":10,"rep_id":470,"nombre":"José María Lamamié de Clairac","corto":"Lamamié de Clairac","partido":"CT","familia":"Carlistas","palabras":136058,"filas":239,"pct":0.011888137673053759}
+   ]
+  },
+  "II": {
+   "den": 8116358,
+   "filas": 22238,
+   "diputados": 390,
+   "diez": 1562194,
+   "top": [
+    {"puesto":1,"rep_id":103,"nombre":"Augusto Barcia","corto":"Barcia","partido":"AR","familia":"Republicanos","palabras":233136,"filas":482,"pct":0.02872421349575758},
+    {"puesto":2,"rep_id":754,"nombre":"Indalecio Prieto","corto":"Prieto","partido":"PSOE","familia":"Socialista","palabras":193076,"filas":307,"pct":0.02378850218287562},
+    {"puesto":3,"rep_id":170,"nombre":"José Calvo Sotelo","corto":"Calvo Sotelo","partido":"RE","familia":"Derecha autoritaria","palabras":179719,"filas":148,"pct":0.022142813316021793},
+    {"puesto":4,"rep_id":229,"nombre":"Joaquín Chapaprieta","corto":"Chapaprieta","partido":"RI","familia":"Liberales","palabras":155861,"filas":366,"pct":0.01920331754710672},
+    {"puesto":5,"rep_id":456,"nombre":"Manuel Giménez Fernández","corto":"Giménez Fernández","partido":"CEDA","familia":"Conservadores","palabras":152083,"filas":262,"pct":0.018737837833175914},
+    {"puesto":6,"rep_id":804,"nombre":"Luis Rodríguez de Viguri","corto":"Rodríguez de Viguri","partido":"Agrarios","familia":"Conservadores","palabras":149467,"filas":600,"pct":0.01841552578139111},
+    {"puesto":7,"rep_id":380,"nombre":"José María Gil Robles","corto":"Gil Robles","partido":"CEDA","familia":"Conservadores","palabras":131217,"filas":253,"pct":0.01616698031309117},
+    {"puesto":8,"rep_id":470,"nombre":"José María Lamamié de Clairac","corto":"Lamamié de Clairac","partido":"CT","familia":"Carlistas","palabras":128855,"filas":269,"pct":0.015875963085906265},
+    {"puesto":9,"rep_id":385,"nombre":"Antonio Goicoechea","corto":"Goicoechea","partido":"RE","familia":"Derecha autoritaria","palabras":122385,"filas":145,"pct":0.01507880751440486},
+    {"puesto":10,"rep_id":821,"nombre":"Antonio Royo Villanova","corto":"Royo Villanova","partido":"Agrarios","familia":"Conservadores","palabras":116395,"filas":193,"pct":0.014340791768919016}
+   ]
+  },
+  "III": {
+   "den": 1479781,
+   "filas": 2939,
+   "diputados": 244,
+   "diez": 400812,
+   "top": [
+    {"puesto":1,"rep_id":170,"nombre":"José Calvo Sotelo","corto":"Calvo Sotelo","partido":"RE","familia":"Derecha autoritaria","palabras":67874,"filas":99,"pct":0.04586759797564639},
+    {"puesto":2,"rep_id":456,"nombre":"Manuel Giménez Fernández","corto":"Giménez Fernández","partido":"CEDA","familia":"Conservadores","palabras":44459,"filas":80,"pct":0.030044310610826873},
+    {"puesto":3,"rep_id":423,"nombre":"Juan Bautista Guerra","corto":"Guerra","partido":"CEDA","familia":"Conservadores","palabras":44394,"filas":65,"pct":0.03000038519213316},
+    {"puesto":4,"rep_id":130,"nombre":"Antonio Bermúdez Cañete","corto":"Bermúdez Cañete","partido":"CEDA","familia":"Conservadores","palabras":44266,"filas":69,"pct":0.02991388590609016},
+    {"puesto":5,"rep_id":993,"nombre":"Juan Ventosa Calvell","corto":"Ventosa Calvell","partido":"Lliga","familia":"Catalanista de derecha","palabras":42868,"filas":51,"pct":0.02896915151633924},
+    {"puesto":6,"rep_id":835,"nombre":"Mariano Ruiz-Funes","corto":"Ruiz-Funes","partido":"AR","familia":"Republicanos","palabras":38313,"filas":38,"pct":0.02589099332941834},
+    {"puesto":7,"rep_id":804,"nombre":"Luis Rodríguez de Viguri","corto":"Rodríguez de Viguri","partido":"Agrarios","familia":"Agrarios","palabras":32455,"filas":84,"pct":0.021932299441606563},
+    {"puesto":8,"rep_id":422,"nombre":"Rafael Guerra del Río","corto":"Guerra del Río","partido":"PRR","familia":"Republicanos","palabras":29303,"filas":41,"pct":0.01980225452279763},
+    {"puesto":9,"rep_id":512,"nombre":"Dimas Madariaga","corto":"Dimas Madariaga","partido":"CEDA","familia":"Conservadores","palabras":28537,"filas":40,"pct":0.01928461035788404},
+    {"puesto":10,"rep_id":89,"nombre":"Manuel Azaña","corto":"Azaña","partido":"AR","familia":"Republicanos","palabras":28343,"filas":9,"pct":0.019153509877475113}
+   ]
+  },
+  "IV": {
+   "den": 102052,
+   "filas": 129,
+   "diputados": 43,
+   "diez": 72631,
+   "top": [
+    {"puesto":1,"rep_id":652,"nombre":"Juan Negrín","corto":"Negrín","partido":"PSOE","familia":"Socialista","palabras":31794,"filas":13,"pct":0.31154705444283304},
+    {"puesto":2,"rep_id":730,"nombre":"Ángel Pestaña","corto":"Pestaña","partido":"P. Sindicalista","familia":"Anarcosindicalista","palabras":6418,"filas":7,"pct":0.06288950730999883},
+    {"puesto":3,"rep_id":441,"nombre":"Dolores Ibárruri","corto":"Ibárruri","partido":"PCE","familia":"Comunista","palabras":5743,"filas":4,"pct":0.05627523223454709},
+    {"puesto":4,"rep_id":472,"nombre":"Ramón Lamoneda","corto":"Lamoneda","partido":"PSOE","familia":"Socialista","palabras":5148,"filas":4,"pct":0.05044487124211187},
+    {"puesto":5,"rep_id":884,"nombre":"Miguel Santaló","corto":"Santaló","partido":"ERC","familia":"Catalanista de izquierda","palabras":4737,"filas":7,"pct":0.04641751264061459},
+    {"puesto":6,"rep_id":479,"nombre":"Francisco Largo Caballero","corto":"Largo Caballero","partido":"PSOE","familia":"Socialista","palabras":4508,"filas":3,"pct":0.04417355857797985},
+    {"puesto":7,"rep_id":448,"nombre":"Manuel Irujo","corto":"Irujo","partido":"PNV","familia":"Nacionalista Vasco","palabras":4023,"filas":4,"pct":0.039421079449692316},
+    {"puesto":8,"rep_id":266,"nombre":"José Díaz Ramos","corto":"Díaz Ramos","partido":"PCE","familia":"Comunista","palabras":3851,"filas":2,"pct":0.037735664171206836},
+    {"puesto":9,"rep_id":404,"nombre":"Ramón González Peña","corto":"González Peña","partido":"PSOE","familia":"Socialista","palabras":3335,"filas":1,"pct":0.0326794183357504},
+    {"puesto":10,"rep_id":338,"nombre":"Enrique de Francisco","corto":"Francisco","partido":"PSOE","familia":"Socialista","palabras":3074,"filas":3,"pct":0.030121898639909064}
+   ]
+  },
+  "V": {
+   "den": 64724,
+   "filas": 104,
+   "diputados": 27,
+   "diez": 47766,
+   "top": [
+    {"puesto":1,"rep_id":384,"nombre":"José Giral","corto":"Giral","partido":"AR","familia":"Republicanos","palabras":9792,"filas":7,"pct":0.15128854829738583},
+    {"puesto":2,"rep_id":754,"nombre":"Indalecio Prieto","corto":"Prieto","partido":"PSOE","familia":"Socialista","palabras":8931,"filas":16,"pct":0.13798590939991348},
+    {"puesto":3,"rep_id":306,"nombre":"Luis Fernández Clérigo","corto":"Fernández Clérigo","partido":"AR","familia":"Republicanos","palabras":7801,"filas":10,"pct":0.12052716148569309},
+    {"puesto":4,"rep_id":345,"nombre":"Ángel Galarza","corto":"Galarza","partido":"PSOE","familia":"Socialista","palabras":6871,"filas":11,"pct":0.10615845745009579},
+    {"puesto":5,"rep_id":386,"nombre":"Jerónimo Gomariz","corto":"Gomariz","partido":"UR","familia":"Republicanos","palabras":4193,"filas":9,"pct":0.0647827699153328},
+    {"puesto":6,"rep_id":961,"nombre":"Vicente Uribe","corto":"Uribe","partido":"PCE","familia":"Comunista","palabras":2248,"filas":1,"pct":0.03473209319572338},
+    {"puesto":7,"rep_id":480,"nombre":"José María Lasarte Arana","corto":"Lasarte Arana","partido":"PNV","familia":"Nacionalista Vasco","palabras":2205,"filas":2,"pct":0.034067733761819416},
+    {"puesto":8,"rep_id":452,"nombre":"Julio Jáuregui Lasanta","corto":"Jáuregui Lasanta","partido":"PNV","familia":"Nacionalista Vasco","palabras":2098,"filas":3,"pct":0.03241456028675607},
+    {"puesto":9,"rep_id":472,"nombre":"Ramón Lamoneda","corto":"Lamoneda","partido":"PSOE","familia":"Socialista","palabras":1924,"filas":1,"pct":0.029726222112353994},
+    {"puesto":10,"rep_id":42,"nombre":"Antonio Alonso Ríos","corto":"Alonso Ríos","partido":"PG","familia":"Galleguista","palabras":1703,"filas":5,"pct":0.026311723626475495}
+   ]
+  }
+ },
+ "base": "v3",
+ "definicion": "filas de habla v3 (role ∉ {summary, remark}) con chair = false (motor del explorador)",
+ "control": {
+  "filas": 59938,
+  "palabras": 21207769,
+  "diputados": 772
+ }
+}

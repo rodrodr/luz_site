@@ -1,0 +1,253 @@
+---
+/**
+ * F30 · La sesión, turno a turno (plan § F30; narrativa § 10; copy `sesiones.md` § 4). Dueño: grupo 3 (Sesiones).
+ *
+ * Una barra por fila V2, en el orden del Diario; su altura, las palabras. Quien tiene la palabra va encima de la línea
+ * y la Presidencia debajo (la diferencia no depende del color). Una línea fina marca las filas de más de 300 palabras.
+ * Las filas del final repetido de la sesión 48 van bajo un corchete. Si la puerta abarca varias sesiones, un panel por
+ * sesión con la MISMA escala (ancho: filas de la sesión más larga; alto: palabras). Encima de cada panel, la sesión en
+ * cifras, con sus marcadores. Formas en SVG; todo el texto, en HTML.
+ * Interacción: la isla genérica (nota emergente de tres líneas, teclado ← → por barra) y `scripts/fig-turnos.ts`, que da
+ * a cada columna la diana de su barra con el puntero y el dedo (las barras miden 1–2 px en el móvil). Por eso las barras
+ * no llevan `data-nota`: la diana es la columna, no el rectángulo (y el peso de la página, ≤ 150 KB, lo agradece).
+ * Sin CSV por fila (plan, anexo V10; D-23): la pestaña Datos remite a la exportación del explorador.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import Sello from './Sello.astro';
+import { t, plano, plantillaNota, existe } from '../lib/i18n';
+import { dato } from '../lib/datos';
+import { fmt, cifra, marcaPendiente } from '../lib/cifras';
+import { huella } from '../lib/cita';
+import { fechaLarga } from '../lib/formato';
+import { escala, barras, yArriba, marcasArriba, destacadas, ALTO, type SesionTurnos } from '../viz/geom/turnos';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang; puerta: string }
+const { lang, puerta } = Astro.props;
+const F = 'fig.F30';
+const P = dato<{ _meta: { umbral_largas: number }; puertas: { slug: string; sesiones: SesionTurnos[] }[] }>('puertas');
+const sesiones = P?.puertas.find((p) => p.slug === puerta)?.sesiones ?? [];
+const varias = sesiones.length > 1;
+const e = sesiones.length ? escala(sesiones) : null;
+const umbral = P?._meta.umbral_largas ?? 300;
+const o = (k: string, ctx = {}) => (existe(k) ? t(lang, k, ctx) : marcaPendiente(k, 'copy'));
+const huecos = ['orador', 'orden', 'palabras', 'fila'];
+// Los huecos de la nota van con nombres de una letra en cada barra (data-v-n, -o, -p, -i): en una sesión de 395 filas,
+// cada byte de atributo cuenta (plan § Presupuestos: una puerta, ≤ 150 KB de HTML).
+const corta = (x: string) => x.replace(/\{orador\}/g, '{n}').replace(/\{orden\}/g, '{o}').replace(/\{palabras\}/g, '{p}').replace(/\{fila\}/g, '{i}');
+const nota = (k: string) => corta(plantillaNota(lang, k, huecos));
+const esc = (x: string) => x.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+const n = (x: number) => fmt.n(x, lang);
+const presi = plano(lang, `${F}.presidencia`);
+const idEstatuto = Number(cifra('cita.estatuto.azana.V2')?.v ?? 0);
+const limpia = (r: string) => r.replace(/^El Sr\.\s*/, '').replace(/:\s*$/, '').trim();
+const quien = (s: SesionTurnos, x: SesionTurnos['turnos'][number]) => {
+  if (s.truncadas.includes(x.id)) return plano(lang, `${F}.nota.truncada`);
+  if (x.id === idEstatuto) return plano(lang, `${F}.nota.estatuto`);
+  if (x.pres) return `${presi} · ${x.corto ?? limpia(x.rotulo)}`;
+  return x.nombre ?? limpia(x.rotulo);
+};
+const corto = (x: SesionTurnos['turnos'][number]) => (x.pres ? `${presi} · ${x.corto ?? limpia(x.rotulo)}` : x.corto ?? x.nombre ?? limpia(x.rotulo));
+const h = huella('V2');
+const CIFRAS = [
+  { k: 'filas', c: 'sesiones.puerta.cifras.filas', base: 'V2' },
+  { k: 'palabras', c: 'sesiones.puerta.cifras.palabras', base: 'V2' },
+  { k: 'diputados_sp', c: 'sesiones.puerta.cifras.diputados', base: 'V2' },
+  { k: 'largas', c: 'sesiones.puerta.cifras.largas', base: 'V2' },
+  { k: 'filas_v3', c: 'sesiones.puerta.cifras.v3', base: 'v3' },
+] as const;
+const hayTruncadas = sesiones.some((s) => s.truncadas.length);
+---
+{!e ? (
+  <div class="fig-hueco" data-todo-fig="F30"><p set:html={marcaPendiente('puertas.json', 'dato')} /></div>
+) : (
+<FiguraMarco lang={lang} id="F30" pregunta={varias && existe(`${F}.pregunta.varias`) ? `${F}.pregunta.varias` : undefined} plantillaT={nota(`${F}.nota.t`)} plantilla={nota(`${F}.nota`)} plantillaB={nota(`${F}.nota.b`)}>
+  <div slot="grafico" class:list={['f30', { varias }]} style={`--ancho: ${e.ancho}`}>
+    <ul class="f30-leyenda" role="list" aria-label={plano(lang, `${F}.leyenda.aria`)}>
+      <li><svg class="mue" viewBox="0 0 24 14" aria-hidden="true"><rect class="m-or" x="2" y="1" width="4" height="10" /><rect class="m-or" x="9" y="6" width="4" height="5" /><rect class="m-or" x="16" y="3" width="4" height="8" /><line class="m-base" x1="0" x2="24" y1="12" y2="12" /></svg><span set:html={o(`${F}.leyenda.orador`)} /></li>
+      <li><svg class="mue" viewBox="0 0 24 14" aria-hidden="true"><line class="m-base" x1="0" x2="24" y1="2" y2="2" /><rect class="m-pr" x="2" y="3" width="4" height="4" /><rect class="m-pr" x="9" y="3" width="4" height="9" /><rect class="m-pr" x="16" y="3" width="4" height="3" /></svg><span set:html={o(`${F}.leyenda.presidencia`)} /></li>
+      {e.arriba > umbral && <li><svg class="mue" viewBox="0 0 24 14" aria-hidden="true"><line class="m-larga" x1="0" x2="24" y1="7" y2="7" /></svg><span set:html={o(`${F}.leyenda.larga`)} /></li>}
+      {hayTruncadas && <li><svg class="mue" viewBox="0 0 24 14" aria-hidden="true"><path class="m-corchete" d="M2 11V5h20v6" /><rect class="m-tr" x="6" y="10" width="3" height="2" /><rect class="m-tr" x="12" y="10" width="3" height="2" /></svg><span set:html={o(`${F}.leyenda.truncada`)} /></li>}
+    </ul>
+    {sesiones.map((s, k) => {
+      const bs = barras(s, e);
+      const dest = destacadas(s, e, varias ? 2 : 3, s.turnos.some((x) => x.id === idEstatuto) ? [idEstatuto] : []);
+      const trunc = bs.filter((b) => s.truncadas.includes(b.t.id));
+      const idPanel = `turnos-${s.clave}`;
+      return (
+        <section class="f30-panel" aria-labelledby={`${idPanel}-t`}>
+          <header class="f30-cabeza">
+            <h4 class="f30-sesion" id={`${idPanel}-t`}>
+              <span set:html={fmt.dato(s.fecha, fechaLarga(s.fecha, lang), `sesion.${s.clave}.fecha`, 'V2')} />
+              <span class="f30-num" set:html={t(lang, `${F}.panel`, { vars: { num: fmt.dato(s.num, String(s.num), `sesion.${s.clave}.num`, 'V2') } })} />
+            </h4>
+            <dl class="f30-cifras" aria-label={plano(lang, `${F}.cifras.aria`)}>
+              {CIFRAS.map((c) => (
+                <div><dt set:html={o(c.c)} /><dd set:html={fmt.dato(s[c.k], n(s[c.k]), `sesion.${s.clave}.${c.k}`, c.base)} /></div>
+              ))}
+            </dl>
+          </header>
+          <div class="f30-lienzo" data-f30-lienzo data-f30-n={e.ancho} data-recorre data-entra-fig tabindex="0" style={`--k: ${k}`}
+            role="group" aria-label={plano(lang, `${F}.alt`, { vars: { n: n(s.filas), fecha: fechaLarga(s.fecha, lang) } })}>
+            <svg class="f30-svg" viewBox={`0 0 ${e.ancho} ${ALTO}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              {marcasArriba(e).map((v) => <line class="rejilla" x1="0" x2={e.ancho} y1={(yArriba(v, e) * ALTO) / 100} y2={(yArriba(v, e) * ALTO) / 100} />)}
+              {e.arriba > umbral && <line class="larga" x1="0" x2={e.ancho} y1={(yArriba(umbral, e) * ALTO) / 100} y2={(yArriba(umbral, e) * ALTO) / 100} />}
+              <line class="base" x1="0" x2={e.ancho} y1={e.hA + e.hueco / 2} y2={e.hA + e.hueco / 2} />
+              <Fragment set:html={bs.map((b) => `<rect${b.t.pres ? ' class="pr"' : s.truncadas.includes(b.t.id) ? ' class="tr"' : ''} x="${+b.x.toFixed(2)}" y="${+b.y.toFixed(1)}" width="${b.w}" height="${+b.h.toFixed(1)}" data-paso data-v-n="${esc(quien(s, b.t))}" data-v-o="${b.t.o}" data-v-p="${n(b.t.p)}" data-v-i="${b.t.id}"/>`).join('')} />
+            </svg>
+            <div class="f30-rotulos" aria-hidden="true" data-audit-exento="rótulos del eje y de las barras de la figura">
+              {marcasArriba(e).map((v, j) => <span class="f30-y" style={`top: ${yArriba(v, e).toFixed(2)}%`}>{n(v)}{j === marcasArriba(e).length - 1 && <span class="f30-y-u" set:html={t(lang, `${F}.eje.unidad`)} />}</span>)}
+              {e.arriba > umbral && <span class="f30-y f30-y-larga" style={`top: ${yArriba(umbral, e).toFixed(2)}%`}>{n(umbral)}</span>}
+              {dest.map((i) => {
+                const b = bs[i];
+                const x = ((b.x + b.w / 2) / e.ancho) * 100;
+                const arriba = !b.t.pres;
+                // La barra de abajo se rotula por dentro, a la altura de su final, para no pisar el eje de órdenes.
+                const top = arriba ? (b.y / ALTO) * 100 : ((b.y + b.h) / ALTO) * 100;
+                const rango = [...dest].sort((a, z) => bs[z].t.p - bs[a].t.p).indexOf(i);
+                const nombre = b.t.id === idEstatuto ? plano(lang, `${F}.rotulo.estatuto`) : corto(b.t);
+                return (
+                  <span class:list={['f30-dest', `r${rango}`, { abajo: !arriba, izq: x > 62 }]} style={`left: ${x.toFixed(2)}%; top: ${top.toFixed(2)}%`}>
+                    <span class="nom">{nombre}</span> <span class="pal">{n(b.t.p)}</span>
+                  </span>
+                );
+              })}
+              {trunc.length > 0 && (
+                <span class="f30-trunc" style={`left: ${((trunc[0].x / e.ancho) * 100).toFixed(2)}%; width: ${(((trunc.at(-1)!.x + trunc.at(-1)!.w - trunc[0].x) / e.ancho) * 100).toFixed(2)}%; top: calc(${((e.hA / ALTO) * 100).toFixed(2)}% - 1.35rem)`}>
+                  <span class="lbl" set:html={o(`${F}.rotulo.truncada`)} />
+                </span>
+              )}
+            </div>
+            <p class="f30-x" aria-hidden="true" data-audit-exento="eje de la figura">
+              <span set:html={t(lang, `${F}.eje.orden`, { vars: { orden: String(s.turnos[0].o) } })} />
+              <span set:html={t(lang, `${F}.eje.orden`, { vars: { orden: String(s.turnos.at(-1)!.o) } })} />
+            </p>
+          </div>
+        </section>
+      );
+    })}
+  </div>
+
+  <div slot="tabla">
+    {sesiones.map((s, k) => {
+      const tabla = (
+        <div class="fig-desliza f30-desliza" tabindex="0" role="region" aria-labelledby={`tabla-${s.clave}`}>
+          <table class="fig-tabla f30-tabla">
+            <caption id={`tabla-${s.clave}`}><span class="fig-rotulo-tabla"><Fragment set:html={o(`${F}.tabla.caption`)} /> · {fechaLarga(s.fecha, lang)}</span></caption>
+            <thead><tr>
+              <th scope="col" class="num" set:html={o(`${F}.tabla.orden`)} />
+              <th scope="col" set:html={o(`${F}.tabla.orador`)} />
+              <th scope="col" class="num" set:html={o(`${F}.tabla.palabras`)} />
+              <th scope="col" class="num" set:html={o(`${F}.tabla.V2`)} />
+            </tr></thead>
+            <tbody data-k={`puertas.turnos.${s.clave}`} data-base="V2" set:html={s.turnos.map((x) => `<tr${x.pres ? ' class="pr"' : s.truncadas.includes(x.id) ? ' class="tr"' : ''}><td>${x.o}</td><td>${esc(quien(s, x))}</td><td>${n(x.p)}</td><td>${x.id}</td></tr>`).join('')} />
+          </table>
+        </div>
+      );
+      return varias ? (
+        <details class="f30-plegable" open={k === 0}>
+          <summary>{fechaLarga(s.fecha, lang)} · <span set:html={t(lang, `${F}.panel`, { vars: { num: String(s.num) } })} /></summary>
+          {tabla}
+        </details>
+      ) : tabla;
+    })}
+  </div>
+
+  <div slot="datos">
+    <div class="fig-datos">
+      <div class="fig-descarga">
+        <p class="nota" set:html={o(`${F}.datos.texto`)} />
+        <p class="nota" set:html={o(`${F}.datos.explorador`)} />
+      </div>
+      <dl class="fig-leame">
+        <dt set:html={t(lang, 'comun.leame.que_mide')} /><dd set:html={o(`${F}.leame.que_mide`)} />
+        <dt set:html={t(lang, 'comun.leame.denominador')} /><dd set:html={o(`${F}.leame.denominador`)} />
+        <dt set:html={t(lang, 'comun.leame.salvedad')} /><dd set:html={o(`${F}.leame.salvedad`)} />
+        <dt set:html={t(lang, 'comun.fig.base')} />
+        <dd>
+          <Sello lang={lang} base="V2" /> <span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
+          {h.fecha && <><br /><span set:html={t(lang, 'comun.sello.exportado', { vars: { fecha: `<time datetime="${h.fecha}">${h.fecha}</time>` } })} /></>}
+        </dd>
+      </dl>
+    </div>
+  </div>
+</FiguraMarco>
+)}
+
+<script>
+  import '../scripts/fig-turnos.ts';
+</script>
+
+<style>
+  .f30-leyenda { list-style: none; margin: 0 0 var(--e5); padding: 0; display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; font-size: var(--fs-small); color: var(--ink-2); max-width: none; }
+  .f30-leyenda li { display: inline-flex; align-items: center; gap: .55rem; }
+  .mue { width: 1.6rem; height: .95rem; flex: none; overflow: visible; }
+  .mue .m-or { fill: var(--rampa-2); }
+  .mue .m-pr { fill: var(--ink-2); }
+  .mue .m-tr { fill: var(--ausencia-trazo); }
+  .mue .m-base { stroke: var(--ink-2); stroke-width: 1; }
+  .mue .m-larga { stroke: var(--mute); stroke-width: 1; }
+  .mue .m-corchete { fill: none; stroke: var(--ink-2); stroke-width: 1; }
+
+  .f30-panel + .f30-panel { margin-top: var(--e6); }
+  .f30-cabeza { display: grid; gap: .45rem; margin-bottom: var(--e4); }
+  .f30-sesion { font: 600 1.05rem/1.3 var(--text); margin: 0; display: flex; flex-wrap: wrap; gap: 0 .8rem; align-items: baseline; }
+  .f30-num { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); }
+  .f30-num :global(data.cifra) { font-family: var(--mono); }
+  .f30-cifras { margin: 0; display: flex; flex-wrap: wrap; gap: .1rem 1.3rem; font-size: var(--fs-small); color: var(--ink-2); line-height: 1.4; }
+  .f30-cifras > div { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: .35rem; align-items: baseline; }
+  .f30-cifras dd { margin: 0; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+
+  /* El lienzo deja a la derecha un canal para los rótulos del eje de palabras: nunca pisan una barra. */
+  .f30-lienzo { --canal: 4.6rem; position: relative; height: clamp(11rem, 20vw, 15rem); margin-top: 2.1rem; border-radius: var(--radio); }
+  .varias .f30-lienzo { height: clamp(8.5rem, 14vw, 11rem); }
+  .f30-lienzo:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+  .f30-svg { position: absolute; inset: 0 var(--canal) 0 0; width: calc(100% - var(--canal)); height: 100%; overflow: visible; }
+  .f30-svg line { vector-effect: non-scaling-stroke; }
+  .f30-svg .base { stroke: var(--ink-2); stroke-width: 1px; }
+  .f30-svg .rejilla { stroke: var(--hair); stroke-width: 1px; }
+  .f30-svg .larga { stroke: var(--mute); stroke-width: 1px; stroke-opacity: .7; }
+  .f30-svg :global(rect) { fill: var(--rampa-2); }
+  .f30-svg :global(rect.pr) { fill: var(--ink-2); }
+  .f30-svg :global(rect.tr) { fill: var(--ausencia-trazo); }
+  .f30-svg :global(rect.fig-activa) { fill: var(--ink); stroke: none; }
+  .f30-lienzo:has(:global(.fig-activa)) :global(rect:not(.fig-activa)) { opacity: calc(var(--atenua) + .42); }
+
+  .f30-rotulos { position: absolute; inset: 0 var(--canal) 0 0; pointer-events: none; }
+  .f30-y { position: absolute; left: calc(100% + .5rem); transform: translateY(-50%); font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); white-space: nowrap; }
+  .f30-y-larga { color: var(--ink-2); }
+  .f30-y-u { display: block; color: var(--mute); margin-top: .2rem; }
+  .f30-dest { position: absolute; transform: translateY(-120%); white-space: nowrap; font-size: .82rem; line-height: 1.1; color: var(--ink); padding: .1rem .3rem .1rem .35rem; border-left: 1px solid var(--accent); background: var(--bg); }
+  .f30-dest.izq { transform: translate(-100%, -120%); padding: 0 .35rem 0 0; border-left: 0; border-right: 1px solid var(--accent); }
+  .f30-dest.abajo { transform: translate(.2rem, -100%); }
+  .f30-dest.abajo.izq { transform: translate(calc(-100% - .2rem), -100%); }
+  .f30-dest .pal { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--ink-2); }
+  .f30-trunc { position: absolute; height: .5rem; border: 1px solid var(--ink-2); border-bottom: 0; min-width: .6rem; }
+  .f30-trunc .lbl { position: absolute; right: calc(100% + .35rem); top: -.45rem; white-space: nowrap; font-size: .78rem; color: var(--ink-2); background: var(--bg); padding: 0 .2rem; }
+
+  .f30-x { position: absolute; left: 0; right: var(--canal); top: 100%; display: flex; justify-content: space-between; margin: .35rem 0 0; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); max-width: none; }
+  .f30-panel { padding-bottom: 1.6rem; }
+
+  .f30-tabla :global(td) { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .f30-tabla :global(td:nth-child(2)) { text-align: left; white-space: normal; font-family: var(--text); font-size: .95rem; min-width: 12rem; }
+  .f30-tabla :global(tr.pr td:nth-child(2)) { color: var(--ink-2); }
+  .f30-tabla :global(tr.tr td) { color: var(--mute); }
+  .f30-desliza { max-height: 32rem; overflow-y: auto; }
+  .f30-plegable { border-top: 1px solid var(--hair); }
+  .f30-plegable + .f30-plegable { margin-top: .4rem; }
+  .f30-plegable summary { cursor: pointer; min-height: 2.75rem; display: flex; align-items: center; font-weight: 600; }
+
+  @media (max-width: 40rem) {
+    .f30-lienzo { --canal: 3rem; }
+    .f30-y-u { display: none; }
+    .f30-dest:not(.r0) { display: none; }
+    .f30-trunc .lbl { font-size: .72rem; }
+  }
+  /* Movimiento (uno por página): la sesión corre de principio a fin, una vez, al verse. */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.espera) > .f30-svg { clip-path: inset(0 100% 0 0); }
+    :global(.espera) > .f30-rotulos { opacity: 0; }
+    :global(.entra-fig) > .f30-svg { clip-path: inset(0 0 0 0); transition: clip-path 900ms var(--ease) calc(var(--k) * 180ms); }
+    :global(.entra-fig) > .f30-rotulos { opacity: 1; transition: opacity 240ms var(--ease) calc(var(--k) * 180ms + 760ms); }
+  }
+</style>

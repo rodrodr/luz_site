@@ -1,0 +1,19 @@
+---
+/**
+ * Bloque de cita copiable: texto a la vista y, plegados en `<details>`, BibTeX y RIS (lo repetitivo, plegado).
+ * SIN JavaScript ya funciona: la cita es texto real y `user-select: all` la selecciona de un toque. [Copiar la cita]
+ * nace oculto y lo destapa `scripts/copiar.ts`; copia el formato que esté abierto.
+ * La marca es la de `lib/piezas.ts › htmlCita`. La cita de un conjunto va TAL COMO LA DA Dataverse (`nota`:
+ * `comun.cita.dataverse`; para CGOCUS, además, `comun.cita.cgocus.nota`).
+ */
+import { htmlCita, type CitaOpts } from '../lib/piezas';
+import type { Lang } from '../lib/idiomas';
+
+interface Props extends CitaOpts { lang: Lang }
+const { lang, ...c } = Astro.props;
+---
+<Fragment set:html={htmlCita(lang, c)} />
+
+<script>
+  import '../scripts/copiar.ts';
+</script>

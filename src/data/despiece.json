@@ -1,0 +1,17 @@
+{
+ "_meta": {
+  "fuente": "mapa V2 → v3 del proyecto (mapa_v2_v3.json, sin publicar) y la v3 (corpus.sqlite)",
+  "exportado": "2026-09-23",
+  "tipos": {
+   "habla": "habla del orador",
+   "documento": "comentario del Diario",
+   "turno": "turno rescatado",
+   "presidencia": "Presidencia"
+  }
+ },
+ "filas": [
+  {"clave":"prieto","id_v2":55221,"fecha":"1933-07-12","rotulo":"El Sr. Ministro de OBRAS PÚBLICAS:","orador":"Indalecio Prieto","nwords":25371,"presidencia":false,"piezas":[{"id_v3":61929,"clase":"habla","tipo":"habla","nwords":2654,"rotulo":"El Sr. Ministro de OBRAS PÚBLICAS:","orador":"Indalecio Prieto","comienzo":"El señor García Hidalgo ha formulado ante la Cámara…"},{"id_v3":61930,"clase":"comentario","tipo":"documento","nwords":527,"rotulo":"COMENTARIOS","orador":"","comienzo":"| PROVINCIAS | Carreteras y caminos vecinales. | Puertos.…"},{"id_v3":61931,"clase":"habla","tipo":"habla","nwords":1079,"rotulo":"El Sr. Ministro de OBRAS PÚBLICAS:","orador":"Indalecio Prieto","comienzo":"Totales... 218.357.084,27 8.728.957 25,01 Es decir de 7,66 en…"},{"id_v3":61932,"clase":"comentario","tipo":"documento","nwords":21111,"rotulo":"COMENTARIOS","orador":"","comienzo":"DOCUMENTOS COMPLEMENTARIOS DEL DISCURSO DEL SEÑOR MINISTRO DE OBRAS…"}]},
+  {"clave":"estatuto","id_v2":25979,"fecha":"1932-05-27","rotulo":"El Sr. PRESIDENTE:","orador":"Julián Besteiro","nwords":17152,"presidencia":true,"piezas":[{"id_v3":29041,"clase":"habla","tipo":"presidencia","nwords":10,"rotulo":"El Sr. PRESIDENTE:","orador":"Julián Besteiro","comienzo":"El Sr. Presidente del Consejo de Ministros tiene la…"},{"id_v3":29042,"clase":"turno","tipo":"turno","nwords":17142,"rotulo":"El Sr. PRESIDENTE DEL CONSEJO DE MINISTROS (Azaña):","orador":"Manuel Azaña","comienzo":"Es preciso reconocer, Sres. Diputados, que en esta campaña,…"}]},
+  {"clave":"azana1935","id_v2":85330,"fecha":"1935-03-20","rotulo":"El Sr. AZANA:","orador":"Manuel Azaña","nwords":14131,"presidencia":false,"piezas":[{"id_v3":96282,"clase":"habla","tipo":"habla","nwords":14131,"rotulo":"El Sr. AZANA:","orador":"Manuel Azaña","comienzo":"Señores Diputados, intervengo en esta discusión con un propósito…"}]}
+ ]
+}

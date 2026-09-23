@@ -1,0 +1,146 @@
+---
+/**
+ * F29 · Búsquedas de muestra (plan § F29; copy `fig.F29.*`, docs/copy_es/explorador.md). Una LISTA TIPOGRÁFICA de
+ * consultas reales, cada una copiable, con su recuento fechado en la edición del explorador (v3). La marca de cada fila
+ * es una barra a escala común: su tramo en oro es lo que queda con «Solo lo que se habla»; el resto, sumarios y
+ * comentarios del Diario (contorno, no otro color). Los recuentos los calcula el exportador con el FTS5 de la v3
+ * (`src/data/busquedas.json`, exportador/modulos/explorador.py) y se comprueban contra la pantalla del explorador.
+ *  · Sin JS: la consulta queda en un <code> seleccionable; [Copiar la consulta] nace oculto (scripts/copiar.ts).
+ *  · Teclado: una parada para la lista; ← → recorren las consultas (isla genérica, scripts/figuras.ts).
+ *  · La frase ↺ 5 («no abre una búsqueda desde un enlace») va UNA vez, sobre la figura: la pinta la sección.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano, rotulo, plantillaNota } from '../lib/i18n';
+import { fmt } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { escala } from '../viz/geom/busquedas';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+interface Busqueda { id: string; consulta: string; n: number; habla: number; resto: number; desde: string; hasta: string }
+const d = dato<{ fecha: string; v3_sha256: string; busquedas: Busqueda[] }>('busquedas');
+const filas = d?.busquedas ?? [];
+const x = escala(filas.map((f) => f.n));
+const k = (id: string, campo: string) => `fig.F29.${id}.${campo}`;
+const plantilla = plantillaNota(lang, 'fig.F29.nota', ['n', 'habla', 'resto']);
+const base = d ? `v3 ${d.v3_sha256.slice(0, 8)} · ${fmt.fechaCorta(d.fecha)}` : 'v3';
+---
+<FiguraMarco lang={lang} id="F29" plantillaT="{consulta}" plantilla={plantilla} plantillaB={base}>
+  <div slot="grafico">
+    <div class="f29-leyenda">
+      <p class="f29-claves" aria-hidden="true">
+        <span class="f29-clave"><span class="f29-muestra habla"></span><Fragment set:html={t(lang, 'fig.F29.leyenda.habla')} /></span>
+        <span class="f29-clave"><span class="f29-muestra resto"></span><Fragment set:html={t(lang, 'fig.F29.leyenda.resto')} /></span>
+      </p>
+      <p class="nota f29-lectura" set:html={t(lang, 'fig.F29.leyenda.lectura')} />
+    </div>
+    <ol class="f29-lista" role="list" data-recorre tabindex="0" aria-label={plano(lang, 'fig.F29.titulo')} aria-describedby="busquedas-teclado">
+      {filas.map((f) => (
+        <li class="f29-item">
+          <div class="f29-consulta" data-copiable>
+            <code class="f29-code" data-copiar-texto translate="no">{f.consulta}</code>
+            <span class="f29-acciones no-imprimir">
+              <button type="button" class="boton sec f29-copiar" data-copiar hidden>
+                <svg class="icono" aria-hidden="true" focusable="false"><use href="#i-copiar"></use></svg>
+                <span set:html={rotulo(lang, 'comun.boton.consulta')} />
+              </button>
+              <span class="f29-aviso" role="status" data-copiar-aviso data-copiada={plano(lang, 'comun.consulta.copiada')} data-no-copiada={plano(lang, 'comun.isla.no_copiado')}></span>
+            </span>
+          </div>
+          <div class="f29-medida">
+            <span class="f29-barra" data-nota data-paso
+              data-v-consulta={f.consulta} data-v-n={fmt.n(f.n, lang)} data-v-habla={fmt.n(f.habla, lang)} data-v-resto={fmt.n(f.resto, lang)}
+              style={`--t: ${x(f.n)}; --h: ${f.n ? Math.round((f.habla / f.n) * 10000) / 10000 : 0}`}>
+              <span class="f29-tramo habla"></span><span class="f29-tramo resto"></span>
+              <span class="sr-only">{f.consulta}</span>
+            </span>
+            <p class="f29-recuento" set:html={t(lang, k(f.id, 'recuento'))} />
+          </div>
+          <p class="nota f29-nota" set:html={t(lang, k(f.id, 'nota'))} />
+        </li>
+      ))}
+    </ol>
+  </div>
+  <div slot="tabla">
+    <div class="fig-desliza" tabindex="0" role="region" aria-labelledby="f29-caption">
+      <table class="fig-tabla">
+        <caption id="f29-caption"><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F29.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={t(lang, 'fig.F29.tabla.col.consulta')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F29.tabla.col.n')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F29.tabla.col.habla')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F29.tabla.col.resto')} />
+            <th scope="col" set:html={t(lang, 'fig.F29.tabla.col.fechas')} />
+          </tr>
+        </thead>
+        <tbody>
+          {filas.map((f) => (
+            <tr>
+              <th scope="row"><code translate="no">{f.consulta}</code></th>
+              <td class="num" set:html={fmt.dato(f.n, fmt.n(f.n, lang), `busqueda.${f.id}.n`, 'v3')} />
+              <td class="num" set:html={fmt.dato(f.habla, fmt.n(f.habla, lang), `busqueda.${f.id}.habla`, 'v3')} />
+              <td class="num" set:html={fmt.dato(f.resto, fmt.n(f.resto, lang), `busquedas.json › ${f.id}.resto`, 'v3')} />
+              <td><time datetime={f.desde}>{fmt.fechaCorta(f.desde)}</time> → <time datetime={f.hasta}>{fmt.fechaCorta(f.hasta)}</time></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'fig.F29.denominador')} />
+  </div>
+</FiguraMarco>
+
+<script>
+  import '../scripts/copiar.ts';
+</script>
+
+<style>
+  .f29-leyenda { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.6rem; margin: 0 0 var(--e5); }
+  .f29-claves { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; margin: 0; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--ink-2); max-width: none; }
+  .f29-clave { display: inline-flex; align-items: center; gap: .45rem; }
+  .f29-muestra { display: inline-block; width: 1.1rem; height: .6rem; border-radius: 1px; }
+  .f29-muestra.habla { background: var(--dato-2); }
+  .f29-muestra.resto { box-shadow: inset 0 0 0 1px var(--ausencia-trazo); }
+  .f29-lectura { margin: 0; max-width: 34rem; }
+
+  .f29-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair-2); border-radius: var(--radio); }
+  .f29-lista:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+  .f29-item {
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: .55rem 1.5rem; align-items: center;
+    padding: 1.05rem 0 1.15rem; border-bottom: 1px solid var(--hair);
+  }
+  .f29-consulta { display: flex; flex-direction: column; align-items: flex-start; gap: .45rem; min-width: 0; }
+  .f29-code {
+    font: 400 .95rem/1.35 var(--mono); color: var(--ink); background: var(--bg-2); padding: .3rem .55rem; border-radius: var(--radio);
+    user-select: all; overflow-wrap: anywhere; max-width: 100%;
+  }
+  .f29-acciones { display: inline-flex; align-items: center; gap: .6rem; }
+  .f29-copiar { min-height: 2.75rem; padding: .35em .8em; font-size: .9rem; }
+  .f29-aviso { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--ink-2); }
+  .f29-aviso:empty { display: none; }
+  .f29-medida { display: grid; gap: .35rem; min-width: 0; }
+  /* La barra: la diana ocupa todo el ancho (44 px de alto en táctil); la marca, 10 px. */
+  .f29-barra { position: relative; display: block; height: 1.5rem; cursor: default; }
+  .f29-barra::before { content: ''; position: absolute; inset: auto 0 calc(50% - .5px) 0; height: 1px; background: var(--hair); }
+  .f29-tramo { position: absolute; top: calc(50% - 5px); height: 10px; border-radius: 1px; }
+  .f29-tramo.habla { left: 0; width: max(2px, calc(var(--t) * var(--h) * 1%)); background: var(--dato-2); }
+  .f29-tramo.resto {
+    left: calc(var(--t) * var(--h) * 1%); width: calc(var(--t) * (1 - var(--h)) * 1%);
+    box-shadow: inset 0 0 0 1px var(--ausencia-trazo);
+  }
+  .f29-barra:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; border-radius: 1px; }
+  .f29-lista:has(:global(.fig-activa)) .f29-barra:not(:global(.fig-activa)) .f29-tramo { opacity: var(--atenua); }
+  .f29-recuento { margin: 0; font-size: var(--fs-small); color: var(--ink-2); max-width: none; }
+  .f29-recuento :global(data.cifra) { font: 600 1.05rem/1 var(--text); color: var(--ink); font-variant-numeric: tabular-nums; }
+  .f29-nota { margin: 0; max-width: 40rem; }
+  @media (pointer: coarse) { .f29-barra { height: 2.75rem; } }
+  @media (min-width: 48rem) {
+    .f29-item { grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); }
+    .f29-nota { grid-column: 2; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .f29-tramo { transition: opacity var(--t-estado) var(--ease); }
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+/**
+ * Una sección de página con la gramática común (plan § Cómo se evita el amontonamiento, regla 2):
+ *   antetítulo en mono · H2 · entrada en serif grande · [ranura «antes»] · el resto del texto · [ranura: la figura o
+ *   la lista] · salvedad al margen (≤ 40 palabras) · una llamada.
+ *
+ * PINTA LO QUE HAYA en el copy bajo `prefijo`, en el orden del copy (`lib/lectura.ts › restoDe`):
+ *   `<prefijo>.antetitulo` · `.titulo` · `.entrada` (y `.entrada.2`…) · todo lo demás que cuelgue del prefijo ·
+ *   `.salvedad`. Tras cada clave, las frases fijas y los rótulos que el copy repitió con ↺ justo detrás.
+ * Lo que la plantilla declara en `espera` y aún no existe se pinta como ⟦clave⟧ (vista previa); en publicación
+ * (STRICT=1) su falta PARA la compilación. `botones`: rótulos únicos (`comun.boton.*`) que la sección lleva al final si
+ * el copy no los ha puesto ya con ↺.
+ */
+import { t, existe, claves } from '../lib/i18n';
+import { marcaPendiente, type Contexto } from '../lib/cifras';
+import { restoDe, anclasTras, htmlFija } from '../lib/lectura';
+import type { Lang } from '../lib/idiomas';
+import VolverIndice from './VolverIndice.astro';
+
+type Parte = 'antetitulo' | 'titulo' | 'entrada' | 'texto' | 'salvedad';
+interface Props {
+  lang: Lang;
+  id: string;
+  prefijo: string;
+  /** Clave del título si no es `<prefijo>.titulo` (un título compartido, p. ej. `cortes.ficha.hoy.titulo`). */
+  titulo?: string;
+  espera?: Parte[];
+  destinos?: (string | null | undefined)[];
+  botones?: string[];
+  /** Declara `view-timeline-name` para el «dónde estoy» del índice lateral. */
+  indice?: boolean;
+  ctx?: Contexto;
+  clase?: string;
+  nivel?: 'h2' | 'h3';
+  /** Segmentos que pinta otro componente de la página (se saltan). */
+  excluir?: string[];
+  /** Pintar el resto del copy bajo el prefijo (por omisión, sí). */
+  resto?: boolean;
+  /** Otros prefijos cuyo copy también es de esta sección (se pintan detrás, en su orden; su `titulo`, como H3). */
+  tambien?: string[];
+}
+const { lang, id, prefijo, titulo, espera = ['titulo'], destinos = [], botones = [], indice = false, ctx = {}, clase, nivel = 'h2', excluir = [], resto = true, tambien = [] } = Astro.props;
+const ESTRICTO = process.env.STRICT === '1';
+const k = (p: string) => `${prefijo}.${p}`;
+// El título: el propio de la sección o, si no lo hay, el compartido que nombre la página (`titulo`).
+const tituloClave = existe(k('titulo')) || !titulo ? k('titulo') : titulo;
+const pide = (p: Parte) => espera.includes(p);
+const enLinea = (clave: string) => (existe(clave) || ESTRICTO ? t(lang, clave, ctx) : marcaPendiente(clave, 'copy'));
+const tras = (clave: string) => anclasTras(clave).map((f) => htmlFija(lang, f)).join('');
+
+const entradas = [k('entrada'), ...claves(k('entrada.'), true).filter((x) => /\.entrada\.\d+$/.test(x))].filter(existe);
+const sub = nivel === 'h2' ? 'h3' : 'h4';
+const r0 = resto ? restoDe(lang, prefijo, { ctx, excluir, destinos, nivel: sub }) : { html: '', pintadas: [] as string[] };
+const extra = tambien.map((p) => {
+  const x = restoDe(lang, p, { ctx, destinos, nivel: sub });
+  // Su título, como H3, salvo que ya sea el de la sección (`titulo` compartido): «Debates preparados en el explorador»
+  // salía dos veces en las cinco fichas (petición de cortes_b, § 7.1).
+  const tt = existe(`${p}.titulo`) && p !== prefijo && `${p}.titulo` !== tituloClave ? `<${sub}>${t(lang, `${p}.titulo`, ctx)}</${sub}>` : '';
+  const en = existe(`${p}.entrada`) ? `<p>${t(lang, `${p}.entrada`, ctx)}</p>` : '';
+  return { html: tt + en + x.html, pintadas: x.pintadas };
+});
+const r = { html: [r0.html, ...extra.map((e) => e.html)].join('\n'), pintadas: [...r0.pintadas, ...extra.flatMap((e) => e.pintadas)] };
+const hayTexto = r.html.trim().length > 0;
+// Los rótulos que el copy ya puso con ↺ en esta sección no se repiten al final.
+const yaPuestos = new Set([tituloClave, k('antetitulo'), ...entradas, ...r.pintadas, k('salvedad')].flatMap((c) => anclasTras(c)));
+const botonesFinal = botones.filter((b) => !yaPuestos.has(b));
+const Titulo = nivel;
+---
+<section class:list={['seccion', clase]} id={id} aria-labelledby={`${id}-titulo`} style={indice ? `view-timeline-name: --${id}` : undefined}>
+  <div class="seccion-cuerpo">
+    {existe(k('antetitulo')) && <p class="asiento" set:html={t(lang, k('antetitulo'), ctx)} />}
+    <Titulo id={`${id}-titulo`} set:html={enLinea(tituloClave)} />
+    {tras(tituloClave) && <Fragment set:html={tras(tituloClave)} />}
+    {entradas.map((e) => <><p class="lede" set:html={t(lang, e, ctx)} />{tras(e) && <Fragment set:html={tras(e)} />}</>)}
+    {entradas.length === 0 && pide('entrada') && <p class="lede" set:html={enLinea(k('entrada'))} />}
+    <slot name="antes" />
+    {hayTexto && <div class="prosa" set:html={r.html} />}
+    {!hayTexto && pide('texto') && <div class="prosa"><p set:html={marcaPendiente(`${prefijo}.*`, 'copy')} /></div>}
+    <slot />
+    {(existe(k('salvedad')) || pide('salvedad')) && <p class="salvedad" set:html={enLinea(k('salvedad'))} />}
+    {tras(k('salvedad')) && <Fragment set:html={tras(k('salvedad'))} />}
+    {botonesFinal.length > 0 && <Fragment set:html={botonesFinal.map((b) => htmlFija(lang, b)).join('')} />}
+    {indice && <VolverIndice lang={lang} />}
+  </div>
+</section>
+
+<script>
+  import '../scripts/copiar.ts';
+</script>
+
+<style>
+  .seccion-cuerpo { min-width: 0; }
+</style>

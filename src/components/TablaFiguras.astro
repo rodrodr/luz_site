@@ -1,0 +1,50 @@
+---
+/**
+ * F35 · Qué base usa cada figura de este sitio (Versiones). SE GENERA del registro `lib/figuras.ts` y del sello del
+ * exportador: una fila por figura publicada, con su página, su base, la huella y la fecha de esa base y sus archivos.
+ * Así la tabla no puede decir otra cosa que el LÉAME y la cita de cada figura.
+ */
+import Sello from './Sello.astro';
+import { t, existe } from '../lib/i18n';
+import { marcaPendiente } from '../lib/cifras';
+import { FIGURAS, rutaDatos } from '../lib/figuras';
+import { huella } from '../lib/cita';
+import { url, recurso, ETAPAS, PUERTAS_PUBLICADAS, EDICION } from '../lib/rutas';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const filas = FIGURAS.filter((f) => f.ed <= EDICION && f.id !== 'H');
+// Una figura de plantilla (`cortes/<etapa>`) enlaza a su primera instancia.
+const primera = (ruta: string) => ruta.replace('<etapa>', ETAPAS[0].slug).replace('<puerta>', PUERTAS_PUBLICADAS[0].slug);
+const o = (k: string) => (existe(k) ? t(lang, k) : marcaPendiente(k, 'copy'));
+---
+<div class="fig-desliza" tabindex="0" role="region" aria-labelledby="f35-rotulo">
+  <table class="fig-tabla">
+    <caption><span class="fig-rotulo-tabla" id="f35-rotulo" set:html={o('fig.F35.titulo')} /></caption>
+    <thead>
+      <tr>
+        <th scope="col" set:html={o('fig.F35.col.figura')} />
+        <th scope="col" set:html={o('fig.F35.col.base')} />
+        <th scope="col" set:html={o('fig.F35.col.huella')} />
+        <th scope="col" set:html={o('fig.F35.col.archivos')} />
+      </tr>
+    </thead>
+    <tbody>
+      {filas.map((f) => (
+        <tr>
+          <th scope="row"><a href={url(lang, `${primera(f.ruta)}#${f.ancla}`)} set:html={o(`${f.familia}.titulo`)} /></th>
+          <td>{f.base.map((b) => <Sello lang={lang} base={b} />)}</td>
+          <td>{f.base.map((b) => { const h = huella(b); return h.huella ? <span class="huella"><code>{h.huella}</code>{h.fecha && <> · <time datetime={h.fecha}>{h.fecha}</time></>}</span> : <Fragment set:html={marcaPendiente('sello.json')} />; })}</td>
+          <td>{f.archivos.length ? f.archivos.map((a) => <a class="archivo" href={recurso(rutaDatos(a, 'csv'))} download>{a}.csv</a>) : '—'}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  td :global(.sello) { margin: 0 .3rem .3rem 0; }
+  .huella { display: block; }
+  .archivo { display: block; }
+</style>

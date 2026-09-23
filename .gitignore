@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+
+# entorno local
+.env
+.env.*
+
+# Playwright
+test-results/
+playwright-report/
+
+# cachés locales (el exportador usa /Users/rodrodr/.cache/luz_site/, fuera del repositorio)
+.cache/
+
+# Python
+__pycache__/
+*.pyc

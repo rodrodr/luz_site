@@ -1,0 +1,282 @@
+---
+/**
+ * F17 · Las bibliotecas del proyecto, en el tiempo (plan § F17; copy `fig.F17.*`, docs/copy_es/explorador.md). Un carril
+ * por biblioteca, en cuatro grupos, sobre un eje de fechas cortado en los años sin sesiones (src/viz/geom/bibliotecas.ts).
+ * Cada sesión es una espiga cuya altura son sus entradas (lineal; la mayor, impresa en la leyenda).
+ * Datos: `src/data/bibliotecas.json` (exportador/modulos/explorador.py), v3.
+ *  · Clic, toque o Intro en un carril: su FICHA, un `popover` nativo (funciona sin JS): lo que dice el explorador sin sus
+ *    referencias internas, los cinco con más palabras sin la Presidencia y [Copiar el nombre…] con el camino en el
+ *    explorador. «Sesiones más crispadas» y «Sesiones decisivas» llevan la nota de que su criterio no se describe aquí.
+ *  · Teclado (con la isla): una parada para los carriles; ← → los recorren con su nota; Intro abre la ficha; Esc cierra.
+ *  · Los nombres, tal cual los da el explorador pero sin «Debate · »; sus claves (L2-B2…) no se enseñan.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano, rotulo, plantillaNota } from '../lib/i18n';
+import { fmt, cifra } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { ejeCortado, altura } from '../viz/geom/bibliotecas';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+interface Orador { rep_id: number; nombre: string; partido: string | null; palabras: number }
+interface Bib {
+  id: string; grupo: string; nombre: string; nombre_explorador: string; descripcion: string | null; criterio: boolean;
+  entradas: number; palabras: number; desde: string; hasta: string; sesiones: { f: string; s: number; e: number }[];
+  enteras: boolean | null; sumarios: number; oradores: Orador[];
+}
+const d = dato<{ grupos: string[]; max_entradas_sesion: number; primera: string; ultima: string; bibliotecas: Bib[] }>('bibliotecas');
+const B = d?.bibliotecas ?? [];
+const GRUPOS = d?.grupos ?? [];
+const saltoDesde = String(cifra('meses.salto.desde')?.v ?? '1939-03');
+const saltoHasta = String(cifra('meses.salto.hasta')?.v ?? '1944-12');
+const eje = d ? ejeCortado(d.primera, d.ultima, saltoDesde, saltoHasta) : null;
+const MAX = d?.max_entradas_sesion ?? 1;
+const ALTO = 18; // unidades del carril (viewBox 0 0 1000 20; la base en y = 19)
+const n = (x: number) => fmt.n(x, lang);
+const dv = (v: number, clave: string) => fmt.dato(v, n(v), clave, 'v3');
+const larga = (iso: string) => fmt.fechaLarga(iso, lang);
+const HUECOS = ['nombre', 'entradas', 'sesiones', 'desde', 'hasta', 'fecha', 'num'];
+// La nota del carril y la de la sesión: la primera línea, el nombre (garamond); la segunda, sus cifras (mono).
+const quitaNombre = (s: string) => s.replace(/^\{nombre\}\s*·\s*/, '');
+const notaCarril = quitaNombre(plantillaNota(lang, 'fig.F17.nota', HUECOS));
+const notaSesion = quitaNombre(plantillaNota(lang, 'fig.F17.nota.sesion', HUECOS));
+const grupoRotulo = (g: string) => t(lang, `fig.F17.leyenda.${g}`);
+const sesionTexto = (s: { f: string; s: number; e: number }) =>
+  t(lang, 'fig.F17.nota.sesion', { vars: { nombre: '', fecha: `<time datetime="${s.f}">${fmt.fechaCorta(s.f)}</time>`, num: String(s.s), entradas: fmt.dato(s.e, n(s.e), 'bibliotecas.json › sesión.entradas', 'v3') } })
+    .replace(/^\s*·\s*/, '');
+const cuentaGrupo = (g: string) => B.filter((b) => b.grupo === g).length;
+const claveGrupo: Record<string, string> = { debates: 'bib.debates' };
+---
+<FiguraMarco lang={lang} id="F17" plantillaT="{nombre}" plantilla={notaCarril} plantillaB={`v3 · ${plano(lang, 'fig.F17.abrir')}`}>
+  <div slot="grafico" class="f17">
+    <div class="f17-leyenda">
+      <p class="f17-clave">
+        <svg class="f17-muestra" viewBox="0 0 24 20" aria-hidden="true" focusable="false"><line x1="6" x2="6" y1="19" y2="11" /><line x1="12" x2="12" y1="19" y2="3" /><line x1="18" x2="18" y1="19" y2="14" /></svg>
+        <span set:html={t(lang, 'fig.F17.leyenda.marca', { vars: { max: dv(MAX, 'bibliotecas.json › max_entradas_sesion') } })} />
+      </p>
+      <p class="f17-clave">
+        <svg class="f17-muestra" viewBox="0 0 24 20" aria-hidden="true" focusable="false"><line class="salto" x1="8" x2="8" y1="1" y2="19" /><line class="salto" x1="16" x2="16" y1="1" y2="19" /></svg>
+        <span set:html={t(lang, 'fig.F17.leyenda.salto')} />
+      </p>
+    </div>
+    <div class="f17-carriles" aria-label={plano(lang, 'fig.F17.titulo')} role="group">
+      {GRUPOS.map((g) => (
+        <section class="f17-grupo" aria-label={plano(lang, `fig.F17.leyenda.${g}`)}>
+          <p class="f17-grupo-t"><span set:html={grupoRotulo(g)} /> <span class="f17-grupo-n" set:html={fmt.dato(cuentaGrupo(g), n(cuentaGrupo(g)), claveGrupo[g] ?? `bibliotecas.json › ${g}`, 'v3')} /></p>
+          <ol class="f17-lista" role="list">
+            {B.filter((b) => b.grupo === g).map((b) => (
+              <li class="f17-carril">
+                <button type="button" class="f17-boton" popovertarget={`f17-f-${b.id}`} aria-haspopup="dialog" data-nota data-paso
+                  data-v-nombre={b.nombre} data-v-entradas={n(b.entradas)} data-v-sesiones={n(b.sesiones.length)}
+                  data-v-desde={larga(b.desde)} data-v-hasta={larga(b.hasta)}>
+                  <span class="f17-nombre">{b.nombre}</span>
+                  {eje && (
+                    <svg class="f17-pista" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true" focusable="false" data-plantilla={notaSesion}>
+                      <line class="salto" x1={eje.salto.x0 * 10} x2={eje.salto.x0 * 10} y1="0" y2="20" />
+                      <line class="salto" x1={eje.salto.x1 * 10} x2={eje.salto.x1 * 10} y1="0" y2="20" />
+                      <line class="base" x1={eje.x(b.desde) * 10} x2={eje.x(b.hasta) * 10} y1="19.5" y2="19.5" />
+                      {b.sesiones.map((s) => (
+                        <g class="f17-sesion" data-nota data-v-fecha={fmt.fechaCorta(s.f)} data-v-num={String(s.s)} data-v-entradas={n(s.e)}>
+                          <line class="diana" x1={eje.x(s.f) * 10} x2={eje.x(s.f) * 10} y1="0" y2="20" />
+                          <line class="espiga" x1={eje.x(s.f) * 10} x2={eje.x(s.f) * 10} y1="20" y2={20 - altura(s.e, MAX, ALTO)} />
+                        </g>
+                      ))}
+                    </svg>
+                  )}
+                  <span class="f17-total" set:html={dv(b.entradas, `bibliotecas.json › ${b.id}.entradas`)} />
+                </button>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+      {eje && (
+        <div class="f17-eje" aria-hidden="true">
+          <span class="f17-eje-pista">
+            {eje.cortes.map((c) => <span class="f17-eje-corte" style={`left: ${c}%`}></span>)}
+            {eje.marcas.map((m) => <time datetime={String(m.anio)} style={`left: ${m.x}%`}>{m.anio}</time>)}
+            <span class="f17-eje-salto" style={`left: ${eje.salto.x0}%; width: ${eje.salto.x1 - eje.salto.x0}%`}></span>
+          </span>
+        </div>
+      )}
+    </div>
+
+    {B.map((b) => (
+      <div popover id={`f17-f-${b.id}`} class="f17-ficha" role="dialog" aria-labelledby={`f17-f-${b.id}-t`}>
+        <div class="f17-ficha-cabeza">
+          <p class="asiento"><span set:html={grupoRotulo(b.grupo)} /> · v3</p>
+          <button type="button" class="f17-cerrar" popovertarget={`f17-f-${b.id}`} popovertargetaction="hide">
+            <svg class="icono" aria-hidden="true" focusable="false"><use href="#i-cerrar"></use></svg>
+            <span class="sr-only" set:html={t(lang, 'fig.F17.ficha.cerrar')} />
+          </button>
+        </div>
+        <h4 id={`f17-f-${b.id}-t`} tabindex="-1">{b.nombre}</h4>
+        <p class="f17-resumen" set:html={t(lang, 'fig.F17.ficha.resumen', { vars: {
+          entradas: dv(b.entradas, `bibliotecas.json › ${b.id}.entradas`), sesiones: dv(b.sesiones.length, `bibliotecas.json › ${b.id}.sesiones`),
+          desde: `<time datetime="${b.desde}">${larga(b.desde)}</time>`, hasta: `<time datetime="${b.hasta}">${larga(b.hasta)}</time>` } })} />
+        {b.enteras === true && <p class="nota" set:html={t(lang, 'fig.F17.ficha.enteras')} />}
+        {b.enteras === false && <p class="nota" set:html={t(lang, 'fig.F17.ficha.seleccion')} />}
+        {b.sumarios > 0 && <p class="nota" set:html={t(lang, 'fig.F17.ficha.acta', { vars: { n: dv(b.sumarios, `bibliotecas.json › ${b.id}.sumarios`) } })} />}
+        {b.criterio && <p class="nota f17-criterio" set:html={t(lang, 'fig.F17.ficha.criterio')} />}
+        {b.descripcion && (
+          <figure class="f17-desc">
+            <figcaption class="asiento" set:html={t(lang, 'fig.F17.ficha.descripcion')} />
+            <blockquote data-audit-exento="descripción de la biblioteca en el explorador, citada"><p>{b.descripcion}</p></blockquote>
+          </figure>
+        )}
+        {b.oradores.length > 0 && (
+          <>
+            <p class="f17-sub" set:html={t(lang, 'fig.F17.ficha.oradores')} />
+            <ol class="f17-oradores">
+              {b.oradores.map((o) => (
+                <li><span class="f17-o-nombre">{o.nombre}</span>{o.partido && <span class="f17-o-partido"> · {o.partido}</span>} <span class="f17-o-pal" set:html={t(lang, 'fig.F17.ficha.palabras', { vars: { n: fmt.dato(o.palabras, n(o.palabras), `bibliotecas.json › ${b.id}.oradores`, 'v3') } })} /></li>
+              ))}
+            </ol>
+          </>
+        )}
+        <details class="f17-ses">
+          <summary set:html={t(lang, 'fig.F17.tabla.col.sesiones')} />
+          <ol class="f17-ses-lista">{b.sesiones.map((s) => <li set:html={sesionTexto(s)} />)}</ol>
+        </details>
+        <div class="f17-copia" data-copiable>
+          <p class="f17-en" set:html={t(lang, 'fig.F17.ficha.en_explorador', { vars: { nombre: `<span data-copiar-texto translate="no">${b.nombre_explorador.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</span>` } })} />
+          <p class="f17-acciones no-imprimir">
+            <button type="button" class="boton sec" data-copiar hidden>
+              <svg class="icono" aria-hidden="true" focusable="false"><use href="#i-copiar"></use></svg>
+              <span set:html={rotulo(lang, b.grupo === 'debates' ? 'fig.F17.ficha.copiar' : 'fig.F17.ficha.copiar_bib')} />
+            </button>
+            <span class="f17-aviso" role="status" data-copiar-aviso data-copiada={plano(lang, 'comun.isla.copiado')} data-no-copiada={plano(lang, 'comun.isla.no_copiado')}></span>
+          </p>
+          <p class="nota" set:html={t(lang, 'fig.F17.ficha.como')} />
+        </div>
+      </div>
+    ))}
+  </div>
+  <div slot="tabla">
+    <div class="fig-desliza" tabindex="0" role="region" aria-labelledby="f17-caption">
+      <table class="fig-tabla">
+        <caption id="f17-caption"><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F17.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={t(lang, 'fig.F17.tabla.col.nombre')} />
+            <th scope="col" set:html={t(lang, 'fig.F17.tabla.col.grupo')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F17.tabla.col.entradas')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F17.tabla.col.sesiones')} />
+            <th scope="col" set:html={t(lang, 'fig.F17.tabla.col.desde')} />
+            <th scope="col" set:html={t(lang, 'fig.F17.tabla.col.hasta')} />
+          </tr>
+        </thead>
+        <tbody>
+          {B.map((b) => (
+            <tr>
+              <th scope="row">{b.nombre}</th>
+              <td set:html={grupoRotulo(b.grupo)} />
+              <td class="num" set:html={dv(b.entradas, `bibliotecas.json › ${b.id}.entradas`)} />
+              <td class="num" set:html={dv(b.sesiones.length, `bibliotecas.json › ${b.id}.sesiones`)} />
+              <td><time datetime={b.desde}>{fmt.fechaCorta(b.desde)}</time></td>
+              <td><time datetime={b.hasta}>{fmt.fechaCorta(b.hasta)}</time></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'fig.F17.denominador')} />
+  </div>
+</FiguraMarco>
+
+<script>
+  import '../scripts/copiar.ts';
+  import '../scripts/fig-bibliotecas.ts';
+</script>
+
+<style>
+  .f17 { --col-nombre: 15.5rem; --col-total: 3.6rem; }
+  .f17-leyenda { display: flex; flex-wrap: wrap; gap: .4rem 2rem; margin: 0 0 var(--e5); }
+  .f17-clave { display: inline-flex; align-items: center; gap: .55rem; margin: 0; font-size: var(--fs-small); color: var(--ink-2); max-width: 30rem; }
+  .f17-muestra { flex: none; width: 1.5rem; height: 1.25rem; overflow: visible; }
+  .f17-muestra line { stroke: var(--dato-2); stroke-width: 2; }
+  .f17-muestra line.salto, .f17-pista line.salto { stroke: var(--ausencia-trazo); stroke-width: 1; stroke-dasharray: 3 2; }
+
+  .f17-carriles { position: relative; border-radius: var(--radio); }
+  .f17-carriles:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; }
+  .f17-grupo + .f17-grupo { margin-top: 1.1rem; }
+  .f17-grupo-t { margin: 0 0 .25rem; padding-bottom: .3rem; border-bottom: 1px solid var(--hair-2); font: 600 var(--fs-small)/1.3 var(--text); color: var(--ink); max-width: none; }
+  .f17-grupo-n { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); margin-left: .35rem; }
+  .f17-lista { list-style: none; margin: 0; padding: 0; }
+  .f17-boton {
+    all: unset; box-sizing: border-box; width: 100%; cursor: pointer;
+    display: grid; grid-template-columns: minmax(0, 1fr) var(--col-total); grid-template-areas: 'nombre total' 'pista pista';
+    column-gap: .8rem; align-items: end; padding: .3rem 0 .25rem; border-bottom: 1px solid var(--hair);
+  }
+  .f17-boton:hover { background: var(--bg-2); }
+  .f17-boton:hover .f17-nombre { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .18em; }
+  .f17-boton:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .f17-boton:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .f17-nombre { grid-area: nombre; font: 400 .95rem/1.25 var(--text); color: var(--ink); overflow-wrap: anywhere; }
+  .f17-total { grid-area: total; text-align: right; font: 400 var(--fs-mono-s)/1.25 var(--mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .f17-pista { grid-area: pista; display: block; width: 100%; height: 20px; margin-top: .25rem; overflow: visible; }
+  .f17-pista line { vector-effect: non-scaling-stroke; }
+  .f17-pista .base { stroke: var(--hair-2); stroke-width: 1; }
+  .f17-pista .espiga { stroke: var(--dato-2); stroke-width: 2; }
+  .f17-pista .diana { stroke: transparent; stroke-width: 9; pointer-events: stroke; }
+  .f17-sesion:global(.fig-activa) .espiga { stroke: var(--ink); stroke-width: 3; }
+  .f17-carriles:has(:global(.fig-activa)) .f17-boton:not(:global(.fig-activa)):not(:has(:global(.fig-activa))) .espiga { opacity: var(--atenua); }
+  .f17-eje { display: grid; grid-template-columns: minmax(0, 1fr); margin-top: .35rem; }
+  .f17-eje-pista { position: relative; display: block; height: 1.3rem; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .f17-eje-pista time { position: absolute; top: .35rem; transform: translateX(-50%); white-space: nowrap; }
+  .f17-eje-corte { position: absolute; top: 0; width: 1px; height: .3rem; background: var(--hair-2); }
+  .f17-eje-salto { position: absolute; top: .1rem; height: 1rem; border-inline: 1px dashed var(--ausencia-trazo); }
+  /* A 375 px, un año de cada dos: los rótulos del eje no se pisan. */
+  @media (max-width: 47.99rem) { .f17-eje-pista time:nth-of-type(odd):not(:last-of-type) { visibility: hidden; } }
+  @media (min-width: 48rem) {
+    .f17-boton { grid-template-columns: var(--col-nombre) minmax(0, 1fr) var(--col-total); grid-template-areas: 'nombre pista total'; align-items: center; padding: .15rem 0; }
+    .f17-pista { margin-top: 0; }
+    .f17-eje { grid-template-columns: var(--col-nombre) minmax(0, 1fr) var(--col-total); column-gap: .8rem; }
+    .f17-eje-pista { grid-column: 2; }
+  }
+
+  /* La ficha: un popover nativo. Flota sobre la página, así que va INVERTIDA (DESIGN.md § Elevation), sin sombra. */
+  .f17-ficha {
+    width: min(36rem, calc(100vw - 2rem)); max-height: min(44rem, calc(100dvh - 2rem)); overflow: auto; overscroll-behavior: contain;
+    margin: auto; padding: 1.1rem 1.4rem 1.4rem; border: 0; border-radius: var(--radio);
+    background: var(--ink); color: var(--bg); font-size: var(--fs-small); line-height: 1.5;
+    --ink-2: color-mix(in oklab, var(--bg) 78%, var(--ink)); --accent: var(--accent-inv);
+  }
+  .f17-ficha::backdrop { background: color-mix(in oklab, var(--bg) 62%, transparent); }
+  .f17-ficha :global(::selection) { background: var(--bg); color: var(--ink); }
+  .f17-ficha .asiento { color: var(--ink-2); margin: 0; font-size: var(--fs-mono-s); }
+  .f17-ficha-cabeza { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin: 0 -.6rem .2rem 0; }
+  .f17-cerrar { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 0; border-radius: var(--radio); background: transparent; color: inherit; cursor: pointer; }
+  .f17-cerrar .icono { width: 1rem; height: 1rem; }
+  .f17-cerrar:hover { background: color-mix(in oklab, var(--bg) 10%, transparent); }
+  .f17-ficha h4 { font: italic 500 1.85rem/1.08 var(--display); margin: .1rem 0 .7rem; color: var(--bg); outline: none; text-wrap: balance; }
+  .f17-ficha p { margin: 0 0 .6rem; max-width: none; }
+  .f17-ficha .nota { color: var(--ink-2); }
+  .f17-resumen { font-size: 1rem; }
+  .f17-desc { margin: .9rem 0 0; }
+  .f17-desc blockquote { margin: .3rem 0 0; padding: 0; }
+  .f17-desc blockquote p { font-size: var(--fs-small); color: var(--bg); }
+  .f17-ficha p.f17-sub { margin-top: 1rem; font-weight: 600; }
+  .f17-oradores { margin: 0; padding-left: 1.3rem; }
+  .f17-oradores li { margin: 0 0 .15rem; }
+  .f17-o-partido { color: var(--ink-2); }
+  .f17-o-pal { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--ink-2); margin-left: .35rem; white-space: nowrap; }
+  .f17-ses { margin: .9rem 0 0; }
+  .f17-ses summary { cursor: pointer; padding-block: .7rem; font-weight: 600; }
+  .f17-ses summary::marker { color: var(--accent); }
+  .f17-ses-lista { margin: 0; padding: 0; list-style: none; columns: 2 13rem; column-gap: 1.2rem; font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--ink-2); }
+  .f17-copia { margin-top: 1rem; padding-top: .8rem; border-top: 1px solid color-mix(in oklab, var(--bg) 25%, transparent); }
+  .f17-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+  .f17-ficha .boton.sec { color: var(--bg); border-color: color-mix(in oklab, var(--bg) 40%, transparent); }
+  .f17-ficha .boton.sec:hover { color: var(--accent); border-color: var(--accent); }
+  .f17-aviso { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--ink-2); }
+  .f17-ficha :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  /* Sin soporte de popover, la ficha no se despliega en la página: sus datos están en la pestaña Tabla. */
+  @supports not selector(:popover-open) { .f17-ficha { display: none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .f17-ficha:popover-open { animation: f17-entra var(--t-estado) var(--ease); }
+    @keyframes f17-entra { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .f17-pista .espiga { transition: opacity var(--t-estado) var(--ease); }
+  }
+</style>

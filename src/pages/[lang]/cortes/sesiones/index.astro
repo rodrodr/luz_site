@@ -1,0 +1,105 @@
+---
+/**
+ * D · Sesiones y votaciones (plan § Plantilla D; narrativa § 9; DESIGN.md § Registro y § Sistema de figuras). Dueño:
+ * grupo 3 (Sesiones). Saber qué se votó en voz alta, ver que el voto es un TEXTO y no una columna, y llegar a cualquier
+ * sesión. Copy: `sesiones.*` (docs/copy_es/sesiones.md). Datos: `votaciones.json` (F26), cifras `voto.*`, `ses.*`.
+ *
+ * Movimientos: cabecera (H1-pregunta) · Lo que se votó en voz alta: cuántas sesiones traen listas → el registro de todas,
+ * etapa por etapa → la selección → F26 completa, a todo el ancho, con sus tres anotaciones → la ordinaria y la
+ * destitución, leídas · Momentos para leer enteros (registro de las ocho puertas) · Cómo encontrar una sesión en el
+ * explorador (pasos escritos, sin consulta que copiar) · Que esté no quiere decir que esté entera.
+ * Una figura protagonista (F26) y un movimiento: sus barras crecen al verse y cruzan la mitad más uno.
+ */
+import Base from '../../../../layouts/Base.astro';
+import SubNav from '../../../../components/SubNav.astro';
+import CabezaPagina from '../../../../components/CabezaPagina.astro';
+import Seccion from '../../../../components/Seccion.astro';
+import RegistroPuertas from '../../../../components/RegistroPuertas.astro';
+import FigVotaciones from '../../../../components/FigVotaciones.astro';
+import NotaBases from '../../../../components/NotaBases.astro';
+import SinSitio from '../../../../components/SinSitio.astro';
+import { meta } from '../../../../lib/pagina';
+import { t, existe, tBloques } from '../../../../lib/i18n';
+import { rotulosConDestino, htmlFija, anclasTras } from '../../../../lib/lectura';
+import { remata } from '../../../../lib/remata';
+import { marcaPendiente } from '../../../../lib/cifras';
+import { url, PAGINAS, PUERTAS } from '../../../../lib/rutas';
+import { rutasPorIdioma, type Lang } from '../../../../lib/idiomas';
+
+export const getStaticPaths = rutasPorIdioma;
+const lang = Astro.params.lang as Lang;
+const { titulo, descripcion } = meta(lang, 'sesiones');
+const V = 'sesiones.votos';
+/** Un bloque del copy (párrafos o lista), con los rótulos únicos enlazados y sus frases fijas ↺ detrás. */
+const bloque = (k: string, clase = '') => {
+  if (!existe(k)) return `<p>${marcaPendiente(k, 'copy')}</p>`;
+  const html = rotulosConDestino(lang, remata(tBloques(lang, k)), k);
+  return (clase ? html.replace(/^<(p|ul|ol)>/, `<$1 class="${clase}">`) : html) + anclasTras(k).map((f) => htmlFija(lang, f)).join('');
+};
+const nota = (k: string) => (existe(k) ? `<div class="pieza-nota">${remata(tBloques(lang, k))}</div>` : '');
+// Las tres anotaciones editoriales de F26 (DESIGN.md: como mucho tres, con su trazo oro al lado de su fila).
+const anotaciones = Object.fromEntries(
+  [['141-106', `${V}.ordinaria.2`], ['161-121', `${V}.kent`], ['238-5', `${V}.destitucion.no`]]
+    .filter(([, k]) => existe(k)).map(([c, k]) => [c, t(lang, k)]),
+);
+// «Para citar un pasaje» lleva a «Cómo citar un pasaje» de El Diario (copy, nota de diseño de § 1.3).
+const citar = existe('sesiones.otra.citar')
+  ? bloque('sesiones.otra.citar').replace(/(citar un pasaje)/, `<a href="${url(lang, `${PAGINAS.diario}#citar`)}">$1</a>`)
+  : '';
+---
+<Base lang={lang} ruta={PAGINAS.sesiones} titulo={titulo} descripcion={descripcion}>
+  <SubNav lang={lang} grupo="cortes" actual={PAGINAS.sesiones} />
+  <CabezaPagina lang={lang} prefijo="sesiones" bases={['V2', 'v3']} />
+  <div class="contenedor">
+    <!-- 1 · Lo que se votó en voz alta: el total, el registro por etapa, la selección y F26 completa -->
+    <Seccion lang={lang} id="en-voz-alta" prefijo={V} espera={['titulo', 'entrada']} resto={false}>
+      <Fragment set:html={bloque(`${V}.cuantas`)} />
+      <Fragment set:html={bloque(`${V}.etapas.entrada`)} />
+      <div class="listas-etapa" set:html={bloque(`${V}.etapas`)} />
+      {existe(`${V}.etapas.salvedad`) && <p class="salvedad" set:html={t(lang, `${V}.etapas.salvedad`)} />}
+      <Fragment set:html={bloque(`${V}.seleccion`)} />
+      <div class="f26-ancho">
+        <FigVotaciones lang={lang} variante="completa" anotaciones={anotaciones} />
+      </div>
+      <Fragment set:html={bloque(`${V}.ordinaria`)} />
+      <Fragment set:html={bloque(`${V}.destitucion`)} />
+      <Fragment set:html={bloque(`${V}.destitucion.2`)} />
+      <Fragment set:html={nota(`${V}.destitucion.pie`)} />
+      <Fragment set:html={bloque(`${V}.mas`)} />
+      <NotaBases lang={lang} compacta />
+    </Seccion>
+
+    <!-- 2 · Las ocho puertas de lectura, en registro de calendario (las de la 0.2 no se pintan) -->
+    <Seccion lang={lang} id="puertas" prefijo="sesiones.puertas" espera={['titulo', 'entrada']}>
+      <RegistroPuertas lang={lang} familia="sesiones" />
+    </Seccion>
+
+    <!-- 3 · Cualquier otra sesión: los filtros son pasos escritos (no hay consulta que copiar); cómo citarla (↺ 4) -->
+    <Seccion lang={lang} id="otra" prefijo="sesiones.otra" espera={['titulo', 'entrada']} resto={false}>
+      <Fragment set:html={bloque('sesiones.otra.pasos', 'pasos-filtro')} />
+      <Fragment set:html={bloque('sesiones.otra.dobles')} />
+      <Fragment set:html={bloque('sesiones.otra.habla')} />
+      <Fragment set:html={citar} />
+      <Fragment set:html={htmlFija(lang, 'comun.boton.explorador')} />
+      <Fragment set:html={htmlFija(lang, 'comun.fija.explorador')} />
+    </Seccion>
+
+    <!-- 4 · «Que esté no quiere decir que esté entera»: la sesión 48 (↺ 8), la 9, las posteriores a julio de 1936 -->
+    <Seccion lang={lang} id="entera" prefijo="sesiones.entera" espera={['titulo', 'entrada']} />
+  </div>
+  <SinSitio lang={lang} prefijo="sesiones" usados={['sesiones.antetitulo', 'sesiones.h1', 'sesiones.titulo', 'sesiones.entrada', 'sesiones.votos', 'sesiones.puertas', 'sesiones.lista', 'sesiones.otra', 'sesiones.entera', 'sesiones.puerta']} ignorar={['puerta', ...PUERTAS.map((p) => p.slug)]} />
+</Base>
+
+<style>
+  /* F26 es la protagonista: a todo el ancho de la rejilla (con su columna de anotaciones), no solo el de la lectura. */
+  @media (min-width: 64rem) {
+    :global(.seccion-cuerpo) > .f26-ancho { grid-column: 1 / -1; }
+  }
+  .f26-ancho { min-width: 0; }
+  /* El registro de todas las listas, etapa por etapa: un libro de registro tipográfico (narrativa § 9.3), no una figura. */
+  .listas-etapa { min-width: 0; margin: 0 0 var(--e5); }
+  .listas-etapa :global(ul) { list-style: none; margin: 0; padding: 0; max-width: 34rem; border-top: 1px solid var(--hair-2); }
+  .listas-etapa :global(li) { padding: .55rem 0; border-bottom: 1px solid var(--hair); font-variant-numeric: tabular-nums lining-nums; }
+  .listas-etapa :global(li data.cifra) { font-weight: 600; }
+  :global(.seccion-cuerpo .pasos-filtro) { padding: .6rem 0 .6rem 1rem; border-left: 1px solid var(--hair-2); }
+</style>

@@ -1,0 +1,33 @@
+{
+ "cuerpo": {
+  "viewsTotal": {
+   "status": "OK",
+   "data": {
+    "viewsTotal": 111
+   }
+  },
+  "viewsUnique": {
+   "status": "OK",
+   "data": {
+    "viewsUnique": 62
+   }
+  },
+  "downloadsTotal": {
+   "status": "OK",
+   "data": {
+    "downloadsTotal": 32
+   }
+  },
+  "downloadsUnique": {
+   "status": "OK",
+   "data": {
+    "downloadsUnique": 3
+   }
+  },
+  "citations": {
+   "status": "OK",
+   "data": []
+  }
+ },
+ "consultado": "2026-09-22T21:51:41+00:00"
+}

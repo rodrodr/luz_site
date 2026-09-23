@@ -1,0 +1,1192 @@
+{
+ "columnas.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "columnas del CSV (sin las derivadas de este cálculo)",
+  "grupos": "metodo datos",
+  "t": "n",
+  "v": 14
+ },
+ "csv.celdas_largas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con len(speech) > 32.767 (máximo de una celda de Excel)",
+  "grupos": "datos",
+  "t": "n",
+  "v": 289
+ },
+ "csv.fila_mas_larga.caracteres": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "len(speech) máximo (fila 55221)",
+  "grupos": "datos",
+  "t": "n",
+  "v": 170413
+ },
+ "diputados.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "rep_id distintos",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 773
+ },
+ "diputados.comparten_apellido": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "diputados que intervienen (rep_id de la V2) cuyo primer apellido (diputados_21_06_encode.csv) comparte otro; 538 apellidos distintos entre 773",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 317
+ },
+ "distritos.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "valores distintos de district",
+  "grupos": "datos",
+  "t": "n",
+  "v": 54
+ },
+ "distritos.agrarios.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con district = \"Agrarios\"",
+  "grupos": "datos",
+  "t": "n",
+  "v": 8
+ },
+ "dv.csv.bytes": {
+  "base": "dv",
+  "d": "2026-09-22",
+  "f": "filesize de 2REP_Diaries.csv (API de Dataverse, 2026-09-22)",
+  "grupos": "datos",
+  "t": "peso",
+  "v": 165785782
+ },
+ "dv.thqcmi.versiones": {
+  "base": "dv",
+  "d": "2026-09-22",
+  "f": "versiones publicadas de THQCMI",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 3
+ },
+ "dv.version": {
+  "base": "dv",
+  "d": "2026-09-22",
+  "f": "versionNumber.versionMinorNumber",
+  "grupos": "datos versiones",
+  "t": "texto",
+  "v": "V2.0"
+ },
+ "etiquetas.diferencia": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "etiquetas.n − filas.V2 (sin documentar)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 5
+ },
+ "etiquetas.falsos_positivos": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "README depositado, SECTION 4 («filtering 1,532 false positives»)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 1532
+ },
+ "etiquetas.filtro.letras": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "README SECTION 4 («3-character all-capitals word»); tag_speakers.py [A-ZÁÉÍÓÚÜÑ]{3,}",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 3
+ },
+ "etiquetas.n": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "README depositado, SECTION 4 («107,556 tags retained»)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 107556
+ },
+ "explorador.gz.bytes": {
+  "base": "explorador",
+  "d": "2026-09-22",
+  "f": "manifiesto del corpus servido: suma de los tres trozos corpus.sqlite.gz (HEAD: 45.000.000 + 45.000.000 + 21.733.652). El copy lo imprime en unidad decimal, formato `peso_dec0`: «unos 112 MB comprimidos» (plan D-26 (a))",
+  "grupos": "datos",
+  "t": "peso",
+  "v": 111733652
+ },
+ "familias.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "valores distintos de party_family, en bruto",
+  "grupos": "metodo datos",
+  "t": "n",
+  "v": 33
+ },
+ "familias.liberal.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con party_family = \"Liberal\"",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 15364
+ },
+ "familias.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "valores distintos de party_family normalizada, sin «Sin identificar»",
+  "grupos": "metodo datos",
+  "t": "n",
+  "v": 24
+ },
+ "familias.vacias": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con party_family vacía",
+  "grupos": "datos",
+  "t": "n",
+  "v": 151
+ },
+ "fechas.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con otra date o legislature entre la V1 (MD5 0a9adafe…) y la V2",
+  "grupos": "metodo datos versiones",
+  "t": "n",
+  "v": 894
+ },
+ "fechas.filas.legislatura": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con otra legislature entre la V1 y la V2 (todas de la sesión 77, 1931-1933 → 1933-1935)",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 91
+ },
+ "fechas.sesiones": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "sesiones con la fecha cambiada entre la V1 y la V2 (= changelog)",
+  "grupos": "metodo datos versiones",
+  "t": "n",
+  "v": 7
+ },
+ "fila.azana1935.id.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "id de la fila V2 (1935-03-20, El Sr. AZANA:)",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 85330
+ },
+ "fila.azana1935.nwords": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de la fila V2 85330 (= v3 96282)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 14131
+ },
+ "fila.bucle9.id.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "fila del bucle de la sesión 9 (1931-07-27)",
+  "grupos": "metodo",
+  "t": "id",
+  "v": 976
+ },
+ "fila.campoamor.id.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "id de la fila (1931-10-01, sesión 48, La Srta. CAMPOAMOR:)",
+  "grupos": "metodo datos versiones",
+  "t": "id",
+  "v": 5424
+ },
+ "fila.campoamor.id.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "id v3 de la misma fila (La Srta. CAMPOAMOR:)",
+  "grupos": "metodo datos versiones",
+  "t": "id",
+  "v": 6079
+ },
+ "fila.campoamor.nwords": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de la fila V2 5424",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 1460
+ },
+ "fila.campoamor.orden.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "order de la fila V2 5424",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 26
+ },
+ "fila.campoamor.orden.pantalla": {
+  "base": "explorador",
+  "d": "2026-09-22",
+  "f": "«Orden 30 de 415» en el lector del explorador (captura c_lector_campoamor_1440): ord + 1",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 30
+ },
+ "fila.campoamor.orden.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "ord de la fila v3 6079",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 29
+ },
+ "fila.estatuto.id.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "id de la fila V2 (1932-05-27, El Sr. PRESIDENTE:)",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 25979
+ },
+ "fila.estatuto.id.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "turno rescatado de Azaña (27-V-1932) en la v3",
+  "grupos": "metodo",
+  "t": "id",
+  "v": 29042
+ },
+ "fila.estatuto.nwords.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "nwords de la fila v3 29042",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 17142
+ },
+ "fila.lista.nwords": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de la fila V2 5453",
+  "grupos": "metodo datos",
+  "t": "n",
+  "v": 233
+ },
+ "fila.lista.split": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "len(speech.split()) de la fila V2 5453",
+  "grupos": "datos",
+  "t": "n",
+  "v": 522
+ },
+ "fila.presidencia.id.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "id de la fila (1931-10-01, sesión 48, El Sr. PRESIDENTE:)",
+  "grupos": "metodo datos versiones",
+  "t": "id",
+  "v": 5423
+ },
+ "fila.presidencia.id.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "id v3 de la misma fila (El Sr. PRESIDENTE:)",
+  "grupos": "metodo datos versiones",
+  "t": "id",
+  "v": 6078
+ },
+ "fila.presidencia.nwords": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de la fila V2 5423",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 7
+ },
+ "fila.presidencia.orden.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "order de la fila V2 5423",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 25
+ },
+ "fila.presidencia.orden.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "ord de la fila v3 6078",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 28
+ },
+ "fila.prieto.documentos": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "nwords de las piezas de comentario de V2 55221 (v3 61930 + 61932)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 21638
+ },
+ "fila.prieto.habla": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "nwords de las piezas de habla de V2 55221 (v3 61929 + 61931)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 3733
+ },
+ "fila.prieto.id.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "id de la fila V2 (1933-07-12, El Sr. Ministro de OBRAS PÚBLICAS:)",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 55221
+ },
+ "fila.prieto.nwords": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de la fila V2 55221 (la más larga)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 25371
+ },
+ "filas.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "recuento de filas del CSV depositado",
+  "grupos": "metodo datos versiones",
+  "t": "n",
+  "v": 107551
+ },
+ "filas.con_diputado": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con rep_id",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 107404
+ },
+ "filas.con_diputado.pct": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con rep_id / filas",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.9986332065717659
+ },
+ "filas.sin_diputado": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas sin rep_id",
+  "grupos": "metodo datos",
+  "t": "n",
+  "v": 147
+ },
+ "filas.sin_diputado.ministerio": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas sin rep_id cuya fórmula el analizador del explorador lee como ministro (rol minister)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 123
+ },
+ "filas.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "count(*) de speeches",
+  "grupos": "metodo versiones",
+  "t": "n",
+  "v": 121700
+ },
+ "fragmentos.fecha": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "fecha de la última ejecución de los dos fragmentos de Datos",
+  "grupos": "datos",
+  "t": "fecha",
+  "v": "2026-09-22"
+ },
+ "habla.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "filas con papel ∉ {summary, remark} (lo que deja «Solo lo que se habla»)",
+  "grupos": "metodo versiones",
+  "t": "n",
+  "v": 108291
+ },
+ "ideologia.c_espacio": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con ideology = \"C \" (con espacio)",
+  "grupos": "datos",
+  "t": "n",
+  "v": 93
+ },
+ "ideologia.ceda.C": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con party = \"CEDA\" e ideology = \"C\"",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 51
+ },
+ "ideologia.ceda.CD": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con party = \"CEDA\" e ideology = \"CD\"",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 255
+ },
+ "ideologia.ceda.D": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con party = \"CEDA\" e ideology = \"D\"",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 7656
+ },
+ "ideologia.partidos_varios": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "partidos con más de un código de ideology (sin el espacio final); 6 si no se quita",
+  "grupos": "metodo datos",
+  "t": "n",
+  "v": 5
+ },
+ "leg.1931-1933.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas de 1931-1933",
+  "grupos": "datos",
+  "t": "n",
+  "v": 61355
+ },
+ "leg.1931-1933.palabras": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de 1931-1933",
+  "grupos": "datos",
+  "t": "n",
+  "v": 12966290
+ },
+ "leg.1931-1933.palabras.pct": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de 1931-1933 / nwords",
+  "grupos": "metodo datos",
+  "t": "pct",
+  "v": 0.5328051204689567
+ },
+ "leg.1931-1933.palabras_por_sesion": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de 1931-1933 / sus sesiones, redondeado a la unidad",
+  "grupos": "datos",
+  "t": "n",
+  "v": 32016
+ },
+ "leg.1931-1933.sesiones": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "claves (date, num_session) de 1931-1933",
+  "grupos": "datos",
+  "t": "n",
+  "v": 405
+ },
+ "leg.1933-1935.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas de 1933-1935",
+  "grupos": "datos",
+  "t": "n",
+  "v": 40342
+ },
+ "leg.1933-1935.palabras": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de 1933-1935",
+  "grupos": "datos",
+  "t": "n",
+  "v": 9476120
+ },
+ "leg.1933-1935.palabras_por_sesion": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de 1933-1935 / sus sesiones, redondeado a la unidad",
+  "grupos": "datos",
+  "t": "n",
+  "v": 34334
+ },
+ "leg.1933-1935.sesiones": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "claves (date, num_session) de 1933-1935",
+  "grupos": "datos",
+  "t": "n",
+  "v": 276
+ },
+ "leg.1936-1939.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas de 1936-1939",
+  "grupos": "datos",
+  "t": "n",
+  "v": 5854
+ },
+ "leg.1936-1939.palabras": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de 1936-1939",
+  "grupos": "datos",
+  "t": "n",
+  "v": 1893486
+ },
+ "leg.1936-1939.palabras_por_sesion": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de 1936-1939 / sus sesiones, redondeado a la unidad",
+  "grupos": "datos",
+  "t": "n",
+  "v": 25588
+ },
+ "leg.1936-1939.sesiones": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "claves (date, num_session) de 1936-1939",
+  "grupos": "datos",
+  "t": "n",
+  "v": 74
+ },
+ "longitud.curva.corte": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "punto anotado de F11 (parte de filas, de la más larga a la más corta)",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.1
+ },
+ "longitud.curva.corte2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "punto anotado de F11 (parte de filas, de la más larga a la más corta)",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.2
+ },
+ "longitud.curva.palabras": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "dec": 1,
+  "f": "parte de nwords en el 10 % de filas más largas (curva de F11)",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.7448775668666565
+ },
+ "longitud.curva.palabras2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "dec": 1,
+  "f": "parte de nwords en el 20 % de filas más largas (curva de F11)",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.9037508214203414
+ },
+ "longitud.hasta50": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con nwords ≤ 50",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 71550
+ },
+ "longitud.hasta50.pct": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con nwords ≤ 50 / filas",
+  "grupos": "metodo datos",
+  "t": "pct",
+  "v": 0.6652657808853474
+ },
+ "longitud.hasta50.pct.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "filas de la v3 con nwords ≤ 50 / filas de la v3",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.6902054231717337
+ },
+ "longitud.hasta50.presidencia.pct": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas de la Presidencia entre las de nwords ≤ 50",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.5817470300489168
+ },
+ "longitud.mas300": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con nwords > 300",
+  "grupos": "datos",
+  "t": "n",
+  "v": 17362
+ },
+ "longitud.mas300.palabras.pct": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de las filas > 300 / nwords",
+  "grupos": "datos",
+  "t": "pct",
+  "v": 0.8618288391764988
+ },
+ "longitud.mediana": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "mediana de nwords",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 14
+ },
+ "longitud.umbral": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "umbral de fila breve del sitio (límite del tramo 21–50 de F10)",
+  "grupos": "metodo datos",
+  "t": "n",
+  "v": 50
+ },
+ "longitud.umbral300": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "umbral de fila larga (límite del tramo 101–300 de F10)",
+  "grupos": "datos",
+  "t": "n",
+  "v": 300
+ },
+ "mes.1933-02.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas de febrero de 1933",
+  "grupos": "datos",
+  "t": "n",
+  "v": 1843
+ },
+ "mes.1933-02.palabras": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de febrero de 1933",
+  "grupos": "datos",
+  "t": "n",
+  "v": 574317
+ },
+ "mes.1933-02.sesiones": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "sesiones de febrero de 1933",
+  "grupos": "datos",
+  "t": "n",
+  "v": 16
+ },
+ "meses.con_sesion": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "meses AAAA-MM con alguna fila",
+  "grupos": "datos",
+  "t": "n",
+  "v": 64
+ },
+ "ocr.bucle9.repeticiones": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "apariciones de \"Sánchez Guerra, Ossorio y Gallardo\" en la fila V2 976",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 6
+ },
+ "ocr.bucles.paginas": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "suma de ocr.loop_pages (páginas releídas por bucle)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 276
+ },
+ "ocr.fallidas.paginas": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "suma de ocr.failed_pages (sessions.json)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 153
+ },
+ "ocr.fallidas.sesiones": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "sesiones con ocr.failed_pages",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 131
+ },
+ "ocr.incidencias": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "incidencias declaradas en sessions.json (ocr_loop · truncated_end)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 2
+ },
+ "ocr.recuperadas": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "páginas en repaired_pages (TXT_OCR_REPAIRED/*.meta.json); modelo: ['glm-ocr']",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 29
+ },
+ "ocr.tesseract.paginas": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "páginas en tesseract_pages (TXT_OCR_TESSERACT/*.meta.json)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 124
+ },
+ "ocr.tesseract.sesiones": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "archivos con tesseract_pages",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 106
+ },
+ "orador.alba.palabras.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords con rep_name = Santiago Alba Bonifaz (Presidencia incluida)",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 1024975
+ },
+ "orador.alba.perdida": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "dec": 1,
+  "f": "1 − nwords v3 / nwords V2 de Alba (337782 / 1024975)",
+  "grupos": "versiones",
+  "t": "pct",
+  "v": 0.6704485475255494
+ },
+ "orador.besteiro.palabras.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords con rep_name = Julian Besteiro Fernandez (Presidencia incluida)",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 1028999
+ },
+ "orador.besteiro.perdida": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "dec": 1,
+  "f": "1 − nwords v3 / nwords V2 de Besteiro (459111 / 1028999)",
+  "grupos": "versiones",
+  "t": "pct",
+  "v": 0.553827554740092
+ },
+ "orador.besteiro.presidencia.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "las mismas, solo en filas de la Presidencia",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 995577
+ },
+ "orador.negrin.ganancia": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "dec": 1,
+  "f": "nwords v3 / nwords V2 de Negrín − 1 (55620 / 43955)",
+  "grupos": "versiones",
+  "t": "pct",
+  "v": 0.26538505289500636
+ },
+ "orador.prieto.sp.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de Prieto sin filas de la Presidencia (primero de la V2)",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 554773
+ },
+ "orador.royo.sp.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "nwords de Royo Villanova sin Presidencia en la v3 (primero)",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 534408
+ },
+ "paginas.total": {
+  "base": "proyecto",
+  "d": "2026-09-22",
+  "f": "suma de pdf_pages (sessions.json); = total_pages de TXT_OCR/*.meta.json",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 28780
+ },
+ "palabras.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "suma de nwords",
+  "grupos": "metodo datos",
+  "t": "n",
+  "v": 24335896
+ },
+ "palabras.habla.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "suma de nwords sin SUMARIO ni COMENTARIOS",
+  "grupos": "datos",
+  "t": "n",
+  "v": 22096389
+ },
+ "palabras.split.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "suma de len(speech.split()) (separa por cualquier espacio en blanco)",
+  "grupos": "datos",
+  "t": "n",
+  "v": 24700474
+ },
+ "palabras.sumarios.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "nwords de las filas SUMARIO",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 1028248
+ },
+ "palabras.tendencia.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "tokens del índice FTS5 (fts5vocab); = meta.expresiones.tokens_corpus, denominador de la Tendencia",
+  "grupos": "datos",
+  "t": "n",
+  "v": 25903736
+ },
+ "palabras.v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "suma de nwords en la v3",
+  "grupos": "datos",
+  "t": "n",
+  "v": 25364144
+ },
+ "pres.vice_ses": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "sesiones (date, num_session) con alguna fila de rol vicechair (parse_speaker del explorador); 584 si se cuentan fechas",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 586
+ },
+ "presidencia.aprox.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "la línea de datos.decisiones.1.codigo: speaker contiene \"PRESIDENTE\" y no \"CONSEJO|GOBIERNO|REPÚBLICA\"",
+  "grupos": "datos",
+  "t": "n",
+  "v": 48203
+ },
+ "presidencia.filas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas con rol chair, vicechair o chair_age (parse_speaker)",
+  "grupos": "datos",
+  "t": "n",
+  "v": 48241
+ },
+ "presidencia.filas.pct": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas de la Presidencia / filas",
+  "grupos": "datos",
+  "t": "pct",
+  "v": 0.44854069232271204
+ },
+ "presidencia.palabras.pct": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "nwords de la Presidencia / nwords",
+  "grupos": "datos",
+  "t": "pct",
+  "v": 0.10237835500283203
+ },
+ "rep836.id": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "único rep_id con dos rep_name distintos (Amos Ruiz Lecina · Mariano Ruiz Funes Garcia)",
+  "grupos": "datos",
+  "t": "id",
+  "v": 836
+ },
+ "ses.s48.cola": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "filas finales de la sesión 48 que repiten «Pido la palabra»",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 5
+ },
+ "ses.s48.cola.V2.desde": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "primera de esas filas en la V2",
+  "grupos": "metodo",
+  "t": "id",
+  "v": 5788
+ },
+ "ses.s48.cola.V2.hasta": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "última de esas filas en la V2",
+  "grupos": "metodo",
+  "t": "id",
+  "v": 5792
+ },
+ "ses.s48.cola.pantalla.desde": {
+  "base": "explorador",
+  "d": "2026-09-22",
+  "f": "orden en pantalla (ord + 1) de la primera",
+  "grupos": "metodo",
+  "t": "id",
+  "v": 411
+ },
+ "ses.s48.cola.pantalla.hasta": {
+  "base": "explorador",
+  "d": "2026-09-22",
+  "f": "orden en pantalla (ord + 1) de la última",
+  "grupos": "metodo",
+  "t": "id",
+  "v": 415
+ },
+ "ses.s48.cola.v3.desde": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "primera de las cinco filas finales en la v3",
+  "grupos": "metodo",
+  "t": "id",
+  "v": 6460
+ },
+ "ses.s48.cola.v3.hasta": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "última de las cinco filas finales en la v3",
+  "grupos": "metodo",
+  "t": "id",
+  "v": 6464
+ },
+ "sesion.1931-10-01-48.filas_v3": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "filas de la sesión 48 en la v3",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 415
+ },
+ "sesiones": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "claves distintas (date, num_session)",
+  "grupos": "metodo datos versiones",
+  "t": "n",
+  "v": 755
+ },
+ "sesiones.fechas_dobles": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "fechas con dos claves de sesión",
+  "grupos": "datos",
+  "t": "n",
+  "v": 3
+ },
+ "sesiones.num1": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "claves con num_session = 1",
+  "grupos": "datos",
+  "t": "n",
+  "v": 3
+ },
+ "union.filas.sin_ficha": {
+  "base": "afin",
+  "d": "2026-09-22",
+  "f": "filas V2 de esos pares",
+  "grupos": "datos",
+  "t": "n",
+  "v": 426
+ },
+ "union.pares": {
+  "base": "afin",
+  "d": "2026-09-22",
+  "f": "pares (rep_id, legislatura recodificada) de la V2",
+  "grupos": "datos",
+  "t": "n",
+  "v": 1060
+ },
+ "union.pares.casan": {
+  "base": "afin",
+  "d": "2026-09-22",
+  "f": "pares con ficha en representative_metadata (CGOCUS V1.1)",
+  "grupos": "datos",
+  "t": "n",
+  "v": 1047
+ },
+ "union.pares.otro_partido": {
+  "base": "afin",
+  "d": "2026-09-22",
+  "f": "pares cuyo party (moda en la V2) ≠ partido en CGOCUS",
+  "grupos": "datos",
+  "t": "n",
+  "v": 31
+ },
+ "union.pares.sin_ficha": {
+  "base": "afin",
+  "d": "2026-09-22",
+  "f": "pares sin ficha",
+  "grupos": "datos",
+  "t": "n",
+  "v": 13
+ },
+ "union.solo_id.filas": {
+  "base": "afin",
+  "d": "2026-09-22",
+  "f": "filas tras unir solo por rep_id = id_dip (left join)",
+  "grupos": "datos",
+  "t": "n",
+  "v": 247327
+ },
+ "v3.comentarios": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "filas COMENTARIOS (papel remark)",
+  "grupos": "metodo datos versiones",
+  "t": "n",
+  "v": 12654
+ },
+ "v3.comentarios.en_presidencia": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "bloques de comentario cuya fila V2 de origen es de la Presidencia",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.6714082503556188
+ },
+ "v3.filas_v2_con_habla": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "filas V2 con alguna pieza de habla",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 107282
+ },
+ "v3.filas_v2_solo_comentario": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "filas V2 sin pieza de habla",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 269
+ },
+ "v3.piezas_extra": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "piezas de habla − filas V2 con habla (continuaciones)",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 274
+ },
+ "v3.piezas_habla": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "piezas de clase habla (mapa_v2_v3.json)",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 107556
+ },
+ "v3.sumarios": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "filas SUMARIO (papel summary)",
+  "grupos": "versiones",
+  "t": "n",
+  "v": 755
+ },
+ "v3.turnos": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "piezas de clase turno (mapa_v2_v3.json) = habla.v3 − piezas de habla",
+  "grupos": "metodo versiones",
+  "t": "n",
+  "v": 735
+ },
+ "v3.turnos.en_presidencia": {
+  "base": "v3",
+  "d": "2026-09-22",
+  "f": "turnos rescatados cuya fila V2 de origen es de la Presidencia",
+  "grupos": "metodo",
+  "t": "pct",
+  "v": 0.6625850340136055
+ },
+ "vinculo.corregidas": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "README depositado, SECTION 4 («367 assignments were corrected»)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 367
+ },
+ "vinculo.umbral": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "dec": 2,
+  "f": "README SECTION 4 (0.82); link_deputies.py, difflib.get_close_matches cutoff 0.82",
+  "grupos": "metodo",
+  "t": "ratio",
+  "v": 0.82
+ },
+ "voto.161-121.V2": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "fila de la Presidencia con la lista nominal del 1-X-1931 (compartida con Inicio)",
+  "grupos": "metodo datos",
+  "t": "id",
+  "v": 5453
+ },
+ "voto.161-121.no": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "«Total, 121.» en el texto de la fila V2 5453 (compartido con Sesiones)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 121
+ },
+ "voto.161-121.si": {
+  "base": "V2",
+  "d": "2026-09-22",
+  "f": "«Total, 161.» en el texto de la fila V2 5453 (compartido con Sesiones)",
+  "grupos": "metodo",
+  "t": "n",
+  "v": 161
+ }
+}

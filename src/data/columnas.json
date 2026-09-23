@@ -1,0 +1,25 @@
+{
+ "_meta": {
+  "fig": "F32",
+  "base": "V2",
+  "filas_ejemplo": [5423,5424],
+  "d": "2026-09-23",
+  "md5_v2": "360332a0ff1327671530f15eed46ac0c"
+ },
+ "columnas": [
+  {"columna":"id","tipo":"entero","vacios":0,"distintos":107551,"den":107551,"v5423":"5423","v5424":"5424","v5424_caracteres":null},
+  {"columna":"num_session","tipo":"entero","vacios":0,"distintos":405,"den":107551,"v5423":"48","v5424":"48","v5424_caracteres":null},
+  {"columna":"order","tipo":"entero","vacios":0,"distintos":586,"den":107551,"v5423":"25","v5424":"26","v5424_caracteres":null},
+  {"columna":"date","tipo":"fecha","vacios":0,"distintos":752,"den":107551,"v5423":"1931-10-01","v5424":"1931-10-01","v5424_caracteres":null},
+  {"columna":"speaker","tipo":"texto","vacios":0,"distintos":2370,"den":107551,"v5423":"El Sr. PRESIDENTE:","v5424":"La Srta. CAMPOAMOR:","v5424_caracteres":null},
+  {"columna":"speech","tipo":"texto","vacios":0,"distintos":68760,"den":107551,"v5423":"Ruego a la Cámara que guarde silencio.","v5424":"Yo ruego a la Cámara que me escuche en silencio; no es con agresiones y no es con ironias como vais a vencer mi fortaleza; la única cosa que yo tengo aquí ante vosotros, Sres. Diputados, que merezca la consideración y acaso la emulación es precisamente el defender un derecho a que me obliga mi naturaleza y mi fe, con tesón y con firmeza. (Muy bien. Aplausos.) No quisiera recoger interrupciones para no alargar la discusión; pero, puesto que he oído en el aire que \"dentro de un año\", es que creéis que dentro de un año la mujer si iba a estar capacitada? Es que creéis que para esa época vais a co","v5424_caracteres":8297},
+  {"columna":"rep_id","tipo":"entero","vacios":147,"distintos":773,"den":107551,"v5423":"133","v5424":"175","v5424_caracteres":null},
+  {"columna":"rep_name","tipo":"texto","vacios":147,"distintos":773,"den":107551,"v5423":"Julian Besteiro Fernandez","v5424":"Clara Campoamor Y Rodriguez","v5424_caracteres":null},
+  {"columna":"district","tipo":"texto","vacios":147,"distintos":54,"den":107551,"v5423":"Madrid","v5424":"Madrid","v5424_caracteres":null},
+  {"columna":"party","tipo":"texto","vacios":147,"distintos":39,"den":107551,"v5423":"PSOE","v5424":"PRR","v5424_caracteres":null},
+  {"columna":"party_family","tipo":"texto","vacios":151,"distintos":33,"den":107551,"v5423":"Socialista","v5424":"Republicanos","v5424_caracteres":null},
+  {"columna":"ideology","tipo":"texto","vacios":147,"distintos":8,"den":107551,"v5423":"I","v5424":"C","v5424_caracteres":null},
+  {"columna":"nwords","tipo":"entero","vacios":0,"distintos":3805,"den":107551,"v5423":"7","v5424":"1460","v5424_caracteres":null},
+  {"columna":"legislature","tipo":"texto","vacios":0,"distintos":3,"den":107551,"v5423":"1931-1933","v5424":"1931-1933","v5424_caracteres":null}
+ ]
+}

@@ -1,0 +1,386 @@
+---
+/**
+ * C · Ficha de etapa ×5 (plan § Plantilla C; narrativa § 8; DESIGN.md § Esquemas, «C · Ficha de etapa»). Dueño: grupo 2.
+ * Es la pieza que responde a «el contexto histórico no se resume»: un Diario anotado al margen.
+ *  · Columna de libro (38 rem) y MARGEN VIVO: cada «(V2 … · v3 …)» del copy sale del texto y va al margen como nota con
+ *    llamada (`lib/margen.ts`); en el móvil, detrás de su párrafo.
+ *  · Índice lateral numerado con los H2 y los H3 de «Lo que pasó en la Cámara» y de «Quién tomó la palabra».
+ *  · Figuras: F01e con las bandas F16 (protagonista, del grupo 1: `<FigCalendario escala="etapa">`; mientras no exista,
+ *    su hueco) · F05 (v3, con NotaBases) · F09 (V2).
+ * Copy: `cortes.<slug>.*` (docs/copy_es/cortes_<slug>.md), la plantilla común `cortes.ficha.*` (cortes.md, grupo 1) y
+ * las piezas propias de esta plantilla (cortes_fichas.md). Cifras: exportador (base, cortes → fichas).
+ *
+ * Movimientos: 0 cabecera · 1 Hoy puede · 2 Cifras · 3 Lo que pasó en la Cámara · 4 Cuándo se reunió · 5 Quién tomó la
+ * palabra · (IV y V: las sesiones, una a una) · 6 Puertas · 7 Debates preparados · 8 Antes de usarla · 9 Para leer más ·
+ * 10 Cómo citar · vecinas.
+ */
+import Base from '../../../layouts/Base.astro';
+import SubNav from '../../../components/SubNav.astro';
+import CabezaPagina from '../../../components/CabezaPagina.astro';
+import IndiceLateral from '../../../components/IndiceLateral.astro';
+import Seccion from '../../../components/Seccion.astro';
+import FigHueco from '../../../components/FigHueco.astro';
+import FigOradores from '../../../components/FigOradores.astro';
+import FigFamilias from '../../../components/FigFamilias.astro';
+import NotaBases from '../../../components/NotaBases.astro';
+import RegistroPuertas from '../../../components/RegistroPuertas.astro';
+import CifraFrase from '../../../components/CifraFrase.astro';
+import Sello from '../../../components/Sello.astro';
+import Cita from '../../../components/Cita.astro';
+import Vecinas from '../../../components/ficha/Vecinas.astro';
+import SinSitio from '../../../components/SinSitio.astro';
+import { meta } from '../../../lib/pagina';
+import { t, plano, rotulo, tBloques, existe, claves, conIcono } from '../../../lib/i18n';
+import { fmt, marcaPendiente } from '../../../lib/cifras';
+import { dato } from '../../../lib/datos';
+import { primera, anclasTras, htmlFija, rotulosConDestino, destinoBoton } from '../../../lib/lectura';
+import { htmlCita } from '../../../lib/piezas';
+import { remata } from '../../../lib/remata';
+import { conMargen, partes } from '../../../lib/margen';
+import { url, PAGINAS, ETAPAS, etapaPorSlug, puertasDeEtapa } from '../../../lib/rutas';
+import { paginaDe } from '../../../lib/figuras';
+import { citaConjunto, bibtex, ris } from '../../../lib/cita';
+import { LANGS, type Lang } from '../../../lib/idiomas';
+
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) => ETAPAS.map((e) => ({ params: { lang, etapa: e.slug } })));
+}
+const lang = Astro.params.lang as Lang;
+const e = etapaPorSlug(Astro.params.etapa!)!;
+const P = `cortes.${e.slug}`;
+const F = 'cortes.ficha';
+const ctx = { sub: { etapa: e.id }, vars: { romano: e.id } };
+const { titulo, descripcion } = meta(lang, P, ctx);
+
+// ── F01e: la figura del grupo 1, si ya existe; si no, su hueco (y la vista previa lo dice) ──────────────────────
+const CAL = import.meta.glob<{ default: unknown }>('../../../components/FigCalendario.astro', { eager: true });
+const FigCalendario = Object.values(CAL)[0]?.default as any;
+
+// ── utilidades de pintado ──────────────────────────────────────────────────────────────────────────────────────
+const k = (s: string) => `${P}.${s}`;
+const o = (c: string) => (existe(c) ? t(lang, c, ctx) : marcaPendiente(c, 'copy'));
+const fijasTras = (c: string) => anclasTras(c).map((f) => htmlFija(lang, f)).join('');
+const usados: string[] = [k('miga'), k('titulo'), k('antetitulo'), k('entrada'), k('tension'), k('meta')];
+const rotuloFila = existe(`${F}.nota.fila`) ? plano(lang, `${F}.nota.fila`) : '';
+/** Un texto del copy en bloques, con su margen (ids al margen), sus rótulos con destino y sus frases fijas detrás. */
+function bloque(c: string, clase = ''): string {
+  usados.push(c);
+  if (!existe(c)) return `<p>${marcaPendiente(c, 'copy')}</p>`;
+  let html = rotulosConDestino(lang, remata(tBloques(lang, c, ctx)), c);
+  if (clase) html = html.replace(/^<(p|ul|ol)\b/, `<$1 class="${clase}"`);
+  return conMargen(partes(html), rotuloFila) + fijasTras(c);
+}
+/** Las claves de un prefijo del copy de la etapa, en su orden, sin las que pinta otro. */
+const hijas = (pre: string, salvo: string[] = []) =>
+  claves(`${pre}.`, true).filter((x) => !salvo.some((s) => x === `${pre}.${s}` || x.startsWith(`${pre}.${s}.`)));
+
+// ── 3 · Lo que pasó en la Cámara: apartados H3, cada uno con su margen, sus fuentes y, si la tiene, su puerta ──────
+// Qué párrafo lleva debajo «Tiene su puerta de lectura →» (notas de diseño del copy de cada ficha).
+const PUERTA_TRAS: Record<string, Record<string, string>> = {
+  '1931': { '2.b': 'sufragio-1931', '2.c': 'cuestion-religiosa-1931', '3.d': 'estatuto-1932', '4.a': 'casas-viejas-1933' },
+  '1933': { '2.j': 'pistola-1934' },
+  '1936': { '6.c': 'antesala-1936' },
+  guerra: { '4.*': 'figueres-1939' },
+  mexico: { '2.*': 'mexico-1945' },
+};
+const publicadas = new Set<string>(puertasDeEtapa(e.id).map((p) => p.slug));
+function puertaHtml(slug: string): string {
+  if (!publicadas.has(slug)) return '';
+  const tit = existe(`sesiones.lista.${slug}.titulo`) ? t(lang, `sesiones.lista.${slug}.titulo`) : slug;
+  const fecha = existe(`sesiones.lista.${slug}.fecha`) ? `<span class="puerta-fecha">${t(lang, `sesiones.lista.${slug}.fecha`)}</span>` : '';
+  return `<p class="puerta-enlace"><a href="${url(lang, `${PAGINAS.sesiones}/${slug}`)}">${fecha}<span class="puerta-titulo">${tit}</span>`
+    + `<span class="puerta-rotulo">${conIcono(t(lang, `${F}.contexto.puerta`))}</span></a></p>`;
+}
+const numeros = [...new Set(claves(k('contexto.'), true).map((x) => x.slice(k('contexto.').length).split('.')[0]).filter((x) => /^\d+$/.test(x)))];
+const apartados = numeros.map((n) => {
+  const pre = k(`contexto.${n}`);
+  const id = `contexto-${n}`;
+  const partesTexto = hijas(pre, ['titulo', 'fuentes']);
+  const mapa = PUERTA_TRAS[e.slug] ?? {};
+  let html = '';
+  partesTexto.forEach((c, i) => {
+    html += bloque(c);
+    const letra = c.slice(pre.length + 1);
+    const puerta = mapa[`${n}.${letra}`] ?? (i === partesTexto.length - 1 ? mapa[`${n}.*`] : undefined);
+    if (puerta) html += puertaHtml(puerta);
+  });
+  usados.push(`${pre}.titulo`);
+  if (existe(`${pre}.fuentes`)) {
+    usados.push(`${pre}.fuentes`);
+    const refs = t(lang, `${pre}.fuentes`, ctx).split(/\s+·\s+(?=\[[AI]\])/);
+    html += `<div class="fuentes" data-audit-exento="referencia bibliográfica"><p class="asiento">${t(lang, `${F}.contexto.externas`)}</p>`
+      + `<ul role="list">${refs.map((r) => `<li>${r}</li>`).join('')}</ul></div>`;
+  }
+  return { id, titulo: o(`${pre}.titulo`), html };
+});
+
+// ── 5 · Quién tomó la palabra: el texto de F05 y el de F09, cada uno con su figura ────────────────────────────
+const palabra = hijas(k('palabra'), ['titulo']);
+const deF09 = (x: string) => /\.f09/.test(x);
+const textoF05 = palabra.filter((x) => !deF09(x)).map((x) => bloque(x)).join('');
+const textoF09 = palabra.filter(deF09).map((x) => bloque(x)).join('');
+
+// ── IV y V · las sesiones, una a una (registro sin tarjetas; la puerta, si la hay, enlazada) ──────────────────
+const SES = (dato<{ sesiones: { clave: string; filas: number; f: string }[] }>('sesiones')?.sesiones ?? []);
+const sesionesClaves = claves(k('sesiones.'), true).filter((x) => /\.sesiones\.\d{4}-\d{2}-\d{2}-\d+$/.test(x));
+const puertaDeSesion: Record<string, string> = {};
+const CAL_PUERTAS = dato<{ puertas_por_sesion?: Record<string, string> }>('calendario')?.puertas_por_sesion;
+if (CAL_PUERTAS) Object.assign(puertaDeSesion, CAL_PUERTAS);
+if (e.id === 'IV') puertaDeSesion['1939-02-01-69'] ??= 'figueres-1939';
+if (e.id === 'V') for (const c of ['1945-08-17-71', '1945-11-07-72', '1945-11-08-73', '1945-11-09-74']) puertaDeSesion[c] ??= 'mexico-1945';
+const sesiones = sesionesClaves.map((c) => {
+  usados.push(c);
+  const clave = c.split('.').pop()!;
+  // «1-X-1936 · Madrid. …»: la fecha (en su <time>) y lo que pasó. En inglés, mientras se presta el español, sin su envoltorio.
+  const crudo = t(lang, c, ctx);
+  const prestado = /^<span lang="es" data-sin-traducir>/.test(crudo);
+  const [fecha, ...resto] = crudo.replace(/^<span lang="es" data-sin-traducir>([\s\S]*)<\/span>$/, '$1').split(' · ');
+  const s = SES.find((x) => x.clave === clave);
+  const filas = s ? fmt.dato(s.filas, fmt.n(s.filas, lang), `sesion.${clave}.filas`, 'V2') : '';
+  const puerta = puertaDeSesion[clave];
+  return { clave, fecha, prestado, que: resto.join(' · '), filas, href: puerta && publicadas.has(puerta) ? url(lang, `${PAGINAS.sesiones}/${puerta}`) : null };
+});
+if (sesionesClaves.length) usados.push(k('sesiones.titulo'));
+
+// ── 7 · Debates preparados ─────────────────────────────────────────────────────────────────────────────────────
+const debates = hijas(k('debates'), ['titulo', 'entrada']);  // la entrada la pinta Seccion como entrada
+// ── 8 · Antes de usarla · 9 · Para leer más ────────────────────────────────────────────────────────────────────
+const antes = hijas(k('antes'), ['titulo']);
+const leer = hijas(k('leer'), ['titulo']);
+leer.forEach((x) => usados.push(x));
+// ── 10 · Cómo citar ────────────────────────────────────────────────────────────────────────────────────────────
+const citar = hijas(k('citar'), ['titulo']);
+citar.forEach((x) => usados.push(x));
+// ── 1 · Hoy puede · 2 · Cifras · 4 · Cuándo ────────────────────────────────────────────────────────────────────
+usados.push(k('hoy'), k('cifras'), k('calendario'), k('palabra'), k('puertas'), k('debates'), k('antes'));
+const cifrasFrases = hijas(k('cifras'), ['titulo']).map((x) => t(lang, x, ctx));
+const calendario = hijas(k('calendario'), ['titulo', 'entrada']);
+const calendarioHtml = calendario.map((x) => bloque(x)).join('');
+const antesHtml = antes.map((x) => bloque(x)).join('');
+
+// ── Índice: los H2 y, bajo «Lo que pasó» y «Quién tomó la palabra», sus H3 ─────────────────────────────────────
+const sec = (id: string, clave: string, sub?: { id: string; rotulo: string }[]) => ({ id, rotulo: primera(lang, [k(`${clave}.titulo`), `${F}.${clave}.titulo`], ctx), sub });
+const entradas = [
+  sec('hoy', 'hoy'),
+  sec('cifras', 'cifras'),
+  sec('contexto', 'contexto', apartados.map((a) => ({ id: a.id, rotulo: a.titulo }))),
+  sec('cuando', 'calendario'),
+  sec('quien', 'palabra', [
+    { id: 'oradores', rotulo: primera(lang, [`${F}.palabra.indice.f05`, 'fig.F05.titulo']) },
+    { id: 'familias', rotulo: primera(lang, [`${F}.palabra.indice.f09`, 'fig.F09.titulo']) },
+  ]),
+  ...(sesiones.length ? [{ id: 'sesiones', rotulo: o(k('sesiones.titulo')) }] : []),
+  sec('puertas', 'puertas'),
+  sec('debates', 'debates'),
+  sec('antes', 'antes'),
+  sec('leer', 'leer'),
+  sec('citar', 'citar'),
+];
+const ids = entradas.map((x) => x.id);
+
+const i = ETAPAS.findIndex((x) => x.slug === e.slug);
+const vecina = (x?: (typeof ETAPAS)[number]) => x ? {
+  href: url(lang, `${PAGINAS.cortes}/${x.slug}`),
+  titulo: primera(lang, [`cortes.etapa.${x.id}.corto`, `comun.etapa.${x.id}.corto`]),
+  sub: existe(`comun.etapa.${x.id}.anos`) ? t(lang, `comun.etapa.${x.id}.anos`) : undefined,
+} : null;
+// Miga en caja normal y enlazada, como la de las puertas (DESIGN.md § C; pulido fase 2): «Las Cortes / I».
+const migaClave = [k('miga'), `${F}.miga`].find(existe);
+const miga = migaClave ? t(lang, migaClave, ctx).replace(/^([^/]+?)(\s*\/)/, `<a href="${url(lang, PAGINAS.cortes)}">$1</a>$2`) : `<a href="${url(lang, PAGINAS.cortes)}">${rotulo(lang, 'comun.nav.cortes')}</a> / ${e.id}`;
+const verCalendario = destinoBoton(lang, 'comun.boton.ver_calendario') ?? url(lang, paginaDe('F01'));
+const citaSesion = citar.filter((x) => /\.citar\.sesion$/.test(x));
+const citaResto = citar.filter((x) => !/\.citar\.sesion$/.test(x));
+---
+<Base lang={lang} ruta={`${PAGINAS.cortes}/${e.slug}`} titulo={titulo} descripcion={descripcion}>
+  <SubNav lang={lang} grupo="cortes" actual={`${PAGINAS.cortes}/${e.slug}`} />
+  <CabezaPagina lang={lang} prefijo={P} miga={miga} marca={e.id} ctx={ctx} extras={['tension']} bases={['V2', 'proyecto', 'v3']} />
+  <div class="contenedor con-indice ficha" style={`timeline-scope: ${ids.map((x) => `--${x}`).join(', ')}`}>
+    <IndiceLateral lang={lang} titulo={t(lang, 'comun.indice.titulo')} entradas={entradas} />
+    <div class="lectura">
+
+      <!-- 1 · Hoy puede: solo lo que el explorador publicado hace -->
+      <Seccion lang={lang} id="hoy" prefijo={k('hoy')} titulo={`${F}.hoy.titulo`} indice ctx={ctx} clase="ficha-hoy">
+        <aside class="nota-m arranque" slot="antes">
+          <p set:html={t(lang, 'comun.fija.enlace')} />
+        </aside>
+      </Seccion>
+
+      <!-- 2 · Cifras: tres cifras en su frase, como un libro de registro; la base, al margen -->
+      <Seccion lang={lang} id="cifras" prefijo={k('cifras')} titulo={`${F}.cifras.titulo`} indice ctx={ctx} resto={false}>
+        <CifraFrase frases={cifrasFrases} />
+        <aside class="nota-m">
+          <p class="asiento"><Sello lang={lang} base="V2" /></p>
+          {existe(`${F}.cifras.base`) && <p set:html={t(lang, `${F}.cifras.base`)} />}
+        </aside>
+      </Seccion>
+
+      <!-- 3 · Lo que pasó en la Cámara: el contexto amplio, anotado al margen -->
+      <Seccion lang={lang} id="contexto" prefijo={k('contexto')} titulo={`${F}.contexto.titulo`} indice ctx={ctx} resto={false} clase="ficha-contexto">
+        <aside class="nota-m arranque" slot="antes">
+          <p set:html={t(lang, `${F}.contexto.ids`)} />
+          <p set:html={t(lang, 'comun.fija.ids')} />
+        </aside>
+        {apartados.map((a) => (
+          <div class="prosa apartado">
+            <h3 id={a.id} set:html={a.titulo} />
+            <Fragment set:html={a.html} />
+          </div>
+        ))}
+      </Seccion>
+
+      <!-- 4 · Cuándo se reunió: F01e con las bandas F16 (grupo 1) -->
+      <Seccion lang={lang} id="cuando" prefijo={k('calendario')} titulo={`${F}.calendario.titulo`} indice ctx={ctx} resto={false} espera={['titulo', 'entrada']}>
+        {FigCalendario
+          ? <FigCalendario lang={lang} escala="etapa" etapa={e.id} />
+          : <FigHueco lang={lang} id="F01e" que="recorte del calendario de la etapa, con las bandas F16 (grupo 1)" />}
+        {!FigCalendario && <p class="botones ver-todo"><a class="boton sec" href={verCalendario} set:html={rotulo(lang, 'fig.F01e.ver_todo')} /></p>}
+        <div class="prosa" set:html={calendarioHtml} />
+      </Seccion>
+
+      <!-- 5 · Quién tomó la palabra: F05 (v3) y F09 (V2) -->
+      <Seccion lang={lang} id="quien" prefijo={k('palabra')} titulo={`${F}.palabra.titulo`} indice ctx={ctx} resto={false}>
+        <div class="prosa" set:html={textoF05} />
+        <NotaBases lang={lang} />
+        <FigOradores lang={lang} etapa={e.id} slug={e.slug} />
+        <div class="prosa" set:html={textoF09} />
+        <FigFamilias lang={lang} etapa={e.id} slug={e.slug} />
+      </Seccion>
+
+      {sesiones.length > 0 && (
+        <section class="seccion" id="sesiones" aria-labelledby="sesiones-titulo" style="view-timeline-name: --sesiones">
+          <div class="seccion-cuerpo">
+            <h2 id="sesiones-titulo" set:html={o(k('sesiones.titulo'))} />
+            {existe(`${F}.sesiones.entrada`) && <p class="lede" set:html={t(lang, `${F}.sesiones.entrada`)} />}
+            <ol class="registro-sesiones" role="list">
+              {sesiones.map((s) => (
+                <li lang={s.prestado ? 'es' : undefined} data-sin-traducir={s.prestado ? '' : undefined}>
+                  <span class="rs-fecha"><time datetime={s.clave.slice(0, 10)} set:html={s.fecha} /></span>
+                  <span class="rs-que">{s.href ? <a href={s.href} set:html={s.que} /> : <Fragment set:html={s.que} />}</span>
+                  {s.filas && <span class="rs-filas"><Fragment set:html={s.filas} /> {existe(`${F}.sesiones.filas`) && <span set:html={t(lang, `${F}.sesiones.filas`)} />}</span>}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
+
+      <!-- 6 · Puertas de esta etapa -->
+      <Seccion lang={lang} id="puertas" prefijo={k('puertas')} titulo={`${F}.puertas.titulo`} indice ctx={ctx} resto={false}>
+        <RegistroPuertas lang={lang} etapa={e.id} />
+      </Seccion>
+
+      <!-- 7 · Debates preparados en el explorador -->
+      <Seccion lang={lang} id="debates" prefijo={k('debates')} titulo={`${F}.debates.titulo`} indice ctx={ctx} resto={false}>
+        <div class="prosa" set:html={debates.map((x) => bloque(x, /\.lista$/.test(x) ? 'debates-lista' : '')).join('')} />
+        <aside class="nota-m">
+          <p set:html={t(lang, `${F}.debates.como`)} />
+          <p set:html={t(lang, `${F}.debates.salvedad`)} />
+        </aside>
+      </Seccion>
+
+      <!-- 8 · Antes de usarla -->
+      <Seccion lang={lang} id="antes" prefijo={k('antes')} titulo={`${F}.antes.titulo`} indice ctx={ctx} resto={false} clase="ficha-antes">
+        <div class="prosa" set:html={antesHtml} />
+      </Seccion>
+
+      <!-- 9 · Para leer más: solo obras comprobadas, [A] académica, [I] institucional -->
+      <Seccion lang={lang} id="leer" prefijo={k('leer')} titulo={`${F}.leer.titulo`} indice ctx={ctx} resto={false}>
+        <p class="nota leer-nota" set:html={t(lang, `${F}.leer.nota`)} />
+        <ul class="referencias" role="list" data-audit-exento="referencia bibliográfica">
+          {leer.map((x) => <li set:html={t(lang, x, ctx)} />)}
+        </ul>
+      </Seccion>
+
+      <!-- 10 · Cómo citar: una sesión de esta etapa y el conjunto -->
+      <Seccion lang={lang} id="citar" prefijo={k('citar')} titulo={`${F}.citar.titulo`} indice ctx={ctx} resto={false}>
+        <p set:html={t(lang, `${F}.citar.sesion`)} />
+        {citaSesion.map((x) => <Fragment set:html={htmlCita(lang, { texto: t(lang, x, ctx), lenguaTexto: 'es' })} />)}
+        <aside class="nota-m">
+          <p set:html={t(lang, `${F}.citar.paginas`)} />
+          {citaSesion.map((x) => <Fragment set:html={fijasTras(x)} />)}
+          {citaResto.map((x) => <p set:html={t(lang, x, ctx)} />)}
+          <p set:html={t(lang, 'comun.fija.diario')} />
+        </aside>
+        <p class="citar-conjunto" set:html={t(lang, `${F}.citar.conjunto`)} />
+        <Cita lang={lang} texto={citaConjunto('thqcmi', lang)} bibtex={bibtex('thqcmi')} ris={ris('thqcmi')} lenguaTexto="en" />
+      </Seccion>
+    </div>
+  </div>
+  <Vecinas lang={lang} tipo="etapa" anterior={vecina(ETAPAS[i - 1])} siguiente={vecina(ETAPAS[i + 1])} />
+  <SinSitio lang={lang} prefijo={P} ctx={ctx} usados={usados} ignorar={['meta']} />
+</Base>
+
+<style>
+  /* ── el margen vivo: la llamada y su nota, numeradas por CSS en toda la ficha ─────────────────────────────── */
+  /* Un solo aire entre la última sección y las vecinas (el de .vecinas). */
+  .ficha { counter-reset: fila-ll fila-nota; padding-bottom: 0; }
+  .ficha :global(.fila-ll) { counter-increment: fila-ll; }
+  .ficha :global(.fila-ll)::after {
+    content: counter(fila-ll); font: 500 .62em/0 var(--mono); color: var(--accent); vertical-align: super; margin-left: .12em;
+  }
+  .ficha :global(.nota-fila .fila-n) { counter-increment: fila-nota; }
+  .ficha :global(.nota-fila .asiento + .asiento) { margin-top: .3rem; }
+  .ficha :global(.nota-fila .fila-n)::before { content: counter(fila-nota); color: var(--accent); margin-right: .55em; }
+  .ficha :global(.nota-fila .asiento) { margin: 0; overflow-wrap: anywhere; color: var(--ink-2); }
+  .ficha :global(.nota-fila .asiento data.cifra) { font-family: var(--mono); color: var(--ink); }
+  @media (min-width: 64rem) {
+    /* En escritorio, la nota sube a la fila de su párrafo (colocación automática de la rejilla, base.css). */
+    .ficha :global(.nota-fila) { padding-top: .3rem; }
+    /* La nota que abre una sección va a la altura del H2, fuera del flujo de la rejilla: ni empuja el texto hacia abajo
+       ni ocupa las filas del margen que necesitan las notas de los primeros párrafos. */
+    .ficha :global(.seccion-cuerpo) { position: relative; }
+    .ficha .arranque { position: absolute; grid-column: 7 / -1; grid-row: 1; top: .35rem; margin: 0; }
+  }
+
+  /* ── Lo que pasó en la Cámara: cada apartado es una sub-rejilla con su propio margen ─────────────────────── */
+  .ficha :global(.apartado) { display: contents; }
+  .ficha :global(.apartado > h3) { margin: var(--e7) 0 var(--e4); scroll-margin-top: var(--e6); }
+  .ficha :global(.fuentes) { font-size: var(--fs-small); color: var(--ink-2); margin: var(--e2) 0 var(--e5); padding-top: var(--e3); border-top: 1px solid var(--hair); }
+  .ficha :global(.fuentes .asiento) { margin-bottom: .35rem; }
+  .ficha :global(.fuentes ul) { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+  .ficha :global(.fuentes li) { max-width: var(--measure); }
+
+  /* «Tiene su puerta de lectura →»: una línea de registro dentro del texto, toda ella un enlace. */
+  .ficha :global(.puerta-enlace) { margin: var(--e2) 0 var(--e5); }
+  .ficha :global(.puerta-enlace a) {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .1rem var(--e3); align-items: baseline; padding: .7rem 0 .75rem;
+    border-block: 1px solid var(--hair); text-decoration: none; color: var(--ink);
+  }
+  .ficha :global(.puerta-fecha) { font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); }
+  .ficha :global(.puerta-titulo) { font-size: 1.08rem; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .2em; }
+  .ficha :global(.puerta-rotulo) { grid-column: 1 / -1; font-size: var(--fs-small); color: var(--ink-2); display: inline-flex; align-items: center; gap: .3em; }
+  .ficha :global(.puerta-rotulo .icono) { color: var(--accent); }
+  .ficha :global(.puerta-enlace a:hover) { background: var(--bg-2); }
+  .ficha :global(.puerta-enlace a:hover .puerta-titulo) { text-decoration-color: var(--accent); }
+
+  /* ── Cuándo se reunió ────────────────────────────────────────────────────────────────────────────────── */
+  .ver-todo { margin: 0 0 var(--e6); }
+
+  /* ── las sesiones, una a una (IV y V): registro sin tarjetas ─────────────────────────────────────────── */
+  .registro-sesiones { list-style: none; margin: var(--e5) 0 0; padding: 0; border-top: 1px solid var(--hair-2); }
+  .registro-sesiones li {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "f n" "q q"; gap: .15rem var(--e4);
+    padding: .85rem 0 .9rem; border-bottom: 1px solid var(--hair);
+  }
+  .rs-fecha { grid-area: f; font: 400 var(--fs-mono)/1.5 var(--mono); color: var(--mute); white-space: nowrap; }
+  .rs-que { grid-area: q; font-size: 1.04rem; line-height: 1.4; max-width: var(--measure); }
+  .rs-filas { grid-area: n; justify-self: end; font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); white-space: nowrap; }
+  .rs-filas :global(data.cifra) { font-family: var(--mono); }
+  @media (min-width: 48rem) {
+    .registro-sesiones li { grid-template-columns: 8.5rem minmax(0, 1fr) auto; grid-template-areas: "f q n"; align-items: baseline; }
+  }
+  @media (min-width: 64rem) {
+    .ficha #sesiones .registro-sesiones { grid-column: 1 / -1; }
+  }
+
+  /* ── debates, lecturas y citas ───────────────────────────────────────────────────────────────────────── */
+  .ficha :global(.debates-lista) { list-style: none; padding: 0 !important; border-top: 1px solid var(--hair); }
+  .ficha :global(.debates-lista li) { padding: .55rem 0; border-bottom: 1px solid var(--hair); margin: 0 !important; }
+  .referencias { list-style: none; margin: var(--e4) 0 0; padding: 0; display: grid; gap: var(--e4); }
+  .referencias li { max-width: var(--measure); padding-left: 1.6rem; text-indent: -1.6rem; }
+  .leer-nota { margin-bottom: 0; }
+  .citar-conjunto { margin-top: var(--e6); }
+  @media (min-width: 64rem) {
+    .ficha .referencias { grid-column: 1 / span 6; }
+  }
+</style>

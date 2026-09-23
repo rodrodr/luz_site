@@ -1,0 +1,490 @@
+---
+/**
+ * CATÁLOGO DEL SISTEMA (página de trabajo, no se publica). Enseña a los dueños de la fase siguiente cada pieza del
+ * andamiaje tal como se ve en el sitio, en los dos temas, con datos y copy REALES: tokens, tipografía, rejilla,
+ * movimiento, botones, notas al margen, citas, cifras en frase, registro, fila de datos, consulta y el sistema de
+ * figuras (pestañas, nota emergente recorrible y descartable, teclado, tabla y datos).
+ *  · Fuera de la publicación: con STRICT=1 no se genera; lleva `noindex` y el mapa del sitio la excluye
+ *    (astro.config.mjs). Ninguna página enlaza aquí.
+ *  · Ninguna cifra se teclea: salen de `cifras.json` (con su envoltorio) o de `src/data/*.json`; los valores de los
+ *    tokens y los contrastes, de `tokens.json`, medidos aquí con la misma fórmula que `scripts/tokens.mjs`.
+ *  · Los textos de muestra son claves del copy; lo que explica el catálogo va en español, marcado con su lengua.
+ */
+import Base from '../../layouts/Base.astro';
+import IndiceLateral from '../../components/IndiceLateral.astro';
+import Boton from '../../components/Boton.astro';
+import NotaMargen from '../../components/NotaMargen.astro';
+import NotaBases from '../../components/NotaBases.astro';
+import Sello from '../../components/Sello.astro';
+import CitaDiario from '../../components/CitaDiario.astro';
+import CifraFrase from '../../components/CifraFrase.astro';
+import FilaDatos from '../../components/FilaDatos.astro';
+import RegistroPuertas from '../../components/RegistroPuertas.astro';
+import Pestanas from '../../components/Pestanas.astro';
+import Cita from '../../components/Cita.astro';
+import CopiarConsulta from '../../components/CopiarConsulta.astro';
+import Vecinas from '../../components/ficha/Vecinas.astro';
+import tokens from '../../styles/tokens.json';
+import { t, plano, rotulo, existe } from '../../lib/i18n';
+import { fmt, cifra, escapa } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import { citaConjunto, bibtex, ris, huella } from '../../lib/cita';
+import { url, PAGINAS, ETAPAS } from '../../lib/rutas';
+import { ENLACES } from '../../config/enlaces';
+import { LANGS, type Lang } from '../../lib/idiomas';
+
+export function getStaticPaths() {
+  // Página de trabajo: la compilación de publicación no la genera.
+  if (process.env.STRICT === '1') return [];
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const cat = lang === 'es' ? undefined : 'es'; // el texto propio del catálogo está en español
+const o = (k: string) => t(lang, k);
+
+// ── contraste WCAG 2 (la misma fórmula que scripts/tokens.mjs) ───────────────────────────────────────────
+const rgba = (c: string) => {
+  const hex = c.match(/^#([0-9a-f]{6})$/i);
+  if (hex) return [0, 2, 4].map((i) => parseInt(hex[1].slice(i, i + 2), 16)).concat(1);
+  const m = c.match(/^rgba?\(([^)]+)\)$/i);
+  if (m) { const p = m[1].split(',').map((x) => Number(x.trim())); return [p[0], p[1], p[2], p[3] ?? 1]; }
+  return null;
+};
+const lin = (v: number) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+const lum = (c: number[]) => 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]);
+function contraste(a: string, b: string): number | null {
+  const fa = rgba(a), fb = rgba(b);
+  if (!fa || !fb) return null;
+  const A = fa[3] < 1 ? [0, 1, 2].map((i) => fa[i] * fa[3] + fb[i] * (1 - fa[3])) : fa;
+  const [l1, l2] = [lum(A), lum(fb)].sort((x, y) => y - x);
+  return (l1 + 0.05) / (l2 + 0.05);
+}
+const T = tokens.temas as Record<'oscuro' | 'claro', Record<string, string>>;
+const dec2 = (x: number) => x.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const PARES = [
+  ...tokens.contrastes.texto.map(([a, b]) => ({ a, b, min: 4.5, clase: 'texto' })),
+  ...tokens.contrastes.grafico.map(([a, b]) => ({ a, b, min: 3, clase: 'gráfico' })),
+].map((p) => ({ ...p, oscuro: contraste(T.oscuro[p.a], T.oscuro[p.b]) ?? 0, claro: contraste(T.claro[p.a], T.claro[p.b]) ?? 0 }));
+
+const NEUTROS = ['bg', 'bg-2', 'bg-3', 'ink', 'ink-2', 'mute', 'hair', 'hair-2'];
+const ACENTO = ['accent', 'accent-ink', 'accent-inv', 'focus'];
+const DATOS = ['rampa-0', 'rampa-1', 'rampa-2', 'rampa-3', 'rampa-4', 'ausencia-trazo', 'dato', 'dato-2'];
+const IDEO = ['ei', 'i', 'ci', 'c', 'cd', 'd', 'ed', 'nc'];
+
+const ESCALA = [
+  { tk: '--fs-portada', uso: 'H1 de Inicio', clase: 'm-portada', texto: o('inicio.portada.pregunta') },
+  { tk: '--fs-h1', uso: 'H1 de página y nombre de etapa', clase: 'm-h1', texto: o('comun.etapa.I.nombre') },
+  { tk: '--fs-h2', uso: 'H2 de sección, casi siempre una pregunta', clase: 'm-h2', texto: o('inicio.fila.titulo') },
+  { tk: '--fs-h3', uso: 'H3 de los apartados largos (EB Garamond 600)', clase: 'm-h3', texto: o('inicio.falta.titulo') },
+  { tk: '--fs-entrada', uso: 'la frase grande bajo cada H2', clase: 'm-entrada', texto: o('inicio.portada.entrada') },
+  { tk: '--fs-cita', uso: 'lo que alguien dijo (cursiva de libro)', clase: 'm-cita', texto: o('inicio.fila.campoamor') },
+  { tk: '--fs-body', uso: 'cuerpo de lectura, medida de 38 rem', clase: 'm-body', texto: o('inicio.fila.dos') },
+  { tk: '--fs-small', uso: 'notas al margen, pies y salvedades', clase: 'm-nota', texto: o('comun.fija.diario') },
+  { tk: '--fs-cifra', uso: 'la cifra grande, dentro de su frase', clase: 'm-cifra', texto: fmt.clave('sesiones', lang) },
+  { tk: '--fs-grito', uso: 'solo «Luz y taquigrafos.», en la banda de Inicio', clase: 'm-grito', texto: o('inicio.tesis.grito') },
+];
+
+// La muestra de figura: las sesiones de cada etapa (cifras.json › etapa.<E>.sesiones, V2).
+const barras = ETAPAS.map((e) => {
+  const c = cifra(`etapa.${e.id}.sesiones`);
+  return { id: e.id, slug: e.slug, v: typeof c?.v === 'number' ? c.v : 0, f: c?.f ?? '', nombre: plano(lang, `comun.etapa.${e.id}.nombre`), corto: plano(lang, `comun.etapa.${e.id}.corto`), anos: plano(lang, `comun.etapa.${e.id}.anos`) };
+});
+const maximo = Math.max(1, ...barras.map((b) => b.v));
+const h = huella('V2');
+
+// Una sesión real para la fila de datos: la 48 (1-X-1931), la de «¿Qué es una fila?».
+interface Ses { clave: string; f: string; s: number; e: string; filas: number; pal: number; dip: number; largas: number; filas_pres: number; id_v2: [number, number]; filas_v3: number; id_v3: [number, number]; meta?: { num?: number; paginas?: [number, number] } }
+const S = (dato<{ sesiones: Ses[] }>('sesiones')?.sesiones ?? []).find((x) => x.clave === '1931-10-01-48');
+const d = (v: number, campo: string, base: string, formato: 'n' | 'id' = 'n') =>
+  fmt.dato(v, formato === 'id' ? fmt.id(v, lang) : fmt.n(v, lang), `sesion.1931-10-01-48.${campo}`, base);
+const pares = S ? [
+  { columna: 'f', valor: `<code>${S.f}</code>` },
+  { columna: 's', valor: d(S.s, 'num', 'V2', 'id') },
+  { columna: 'filas', valor: d(S.filas, 'filas', 'V2') },
+  { columna: 'pal', valor: d(S.pal, 'palabras', 'V2') },
+  { columna: 'dip', valor: d(S.dip, 'diputados', 'V2') },
+  { columna: 'filas_pres', valor: d(S.filas_pres, 'filas_pres', 'V2') },
+  { columna: 'id_v2', valor: `${d(S.id_v2[0], 'id_v2.desde', 'V2', 'id')}–${d(S.id_v2[1], 'id_v2.hasta', 'V2', 'id')}` },
+  { columna: 'id_v3', valor: `${d(S.id_v3[0], 'id_v3.desde', 'v3', 'id')}–${d(S.id_v3[1], 'id_v3.hasta', 'v3', 'id')}` },
+  { columna: 'speech (de otra pieza: Campoamor, en esa sesión)', valor: o('inicio.fila.campoamor'), texto: true },
+] : [];
+
+const pie = (k: string) => { const p = t(lang, k); const i = p.indexOf(' · '); return i > 0 ? { orador: p.slice(0, i), asiento: p.slice(i + 3) } : { orador: '', asiento: p }; };
+const presi = pie('inicio.fila.presidencia.pie');
+const campo = pie('inicio.fila.campoamor.pie');
+
+const SECCIONES = [
+  { id: 'tokens', rotulo: 'Color y contraste' },
+  { id: 'tipografia', rotulo: 'Tipografía' },
+  { id: 'rejilla', rotulo: 'Rejilla y ritmo' },
+  { id: 'botones', rotulo: 'Enlaces y botones' },
+  { id: 'margen', rotulo: 'Asiento y notas al margen', sub: [{ id: 'sellos', rotulo: 'Sellos de base' }] },
+  { id: 'citas', rotulo: 'Citas del Diario', sub: [{ id: 'pasaje', rotulo: 'Pasaje del pintor genérico' }, { id: 'cita-copiable', rotulo: 'Cita copiable' }] },
+  { id: 'cifras', rotulo: 'Cifras en frase' },
+  { id: 'registro', rotulo: 'Registro y fila de datos' },
+  { id: 'consulta', rotulo: 'Consulta para el explorador' },
+  { id: 'figura', rotulo: 'Sistema de figuras' },
+  { id: 'movimiento', rotulo: 'Movimiento' },
+];
+---
+<Base lang={lang} ruta="componentes" titulo="Catálogo del sistema" descripcion="Página de trabajo: cada pieza del andamiaje de Luz y Taquígrafos, en los dos temas, con datos y copy reales." noindex>
+  <header class="pagina-cabeza contenedor" lang={cat} data-audit-exento="catálogo: página de trabajo, fuera de la publicación">
+    <p class="miga"><a href={url(lang)}>{plano(lang, 'comun.cabecera.nombre')}</a> / catálogo · página de trabajo, fuera de la publicación</p>
+    <h1>El sistema, pieza a pieza</h1>
+    <p class="entrada">Cada componente del andamiaje, con datos y copy reales, tal como lo verá el lector. Norma: <code>DESIGN.md</code>, «El Diario, anotado al margen».</p>
+    <p class="asiento">tokens <code>src/styles/tokens.json</code> · estilos <code>base.css</code>, <code>figuras.css</code>, <code>piezas.css</code>, <code>movimiento.css</code> · isla <code>scripts/figuras.ts</code></p>
+  </header>
+
+  <div class="contenedor con-indice" lang={cat} data-audit-exento="catálogo: página de trabajo, fuera de la publicación" style={`timeline-scope: ${SECCIONES.map((x) => `--${x.id}`).join(', ')}`}>
+    <IndiceLateral lang={lang} titulo="En esta página" entradas={SECCIONES} />
+    <div class="lectura">
+
+      <!-- ── 01 · Color ─────────────────────────────────────────────────────────── -->
+      <section class="seccion" id="tokens" aria-labelledby="tokens-titulo" style="view-timeline-name: --tokens" data-audit-exento="catálogo: valores de los tokens">
+        <div class="seccion-cuerpo">
+          <p class="asiento">tokens.json › temas · generado en <code>tokens.css</code> por <code>scripts/tokens.mjs</code></p>
+          <h2 id="tokens-titulo">¿De qué color es cada cosa?</h2>
+          <p class="entrada">Dos neutros cálidos que se recalculan por tema, un oro que anota y un azul que solo señala el foco.</p>
+          <div class="cat-ancho">
+            {[['Neutros', NEUTROS], ['Oro y foco', ACENTO], ['Datos: rampa y ausencia', DATOS], ['Ideología (solo F09, F26 con nombres y F21)', IDEO]].map(([titulo, lista]) => (
+              <div class="paleta">
+                <h3>{titulo as string}</h3>
+                <table class="fig-tabla tabla-tokens">
+                  <thead><tr><th scope="col">token</th><th scope="col">oscuro</th><th scope="col">claro</th></tr></thead>
+                  <tbody>
+                    {(lista as string[]).map((k) => (
+                      <tr>
+                        <th scope="row"><code>--{k}</code></th>
+                        <td><span class="chip" style={`background:${T.oscuro[k]}`} aria-hidden="true"></span><code>{T.oscuro[k]}</code></td>
+                        <td><span class="chip" style={`background:${T.claro[k]}`} aria-hidden="true"></span><code>{T.claro[k]}</code></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
+          <NotaMargen asiento="WCAG 2.2 · 4,5:1 texto · 3:1 gráfico">
+            <p>El claro no invierte: cada color conserva matiz y croma y baja de luminosidad hasta el contraste exigido. <code>apagado</code> nunca va sobre <code>--bg-3</code>.</p>
+          </NotaMargen>
+          <div class="cat-ancho">
+            <h3>Contrastes medidos en cada tema</h3>
+            <div class="fig-desliza" tabindex="0" role="region" aria-label="Contrastes medidos">
+              <table class="fig-tabla">
+                <thead><tr><th scope="col">par</th><th scope="col">clase</th><th scope="col" class="num">oscuro</th><th scope="col" class="num">claro</th><th scope="col" class="num">mínimo</th></tr></thead>
+                <tbody>
+                  {PARES.map((p) => (
+                    <tr>
+                      <th scope="row"><code>{p.a}</code> / <code>{p.b}</code></th>
+                      <td>{p.clase}</td>
+                      <td class="num" data-cumple={p.oscuro >= p.min ? 'si' : 'no'}><code>{dec2(p.oscuro)}</code></td>
+                      <td class="num" data-cumple={p.claro >= p.min ? 'si' : 'no'}><code>{dec2(p.claro)}</code></td>
+                      <td class="num"><code>{dec2(p.min)}</code></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 02 · Tipografía ────────────────────────────────────────────────────── -->
+      <section class="seccion" id="tipografia" aria-labelledby="tipografia-titulo" style="view-timeline-name: --tipografia">
+        <div class="seccion-cuerpo">
+          <p class="asiento">Cormorant Garamond cursiva · EB Garamond · JetBrains Mono · <code>latin</code> y <code>latin-ext</code>, autoalojadas</p>
+          <h2 id="tipografia-titulo">¿Quién habla con cada letra?</h2>
+          <p class="entrada">La cursiva de titular es la voz del sitio; la garamond de libro, la lectura; su cursiva, lo que alguien dijo; la mono, lo que se copia o se compara.</p>
+          <ol class="escala cat-ancho" role="list">
+            {ESCALA.map((e) => (
+              <li>
+                <p class="escala-tk"><code>{e.tk}</code> · {e.uso}</p>
+                <p class:list={['escala-m', e.clase]} set:html={e.texto} />
+              </li>
+            ))}
+            <li>
+              <p class="escala-tk"><code>.asiento</code> · la línea de registro: un hecho con su base, en caja normal y en gris; nunca una etiqueta</p>
+              <p class="asiento">V2 · <Fragment set:html={fmt.clave('sesiones', lang)} /> sesiones · <Fragment set:html={fmt.clave('sesion.primera', lang, 'fecha_corta')} /> → <Fragment set:html={fmt.clave('sesion.ultima', lang, 'fecha_corta')} /></p>
+            </li>
+            <li>
+              <p class="escala-tk"><code>.versal</code> · versalitas simuladas (el woff2 no trae <code>smcp</code>): el orador y la Presidencia</p>
+              <p><span class="versal" set:html={campo.orador} /></p>
+            </li>
+          </ol>
+          <NotaMargen asiento="la regla de la cursiva">
+            <p>En la garamond de lectura, la cursiva es para lo que alguien dijo. El énfasis se hace con peso 600, nunca con cursiva.</p>
+          </NotaMargen>
+        </div>
+      </section>
+
+      <!-- ── 03 · Rejilla ───────────────────────────────────────────────────────── -->
+      <section class="seccion" id="rejilla" aria-labelledby="rejilla-titulo" style="view-timeline-name: --rejilla" data-audit-exento="catálogo: medidas de los tokens">
+        <div class="seccion-cuerpo">
+          <p class="asiento">12 columnas desde <code>64rem</code> · una por debajo · ancho <code>{tokens.medidas.ancho}</code> · medida <code>{tokens.medidas.measure}</code></p>
+          <h2 id="rejilla-titulo">¿Cuánto aire hay entre las cosas?</h2>
+          <p class="entrada">Base de 4 px y una escala con nombre. Encima de un título, siempre más aire que debajo.</p>
+          <div class="cat-ancho">
+            <div class="columnas" aria-hidden="true">{Array.from({ length: 12 }, () => <span></span>)}</div>
+            <ol class="espacios" role="list">
+              {['e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'e9'].map((k) => (
+                <li><code>--{k}</code><span class="barra-e" style={`width: var(--${k})`}></span><code>{(tokens.medidas as Record<string, string>)[k]}</code></li>
+              ))}
+              <li><code>--aire</code><span class="barra-e aire" style="width: var(--aire)"></span><code>{tokens.medidas.aire}</code></li>
+            </ol>
+          </div>
+          <NotaMargen asiento="la asimetría, solo en escritorio">
+            <p>Las notas siguen a su bloque en el DOM; la colocación automática las sube a su fila en escritorio y en el móvil van detrás.</p>
+          </NotaMargen>
+        </div>
+      </section>
+
+      <!-- ── 04 · Botones ───────────────────────────────────────────────────────── -->
+      <section class="seccion" id="botones" aria-labelledby="botones-titulo" style="view-timeline-name: --botones">
+        <div class="seccion-cuerpo">
+          <p class="asiento"><code>Boton.astro</code> · <code>.boton</code> · <code>.boton.sec</code> · 44 px de alto · EB Garamond 560</p>
+          <h2 id="botones-titulo">¿Cómo se ve lo que se pulsa?</h2>
+          <p>Un enlace en la prosa lleva el <a href={url(lang, PAGINAS.metodo)}>subrayado en oro</a>: el oro subraya y no tiñe el texto de lectura. Al pasar el puntero, el texto va en oro y el trazo engorda.</p>
+          <div class="botones cat-ancho">
+            <Boton variante="primario" href={url(lang, `${PAGINAS.datos}#empezar`)} rotulo={rotulo(lang, 'comun.boton.descargar')} />
+            <Boton href={url(lang, PAGINAS.metodo)} rotulo={rotulo(lang, 'comun.boton.ver_metodo')} />
+            <Boton href={ENLACES.explorador} externo rotulo={rotulo(lang, 'comun.boton.explorador')} />
+          </div>
+          <div class="cat-ancho copia-demo" data-copiable>
+            <p class="asiento">copiar · nace oculto sin JS · «Copiada» durante 1,6 s</p>
+            <code class="consulta-texto" data-copiar-texto translate="no">{plano(lang, 'comun.fija.diario')}</code>
+            <p class="botones">
+              <Boton copiar rotulo={rotulo(lang, 'comun.boton.cita')} />
+              <span class="consulta-aviso" role="status" data-copiar-aviso data-copiada={plano(lang, 'comun.cita.copiada')} data-no-copiada={plano(lang, 'comun.isla.no_copiado')}></span>
+            </p>
+          </div>
+          <NotaMargen asiento="uno por pantalla">
+            <p>Un solo primario por pantalla. El externo lleva la flecha dibujada y lo dice al lector de pantalla; nunca el carácter.</p>
+          </NotaMargen>
+        </div>
+      </section>
+
+      <!-- ── 05 · Margen ────────────────────────────────────────────────────────── -->
+      <section class="seccion" id="margen" aria-labelledby="margen-titulo" style="view-timeline-name: --margen">
+        <div class="seccion-cuerpo">
+          <p class="asiento"><code>NotaMargen.astro</code> · <code>.al-margen</code> (secciones) · <code>.nota-m</code> (lecturas) · ≤ 40 palabras</p>
+          <h2 id="margen-titulo">¿Dónde va la costura?</h2>
+          <p><Fragment set:html={t(lang, 'inicio.fila.dos')} /><sup class="llamada-n">1</sup> <Fragment set:html={t(lang, 'inicio.fila.leccion')} /></p>
+          <NotaMargen n="1" asiento={`V2 · ${fmt.clave('filas.V2', lang)} filas`}>
+            <p set:html={t(lang, 'comun.fija.diario')} />
+          </NotaMargen>
+          <p>Toda cifra de la edición del explorador lleva al lado su nota de bases: <Fragment set:html={fmt.clave('filas.v3', lang)} /> filas en la v3.</p>
+          <NotaBases lang={lang} />
+          <h3 id="sellos">Sellos de base</h3>
+          <p class="sellos-demo">
+            {(['V2', 'v3', 'proyecto', 'afin', 'dv', 'explorador', 'croquis'] as const).map((b) => existe(`comun.sello.${b}`) && <Sello lang={lang} base={b} />)}
+          </p>
+        </div>
+      </section>
+
+      <!-- ── 06 · Citas ─────────────────────────────────────────────────────────── -->
+      <section class="seccion" id="citas" aria-labelledby="citas-titulo" style="view-timeline-name: --citas">
+        <div class="seccion-cuerpo">
+          <p class="asiento"><code>CitaDiario.astro</code> · orador en versalitas · cita en cursiva de libro · comilla colgada DENTRO de su caja</p>
+          <h2 id="citas-titulo">¿Cómo se compone lo que alguien dijo?</h2>
+          <CitaDiario orador={campo.orador} cita={t(lang, 'inicio.fila.campoamor')} asiento={campo.asiento} presidencia={{ orador: presi.orador, cita: t(lang, 'inicio.fila.presidencia') }} />
+          <NotaMargen asiento="sin invadir el margen">
+            <p>La comilla de apertura queda en el borde de la columna y las letras, alineadas con el orador y el asiento. A 360 px no se come los 16 px del margen de la página.</p>
+          </NotaMargen>
+          <h3 id="pasaje">Pasaje del pintor genérico</h3>
+          <div class="pasaje" data-audit-exento="cita literal del Diario"><p set:html={t(lang, 'diario.que_es.cita.interrupcion')} /></div>
+          <div class="pieza-nota" data-audit-exento="cita literal del Diario"><p set:html={t(lang, 'diario.que_es.cita.interrupcion.pie')} /></div>
+          <h3 id="cita-copiable">Cita copiable</h3>
+          <Cita lang={lang} texto={citaConjunto('thqcmi', lang)} bibtex={bibtex('thqcmi')} ris={ris('thqcmi')} lenguaTexto="en" nota={existe('comun.cita.dataverse') ? t(lang, 'comun.cita.dataverse') : undefined} />
+        </div>
+      </section>
+
+      <!-- ── 07 · Cifras en frase ───────────────────────────────────────────────── -->
+      <section class="seccion" id="cifras" aria-labelledby="cifras-titulo" style="view-timeline-name: --cifras">
+        <div class="seccion-cuerpo">
+          <p class="asiento"><code>CifraFrase.astro</code> · la cifra dentro de su frase · no es una banda de cifras</p>
+          <h2 id="cifras-titulo">¿Cómo se dice una cifra?</h2>
+          <CifraFrase frases={['sesiones', 'palabras', 'diputados'].map((k) => t(lang, `cortes.1931.cifras.${k}`))} />
+          <NotaMargen asiento="V2 · etapa I">
+            <p>La base va en el margen. Cada cifra es un <code>&lt;data&gt;</code> con su clave y su base, que la auditoría compara con <code>cifras.json</code>.</p>
+          </NotaMargen>
+        </div>
+      </section>
+
+      <!-- ── 08 · Registro y fila ───────────────────────────────────────────────── -->
+      <section class="seccion" id="registro" aria-labelledby="registro-titulo" style="view-timeline-name: --registro">
+        <div class="seccion-cuerpo">
+          <p class="asiento"><code>Registro.astro</code> · <code>RegistroPuertas.astro</code> · <code>FilaDatos.astro</code></p>
+          <h2 id="registro-titulo">¿Cómo se lista lo que pasó?</h2>
+          <p class="entrada">Una línea por entrada, toda ella un enlace. No son tarjetas.</p>
+          <RegistroPuertas lang={lang} familia="sesiones" etapa="I" />
+          <NotaMargen asiento="el título crece hasta el H1">
+            <p>Cada línea lleva <code>data-transicion</code>: al abrirla, su título se convierte en el de la página de destino, donde el navegador lo admite.</p>
+          </NotaMargen>
+          {pares.length > 0 && <FilaDatos pares={pares} pie="Muestra con los campos de la sesión del 1-X-1931 en sesiones.json (V2 y v3). En su página, la fila de datos enseña las 14 columnas de una fila V2." />}
+        </div>
+      </section>
+
+      <!-- ── 09 · Consulta ──────────────────────────────────────────────────────── -->
+      <section class="seccion" id="consulta" aria-labelledby="consulta-titulo" style="view-timeline-name: --consulta">
+        <div class="seccion-cuerpo">
+          <p class="asiento"><code>CopiarConsulta.astro</code> · <code>lib/piezas.ts › htmlConsulta</code> · D-4: el explorador no abre una búsqueda desde un enlace</p>
+          <h2 id="consulta-titulo">¿Cómo se lleva una búsqueda al explorador?</h2>
+          <CopiarConsulta lang={lang} consulta={plano(lang, 'cortes.1931.hoy.buscar.consulta')} recuento={t(lang, 'cortes.1931.hoy.buscar.recuento')} compacta />
+        </div>
+      </section>
+
+      <!-- ── 10 · Figura ────────────────────────────────────────────────────────── -->
+      <section class="seccion" id="figura" aria-labelledby="figura-titulo" style="view-timeline-name: --figura">
+        <div class="seccion-cuerpo">
+          <p class="asiento"><code>FiguraMarco.astro</code> · <code>Pestanas.astro</code> · isla <code>scripts/figuras.ts</code></p>
+          <h2 id="figura-titulo">¿Cómo se lee una figura?</h2>
+          <p class="entrada">Barra con título y pestañas; gráfico con texto en HTML; nota emergente invertida; tabla equivalente y datos con su procedencia.</p>
+          <figure class="figura" id="cat-fig" data-figura="catalogo" data-base="V2"
+            data-plantilla-t="{etapa}" data-plantilla="{n} sesiones · {anos}" data-plantilla-b="V2 · cifras.json › etapa.{id}.sesiones"
+            data-posicion={plano(lang, 'comun.isla.posicion', { vars: { i: '{i}', total: '{total}' } })}
+            data-cerrar={existe('comun.isla.cerrar') ? plano(lang, 'comun.isla.cerrar') : undefined} aria-labelledby="cat-fig-titulo">
+            <Pestanas lang={lang} id="cat-fig" etiquetadoPor="cat-fig-titulo">
+              <header class="fig-cabeza" slot="cabeza">
+                <p class="fig-sellos"><Sello lang={lang} base="V2" /></p>
+                <h3 class="fig-titulo" id="cat-fig-titulo"><span class="fig-id" aria-hidden="true">muestra</span>¿Cuántas sesiones tuvo cada etapa?</h3>
+              </header>
+              <p class="fig-pregunta" slot="pregunta">Muestra del sistema de figuras (no se publica). Pase el puntero, toque o recorra con las flechas.</p>
+              <div slot="grafico" class="fig-lienzo">
+                <ol class="barras" role="list" data-recorre tabindex="0" aria-label="Sesiones por etapa" aria-describedby="cat-fig-teclado">
+                  {barras.map((b) => (
+                    <li class="barra-fila">
+                      <span class="barra-rotulo">{b.corto}</span>
+                      <a class="barra-marca" href={url(lang, `${PAGINAS.cortes}/${b.slug}`)} tabindex="-1" data-nota data-paso
+                        data-v-etapa={b.nombre} data-v-n={fmt.n(b.v, lang)} data-v-anos={b.anos} data-v-id={b.id}
+                        style={`--p: ${(b.v / maximo) * 100}%`}><span class="sr-only">{b.nombre}</span></a>
+                      <span class="barra-valor" set:html={fmt.clave(`etapa.${b.id}.sesiones`, lang)} />
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div slot="tabla">
+                <div class="fig-desliza" tabindex="0" role="region" aria-labelledby="cat-fig-caption">
+                  <table class="fig-tabla">
+                    <caption id="cat-fig-caption"><span class="fig-rotulo-tabla">Sesiones por etapa (V2)</span></caption>
+                    <thead><tr><th scope="col">etapa</th><th scope="col">años</th><th scope="col" class="num">sesiones</th></tr></thead>
+                    <tbody>
+                      {barras.map((b) => (
+                        <tr><th scope="row"><a href={url(lang, `${PAGINAS.cortes}/${b.slug}`)}>{b.nombre}</a></th><td>{b.anos}</td><td class="num" set:html={fmt.clave(`etapa.${b.id}.sesiones`, lang)} /></tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div slot="datos">
+                <dl class="fig-leame">
+                  <dt>Qué mide</dt><dd>Sesiones por etapa: claves (fecha, número) distintas.</dd>
+                  <dt>Cómo se calcula</dt><dd><code>{barras[0].f}</code></dd>
+                  <dt>Base</dt><dd><Sello lang={lang} base="V2" /><br />huella: {h.huella ? <code>{h.huella}</code> : 'sin sello'}{h.fecha && <> · <time datetime={h.fecha}>{h.fecha}</time></>}</dd>
+                </dl>
+              </div>
+            </Pestanas>
+            <figcaption class="fig-pie">
+              <p class="fig-salvedad"><span class="fig-salvedad-rotulo" set:html={t(lang, 'comun.fig.salvedad')} /> Muestra del catálogo, no una figura publicada: cada barra es una cifra de <code>cifras.json</code> con su fórmula.</p>
+              <p class="fig-teclado" data-solo-isla hidden id="cat-fig-teclado" set:html={t(lang, 'comun.fig.teclado')} />
+              <p class="fig-teclado" data-solo-isla hidden set:html={t(lang, 'comun.isla.tactil')} />
+            </figcaption>
+          </figure>
+          <NotaMargen asiento="WCAG 1.4.13">
+            <p>La nota se puede recorrer con el puntero, no caduca y se cierra con Esc sin mover nada. Abierta con el dedo, trae su botón de cierre.</p>
+          </NotaMargen>
+        </div>
+      </section>
+
+      <!-- ── 11 · Movimiento ───────────────────────────────────────────────────── -->
+      <section class="seccion" id="movimiento" aria-labelledby="movimiento-titulo" style="view-timeline-name: --movimiento">
+        <div class="seccion-cuerpo">
+          <p class="asiento"><code>movimiento.css</code> · <code>scripts/movimiento.ts</code> · solo con <code>prefers-reduced-motion: no-preference</code></p>
+          <h2 id="movimiento-titulo">¿Qué se mueve, y por qué?</h2>
+          <p class="entrada">Cada pieza existe primero en su estado final. El movimiento solo añade el camino hasta él.</p>
+          <ol class="util-mov cat-ancho escalona" data-escalona role="list">
+            <li style="--n: 0"><code>.entra</code> · el texto sube al entrar en pantalla, sin fundido; una vez por página.</li>
+            <li style="--n: 1"><code>.entra-figura</code> · una figura o una imagen, con fundido.</li>
+            <li style="--n: 2"><code>.escalona</code> · esta lista: los hijos llegan en orden, con tope de 1,4 s.</li>
+            <li style="--n: 3"><code>.traza</code> · un trazo que se dibuja una vez, como la planta del hemiciclo.</li>
+            <li style="--n: 4"><code>.aparece</code> · la nota emergente y los avisos: 120 ms de fundido.</li>
+            <li style="--n: 5"><code>@view-transition</code> · entre páginas: la cabecera quieta, el H1 que crece y las vecinas que entran por su lado.</li>
+          </ol>
+          <svg class="traza-demo traza" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path pathLength="1" d="M2 1v6a14 14 0 0 0 28 0V1" /><path pathLength="1" d="M8 1v6a8 8 0 0 0 16 0V1" /><path pathLength="1" d="M13.2 1v6a2.8 2.8 0 0 0 5.6 0V1" /></g></svg>
+          <NotaMargen asiento="menos movimiento = quieto">
+            <p>Con movimiento reducido, sin JavaScript o sin soporte, todo está entero y quieto. Nada en bucle; nada se mueve mientras el foco está dentro.</p>
+          </NotaMargen>
+        </div>
+      </section>
+    </div>
+  </div>
+  <Vecinas lang={lang} tipo="etapa" anterior={{ href: url(lang, `${PAGINAS.cortes}/1931`), titulo: t(lang, 'comun.etapa.I.nombre'), sub: t(lang, 'comun.etapa.I.anos') }} siguiente={{ href: url(lang, `${PAGINAS.cortes}/1933`), titulo: t(lang, 'comun.etapa.II.nombre'), sub: t(lang, 'comun.etapa.II.anos') }} />
+</Base>
+
+<script>
+  import '../../scripts/figuras.ts';
+  import '../../scripts/copiar.ts';
+  import '../../scripts/movimiento.ts';
+</script>
+
+<style>
+  .con-indice { padding-bottom: 0; }
+  /* Las muestras anchas ocupan todo el cuerpo (texto y margen): más específico que `.con-indice .seccion-cuerpo > *`. */
+  .con-indice .seccion-cuerpo > .cat-ancho { grid-column: 1 / -1; min-width: 0; }
+  h3 { margin: var(--e7) 0 var(--e4); }
+
+  /* color */
+  .paleta { margin-top: var(--e6); }
+  .paleta h3 { margin: 0 0 var(--e3); font-size: 1.05rem; }
+  .tabla-tokens td { overflow-wrap: anywhere; }
+  .tabla-tokens th code { white-space: nowrap; }
+  .tabla-tokens td code { white-space: nowrap; }
+  @media (max-width: 40rem) { .tabla-tokens .chip { display: block; margin: 0 0 .25rem; } .tabla-tokens td code { white-space: normal; } }
+  .chip { display: inline-block; width: 1.6rem; height: 1rem; margin-right: .6rem; vertical-align: -.2em; border-radius: 1px; box-shadow: inset 0 0 0 1px var(--hair-2); }
+  td[data-cumple='no'] code { color: var(--pendiente-ink); background: var(--pendiente-bg); padding: 0 .3em; }
+
+  /* tipografía */
+  .escala { list-style: none; margin: var(--e6) 0 0; padding: 0; border-top: 1px solid var(--hair-2); }
+  .escala li { padding: var(--e4) 0 var(--e5); border-bottom: 1px solid var(--hair); }
+  .escala-tk { font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); margin: 0 0 var(--e2); max-width: none; }
+  .escala-tk code, .espacios code { font-size: 1em; }
+  .escala-m { margin: 0; }
+  .m-portada { font: italic 500 var(--fs-portada)/1 var(--display); letter-spacing: -.012em; max-width: 12ch; }
+  .m-h1 { font: italic 500 var(--fs-h1)/1.02 var(--display); letter-spacing: -.012em; max-width: 16ch; }
+  .m-h2 { font: italic 500 var(--fs-h2)/1.06 var(--display); letter-spacing: -.012em; }
+  .m-h3 { font: 600 var(--fs-h3)/1.16 var(--text); }
+  .m-entrada { font-size: var(--fs-entrada); line-height: 1.34; max-width: 34rem; }
+  .m-cita { font: italic 400 var(--fs-cita)/1.26 var(--text); max-width: 30ch; --cuelga: .45em; padding-inline-start: var(--cuelga); text-indent: calc(-1 * var(--cuelga)); }
+  .m-nota { font-size: var(--fs-small); color: var(--ink-2); line-height: 1.5; }
+  .m-cifra :global(data.cifra) { font: italic 500 var(--fs-cifra)/1 var(--display); }
+  .m-grito { font: italic 500 var(--fs-grito)/.98 var(--display); letter-spacing: -.02em; }
+
+  /* rejilla */
+  .columnas { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); height: 3rem; margin: var(--e6) 0; }
+  .columnas span { background: color-mix(in oklab, var(--accent) 16%, transparent); border-inline: 1px solid color-mix(in oklab, var(--accent) 40%, transparent); }
+  .espacios { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
+  .espacios li { display: grid; grid-template-columns: 4.5rem minmax(0, auto) 1fr; align-items: center; gap: var(--e4); font-size: var(--fs-mono-s); color: var(--ink-2); }
+  .barra-e { display: block; height: .8rem; background: var(--accent); max-width: 100%; }
+  .barra-e.aire { background: var(--hair-2); }
+  .espacios li code:last-child { color: var(--mute); overflow-wrap: anywhere; }
+
+  /* botones y sellos */
+  .copia-demo { display: grid; gap: var(--e3); margin-top: var(--e6); max-width: 44rem; }
+  .copia-demo .botones { margin: 0; align-items: center; }
+  .sellos-demo { display: flex; flex-wrap: wrap; gap: .5rem; max-width: none; }
+
+  /* figura de muestra: barras en HTML (el texto, en HTML; la marca, una caja) */
+  .barras { list-style: none; margin: 0; padding: .25rem 0; display: grid; gap: .55rem; border-radius: var(--radio); }
+  .barra-fila { display: grid; grid-template-columns: minmax(6.5rem, 9rem) minmax(0, 1fr) 3.5rem; align-items: center; gap: var(--e4); }
+  .barra-rotulo { font-size: var(--fs-small); color: var(--ink-2); }
+  .barra-marca { display: block; position: relative; height: 1.9rem; min-height: 24px; }
+  .barra-marca::before { content: ''; position: absolute; inset: .35rem auto .35rem 0; width: max(var(--p), 3px); background: var(--rampa-2); border-radius: 1px; }
+  .barra-marca:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .barra-valor { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--ink-2); text-align: right; }
+  .barras:has(:global(.fig-activa)) .barra-marca:not(:global(.fig-activa))::before { opacity: var(--atenua); }
+
+  /* movimiento */
+  .util-mov { list-style: none; margin: var(--e6) 0 0; padding: 0; border-top: 1px solid var(--hair-2); }
+  .util-mov li { padding: var(--e3) 0; border-bottom: 1px solid var(--hair); font-size: var(--fs-small); color: var(--ink-2); max-width: 44rem; }
+  .traza-demo { width: 6rem; height: auto; color: var(--accent); margin-top: var(--e6); }
+  @media (max-width: 30rem) { .barra-fila { grid-template-columns: 5.5rem minmax(0, 1fr) 2.75rem; gap: var(--e3); } }
+</style>

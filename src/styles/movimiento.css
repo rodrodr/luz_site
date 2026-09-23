@@ -1,0 +1,100 @@
+/* Movimiento del sitio (DESIGN.md § Movimiento y medios expresivos; docs/RECURSOS_VANGUARDIA.md). TODO lo que se mueve
+   vive dentro de `prefers-reduced-motion: no-preference`, y lo que no es Baseline, además, dentro de `@supports`.
+   Principio: cada pieza existe primero en su estado final estático. Sin JS, sin soporte o con menos movimiento, la
+   página está entera y quieta; aquí solo se añade el camino hasta ese estado.
+   Tiempos (tokens): 120 ms de puntero (--t-puntero) · 240 ms de estado (--t-estado) · 280 ms entre páginas (--t-pagina)
+   · entradas de 900 ms como mucho (--t-entrada) · curva exponencial de salida (--ease) · nada en bucle.
+   Los momentos con nombre (la Cámara se sienta, el tiempo corre) viven con su pieza: Hemiciclo.astro y figuras.css. */
+
+/* ── 1 · Entre páginas: View Transitions entre documentos, nativas (sin <ClientRouter />) ──────────────────────
+   La página llega con un fundido corto: el papel no se mueve, solo el texto nuevo sube 10 px. La cabecera no se anima
+   (es la misma en todas las páginas). El H1 de destino es un grupo propio (`titulo-pagina`): llega él solo o, si se
+   entró desde un enlace marcado con `data-transicion` (la celda de una sesión, la fila del registro), crece desde
+   ese enlace (el guion de Base.astro le pone el nombre al pulsarlo). Las vecinas (← →) se deslizan en orden
+   cronológico. ES ↔ EN no se anima. Firefox y los navegadores sin soporte navegan como siempre. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+
+  ::view-transition-group(*) { animation-duration: var(--t-pagina); animation-timing-function: var(--ease); }
+  ::view-transition-old(root) { animation: var(--t-pagina) var(--ease) both vt-sale; }
+  ::view-transition-new(root) { animation: var(--t-pagina) var(--ease) both vt-entra; }
+  @keyframes vt-sale { to { opacity: 0; } }
+  @keyframes vt-entra { from { opacity: 0; translate: 0 var(--desplaza); } }
+
+  /* La cabecera, quieta: mismo sitio, mismo tamaño; sin fundido cruzado de su imagen. */
+  .cabecera { view-transition-name: cabecera; }
+  ::view-transition-group(cabecera) { animation: none; }
+  ::view-transition-old(cabecera) { display: none; }
+  ::view-transition-new(cabecera) { animation: none; }
+
+  /* El título de la página de destino. */
+  :is(.pagina-cabeza, .portada) h1 { view-transition-name: titulo-pagina; }
+  ::view-transition-group(titulo-pagina) { animation-duration: calc(var(--t-pagina) + 80ms); }
+  ::view-transition-old(titulo-pagina), ::view-transition-new(titulo-pagina) { height: 100%; object-fit: none; object-position: left top; }
+  ::view-transition-new(titulo-pagina):only-child { animation: calc(var(--t-pagina) + 80ms) var(--ease) both vt-entra; }
+
+  /* Vecinas: a la siguiente, el texto entra por la derecha; a la anterior, por la izquierda (orden cronológico). */
+  html:active-view-transition-type(adelante)::view-transition-new(root) { animation-name: vt-entra-dcha; }
+  html:active-view-transition-type(atras)::view-transition-new(root) { animation-name: vt-entra-izda; }
+  @keyframes vt-entra-dcha { from { opacity: 0; translate: 24px 0; } }
+  @keyframes vt-entra-izda { from { opacity: 0; translate: -24px 0; } }
+}
+/* Con menos movimiento no hay transición entre documentos (la regla @view-transition no se declara), y las de la misma
+   página (el cambio de tema con `startViewTransition`, que el guion ya evita) tampoco se animarían. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none; }
+}
+/* El H1 recibe el foco al llegar por una transición (DESIGN.md): no es un control, no lleva anillo. */
+h1[data-foco-titulo]:focus { outline: none; }
+
+/* ── 2 · Utilidades (una entrada de autor por página como mucho; nunca la misma en cada sección) ──────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  /* Cambios de estado corrientes: color, fondo, filete y subrayado; nunca `all`. */
+  a, .boton, .transicion-estado {
+    transition: color var(--t-puntero) var(--ease), background-color var(--t-puntero) var(--ease),
+      border-color var(--t-puntero) var(--ease), text-decoration-color var(--t-puntero) var(--ease),
+      text-decoration-thickness var(--t-puntero) var(--ease), scale var(--t-puntero) var(--ease);
+  }
+  /* Acuse de la pulsación (emil-design-eng): el botón cede un 2 % mientras se aprieta. */
+  .boton:active, .tema:active { scale: .98; }
+  .tema { transition: color var(--t-puntero) var(--ease), border-color var(--t-puntero) var(--ease), scale var(--t-puntero) var(--ease); }
+
+  /* `.entra`: el texto sube al entrar en pantalla, SIN fundido (un texto a medio fundir incumple el contraste mientras
+     dura). `.entra-figura`: una figura o una imagen, con fundido. Las dos, ligadas al scroll donde hay
+     `animation-timeline`; donde no, quietas y visibles. */
+  /* `animation-timeline` va en una regla APARTE de la del atajo `animation`: en la misma regla, el minificador los funde
+     en el atajo (`animation: linear both x view()`) y Chrome descarta ese atajo entero (peticiones/diario-metodo.md § 3.3). */
+  @supports (animation-timeline: view()) {
+    .entra { animation: entra-sube linear both; }
+    .entra-figura { animation: entra-funde linear both; }
+  }
+  @supports (animation-timeline: view()) {
+    /* `:not(.quieta)` sube la especificidad sobre la del atajo, que reinicia `animation-timeline`: gana en cualquier orden. */
+    .entra:not(.quieta) { animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    .entra-figura:not(.quieta) { animation-timeline: view(); animation-range: entry 0% entry 45%; }
+  }
+  @keyframes entra-sube { from { translate: 0 calc(2 * var(--desplaza)); } }
+  @keyframes entra-funde { from { opacity: 0; translate: 0 calc(2 * var(--desplaza)); } }
+
+  /* `.traza`: un trazo SVG que se dibuja una vez (sus rutas llevan `pathLength="1"`), como la planta del hemiciclo. */
+  .traza path, path.traza { stroke-dasharray: 1; animation: traza-dibuja 1.5s var(--ease) both; }
+  @keyframes traza-dibuja { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+  /* `.escalona`: los hijos llegan en orden, `--n` (su índice, en el HTML) por `--paso-escalon` (7 ms), como las celdas del
+     calendario. Lo arranca la isla: pone `.espera` mientras la pieza no se ve y la cambia por `.entra-fig` al verla
+     (`data-entra-fig`), o `movimiento.ts › alVer()` en una pieza propia. */
+  .escalona.espera > * { opacity: 0; translate: 0 var(--desplaza); }
+  .escalona.entra-fig > * { transition: opacity .35s var(--ease), translate .45s var(--ease); transition-delay: min(calc(var(--n, 0) * var(--paso-escalon)), 1.4s); }
+  @supports (transition-delay: calc(sibling-index() * 1ms)) {
+    .escalona.entra-fig > :not([style*='--n']) { transition-delay: min(calc((sibling-index() - 1) * var(--paso-escalon)), 1.4s); }
+  }
+
+  /* Lo que aparece (la nota emergente, un aviso): nace transparente y 4 px más abajo, en 120 ms. */
+  .aparece, .fig-tip { transition: opacity var(--t-puntero) var(--ease), translate var(--t-puntero) var(--ease), display var(--t-puntero) allow-discrete; }
+  @starting-style { .aparece, .fig-tip { opacity: 0; translate: 0 4px; } }
+}
+
+/* Impresión: todo en su estado final. */
+@media print {
+  .entra, .entra-figura, .escalona > *, .traza path, path.traza { animation: none !important; opacity: 1 !important; translate: none !important; }
+}

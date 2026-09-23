@@ -1,0 +1,50 @@
+---
+/**
+ * PÁGINA NO ENCONTRADA (plan § L). GitHub Pages sirve un solo `404.html`, que no sabe en qué lengua venía el lector:
+ * por eso lleva las dos lenguas apiladas, con el español primero. Un solo h1 (el español); el inglés va en h2 y solo
+ * cuando su texto existe en `en.json` (mientras no, la página no enseña español marcado «sin traducir»).
+ * Salidas: Inicio, Las Cortes y Datos; y el aviso de errata (`comun.404.errata` → `ENLACES.erratas`).
+ * `ruta=""`: el selector de lengua lleva al Inicio de cada lengua.
+ */
+import Base from '../layouts/Base.astro';
+import { t, plano, tEnlaces, existeEn } from '../lib/i18n';
+import { url, PAGINAS } from '../lib/rutas';
+import { HTML_LANG, type Lang } from '../lib/idiomas';
+import { ENLACES } from '../config/enlaces';
+
+const salidas = (l: Lang) => tEnlaces(l, 'comun.404.salidas', [url(l), url(l, PAGINAS.cortes), url(l, `${PAGINAS.datos}#empezar`)], {}, 'boton sec')
+  .replace('class="boton sec"', 'class="boton"');
+const errata = (l: Lang) => tEnlaces(l, 'comun.404.errata', [ENLACES.erratas]);
+const conIngles = existeEn('en', 'comun.404.titulo');
+---
+<Base lang="es" ruta="" titulo={plano('es', 'comun.404.titulo')} descripcion={plano('es', 'comun.404.texto')}>
+  <div class="contenedor perdida">
+    <section lang={HTML_LANG.es} class="bloque">
+      <p class="rastro" aria-hidden="true"><svg class="marca" viewBox="0 0 32 22"><use href="#i-marca"></use></svg></p>
+      <h1 set:html={t('es', 'comun.404.titulo')} />
+      <p class="entrada" set:html={t('es', 'comun.404.texto')} />
+      <p class="botones" set:html={salidas('es')} />
+      <p class="nota errata" set:html={errata('es')} />
+    </section>
+    {conIngles && (
+      <section class="bloque otra" lang={HTML_LANG.en}>
+        <h2 set:html={t('en', 'comun.404.titulo')} />
+        <p set:html={t('en', 'comun.404.texto')} />
+        <p class="botones" set:html={salidas('en')} />
+        <p class="nota errata" set:html={errata('en')} />
+      </section>
+    )}
+  </div>
+</Base>
+
+<style>
+  .perdida { padding-block: clamp(3rem, 9vw, 8rem) var(--aire); }
+  .bloque { max-width: 44rem; }
+  .rastro { margin: 0 0 var(--e5); color: var(--accent); }
+  .marca { width: 2.6rem; height: auto; display: block; }
+  h1 { max-width: 14ch; text-wrap: balance; }
+  .entrada { margin: var(--e5) 0 0; color: var(--ink-2); }
+  .errata { margin-top: var(--e5); }
+  .otra { margin-top: clamp(3rem, 8vw, 6rem); padding-top: var(--e6); border-top: 1px solid var(--hair-2); }
+  .otra h2 { font-size: var(--fs-h3); margin-bottom: var(--e3); }
+</style>

@@ -1,0 +1,95 @@
+---
+/**
+ * F · El Diario de Sesiones (plan § Plantilla F; narrativa § 11; grupo 4). La fuente como objeto histórico: qué recoge,
+ * qué calla, cómo se cita. Seis apartados con índice lateral (DESIGN.md, plantilla C/E de lectura), copy `diario.*`.
+ *  · § 1 abre con el momento «Del Diario impreso a la fila» (DiarioAFila): el papel de verdad y las dos filas que salen
+ *    de él. Es la única pieza con movimiento de la página, y solo si el navegador y el lector lo admiten.
+ *  · § 2 pinta las cuatro series como un registro (nombre y fechas · recuento al margen), sin tarjetas.
+ *  · § 3 lleva F27 y § 4 F28 (FigCronologia), la figura protagonista; F28 va a mitad del apartado, tras las órdenes y
+ *    la respuesta de Prieto, y antes de lo que se tacha, lo que no se oye y lo que el corpus no trae.
+ *  · NotaBases: la página cita cifras de la v3.
+ *  · Los ids de apartado no repiten las anclas de F27 y F28 (`luz-y-taquigrafos`, `lo-que-calla`, lib/figuras.ts).
+ */
+import Base from '../../layouts/Base.astro';
+import CabezaPagina from '../../components/CabezaPagina.astro';
+import IndiceLateral from '../../components/IndiceLateral.astro';
+import Seccion from '../../components/Seccion.astro';
+import NotaBases from '../../components/NotaBases.astro';
+import SinSitio from '../../components/SinSitio.astro';
+import DiarioAFila from '../../components/DiarioAFila.astro';
+import FigCronologia from '../../components/FigCronologia.astro';
+import { meta } from '../../lib/pagina';
+import { t, claves, existe } from '../../lib/i18n';
+import { primera, restoDe } from '../../lib/lectura';
+import { PAGINAS } from '../../lib/rutas';
+import { rutasPorIdioma, type Lang } from '../../lib/idiomas';
+
+export const getStaticPaths = rutasPorIdioma;
+const lang = Astro.params.lang as Lang;
+const { titulo, descripcion } = meta(lang, 'diario');
+const S = [
+  { id: 'que-es', x: 'que_es' }, { id: 'series', x: 'series' }, { id: 'formula', x: 'luz' },
+  { id: 'calla', x: 'calla' }, { id: 'habla-de-si', x: 'habla' }, { id: 'citar', x: 'citar' },
+];
+// § 4 se parte en dos alrededor de F28: lo de antes (la fórmula, las órdenes, la petición, Prieto) y lo de después.
+const CALLA_DESPUES = ['tachado', 'cita.tachado', 'no_oye', 'cita.no_oye', 'ausencias'];
+const CALLA_ANTES = ['formula', 'ordenes', 'abril', 'cita.abril', 'peticion', 'ajena', 'acotaciones', 'galarza', 'prieto', 'cita.prieto', 'cita.sainz'];
+const callaDespues = restoDe(lang, 'diario.calla', { excluir: CALLA_ANTES });
+// § 2: las cuatro series como registro. El recuento (tras los dos puntos) va al margen de su línea.
+const series = claves('diario.series.serie.', true).filter(existe).map((k) => {
+  const html = t(lang, k);
+  const corte = html.lastIndexOf(': ');
+  return corte > 0 ? { nombre: html.slice(0, corte), cuenta: html.slice(corte + 2).replace(/\.\s*$/, '') } : { nombre: html, cuenta: '' };
+});
+---
+<Base lang={lang} ruta={PAGINAS.diario} titulo={titulo} descripcion={descripcion}>
+  <CabezaPagina lang={lang} prefijo="diario" bases={['V2', 'v3']} />
+  <div class="contenedor con-indice" style={`timeline-scope: ${S.map((s) => `--${s.id}`).join(', ')}`}>
+    <IndiceLateral lang={lang} titulo={t(lang, 'comun.indice.titulo')} entradas={S.map((s) => ({ id: s.id, rotulo: primera(lang, [`diario.indice.${s.x}`, `diario.${s.x}.titulo`]) }))} />
+    <div class="lectura">
+      <Seccion lang={lang} id="que-es" prefijo="diario.que_es" espera={['titulo', 'entrada']} excluir={['facsimil']} indice>
+        <Fragment slot="antes"><DiarioAFila lang={lang} /></Fragment>
+      </Seccion>
+
+      <Seccion lang={lang} id="series" prefijo="diario.series" espera={['titulo', 'entrada']} excluir={['serie']} indice>
+        <Fragment slot="antes">
+          <ol class="series" role="list">
+            {series.map((s) => (
+              <li class="serie">
+                <span class="serie-nombre" set:html={s.nombre} />
+                <span class="serie-cuenta" set:html={s.cuenta} />
+              </li>
+            ))}
+          </ol>
+        </Fragment>
+      </Seccion>
+
+      <Seccion lang={lang} id="formula" prefijo="diario.luz" espera={['titulo', 'entrada']} indice>
+        <FigCronologia lang={lang} id="F27" />
+      </Seccion>
+
+      <Seccion lang={lang} id="calla" prefijo="diario.calla" espera={['titulo', 'entrada']} excluir={CALLA_DESPUES} indice>
+        <FigCronologia lang={lang} id="F28" />
+        <NotaBases lang={lang} compacta />
+        <div class="prosa" set:html={callaDespues.html} />
+      </Seccion>
+
+      <Seccion lang={lang} id="habla-de-si" prefijo="diario.habla" espera={['titulo', 'entrada']} indice />
+      <Seccion lang={lang} id="citar" prefijo="diario.citar" espera={['titulo', 'entrada']} indice />
+    </div>
+  </div>
+  <SinSitio lang={lang} prefijo="diario" usados={['diario.antetitulo', 'diario.titulo', 'diario.entrada', 'diario.indice', ...S.map((s) => `diario.${s.x}`)]} />
+</Base>
+
+<style>
+  /* Las series del Diario: un registro, una línea por serie; el recuento, al margen de su línea, en mono. */
+  .series { list-style: none; margin: var(--e4) 0 var(--e6); padding: 0; border-top: 1px solid var(--hair-2); max-width: 46rem; }
+  .serie { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1.5rem; align-items: baseline; padding: .8rem 0; border-bottom: 1px solid var(--hair); }
+  .serie-nombre { font-size: 1.05rem; line-height: 1.4; color: var(--ink); text-wrap: pretty; }
+  .serie-cuenta { font: 400 var(--fs-mono)/1.4 var(--mono); color: var(--ink-2); white-space: nowrap; text-align: right; }
+  .serie-cuenta :global(data.cifra) { font-family: var(--mono); color: var(--ink); }
+  @media (max-width: 30rem) {
+    .serie { grid-template-columns: minmax(0, 1fr); }
+    .serie-cuenta { text-align: left; }
+  }
+</style>

@@ -1,0 +1,90 @@
+{
+ "_meta": {
+  "que": "F01 (calendario, tres escalas) y F16 (bandas de presidente titular y Gobierno)",
+  "base": {
+   "V2": "clases, mes_max, escala, meses",
+   "proyecto": "tramos (presidente titular, Gobierno)"
+  },
+  "clases": "cinco clases por cuantiles sin interpolar de las palabras de los 64 meses con sesión",
+  "escala": "máximos por sesión para la altura de las barras de F01 (palabras, diputados con quien preside)",
+  "puertas": "sesión → puerta de lectura (anillo en F01)",
+  "tramos": "sesiones consecutivas, dentro de una etapa, con el mismo presidente titular o Gobierno (proyecto)",
+  "exportado": "2026-09-23"
+ },
+ "clases": [
+  {"i":0,"desde":1473,"hasta":53132,"meses":13},
+  {"i":1,"desde":53133,"hasta":315121,"meses":13},
+  {"i":2,"desde":315122,"hasta":512213,"meses":13},
+  {"i":3,"desde":512214,"hasta":606144,"meses":13},
+  {"i":4,"desde":606145,"hasta":870822,"meses":12}
+ ],
+ "mes_max": {
+  "mes": "1934-06",
+  "palabras": 870822,
+  "sesiones": 19,
+  "filas": 3511
+ },
+ "escala": {
+  "palabras": 97055,
+  "diputados": 61
+ },
+ "puertas": {
+  "1931-10-01-48": "sufragio-1931",
+  "1931-10-13-55": "cuestion-religiosa-1931",
+  "1932-05-27-173": "estatuto-1932",
+  "1933-02-02-288": "casas-viejas-1933",
+  "1934-07-04-112": "pistola-1934",
+  "1936-06-16-45": "antesala-1936",
+  "1936-07-01-54": "antesala-1936",
+  "1939-02-01-69": "figueres-1939",
+  "1945-08-17-71": "mexico-1945",
+  "1945-11-07-72": "mexico-1945",
+  "1945-11-08-73": "mexico-1945",
+  "1945-11-09-74": "mexico-1945"
+ },
+ "tramos": {
+  "presidente": [
+   {"clave":"besteiro","etapa":"I","desde":"1931-07-14","hasta":"1932-05-13","primera":"1931-07-14-1","ultima":"1932-05-13-165","sesiones":165,"nombre":"Julián Besteiro Fernández","corto":"Besteiro","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"barnes","etapa":"I","desde":"1932-05-17","hasta":"1932-05-19","primera":"1932-05-17-166","ultima":"1932-05-19-168","sesiones":3,"nombre":"Francisco Barnés","corto":"Barnés","cargo":"Vicepresidente de las Cortes","verificar":false},
+   {"clave":"besteiro","etapa":"I","desde":"1932-05-20","hasta":"1932-10-28","primera":"1932-05-20-169","ultima":"1932-10-28-249","sesiones":81,"nombre":"Julián Besteiro Fernández","corto":"Besteiro","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"lara","etapa":"I","desde":"1932-11-01","hasta":"1932-11-01","primera":"1932-11-01-250","ultima":"1932-11-01-250","sesiones":1,"nombre":"Antonio Lara y Zárate","corto":"Lara","cargo":"Vicepresidente de las Cortes","verificar":false},
+   {"clave":"besteiro","etapa":"I","desde":"1932-11-02","hasta":"1933-10-03","primera":"1932-11-02-251","ultima":"1933-10-03-405","sesiones":155,"nombre":"Julián Besteiro Fernández","corto":"Besteiro","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"alba","etapa":"II","desde":"1933-12-08","hasta":"1934-01-19","primera":"1933-12-08-1","ultima":"1934-01-19-25","sesiones":25,"nombre":"Santiago Alba Bonifaz","corto":"Alba","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"casanueva","etapa":"II","desde":"1934-01-23","hasta":"1934-01-23","primera":"1934-01-23-26","ultima":"1934-01-23-26","sesiones":1,"nombre":"Cándido Casanueva","corto":"Casanueva","cargo":"Vicepresidente de las Cortes","verificar":false},
+   {"clave":"alba","etapa":"II","desde":"1934-01-24","hasta":"1935-07-26","primera":"1934-01-24-27","ultima":"1935-07-26-231","sesiones":205,"nombre":"Santiago Alba Bonifaz","corto":"Alba","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"gimenez_fernandez","etapa":"II","desde":"1935-09-24","hasta":"1935-09-24","primera":"1935-09-24-232","ultima":"1935-09-24-232","sesiones":1,"nombre":"Manuel Giménez Fernández","corto":"Giménez Fernández","cargo":"Vicepresidente de las Cortes","verificar":false},
+   {"clave":"alba","etapa":"II","desde":"1935-10-01","hasta":"1935-12-10","primera":"1935-10-01-233","ultima":"1935-12-10-276","sesiones":44,"nombre":"Santiago Alba Bonifaz","corto":"Alba","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"martinez_barrio","etapa":"III","desde":"1936-03-16","hasta":"1936-04-08","primera":"1936-03-16-1","ultima":"1936-04-08-16","sesiones":16,"nombre":"Diego Martínez Barrio","corto":"Martínez Barrio","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"jimenez_de_asua","etapa":"III","desde":"1936-04-15","hasta":"1936-05-08","primera":"1936-04-15-17","ultima":"1936-05-08-27","sesiones":11,"nombre":"Luis Jiménez de Asúa","corto":"Jiménez de Asúa","cargo":"Vicepresidente de las Cortes","verificar":true},
+   {"clave":"martinez_barrio","etapa":"III","desde":"1936-05-12","hasta":"1936-07-10","primera":"1936-05-12-28","ultima":"1936-07-10-60","sesiones":33,"nombre":"Diego Martínez Barrio","corto":"Martínez Barrio","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"martinez_barrio","etapa":"IV","desde":"1936-10-01","hasta":"1939-02-01","primera":"1936-10-01-61","ultima":"1939-02-01-69","sesiones":9,"nombre":"Diego Martínez Barrio","corto":"Martínez Barrio","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"martinez_barrio","etapa":"V","desde":"1945-01-10","hasta":"1945-01-10","primera":"1945-01-10-70","ultima":"1945-01-10-70","sesiones":1,"nombre":"Diego Martínez Barrio","corto":"Martínez Barrio","cargo":"Presidente de las Cortes","verificar":false},
+   {"clave":"fernandez_clerigo","etapa":"V","desde":"1945-08-17","hasta":"1945-08-17","primera":"1945-08-17-71","ultima":"1945-08-17-71","sesiones":1,"nombre":"Luis Fernández Clérigo","corto":"Fernández Clérigo","cargo":"Vicepresidente de las Cortes","verificar":true},
+   {"clave":"jimenez_de_asua","etapa":"V","desde":"1945-11-07","hasta":"1945-11-09","primera":"1945-11-07-72","ultima":"1945-11-09-74","sesiones":3,"nombre":"Luis Jiménez de Asúa","corto":"Jiménez de Asúa","cargo":"Vicepresidente de las Cortes","verificar":true}
+  ],
+  "gobierno": [
+   {"clave":"provisional","etapa":"I","desde":"1931-07-14","hasta":"1931-10-13","primera":"1931-07-14-1","ultima":"1931-10-13-55","sesiones":55,"nombre":"Gobierno Provisional (Alcalá-Zamora)","corto":"Provisional (Alcalá-Zamora)","verificar":false},
+   {"clave":"azana_1","etapa":"I","desde":"1931-10-14","hasta":"1931-12-15","primera":"1931-10-14-56","ultima":"1931-12-15-90","sesiones":35,"nombre":"Gobierno Azaña I","corto":"Azaña I","verificar":false},
+   {"clave":"azana_2","etapa":"I","desde":"1931-12-17","hasta":"1933-06-08","primera":"1931-12-17-91","ultima":"1933-06-08-352","sesiones":262,"nombre":"Gobierno Azaña II","corto":"Azaña II","verificar":false},
+   {"clave":"azana_3","etapa":"I","desde":"1933-06-14","hasta":"1933-09-08","primera":"1933-06-14-353","ultima":"1933-09-08-403","sesiones":51,"nombre":"Gobierno Azaña III","corto":"Azaña III","verificar":false},
+   {"clave":"lerroux_1","etapa":"I","desde":"1933-10-02","hasta":"1933-10-03","primera":"1933-10-02-404","ultima":"1933-10-03-405","sesiones":2,"nombre":"Gobierno Lerroux I","corto":"Lerroux I","verificar":false},
+   {"clave":"martinez_barrio_1","etapa":"II","desde":"1933-12-08","hasta":"1933-12-15","primera":"1933-12-08-1","ultima":"1933-12-15-5","sesiones":5,"nombre":"Gobierno Martínez Barrio","corto":"Martínez Barrio","verificar":false},
+   {"clave":"lerroux_2","etapa":"II","desde":"1933-12-19","hasta":"1934-03-01","primera":"1933-12-19-6","ultima":"1934-03-01-44","sesiones":39,"nombre":"Gobierno Lerroux II","corto":"Lerroux II","verificar":false},
+   {"clave":"lerroux_3","etapa":"II","desde":"1934-03-06","hasta":"1934-04-25","primera":"1934-03-06-45","ultima":"1934-04-25-74","sesiones":30,"nombre":"Gobierno Lerroux III","corto":"Lerroux III","verificar":false},
+   {"clave":"samper","etapa":"II","desde":"1934-05-02","hasta":"1934-10-01","primera":"1934-05-02-75","ultima":"1934-10-01-113","sesiones":39,"nombre":"Gobierno Samper","corto":"Samper","verificar":false},
+   {"clave":"lerroux_4","etapa":"II","desde":"1934-10-09","hasta":"1935-03-29","primera":"1934-10-09-114","ultima":"1935-03-29-180","sesiones":67,"nombre":"Gobierno Lerroux IV","corto":"Lerroux IV","verificar":false},
+   {"clave":"lerroux_6","etapa":"II","desde":"1935-05-06","hasta":"1935-09-24","primera":"1935-05-06-181","ultima":"1935-09-24-232","sesiones":52,"nombre":"Gobierno Lerroux VI","corto":"Lerroux VI","verificar":false},
+   {"clave":"chapaprieta_1","etapa":"II","desde":"1935-10-01","hasta":"1935-10-28","primera":"1935-10-01-233","ultima":"1935-10-28-250","sesiones":18,"nombre":"Gobierno Chapaprieta I","corto":"Chapaprieta I","verificar":false},
+   {"clave":"chapaprieta_2","etapa":"II","desde":"1935-10-29","hasta":"1935-12-10","primera":"1935-10-29-251","ultima":"1935-12-10-276","sesiones":26,"nombre":"Gobierno Chapaprieta II","corto":"Chapaprieta II","verificar":false},
+   {"clave":"azana_4","etapa":"III","desde":"1936-03-16","hasta":"1936-05-08","primera":"1936-03-16-1","ultima":"1936-05-08-27","sesiones":27,"nombre":"Gobierno Azaña (1936)","corto":"Azaña (1936)","verificar":false},
+   {"clave":"barcia","etapa":"III","desde":"1936-05-12","hasta":"1936-05-12","primera":"1936-05-12-28","ultima":"1936-05-12-28","sesiones":1,"nombre":"Gobierno Barcia (interino)","corto":"Barcia (interino)","verificar":false},
+   {"clave":"casares_quiroga","etapa":"III","desde":"1936-05-19","hasta":"1936-07-10","primera":"1936-05-19-29","ultima":"1936-07-10-60","sesiones":32,"nombre":"Gobierno Casares Quiroga","corto":"Casares Quiroga","verificar":false},
+   {"clave":"largo_caballero_1","etapa":"IV","desde":"1936-10-01","hasta":"1936-10-01","primera":"1936-10-01-61","ultima":"1936-10-01-61","sesiones":1,"nombre":"Gobierno Largo Caballero I","corto":"Largo Caballero I","verificar":false},
+   {"clave":"largo_caballero_2","etapa":"IV","desde":"1936-12-01","hasta":"1937-02-01","primera":"1936-12-01-62","ultima":"1937-02-01-63","sesiones":2,"nombre":"Gobierno Largo Caballero II","corto":"Largo Caballero II","verificar":false},
+   {"clave":"negrin_1","etapa":"IV","desde":"1937-10-01","hasta":"1938-02-01","primera":"1937-10-01-64","ultima":"1938-02-01-66","sesiones":3,"nombre":"Gobierno Negrín I","corto":"Negrín I","verificar":false},
+   {"clave":"negrin_2","etapa":"IV","desde":"1938-09-30","hasta":"1939-02-01","primera":"1938-09-30-67","ultima":"1939-02-01-69","sesiones":3,"nombre":"Gobierno Negrín II","corto":"Negrín II","verificar":false},
+   {"clave":"negrin_exilio","etapa":"V","desde":"1945-01-10","hasta":"1945-08-17","primera":"1945-01-10-70","ultima":"1945-08-17-71","sesiones":2,"nombre":"Gobierno Negrín (en el exilio)","corto":"Negrín (en el exilio)","verificar":false},
+   {"clave":"giral_exilio","etapa":"V","desde":"1945-11-07","hasta":"1945-11-09","primera":"1945-11-07-72","ultima":"1945-11-09-74","sesiones":3,"nombre":"Gobierno Giral (en el exilio)","corto":"Giral (en el exilio)","verificar":true}
+  ]
+ }
+}

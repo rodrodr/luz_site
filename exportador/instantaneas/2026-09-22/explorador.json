@@ -1,0 +1,291 @@
+{
+ "url": "https://rodrodr.github.io/luz_explorer/",
+ "estado": 200,
+ "cabeceras": {
+  "content-length": "2868435",
+  "content-type": "text/html; charset=utf-8",
+  "etag": "\"6ab07d95-2bc4d3\"",
+  "last-modified": "Mon, 21 Sep 2026 00:43:01 GMT",
+  "date": "Tue, 22 Sep 2026 21:51:49 GMT"
+ },
+ "bytes": 2868435,
+ "md5": "155b10fd087f4fcac308dc628dea16ab",
+ "sha256": "e4dca0412f70b2f7490101399c959355a45fa4513e79c2980467dae9a429c9e1",
+ "build_id": "1857031ae8c04b3d",
+ "corpus_servido": {
+  "version": 1,
+  "corpus": "2REP_Diaries_v3",
+  "titulo": "Diarios de sesiones de la Segunda República Española",
+  "dir": "datos",
+  "partes": [
+   {
+    "archivo": "corpus.sqlite.gz.000",
+    "bytes_gz": 45000000
+   },
+   {
+    "archivo": "corpus.sqlite.gz.001",
+    "bytes_gz": 45000000
+   },
+   {
+    "archivo": "corpus.sqlite.gz.002",
+    "bytes_gz": 21733652
+   }
+  ],
+  "bytes": 282316800,
+  "bytes_gz": 111733652,
+  "sha256": "3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15",
+  "n_speeches": 121700,
+  "csv_origen": {
+   "nombre": "2REP_Diaries_v3.csv",
+   "sha256": "e1906abc601795860a2da5835571dc0f10b58e3679aa6867a27d68af843eb5f9"
+  },
+  "construido_en": "2026-09-16T16:22:40"
+ },
+ "bibliotecas_proyecto": {
+  "corpus": "2REP_Diaries_v3",
+  "csv_sha256": "e1906abc601795860a2da5835571dc0f10b58e3679aa6867a27d68af843eb5f9",
+  "bibliotecas": [
+   {
+    "clave": "L1",
+    "nombre": "Discursos principales (1931-1945)",
+    "n": 29
+   },
+   {
+    "clave": "L2-B17",
+    "nombre": "Debate · La Cámara se constituye (1931)",
+    "n": 676
+   },
+   {
+    "clave": "L2-B1",
+    "nombre": "Debate · La Constitución de 1931",
+    "n": 332
+   },
+   {
+    "clave": "L2-B2",
+    "nombre": "Debate · Sufragio femenino",
+    "n": 770
+   },
+   {
+    "clave": "L2-B3",
+    "nombre": "Debate · Cuestión religiosa (art. 26)",
+    "n": 486
+   },
+   {
+    "clave": "L2-B18",
+    "nombre": "Debate · Ley de Defensa de la República",
+    "n": 387
+   },
+   {
+    "clave": "L2-B4",
+    "nombre": "Debate · Responsabilidades de Alfonso XIII",
+    "n": 646
+   },
+   {
+    "clave": "L2-B19",
+    "nombre": "Debate · El primer presidente de la República",
+    "n": 126
+   },
+   {
+    "clave": "L2-B5",
+    "nombre": "Debate · Estatuto de Cataluña",
+    "n": 307
+   },
+   {
+    "clave": "L2-B6",
+    "nombre": "Debate · Reforma agraria y Sanjurjada",
+    "n": 4497
+   },
+   {
+    "clave": "L2-B7",
+    "nombre": "Debate · Casas Viejas",
+    "n": 943
+   },
+   {
+    "clave": "L2-B20",
+    "nombre": "Debate · Azaña y Lerroux: la ruptura",
+    "n": 383
+   },
+   {
+    "clave": "L2-B21",
+    "nombre": "Debate · Ley Electoral de 1933",
+    "n": 482
+   },
+   {
+    "clave": "L2-B22",
+    "nombre": "Debate · El final de las Constituyentes",
+    "n": 152
+   },
+   {
+    "clave": "L2-B23",
+    "nombre": "Debate · Las Cortes de 1933 se estrenan",
+    "n": 273
+   },
+   {
+    "clave": "L2-B24",
+    "nombre": "Debate · Amnistía de 1934",
+    "n": 1085
+   },
+   {
+    "clave": "L2-B8",
+    "nombre": "Debate · Contratos de cultivo y retirada de ERC y PNV",
+    "n": 238
+   },
+   {
+    "clave": "L2-B9",
+    "nombre": "Debate · Las Cortes ante la revolución de octubre",
+    "n": 290
+   },
+   {
+    "clave": "L2-B25",
+    "nombre": "Debate · Reforma del Reglamento (1934)",
+    "n": 873
+   },
+   {
+    "clave": "L2-B10",
+    "nombre": "Debate · Acusación contra Azaña y Casares",
+    "n": 602
+   },
+   {
+    "clave": "L2-B11",
+    "nombre": "Debate · Estraperlo y Nombela",
+    "n": 705
+   },
+   {
+    "clave": "L2-B26",
+    "nombre": "Debate · Las Cortes de 1936 se constituyen",
+    "n": 30
+   },
+   {
+    "clave": "L2-B12",
+    "nombre": "Debate · Comisión de Actas (Cuenca y Granada)",
+    "n": 371
+   },
+   {
+    "clave": "L2-B13",
+    "nombre": "Debate · Destitución de Alcalá-Zamora",
+    "n": 139
+   },
+   {
+    "clave": "L2-B14",
+    "nombre": "Debate · Orden público en la primavera de 1936",
+    "n": 604
+   },
+   {
+    "clave": "L2-B15",
+    "nombre": "Debate · Las Cortes en guerra",
+    "n": 280
+   },
+   {
+    "clave": "L2-B16",
+    "nombre": "Debate · Las Cortes en el exilio",
+    "n": 211
+   },
+   {
+    "clave": "L3-nucleo",
+    "nombre": "Sesiones decisivas",
+    "n": 309
+   },
+   {
+    "clave": "L3-externo",
+    "nombre": "Sesiones que estudia la literatura",
+    "n": 2164
+   },
+   {
+    "clave": "L3-interno",
+    "nombre": "Sesiones más crispadas",
+    "n": 5585
+   },
+   {
+    "clave": "L4",
+    "nombre": "Anécdotas y amenazas",
+    "n": 54
+   }
+  ]
+ },
+ "fuente": {
+  "tipo": "dataset",
+  "referencia_fundamental": true,
+  "titulo": "Luz y Taquígrafos: Parliamentary Debates in the Second Spanish Republic, 1931–1945",
+  "autores": [
+   {
+    "nombre": "Rodrigues-Silveira, Rodrigo",
+    "afiliacion": "Universidad de Salamanca",
+    "orcid": "0000-0002-6912-7689"
+   },
+   {
+    "nombre": "García-Díez, Fátima",
+    "afiliacion": "Universidad de Salamanca",
+    "orcid": "0000-0002-4259-3516"
+   },
+   {
+    "nombre": "Llamazares, Iván",
+    "afiliacion": "Universidad de Salamanca",
+    "orcid": "0000-0003-2947-6830"
+   },
+   {
+    "nombre": "Martínez-Barahona, Elena",
+    "afiliacion": "Universidad de Salamanca",
+    "orcid": "0000-0002-9827-2308"
+   },
+   {
+    "nombre": "Barreto Martín, Eduardo",
+    "afiliacion": "Universidad de Salamanca",
+    "orcid": "0009-0006-3670-1767"
+   }
+  ],
+  "anio": 2026,
+  "editor": "Harvard Dataverse",
+  "doi": "10.7910/DVN/THQCMI",
+  "url": "https://doi.org/10.7910/DVN/THQCMI",
+  "version_cita": "V2",
+  "version_metadatos": "2.0",
+  "fecha_publicacion": "2026-03-23",
+  "fecha_version": "2026-09-15T18:33:29Z",
+  "licencia": "CC BY 4.0",
+  "licencia_url": "http://creativecommons.org/licenses/by/4.0",
+  "cita": "Rodrigues-Silveira, Rodrigo; García-Díez, Fátima; Llamazares, Iván; Martínez-Barahona, Elena; Barreto Martín, Eduardo, 2026, \"Luz y Taquígrafos: Parliamentary Debates in the Second Spanish Republic, 1931–1945\", https://doi.org/10.7910/DVN/THQCMI, Harvard Dataverse, V2",
+  "archivo": {
+   "nombre": "2REP_Diaries.csv",
+   "bytes": 165785782,
+   "md5": "360332a0ff1327671530f15eed46ac0c",
+   "verificado": "tamaño y md5 idénticos al archivo publicado"
+  },
+  "publicacion_relacionada": {
+   "titulo": "Afinidades Elegidas: Parliamentary Cosponsorship Networks of the Spanish Second Republic (1931-1939)",
+   "doi": "10.7910/DVN/CGOCUS",
+   "url": "https://doi.org/10.7910/DVN/CGOCUS"
+  },
+  "metadatos_de": "API de Harvard Dataverse (datasets/:persistentId y versions/:latest-published/citation)",
+  "consultado": "2026-09-15"
+ },
+ "trozos": [
+  {
+   "url": "https://rodrodr.github.io/luz_explorer/datos/corpus.sqlite.gz.000",
+   "estado": 200,
+   "content-length": "45000000",
+   "content-type": "application/octet-stream",
+   "etag": "\"6ab07d95-2aea540\"",
+   "last-modified": "Mon, 21 Sep 2026 00:43:01 GMT",
+   "date": "Tue, 22 Sep 2026 21:51:49 GMT"
+  },
+  {
+   "url": "https://rodrodr.github.io/luz_explorer/datos/corpus.sqlite.gz.001",
+   "estado": 200,
+   "content-length": "45000000",
+   "content-type": "application/octet-stream",
+   "etag": "\"6ab07d95-2aea540\"",
+   "last-modified": "Mon, 21 Sep 2026 00:43:01 GMT",
+   "date": "Tue, 22 Sep 2026 21:51:49 GMT"
+  },
+  {
+   "url": "https://rodrodr.github.io/luz_explorer/datos/corpus.sqlite.gz.002",
+   "estado": 200,
+   "content-length": "21733652",
+   "content-type": "application/octet-stream",
+   "etag": "\"6ab07d95-14ba114\"",
+   "last-modified": "Mon, 21 Sep 2026 00:43:01 GMT",
+   "date": "Tue, 22 Sep 2026 21:51:49 GMT"
+  }
+ ],
+ "consultado": "2026-09-22T21:51:41+00:00"
+}

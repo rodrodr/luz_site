@@ -1,0 +1,159 @@
+---
+/**
+ * E · Puerta de lectura ×8 (+7 en la 0.2) (plan § Plantilla E; narrativa § 10; DESIGN.md § Esquema C · E). Dueño:
+ * grupo 3 (Sesiones). Copy: `sesiones.<slug>.*` y los títulos comunes `sesiones.puerta.*` (docs/copy_es/sesiones*.md).
+ * Datos: `puertas.json` (F30), `votaciones.json` (F26 mínima) y `citas.json` (el aserto de cada cita), del exportador.
+ *
+ * Lectura con índice (columnas 1–3), texto (4–9) y margen vivo (10–12). Movimientos: cabecera (asiento del proyecto ·
+ * H1 con el hecho · la pregunta) · Qué pasó · Lo que dice el Diario (pasajes con su asiento V2 · v3, comprobados letra a
+ * letra) · La sesión, turno a turno (F30, protagonista) · La votación (F26 mínima), si la hay · Cómo encontrarla en el
+ * explorador (los filtros como pasos escritos, [Copiar la consulta] con su recuento fechado y el debate preparado) ·
+ * Lo que no está, si procede · Fuentes · Cómo citar un pasaje · vecinas.
+ * Cada sección pinta el copy de su prefijo EN SU ORDEN, con esta gramática: `….cita.<n>` (+ `.pie`) → pasaje del Diario;
+ * `….consulta` (+ `.filtros`, `.recuento`) → consulta copiable; `….pie` y `….nota` → nota al margen; `citar.cita` →
+ * cita copiable; el resto, prosa. Tras cada clave, las frases fijas ↺ que el copy ancló detrás.
+ */
+import Base from '../../../../layouts/Base.astro';
+import SubNav from '../../../../components/SubNav.astro';
+import CabezaPagina from '../../../../components/CabezaPagina.astro';
+import Seccion from '../../../../components/Seccion.astro';
+import IndiceLateral from '../../../../components/IndiceLateral.astro';
+import NotaBases from '../../../../components/NotaBases.astro';
+import FigTurnos from '../../../../components/FigTurnos.astro';
+import FigVotaciones from '../../../../components/FigVotaciones.astro';
+import Pasaje from '../../../../components/puerta/Pasaje.astro';
+import Vecinas from '../../../../components/ficha/Vecinas.astro';
+import SinSitio from '../../../../components/SinSitio.astro';
+import { meta } from '../../../../lib/pagina';
+import { t, plano, rotulo, existe, claves, tBloques } from '../../../../lib/i18n';
+import { primera, anclasTras, htmlFija, rotulosConDestino } from '../../../../lib/lectura';
+import { htmlConsulta, htmlCita } from '../../../../lib/piezas';
+import { remata } from '../../../../lib/remata';
+import { asertaCita } from '../../../../components/puerta/aserto';
+import { dato } from '../../../../lib/datos';
+import { url, PAGINAS, PUERTAS_PUBLICADAS, etapaPorId } from '../../../../lib/rutas';
+import { LANGS, type Lang } from '../../../../lib/idiomas';
+
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) => PUERTAS_PUBLICADAS.map((p) => ({ params: { lang, puerta: p.slug } })));
+}
+const lang = Astro.params.lang as Lang;
+const i = PUERTAS_PUBLICADAS.findIndex((p) => p.slug === Astro.params.puerta);
+const p = PUERTAS_PUBLICADAS[i];
+const P = `sesiones.${p.slug}`;
+const G = 'sesiones.puerta';
+const ctx = { sub: { puerta: p.slug } };
+const { titulo, descripcion } = meta(lang, P, ctx);
+const etapa = etapaPorId(p.etapa)!;
+const miga = `<a href="${url(lang, PAGINAS.cortes)}">${rotulo(lang, 'comun.nav.cortes')}</a> / <a href="${url(lang, PAGINAS.sesiones)}">${rotulo(lang, 'comun.subnav.cortes.sesiones')}</a>`;
+const vecina = (x?: (typeof PUERTAS_PUBLICADAS)[number]) => x ? {
+  href: url(lang, `${PAGINAS.sesiones}/${x.slug}`),
+  titulo: primera(lang, [`sesiones.lista.${x.slug}.titulo`, `sesiones.${x.slug}.titulo`]),
+  sub: existe(`sesiones.lista.${x.slug}.fecha`) ? t(lang, `sesiones.lista.${x.slug}.fecha`) : undefined,
+} : null;
+// Las votaciones de F26 que caen en esta puerta (la mínima): las que el exportador marca con su puerta.
+const votos = (dato<{ votaciones: { clave: string; puerta?: string | null }[] }>('votaciones')?.votaciones ?? []).filter((v) => v.puerta === p.slug).map((v) => v.clave);
+
+// Secciones: id en la página, prefijo en el copy y título común (`sesiones.puerta.<x>`).
+const S = [
+  { id: 'que-paso', x: 'que_paso' }, { id: 'diario', x: 'diario' }, { id: 'turno-a-turno', x: 'turnos' },
+  { id: 'votacion', x: 'votacion', opcional: true }, { id: 'encontrarla', x: 'explorador' },
+  { id: 'no-esta', x: 'no_esta', opcional: true }, { id: 'fuentes', x: 'fuentes' }, { id: 'citar', x: 'citar' },
+].filter((s) => !s.opcional || claves(`${P}.${s.x}.`).length > 0);
+const tituloDe = (s: (typeof S)[number]) => (existe(`${P}.${s.x}.titulo`) ? `${P}.${s.x}.titulo` : `${G}.${s.x}`);
+
+// ── la gramática de cada sección, en el orden del copy ────────────────────────────────────────────────────────────
+type Pieza =
+  | { tipo: 'html'; html: string }
+  | { tipo: 'pasaje'; cita: { clave: string; pie?: string }; presidencia?: { clave: string; pie?: string } };
+const esCita = (k: string) => /\.cita\.[^.]+$/.test(k) && !/\.citar\.cita$/.test(k);
+const piePresidencia = (pie?: string) => !!pie && existe(pie) && /^La Presidencia\b/.test(plano(lang, pie));
+function piezasDe(pref: string): Pieza[] {
+  const ks = claves(`${pref}.`, true).filter((k) => k !== `${pref}.titulo`);
+  const hechas = new Set<string>();
+  const out: Pieza[] = [];
+  const fijas = (k: string) => { for (const f of anclasTras(k)) out.push({ tipo: 'html', html: htmlFija(lang, f) }); };
+  let consultas = 0;
+  ks.forEach((k, j) => {
+    if (hechas.has(k)) return;
+    hechas.add(k);
+    const ultimo = k.split('.').pop()!;
+    const hermano = (s: string) => { const h = k.replace(/\.[^.]+$/, `.${s}`); return existe(h) ? h : undefined; };
+    if (esCita(k)) {
+      const pie = existe(`${k}.pie`) ? `${k}.pie` : undefined;
+      if (pie) hechas.add(pie);
+      const texto = plano(lang, k);
+      if (!/^\s*«/.test(texto)) {
+        // Una frase que CITA entre «» (p. ej. las dos horas del extracto de Figueres): prosa, pero con su aserto.
+        asertaCita(k, t(lang, k));
+        out.push({ tipo: 'html', html: `<div class="referencia" data-audit-exento="cita literal del Diario">${remata(tBloques(lang, k, ctx))}</div>` });
+      } else {
+        // Una cita de la Presidencia que precede a otra cita va en la línea pequeña de la siguiente (DESIGN.md).
+        const sig = ks.slice(j + 1).find((x) => !hechas.has(x) && x !== pie);
+        if (piePresidencia(pie) && sig && esCita(sig)) {
+          const pieSig = existe(`${sig}.pie`) ? `${sig}.pie` : undefined;
+          hechas.add(sig);
+          if (pieSig) hechas.add(pieSig);
+          out.push({ tipo: 'pasaje', presidencia: { clave: k, pie }, cita: { clave: sig, pie: pieSig } });
+          [k, pie, sig, pieSig].forEach((x) => x && fijas(x));
+          return;
+        }
+        out.push({ tipo: 'pasaje', cita: { clave: k, pie } });
+        if (pie) fijas(pie);
+      }
+    } else if (ultimo === 'consulta') {
+      const f = hermano('filtros'), r = hermano('recuento');
+      if (f) hechas.add(f);
+      if (r) hechas.add(r);
+      out.push({ tipo: 'html', html: htmlConsulta(lang, { consulta: plano(lang, k, ctx), filtros: f ? t(lang, f, ctx) : undefined, recuento: r ? t(lang, r, ctx) : undefined, aviso: consultas++ === 0 }) });
+    } else if (ultimo === 'cita' && k.endsWith('.citar.cita')) {
+      out.push({ tipo: 'html', html: htmlCita(lang, { texto: t(lang, k, ctx) }) });
+    } else if (ultimo === 'pie' || (ultimo === 'nota' && !/\.consulta\.nota$/.test(k))) {
+      out.push({ tipo: 'html', html: `<div class="pieza-nota">${remata(tBloques(lang, k, ctx))}</div>` });
+    } else if (/\.explorador\.biblioteca$/.test(k)) {
+      out.push({ tipo: 'html', html: rotulosConDestino(lang, remata(tBloques(lang, k, ctx)), k) });
+      if (existe(`${G}.biblioteca.donde`)) out.push({ tipo: 'html', html: `<div class="pieza-nota">${remata(tBloques(lang, `${G}.biblioteca.donde`))}</div>` });
+    } else {
+      const html = rotulosConDestino(lang, remata(tBloques(lang, k, ctx)), k);
+      out.push({ tipo: 'html', html: /\.explorador\.fecha(\.\d+)?$/.test(k) ? html.replace(/<p>/g, '<p class="pasos-filtro">') : html });
+    }
+    fijas(k);
+  });
+  return out;
+}
+const secciones = S.map((s) => ({ ...s, titulo: tituloDe(s), piezas: piezasDe(`${P}.${s.x}`) }));
+const entradas = secciones.map((s) => ({ id: s.id, rotulo: t(lang, s.titulo) }));
+const hayV3 = true; // todas las puertas dan cifras y filas de la edición del explorador (v3): NotaBases (↺ 13)
+---
+<Base lang={lang} ruta={`${PAGINAS.sesiones}/${p.slug}`} titulo={titulo} descripcion={descripcion}>
+  <SubNav lang={lang} grupo="cortes" actual={`${PAGINAS.sesiones}/${p.slug}`} />
+  <CabezaPagina lang={lang} prefijo={P} miga={miga} ctx={ctx} marca={etapa.id} bases={hayV3 ? ['V2', 'v3'] : ['V2']} h1={existe(`${P}.titulo`) ? `${P}.titulo` : `sesiones.lista.${p.slug}.titulo`}>
+    <p class="etapa-enlace nota"><a href={url(lang, `${PAGINAS.cortes}/${etapa.slug}`)} set:html={primera(lang, [`cortes.etapa.${etapa.id}.nombre`, `comun.etapa.${etapa.id}.nombre`])} /></p>
+  </CabezaPagina>
+  <div class="contenedor con-indice" style={`timeline-scope: ${secciones.map((s) => `--${s.id}`).join(', ')}`}>
+    <IndiceLateral lang={lang} titulo={t(lang, 'comun.indice.titulo')} entradas={entradas} />
+    <div class="lectura">
+      {secciones.map((s) => (
+        <Seccion lang={lang} id={s.id} prefijo={`${P}.${s.x}`} titulo={s.titulo} ctx={ctx} indice resto={false}>
+          {s.piezas.map((x) => x.tipo === 'pasaje'
+            ? <Pasaje lang={lang} cita={x.cita} presidencia={x.presidencia} />
+            : <Fragment set:html={x.html} />)}
+          {s.id === 'diario' && hayV3 && <NotaBases lang={lang} compacta ids />}
+          {s.id === 'turno-a-turno' && <FigTurnos lang={lang} puerta={p.slug} />}
+          {s.id === 'votacion' && votos.length > 0 && <FigVotaciones lang={lang} variante="minima" claves={votos} />}
+        </Seccion>
+      ))}
+    </div>
+  </div>
+  <Vecinas lang={lang} tipo="puerta" anterior={vecina(PUERTAS_PUBLICADAS[i - 1])} siguiente={vecina(PUERTAS_PUBLICADAS[i + 1])} />
+  <SinSitio lang={lang} prefijo={P} ctx={ctx} usados={[`${P}.titulo`, `${P}.antetitulo`, `${P}.entrada`, `${P}.miga`, ...S.map((s) => `${P}.${s.x}`)]} />
+</Base>
+
+<style>
+  .etapa-enlace { margin-top: 1rem; }
+  /* Los filtros del explorador son pasos que el lector hace a mano (no hay consulta que copiar): van como una línea de
+     registro, con la ruta de menús en la garamond y su filete de nota. */
+  .lectura :global(.pasos-filtro) { padding: .7rem 0 .7rem 1rem; border-left: 1px solid var(--hair-2); color: var(--ink-2); }
+  .lectura :global(.referencia) { min-width: 0; }
+  .lectura :global(.referencia p) { max-width: var(--measure); }
+</style>

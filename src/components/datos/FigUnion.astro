@@ -1,0 +1,137 @@
+---
+/**
+ * F34 · Unir con Afinidades Elegidas: la unión correcta y la incorrecta (Usar los datos, #unir). Plan § F34.
+ * Tres barras en la misma escala: el CSV depositado; la unión por diputado Y legislatura (las mismas filas; las que no
+ * encuentran ficha, marcadas); y la unión solo por el diputado, que repite cada fila una vez por legislatura del
+ * diputado: lo que sobra se dibuja con el trazo discontinuo de lo que no existe en la base. No es interactiva.
+ * Tabla: los pasos con su resultado y, en `<details>`, los pares sin ficha y los de otro rótulo de partido, uno a uno,
+ * con el nombre de la tabla de grafías (nunca el `rep_name` crudo).
+ * Base: V2 × CGOCUS V1.1 (D-3: sus cifras exactas solo salen aquí, con el sello de Afinidades).
+ * Datos: `src/data/union.json`. Copy: `fig.F34.*`.
+ */
+import FiguraMarco from '../FiguraMarco.astro';
+import { t, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import { lineal, pct } from '../../viz/geom/escalas';
+import type { Lang } from '../../lib/idiomas';
+
+interface Caso { rep_id: number; nombre: string; legislatura: string; legislatura_cgocus: string; filas: number }
+interface Otro { rep_id: number; nombre: string; legislatura_cgocus: string; party: string; partido: string }
+interface U { filas_v2: number; filas_bien: number; filas_mal: number; pares: number; pares_casan: number; pares_sin_ficha: number; filas_sin_ficha: number; otro_partido: number; sin_ficha: Caso[]; partido_distinto: Otro[] }
+interface Props { lang: Lang; sufijo?: string }
+const { lang, sufijo = '' } = Astro.props;
+const U = dato<U>('union');
+const o = (k: string, ctx = {}) => (existe(k) ? t(lang, k, ctx) : marcaPendiente(k, 'copy'));
+const ancla = `unir${sufijo}`;
+const x = lineal([0, U?.filas_mal ?? 1]);
+const repetidas = U ? U.filas_mal - U.filas_v2 : 0;
+const nRep = fmt.dato(repetidas, fmt.n(repetidas, lang), 'fig.F34.repetidas', 'afin');
+const PASOS = ['recodificar', 'unir', 'casan', 'sin_ficha', 'mal', 'partido'];
+---
+<FiguraMarco lang={lang} id="F34" sufijo={sufijo}>
+  <div slot="grafico" class="union">
+    {!U ? <p set:html={marcaPendiente('union.json')} /> : (
+      <ol class="barras" role="list">
+        <li class="fila">
+          <span class="rotulo" set:html={o('fig.F34.barra.v2')} />
+          <span class="carril"><span class="tramo lleno" style={`--a: 0%; --b: ${pct(x(U.filas_v2))}`} /></span>
+          <span class="valor" set:html={fmt.clave('filas.V2', lang)} />
+        </li>
+        <li class="fila bien">
+          <span class="rotulo" set:html={o('fig.F34.barra.bien')} />
+          <span class="carril">
+            <span class="tramo lleno" style={`--a: 0%; --b: ${pct(x(U.filas_bien))}`} />
+            <span class="marca-sin" style={`--a: ${pct(x(U.filas_bien))}`} aria-hidden="true" />
+          </span>
+          <span class="valor" set:html={fmt.clave('filas.V2', lang)} />
+          <span class="nota-fila"><span class="muestra sin" aria-hidden="true" /><Fragment set:html={o('fig.F34.barra.sin_ficha')} />: <Fragment set:html={fmt.clave('union.filas.sin_ficha', lang)} /></span>
+        </li>
+        <li class="fila mal">
+          <span class="rotulo" set:html={o('fig.F34.barra.mal')} />
+          <span class="carril">
+            <span class="tramo lleno" style={`--a: 0%; --b: ${pct(x(U.filas_v2))}`} />
+            <span class="tramo sobra" style={`--a: ${pct(x(U.filas_v2))}; --b: ${pct(x(U.filas_mal) - x(U.filas_v2))}`} />
+          </span>
+          <span class="valor" set:html={fmt.clave('union.solo_id.filas', lang)} />
+          <span class="nota-fila"><span class="muestra sobra" aria-hidden="true" /><Fragment set:html={o('fig.F34.barra.repetidas', { vars: { n: nRep } })} /></span>
+        </li>
+      </ol>
+    )}
+  </div>
+  <div slot="tabla">
+    <div class="fig-desliza" tabindex="0" role="region" aria-labelledby={`${ancla}-caption`}>
+      <table class="fig-tabla pasos">
+        <caption id={`${ancla}-caption`}><span class="fig-rotulo-tabla" set:html={o('fig.F34.titulo')} /></caption>
+        <thead><tr><th scope="col" set:html={o('fig.F34.tabla.col.paso')} /><th scope="col" set:html={o('fig.F34.tabla.col.resultado')} /></tr></thead>
+        <tbody>
+          {PASOS.map((p) => (
+            <tr class:list={[{ mal: p === 'mal' }]}><th scope="row" set:html={o(`fig.F34.paso.${p}`)} /><td set:html={o(`fig.F34.paso.${p}.resultado`)} /></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    {U && (
+      <>
+        <details class="casos">
+          <summary set:html={o('fig.F34.casos.resumen')} />
+          <div class="fig-desliza" tabindex="0" role="region" aria-label={t(lang, 'fig.F34.casos.resumen')}>
+            <table class="fig-tabla">
+              <thead><tr><th scope="col" set:html={o('fig.F34.casos.col.diputado')} /><th scope="col" set:html={o('fig.F34.casos.col.legislatura')} /><th scope="col" class="num" set:html={o('fig.F34.casos.col.filas')} /></tr></thead>
+              <tbody>
+                {U.sin_ficha.map((c) => (
+                  <tr><th scope="row">{c.nombre} <span class="rid" set:html={fmt.dato(c.rep_id, `rep_id ${fmt.id(c.rep_id, lang)}`, `fig.F34.rep.${c.rep_id}`, 'V2')} /></th><td>{c.legislatura}</td><td class="num" set:html={fmt.dato(c.filas, fmt.n(c.filas, lang), `fig.F34.sin.${c.rep_id}.filas`, 'afin')} /></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+        <details class="casos">
+          <summary set:html={o('fig.F34.otros.resumen')} />
+          <div class="fig-desliza" tabindex="0" role="region" aria-label={t(lang, 'fig.F34.otros.resumen')}>
+            <table class="fig-tabla">
+              <thead><tr><th scope="col" set:html={o('fig.F34.casos.col.diputado')} /><th scope="col" set:html={o('fig.F34.casos.col.legislatura')} /><th scope="col" set:html={o('fig.F34.otros.col.v2')} /><th scope="col" set:html={o('fig.F34.otros.col.afin')} /></tr></thead>
+              <tbody>
+                {U.partido_distinto.map((c) => (
+                  <tr><th scope="row">{c.nombre}</th><td>{c.legislatura_cgocus}</td><td><code>{c.party}</code></td><td><code>{c.partido}</code></td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </>
+    )}
+  </div>
+</FiguraMarco>
+
+<style>
+  /* F34 no es interactiva: la frase del teclado no vale aquí (petición al andamiaje: que el marco la omita solo). */
+  .barras { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; }
+  .fila { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'rotulo valor' 'carril carril' 'nota nota'; gap: .35rem 1rem; align-items: baseline; }
+  .rotulo { grid-area: rotulo; font-size: var(--fs-small); color: var(--ink); }
+  .valor { grid-area: valor; font: 500 .85rem/1.2 var(--mono); color: var(--ink); white-space: nowrap; text-align: right; }
+  .carril { grid-area: carril; position: relative; height: 1.4rem; border-left: 1px solid var(--hair-2); }
+  .tramo { position: absolute; top: 0; bottom: 0; left: var(--a); width: var(--b); }
+  .lleno { background: var(--dato-2); border-radius: 0 1px 1px 0; }
+  /* Lo que sobra no existe en la base: contorno discontinuo y trama, nunca solo otro color. */
+  .sobra, .muestra.sobra {
+    border: 1.5px dashed var(--dato-2); border-left: 0;
+    background: repeating-linear-gradient(135deg, color-mix(in oklab, var(--dato-2) 32%, transparent) 0 2px, transparent 2px 7px);
+  }
+  .marca-sin { position: absolute; top: -.3rem; bottom: -.3rem; left: calc(var(--a) - 2px); width: 3px; border-inline: 1px solid var(--ausencia-trazo); background: var(--bg); }
+  .nota-fila { grid-area: nota; display: flex; align-items: center; gap: .5rem; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--ink-2); flex-wrap: wrap; }
+  .muestra { display: inline-block; width: 1.3rem; height: .75rem; flex: none; }
+  .muestra.sin { width: 3px; height: 1rem; border-inline: 1px solid var(--ausencia-trazo); }
+  .muestra.sobra { border-left: 1.5px dashed var(--dato-2); }
+  @media (min-width: 48rem) {
+    .fila { grid-template-columns: 15rem minmax(0, 1fr) 7.5rem; grid-template-areas: 'rotulo carril valor' '. nota .'; align-items: center; }
+    .valor { text-align: left; }
+  }
+  .pasos tr.mal th, .pasos tr.mal td { color: var(--ink); }
+  .pasos td { font-family: var(--text); font-size: var(--fs-small); }
+  .casos { margin-top: var(--e5); }
+  .casos summary { cursor: pointer; min-height: 2.75rem; display: inline-flex; align-items: center; font-size: var(--fs-small); color: var(--ink-2); }
+  .casos summary:hover { color: var(--accent); }
+  .casos th { font-family: var(--text); font-size: var(--fs-small); }
+  .rid { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); margin-left: .35rem; white-space: nowrap; }
+</style>

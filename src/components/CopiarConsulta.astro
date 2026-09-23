@@ -1,0 +1,19 @@
+---
+/**
+ * «Pruébelo» / «Hoy puede» / «Cómo encontrarla en el explorador». El explorador NO abre una búsqueda desde un enlace
+ * (D-4; `estudio_critica.md` §3.2): el «Pruébelo» de ParlaIbero se convierte aquí en
+ * [Copiar la consulta] · [Abrir el explorador ↗], con la frase ↺ 5 (`comun.fija.enlace`).
+ * La marca es la de `lib/piezas.ts › htmlConsulta` (la misma que usa el pintor genérico del copy).
+ * «este enlace abre» es palabra vetada: aquí no se escribe en ningún caso.
+ */
+import { htmlConsulta, type Consulta } from '../lib/piezas';
+import type { Lang } from '../lib/idiomas';
+
+interface Props extends Consulta { lang: Lang }
+const { lang, ...c } = Astro.props;
+---
+<Fragment set:html={htmlConsulta(lang, c)} />
+
+<script>
+  import '../scripts/copiar.ts';
+</script>

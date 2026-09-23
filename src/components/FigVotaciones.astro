@@ -1,0 +1,321 @@
+---
+/**
+ * F26 · Lo que se votó en voz alta (plan § F26; narrativa § 9.2; copy `sesiones.md` § 3). Dueño: grupo 3 (Sesiones).
+ *
+ * Una fila por votación, en orden de fecha. El tramo grueso son los síes; el fino, los noes (el grosor distingue sin
+ * depender del color). Donde el Diario imprime el número de diputados de la Cámara, un contorno llega hasta ese total y
+ * una línea marca la mitad más uno (tres filas: 234 de 466, 232 de 462 y 209 de 417). La ordinaria del 1-X-1931 va con
+ * trazo discontinuo: el Diario da su resultado, no los nombres. Las formas, en SVG emitido en la compilación; todo el
+ * texto, en HTML encima, con sus marcadores (`data-k`, `data-base`).
+ *
+ * Variantes: `completa` (Sesiones: las siete filas, el asiento con el total de listas y hasta tres anotaciones al
+ * margen) · `minima` (una puerta: solo `claves`) · `ligera` (Inicio: las seis nominales, sin pestañas, con los rótulos
+ * cortos de `rotulos`, p. ej. `inicio.f26.v.`).
+ * Datos: `src/data/votaciones.json` (exportador › sesiones.py). Pestaña Datos: votaciones.csv|xlsx, el registro de
+ * todas las listas (listas_nominales.csv|xlsx), el LÉAME y la imagen en SVG y PNG (`src/pages/datos/F26-[lang].*`).
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import Sello from './Sello.astro';
+import { t, plano, plantillaNota, existe, rotulo } from '../lib/i18n';
+import { dato } from '../lib/datos';
+import { fmt, marcaPendiente } from '../lib/cifras';
+import { url, recurso, PAGINAS } from '../lib/rutas';
+import { rutaDatos, rutaLeame, rutaImagen } from '../lib/figuras';
+import { citaFigura, huella } from '../lib/cita';
+import { fechaCorta, fechaLarga } from '../lib/formato';
+import { tope, marcasEje, fila, ALTO, type Voto } from '../viz/geom/votaciones';
+import type { Lang } from '../lib/idiomas';
+
+interface Props {
+  lang: Lang;
+  variante?: 'completa' | 'minima' | 'ligera';
+  /** Solo en `minima`: las votaciones que se dibujan (`['141-106', '161-121']`). */
+  claves?: string[];
+  /** Sufijo del ancla si la figura sale dos veces en la página. */
+  sufijo?: string;
+  /** Prefijo de los rótulos de cada fila (por omisión, `fig.F26.v.`). */
+  rotulos?: string;
+  /** Anotaciones editoriales (≤ 3), ya resueltas: clave de la votación → HTML. Solo en `completa`. */
+  anotaciones?: Record<string, string>;
+}
+const { lang, variante = 'completa', claves, sufijo = '', rotulos = 'fig.F26.v.', anotaciones = {} } = Astro.props;
+const F = 'fig.F26';
+const ancla = `votaciones${sufijo}`;
+const datos = dato<{ votaciones: Voto[]; listas: { filas: number; sesiones: number } }>('votaciones');
+const todas = datos?.votaciones ?? [];
+const votos = variante === 'minima' ? todas.filter((v) => claves?.includes(v.clave))
+  : variante === 'ligera' ? todas.filter((v) => v.nominal) : todas;
+const T = votos.length ? tope(votos) : 1;
+const ticks = marcasEje(T);
+const o = (k: string, ctx = {}) => (existe(k) ? t(lang, k, ctx) : marcaPendiente(k, 'copy'));
+const huecos = ['votacion', 'si', 'no', 'total', 'mitad', 'fecha', 'literal', 'v2', 'v3'];
+const nota = (k: string) => plantillaNota(lang, k, huecos);
+const conAnota = variante === 'completa' && Object.keys(anotaciones).length > 0;
+const n = (x: number) => fmt.n(x, lang);
+const d = (v: number | string, texto: string, k: string, base: string) => fmt.dato(v, texto, k, base);
+// Cada fila lleva a su puerta o a su fila de la Tabla; en una puerta (mínima), a la figura completa de Sesiones.
+const hrefDe = (v: Voto) => (variante === 'minima' ? url(lang, `${PAGINAS.sesiones}#votaciones`)
+  : v.puerta ? url(lang, `${PAGINAS.sesiones}/${v.puerta}`) : `#${ancla}-tabla`);
+const valores = (v: Voto) => {
+  const pie = v.nominal
+    ? t(lang, `${F}.valor`, { vars: { si: d(v.si, n(v.si), `voto.${v.clave}.si`, 'V2'), no: d(v.no, n(v.no), `voto.${v.clave}.no`, 'V2') } })
+    : t(lang, `${F}.valor.ordinaria`, { vars: { si: d(v.si, n(v.si), `voto.${v.clave}.si`, 'V2'), no: d(v.no, n(v.no), `voto.${v.clave}.no`, 'V2') } });
+  const tot = v.total ? t(lang, `${F}.valor.total`, { vars: { total: d(v.total, n(v.total), `voto.${v.clave}.total`, 'V2') } }) : '';
+  return { pie, tot };
+};
+const h = huella('V2');
+const h3 = huella('v3');
+const archivos = [rutaDatos('votaciones', 'csv'), rutaDatos('votaciones', 'xlsx'), rutaLeame('F26', 'es'), rutaLeame('F26', 'en')];
+const listas = [rutaDatos('listas_nominales', 'csv'), rutaDatos('listas_nominales', 'xlsx')];
+---
+{!datos ? (
+  <div class="fig-hueco" data-todo-fig="F26"><p set:html={marcaPendiente('votaciones.json', 'dato')} /></div>
+) : (
+<FiguraMarco lang={lang} id="F26" sufijo={sufijo} ligera={variante !== 'completa'} titulo={rotulos.startsWith('inicio.') && existe('inicio.f26.titulo') ? 'inicio.f26.titulo' : undefined} tactil
+  plantillaT={nota(`${F}.nota.t`)} plantilla={nota(`${F}.nota`)} plantillaB={nota(`${F}.nota.b`)}>
+  <div slot="grafico" class:list={['f26', `f26-${variante}`, { 'f26-anotada': conAnota }]}>
+    {variante !== 'minima' && existe(`${F}.asiento`) && <p class="asiento f26-asiento" set:html={t(lang, `${F}.asiento`)} />}
+    <ul class="f26-leyenda" role="list" aria-label={plano(lang, `${F}.leyenda.aria`)}>
+      <li><svg class="mue" viewBox="0 0 24 12" aria-hidden="true"><rect class="si" x="0" y="0" width="24" height="12" /></svg><span set:html={o(`${F}.leyenda.si`)} /></li>
+      <li><svg class="mue" viewBox="0 0 24 12" aria-hidden="true"><rect class="no" x="0" y="4" width="24" height="4" /></svg><span set:html={o(`${F}.leyenda.no`)} /></li>
+      {votos.some((v) => v.mitad) && <li><svg class="mue" viewBox="0 0 24 12" aria-hidden="true"><rect class="resto" x=".5" y=".5" width="23" height="11" /><line class="mitad" x1="12" x2="12" y1="-2" y2="14" /></svg><span set:html={o(`${F}.leyenda.mitad`)} /></li>}
+      {votos.some((v) => v.total) && <li><svg class="mue" viewBox="0 0 24 12" aria-hidden="true"><rect class="resto" x=".5" y=".5" width="23" height="11" /></svg><span set:html={o(`${F}.leyenda.total`)} /></li>}
+      {votos.some((v) => !v.nominal) && <li><svg class="mue" viewBox="0 0 24 12" aria-hidden="true"><rect class="si ord" x=".5" y=".5" width="23" height="11" /></svg><span set:html={o(`${F}.leyenda.ordinaria`)} /></li>}
+    </ul>
+    <ol class="f26-filas" role="list" data-recorre data-entra-fig tabindex="0" aria-label={plano(lang, `${F}.filas.aria`)}>
+      {votos.map((v, i) => {
+        const g = fila(v, T);
+        const rot = existe(`${rotulos}${v.clave}`) ? t(lang, `${rotulos}${v.clave}`) : o(`${F}.v.${v.clave}`);
+        const { pie, tot } = valores(v);
+        const plantilla = !v.nominal ? nota(`${F}.nota.ordinaria`) : v.mitad ? nota(`${F}.nota.mitad`) : undefined;
+        return (
+          <li class:list={['f26-fila', { ordinaria: !v.nominal }]} style={`--i: ${i}`}>
+            <p class="f26-rotulo">
+              <span class="f26-fecha" set:html={d(v.fecha, fechaCorta(v.fecha), `voto.${v.clave}.fecha`, 'V2')} />
+              <span class="f26-que" set:html={rot} />
+            </p>
+            <a class="f26-marca" href={hrefDe(v)} tabindex="-1" data-nota data-paso data-plantilla={plantilla}
+              data-v-votacion={plano(lang, `${F}.v.${v.clave}`)} data-v-si={n(v.si)} data-v-no={n(v.no)}
+              data-v-total={v.total ? n(v.total) : undefined} data-v-mitad={v.mitad ? n(v.mitad) : undefined}
+              data-v-fecha={fechaLarga(v.fecha, lang)} data-v-literal={v.literal} data-v-v2={String(v.v2)} data-v-v3={String(v.v3)}>
+              <span class="sr-only">{plano(lang, `${F}.v.${v.clave}`)}</span>
+              <svg class="f26-barra" viewBox={`0 0 ${T} ${ALTO}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                {g.resto && <rect class="resto" x={g.resto.x} y="0" width={g.resto.w} height={ALTO} />}
+                <rect class:list={['si', { ord: !v.nominal }]} x="0" y="0" width={g.si.w} height={ALTO} />
+                {g.no.w > 0 && <rect class:list={['no', { ord: !v.nominal }]} x={g.no.x} y={v.nominal ? ALTO * 0.34 : 0} width={g.no.w} height={v.nominal ? ALTO * 0.32 : ALTO} />}
+                {g.mitad !== undefined && <line class="mitad" x1={g.mitad} x2={g.mitad} y1={-ALTO * 0.35} y2={ALTO * 1.35} />}
+              </svg>
+              {g.pct.mitad !== undefined && (
+                <span class="f26-mitad" style={`--x: ${g.pct.mitad.toFixed(3)}%`} set:html={t(lang, `${F}.valor.mitad`, { vars: { mitad: d(v.mitad!, n(v.mitad!), `voto.${v.clave}.mitad`, 'V2') } })} />
+              )}
+            </a>
+            <p class="f26-valor"><span set:html={pie} />{tot && <span class="f26-total" set:html={tot} />}</p>
+            {conAnota && anotaciones[v.clave] && <p class="f26-anota"><span set:html={anotaciones[v.clave]} /></p>}
+          </li>
+        );
+      })}
+    </ol>
+    <div class="f26-eje" aria-hidden="true" data-audit-exento="eje de la figura">
+      <div class="f26-eje-marcas">
+        {ticks.map((x) => <span style={`--x: ${((x / T) * 100).toFixed(3)}%`}>{n(x)}</span>)}
+      </div>
+    </div>
+    {variante === 'minima' && (
+      <details class="f26-detalle">
+        <summary set:html={o(`${F}.minima.tabla`)} />
+        <div class="fig-desliza" tabindex="0" role="region" aria-label={plano(lang, `${F}.minima.tabla`)}>
+          <table class="fig-tabla f26-tabla">
+            <thead><tr>
+              <th scope="col" set:html={o(`${F}.tabla.votacion`)} />
+              <th scope="col" class="num" set:html={o(`${F}.tabla.si`)} />
+              <th scope="col" class="num" set:html={o(`${F}.tabla.no`)} />
+              <th scope="col" class="num" set:html={o(`${F}.tabla.V2`)} />
+              <th scope="col" class="num" set:html={o(`${F}.tabla.v3`)} />
+              <th scope="col" set:html={o(`${F}.tabla.literal`)} />
+            </tr></thead>
+            <tbody>
+              {votos.map((v) => (
+                <tr>
+                  <th scope="row"><Fragment set:html={o(`${F}.v.${v.clave}`)} /></th>
+                  <td class="num" set:html={d(v.si, n(v.si), `voto.${v.clave}.si`, 'V2')} />
+                  <td class="num" set:html={d(v.no, n(v.no), `voto.${v.clave}.no`, 'V2')} />
+                  <td class="num" set:html={d(v.v2, String(v.v2), `voto.${v.clave}.V2`, 'V2')} />
+                  <td class="num" set:html={d(v.v3, String(v.v3), `voto.${v.clave}.v3`, 'v3')} />
+                  <td class="f26-literal" data-audit-exento="cita literal del Diario"><q>{v.literal}</q></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="botones"><a class="boton sec" href={url(lang, `${PAGINAS.sesiones}#votaciones`)} set:html={rotulo(lang, 'comun.boton.ver_votaciones')} /></p>
+      </details>
+    )}
+  </div>
+
+  {variante === 'completa' && (
+  <div slot="tabla">
+    <div class="fig-desliza" tabindex="0" role="region" aria-labelledby={`${ancla}-caption`}>
+      <table class="fig-tabla f26-tabla">
+        <caption id={`${ancla}-caption`}><span class="fig-rotulo-tabla" set:html={o(`${F}.tabla.caption`)} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={o(`${F}.tabla.votacion`)} />
+            <th scope="col" set:html={o(`${F}.tabla.fecha`)} />
+            <th scope="col" class="num" set:html={o(`${F}.tabla.sesion`)} />
+            <th scope="col" class="num" set:html={o(`${F}.tabla.si`)} />
+            <th scope="col" class="num" set:html={o(`${F}.tabla.no`)} />
+            <th scope="col" class="num" set:html={o(`${F}.tabla.mitad`)} />
+            <th scope="col" class="num" set:html={o(`${F}.tabla.V2`)} />
+            <th scope="col" class="num" set:html={o(`${F}.tabla.v3`)} />
+            <th scope="col" set:html={o(`${F}.tabla.literal`)} />
+          </tr>
+        </thead>
+        <tbody>
+          {votos.map((v) => (
+            <tr id={`${ancla}-${v.clave}`}>
+              <th scope="row">
+                {v.puerta ? <a href={url(lang, `${PAGINAS.sesiones}/${v.puerta}`)} set:html={o(`${F}.v.${v.clave}`)} /> : <Fragment set:html={o(`${F}.v.${v.clave}`)} />}
+                {!v.nominal && <span class="f26-ord-tabla"> · <Fragment set:html={o(`${F}.tabla.ordinaria`)} /></span>}
+              </th>
+              <td class="mono" set:html={d(v.fecha, fechaCorta(v.fecha), `voto.${v.clave}.fecha`, 'V2')} />
+              <td class="num" set:html={d(v.num_session, String(v.num_session), `voto.${v.clave}.sesion`, 'V2')} />
+              <td class="num" set:html={d(v.si, n(v.si), `voto.${v.clave}.si`, 'V2')} />
+              <td class="num" set:html={d(v.no, n(v.no), `voto.${v.clave}.no`, 'V2')} />
+              <td class="num" set:html={v.mitad ? `${d(v.mitad, n(v.mitad), `voto.${v.clave}.mitad`, 'V2')} / ${d(v.total!, n(v.total!), `voto.${v.clave}.total`, 'V2')}` : '—'} />
+              <td class="num" set:html={d(v.v2, String(v.v2), `voto.${v.clave}.V2`, 'V2')} />
+              <td class="num" set:html={d(v.v3, String(v.v3), `voto.${v.clave}.v3`, 'v3')} />
+              <td class="f26-literal" data-audit-exento="cita literal del Diario"><q>{v.literal}</q></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  )}
+  {variante === 'completa' && (
+  <div slot="datos">
+    <div class="fig-datos">
+      <div class="fig-descarga">
+        <a class="boton" href={recurso(rutaDatos('votaciones', 'csv'))} download set:html={rotulo(lang, 'comun.boton.datos_figura')} />
+        <p class="nota" set:html={o(`${F}.datos.votaciones`)} />
+        <p class="nota" set:html={t(lang, 'comun.fig.datos.nota')} />
+        <p class="nota" set:html={t(lang, 'comun.fija.sin_formulario')} />
+        <ul class="fig-archivos" role="list">
+          {archivos.map((a) => <li><a href={recurso(a)} download>{a.replace(/^datos\//, '')}</a></li>)}
+        </ul>
+        <p class="nota" set:html={o(`${F}.datos.listas`)} />
+        <ul class="fig-archivos" role="list">
+          {listas.map((a) => <li><a href={recurso(a)} download>{a.replace(/^datos\//, '')}</a></li>)}
+        </ul>
+        <p class="botones">
+          <a class="boton sec" href={recurso(rutaImagen('F26', lang, 'svg'))} download set:html={rotulo(lang, 'comun.boton.imagen') + ' · SVG'} />
+          <a class="boton sec" href={recurso(rutaImagen('F26', lang, 'png'))} download set:html={rotulo(lang, 'comun.boton.imagen') + ' · PNG'} />
+        </p>
+        <p class="nota" set:html={t(lang, 'comun.fig.imagen.nota')} />
+      </div>
+      <dl class="fig-leame">
+        <dt set:html={t(lang, 'comun.leame.que_mide')} /><dd set:html={o(`${F}.leame.que_mide`)} />
+        <dt set:html={t(lang, 'comun.leame.denominador')} /><dd set:html={o(`${F}.leame.denominador`)} />
+        <dt set:html={t(lang, 'comun.leame.salvedad')} /><dd set:html={o(`${F}.leame.salvedad`)} />
+        <dt set:html={t(lang, 'comun.fig.base')} />
+        <dd>
+          <Sello lang={lang} base="V2" /> <span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
+          <br /><Sello lang={lang} base="v3" /> <span set:html={t(lang, 'comun.sello.huella')} />: {h3.huella ? <code>{h3.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
+          {h.fecha && <><br /><span set:html={t(lang, 'comun.sello.exportado', { vars: { fecha: `<time datetime="${h.fecha}">${h.fecha}</time>` } })} /></>}
+        </dd>
+        <dt set:html={t(lang, 'comun.cita.titulo')} /><dd set:html={citaFigura(lang, 'F26', Astro.site)} />
+      </dl>
+    </div>
+  </div>
+  )}
+</FiguraMarco>
+)}
+
+<style>
+  /* ── F26: filas de votaciones. Rejilla: rótulo · marca · valores (· anotación en la completa, desde 64 rem). ── */
+  .f26 { --f26-rot: minmax(0, 1fr); --f26-val: auto; }
+  .f26-asiento { margin: 0 0 var(--e4); }
+  .f26-leyenda { list-style: none; margin: 0 0 var(--e5); padding: 0; display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; font-size: var(--fs-small); color: var(--ink-2); max-width: none; }
+  .f26-leyenda li { display: inline-flex; align-items: center; gap: .5rem; }
+  .mue { width: 1.5rem; height: .75rem; flex: none; overflow: visible; }
+
+  .f26-filas { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair); border-radius: var(--radio); }
+  .f26-filas:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+  .f26-fila {
+    display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: 'rot' 'marca' 'val' 'anota';
+    column-gap: var(--col-gap); row-gap: .35rem; align-items: center; padding: .9rem 0; border-bottom: 1px solid var(--hair);
+  }
+  .f26-rotulo { grid-area: rot; margin: 0; max-width: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .7rem; line-height: 1.3; }
+  .f26-fecha { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); }
+  .f26-fecha :global(data.cifra) { font-family: var(--mono); }
+  .f26-que { font-size: 1rem; color: var(--ink); text-wrap: balance; }
+  .f26-marca { grid-area: marca; position: relative; display: block; padding: .95rem 0 .55rem; min-height: 2.75rem; color: inherit; text-decoration: none; border-radius: 1px; }
+  .f26-barra { display: block; width: 100%; height: 1.1rem; overflow: visible; }
+  .f26-valor { grid-area: val; margin: 0; font: 400 var(--fs-mono-s)/1.35 var(--mono); color: var(--ink-2); white-space: nowrap; display: flex; flex-wrap: wrap; gap: 0 .6rem; max-width: none; }
+  .f26-valor :global(data.cifra) { font-family: var(--mono); }
+  .f26-total { color: var(--mute); }
+  .f26-mitad {
+    position: absolute; top: 0; left: var(--x); transform: translateX(.45rem);
+    font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--ink); white-space: nowrap; pointer-events: none;
+  }
+  .f26-mitad :global(data.cifra) { font-family: var(--mono); }
+  .f26-anota { grid-area: anota; margin: .2rem 0 0; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); max-width: 34rem; display: grid; grid-template-columns: .9rem minmax(0, 1fr); gap: .55rem; }
+  .f26-anota > span { min-width: 0; }
+  .f26-anota::before { content: ''; border-top: 1px solid var(--accent); margin-top: .72em; }
+
+  /* Dibujo: los síes, gruesos y en oro; los noes, finos y en tinta; el resto hasta el total, contorno de la ausencia
+     medida; la ordinaria, con trazo discontinuo (no trae nombres); la mitad más uno, una línea en tinta. */
+  .f26 :is(.f26-barra, .mue) rect.si { fill: var(--rampa-2); }
+  .f26 :is(.f26-barra, .mue) rect.no { fill: var(--ink); }
+  .f26 :is(.f26-barra, .mue) rect.resto { fill: none; stroke: var(--ausencia-trazo); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+  .f26 :is(.f26-barra, .mue) rect.ord { fill: none; stroke: var(--rampa-2); stroke-width: 1.5px; stroke-dasharray: 4 3; vector-effect: non-scaling-stroke; }
+  .f26 .f26-barra rect.no.ord { stroke: var(--ink); }
+  .f26 :is(.f26-barra, .mue) line.mitad { stroke: var(--ink); stroke-width: 2px; vector-effect: non-scaling-stroke; }
+  .f26-marca:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .f26-filas:has(:global(.fig-activa)) .f26-fila:not(:has(:global(.fig-activa))) .f26-barra { opacity: calc(var(--atenua) + .35); }
+
+  .f26-eje { display: grid; grid-template-columns: minmax(0, 1fr); margin-top: .45rem; }
+  .f26-eje-marcas { position: relative; height: 1.2rem; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .f26-eje-marcas span { position: absolute; left: var(--x); transform: translateX(-50%); }
+  .f26-eje-marcas span:first-child { transform: none; }
+  .f26-eje-marcas span:last-child { transform: translateX(-100%); }
+
+  .f26-minima { max-width: 52rem; }
+  .f26-detalle { margin-top: var(--e4); border-top: 1px solid var(--hair); }
+  .f26-detalle summary { cursor: pointer; min-height: 2.75rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: var(--fs-small); color: var(--ink-2); list-style: none; }
+  .f26-detalle summary::-webkit-details-marker { display: none; }
+  .f26-detalle summary::after { content: '+'; font: 400 1.2rem/1 var(--mono); color: var(--ink-2); }
+  .f26-detalle[open] summary::after { content: '–'; }
+  .f26-detalle summary:hover { color: var(--ink); }
+  .f26-detalle .botones { margin-top: var(--e4); }
+  .f26-tabla .f26-literal { font-style: italic; min-width: 22rem; font-family: var(--text); font-size: .95rem; line-height: 1.45; }
+  .f26-tabla .f26-literal q { font-style: italic; }
+  .f26-ord-tabla { color: var(--mute); font-weight: 400; }
+  .f26-tabla th[scope='row'] { min-width: 14rem; font-family: var(--text); font-size: .95rem; }
+
+  @media (min-width: 48rem) {
+    .f26-fila { grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr) minmax(7.5rem, auto); grid-template-areas: 'rot marca val' 'anota anota anota'; row-gap: 0; }
+    .f26-rotulo { flex-direction: column; gap: .15rem; }
+    .f26-eje { grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr) minmax(7.5rem, auto); column-gap: var(--col-gap); }
+    .f26-eje-marcas { grid-column: 2; }
+    .f26-valor { flex-direction: column; }
+    .f26-anota { margin-top: .4rem; }
+  }
+  @media (min-width: 64rem) {
+    .f26-anotada .f26-fila { grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr) minmax(7.5rem, auto) minmax(12rem, 16rem); grid-template-areas: 'rot marca val anota'; }
+    .f26-anotada .f26-eje { grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr) minmax(7.5rem, auto) minmax(12rem, 16rem); }
+    .f26-anotada .f26-anota { margin: 0; }
+  }
+
+  /* Movimiento (uno por página): al entrar, cada fila crece desde cero y cruza, si la hay, la línea de la mitad más
+     uno. Solo si la figura empieza por debajo del pliegue (la isla pone .espera y luego .entra-fig). */
+  @media (prefers-reduced-motion: no-preference) {
+    .f26-barra rect.si, .f26-barra rect.no { transform-box: fill-box; transform-origin: left center; }
+    :global(.espera) .f26-barra rect.si, :global(.espera) .f26-barra rect.no { transform: scaleX(0); }
+    :global(.entra-fig) .f26-barra rect.si { transition: transform 720ms var(--ease) calc(var(--i) * 70ms); }
+    :global(.entra-fig) .f26-barra rect.no { transition: transform 420ms var(--ease) calc(var(--i) * 70ms + 520ms); }
+    :global(.espera) .f26-mitad, :global(.espera) .f26-barra line.mitad { opacity: 0; }
+    :global(.entra-fig) .f26-mitad, :global(.entra-fig) .f26-barra line.mitad { transition: opacity 240ms var(--ease) calc(var(--i) * 70ms + 300ms); }
+  }
+</style>

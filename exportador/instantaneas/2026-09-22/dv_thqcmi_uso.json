@@ -1,0 +1,37 @@
+{
+ "cuerpo": {
+  "viewsTotal": {
+   "status": "OK",
+   "data": {
+    "viewsTotal": 1820
+   }
+  },
+  "viewsUnique": {
+   "status": "OK",
+   "data": {
+    "viewsUnique": 462
+   }
+  },
+  "downloadsTotal": {
+   "status": "OK",
+   "data": {
+    "downloadsTotal": 373
+   }
+  },
+  "downloadsUnique": {
+   "status": "OK",
+   "data": {
+    "downloadsUnique": 110
+   }
+  },
+  "citations": {
+   "status": "OK",
+   "data": [
+    {
+     "citationUrl": "https://doi.org/10.7910/dvn/cgocus"
+    }
+   ]
+  }
+ },
+ "consultado": "2026-09-22T21:51:41+00:00"
+}

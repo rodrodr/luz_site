@@ -1,0 +1,29 @@
+---
+/**
+ * Fila de datos (DESIGN.md § Fila de datos): pares columna-valor en una rejilla de 2 columnas (4 desde 48 rem), con
+ * filetes entre filas. La columna en mono `apagado`; el valor en mono; `speech` a todo el ancho, en cursiva de libro
+ * (es lo que alguien dijo) y cortado con «[…]». Al pie, en mono, cuántas columnas se enseñan y dónde están las demás.
+ * Los valores llegan ya resueltos (con su envoltorio y su base).
+ */
+interface Par { columna: string; valor: string; texto?: boolean }
+interface Props { pares: Par[]; pie?: string }
+const { pares, pie } = Astro.props;
+---
+<div class="fila">
+  <dl>
+    {pares.map((p) => <div class:list={[{ texto: p.texto }]}><dt>{p.columna}</dt><dd set:html={p.valor} /></div>)}
+  </dl>
+  {pie && <p class="fila-pie" set:html={pie} />}
+</div>
+
+<style>
+  .fila { margin-top: var(--e7); border-top: 1px solid var(--hair-2); }
+  dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
+  dl > div { padding: .65rem .9rem .7rem 0; border-bottom: 1px solid var(--hair); min-width: 0; }
+  dt { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); margin-bottom: .2rem; }
+  dd { margin: 0; font: 400 .88rem/1.35 var(--mono); overflow-wrap: anywhere; }
+  .texto { grid-column: 1 / -1; }
+  .texto dd { font: italic 400 1.08rem/1.4 var(--text); }
+  .fila-pie { font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); margin-top: var(--e3); max-width: none; }
+  @media (min-width: 48rem) { dl { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+</style>

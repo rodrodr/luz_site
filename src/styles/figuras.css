@@ -1,0 +1,151 @@
+/* Lo COMÚN a todas las figuras (contrato de construcción § Componentes y estilos). Lo propio de cada figura va en el
+   `<style>` con ámbito de su componente. Reglas de dibujo: la ausencia nunca es un color (contorno y rótulo); lo no
+   revisado lleva otro trazo, no solo otro color; ningún texto dentro del SVG (todo el texto va en HTML encima). */
+
+/* ── marco de figura ─────────────────────────────────────────────────────────────── */
+/* Anatomía (DESIGN.md § Sistema de figuras, a lo OWID): barra (código en mono `apagado` + título-pregunta │ pestañas)
+   → pregunta → leyenda → gráfico → frase de teclado → salvedad rotulada → llamada. */
+.figura { margin: clamp(2rem, 5vw, 3.5rem) 0; min-width: 0; }
+.fig-cabeza { margin-bottom: clamp(1rem, 2.5vw, 1.75rem); max-width: 48rem; min-width: 0; }
+.pest-barra > .fig-cabeza { margin: 0; padding-bottom: var(--e3); flex: 1 1 22rem; }
+.fig-id { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); margin: 0 .6em 0 0; letter-spacing: 0; }
+.fig-titulo { font: 600 var(--fs-h3)/1.2 var(--text); margin: 0; text-wrap: balance; }
+.fig-pregunta { margin: .5rem 0 0; color: var(--ink-2); max-width: 44rem; }
+.pestanas > .fig-pregunta { margin: 0 0 var(--e5); }
+.fig-lienzo { position: relative; min-width: 0; }
+.fig-lienzo svg { display: block; width: 100%; height: auto; overflow: visible; }
+.fig-pie { margin-top: 1rem; display: grid; gap: .6rem; max-width: 48rem; }
+.fig-salvedad { font-size: var(--fs-small); color: var(--ink-2); line-height: 1.5; margin: var(--e5) 0 0; padding-top: var(--e3); border-top: 1px solid var(--hair); max-width: 44rem; }
+.fig-salvedad b { font-weight: 600; color: var(--ink); }
+.fig-teclado { font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); margin: var(--e3) 0 0; max-width: none; }
+.fig-teclado[hidden] { display: none; }
+/* Al recorrer con el teclado, la marca que se trae a la vista (scripts/figuras.ts) deja sitio para su nota. */
+.figura [data-paso] { scroll-margin-block: 5.5rem; }
+/* Las frases de uso nacen ocultas y solo se ven donde son verdad (DESIGN.md § Anatomía: «frase de teclado (nace
+   oculta)»): la del teclado, mientras el foco está dentro de la figura y en la pestaña Gráfico; la táctil, solo con
+   puntero grueso. El lector de pantalla recibe la del teclado siempre, por aria-describedby. */
+.figura:not(:focus-within) .fig-teclado:not(.fig-tactil),
+.figura:has(.pest-radio[value='grafico']:not(:checked)) .fig-teclado { display: none; }
+@media (pointer: coarse) { .fig-teclado:not(.fig-tactil) { display: none; } }
+@media not (pointer: coarse) { .fig-teclado.fig-tactil { display: none; } }
+
+/* ── pestañas (Pestanas.astro) ───────────────────────────────────────────────────── */
+.pest-barra {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .35rem 2rem;
+  border-bottom: 1px solid var(--hair-2); margin-bottom: clamp(1.25rem, 3vw, 2.25rem);
+}
+.pest-radios { display: flex; gap: .15rem; margin-bottom: -1px; margin-inline-start: auto; }
+.pest-conmuta { flex-basis: 100%; }
+.pest-conmuta:empty { display: none; }
+.pest-opcion { position: relative; display: inline-flex; }
+/* El radio se esconde de la vista, no del teclado ni del lector: sigue recibiendo el foco. */
+.pest-radio { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+/* Pestañas en EB Garamond, caja normal; la seleccionada, tinta y subrayado oro de 2 px (DESIGN.md). */
+.pest-opcion label {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 .8rem; min-width: 2.75rem;
+  font: 400 1rem/1 var(--text); color: var(--ink-2); border-bottom: 2px solid transparent; cursor: pointer;
+}
+.pest-opcion:first-child label { padding-left: 0; }
+.pest-opcion:hover label { color: var(--ink); }
+.pest-radio:checked + label { color: var(--ink); border-bottom-color: var(--accent); }
+.pest-radio:focus-visible + label { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: var(--radio); }
+@supports selector(:has(*)) {
+  .pest-panel { display: none; }
+  .pestanas:has(> .pest-barra .pest-radio[value='grafico']:checked) > .pest-panel[data-panel='grafico'],
+  .pestanas:has(> .pest-barra .pest-radio[value='tabla']:checked) > .pest-panel[data-panel='tabla'],
+  .pestanas:has(> .pest-barra .pest-radio[value='datos']:checked) > .pest-panel[data-panel='datos'] { display: block; }
+}
+@supports not selector(:has(*)) {
+  .pest-radios { display: none; }
+  .pest-panel + .pest-panel { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px dashed var(--hair-2); }
+}
+/* Impresión: los tres paneles, uno detrás de otro (DESIGN.md § Impresión); las pestañas no se imprimen. */
+@media print { .pest-panel { display: block !important; } .pest-panel + .pest-panel { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #999; } }
+
+/* ── conmutación (una por figura como mucho; radios, sin JS) ─────────────────────── */
+.fig-conmuta { display: flex; flex-wrap: wrap; gap: .15rem .9rem; align-items: center; margin: 0; padding: 0; border: 0; }
+.fig-conmuta legend { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); padding: 0; margin-right: .4rem; float: left; }
+.fig-conmuta label { position: relative; display: inline-flex; align-items: center; min-height: 2.75rem; gap: .4rem; cursor: pointer; font-size: var(--fs-small); color: var(--ink-2); }
+.fig-conmuta input { accent-color: var(--accent); width: 1rem; height: 1rem; margin: 0; }
+.fig-conmuta input:checked + span { color: var(--ink); }
+
+/* ── tabla de una figura ─────────────────────────────────────────────────────────── */
+/* Se desliza DENTRO de su caja: la página nunca gana scroll horizontal. Con `tabindex`, también con teclado. */
+.fig-desliza { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+.fig-tabla { border-collapse: collapse; width: 100%; font: 400 .8rem/1.4 var(--mono); }
+.fig-tabla caption { text-align: left; padding-bottom: .9rem; font: 600 var(--fs-small)/1.3 var(--text); color: var(--ink); }
+.fig-rotulo-tabla { display: inline-block; position: sticky; left: 0; max-width: calc(100vw - 2 * var(--gutter)); }
+.fig-tabla th, .fig-tabla td { padding: .5rem 1.4rem .5rem 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--hair); font-weight: 400; }
+.fig-tabla th:last-child, .fig-tabla td:last-child { padding-right: 0; }
+.fig-tabla thead th { position: sticky; top: 0; background: var(--bg); font: 500 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); border-bottom-color: var(--hair-2); vertical-align: bottom; white-space: nowrap; }
+.fig-tabla tbody th { font-weight: 500; color: var(--ink); }
+.fig-tabla .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.fig-tabla a { color: inherit; text-decoration-color: var(--accent); }
+.fig-tabla a:hover { color: var(--accent); }
+.fig-pie-tabla { margin: 1rem 0 0; max-width: var(--measure); }
+
+/* ── panel de datos ──────────────────────────────────────────────────────────────── */
+.fig-datos { display: grid; gap: 1.5rem clamp(2rem, 5vw, 5rem); grid-template-columns: minmax(0, 1fr); max-width: 64rem; }
+.fig-datos p { margin: 0; }
+.fig-descarga { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+.fig-archivos { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .2rem 1.4rem; font: 500 var(--fs-small)/1.3 var(--mono); }
+.fig-archivos a { display: inline-flex; align-items: center; min-height: 2.75rem; overflow-wrap: anywhere; }
+.fig-leame { margin: 0; display: grid; gap: 1.1rem; }
+.fig-leame dt { font: 500 var(--fs-mono-s)/1.6 var(--mono); color: var(--mute); }
+.fig-leame dd { margin: .3rem 0 0; font-size: var(--fs-small); line-height: 1.5; color: var(--ink-2); max-width: var(--measure); }
+@media (min-width: 56rem) { .fig-datos { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; } }
+
+/* ── marcas interactivas: dianas enfocables de 44 px (la marca visible puede ser menor; la diana, no) ─────── */
+[data-diana] { cursor: pointer; }
+[data-diana]:focus { outline: none; }
+[data-diana]:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+svg [data-diana]:focus-visible { outline: none; stroke: var(--focus); stroke-width: 3px; }
+
+/* ── ausencia: contorno y rótulo, nunca un color ─────────────────────────────────── */
+/* La ausencia medida: contorno continuo, sin relleno. Lo que la base no trae o no está revisado: discontinuo. */
+.ausencia { fill: none; stroke: var(--ausencia-trazo); }
+.no-revisado { stroke-dasharray: 3 2; }
+
+/* ── nota emergente (la crea src/scripts/figuras.ts; sin script no existe) ──────────────────────────
+   Invertida (tinta sobre fondo): se despega por inversión, sin sombra. Tres líneas: qué · cifras · base y fuente. Flecha
+   de 10 px hacia la marca. WCAG 1.4.13: se puede RECORRER con el puntero (recibe el puntero y hay 150 ms de gracia al
+   pasar de la marca a la nota), es PERSISTENTE (no caduca: dura mientras el puntero o el foco sigan en la marca o en
+   ella) y se DESCARTA con Esc sin mover ni el puntero ni el foco. Abierta con el dedo, trae [Cerrar la nota] y se cierra
+   también al tocar fuera. */
+.fig-tip {
+  position: fixed; left: 0; top: 0; z-index: 40; max-width: min(21rem, calc(100vw - 1rem)); min-width: 12rem;
+  padding: .55rem .75rem .6rem; border-radius: var(--radio); background: var(--ink); color: var(--bg);
+  font: 400 .76rem/1.45 var(--mono); font-variant-numeric: tabular-nums; pointer-events: auto;
+}
+.fig-tip ::selection { background: var(--bg); color: var(--ink); }
+.fig-tip.con-cierre { padding-right: 2.9rem; }
+.fig-tip-cierra {
+  position: absolute; top: 0; right: 0; width: 2.75rem; height: 2.75rem; display: grid; place-items: center;
+  border: 0; background: transparent; color: inherit; cursor: pointer; border-radius: var(--radio);
+}
+.fig-tip-cierra[hidden] { display: none; } /* `display: grid` pisaba el atributo: la × salía también con el puntero */
+.fig-tip-cierra .icono { width: .9rem; height: .9rem; }
+.fig-tip-cierra:focus-visible { outline-color: var(--bg); outline-offset: -4px; }
+.fig-tip[hidden] { display: none; }
+.fig-tip::after { content: ''; position: absolute; left: var(--flecha, 50%); bottom: -5px; width: 10px; height: 10px; background: inherit; transform: translateX(-50%) rotate(45deg); }
+.fig-tip.abajo::after { bottom: auto; top: -5px; }
+.fig-tip .em-t { display: block; font: 600 1rem/1.25 var(--text); margin: 0 0 .2rem; }
+.fig-tip .em-d { display: block; font: 400 .76rem/1.45 var(--mono); }
+.fig-tip .em-b { display: block; font: 400 .7rem/1.4 var(--mono); opacity: .72; margin-top: .25rem; }
+.fig-activa { outline: 2px solid var(--ink); outline-offset: 1px; }
+svg .fig-activa { outline: none; stroke: var(--ink); stroke-width: 2px; paint-order: stroke; }
+
+/* ── hueco de figura, en la vista previa ─────────────────────────────────────────── */
+.fig-hueco { border: 1px dashed var(--hair-2); border-radius: var(--radio); padding: clamp(1.25rem, 4vw, 2.5rem); margin-block: 2rem; display: grid; gap: .5rem; justify-items: start; min-height: 7rem; }
+.fig-hueco p { margin: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .pest-opcion label { transition: color var(--t-puntero) var(--ease), border-color var(--t-estado) var(--ease); }
+  svg [data-diana] { transition: opacity var(--t-estado) var(--ease); }
+  /* La nota emergente aparece en 120 ms: movimiento.css (`.aparece, .fig-tip`). */
+  /* El tiempo corre (F01): la isla pone .espera a una figura que entra por debajo del pliegue y la cambia por .entra al
+     verla; cada celda lleva --n (su índice cronológico). Sin JS, o con menos movimiento, la rejilla se ve completa. */
+  .espera [data-n] { opacity: 0; transform: scaleY(.2); }
+  .entra-fig [data-n] { opacity: 1; transform: none; transition: opacity .35s var(--ease), transform .45s var(--ease); transition-delay: calc(var(--n) * 7ms); }
+}
+@media print { .pest-radios, .fig-teclado { display: none !important; } }

@@ -1,0 +1,15 @@
+---
+/**
+ * Nota al margen (DESIGN.md § Notas al margen): el asiento de una afirmación (base · ids) y su salvedad, ≤ 40 palabras.
+ * Sigue a su bloque en el DOM; la rejilla de la sección la sube a la fila de su párrafo en escritorio (columnas 10–12, o
+ * 7–9 en las lecturas largas) y en el móvil va detrás, con un filete encima.
+ *  · `variante`: `al-margen` (secciones) o `nota-m` (lecturas largas).
+ *  · `n`: número de la llamada (el mismo que lleva la frase con `<sup class="llamada-n">`); `asiento`: HTML ya resuelto.
+ */
+interface Props { asiento?: string; n?: string | number; variante?: 'al-margen' | 'nota-m' }
+const { asiento, n, variante = 'al-margen' } = Astro.props;
+---
+<aside class={variante}>
+  {(asiento || n) && <p class="asiento">{n && <span class="llamada-n">{n}</span>}{n && ' '}<Fragment set:html={asiento ?? ''} /></p>}
+  <slot />
+</aside>

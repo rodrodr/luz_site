@@ -1,0 +1,14 @@
+{
+ "_meta": {
+  "fuente": "V2 (2REP_Diaries.csv) y v3 (corpus.sqlite)",
+  "exportado": "2026-09-23",
+  "columnas_v2": ["id","num_session","order","date","speaker","speech","rep_id","rep_name","district","party","party_family","ideology","nwords","legislature"],
+  "campos_v3": ["ord","speaker_fold","rep_name_fold","party_family_raw","ideology_raw","year"],
+  "columnas_v3": ["id","num_session","ord","date","year","legislature","speaker","speaker_fold","rep_id","rep_name","rep_name_fold","district","party","party_family_raw","party_family","ideology_raw","ideology","nwords","speech"],
+  "corte": "`speech` se corta en 330 caracteres; el CSV lleva el texto entero"
+ },
+ "filas": [
+  {"clave":"presidencia","v2":{"id":"5423","num_session":"48","order":"25","date":"1931-10-01","speaker":"El Sr. PRESIDENTE:","speech":"Ruego a la Cámara que guarde silencio.","rep_id":"133","rep_name":"Julian Besteiro Fernandez","district":"Madrid","party":"PSOE","party_family":"Socialista","ideology":"I","nwords":"7","legislature":"1931-1933"},"cortado":false,"nwords":7,"v3":{"id":6078,"num_session":48,"ord":28,"date":"1931-10-01","year":1931,"legislature":"1931-1933","speaker":"El Sr. PRESIDENTE:","speaker_fold":"el sr. presidente:","rep_id":133,"rep_name":"Julian Besteiro Fernandez","rep_name_fold":"julian besteiro fernandez","district":"Madrid","party":"PSOE","party_family_raw":"Socialista","party_family":"Socialista","ideology_raw":"I","ideology":"I","nwords":7},"uso":"Julián Besteiro"},
+  {"clave":"campoamor","v2":{"id":"5424","num_session":"48","order":"26","date":"1931-10-01","speaker":"La Srta. CAMPOAMOR:","speech":"Yo ruego a la Cámara que me escuche en silencio; no es con agresiones y no es con ironias como vais a vencer mi fortaleza; la única cosa que yo tengo aquí ante vosotros, Sres. Diputados, que merezca la consideración y acaso la emulación es precisamente el defender un derecho a que me obliga mi naturaleza y mi fe, con tesón y","rep_id":"175","rep_name":"Clara Campoamor Y Rodriguez","district":"Madrid","party":"PRR","party_family":"Republicanos","ideology":"C","nwords":"1460","legislature":"1931-1933"},"cortado":true,"nwords":1460,"v3":{"id":6079,"num_session":48,"ord":29,"date":"1931-10-01","year":1931,"legislature":"1931-1933","speaker":"La Srta. CAMPOAMOR:","speaker_fold":"la srta. campoamor:","rep_id":175,"rep_name":"Clara Campoamor Y Rodriguez","rep_name_fold":"clara campoamor y rodriguez","district":"Madrid","party":"PRR","party_family_raw":"Republicanos","party_family":"Republicanos","ideology_raw":"C","ideology":"C","nwords":1460},"uso":"Clara Campoamor"}
+ ]
+}

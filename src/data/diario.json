@@ -1,0 +1,80 @@
+{
+ "_meta": {
+  "fuente": "V2 (2REP_Diaries.csv) y v3 (corpus.sqlite del explorador), con sus huellas; clasificación de F28 leída fila a fila",
+  "exportado": "2026-09-23",
+  "f27": "filas con «luz y taquígrafos» (texto plegado en la V2; FTS5 en la v3)",
+  "f28": "órdenes de la Presidencia, acotaciones del taquígrafo, una petición y una fila ajena (no se dibuja)"
+ },
+ "f27": [
+  {"n":1,"fecha":"1931-07-20","mes":"1931-07","num_session":4,"leg":"1931-1933","id_v2":420,"id_v3":472,"rotulo":"El Sr. FRANCO:","rep_id":340,"orador":"Gabriel Franco López","corto":"Franco López","party":"AR","presidencia":false,"fragmento":"En la imposibilidad de recoger notarialmente la prueba de estas fechorias, que no suelen hacerse con luz y taquigrafos"},
+  {"n":2,"fecha":"1932-04-09","mes":"1932-04","num_session":153,"leg":"1931-1933","id_v2":23898,"id_v3":26612,"rotulo":"El Sr. BALBONTIN:","rep_id":98,"orador":"José Antonio Balbontín","corto":"Balbontín","party":"PRRS","presidencia":false,"fragmento":"se discutiese ampliamente con luz y taquigrafos y en presencia de todos los Sres. Diputados de las demás minorías"},
+  {"n":3,"fecha":"1932-05-03","mes":"1932-05","num_session":158,"leg":"1931-1933","id_v2":24658,"id_v3":27477,"rotulo":"El Sr. BALBONTIN:","rep_id":98,"orador":"José Antonio Balbontín","corto":"Balbontín","party":"PRRS","presidencia":false,"fragmento":"la máxima garantía es la oposición libre, con luz y taquigrafos"},
+  {"n":4,"fecha":"1933-07-19","mes":"1933-07","num_session":373,"leg":"1931-1933","id_v2":55902,"id_v3":62718,"rotulo":"El Sr. BALBONTÍN:","rep_id":98,"orador":"José Antonio Balbontín","corto":"Balbontín","party":"PRRS","presidencia":false,"fragmento":"yo aquí he levantado mi voz, con luz y taquigrafos, contra los pistoleros"},
+  {"n":5,"fecha":"1933-08-03","mes":"1933-08","num_session":382,"leg":"1931-1933","id_v2":57506,"id_v3":64595,"rotulo":"El Sr. ROYO VILLANOVA:","rep_id":821,"orador":"Antonio Royo Villanova","corto":"Royo Villanova","party":"Agrarios","presidencia":false,"fragmento":"aquí se liquida todo con luz y taquigrafos, como decía Maura"},
+  {"n":6,"fecha":"1934-06-08","mes":"1934-06","num_session":96,"leg":"1933-1935","id_v2":71330,"id_v3":80306,"rotulo":"El Sr. JIMÉNEZ FERNÁNDEZ:","rep_id":456,"orador":"Manuel Giménez Fernández","corto":"Giménez Fernández","party":"CEDA","presidencia":false,"fragmento":"Luz y taquigrafos."},
+  {"n":7,"fecha":"1934-11-13","mes":"1934-11","num_session":120,"leg":"1933-1935","id_v2":75263,"id_v3":84760,"rotulo":"El Sr. CALDERÓN:","rep_id":166,"orador":"Abilio Calderón","corto":"Calderón","party":"Agrarios","presidencia":false,"fragmento":"no hay ningún reparo, ningún obstaculo ni ninguna dificultad para que se examine el presupuesto con luz y taquigrafos"},
+  {"n":8,"fecha":"1935-01-29","mes":"1935-01","num_session":149,"leg":"1933-1935","id_v2":79803,"id_v3":89910,"rotulo":"Ei Sr. FUENTES PILA:","rep_id":342,"orador":"Santiago Fuentes Pila","corto":"Fuentes Pila","party":"RE","presidencia":false,"fragmento":"que realiza el Parlamento suele decir que hacen falta  … luz y taquigrafos"},
+  {"n":9,"fecha":"1935-11-22","mes":"1935-11","num_session":266,"leg":"1933-1935","id_v2":99859,"id_v3":112827,"rotulo":"El Sr. CALVO SOTELO:","rep_id":170,"orador":"José Calvo Sotelo","corto":"Calvo Sotelo","party":"RE","presidencia":false,"fragmento":"El que está agazapado en su escaño, con luz y taquigrafos, naturalmente que no quiere valerse de nocturnidad ni de obscuridad de ninguna clase."},
+  {"n":10,"fecha":"1936-07-08","mes":"1936-07","num_session":58,"leg":"1936-1939","id_v2":106747,"id_v3":120751,"rotulo":"El Sr. MAURIN:","rep_id":583,"orador":"Joaquín Maurín","corto":"Maurín","party":"POUM","presidencia":false,"fragmento":"Hay luz y taquigrafos, los taquigrafos recogeran eso."}
+ ],
+ "f28": [
+  {"tipo":"orden","n":1,"fecha":"1931-12-10","mes":"1931-12","num_session":89,"leg":"1931-1933","id_v2":13605,"id_v3":15129,"rotulo":"El Sr. PRESIDENTE:","rep_id":133,"orador":"Julián Besteiro","corto":"Besteiro","party":"PSOE","presidencia":true,"preside":"Besteiro","fragmento":"Que no constaran en el Diario de Sesiones."},
+  {"tipo":"orden","n":2,"fecha":"1933-02-07","mes":"1933-02","num_session":290,"leg":"1931-1933","id_v2":45115,"id_v3":50466,"rotulo":"El Sr. PRESIDENTE:","rep_id":133,"orador":"Julián Besteiro","corto":"Besteiro","party":"PSOE","presidencia":true,"preside":"Besteiro","fragmento":"Esas palabras, que no constarán en el Diario de Sesiones."},
+  {"tipo":"orden","n":3,"fecha":"1933-02-09","mes":"1933-02","num_session":292,"leg":"1931-1933","id_v2":45440,"id_v3":50818,"rotulo":"El Sr. PRESIDENTE:","rep_id":133,"orador":"Julián Besteiro","corto":"Besteiro","party":"PSOE","presidencia":true,"preside":"Besteiro","fragmento":"le aseguro que las palabras que ha pronunciado no constarán en el Diario de Sesiones."},
+  {"tipo":"ajena","n":1,"fecha":"1934-02-21","mes":"1934-02","num_session":39,"leg":"1933-1935","id_v2":64659,"id_v3":72690,"rotulo":"El Sr. RODRÍGUEZ DE VIGURI:","rep_id":804,"orador":"Luis Rodríguez de Viguri","corto":"Rodríguez de Viguri","party":"Agrarios","presidencia":false,"preside":"Casanueva","fragmento":"por parecerne injusto que no constara en el Diario de Sesión"},
+  {"tipo":"orden","n":4,"fecha":"1936-04-15","mes":"1936-04","num_session":17,"leg":"1936-1939","id_v2":102484,"id_v3":115828,"rotulo":"El Sr. PRESIDENTE:","rep_id":455,"orador":"Luis Jiménez de Asúa","corto":"Jiménez de Asúa","party":"PSOE","presidencia":true,"preside":"Jiménez de Asúa","fragmento":"Esas palabras no constarán en el Diario de Sesiones."},
+  {"tipo":"orden","n":5,"fecha":"1936-04-15","mes":"1936-04","num_session":17,"leg":"1936-1939","id_v2":102486,"id_v3":115830,"rotulo":"El Sr. PRESIDENTE:","rep_id":455,"orador":"Luis Jiménez de Asúa","corto":"Jiménez de Asúa","party":"PSOE","presidencia":true,"preside":"Jiménez de Asúa","fragmento":"Ya se ha dicho que no constarán esas palabras en el Diario de Sesiones."},
+  {"tipo":"orden","n":6,"fecha":"1936-04-15","mes":"1936-04","num_session":17,"leg":"1936-1939","id_v2":102492,"id_v3":115836,"rotulo":"El Sr. PRESIDENTE:","rep_id":455,"orador":"Luis Jiménez de Asúa","corto":"Jiménez de Asúa","party":"PSOE","presidencia":true,"preside":"Jiménez de Asúa","fragmento":"Ya ha advertido la Presidencia que no constarán en el Diario de Sesiones esas palabras."},
+  {"tipo":"acotacion","n":1,"fecha":"1936-05-06","mes":"1936-05","num_session":25,"leg":"1936-1939","id_v2":103182,"id_v3":116626,"rotulo":"El Sr. PABÓN (D. Jesús):","rep_id":683,"orador":"Jesús Pabón","corto":"Jesús Pabón","party":"CEDA","presidencia":false,"preside":"Sánchez Albornoz","fragmento":"(El Sr. Muñoz de Zafra pronuncia palabras que no se consignan por orden del Sr. Presidente"},
+  {"tipo":"acotacion","n":2,"fecha":"1936-05-06","mes":"1936-05","num_session":25,"leg":"1936-1939","id_v2":103250,"id_v3":116697,"rotulo":"El Sr. CALVO SOTELO:","rep_id":170,"orador":"José Calvo Sotelo","corto":"Calvo Sotelo","party":"RE","presidencia":false,"preside":"Jiménez de Asúa","fragmento":"Un Sr. Diputado pronuncia palabras que producen protestas de las minorías y que no constan por orden del Sr. Presidente."},
+  {"tipo":"orden","n":7,"fecha":"1936-05-06","mes":"1936-05","num_session":25,"leg":"1936-1939","id_v2":103251,"id_v3":116698,"rotulo":"El Sr. PRESIDENTE:","rep_id":455,"orador":"Luis Jiménez de Asúa","corto":"Jiménez de Asúa","party":"PSOE","presidencia":true,"preside":"Jiménez de Asúa","fragmento":"No constará en el Diario de Sesiones."},
+  {"tipo":"peticion","n":1,"fecha":"1936-06-03","mes":"1936-06","num_session":38,"leg":"1936-1939","id_v2":104406,"id_v3":118058,"rotulo":"El Sr. CALVO SOTELO:","rep_id":170,"orador":"José Calvo Sotelo","corto":"Calvo Sotelo","party":"RE","presidencia":false,"preside":"Martínez Barrio","fragmento":"ciertas palabras insultantes e incalificables con que se ha injuriado a las hermanas de la Caridad no constarán en el Diario de Sesiones."},
+  {"tipo":"acotacion","n":3,"fecha":"1936-06-16","mes":"1936-06","num_session":45,"leg":"1936-1939","id_v2":105310,"id_v3":119084,"rotulo":"El Sr. CALVO SOTELO:","rep_id":170,"orador":"José Calvo Sotelo","corto":"Calvo Sotelo","party":"RE","presidencia":false,"preside":"Martínez Barrio","fragmento":"(El orador pronuncia palabras que no constan por orden del Sr. Presidente"},
+  {"tipo":"acotacion","n":4,"fecha":"1936-06-16","mes":"1936-06","num_session":45,"leg":"1936-1939","id_v2":105324,"id_v3":119098,"rotulo":"El Sr. SUAREZ DE TANGIL:","rep_id":923,"orador":"Fernando Suárez de Tangil","corto":"Suárez de Tangil","party":"RE","presidencia":false,"preside":"Martínez Barrio","fragmento":"(El Sr. Carrillo replica con palabras que levantan grandes protestas y que no se consignan por orden de la Presidencia.)"},
+  {"tipo":"acotacion","n":5,"fecha":"1936-07-01","mes":"1936-07","num_session":54,"leg":"1936-1939","id_v2":106289,"id_v3":120221,"rotulo":"El Sr. GALARZA:","rep_id":345,"orador":"Ángel Galarza","corto":"Galarza","party":"PSOE","presidencia":false,"preside":"Martínez Barrio","fragmento":"(El final de la frase no se consigna por orden del Sr. Presidente.—Aplausos.—Rumores.)"},
+  {"tipo":"orden","n":8,"fecha":"1936-07-01","mes":"1936-07","num_session":54,"leg":"1936-1939","id_v2":106290,"id_v3":120222,"rotulo":"El Sr. PRESIDENTE:","rep_id":550,"orador":"Diego Martínez Barrio","corto":"Martínez Barrio","party":"UR","presidencia":true,"preside":"Martínez Barrio","fragmento":"Las palabras de S. S., en lo que a eso respecta, no constarán en el Diario de Sesiones."}
+ ],
+ "facsimil": {
+  "imagen": "facsimil/diario_1931-10-01_p1353.webp",
+  "ancho": 852,
+  "alto": 606,
+  "proporcion": 1.4059,
+  "pdf": "D_D_1931_1933_C-0048-01347.pdf",
+  "pdf_sha256": "ac506387005136c952d036240b85c4807c9574d9e269ec1e0100981c540a1ef8",
+  "pagina_pdf": 8,
+  "pagina": 1353,
+  "numero": 48,
+  "fecha": "1931-10-01",
+  "filas_v2": [5423,5424],
+  "filas_v3": [6078,6079],
+  "cajas": {
+   "pagina": [
+    [0.8592,0.0421,0.9401,0.104]
+   ],
+   "interrupcion": [
+    [0.5775,0.1906,0.9754,0.245],
+    [0.162,0.245,0.9754,0.2995],
+    [0.162,0.2995,0.75,0.354]
+   ],
+   "rotulo_presidencia": [
+    [0.2183,0.3564,0.5739,0.4109]
+   ],
+   "texto_presidencia": [
+    [0.5845,0.3564,0.9754,0.4109],
+    [0.162,0.4109,0.419,0.4653]
+   ],
+   "rotulo_campoamor": [
+    [0.2183,0.4629,0.6197,0.5173]
+   ],
+   "texto_campoamor": [
+    [0.6303,0.4629,0.9754,0.5173],
+    [0.162,0.5173,0.9754,0.5718]
+   ],
+   "acotacion": [
+    [0.7958,0.8441,0.9789,0.8985],
+    [0.162,0.896,0.3345,0.9505]
+   ]
+  },
+  "nota": "Escaneo del proyecto, sin retocar: la tinta pasa a canal alfa; se borra solo la columna izquierda bajo la cabecera."
+ }
+}

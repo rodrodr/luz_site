@@ -1,0 +1,92 @@
+{
+ "es": {
+  "@context": "https://schema.org/",
+  "@type": "Dataset",
+  "url": "https://doi.org/10.7910/DVN/THQCMI",
+  "identifier": "https://doi.org/10.7910/DVN/THQCMI",
+  "sameAs": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/THQCMI",
+  "version": "2.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "isAccessibleForFree": true,
+  "creator": [
+   {"@type":"Person","name":"Rodrigues-Silveira, Rodrigo","identifier":"https://orcid.org/0000-0002-6912-7689","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}},
+   {"@type":"Person","name":"García-Díez, Fátima","identifier":"https://orcid.org/0000-0002-4259-3516","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}},
+   {"@type":"Person","name":"Llamazares, Iván","identifier":"https://orcid.org/0000-0003-2947-6830","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}},
+   {"@type":"Person","name":"Martínez-Barahona, Elena","identifier":"https://orcid.org/0000-0002-9827-2308","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}},
+   {"@type":"Person","name":"Barreto Martín, Eduardo","identifier":"https://orcid.org/0009-0006-3670-1767","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}}
+  ],
+  "publisher": {
+   "@type": "Organization",
+   "name": "Harvard Dataverse"
+  },
+  "datePublished": "2026-03-23",
+  "dateModified": "2026-09-15",
+  "keywords": ["parliamentary speeches","Second Spanish Republic","Segunda República Española","debates parlamentarios"],
+  "name": "Luz y Taquígrafos: Debates Parlamentarios en la Segunda República Española, 1931–1945",
+  "alternateName": "Luz y Taquígrafos: Parliamentary Debates in the Second Spanish Republic, 1931–1945",
+  "inLanguage": "es",
+  "temporalCoverage": "1931-07-14/1945-11-09",
+  "variableMeasured": [
+   {"@type":"PropertyValue","name":"id"},
+   {"@type":"PropertyValue","name":"num_session"},
+   {"@type":"PropertyValue","name":"order"},
+   {"@type":"PropertyValue","name":"date"},
+   {"@type":"PropertyValue","name":"speaker"},
+   {"@type":"PropertyValue","name":"speech"},
+   {"@type":"PropertyValue","name":"rep_id"},
+   {"@type":"PropertyValue","name":"rep_name"},
+   {"@type":"PropertyValue","name":"district"},
+   {"@type":"PropertyValue","name":"party"},
+   {"@type":"PropertyValue","name":"party_family"},
+   {"@type":"PropertyValue","name":"ideology"},
+   {"@type":"PropertyValue","name":"nwords"},
+   {"@type":"PropertyValue","name":"legislature"}
+  ],
+  "description": "Los Diarios de Sesiones del Congreso de la Segunda República Española, de 1931 a 1945, en una tabla: 107.551 filas y 14 columnas en 755 sesiones. Cada fila es una vez que el Diario anota a un orador, con su texto y el diputado identificado. El texto sale del reconocimiento óptico y no está corregido a mano."
+ },
+ "en": {
+  "@context": "https://schema.org/",
+  "@type": "Dataset",
+  "url": "https://doi.org/10.7910/DVN/THQCMI",
+  "identifier": "https://doi.org/10.7910/DVN/THQCMI",
+  "sameAs": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/THQCMI",
+  "version": "2.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "isAccessibleForFree": true,
+  "creator": [
+   {"@type":"Person","name":"Rodrigues-Silveira, Rodrigo","identifier":"https://orcid.org/0000-0002-6912-7689","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}},
+   {"@type":"Person","name":"García-Díez, Fátima","identifier":"https://orcid.org/0000-0002-4259-3516","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}},
+   {"@type":"Person","name":"Llamazares, Iván","identifier":"https://orcid.org/0000-0003-2947-6830","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}},
+   {"@type":"Person","name":"Martínez-Barahona, Elena","identifier":"https://orcid.org/0000-0002-9827-2308","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}},
+   {"@type":"Person","name":"Barreto Martín, Eduardo","identifier":"https://orcid.org/0009-0006-3670-1767","affiliation":{"@type":"Organization","name":"Universidad de Salamanca","identifier":"https://ror.org/02f40zc51"}}
+  ],
+  "publisher": {
+   "@type": "Organization",
+   "name": "Harvard Dataverse"
+  },
+  "datePublished": "2026-03-23",
+  "dateModified": "2026-09-15",
+  "keywords": ["parliamentary speeches","Second Spanish Republic","Segunda República Española","debates parlamentarios"],
+  "name": "Luz y Taquígrafos: Parliamentary Debates in the Second Spanish Republic, 1931–1945",
+  "alternateName": "Luz y Taquígrafos: Debates Parlamentarios en la Segunda República Española, 1931–1945",
+  "inLanguage": "es",
+  "temporalCoverage": "1931-07-14/1945-11-09",
+  "variableMeasured": [
+   {"@type":"PropertyValue","name":"id"},
+   {"@type":"PropertyValue","name":"num_session"},
+   {"@type":"PropertyValue","name":"order"},
+   {"@type":"PropertyValue","name":"date"},
+   {"@type":"PropertyValue","name":"speaker"},
+   {"@type":"PropertyValue","name":"speech"},
+   {"@type":"PropertyValue","name":"rep_id"},
+   {"@type":"PropertyValue","name":"rep_name"},
+   {"@type":"PropertyValue","name":"district"},
+   {"@type":"PropertyValue","name":"party"},
+   {"@type":"PropertyValue","name":"party_family"},
+   {"@type":"PropertyValue","name":"ideology"},
+   {"@type":"PropertyValue","name":"nwords"},
+   {"@type":"PropertyValue","name":"legislature"}
+  ],
+  "description": "The Diarios de Sesiones of the Congress of the Spanish Second Republic, 1931 to 1945, as a table: 107,551 rows and 14 columns across 755 sessions. Each row is one entry of a speaker in the printed record, with its text and the identified deputy. The text comes from optical character recognition and has not been corrected by hand."
+ }
+}

@@ -1,0 +1,23 @@
+---
+/**
+ * Hueco de una figura aún no construida (vista previa). Lo SUSTITUYE el componente de su dueño
+ * (`src/components/Fig*.astro`, geometría en `src/viz/geom/`). Enseña el título de la figura si el copy ya lo trae.
+ * En publicación (STRICT=1) un hueco PARA la compilación: nada se publica con una figura pendiente.
+ */
+import { t, existe } from '../lib/i18n';
+import { marcaPendiente } from '../lib/cifras';
+import { figura } from '../lib/figuras';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang; id: string; que?: string }
+const { lang, id, que } = Astro.props;
+if (process.env.STRICT === '1') throw new Error(`Figura pendiente: ${id}${que ? ` (${que})` : ''}. Sustitúyase <FigHueco id="${id}"> por su componente.`);
+const base = id.replace(/[a-z]$/, '');
+const reg = figura(base);
+const titulo = existe(`fig.${base}.titulo`) ? t(lang, `fig.${base}.titulo`) : null;
+---
+<div class="fig-hueco" data-todo-fig={id} id={reg ? reg.ancla : undefined}>
+  <p class="asiento" set:html={marcaPendiente(`FIG ${id}`, 'dato')} />
+  {titulo && <p class="fig-titulo" set:html={titulo} />}
+  {que && <p class="nota mute" data-audit-exento="nota de vista previa del andamiaje">{que}</p>}
+</div>

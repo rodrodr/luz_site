@@ -1,0 +1,106 @@
+---
+/**
+ * F18 · Adónde van las filas de la V2 (Versiones, #destino-filas). Plan § F18: TABLA CON NOTA, no diagrama de flujo
+ * (la correspondencia fila a fila no está publicada). Sin pestañas: la tabla es la figura. Cada parte lleva su filete
+ * proporcional a las 121.700 filas de la v3 (una parte del todo, en la misma columna), sus palabras y de dónde sale.
+ * Debajo, las notas que cuadran las cuentas y la descarga, con su LÉAME.
+ * La anatomía es la del marco común (sello · código y título · pregunta · cuerpo · salvedad rotulada), escrita aquí
+ * porque el marco pone pestañas a toda figura con datos.
+ * Datos: `src/data/destino_filas.json` (correspondencia V2 → v3 y la v3 servida). Copy: `fig.F18.*`.
+ */
+import Sello from '../Sello.astro';
+import { t, rotulo, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import { figura, rutaDatos, rutaLeame } from '../../lib/figuras';
+import { recurso } from '../../lib/rutas';
+import { pct } from '../../viz/geom/escalas';
+import { LANGS, type Lang } from '../../lib/idiomas';
+
+interface Clase { clase: 'habla' | 'turnos' | 'comentarios' | 'sumarios'; filas: number; palabras: number }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<{ clases: Clase[]; total: number }>('destino_filas');
+const o = (k: string, ctx = {}) => (existe(k) ? t(lang, k, ctx) : marcaPendiente(k, 'copy'));
+const f = figura('F18')!;
+const CLAVE: Record<Clase['clase'], string> = { habla: 'v3.piezas_habla', turnos: 'v3.turnos', comentarios: 'v3.comentarios', sumarios: 'v3.sumarios' };
+const total = D?.total ?? 1;
+const palabrasTotal = (D?.clases ?? []).reduce((s, c) => s + c.palabras, 0);
+const parte = (c: Clase) => fmt.dato(c.filas / total, fmt.pct(c.filas / total, lang, 1), `fig.F18.${c.clase}.parte`, 'v3');
+const archivos = [...f.archivos.flatMap((a) => [rutaDatos(a, 'csv'), rutaDatos(a, 'xlsx')]), ...LANGS.map((l) => rutaLeame(f.id, l))];
+const NOTAS = ['piezas', 'continuaciones', 'habla', 'palabras'];
+---
+<figure class="figura destino" id={f.ancla} data-figura="F18" data-base={f.base.join(' ')} aria-labelledby="destino-filas-titulo">
+  <header class="fig-cabeza">
+    <p class="fig-sellos">{f.base.filter((b) => b !== 'croquis').map((b) => <Sello lang={lang} base={b} />)}</p>
+    <h3 class="fig-titulo" id="destino-filas-titulo"><span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">F18</span><Fragment set:html={o('fig.F18.titulo')} /></h3>
+    <p class="fig-pregunta" set:html={o('fig.F18.pregunta')} />
+  </header>
+  <div class="fig-desliza" tabindex="0" role="region" aria-labelledby="destino-filas-titulo">
+    <table class="fig-tabla tabla-destino">
+      <thead>
+        <tr>
+          <th scope="col" set:html={o('fig.F18.tabla.col.que')} />
+          <th scope="col" class="num" set:html={o('fig.F18.tabla.col.filas')} />
+          <th scope="col" class="parte-col" set:html={o('fig.F18.tabla.col.parte')} />
+          <th scope="col" class="num" set:html={o('fig.F18.tabla.col.palabras')} />
+          <th scope="col" set:html={o('fig.F18.tabla.col.origen')} />
+        </tr>
+      </thead>
+      <tbody>
+        {(D?.clases ?? []).map((c) => (
+          <tr class={`c-${c.clase}`}>
+            <th scope="row" set:html={o(`fig.F18.fila.${c.clase}`)} />
+            <td class="num fuerte" set:html={fmt.clave(CLAVE[c.clase], lang)} />
+            <td class="parte"><span class="filete" style={`--p: ${pct((c.filas / total) * 100)}`} aria-hidden="true"></span><span class="pct" set:html={parte(c)} /></td>
+            <td class="num" set:html={fmt.dato(c.palabras, fmt.n(c.palabras, lang), `fig.F18.${c.clase}.palabras`, 'v3')} />
+            <td class="origen" set:html={o(`fig.F18.fila.${c.clase}.origen`)} />
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row" set:html={o('fig.F18.fila.total')} />
+          <td class="num fuerte" set:html={fmt.clave('filas.v3', lang)} />
+          <td class="parte"><span class="filete" style="--p: 100%" aria-hidden="true"></span></td>
+          <td class="num" set:html={fmt.dato(palabrasTotal, fmt.n(palabrasTotal, lang), 'palabras.v3', 'v3')} />
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <ul class="notas" role="list">
+    {NOTAS.map((n) => <li set:html={o(`fig.F18.nota.${n}`)} />)}
+  </ul>
+  <div class="descarga">
+    <a class="boton sec" href={recurso(rutaDatos(f.archivos[0], 'csv'))} download>
+      <svg class="icono" aria-hidden="true" focusable="false"><use href="#i-bajar"></use></svg>
+      <span set:html={rotulo(lang, 'comun.boton.datos_figura')} />
+    </a>
+    <p class="nota" set:html={t(lang, 'comun.fija.sin_formulario')} />
+    <ul class="fig-archivos" role="list">{archivos.map((a) => <li><a href={recurso(a)} download>{a.replace(/^datos\//, '')}</a></li>)}</ul>
+  </div>
+  <figcaption class="fig-pie">
+    <p class="fig-salvedad"><span class="fig-salvedad-rotulo" set:html={t(lang, 'comun.fig.salvedad')} /> <span set:html={o('fig.F18.salvedad')} /></p>
+  </figcaption>
+</figure>
+
+<style>
+  .fig-sellos { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .6rem; }
+  .fig-salvedad-rotulo { font-weight: 600; color: var(--ink); margin-right: .25rem; }
+  .tabla-destino th[scope='row'] { font-family: var(--text); font-size: var(--fs-small); white-space: nowrap; }
+  .tabla-destino .fuerte { color: var(--ink); font-weight: 500; }
+  .tabla-destino .origen { font-family: var(--text); font-size: var(--fs-small); color: var(--ink-2); min-width: 16rem; white-space: normal; }
+  .parte-col { min-width: 9rem; }
+  .parte { position: relative; min-width: 9rem; white-space: nowrap; }
+  /* El filete mide la parte de las 121.700 filas: un filete, no una barra de color que compita con el texto. */
+  .filete { display: block; height: 3px; width: var(--p); min-width: 1px; background: var(--dato-2); margin: .45rem 0 .3rem; }
+  .pct { color: var(--ink-2); }
+  tfoot th, tfoot td { border-bottom: 0; border-top: 1px solid var(--hair-2); }
+  tfoot .filete { background: var(--hair-2); }
+  .notas { list-style: none; margin: var(--e5) 0 0; padding: 0; display: grid; gap: .4rem; font-size: var(--fs-small); color: var(--ink-2); max-width: 44rem; }
+  .notas li { padding-left: 1.3rem; position: relative; }
+  .notas li::before { content: ''; position: absolute; left: 0; top: .72em; width: .8rem; border-top: 1.5px solid var(--accent); }
+  .descarga { display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; margin-top: var(--e5); }
+  .descarga .nota { margin: 0; }
+</style>

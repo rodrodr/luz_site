@@ -1,0 +1,203 @@
+---
+/**
+ * Momento «Del Diario impreso a la fila» (DESIGN.md § Movimiento, momento 2; grupo 4, El Diario § 1).
+ *
+ * La versión nativa y ligera del prototipo P2 (three.js): 0 KB de JavaScript. Enseña el papel de verdad —un detalle de
+ * la p. 1353 del Diario núm. 48 (1-X-1931), el escaneo del proyecto sin retocar— y las dos filas que salen de él.
+ *  · La tinta es el canal alfa del escaneo (lo prepara exportador/modulos/diario.py) y se pinta con el color de tinta
+ *    del tema (`mask-image`): el mismo papel en claro y en oscuro, sin textura falsa ni maqueta.
+ *  · Las cajas (rótulos, interrupción, acotación, página) salen de la capa de texto del PDF y el exportador comprueba
+ *    lo que dice cada una. Van en SVG, sin texto; sus notas, en HTML al margen, con número volado.
+ *  · Movimiento: solo con `prefers-reduced-motion: no-preference` y `animation-timeline: view()`. Al entrar en pantalla
+ *    se trazan las cajas y las filas llegan debajo, una tras otra (la tinta se vuelve fila). Sin soporte, sin JS o con
+ *    movimiento reducido, la pieza está en su estado final desde el principio.
+ *  · Pasar el puntero (o el foco) por una fila ilumina en el papel su rótulo y su texto.
+ *  · La tabla de las dos filas es HTML real: la equivalencia accesible de la imagen, que lleva `role="img"` y su texto.
+ */
+import { t, plano, existe } from '../lib/i18n';
+import { fmt, marcaPendiente } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import type { Lang } from '../lib/idiomas';
+
+interface Facsimil {
+  imagen: string; ancho: number; alto: number; proporcion: number; pagina: number; numero: number; fecha: string;
+  filas_v2: number[]; filas_v3: number[]; cajas: Record<string, [number, number, number, number][]>;
+}
+interface FilaEj { clave: string; v2: Record<string, string>; v3: Record<string, string | number>; nwords: number; uso: string; cortado: boolean }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<{ facsimil: Facsimil }>('diario');
+const F = D?.facsimil;
+const E = dato<{ filas: FilaEj[] }>('fila_ejemplo');
+const IMGS = import.meta.glob<{ default: { src: string } }>('../data/facsimil/*.webp', { eager: true });
+const img = F ? Object.entries(IMGS).find(([r]) => r.endsWith(F.imagen))?.[1].default.src : undefined;
+const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
+const P = 'diario.que_es.facsimil';
+// Lienzo de la caja: 100 de ancho; el alto, por la proporción del recorte.
+const H = F ? 100 / F.proporcion : 70;
+// Las notas del margen: número, caja(s) que señala y el ancla de su número en el papel (x, y en fracción).
+const NOTAS = F ? [
+  { n: 1, k: 'pagina', cajas: ['pagina'], ancla: F.cajas.pagina[0] },
+  { n: 2, k: 'interrupcion', cajas: ['interrupcion'], ancla: F.cajas.interrupcion[1] },
+  { n: 3, k: 'rotulo', cajas: ['rotulo_presidencia', 'rotulo_campoamor'], ancla: F.cajas.rotulo_presidencia[0] },
+  { n: 4, k: 'acotacion', cajas: ['acotacion'], ancla: F.cajas.acotacion[1] },
+] : [];
+const tipoCaja = (k: string) => (k.startsWith('rotulo') ? 'rotulo' : k.startsWith('texto') ? 'texto' : k === 'pagina' ? 'pagina' : 'acota');
+const filaDeCaja = (k: string) => (k.endsWith('presidencia') ? '5423' : k.endsWith('campoamor') ? '5424' : '');
+const llamada = (k: string) => NOTAS.find((x) => x.cajas.includes(k))?.n;
+const filas = E?.filas ?? [];
+const inicio = (s: string) => { const w = s.split(/\s+/); return w.length > 22 ? w.slice(0, 22).join(' ') : s; };
+---
+<figure class="daf" aria-labelledby="daf-titulo">
+  <h3 id="daf-titulo" class="daf-titulo" set:html={o(`${P}.titulo`)} />
+  {!F || !img ? <p class="nota" set:html={marcaPendiente('diario.json › facsimil', 'dato')} /> : (
+    <>
+      <div class="daf-cuerpo">
+        <div class="daf-papel">
+          <div class="daf-hoja" role="img" aria-label={plano(lang, `${P}.alt`)} style={`--img: url('${img}'); aspect-ratio: ${F.ancho} / ${F.alto}`}>
+            <span class="daf-tinta" aria-hidden="true" />
+            <svg class="daf-cajas" viewBox={`0 0 100 ${H.toFixed(3)}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              {Object.entries(F.cajas).flatMap(([k, lineas]) => lineas.map(([x0, y0, x1, y1], i) => (
+                <rect class={`caja caja-${tipoCaja(k)}`} data-caja={k} data-fila={filaDeCaja(k)} style={`--i: ${i}`}
+                      x={(x0 * 100).toFixed(2)} y={(y0 * H).toFixed(2)} width={((x1 - x0) * 100).toFixed(2)} height={((y1 - y0) * H).toFixed(2)}
+                      rx="0.4" pathLength={tipoCaja(k) === 'acota' ? undefined : 1} vector-effect="non-scaling-stroke" />
+              )))}
+            </svg>
+            {NOTAS.map((x) => (
+              <span class="daf-llamada" aria-hidden="true" data-audit-exento="llamada" style={`--x: ${(x.ancla[0] * 100).toFixed(2)}%; --y: ${(((x.ancla[1] + x.ancla[3]) / 2) * 100).toFixed(2)}%`}>{x.n}</span>
+            ))}
+          </div>
+        </div>
+        <ol class="daf-notas" role="list">
+          {NOTAS.map((x) => (
+            <li class="daf-nota" data-caja={x.k} style={`--y: ${(((x.ancla[1] + x.ancla[3]) / 2) * 100).toFixed(2)}%`}>
+              <span class="llamada-n" data-audit-exento="llamada" aria-hidden="true">{x.n}</span>
+              <span set:html={o(`${P}.${x.k}`)} />
+            </li>
+          ))}
+        </ol>
+        <p class="daf-pie asiento" set:html={o(`${P}.pie`)} />
+      </div>
+
+      <div class="daf-filas">
+        <p class="daf-filas-titulo" set:html={o(`${P}.filas`)} />
+        <div class="fig-desliza" role="region" tabindex="0" aria-labelledby="daf-filas-cap">
+          <table class="fig-tabla daf-tabla">
+            <caption id="daf-filas-cap" class="sr-only" set:html={o(`${P}.filas`)} />
+            <thead>
+              <tr>
+                <th scope="col" set:html={o(`${P}.col.id`)} />
+                <th scope="col" set:html={o(`${P}.col.speaker`)} />
+                <th scope="col" set:html={o(`${P}.col.rep_name`)} />
+                <th scope="col" class="num" set:html={o(`${P}.col.nwords`)} />
+                <th scope="col" set:html={o(`${P}.col.speech`)} />
+              </tr>
+            </thead>
+            <tbody>
+              {filas.map((f, k) => (
+                <tr class="daf-fila" data-fila={f.v2.id} tabindex="0" style={`--k: ${k}`}>
+                  <td><span class="daf-ids">
+                    <span set:html={fmt.dato(Number(f.v2.id), String(f.v2.id), `fila.${f.clave}.id.V2`, 'V2')} />
+                    <span class="daf-v3">v3 <span set:html={fmt.dato(Number(f.v3.id), String(f.v3.id), `fila.${f.clave}.id.v3`, 'v3')} /></span>
+                  </span></td>
+                  <td class="daf-rotulo"><span class="llamada-n" data-audit-exento="llamada" aria-hidden="true">3</span> <code>{f.v2.speaker}</code></td>
+                  <td>{f.uso}</td>
+                  <td class="num" set:html={fmt.dato(f.nwords, fmt.n(f.nwords, lang), `fila.${f.clave}.nwords`, 'V2')} />
+                  <td class="daf-speech"><span>{inicio(String(f.v2.speech))}{(f.cortado || inicio(String(f.v2.speech)) !== String(f.v2.speech)) && <span class="daf-corte"> […]</span>}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="daf-filas-nota nota" set:html={o(`${P}.filas.nota`)} />
+      </div>
+    </>
+  )}
+</figure>
+
+<style>
+  .daf { margin: var(--e6) 0 var(--e7); min-width: 0; }
+  /* Ocupa el ancho de la lectura (texto y margen), como una figura. */
+  :global(.seccion-cuerpo) > .daf { grid-column: 1 / -1; }
+  .daf-titulo { font: 600 var(--fs-h3)/1.2 var(--text); margin: 0 0 var(--e5); }
+  .daf-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--e5); }
+  .daf-papel { min-width: 0; }
+  .daf-hoja { position: relative; width: 100%; max-width: 40rem; }
+  /* La tinta del escaneo, con el color de tinta del tema: es el papel de verdad, sin papel de fondo. */
+  .daf-tinta {
+    position: absolute; inset: 0; background: var(--ink);
+    -webkit-mask: var(--img) center / 100% 100% no-repeat; mask: var(--img) center / 100% 100% no-repeat;
+  }
+  .daf-cajas { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .caja { fill: none; stroke: none; }
+  .caja-rotulo { stroke: var(--accent); stroke-width: 1.5px; fill: color-mix(in oklab, var(--accent) 10%, transparent); }
+  .caja-pagina { stroke: var(--accent); stroke-width: 1.5px; }
+  .caja-texto { fill: color-mix(in oklab, var(--accent) 16%, transparent); }
+  .caja-acota { stroke: var(--mute); stroke-width: 1px; stroke-dasharray: 4 3; }
+  /* Una fila señalada (puntero o foco) ilumina en el papel su rótulo y su texto. */
+  .daf:has(.daf-fila[data-fila='5423']:is(:hover, :focus-visible)) .caja[data-fila='5423'],
+  .daf:has(.daf-fila[data-fila='5424']:is(:hover, :focus-visible)) .caja[data-fila='5424'] { fill: color-mix(in oklab, var(--accent) 38%, transparent); stroke-width: 2.5px; }
+  .daf-llamada {
+    position: absolute; left: var(--x); top: var(--y); transform: translate(calc(-100% - .35rem), -50%);
+    font: 500 .72rem/1 var(--mono); color: var(--accent);
+  }
+  .daf-pie { margin: var(--e4) 0 0; max-width: 40rem; }
+
+  .daf-notas { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+  .daf-nota { display: grid; grid-template-columns: 1.2rem minmax(0, 1fr); gap: .3rem; font-size: var(--fs-small); line-height: 1.4; color: var(--ink-2); }
+  .daf-nota .llamada-n { vertical-align: 0; line-height: 1.4; font-size: .72rem; }
+
+  .daf-filas { margin-top: var(--e6); }
+  .daf-filas-titulo { font: 600 var(--fs-body)/1.3 var(--text); margin: 0 0 var(--e3); }
+  .daf-tabla { font-family: var(--text); }
+  .daf-tabla td { vertical-align: top; font-size: var(--fs-small); }
+  .daf-ids { white-space: nowrap; font-family: var(--mono); display: grid; gap: .1rem; }
+  .daf-v3 { color: var(--mute); font-size: var(--fs-mono-s); }
+  .daf-rotulo { white-space: nowrap; }
+  .daf-rotulo code { font: 400 .82rem/1.4 var(--mono); color: var(--ink); }
+  .daf-speech { font: italic 400 var(--fs-small)/1.45 var(--text); color: var(--ink); min-width: 16rem; max-width: 30rem; }
+  .daf-corte { font-style: normal; color: var(--mute); }
+  .daf-fila { cursor: default; }
+  .daf-fila:hover, .daf-fila:focus-visible { background: var(--bg-2); }
+  .daf-fila:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+  .daf-filas-nota { margin: var(--e3) 0 0; max-width: 40rem; }
+
+  /* Escritorio: las notas al margen, cada una a la altura de su caja, unidas al papel por un trazo de oro. */
+  @media (min-width: 60rem) {
+    .daf-cuerpo { grid-template-columns: minmax(0, 40rem) minmax(12rem, 1fr); grid-template-areas: "papel notas" "pie ."; gap: 0 var(--e6); align-items: start; }
+    .daf-papel { grid-area: papel; }
+    .daf-pie { grid-area: pie; }
+    .daf-notas { grid-area: notas; position: relative; display: block; align-self: stretch; }
+    .daf-nota { position: absolute; left: 0; right: 0; top: var(--y); transform: translateY(-50%); }
+    .daf-nota::before { content: ''; position: absolute; right: 100%; top: 50%; width: calc(var(--e6) - .3rem); margin-right: .3rem; border-top: 1px solid var(--accent); }
+  }
+
+  /* La tinta se vuelve fila: al pasar por la pantalla (scroll, sin JS), las cajas se trazan sobre el papel y las filas
+     llegan debajo. Una línea de tiempo con nombre (`--daf`) sincroniza cajas, notas y filas (la de cada fila
+     no serviría: su contenedor con desplazamiento horizontal la dejaría quieta).
+     `animation-timeline` va en una regla aparte de la del atajo `animation`: el minificador los fundía en el atajo, y
+     Chrome descarta un atajo con línea de tiempo (la animación no corría). */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .daf { view-timeline: --daf block; }
+      .caja-rotulo, .caja-pagina { stroke-dasharray: 1; animation: daf-traza linear both; }
+      .caja-acota, .daf-llamada, .daf-nota { animation: daf-aparece linear both; }
+      .caja-texto { animation: daf-tinta linear both; }
+      .daf-fila { animation: daf-llega linear both; }
+      .daf .caja-rotulo, .daf .caja-pagina { animation-timeline: --daf; animation-range: cover 6% cover 26%; }
+      .daf .caja-acota, .daf .daf-llamada, .daf .daf-nota { animation-timeline: --daf; animation-range: cover 14% cover 28%; }
+      .daf .caja-texto { animation-timeline: --daf; animation-range: cover 18% cover 32%; }
+      .daf .daf-fila { animation-timeline: --daf; animation-range: cover calc(36% + var(--k) * 5%) cover calc(46% + var(--k) * 5%); }
+      @keyframes daf-traza { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+      @keyframes daf-tinta { from { fill-opacity: 0; } to { fill-opacity: 1; } }
+      @keyframes daf-aparece { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes daf-llega { from { opacity: 0; transform: translateY(var(--desplaza)); } to { opacity: 1; transform: none; } }
+    }
+    .daf-fila { transition: background-color var(--t-puntero) var(--ease); }
+    .caja { transition: fill var(--t-estado) var(--ease), stroke-width var(--t-estado) var(--ease); }
+  }
+  @media (forced-colors: active) {
+    .daf-tinta { background: CanvasText; }
+    .caja-rotulo, .caja-pagina { stroke: Highlight; }
+  }
+</style>

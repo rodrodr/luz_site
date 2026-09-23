@@ -1,0 +1,14 @@
+{
+ "fecha": "2026-09-22",
+ "v3_sha256": "3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15",
+ "busquedas": [
+  {"id":"voto_femenino","consulta":"\"voto femenino\"","fts":"\"voto femenino\"","n":20,"habla":20,"resto":0,"desde":"1931-09-29","hasta":"1933-06-02"},
+  {"id":"voto_mujer","consulta":"\"voto de la mujer\"","fts":"\"voto de la mujer\"","n":28,"habla":28,"resto":0,"desde":"1931-09-01","hasta":"1933-12-15"},
+  {"id":"voto_union","consulta":"\"voto femenino\" | \"voto de la mujer\"","fts":"\"voto femenino\" OR \"voto de la mujer\"","n":40,"habla":40,"resto":0,"desde":"1931-09-01","hasta":"1933-12-15"},
+  {"id":"casas_viejas","consulta":"\"casas viejas\"","fts":"\"casas viejas\"","n":375,"habla":316,"resto":59,"desde":"1933-02-01","hasta":"1936-07-03"},
+  {"id":"divorcio","consulta":"divorcio","fts":"divorcio","n":531,"habla":454,"resto":77,"desde":"1931-07-29","hasta":"1936-07-09"},
+  {"id":"reforma_agraria","consulta":"\"reforma agraria\"","fts":"\"reforma agraria\"","n":2028,"habla":1629,"resto":399,"desde":"1931-07-27","hasta":"1945-11-07"},
+  {"id":"estatuto","consulta":"\"estatuto de cataluña\"","fts":"\"estatuto de cataluña\"","n":724,"habla":493,"resto":231,"desde":"1931-07-29","hasta":"1945-11-09"},
+  {"id":"catolica","consulta":"\"España ha dejado de ser católica\"","fts":"\"España ha dejado de ser católica\"","n":6,"habla":6,"resto":0,"desde":"1931-10-13","hasta":"1934-11-20"}
+ ]
+}

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Del Diario a la fila</title>
+<style>
+:root { color-scheme: dark light; --bg:#0e0d0b; --ink:#efe6d2; --mute:#9d937f; --gold:#c9a45c; --line:#3a352c; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --bg:#f4efe4; --ink:#1b1916; --mute:#6b6356; --gold:#8a6a26; --line:#cfc6b4; } }
+* { box-sizing:border-box }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 Georgia, 'Times New Roman', serif; }
+.stage { height:320vh; position:relative }
+.sticky { position:sticky; top:0; height:100vh; overflow:hidden }
+canvas#gl { position:absolute; inset:0; width:100%; height:100%; display:block }
+.cap { position:absolute; left:16px; right:16px; bottom:20px; font:12px/1.4 ui-monospace, Menlo, monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--mute); text-align:center }
+.static { display:none; max-width:980px; margin:0 auto; padding:24px 16px; gap:24px; grid-template-columns: 1fr 1.4fr; align-items:center }
+.static img { width:100%; height:auto; border:1px solid var(--line) }
+table { border-collapse:collapse; width:100%; font-variant-numeric: tabular-nums }
+th { font:11px ui-monospace, Menlo, monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); text-align:left; padding:6px 8px; border-bottom:1px solid var(--line) }
+td { padding:8px; border-bottom:1px solid var(--line) }
+td.o { font-style:italic; color:var(--gold) }
+.note { max-width:680px; margin:0 auto; padding:24px 16px 80px; color:var(--mute) }
+.no-gl .stage { display:none } .no-gl .static { display:grid }
+@media (max-width:700px) { .static { grid-template-columns:1fr } }
+</style></head>
+<body>
+<script>
+  /* Degradación decidida ANTES de pintar: sin WebGL o con movimiento reducido, estados estáticos. */
+  (function(){ var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var gl = !!document.createElement('canvas').getContext('webgl2');
+    if (rm || !gl) document.documentElement.classList.add('no-gl'); })();
+</script>
+<div class="stage" aria-hidden="true"><div class="sticky"><canvas id="gl"></canvas>
+  <div class="cap" id="cap">Diario de Sesiones · 16 de junio de 1936 · desplázate</div></div></div>
+<section class="static" aria-label="La página y su fila">
+  <img id="pageImg" alt="Maqueta de la página del Diario de Sesiones del 16 de junio de 1936">
+  <div></div>
+</section>
+<table id="fila" style="max-width:980px;margin:0 auto 24px;padding:0 16px">
+  <caption class="note" style="padding:8px 0;text-align:left">La fila de datos (HTML real, accesible y sin JS)</caption>
+  <thead><tr><th>Fecha</th><th>Sesión</th><th>Diario</th><th>Orador</th><th>Minoría</th><th>Palabras</th></tr></thead>
+  <tbody><tr><td>16·VI·1936</td><td>Sesión 45</td><td>DSC n.º 45, pp. 1359–1413</td><td class="o">Gil Robles</td><td>CEDA</td><td>5.978 palabras</td></tr></tbody>
+</table>
+<p class="note">Prototipo P2 · three.js r186 (WebGL2, <code>Points</code> + <code>ShaderMaterial</code>, un solo draw call).
+Datos reales de la sesión (sesiones_v2.json): 159 intervenciones, 48458 palabras, 21 diputados, preside Martínez Barrio.
+La «página» es una maqueta tipográfica compuesta en canvas (en producción: el escaneo real del DSC, umbralizado en el build).
+Cada partícula es un píxel de tinta; su destino es un píxel de las celdas de la fila. El scroll hace de <em>scrub</em>.</p>
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.min.js" } }</script>
+<script type="module">
+const FILA = {"fecha": "16·VI·1936", "sesion": "Sesión 45", "diario": "DSC n.º 45, pp. 1359–1413", "orador": "Gil Robles", "minoria": "CEDA", "palabras": "5.978 palabras", "filas": 159, "pal": 48458, "dip": 21, "presidente": "Martínez Barrio"};
+const W = 900, H = 1100;              // lienzo lógico de la página
+const css = getComputedStyle(document.documentElement);
+const INK = css.getPropertyValue('--ink').trim(), GOLD = css.getPropertyValue('--gold').trim();
+
+function pageCanvas() {
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  x.fillStyle = '#000';
+  x.textAlign = 'center';
+  x.font = '600 30px Georgia, serif'; x.fillText('DIARIO DE SESIONES', W/2, 70);
+  x.font = 'italic 22px Georgia, serif'; x.fillText('de las Cortes de la República', W/2, 102);
+  x.font = '15px Georgia, serif'; x.fillText(`Núm. ${FILA.diario.match(/n\.º (\d+)/)[1]}  ·  Sesión del martes 16 de junio de 1936  ·  Preside ${FILA.presidente}`, W/2, 136);
+  x.fillRect(60, 152, W-120, 2);
+  x.textAlign = 'left';
+  // dos columnas de "texto" como en el facsímil: renglones de palabras de ancho variable (seed fija)
+  let s = 45; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const cols = [[60, 430], [470, 840]];
+  for (const [x0, x1] of cols) {
+    for (let y = 190; y < H - 60; y += 19) {
+      let xx = x0 + (rnd() < .08 ? 18 : 0);
+      if (rnd() < .06) { x.font = 'italic 14px Georgia, serif'; x.fillText(rnd() < .5 ? 'El Sr. GIL ROBLES:' : 'El Sr. CALVO SOTELO:', xx, y); xx += 150; }
+      const end = rnd() < .1 ? x0 + (x1 - x0) * (.3 + .5 * rnd()) : x1;
+      while (xx < end - 10) { const w = 10 + rnd() * 48; x.fillRect(xx, y - 9, Math.min(w, end - xx), 8); xx += w + 5; }
+    }
+  }
+  return c;
+}
+function rowCanvas() {
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  const cells = [['FECHA', FILA.fecha], ['SESIÓN', FILA.sesion], ['DIARIO', FILA.diario], ['ORADOR', FILA.orador], ['MINORÍA', FILA.minoria], ['PALABRAS', FILA.palabras]];
+  x.fillStyle = '#000';
+  const y0 = 420; x.fillRect(40, y0 - 70, W - 80, 2); x.fillRect(40, y0 + 190, W - 80, 2);
+  cells.forEach(([k, v], i) => {
+    const cx = 60 + (i % 3) * 280, cy = y0 + Math.floor(i / 3) * 110;
+    x.font = '13px Menlo, monospace'; x.fillText(k, cx, cy - 30);
+    x.font = (k === 'ORADOR' ? 'italic 44px' : '30px') + ' Georgia, serif'; x.fillText(v, cx, cy + 14);
+  });
+  return c;
+}
+function sample(c, n, step) {
+  const d = c.getContext('2d').getImageData(0, 0, W, H).data, pts = [];
+  for (let y = 0; y < H; y += step) for (let x = 0; x < W; x += step) if (d[(y * W + x) * 4 + 3] > 120) pts.push(x, y);
+  return pts;
+}
+const pc = pageCanvas(), rc = rowCanvas();
+document.getElementById('pageImg').src = pc.toDataURL();
+if (document.documentElement.classList.contains('no-gl')) throw 'estático';
+
+const THREE = await import('three');
+const mobile = matchMedia('(max-width: 700px)').matches;
+const N = mobile ? 15000 : 40000;
+let A = sample(pc, 0, 2), B = sample(rc, 0, 1);
+const pos = new Float32Array(N * 3), tgt = new Float32Array(N * 3), rnd = new Float32Array(N);
+// orden espacial coherente: se ordenan ambos conjuntos por x+y*0.35 para que la tinta viaje "hacia su celda"
+const pick = (arr, k) => { const m = arr.length / 2; const j = Math.floor(k * m / N) % m; return [arr[2*j], arr[2*j+1]]; };
+const sortPts = arr => { const p = []; for (let i = 0; i < arr.length; i += 2) p.push([arr[i], arr[i+1]]); p.sort((a, b) => (a[0] + a[1]*0.35) - (b[0] + b[1]*0.35)); return p.flat(); };
+A = sortPts(A); B = sortPts(B);
+for (let i = 0; i < N; i++) {
+  const [ax, ay] = pick(A, i), [bx, by] = pick(B, i);
+  pos.set([ax - W/2, H/2 - ay, 0], i*3); tgt.set([bx - W/2 + (Math.random()-.5)*.8, H/2 - by + (Math.random()-.5)*.8, 0], i*3);
+  rnd[i] = Math.random();
+}
+const g = new THREE.BufferGeometry();
+g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+g.setAttribute('target', new THREE.BufferAttribute(tgt, 3));
+g.setAttribute('rnd', new THREE.BufferAttribute(rnd, 1));
+const mat = new THREE.ShaderMaterial({
+  transparent: true, depthWrite: false,
+  uniforms: { uP: { value: 0 }, uInk: { value: new THREE.Color(INK) }, uGold: { value: new THREE.Color(GOLD) }, uSize: { value: 1.6 } },
+  vertexShader: `
+    attribute vec3 target; attribute float rnd; uniform float uP; uniform float uSize; varying float vK;
+    float ease(float t){ return t<.5 ? 4.*t*t*t : 1.-pow(-2.*t+2.,3.)/2.; }
+    void main(){
+      float d = rnd * .35;                                  // escalonado por partícula
+      float k = ease(clamp((uP - d) / .65, 0., 1.)); vK = k;
+      vec3 p = mix(position, target, k);
+      float a = sin(k * 3.14159);                           // la tinta se dispersa a mitad de camino...
+      p.xy += a * 60. * vec2(sin(position.y*.021 + rnd*6.28), cos(position.x*.017 + rnd*6.28));
+      p.z  += a * 120. * (rnd - .5);                        // ...y se asienta al llegar
+      vec4 mv = modelViewMatrix * vec4(p, 1.); gl_Position = projectionMatrix * mv;
+      gl_PointSize = uSize * (1. + a * 1.2) * (600. / -mv.z);
+    }`,
+  fragmentShader: `
+    uniform vec3 uInk; uniform vec3 uGold; varying float vK;
+    void main(){ vec2 c = gl_PointCoord - .5; if (dot(c,c) > .25) discard;
+      gl_FragColor = vec4(mix(uInk, uGold, smoothstep(.55, 1., vK) * .85), .9); }`
+});
+const scene = new THREE.Scene(); scene.add(new THREE.Points(g, mat));
+const canvas = document.getElementById('gl');
+const r = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'low-power' });
+r.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+const cam = new THREE.PerspectiveCamera(40, 1, 10, 4000);
+function resize() { const w = canvas.clientWidth, h = canvas.clientHeight; r.setSize(w, h, false); cam.aspect = w / h;
+  cam.position.z = (H * 0.62) / Math.tan(THREE.MathUtils.degToRad(20)) * Math.max(1, 0.9 * (W/H) / cam.aspect) ; cam.updateProjectionMatrix(); draw(); }
+const stage = document.querySelector('.stage'), cap = document.getElementById('cap');
+let visible = true, raf = 0;
+function progress() { const b = stage.getBoundingClientRect(); return Math.min(1, Math.max(0, -b.top / (b.height - innerHeight))); }
+function draw() { raf = 0; mat.uniforms.uP.value = progress(); r.render(scene, cam);
+  const p = mat.uniforms.uP.value; cap.textContent = p < .05 ? 'Diario de Sesiones · 16 de junio de 1936 · desplázate' : p > .95 ? 'Una fila del corpus: ' + FILA.orador + ' · ' + FILA.palabras : 'La tinta se convierte en dato'; }
+// render bajo demanda: solo cuando cambia el scroll y la pieza está en pantalla
+addEventListener('scroll', () => { if (visible && !raf) raf = requestAnimationFrame(draw); }, { passive: true });
+new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
+addEventListener('resize', resize); resize();
+window.__ready = true;
+</script>
+<script>
+window.__fps = (ms=2000) => new Promise(r => { let n=0, t0=performance.now(); (function f(t){ n++; if (t-t0<ms) requestAnimationFrame(f); else r(n*1000/(t-t0)); })(t0); });
+</script>
+</body></html>

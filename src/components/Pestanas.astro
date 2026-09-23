@@ -1,0 +1,54 @@
+---
+/**
+ * Pestañas de una figura: Gráfico · Tabla · Datos. SIN JavaScript: tres radios y `:has()` (heredado de ParlaIbero).
+ *  · Los radios son radios de verdad: una sola parada de tabulación, las flechas cambian de pestaña y el lector de
+ *    pantalla dice «1 de 3». No se fingen `role="tab"` que sin script no sabrían moverse.
+ *  · Donde no hay `:has()` las tres partes se leen seguidas y la barra se retira: es la degradación prevista.
+ *    La tabla y la descarga nunca quedan detrás de un script. Tabla y Datos van en pestañas, NUNCA debajo del gráfico.
+ *  · Los estilos de las vistas son GLOBALES y con prefijo (`pest-`, `fig-`) y viven en styles/figuras.css.
+ *
+ * Ranuras: `grafico` · `tabla` · `datos`; `cabeza` (el código y el título de la figura: van en la barra, a la izquierda
+ * de las pestañas, como pide DESIGN.md § Pestañas); `pregunta` (bajo la barra, común a los tres paneles) y `barra` para
+ * la única conmutación propia de la figura (si la tiene), en su propia línea de la barra.
+ */
+import { t } from '../lib/i18n';
+import { marcaPendiente } from '../lib/cifras';
+import type { Lang } from '../lib/idiomas';
+
+interface Props {
+  lang: Lang;
+  /** Prefijo único en la página: nombra el grupo de radios y da id a cada panel (`<id>-tabla`…). */
+  id: string;
+  /** id del elemento que nombra la figura: es también el nombre accesible del grupo de pestañas. */
+  etiquetadoPor: string;
+}
+const { lang, id, etiquetadoPor } = Astro.props;
+
+const PANELES = ['grafico', 'tabla', 'datos'] as const;
+// Un solo texto aprobado trae los tres rótulos, entre corchetes y en este orden: «[Gráfico] [Tabla] [Datos]».
+const html = t(lang, 'comun.fig.pestanas');
+const prestado = html.includes('data-sin-traducir');
+let rotulos = [...html.matchAll(/(?<!⟦)\[([^\]⟦⟧]+)\](?!⟧)/g)].map((m) => m[1]);
+if (rotulos.length !== PANELES.length) {
+  if (process.env.STRICT === '1') throw new Error(`«comun.fig.pestanas» debe traer ${PANELES.length} rótulos entre corchetes (${lang}).`);
+  rotulos = PANELES.map((p) => marcaPendiente(`comun.fig.pestanas·${p}`, 'copy'));
+}
+---
+<div class="pestanas" data-pestanas>
+  <div class="pest-barra">
+    <slot name="cabeza" />
+    <div class="pest-radios no-imprimir" role="radiogroup" aria-labelledby={etiquetadoPor}>
+      {PANELES.map((panel, i) => (
+        <span class="pest-opcion">
+          <input class="pest-radio" type="radio" name={`${id}-pest`} id={`${id}-pest-${panel}`} value={panel} checked={i === 0} />
+          <label for={`${id}-pest-${panel}`} lang={prestado ? 'es' : undefined} data-sin-traducir={prestado ? '' : undefined} set:html={rotulos[i]} />
+        </span>
+      ))}
+    </div>
+    {Astro.slots.has('barra') && <div class="pest-conmuta no-imprimir"><slot name="barra" /></div>}
+  </div>
+  <slot name="pregunta" />
+  <div class="pest-panel" data-panel="grafico" id={`${id}-grafico`}><slot name="grafico" /></div>
+  <div class="pest-panel" data-panel="tabla" id={`${id}-tabla`}><slot name="tabla" /></div>
+  <div class="pest-panel" data-panel="datos" id={`${id}-datos`}><slot name="datos" /></div>
+</div>

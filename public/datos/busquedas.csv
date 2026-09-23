@@ -1,0 +1,9 @@
+id,consulta,consulta_fts5,intervenciones,solo_lo_que_se_habla,sumarios_y_comentarios,primera_fecha,ultima_fecha,fecha_recuento,v3_sha256
+voto_femenino,"""voto femenino""","""voto femenino""",20,20,0,1931-09-29,1933-06-02,2026-09-22,3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15
+voto_mujer,"""voto de la mujer""","""voto de la mujer""",28,28,0,1931-09-01,1933-12-15,2026-09-22,3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15
+voto_union,"""voto femenino"" | ""voto de la mujer""","""voto femenino"" OR ""voto de la mujer""",40,40,0,1931-09-01,1933-12-15,2026-09-22,3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15
+casas_viejas,"""casas viejas""","""casas viejas""",375,316,59,1933-02-01,1936-07-03,2026-09-22,3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15
+divorcio,divorcio,divorcio,531,454,77,1931-07-29,1936-07-09,2026-09-22,3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15
+reforma_agraria,"""reforma agraria""","""reforma agraria""",2028,1629,399,1931-07-27,1945-11-07,2026-09-22,3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15
+estatuto,"""estatuto de cataluña""","""estatuto de cataluña""",724,493,231,1931-07-29,1945-11-09,2026-09-22,3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15
+catolica,"""España ha dejado de ser católica""","""España ha dejado de ser católica""",6,6,0,1931-10-13,1934-11-20,2026-09-22,3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15

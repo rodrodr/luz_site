@@ -1,0 +1,158 @@
+{
+ "nav": [
+  {
+   "view": "home",
+   "text": "Inicio",
+   "disabled": false
+  },
+  {
+   "view": "red",
+   "text": "Red de coautorías",
+   "disabled": false
+  },
+  {
+   "view": "diputados",
+   "text": "Diputados",
+   "disabled": false
+  },
+  {
+   "view": "partidos",
+   "text": "Partidos",
+   "disabled": false
+  },
+  {
+   "view": "distritos",
+   "text": "Territorio",
+   "disabled": false
+  }
+ ],
+ "h1h2": [
+  "H1: Afinidades Elegidas:\nredes de coautoría",
+  "H2: Luz y Taquígrafos",
+  "H2: La arquitectura del consenso",
+  "H2: Las Alianzas Invisibles",
+  "H2: Líderes de Consenso",
+  "H3: Jose Lladó y Vallès",
+  "H3: Raimundo de Abadal Calderó",
+  "H3: Miguel de Unamuno y Jugo",
+  "H2: La Dimensión Territorial",
+  "H2: Explora la Historia",
+  "H2: [⚗]\nOpen Science & Research",
+  "H2: Cómo se construye la red"
+ ],
+ "home_text": "SUBPROYECTO DE LUZ Y TAQUÍGRAFOS\nAfinidades Elegidas:\nredes de coautoría\nLa Segunda República Española (1931–1939) representó un audaz experimento democrático en el corazón de Europa. En este periodo de transformación, el Parlamento se convirtió en el escenario donde se negociaron los cimientos de una sociedad nueva y plural.\n\nLA TRAMA DEL PARLAMENTO\nDescubre quiénes colaboraron y cómo se forjaron las leyes a través de un análisis de coautorías legislativas en las tres legislaturas republicanas.\n\nEl proyecto paraguas\nLuz y Taquígrafos\n\nLa fórmula viene del propio hemiciclo: «que entren la luz y los taquígrafos» — la exigencia clásica de publicidad, transcripción y escrutinio frente a la decisión a puerta cerrada. Cien años después, el proyecto que toma su nombre persigue la misma vocación con instrumentos contemporáneos.\n\nLuz y Taquígrafos es un programa de investigación del Área de Ciencia Política de la Universidad de Salamanca dedicado a reconstruir, digitalizar y analizar de forma sistemática la actividad parlamentaria de la Segunda República Española. Su cobertura se extiende desde las Cortes Constituyentes de 1931 hasta 1945, abarcando las tres legislaturas constitucionales en territorio español (1931–1939) y las sesiones de las Cortes Republicanas en el exilio (1939–1945), reunidas en México y París tras la derrota republicana. Procesa los Diarios de Sesiones para extraer debates, intervenciones, votaciones, firmas y biografías de diputados, y los publica como bases estructuradas de acceso abierto en Harvard Dataverse.\n\nAfinidades Elegidas — esta web — es el primer subproducto analítico del corpus madre: toma las firmas conjuntas de medidas legislativas y las convierte en una red de coautorías navegable, con métricas de centralidad, perfiles conductuales y una tipología de seis roles estructurales. Otros subproductos analíticos derivados del mismo corpus están en desarrollo.\n\nCORPUS MADRE\nLuz y Taquígrafos\nRodrigues-Silveira et al., 2026\nCOBERTURA\n1931–1945 · incluye Cortes en el exilio\nFUENTES\nDiarios de Sesiones del Congreso\nINSTITUCIÓN\nUSAL · Ciencia Política\nREPOSITORIO\nHarvard Dataverse ↗\nDOI\n10.7910/DVN/THQCMI\nSUBPRODUCTOS ANALÍTICOS\n●\nAfinidades Elegidas\n— estás aquí\n○\nOtros subproductos en desarrollo\nLa arquitectura del consenso\n\nEn el fragor de la II República, la coautoría de iniciativas legislativas no era un mero trámite administrativo, sino una declaración de intenciones política. Cada firma compartida trazaba un puente entre ideologías, revelando alianzas que los diarios de sesiones a menudo ocultaban.\n\nNuestra investigación de coautorías procesa miles de registros históricos para identificar quiénes eran los verdaderos catalizadores de la unión. A través de la teoría de grafos, visualizamos el parlamento no como un conjunto de bloques aislados, sino como un organismo vivo de colaboración transversal.\n\nEje Central\nMÉTRICAS DE RED\nDensidad: 0.84\nClustering: Alta\nLas Alianzas Invisibles\n\n¿Qué partidos fueron más propensos a firmar fuera de su propio espectro ideológico? El módulo de coautorías revela que la colaboración técnica superaba con frecuencia la retórica de los mítines.\n\nACCIÓN REPUBLICANA (AR)\n96%\nESQUERRA REPUBLICANA (ERC)\n94%\nPARTIDO SOCIALISTA OBRERO ESPAÑOL (PSOE)\n91%\nLíderes de Consenso\n\nPerfiles con mayor índice de colaboración transversal a lo largo de las legislaturas republicanas.\n\nJL\nTOP 1%\nJose Lladó y Vallès\n\nRI (Reagrupació Independent)\n\nTRANSVERSALIDAD\n0.93\nINFLUENCIA\n0.45\nRA\nTOP 1%\nRaimundo de Abadal Calderó\n\nLliga Regionalista\n\nTRANSVERSALIDAD\n0.93\nINFLUENCIA\n0.19\nMU\nTOP 1%\nMiguel de Unamuno y Jugo\n\nASR (Agrupación al Servicio de la República)\n\nTRANSVERSALIDAD\n0.93\nINFLUENCIA\n0.92\nGeografía del poder\nLa Dimensión Territorial\n\nLa Segunda República nació marcada por la cuestión territorial. El Estatuto de Cataluña de 1932 y las demandas vascas y gallegas pusieron el modelo de Estado en el centro del debate parlamentario, convirtiendo la pertenencia regional de los diputados en una variable política de primer orden.\n\nLos diputados catalanes —encabezados por Esquerra Republicana y la Lliga Regionalista— protagonizaron algunas de las alianzas más transversales del periodo. Provincias periféricas con fuerte identidad nacional articularon redes de coautoría que superaban las fronteras ideológicas, trazando puentes entre el republicanismo de izquierda y el conservadurismo regional.\n\nEl análisis de coautorías permite, por primera vez, cartografiar estas dinámicas con precisión: qué circunscripciones concentraban mayor actividad legislativa, cuáles actuaban como nodos de mediación territorial y cómo la geografía del poder parlamentario reflejó —y a veces contradijo— las tensiones autonómicas de la época.\n\nCOAUTORÍAS ENTRE CIRCUNSCRIPCIONES — CATALUÑA · GALICIA · PAÍS VASCO\nBarcelona\nGerona\nLérida\nTarragona\nLa Coruña\nLugo\nOrense\nPontevedra\nÁlava\nGuipúzcoa\nVizcaya\nCataluña\nGalicia\nEuskadi\nEL PROYECTO EN CIFRAS\n1.026\nDIPUTADOS ÚNICOS\n94.621\nCO-AUTORÍAS REGISTRADAS\n63.508\nPARES CON CO-AUTORÍA\n3\nLEGISLATURAS (1931–1939)\nExplora la Historia\n\nSumérgete en la red completa y descubre las conexiones individuales que dieron forma a una era.\n\nEntrar en la Red Interactiva →\n[⚗]\nOpen Science & Research\n[HDV]\nHARVARD DATAVERSE\nOpen Data Repository\n{}\nGITHUB\nOpen Source Codebase\n∑\nINSTITUCIÓN\nUniversidad de Salamanca\n⊞\nDEPARTAMENTO\nÁrea de Ciencia Política (USAL)\n⁊ CITA RECOMENDADA\nRodrigues-Silveira, Rodrigo; García-Díez, Fátima; Llamazares, Iván; Martínez-Barahona, Elena; Barreto Martín, Eduardo, 2026, \"Afinidades Elegidas: Parliamentary Cosponsorship Networks of the Spanish Second Republic (1931-1939)\", https://doi.org/10.7910/DVN/CGOCUS, Harvard Dataverse.\nCIENCIA ABIERTA · METODOLOGÍA\nCómo se construye la red\n\nDe las actas parlamentarias a los indicadores de influencia: una descripción completa del proceso de extracción, modelización y análisis de la red de coautorías de la Segunda República Española.\n\n01\nFuentes primarias y extracción de datos\n+\n\nLa fuente primar",
+ "view_home": {
+  "hash": "#home",
+  "text": "SUBPROYECTO DE LUZ Y TAQUÍGRAFOS\nAfinidades Elegidas:\nredes de coautoría\nLa Segunda República Española (1931–1939) representó un audaz experimento democrático en el corazón de Europa. En este periodo de transformación, el Parlamento se convirtió en el escenario donde se negociaron los cimientos de una sociedad nueva y plural.\n\nLA TRAMA DEL PARLAMENTO\nDescubre quiénes colaboraron y cómo se forjaron las leyes a través de un análisis de coautorías legislativas en las tres legislaturas republicanas.\n\nEl proyecto paraguas\nLuz y Taquígrafos\n\nLa fórmula viene del propio hemiciclo: «que entren la luz y los taquígrafos» — la exigencia clásica de publicidad, transcripción y escrutinio frente a la decisión a puerta cerrada. Cien años después, el proyecto que toma su nombre persigue la misma vocación con instrumentos contemporáneos.\n\nLuz y Taquígrafos es un programa de investigación del Área de Ciencia Política de la Universidad de Salamanca dedicado a reconstruir, digitalizar y analizar de forma sistemática la actividad parlamentaria de la Segunda República Española. Su cobertura se extiende desde las Cortes Constituyentes de 1931 hasta 1945, abarcando las tres legislaturas constitucionales en territorio español (1931–1939) y las sesiones de las Cortes Republicanas en el exilio (1939–1945), reunidas en México y París tras la derrota republicana. Procesa los Diarios de Sesiones para extraer debates, intervenciones, votaciones, firmas y biografías de diputados, y los publica como bases estructuradas de acceso abierto en Harvard Dataverse.\n\nAfinidades Elegidas — esta web — es el primer subproducto analítico del corpus madre: toma las firmas conjuntas de medidas legislativas y las convierte en una red de coautorías navegable, con métricas de centralidad, perfiles conductuales y una tipología de seis roles estructurales. Otros subproductos analíticos derivados del mismo corpus están en desarrollo.\n\nCORPUS MADRE\nLuz y Taquígrafos\nRodrigues-Silveira et al., 2026\nCOBERTURA\n1931–1945 · incluye Cortes en el exilio\nFUENTES\nDiarios de Sesiones del Congreso\nINSTITUCIÓN\nUSAL · Ciencia Política\nREPOSITORIO\nHarvard Dataverse ↗\nDOI\n10.7910/DVN/THQCMI\nSUBPRODUCTOS ANALÍTICOS\n●\nAfinidades Elegidas\n— estás aquí\n○\nOtros subproductos en desarrollo\nLa arquitectura del consenso\n\nEn el fragor de la II República, la coautoría de iniciativas legislativas no era un mero trámite administrativo, sino una declaración de intenciones política. Cada firma compartida trazaba un puente entre ideologías, revelando alianzas que los diarios de sesiones a menudo ocultaban.\n\nNuestra investigación de coautorías procesa miles de registros históricos para identificar quiénes eran los verdaderos catalizadores de la unión. A través de la teoría de grafos, visualizamos el parlamento no como un conjunto de bloques aislados, sino como un organismo vivo de colaboración transversal.\n\nEje Central\nMÉTRICAS DE RED\nDensidad: 0.84\nClustering: Alta\nLas Alianzas Invisibles\n\n¿Qué partidos fueron más propensos a firmar fuera de su propio espectro ideológico? El módulo de coautorías revela que la colaboración técnica superaba con frecuencia la retórica de los mítines.\n\nACCIÓN REPUBLICANA (AR)\n96%\nESQUERRA REPUBLICANA (ERC)\n94%\nPARTIDO SOCIALISTA OBRERO ESPAÑOL (PSOE)\n91%\nLíderes de Consenso\n\nPerfiles con mayor índice de colaboración transversal a lo largo de las legislaturas republicanas.\n\nJL\nTOP 1%\nJose Lladó y Vallès\n\nRI (Reagrupació Independent)\n\nTRANSVERSALIDAD\n0.93\nINFLUENCIA\n0.45\nRA\nTOP 1%\nRaimundo de Abadal Calderó\n\nLliga Regionalista\n\nTRANSVERSALIDAD\n0.93\nINFLUENCIA\n0.19\nMU\nTOP 1%\nMiguel de Unamuno y Jugo\n\nASR (Agrupación al Servicio de la República)\n\nTRANSVERSALIDAD\n0.93\nINFLUENCIA\n0.92\nGeografía del poder\nLa Dimensión Territorial\n\nLa Segunda República nació marcada por la cuestión territorial. El Estatuto de Cataluña de 1932 y las demandas vascas y gallegas pusieron el modelo de Estado en el centro del debate parlamentario, convirtiendo la pertenencia regional de los diputados en una var",
+  "controls": [
+   "BUTTON# Entrar en la Red Interactiva →"
+  ],
+  "canvas": 0,
+  "svg": 2
+ },
+ "view_red": {
+  "hash": "#red",
+  "text": "BUSCAR DIPUTADO\n▾\nFILTROS\n▾\nLEGISLATURA\n▾\nTodas\n1931–1933\n1933–1936\n1936–1939\nFILTRAR POR\n▾\nIdeología\nPartido\nDistrito\nFamilia de partidos\nRol estructural\nEI — Extrema izquierda\nI — Izquierda\nCI — Centro-izquierda\nC — Centro\nCD — Centro-derecha\nD — Derecha\nED — Extrema derecha\nFILTROS AVANZADOS\n▾\nGrado mínimo del nodo\n≥\n1\nTodos los nodos visibles\nBackbone de disparidad (α)\nα\n1.000\n34.640 aristas de 34.640 (100% del backbone)\nα menor → solo las conexiones estadísticamente más significativas para cada nodo (topología local preservada).\nModo ego network\nActiva y haz click en un nodo para ver solo su red de vecinos directos.\nAPARIENCIA\n▾\nTAMAÑO Y OPACIDAD\n▾\nTamaño base\n1\nOpacidad\n100%\nLAYOUT\n▾\nFruchterman–R.\nKamada–Kawai\nRadial\nClusters\nConcéntrico\nCirclePack\nCircular\nStress\nCOLOR DE NODOS\n▾\nIdeología\nFamilia de partidos\nRol estructural\nComunidades detectadas\nOrdenar por color\nOrdena nodos en layouts circulares/radiales por el atributo de color activo, luego de menor a mayor grado.\nCOMUNIDADES Y ESTADÍSTICAS\n▾\nDETECCIÓN DE COMUNIDADES\n▾\nLouvain\nLeiden\nWalktrap\nInfomap\nSpectral\n Detectar comunidades\nESTADÍSTICAS DE RED\n▾\nNodos\n910\nAristas\n34640\nDensidad\n0.0838\nGrado medio\n76.1\nComunidades\n—\nModularidad\n—\nCom. mayor\n—\nForceAtlas2 · iterando…\nIDEOLOGÍA\nEI — Extrema izquierda\nI — Izquierda\nCI — Centro-izquierda\nC — Centro\nCD — Centro-derecha\nD — Derecha\nED — Extrema derecha",
+  "controls": [
+   "INPUT#search-input Nombre…",
+   "INPUT# all",
+   "INPUT# 1931-1933",
+   "INPUT# 1933-1936",
+   "INPUT# 1936-1939",
+   "SELECT#sel-filterattr Ideología\nPartido\nDistrito\nFamilia de partidos\nRol estruct",
+   "INPUT# EI",
+   "INPUT# I",
+   "INPUT# CI",
+   "INPUT# C",
+   "INPUT# CD",
+   "INPUT# D",
+   "INPUT# ED",
+   "INPUT#slider-mindeg 1",
+   "INPUT#slider-backbone 1",
+   "INPUT#check-ego on",
+   "INPUT#slider-minsize 1",
+   "INPUT#slider-opacity 100",
+   "BUTTON# Fruchterman–R.",
+   "BUTTON# Kamada–Kawai",
+   "BUTTON# Radial",
+   "BUTTON# Clusters",
+   "BUTTON# Concéntrico",
+   "BUTTON# CirclePack",
+   "BUTTON# Circular",
+   "BUTTON# Stress",
+   "SELECT#sel-colormode Ideología\nFamilia de partidos\nRol estructural\nComunidades d",
+   "INPUT#check-sort-color on",
+   "SELECT#algo-select Louvain\nLeiden\nWalktrap\nInfomap\nSpectral",
+   "BUTTON#btn-run-community Detectar comunidades"
+  ],
+  "canvas": 7,
+  "svg": 0
+ },
+ "view_diputados": {
+  "hash": "#diputados",
+  "text": "BUSCAR DIPUTADO\nTodas las familias\nAgrario\nAnarcosindicalista\nCarlista\nCatalanista de derecha\nCatalanista de izquierda\nComunista\nConservadores\nDerecha autoritaria\nFascista\nGalleguista\nIndependiente\nLiberales\nNacionalista Vasco\nRepublicanos\nSocialista\nTodos los partidos\nACR\nAgrarios\nAN\nAR\nASR\nCEDA\nCentro\nCT\nDLR\nEIF\nERC\nFE\nFederalista\nFRG\nIndependiente\nLD\nLiberal Monárquico\nLliga\nMesocrata\nP. Sindicalista\nPCE\nPCP\nPG\nPNE\nPNV\nPOUM\nPRC\nPRDF\nPRF\nPRP\nPRR\nPRRS\nPRSI\nPSOE\nPURA\nRE\nRI\nUM\nUR\nUSC\nTodos los distritos\nÁlava\nAlbacete\nAlicante\nAlmería\nÁvila\nBadajoz\nBaleares\nBarcelona\nBurgos\nCáceres\nCádiz\nCartagena\nCastellón\nCeuta\nCiudad Real\nCórdoba\nCoruña (La)\nCuenca\nGerona\nGranada\nGuadalajara\nGuipúzcoa\nHuelva\nJaén\nLeón\nLérida\nLogroño\nLugo\nMadrid\nMálaga\nMelilla\nMurcia\nNavarra\nOrense\nOviedo\nPalencia\nPalmas (Las)\nPontevedra\nSalamanca\nSanta Cruz de Tenerife\nSantander\nSegovia\nSevilla\nSoria\nTarragona\nTeruel\nToledo\nValencia\nValladolid\nVizcaya\nZamora\nZaragoza\nTodos los roles\nDiputado aislado\nDiputado de perfil bajo\nCuadro de partido\nReferente de partido\nArticulador\nLíder de Cámara\n👤\nSelecciona un diputado\nBusca por nombre en el panel izquierdo",
+  "controls": [
+   "INPUT#dip-search-input Nombre o apellidos…",
+   "SELECT#dip-filter-familia Todas las familias\nAgrario\nAnarcosindicalista\nCarlista",
+   "SELECT#dip-filter-partido Todos los partidos\nACR\nAgrarios\nAN\nAR\nASR\nCEDA\nCentro\n",
+   "SELECT#dip-filter-distrito Todos los distritos\nÁlava\nAlbacete\nAlicante\nAlmería\nÁ",
+   "SELECT#dip-filter-rol Todos los roles\nDiputado aislado\nDiputado de perfil bajo\nC"
+  ],
+  "canvas": 0,
+  "svg": 0
+ },
+ "view_partidos": {
+  "hash": "#partidos",
+  "text": "Todas\n1931–1933\n1933–1936\n1936–1939\nFamilias\nIdeología\nClusters\nOcultar partidos aislados\nAfinidades elegidas\nCluster 1\n(15)\nPRR\nAR\nUR\nPRRS\nPRDF\nPURA\nEIF\nPRSI\nDLR\nASR\nPRP\nFRG\nPG\nRI\nPSOE\nCluster 5\n(11)\nCEDA\nIndependiente\nPRC\nFE\nPNE\nAgrarios\nCT\nLliga\nRE\nCentro\nPNV\nCluster 2\n(4)\nERC\nACR\nPRF\nUSC\nCluster 4\n(3)\nPCE\nPOUM\nP. Sindicalista\nCluster 3\n(2)\nPCP\nLD\nSin cluster\n(1)\nMesocrata\nModularidad: 0.442 · 5 comunidades\nFlujos políticos y detalle del partido\nAgrarios\nP. Sindicalista\nCT\nLliga\nERC\nACR\nPCE\nPCP\nPOUM\nCEDA\nIndependiente\nPRC\nRI\nRE\nFE\nPNE\nFRG\nPG\nDLR\nCentro\nASR\nLD\nPRP\nPNV\nPRR\nAR\nUR\nPRRS\nPRDF\nPURA\nPRF\nEIF\nPRSI\nPSOE\nUSC\nAnálisis avanzado\nCOHESIÓN VS TRANSVERSALIDAD\nMÁS INFLUYENTES\nSin datos\nDISTRIBUCIÓN DE ROLES\nSin datos",
+  "controls": [
+   "BUTTON# Todas",
+   "BUTTON# 1931–1933",
+   "BUTTON# 1933–1936",
+   "BUTTON# 1936–1939",
+   "BUTTON#btn-pcolor-familias Familias",
+   "BUTTON#btn-pcolor-ideo Ideología",
+   "BUTTON#btn-pcolor-clusters Clusters",
+   "INPUT#chk-hide-isolated on"
+  ],
+  "canvas": 2,
+  "svg": 1
+ },
+ "view_distritos": {
+  "hash": "#distritos",
+  "text": "LEGISLATURA\nTodas\n1931–1933\n1933–1936\n1936–1939\nConcentración territorial (HHI medio por provincia)\n\nÍndice de concentración distrital de las coautorías · Pulsa sobre una provincia para explorar sus conexiones\n\nBarcelona\nMadrid\nValencia\nGranada\nSevilla\nAsturias\nCórdoba\nBadajoz\nHHI MEDIO PROVINCIAL\nMuy disperso < 0.07\nBajo 0.07–0.08\nMedio 0.08–0.11\nAlto 0.11–0.13\nMuy concentrado > 0.13\nMadrid\nComunidad de Madrid · 52 diputados\n×\nPROVINCIAS MÁS CONECTADAS\nBarcelona\n297\nValencia\n291\nSevilla\n288\nMurcia\n248\nAsturias\n240\nDiego Martinez Barrio\nLíder de Cámara\nUR\nLuis De Tapia Romero\nLíder de Cámara\nIndependiente\nEnrique De Francisco Jimenez\nLíder de Cámara\nPSOE\nVictoria Kent Siano\nLíder de Cámara\nPRRS\nLuis Fernandez Clerigo\nReferente de partido\nAR\nManuel Torres Campaña\nReferente de partido\nUR\nManuel Cordero Perez\nReferente de partido\nPSOE\nLuis Bello Trompeta\nLíder de Cámara\nAR\nEmilio Alfredo Serrano Jover\nLíder de Cámara\nRE\nClara Campoamor Y Rodriguez\nLíder de Cámara\nPRR\nLuis Fernandez Heredia Y Del Pozo\nCuadro de partido\nCEDA\nJuan Pujol Martinez\nArticulador\nCEDA\nRoberto Castrovido Sanz\nArticulador\nIndependiente\nAngel Osorio Gallardo\nArticulador\nIndependiente\nJuan Luis Martin De Antonio\nCuadro de partido\nPRRS\nLuis Jimenez De Asua\nCuadro de partido\nPSOE\nRoberto Escribano Iglesias\nCuadro de partido\nAR\nLeandro Perez Urria\nCuadro de partido\nAR\nRomualdo De Toledo Y Robles\nCuadro de partido\nCT\nRafael Esparza Garcia\nCuadro de partido\nCEDA\nJulio Alvarez Del Vayo\nCuadro de partido\nPSOE\nTrifon Gomez San Jose\nCuadro de partido\nPSOE\nEugenio Arauz Payardo\nArticulador\nPRDF\nLuis Rufilanchas Salcedo\nCuadro de partido\nPSOE\nFrancisco Largo Caballero\nCuadro de partido\nPSOE\nJavier Martin Artajo Y Alvarez\nCuadro de partido\nCEDA\nMariano Rojo Gonzalez\nCuadro de partido\nPSOE\nAndres Saborit Colomer\nCuadro de partido\nPSOE\nJose Diaz Ramos\nArticulador\nPCE\nAdolfo Rodriguez Jurado Y De La Hera\nArticulador\nAgrarios\nCesar Juarros Ortega\nArticulador\nDLR\nLucio Martinez Gil\nCuadro de partido\nPSOE\nJulian Besteiro Fernandez\nCuadro de partido\nPSOE\nManuel Alonso Zapata\nCuadro de partido\nPSOE\nJose Maria Hueso Ballester\nCuadro de partido\nCEDA\nAntonio Mairal Perallos\nCuadro de partido\nPSOE\nFelipe Sanchez Roman Y Gallifa\nArticulador\nIndependiente\nAntonio Velao Oñate\nCuadro de partido\nAR\nCarlos Hernandez Zancajo\nCuadro de partido\nPSOE\nCarlos Rubiera Rodriguez\nCuadro de partido\nPSOE\nJose Sanchez Guerra Y Martinez\nArticulador\nIndependiente\nAntonio Septien Aladren\nCuadro de partido\nPSOE\nAndres Ovejero Bustamante\nCuadro de partido\nPSOE\nHonorio Riesgo Garcia\nCuadro de partido\nCEDA\nJulia Alvarez Resano\nperfil bajo\nPSOE\nMariano Matesanz De La Torre\nperfil bajo\nIndependiente\nAntonio Bermudez Cañete\nperfil bajo\nCEDA\nJose Sanchis Banus\nperfil bajo\nPSOE\nAmos Acero Perez\nperfil bajo\nPSOE\nAntonio Fernandez Quer\naislado\nPSOE\n+2 más…\nDiputados por perfil territorial\n\nCada círculo es un diputado · Tamaño = nº de coautorías · Pulsa para explorar\n\nColorear por\nIdeología\nFamilia política\nRol estructural\nDefensor del territorio\n271 diputados\nI\nCD\nD\nC\nCI\nED\nPuente interregional\n10 diputados\nI\nPerfil nacional\n629 diputados\nCI\nI\nC\nD\nCD\nED\nCírculos agrupados por perfil territorial y subagrupados por atributo · Tamaño = nº coautorías · Pulsa para ver perfil\nEl arco del transversalismo\n\n¿Se redujo la colaboración interregional a medida que la República se acercaba a la guerra?\n\nConcentración e influencia\n\n¿Pueden los diputados territorialmente concentrados ser estructuralmente influyentes?",
+  "controls": [
+   "BUTTON# Todas",
+   "BUTTON# 1931–1933",
+   "BUTTON# 1933–1936",
+   "BUTTON# 1936–1939",
+   "BUTTON#terr-prov-close ×",
+   "BUTTON# Ideología",
+   "BUTTON# Familia política",
+   "BUTTON# Rol estructural"
+  ],
+  "canvas": 1,
+  "svg": 2
+ },
+ "deep_link_783": {
+  "hash": "#diputados/783",
+  "profile_visible": false,
+  "text": ""
+ },
+ "mobile_scrollWidth": 390,
+ "bg_prefers_dark": "oklch(0.97 0.012 80)",
+ "bg_default": "oklch(0.97 0.012 80)",
+ "console": [
+  "warning: [.WebGL-0x11c06786000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x11c001ebe00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x11c001dce00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x11c06786000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+  "log: [DIP] populate: fam= 15 par= 40 dis= 52 sel? true"
+ ],
+ "third_party_hosts": [
+  "api.maptiler.com",
+  "cdn.jsdelivr.net",
+  "esm.sh",
+  "fonts.googleapis.com",
+  "fonts.gstatic.com"
+ ]
+}

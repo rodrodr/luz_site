@@ -1,0 +1,33 @@
+---
+/**
+ * Cita del Diario (DESIGN.md § Cita del Diario): el orador en versalitas simuladas encima; la cita en EB Garamond cursiva
+ * de cita, con la comilla de apertura colgada; debajo, el asiento (V2 · v3 · palabras), en mono. Si la Presidencia
+ * precede, va en una línea pequeña con su cita en cursiva. NUNCA se inventa el encabezamiento impreso («El Sr. …:»): el
+ * orador lleva el nombre normalizado del sitio (tabla de grafías). Todo llega ya resuelto (HTML): la cita, del
+ * exportador (`citas.json`, comprobada letra a letra contra las dos filas); los ids, con su envoltorio y su base.
+ * La comilla CUELGA DENTRO de la figura (`--cuelga`, el ancho de « en la cita): queda en el borde de la columna y las
+ * letras, alineadas con el orador y con el asiento. Nunca asoma a la izquierda de su columna (antes, a 360 px, la
+ * comilla se comía el margen de 16 px de la página; en las lecturas, la calle junto al índice).
+ */
+interface Props { orador: string; cita: string; asiento?: string; presidencia?: { orador: string; cita: string } }
+const { orador, cita, asiento, presidencia } = Astro.props;
+// El copy escribe las comillas del Diario («…»): entonces no se añaden las de `<q>` (salían dobles: ««Ruego…»»).
+const conComillas = (s: string) => /^\s*(<[^>]+>\s*)*[«“"]/.test(s);
+---
+<figure class="cita-diario">
+  {presidencia && <p class="presi"><span class="orador versal" set:html={presidencia.orador} /> {conComillas(presidencia.cita) ? <span class="dicho" set:html={presidencia.cita} /> : <q class="dicho" set:html={presidencia.cita} />}</p>}
+  <span class="orador versal" set:html={orador} />
+  <blockquote><p set:html={cita} /></blockquote>
+  {asiento && <figcaption class="asiento" set:html={asiento} />}
+</figure>
+
+<style>
+  .cita-diario { --cuelga: calc(var(--fs-cita) * .45); margin: var(--e6) 0; padding-inline-start: var(--cuelga); min-width: 0; }
+  .orador { display: block; color: var(--ink-2); margin-bottom: var(--e2); }
+  blockquote { margin: 0; }
+  blockquote p { font: italic 400 var(--fs-cita)/1.26 var(--text); max-width: 30ch; margin: 0; text-indent: -.45em; text-wrap: pretty; }
+  figcaption { margin-top: var(--e4); }
+  .presi { display: flex; gap: var(--e3); align-items: baseline; flex-wrap: wrap; font-size: var(--fs-small); color: var(--ink-2); margin: 0 0 var(--e5); max-width: none; }
+  .presi .orador { display: inline; color: var(--mute); margin: 0; }
+  .presi .dicho { color: var(--ink); font-style: italic; }
+</style>

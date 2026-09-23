@@ -1,0 +1,45 @@
+caso,rep_id,nombre,legislatura_cgocus,filas_v2,party_v2,partido_cgocus
+sin_ficha,1,Gerardo Abad Conde,1933-1936,9,,
+sin_ficha,97,Emilio Baeza Medina,1933-1936,1,,
+sin_ficha,289,José Estadella,1933-1936,32,,
+sin_ficha,513,Salvador Madariaga,1933-1936,4,,
+sin_ficha,538,Manuel Marraco,1933-1936,210,,
+sin_ficha,590,Ángel Menéndez Suárez,1933-1936,12,,
+sin_ficha,745,Manuel Portela Valladares,1933-1936,69,,
+sin_ficha,784,Manuel Rico Avello,1933-1936,40,,
+sin_ficha,965,Juan Usabiaga,1933-1936,22,,
+sin_ficha,1005,Antonio de la Villa,1933-1936,1,,
+sin_ficha,48,José Álvarez Buylla,1936-1939,8,,
+sin_ficha,107,Francisco Barnés,1936-1939,16,,
+sin_ficha,622,José Morales Robles,1936-1939,2,,
+otro_partido,18,Rafael Aizpún,1931-1933,,Indep.,Independiente
+otro_partido,20,Santiago Alba,1931-1933,,Indep.,Independiente
+otro_partido,141,Benito Blanco-Rajoy,1931-1933,,Indep. de derechas,Independiente
+otro_partido,183,Rufino Cano de Rueda,1931-1933,,Indep.,Independiente
+otro_partido,221,Roberto Castrovido,1931-1933,,Indep.,Independiente
+otro_partido,244,Luis Cornide,1931-1933,,Indep.,Independiente
+otro_partido,359,Jerónimo García Gallego,1931-1933,,Indep.,Independiente
+otro_partido,384,José Giral,1931-1933,,ACR,AR
+otro_partido,608,Francisco Molleda,1931-1933,,Indep.,Independiente
+otro_partido,676,Ángel Ossorio Gallardo,1931-1933,,Indep.,Independiente
+otro_partido,745,Manuel Portela Valladares,1931-1933,,Indep.,Independiente
+otro_partido,836,Amós Ruiz Lecina,1931-1933,,AR,PSOE
+otro_partido,871,José Sánchez Guerra,1931-1933,,Indep.,Independiente
+otro_partido,874,Felipe Sánchez Román,1931-1933,,Indep.,Independiente
+otro_partido,932,Luis de Tapia,1931-1933,,Indep.,Independiente
+otro_partido,20,Santiago Alba,1933-1936,,Indep.,PRR
+otro_partido,67,Ángel Aperribay,1933-1936,,Derecha Indep.,Independiente
+otro_partido,332,Álvaro Figueroa y Torres,1933-1936,,Indep.,Independiente
+otro_partido,361,Raimundo García,1933-1936,,Indep.,Independiente
+otro_partido,403,Ruperto González Negrín,1933-1936,,Indep.,Independiente
+otro_partido,446,Vicente Iranzo,1933-1936,,Indep.,Independiente
+otro_partido,579,Mariano Matesanz,1933-1936,,Indep.,Independiente
+otro_partido,661,Eduardo O'Shea,1933-1936,,Indep. de derechas,Independiente
+otro_partido,785,Gumersindo Rico González,1933-1936,,Indep.,Independiente
+otro_partido,843,Manuel Saco Rivera,1933-1936,,Indep.,Independiente
+otro_partido,1017,Agustín Virgili,1933-1936,,Indep.,Independiente
+otro_partido,26,Álvaro de Albornoz,1936-1939,,Indep.,Independiente
+otro_partido,179,José Antonio Canals,1936-1939,,Indep.,Independiente
+otro_partido,331,Álvaro de Figueroa y Alonso Martínez,1936-1939,,Indep.,Independiente
+otro_partido,361,Raimundo García,1936-1939,,Indep.,Independiente
+otro_partido,684,Benito Pabón,1936-1939,,Indep.,Independiente

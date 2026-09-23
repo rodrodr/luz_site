@@ -1,0 +1,198 @@
+{
+ "schemaVersion": 2,
+ "generatedAt": "2026-09-22T19:30:00",
+ "title": "Design System: Luz y Taquígrafos",
+ "extensions": {
+  "colorMeta": {
+   "oro": {
+    "role": "primary",
+    "displayName": "Oro del anotador",
+    "canonical": "#C9A24E",
+    "tonalRamp": [
+     "#513601",
+     "#684702",
+     "#805903",
+     "#8A6705",
+     "#A78129",
+     "#C49D49",
+     "#E1B966",
+     "#FFDB91"
+    ]
+   },
+   "foco": {
+    "role": "secondary",
+    "displayName": "Azul de foco",
+    "canonical": "#9EC1FF"
+   },
+   "fondo": {
+    "role": "neutral",
+    "displayName": "Casi negro de imprenta",
+    "canonical": "#0F110E"
+   },
+   "tinta": {
+    "role": "neutral",
+    "displayName": "Crema de lectura",
+    "canonical": "#EFE7D8"
+   },
+   "fondo-claro": {
+    "role": "neutral",
+    "displayName": "Papel de Diario",
+    "canonical": "#F6F2E9"
+   },
+   "ausencia-trazo": {
+    "role": "neutral",
+    "displayName": "Contorno de ausencia",
+    "canonical": "#6E7169"
+   }
+  },
+  "typographyMeta": {
+   "portada": {
+    "displayName": "Portada",
+    "purpose": "Solo el H1-pregunta de Inicio."
+   },
+   "cita": {
+    "displayName": "Cita del Diario",
+    "purpose": "Lo que alguien dijo, en cursiva de libro con comilla colgada."
+   },
+   "asiento": {
+    "displayName": "Asiento",
+    "purpose": "Línea de registro en mono, caja normal, gris: un hecho con su base."
+   }
+  },
+  "shadows": [],
+  "motion": [
+   {
+    "name": "ease",
+    "value": "cubic-bezier(.2,.7,.1,1)",
+    "purpose": "Salida exponencial para todo."
+   },
+   {
+    "name": "t-puntero",
+    "value": "120ms",
+    "purpose": "Hover y nota emergente."
+   },
+   {
+    "name": "t-estado",
+    "value": "240ms",
+    "purpose": "Cambios de estado y atenuado del hemiciclo."
+   },
+   {
+    "name": "camara-se-sienta",
+    "value": "trazo 1.5s + asiento .55s con retardo 500ms + --o",
+    "purpose": "Portada, una vez, solo con no-preference."
+   },
+   {
+    "name": "tiempo-corre",
+    "value": "transition-delay: calc(var(--n) * 7ms)",
+    "purpose": "Entrada del calendario F01."
+   }
+  ],
+  "breakpoints": [
+   {
+    "name": "descriptor",
+    "value": "40rem"
+   },
+   {
+    "name": "fila",
+    "value": "48rem"
+   },
+   {
+    "name": "rejilla",
+    "value": "64rem"
+   },
+   {
+    "name": "cabecera",
+    "value": "72rem"
+   }
+  ]
+ },
+ "components": [
+  {
+   "name": "Botón primario",
+   "kind": "button",
+   "refersTo": "boton-primario",
+   "description": "Una acción por pantalla: infinitivo y objeto.",
+   "html": "<a class=\"ds-boton\" href=\"#\">Descargar los datos</a>",
+   "css": ".ds-boton{display:inline-flex;align-items:center;min-height:2.75rem;padding:.55em 1.15em .6em;border-radius:2px;border:1px solid var(--accent,#C9A24E);background:var(--accent,#C9A24E);color:var(--accent-ink,#0F110E);font:560 .98rem/1.1 'EB Garamond Variable',Georgia,serif;text-decoration:none}.ds-boton:hover{background:color-mix(in oklab,#C9A24E 86%,#EFE7D8)}.ds-boton:focus-visible{outline:3px solid #9EC1FF;outline-offset:3px}"
+  },
+  {
+   "name": "Botón secundario",
+   "kind": "button",
+   "refersTo": "boton-secundario",
+   "description": "Acciones que no son la principal.",
+   "html": "<a class=\"ds-boton-sec\" href=\"#\">Ver las Cortes, etapa a etapa</a>",
+   "css": ".ds-boton-sec{display:inline-flex;align-items:center;min-height:2.75rem;padding:.55em 1.15em .6em;border-radius:2px;border:1px solid rgba(239,231,216,.22);background:transparent;color:#EFE7D8;font:560 .98rem/1.1 'EB Garamond Variable',Georgia,serif;text-decoration:none}.ds-boton-sec:hover{border-color:#C9A24E;color:#C9A24E}.ds-boton-sec:focus-visible{outline:3px solid #9EC1FF;outline-offset:3px}"
+  },
+  {
+   "name": "Nota emergente",
+   "kind": "custom",
+   "refersTo": "nota-emergente",
+   "description": "Invertida, tres líneas: qué, cifras, base.",
+   "html": "<div class=\"ds-em\"><p class=\"t\">Junio de 1934</p><p class=\"d\">19 sesiones · 3.511 filas · 870.822 palabras</p><p class=\"b\">V2 · 2REP_Diaries.csv</p></div>",
+   "css": ".ds-em{display:inline-block;background:#EFE7D8;color:#0F110E;padding:.55rem .75rem .6rem;border-radius:2px;max-width:21rem}.ds-em p{margin:0}.ds-em .t{font:600 1rem/1.25 'EB Garamond Variable',Georgia,serif}.ds-em .d{font:400 .76rem/1.45 'JetBrains Mono Variable',monospace}.ds-em .b{font:400 .7rem/1.4 'JetBrains Mono Variable',monospace;opacity:.72}"
+  },
+  {
+   "name": "Cita del Diario",
+   "kind": "custom",
+   "refersTo": "cita",
+   "description": "Orador en versalitas simuladas, cita en cursiva de libro, asiento debajo.",
+   "html": "<figure class=\"ds-cita\"><span class=\"o\">Clara Campoamor</span><blockquote>«Yo ruego a la Cámara que me escuche en silencio…»</blockquote><figcaption>V2 5424 · v3 6079 · 1.460 palabras</figcaption></figure>",
+   "css": ".ds-cita{margin:0;color:#EFE7D8}.ds-cita .o{display:block;text-transform:uppercase;font:560 .8em/1.4 'EB Garamond Variable',Georgia,serif;letter-spacing:.07em;color:#C9C3B4}.ds-cita blockquote{margin:.5rem 0 0;font:italic 400 1.8rem/1.26 'EB Garamond Variable',Georgia,serif;text-indent:-.45em;max-width:30ch}.ds-cita figcaption{margin-top:1rem;font:400 .8rem/1.5 'JetBrains Mono Variable',monospace;color:#8E8F86}"
+  },
+  {
+   "name": "Navegación",
+   "kind": "nav",
+   "refersTo": "cabecera",
+   "description": "Seis pestañas en dos grupos, activa con subrayado oro.",
+   "html": "<nav class=\"ds-nav\"><ul><li><a aria-current=\"page\" href=\"#\">Las Cortes</a></li><li><a href=\"#\">El Diario</a></li></ul><ul><li><a href=\"#\">Método</a></li><li><a href=\"#\">Datos</a></li><li><a href=\"#\">Explorador</a></li><li><a href=\"#\">Afinidades</a></li></ul></nav>",
+   "css": ".ds-nav{display:flex;gap:1rem;font:400 1.02rem/1 'EB Garamond Variable',Georgia,serif}.ds-nav ul{display:flex;gap:1rem;list-style:none;margin:0;padding:0}.ds-nav ul+ul{border-left:1px solid rgba(239,231,216,.22);padding-left:1rem}.ds-nav a{display:inline-block;padding:.55rem 0 .5rem;color:#C9C3B4;text-decoration:none;border-bottom:2px solid transparent}.ds-nav a:hover{color:#EFE7D8}.ds-nav a[aria-current]{color:#EFE7D8;border-bottom-color:#C9A24E}.ds-nav a:focus-visible{outline:3px solid #9EC1FF;outline-offset:3px}"
+  }
+ ],
+ "narrative": {
+  "northStar": "El Diario, anotado al margen",
+  "overview": "El sitio se compone como un Diario de Sesiones trabajado a lápiz: la columna de lectura es el impreso y el margen es del investigador, con el asiento, la base y la salvedad de cada frase. Crema sobre casi negro, oro que anota, azul solo para el foco; el hemiciclo de Gil Robles abre la portada.",
+  "keyCharacteristics": [
+   "Columna a 38 rem con margen vivo",
+   "Cormorant cursiva para la voz; EB Garamond para leer; cursiva solo para lo dicho; mono solo para datos",
+   "Oro que anota; azul del teclado; ideología solo en sus figuras",
+   "Una sola banda invertida",
+   "Figuras reales con Gráfico · Tabla · Datos y ausencia como contorno",
+   "Movimiento que cuenta algo, con la plataforma"
+  ],
+  "rules": [
+   {
+    "name": "La regla del lápiz",
+    "body": "El oro es la tinta del anotador: si no marca, enlaza o mide, se quita.",
+    "section": "colors"
+   },
+   {
+    "name": "La regla del recálculo",
+    "body": "El claro no invierte: cada color conserva matiz y croma y se recalcula por contraste.",
+    "section": "colors"
+   },
+   {
+    "name": "La regla de la cursiva",
+    "body": "En la garamond de lectura, la cursiva es para lo que alguien dijo.",
+    "section": "typography"
+   },
+   {
+    "name": "La regla del asiento",
+    "body": "El antetítulo es un hecho con su base, en caja normal y gris; nunca una etiqueta.",
+    "section": "typography"
+   },
+   {
+    "name": "La regla del papel",
+    "body": "Nada se levanta del papel: sin sombras.",
+    "section": "elevation"
+   }
+  ],
+  "dos": [
+   "Do poner el asiento de cada cifra y cada cita en el margen.",
+   "Do dibujar la ausencia como contorno de 3:1 o más."
+  ],
+  "donts": [
+   "Don't usar antetítulos de género en MAYÚSCULAS espaciadas y oro.",
+   "Don't usar sombras, degradados ni textura falsa."
+  ]
+ }
+}

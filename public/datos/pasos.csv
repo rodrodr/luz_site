@@ -1,0 +1,9 @@
+paso,que,cifra,unidad,base,fuente
+1,Los números del Diario,755,números (sesiones),V2,"claves (date, num_session) del CSV depositado"
+2,"Las páginas, leídas",28780,páginas,proyecto,suma de pdf_pages en sessions.json (no depositado)
+2,Páginas fallidas en la primera pasada,153,páginas,proyecto,suma de ocr.failed_pages en sessions.json
+3,Las fórmulas de orador,107556,etiquetas,V2,"README depositado, SECTION 4"
+3,Falsos positivos descartados,1532,etiquetas,V2,"README depositado, SECTION 4"
+4,Las filas,107551,filas,V2,filas del CSV depositado
+5,Filas con diputado,107404,filas,V2,filas con rep_id
+5,Asignaciones corregidas a mano,367,asignaciones,V2,"README depositado, SECTION 4"

@@ -1,0 +1,11 @@
+{
+ "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions/:latest-published/citation?persistentId=doi:10.7910/DVN/THQCMI",
+ "estado": 200,
+ "cuerpo": {
+  "status": "OK",
+  "data": {
+   "message": "Rodrigues-Silveira, Rodrigo; Garc&iacute;a-D&iacute;ez, F&aacute;tima; Llamazares, Iv&aacute;n; Mart&iacute;nez-Barahona, Elena; Barreto Mart&iacute;n, Eduardo, 2026, \"Luz y Taqu&iacute;grafos: Parliamentary Debates in the Second Spanish Republic, 1931&ndash;1945\", <a href=\"https://doi.org/10.7910/DVN/THQCMI\" target=\"_blank\">https://doi.org/10.7910/DVN/THQCMI</a>, Harvard Dataverse, V2"
+  }
+ },
+ "consultado": "2026-09-22T21:51:41+00:00"
+}

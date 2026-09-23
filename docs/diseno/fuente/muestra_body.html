@@ -1,0 +1,265 @@
+{{ICONOS}}
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="cabecera">
+  <div class="contenedor cab-fila">
+    <a class="marca" href="#contenido" aria-label="Luz y Taquígrafos, inicio">
+      <svg aria-hidden="true"><use href="#i-marca"/></svg>
+      <span class="marca-nombre">Luz y Taquígrafos</span>
+      <span class="marca-desc">Los Diarios de Sesiones del Congreso, 1931–1945</span>
+    </a>
+    <nav class="nav-sitio" aria-label="Secciones del sitio">
+      <ul aria-label="La historia"><li><a href="#cuando" aria-current="page">Las Cortes</a></li><li><a href="#fila">El Diario</a></li></ul>
+      <ul aria-label="La base"><li><a href="#">Método</a></li><li><a href="#">Datos</a></li><li><a href="#">Explorador</a></li><li><a href="#">Afinidades</a></li></ul>
+    </nav>
+    <div class="util">
+      <nav class="idioma" aria-label="Idioma"><a href="#" aria-current="true" lang="es">ES</a><a href="#" lang="en">EN</a></nav>
+      <button class="tema" type="button" hidden><svg aria-hidden="true"><use href="#i-tema"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="contenido">
+  <!-- Inicio · movimiento 0 · portada -->
+  <section class="portada" aria-labelledby="h-portada">
+    <div class="contenedor rejilla">
+      <div class="portada-texto">
+        <h1 id="h-portada">¿Cómo discutía una democracia que se estaba inventando?</h1>
+        <p class="entrada">Los Diarios de Sesiones del Congreso, 1931–1945, convertidos en una tabla que se puede contar, leer y citar.</p>
+        <p class="botones">
+          <a class="boton" href="#">Abrir el explorador <svg class="icono" aria-hidden="true"><use href="#i-ext"/></svg></a>
+          <a class="boton sec" href="#">Descargar los datos</a>
+        </p>
+      </div>
+      <figure class="portada-fig">
+        {{HEMI}}
+        <fieldset class="ley" style="border:0;padding:0;margin:0">
+          <legend class="sr-only">Resaltar un bloque de la Cámara</legend>
+          {{LEY_HEMI}}
+        </fieldset>
+        <figcaption class="pie-fig">Las minorías de las Cortes de 1936 según el croquis de Gil Robles (<cite>No fue posible la paz</cite>, 1968, p.&nbsp;524), llevadas al plano del Congreso. Cada color es un escaño del plano, no un diputado. <button class="ley-todos" type="button" hidden>Ver todos los bloques</button></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Inicio · movimiento 1 · tesis, la única banda invertida -->
+  <section class="tesis" aria-label="Tesis">
+    <div class="contenedor rejilla">
+      <p class="grito"><q>Luz y taquígrafos.</q></p>
+      <p class="asiento"><b>8 de junio de 1934</b><br>V2 71330 · v3 80306<br>3 palabras</p>
+      <div class="tesis-texto">
+        <p>Tres palabras con que un diputado interrumpió a la Presidencia el 8 de junio de 1934, cuando recordó que los suplicatorios se tratan en sesión secreta.</p>
+        <p>Todo lo que se dijo en sesión pública quedó impreso en el Diario de Sesiones. Nunca fue secreto: solo inabarcable.</p>
+        <p>Ahora el Diario es una tabla: una fila cada vez que el taquígrafo anotó un orador, con su fecha y su sesión para volver al impreso. La lectura no se elimina: se aplaza.</p>
+      </div>
+      <p class="credencial">755 sesiones · 1931–1945 · <a href="#">doi:10.7910/DVN/THQCMI</a> · CC BY 4.0 · Universidad de Salamanca · Harvard Dataverse</p>
+    </div>
+  </section>
+
+  <!-- Inicio · movimiento 2 · F01c -->
+  <section class="seccion" id="cuando" aria-labelledby="h-cuando">
+    <div class="contenedor rejilla">
+      <header class="sec-cabeza">
+        <p class="asiento">V2 · 755 sesiones · 14-VII-1931 → 9-XI-1945</p>
+        <h2 id="h-cuando">¿Cuándo se reunieron las Cortes?</h2>
+        <p class="entrada">Hay 755 sesiones, del 14 de julio de 1931 al 9 de noviembre de 1945. Después del 18 de julio de 1936 quedan catorce, en extractos oficiales, con el 0,83&nbsp;% de las palabras.</p>
+      </header>
+      <figure class="fig sec-cuerpo" data-fig="f01c" aria-labelledby="f01c-t">
+        <div class="fig-barra">
+          <p class="fig-titulo" id="f01c-t"><span class="mono">F01c</span>Palabras impresas, mes a mes, por etapa</p>
+          <div class="vistas" role="radiogroup" aria-label="Vista de la figura">
+            <input type="radio" name="f01c-v" id="f01c-g" class="v-g sr-only" checked><label for="f01c-g">Gráfico</label>
+            <input type="radio" name="f01c-v" id="f01c-t2" class="v-t sr-only"><label for="f01c-t2">Tabla</label>
+            <input type="radio" name="f01c-v" id="f01c-d" class="v-d sr-only"><label for="f01c-d">Datos</label>
+          </div>
+        </div>
+        <div class="fig-panel" data-panel="grafico">
+          <div class="cal-ley">
+            <div>
+              <p class="cal-ley-t">Palabras en el mes · cinco clases de 12 o 13 meses ({{N_CON}} meses con sesión)</p>
+              <ol aria-label="Clases de palabras">{{LEY_CAL}}</ol>
+            </div>
+            <div class="cal-ley-aus"><span><i class="c vacio"></i>sin sesión, dentro de la etapa</span><span><b aria-hidden="true" style="color:var(--mute);font-weight:400">//</b>salto sin sesiones</span></div>
+          </div>
+          <div class="cal">
+            <div class="cal-meses" aria-hidden="true"><span></span><span>I</span><span>II</span><span>III</span><span>IV</span><span>V</span><span>VI</span><span>VII</span><span>VIII</span><span>IX</span><span>X</span><span>XI</span><span>XII</span></div>
+            {{CAL}}
+            <div class="emergente" role="presentation"></div>
+          </div>
+          <p class="fig-teclado" hidden>Con el teclado: Tab hasta una etapa; ← → recorren sus meses; Inicio y Fin; Esc cierra la nota.</p>
+          <p class="sr-only" aria-live="polite"></p>
+        </div>
+        <div class="fig-panel" data-panel="tabla">
+          <div class="tabla-marco" tabindex="0" role="region" aria-label="Tabla de la figura F01c">
+            <table class="datos">
+              <caption>Los 64 meses con sesión y los huecos entre ellos (V2).</caption>
+              <thead><tr><th scope="col">Mes</th><th scope="col">Legislatura</th><th scope="col" class="num">Sesiones</th><th scope="col" class="num">Filas</th><th scope="col" class="num">Palabras</th></tr></thead>
+              <tbody>{{TABLA}}</tbody>
+            </table>
+          </div>
+        </div>
+        <div class="fig-panel" data-panel="datos">
+          <div class="descargas">
+            <p class="botones" style="margin:0"><a class="boton sec" href="{{CSV}}" download="meses_v2.csv"><svg class="icono" aria-hidden="true"><use href="#i-bajar"/></svg> Descargar meses_v2.csv</a></p>
+            <dl>
+              <dt>QUÉ MIDE</dt><dd>Sesiones, filas y palabras (<span class="mono">nwords</span>) por mes, de 1931-07 a 1945-11.</dd>
+              <dt>DENOMINADOR</dt><dd>173 meses; 64 con sesión.</dd>
+              <dt>SALVEDAD</dt><dd>Las causas de un mes sin sesión no salen del corpus y no se rotulan.</dd>
+              <dt>BASE</dt><dd><span class="mono">2REP_Diaries.csv</span> (THQCMI V2.0), md5 <span class="mono">{{MD5}}…</span>, calculado el {{CALC}}.</dd>
+              <dt>CITA</dt><dd><span class="mono">doi:10.7910/DVN/THQCMI</span></dd>
+            </dl>
+          </div>
+        </div>
+        <figcaption class="fig-salvedad"><b>El tono dice cuántas palabras se imprimieron, no cuánto importó.</b> Las causas de un mes sin sesión —receso, disolución, guerra— no salen del corpus y no se rotulan. En IV y V: extractos oficiales, no Diario íntegro.</figcaption>
+      </figure>
+      <aside class="al-margen" aria-label="Nota">
+        <p class="asiento">V2 · numeración 1–405, 1–276, 1–74</p>
+        <p>Dentro de cada serie del Diario no falta ningún número; que el último del corpus sea el último publicado no lo hemos cotejado.</p>
+      </aside>
+      <p class="llamada sec-cuerpo"><a class="boton sec" href="#ficha">Ver las Cortes, etapa a etapa</a></p>
+    </div>
+  </section>
+
+  <!-- Inicio · movimiento 4 · la fila -->
+  <section class="seccion" id="fila" aria-labelledby="h-fila">
+    <div class="contenedor rejilla">
+      <header class="sec-cabeza">
+        <p class="asiento">V2 5423–5424 · 1 de octubre de 1931 · sesión 48</p>
+        <h2 id="h-fila">¿Qué es una fila?</h2>
+      </header>
+      <div class="sec-cuerpo" style="margin-top:var(--e7)">
+        <p class="presi"><span class="orador versal">Presidencia</span> <q>Ruego a la Cámara que guarde silencio.</q> <span class="mono" style="color:var(--mute)">V2 5423 · v3 6078</span></p>
+        <figure class="cita-diario">
+          <span class="orador versal">Clara Campoamor</span>
+          <blockquote><p>«Yo ruego a la Cámara que me escuche en silencio…»</p></blockquote>
+          <figcaption class="asiento">V2 5424 · v3 6079 · 1.460 palabras</figcaption>
+        </figure>
+        <div class="fila" role="group" aria-label="La fila V2 5424, columna a columna">
+          <dl>
+            <div><dt>id</dt><dd>5424</dd></div>
+            <div><dt>date</dt><dd>1931-10-01</dd></div>
+            <div><dt>num_session</dt><dd>48</dd></div>
+            <div><dt>order</dt><dd>26</dd></div>
+            <div><dt>rep_name</dt><dd>Clara Campoamor Y Rodriguez</dd></div>
+            <div><dt>ideology</dt><dd>C</dd></div>
+            <div><dt>nwords</dt><dd>1460</dd></div>
+            <div><dt>legislature</dt><dd>1931-1933</dd></div>
+            <div class="texto"><dt>speech</dt><dd>Yo ruego a la Cámara que me escuche en silencio […]</dd></div>
+          </dl>
+          <p class="fila-pie">9 de las 14 columnas de la V2 · las 14, con su trampa, en Datos</p>
+        </div>
+        <p style="margin-top:var(--e6)">Son dos de las 107.551 filas de la edición depositada, una detrás de otra en la sesión del 1 de octubre de 1931. Siete palabras de la Presidencia y 1.460 de Campoamor: contar filas no es contar discurso.<span class="llamada-n">1</span></p>
+      </div>
+      <aside class="al-margen" aria-label="Nota 1">
+        <p class="asiento">1 · ↺ 7</p>
+        <p>El texto sale del reconocimiento óptico y no está corregido a mano. La ideología de Campoamor es C porque es la de su partido.</p>
+      </aside>
+      <p class="llamada sec-cuerpo"><a class="boton sec" href="#">Ver qué trae cada columna</a></p>
+    </div>
+  </section>
+
+  <!-- Inicio · movimiento 5 · registro de puertas -->
+  <section class="seccion" id="puertas" aria-labelledby="h-puertas">
+    <div class="contenedor rejilla">
+      <header class="sec-cabeza">
+        <p class="asiento">V2 · 8 puertas · 12 sesiones</p>
+        <h2 id="h-puertas">¿Por dónde empiezo?</h2>
+        <p class="entrada">Ocho momentos que quizá reconoce tienen su página, con sus citas y el camino para encontrarlos en el explorador.</p>
+      </header>
+      <ol class="registro sec-cuerpo">
+        <li><a href="#"><span class="f">1 oct. 1931</span><span class="t">El voto de las mujeres</span><span class="n">395 filas</span></a></li>
+        <li><a href="#"><span class="f">13 oct. 1931</span><span class="t"><q>España ha dejado de ser católica</q></span><span class="n">378 filas</span></a></li>
+        <li><a href="#"><span class="f">27 may. 1932</span><span class="t">El discurso más largo, a nombre de otro</span><span class="n">44 filas</span></a></li>
+        <li><a href="#"><span class="f">2 feb. 1933</span><span class="t">Casas Viejas</span><span class="n">155 filas</span></a></li>
+        <li><a href="#"><span class="f">4 jul. 1934</span><span class="t">La pistola de Prieto</span><span class="n">255 filas</span></a></li>
+        <li><a href="#"><span class="f">16 jun. y 1 jul. 1936</span><span class="t">La antesala</span><span class="n">159 y 125 filas</span></a></li>
+        <li><a href="#"><span class="f">1 feb. 1939</span><span class="t">Figueres</span><span class="n">16 filas</span></a></li>
+        <li><a href="#"><span class="f">17 ago. y 7–9 nov. 1945</span><span class="t">México</span><span class="n">183 filas, 4 sesiones</span></a></li>
+      </ol>
+      <aside class="al-margen" aria-label="Nota">
+        <p class="asiento">proyecto · incidencia truncated_end · V2 5788–5792</p>
+        <p>Que estén no valida su contenido: el acta digitalizada del 1 de octubre de 1931 perdió su final en el reconocimiento óptico.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Plantilla C · ficha de etapa (fragmento) -->
+  <div class="contenedor muestra-corte"><p>Muestra · plantilla C · ficha de etapa, fragmento</p></div>
+  <article class="ficha" id="ficha" aria-labelledby="h-ficha">
+    <header class="ficha-cabeza">
+      <div class="contenedor">
+        <p class="miga"><a href="#cuando">Las Cortes</a> / I</p>
+        <h1 id="h-ficha">Las Cortes Constituyentes</h1>
+        <p class="asiento">14-VII-1931 → 3-X-1933 · 405 sesiones · <span>Diario de Sesiones de las Cortes Constituyentes</span> [proyecto]</p>
+        <p class="entrada">¿Qué hizo una Cámara elegida para escribir una Constitución, y qué le pasó después?</p>
+      </div>
+      <span class="marca-agua" aria-hidden="true">I</span>
+    </header>
+    <div class="lectura">
+      <div class="contenedor rejilla">
+        <nav class="indice-col indice" aria-label="En esta ficha">
+          <details open><summary>En esta ficha</summary>
+          <ol>
+            <li><a href="#">Hoy puede</a></li>
+            <li><a href="#">Cifras</a></li>
+            <li><a href="#" aria-current="location">Lo que pasó en la Cámara</a>
+              <ol><li><a href="#">La Cámara se constituye</a></li><li><a href="#">La Constitución</a></li><li><a href="#" aria-current="true" style="color:var(--ink)">Gobernar con la Constitución</a></li><li><a href="#">El desgaste</a></li><li><a href="#">El final</a></li></ol></li>
+            <li><a href="#">Cuándo se reunió</a></li>
+            <li><a href="#">Quién tomó la palabra</a></li>
+            <li><a href="#">Puertas de esta etapa</a></li>
+            <li><a href="#">Antes de usarla</a></li>
+            <li><a href="#">Para leer más</a></li>
+            <li><a href="#">Cómo citar</a></li>
+          </ol></details>
+        </nav>
+        <div class="cuerpo texto-largo">
+          <h2 style="margin-top:0">Hoy puede</h2>
+          <ul class="tareas">
+            <li><p>Buscar en esta etapa, con la faceta Legislatura <span class="mono">1931-1933</span>.</p>
+              <p class="botones"><button class="boton sec" type="button" data-copiar="legislatura:1931-1933"><svg class="icono" aria-hidden="true"><use href="#i-copiar"/></svg><span>Copiar la consulta</span></button><a class="boton sec" href="#">Abrir el explorador <svg class="icono" aria-hidden="true"><use href="#i-ext"/></svg></a></p></li>
+            <li><p>Seguir <code>divorcio</code> en Tendencia, periodo «Constituyentes».</p>
+              <p class="botones"><button class="boton sec" type="button" data-copiar="divorcio"><svg class="icono" aria-hidden="true"><use href="#i-copiar"/></svg><span>Copiar la consulta</span></button></p></li>
+          </ul>
+          <h2>Cifras</h2>
+          <div class="cifras">
+            <p><data value="405">405</data>sesiones, sin que falte ningún número de la serie.</p>
+            <p><data value="12966290">12.966.290</data>palabras en la edición depositada: el 53,28&nbsp;% del corpus.</p>
+            <p><data value="417">417</data>diputados intervienen, contando a quien preside.</p>
+          </div>
+          <aside class="nota-m"><p class="asiento">V2 · proyecto</p><p>Cada cifra de esta ficha lleva su base: V2 es la edición depositada; «proyecto», los metadatos de sesión.</p></aside>
+          <h2>Lo que pasó en la Cámara</h2>
+          <h3>Gobernar con la Constitución (1932)</h3>
+          <p>Azaña habla el 9 de marzo de 1932.<span class="llamada-n">2</span></p>
+          <aside class="nota-m"><p class="asiento">2 · V2 20689</p><p>9-III-1932. El id es el de la edición depositada; la v3 lo renumera.</p></aside>
+          <figure class="cita-larga cita-diario">
+            <span class="orador versal">Manuel Azaña</span>
+            <blockquote><p>«El centro de gravedad de la política de la República española está en el Parlamento, aquí en este salón.»</p></blockquote>
+          </figure>
+          <p>Ortega, el 13 de mayo, sobre Cataluña: <q class="dicho">un problema que no se puede resolver, que sólo se puede conllevar</q>. Campalans le responde en la misma sesión.<span class="llamada-n">3</span></p>
+          <aside class="nota-m"><p class="asiento">3 · V2 25527 · v3 28500</p><p>La respuesta de Campalans: v3 28502.</p></aside>
+          <p>El 9 de septiembre de 1932, el mismo día, la Reforma agraria sale por 318 votos contra 19 y el Estatuto de Cataluña por 314 contra 24.<span class="llamada-n">4</span></p>
+          <aside class="nota-m"><p class="asiento">4 · V2 37177–37178</p><p>Las listas nominales están en el texto de la fila, no en una columna: la base no trae el voto como variable.</p></aside>
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="pie">
+  <div class="contenedor rejilla">
+    <div class="c1">
+      <p class="pie-marca"><svg aria-hidden="true"><use href="#i-marca"/></svg>Luz y Taquígrafos</p>
+      <p>Rodrigues-Silveira, García-Díez, Llamazares, Martínez-Barahona y Barreto Martín. Universidad de Salamanca.</p>
+      <p>Depósitos: <a href="#">THQCMI V2.0</a> · <a href="#">CGOCUS V1.1</a>, en Harvard Dataverse.</p>
+    </div>
+    <div class="c2">
+      <p class="pie-t">Licencias</p>
+      <p>Datos, CC BY 4.0. Código, MIT.</p>
+      <p>Este sitio no usa cookies ni analítica; Dataverse pide datos al descargar, y se avisa antes.</p>
+    </div>
+    <nav class="c3" aria-label="Enlaces del pie">
+      <p class="pie-t">Para usarla bien</p>
+      <ul><li><a href="#">Cómo citar</a></li><li><a href="#">De dónde sale cada cifra</a></li><li><a href="#">Avisar de una errata</a></li><li><a href="#">Escribirnos</a></li><li><a href="#">ParlaIbero, proyecto hermano y distinto</a></li></ul>
+    </nav>
+    <p class="c4 ediciones">Página ed. 0.1 · Datos: V2.0 depositada (107.551 filas) · Explorador: v3 sin depositar (121.700 filas)</p>
+  </div>
+</footer>

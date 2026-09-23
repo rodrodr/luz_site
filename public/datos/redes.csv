@@ -1,0 +1,1447 @@
+legislatura,id_dip,nombre,partido,familia,ideologia,firmo_con,medidas_firmadas,en_la_red_principal,no_firma_con_nadie,grafia
+1931-1933,1,Gerardo Abad Conde,PRR,Republicanos,C,189,59,True,False,revisada
+1931-1933,2,Raimundo de Abadal,Lliga,Catalanista de derecha,CD,14,1,True,False,revisada
+1931-1933,3,Isaac Abeytua Perez Iñigo,PRRS,Republicanos,CI,101,15,True,False,sin revisar (CGOCUS)
+1931-1933,5,Jose Aceituno de la Camara,PSOE,Socialista,I,18,1,True,False,sin revisar (CGOCUS)
+1931-1933,6,Amós Acero,PSOE,Socialista,I,12,2,True,False,revisada
+1931-1933,7,Antonio Acuña,PSOE,Socialista,I,79,10,True,False,revisada
+1931-1933,11,Jaime Aguadé,ERC,Catalanista de izquierda,I,18,3,True,False,revisada
+1931-1933,16,José Antonio Aguirre,PNV,Nacionalista Vasco,CD,32,15,True,False,revisada
+1931-1933,17,Francisco Agustín,PRR,Republicanos,C,86,18,True,False,revisada
+1931-1933,18,Rafael Aizpún,Independiente,Conservadores,D,28,13,True,False,revisada
+1931-1933,20,Santiago Alba,Independiente,Liberales,CD,104,11,True,False,revisada
+1931-1933,21,Manuel Albar,PSOE,Socialista,I,123,12,True,False,revisada
+1931-1933,22,Gumersindo Alberca Montoya,AR,Republicanos,CI,134,22,True,False,revisada
+1931-1933,26,Álvaro de Albornoz,PRRS,Republicanos,CI,11,1,True,False,revisada
+1931-1933,28,Niceto Alcalá-Zamora,DLR,Liberales,CD,29,3,True,False,revisada
+1931-1933,29,Manuel Alcazar Gonzalez Zamorano,PRRS,Republicanos,CI,6,1,True,False,sin revisar (CGOCUS)
+1931-1933,30,Ramón María Aldasoro,PRRS,Republicanos,CI,146,28,True,False,revisada
+1931-1933,31,Luis Alemany Pujol,PRC,Conservadores,D,27,7,True,False,sin revisar (CGOCUS)
+1931-1933,32,Edmundo Alfaro,PRR,Republicanos,C,131,24,True,False,revisada
+1931-1933,33,José Algora,PSOE,Socialista,I,167,27,True,False,revisada
+1931-1933,35,Rodrigo Almada,PSOE,Socialista,I,16,2,True,False,revisada
+1931-1933,38,Gabriel Alomar,PRRS,Republicanos,CI,39,5,True,False,revisada
+1931-1933,39,Tomás Alonso de Armiño,Agrarios,Agrarios,CD,74,30,True,False,revisada
+1931-1933,40,Bruno Alonso González,PSOE,Socialista,I,66,6,True,False,revisada
+1931-1933,41,Domingo Alonso,PSOE,Socialista,I,8,2,True,False,revisada
+1931-1933,45,Héctor Altabás,PURA,Republicanos,C,102,17,True,False,revisada
+1931-1933,47,Tomás Álvarez Angulo,PSOE,Socialista,I,13,2,True,False,revisada
+1931-1933,48,José Álvarez Buylla,PRR,Republicanos,C,17,3,True,False,revisada
+1931-1933,50,Melquíades Álvarez,LD,Liberales,C,57,6,True,False,revisada
+1931-1933,52,José María Álvarez Mendizábal,PRR,Republicanos,C,137,20,True,False,revisada
+1931-1933,55,Basilio Álvarez,PRR,Republicanos,C,178,39,True,False,revisada
+1931-1933,65,Mariano Ansó,AR,Republicanos,CI,58,7,True,False,revisada
+1931-1933,68,Amadeo Aragay,ERC,Catalanista de izquierda,I,39,7,True,False,revisada
+1931-1933,69,Francisco Aramburu e Inda,DLR,Liberales,CD,97,13,True,False,sin revisar (CGOCUS)
+1931-1933,70,Fermín Aranda,AR,Republicanos,CI,103,18,True,False,revisada
+1931-1933,71,Luis Araquistáin,PSOE,Socialista,I,14,1,True,False,revisada
+1931-1933,73,Eugenio Arauz,PRDF,Republicanos,CI,81,12,True,False,revisada
+1931-1933,74,Eugenio Arbones,PSOE,Socialista,I,26,9,True,False,revisada
+1931-1933,77,Pedro Armasa,PRR,Republicanos,C,136,30,True,False,revisada
+1931-1933,80,Gregorio Arranz,DLR,Liberales,CD,57,9,True,False,revisada
+1931-1933,82,Andrés de Arroyo,CT,Carlistas,ED,15,4,True,False,revisada
+1931-1933,83,Benito Artigas Arpón,PRRS,Republicanos,CI,83,19,True,False,revisada
+1931-1933,85,José Ayats,DLR,Liberales,CD,96,13,True,False,revisada
+1931-1933,86,Julián Ayesta,DLR,Liberales,CD,58,10,True,False,revisada
+1931-1933,87,Manuel Hilario Ayuso,PRDF,Republicanos,CI,200,49,True,False,revisada
+1931-1933,89,Manuel Azaña,AR,Republicanos,CI,11,1,True,False,revisada
+1931-1933,90,Emilio Azarola,PRRS,Republicanos,CI,20,3,True,False,revisada
+1931-1933,91,Justino de Azcárate,ASR,Liberales,C,72,16,True,False,revisada
+1931-1933,93,Francisco Azorín,PSOE,Socialista,I,85,10,True,False,revisada
+1931-1933,95,Ubaldo de Azpiazu,PRR,Republicanos,C,59,9,True,False,revisada
+1931-1933,97,Emilio Baeza Medina,PRRS,Republicanos,CI,183,39,True,False,revisada
+1931-1933,98,José Antonio Balbontín,PRRS,Republicanos,CI,106,23,True,False,revisada
+1931-1933,99,José Ballester,PRRS,Republicanos,CI,157,23,True,False,revisada
+1931-1933,102,Sebastián Banzo,PRR,Republicanos,C,86,15,True,False,revisada
+1931-1933,105,Miguel Bargalló,PSOE,Socialista,I,45,5,True,False,revisada
+1931-1933,107,Francisco Barnés,PRRS,Republicanos,CI,132,18,True,False,revisada
+1931-1933,112,Eduardo Barriobero,PRDF,Republicanos,CI,170,34,True,False,revisada
+1931-1933,116,Francisco Basterrechea,PNV,Nacionalista Vasco,CD,35,20,True,False,revisada
+1931-1933,119,Ramón Beade,PSOE,Socialista,I,57,7,True,False,revisada
+1931-1933,121,Manuel Becerra,PRR,Republicanos,C,92,7,True,False,revisada
+1931-1933,122,Epifanio Belli,ERC,Catalanista de izquierda,I,14,2,True,False,revisada
+1931-1933,123,Luis Bello,AR,Republicanos,CI,151,25,True,False,revisada
+1931-1933,127,José Berenguer,PRRS,Republicanos,CI,50,7,True,False,revisada
+1931-1933,134,Joaquín Beúnza,CT,Carlistas,ED,55,19,True,False,revisada
+1931-1933,140,Carlos Blanco,DLR,Liberales,CD,95,11,True,False,revisada
+1931-1933,141,Benito Blanco-Rajoy,Independiente,Conservadores,D,90,23,True,False,revisada
+1931-1933,143,Sigfrido Blasco-Ibáñez,PURA,Republicanos,C,90,13,True,False,revisada
+1931-1933,146,Fermín Blázquez,PSOE,Socialista,I,54,7,True,False,revisada
+1931-1933,149,Jose Bordas de la Cuesta,ERC,Catalanista de izquierda,I,33,3,True,False,sin revisar (CGOCUS)
+1931-1933,151,Jose Borrajo Esquiu,PRR,Republicanos,C,87,11,True,False,sin revisar (CGOCUS)
+1931-1933,152,Juan Bort,PRR,Republicanos,C,100,11,True,False,revisada
+1931-1933,154,Enrique Heraclio Botana,PSOE,Socialista,I,92,21,True,False,revisada
+1931-1933,155,Juan Botella,PRRS,Republicanos,CI,174,34,True,False,revisada
+1931-1933,157,Jerónimo Bugeda,PSOE,Socialista,I,62,7,True,False,revisada
+1931-1933,162,Remigio Cabello,PSOE,Socialista,I,107,14,True,False,revisada
+1931-1933,164,Antonio Cabrera,PSOE,Socialista,I,49,8,True,False,revisada
+1931-1933,166,Abilio Calderón,Agrarios,Agrarios,CD,104,48,True,False,revisada
+1931-1933,167,Juan Calot,PURA,Republicanos,C,125,25,True,False,revisada
+1931-1933,172,Miguel de Cámara,PRR,Republicanos,C,131,19,True,False,revisada
+1931-1933,174,Rafael Campaláns,USC,Socialista,I,29,7,True,False,revisada
+1931-1933,175,Clara Campoamor,PRR,Republicanos,C,127,16,True,False,revisada
+1931-1933,177,Antonio Canales,PSOE,Socialista,I,6,2,True,False,revisada
+1931-1933,178,Juan Canales,PSOE,Socialista,I,91,17,True,False,revisada
+1931-1933,180,José Teodoro Canet,PRR,Republicanos,C,86,13,True,False,revisada
+1931-1933,181,Antonio Cañizares,PSOE,Socialista,I,31,7,True,False,revisada
+1931-1933,182,José Cano Coloma,PRRS,Republicanos,CI,73,9,True,False,revisada
+1931-1933,183,Rufino Cano de Rueda,Independiente,Conservadores,D,26,13,True,False,revisada
+1931-1933,186,Vicente Cantos Figuerola,PRR,Republicanos,C,140,21,True,False,revisada
+1931-1933,188,Jose Cardona Serra,PRR,Republicanos,C,65,3,True,False,sin revisar (CGOCUS)
+1931-1933,190,Jaime Carner,PRRS,Republicanos,CI,6,1,True,False,revisada
+1931-1933,195,Manuel Carrasco y Formiguera,Lliga,Catalanista de derecha,CD,16,3,True,False,revisada
+1931-1933,197,Ramón Carreras Pons,PRR,Republicanos,C,140,22,True,False,revisada
+1931-1933,198,Francisco Carreras Reura,AR,Republicanos,CI,41,11,True,False,revisada
+1931-1933,199,Gerardo Carreres,PURA,Republicanos,C,108,19,True,False,revisada
+1931-1933,201,Wenceslao Carrillo,PSOE,Socialista,I,35,3,True,False,revisada
+1931-1933,208,Cándido Casanueva,Agrarios,Agrarios,CD,107,47,True,False,revisada
+1931-1933,209,Santiago Casares Quiroga,FRG,Galleguista,CI,11,1,True,False,revisada
+1931-1933,210,Hermenegildo Casas,PSOE,Socialista,I,83,7,True,False,revisada
+1931-1933,214,Miguel Castaño Quiñones,PSOE,Socialista,I,25,3,True,False,sin revisar (CGOCUS)
+1931-1933,216,Federico del Castillo Extremera,DLR,Liberales,CD,32,3,True,False,revisada
+1931-1933,217,Enrique del Castillo Folache,DLR,Liberales,CD,14,3,True,False,revisada
+1931-1933,218,Juan Castrillo,DLR,Liberales,CD,133,13,True,False,revisada
+1931-1933,219,Honorato de Castro,AR,Republicanos,CI,55,10,True,False,revisada
+1931-1933,221,Roberto Castrovido,Independiente,Republicanos,I,111,15,True,False,revisada
+1931-1933,224,José Centeno,DLR,Liberales,CD,52,7,True,False,revisada
+1931-1933,228,Adolfo Chacón,AR,Republicanos,CI,119,41,True,False,revisada
+1931-1933,231,José María Cid,Agrarios,Agrarios,CD,92,32,True,False,revisada
+1931-1933,233,Fernando Coca,AR,Republicanos,CI,6,1,True,False,revisada
+1931-1933,238,Juan Company Jiménez,PRDF,Republicanos,CI,30,3,True,False,revisada
+1931-1933,239,Luis Companys,ERC,Catalanista de izquierda,I,102,15,True,False,revisada
+1931-1933,242,Luis Cordero,PRR,Republicanos,C,108,17,True,False,revisada
+1931-1933,243,Manuel Cordero Pérez,PSOE,Socialista,I,160,17,True,False,revisada
+1931-1933,244,Luis Cornide,Independiente,Liberales,CD,78,12,True,False,revisada
+1931-1933,245,Pedro Corominas,ERC,Catalanista de izquierda,I,25,5,True,False,revisada
+1931-1933,247,Ricardo Cortes,CEDA,Conservadores,D,30,14,True,False,revisada
+1931-1933,251,Ricardo Crespo,AR,Republicanos,CI,64,12,True,False,revisada
+1931-1933,255,Ramón de la Cuesta,Agrarios,Agrarios,CD,69,31,True,False,revisada
+1931-1933,260,Perfecto Díaz Alonso,PRR,Republicanos,C,172,32,True,False,revisada
+1931-1933,263,Juan Díaz del Moral,ASR,Liberales,C,20,3,True,False,revisada
+1931-1933,264,José Díaz Fernández,PRRS,Republicanos,CI,138,23,True,False,revisada
+1931-1933,265,Pio Diaz Pradas,PRR,Republicanos,C,114,11,True,False,sin revisar (CGOCUS)
+1931-1933,270,Manuel Dolcet,PRDF,Republicanos,CI,83,11,True,False,revisada
+1931-1933,271,Andrés Domingo Martínez,PSOE,Socialista,I,41,4,True,False,revisada
+1931-1933,272,Marcelino Domingo,PRRS,Republicanos,CI,11,1,True,False,revisada
+1931-1933,273,Tomás Domínguez Arévalo,CT,Carlistas,ED,68,31,True,False,revisada
+1931-1933,274,José Domínguez Barbero,AR,Republicanos,CI,73,11,True,False,revisada
+1931-1933,278,Manuel de Eguileor y Orueta,PNV,Nacionalista Vasco,CD,12,11,True,False,sin revisar (CGOCUS)
+1931-1933,280,Francisco Javier Elola,PRR,Republicanos,C,88,25,True,False,revisada
+1931-1933,281,Enrique Esbrí,PSOE,Socialista,I,18,2,True,False,revisada
+1931-1933,282,Isidro Escandell,PSOE,Socialista,I,50,4,True,False,revisada
+1931-1933,288,Carlos Esplá,RI,Conservadores,I,123,10,True,False,revisada
+1931-1933,289,José Estadella,PRR,Republicanos,C,31,4,True,False,revisada
+1931-1933,290,Juan Estelrich,Lliga,Catalanista de derecha,CD,54,4,True,False,revisada
+1931-1933,292,Francisco Estévanez,CT,Carlistas,ED,46,12,True,False,revisada
+1931-1933,293,Martín Esteve,ACR,Catalanista de izquierda,I,68,9,True,False,revisada
+1931-1933,294,Antonio Fabra Ribas,PSOE,Socialista,I,28,3,True,False,revisada
+1931-1933,295,Luis Fábrega,PRR,Republicanos,C,75,13,True,False,revisada
+1931-1933,298,Joaquín Fanjul,Agrarios,Agrarios,CD,92,31,True,False,revisada
+1931-1933,299,Vicente Fatrás,PRRS,Republicanos,CI,75,22,True,False,revisada
+1931-1933,301,Ramón Feced,PRR,Republicanos,C,132,18,True,False,revisada
+1931-1933,304,Antonio Fernández-Bolaños,PSOE,Socialista,I,33,3,True,False,revisada
+1931-1933,305,Federico Fernández Castillejo,DLR,Liberales,CD,164,25,True,False,revisada
+1931-1933,306,Luis Fernández Clérigo,AR,Republicanos,CI,82,13,True,False,revisada
+1931-1933,308,Herminio Fernández de la Poza,PRR,Republicanos,C,150,31,True,False,revisada
+1931-1933,310,Eladio Fernández Egocheaga,PSOE,Socialista,I,63,6,True,False,revisada
+1931-1933,318,Amador Fernandez Montes,PSOE,Socialista,I,28,2,True,False,sin revisar (CGOCUS)
+1931-1933,319,Bibiano Fernández-Osorio,FRG,Galleguista,CI,55,8,True,False,revisada
+1931-1933,323,Félix Fernández Villarrubia,PSOE,Socialista,I,26,3,True,False,revisada
+1931-1933,324,Rodrigo Fernández y García de la Villa,PRR,Republicanos,C,34,3,True,False,revisada
+1931-1933,325,Lauro Fernández y González,RI,Conservadores,D,36,14,True,False,revisada
+1931-1933,326,Benigno Ferrer Domingo,PSOE,Socialista,I,58,7,True,False,revisada
+1931-1933,329,Gonzalo Figueroa O'Neill,AR,Republicanos,CI,48,8,True,False,revisada
+1931-1933,332,Álvaro Figueroa y Torres,Liberal Monárquico,Liberales,CD,22,1,True,False,revisada
+1931-1933,337,José Franchy Roca,PRDF,Republicanos,CI,177,27,True,False,revisada
+1931-1933,338,Enrique de Francisco,PSOE,Socialista,I,127,22,True,False,revisada
+1931-1933,339,Ramón Franco Bahamonde,ERC,Catalanista de izquierda,I,124,18,True,False,revisada
+1931-1933,340,Gabriel Franco López,AR,Republicanos,CI,80,15,True,False,revisada
+1931-1933,345,Ángel Galarza,PRRS,Republicanos,CI,156,25,True,False,revisada
+1931-1933,351,Leopoldo Alas,PRRS,Republicanos,CI,35,4,True,False,revisada
+1931-1933,353,Manuel García Becerra,PRR,Republicanos,C,113,22,True,False,revisada
+1931-1933,354,José García Berlanga,PURA,Republicanos,C,64,5,True,False,revisada
+1931-1933,356,Miguel García-Bravo Ferrer,AR,Republicanos,CI,68,11,True,False,revisada
+1931-1933,358,Rafael Garcia Duarte Salcedo,PSOE,Socialista,I,4,1,True,False,sin revisar (CGOCUS)
+1931-1933,359,Jerónimo García Gallego,Independiente,Liberales,C,114,42,True,False,revisada
+1931-1933,360,Pedro Garcia Garcia,PSOE,Socialista,I,72,5,True,False,sin revisar (CGOCUS)
+1931-1933,363,Joaquín García Hidalgo,PSOE,Socialista,I,24,2,True,False,revisada
+1931-1933,365,Antonio García Prieto,PSOE,Socialista,I,35,3,True,False,revisada
+1931-1933,368,Joaquín García Ribes,PURA,Republicanos,C,97,13,True,False,revisada
+1931-1933,369,Celestino García Santos,PSOE,Socialista,I,62,8,True,False,revisada
+1931-1933,370,Alfonso García Valdecasas,ASR,Liberales,C,92,12,True,False,revisada
+1931-1933,372,Luis García y García Lozano,PRR,Republicanos,C,56,10,True,False,revisada
+1931-1933,373,José Garrote,PSOE,Socialista,I,27,3,True,False,revisada
+1931-1933,376,Fernando Gasset,PRR,Republicanos,C,60,3,True,False,revisada
+1931-1933,377,Ventura Gassol,ERC,Catalanista de izquierda,I,6,1,True,False,revisada
+1931-1933,381,Ramón Gil Roldán,PRR,Republicanos,C,53,10,True,False,revisada
+1931-1933,382,Gil Gil,PRR,Republicanos,C,42,7,True,False,revisada
+1931-1933,383,Bernardo Giner de los Ríos,ASR,Liberales,C,72,14,True,False,revisada
+1931-1933,384,José Giral,AR,Republicanos,I,53,5,True,False,revisada
+1931-1933,386,Jerónimo Gomariz,PRRS,Republicanos,CI,228,40,True,False,revisada
+1931-1933,387,Pedro Gómez,PRR,Republicanos,C,28,6,True,False,revisada
+1931-1933,388,Aurelio Gómez González,Agrarios,Agrarios,CD,33,16,True,False,revisada
+1931-1933,390,Enrique Gómez Jiménez,DLR,Liberales,CD,26,3,True,False,revisada
+1931-1933,391,José Gómez Osorio,PSOE,Socialista,I,84,18,True,False,revisada
+1931-1933,392,Laureano Gómez Paratcha,DLR,Liberales,CD,146,30,True,False,revisada
+1931-1933,393,Ricardo Gómez Roji,CT,Carlistas,ED,49,40,True,False,revisada
+1931-1933,394,Trifón Gómez,PSOE,Socialista,I,48,5,True,False,revisada
+1931-1933,395,Pedro Vicente Gómez Sánchez,PRR,Republicanos,C,92,13,True,False,revisada
+1931-1933,401,Emilio González López,FRG,Galleguista,CI,98,14,True,False,revisada
+1931-1933,404,Ramón González Peña,PSOE,Socialista,I,18,2,True,False,revisada
+1931-1933,405,Manuel González Ramos,PSOE,Socialista,I,97,8,True,False,revisada
+1931-1933,407,Ramón González Sicilia,AR,Republicanos,CI,71,11,True,False,revisada
+1931-1933,410,José Fernando González Uña,PSOE,Socialista,I,99,13,True,False,revisada
+1931-1933,412,Félix Gordón Ordás,PRRS,Republicanos,CI,96,14,True,False,revisada
+1931-1933,413,Miguel Gortari,CT,Carlistas,ED,28,4,True,False,revisada
+1931-1933,414,Modesto Gosálvez,AN,Conservadores,D,14,2,True,False,revisada
+1931-1933,415,Anastasio de Gracia,PSOE,Socialista,I,50,6,True,False,revisada
+1931-1933,417,Miguel Granados,PRRS,Republicanos,CI,109,11,True,False,revisada
+1931-1933,419,José Grau,ERC,Catalanista de izquierda,I,44,9,True,False,revisada
+1931-1933,420,Antonio Guallar,PRRS,Republicanos,CI,62,8,True,False,revisada
+1931-1933,421,Santiago Guallar,CEDA,Conservadores,D,82,39,True,False,revisada
+1931-1933,422,Rafael Guerra del Río,PRR,Republicanos,C,221,65,True,False,revisada
+1931-1933,427,César Gusano,DLR,Liberales,CD,49,8,True,False,revisada
+1931-1933,431,Vicente Hernandez Rizo,PSOE,Socialista,I,15,1,True,False,sin revisar (CGOCUS)
+1931-1933,435,Diego Hidalgo,PRR,Republicanos,C,95,9,True,False,revisada
+1931-1933,436,José Horn,PNV,Nacionalista Vasco,CD,73,46,True,False,revisada
+1931-1933,439,Amadeo Hurtado,ERC,Catalanista de izquierda,I,5,1,True,False,revisada
+1931-1933,443,Emiliano Iglesias y Ambrosio,PRR,Republicanos,C,20,3,True,False,revisada
+1931-1933,446,Vicente Iranzo,ASR,Liberales,C,154,43,True,False,revisada
+1931-1933,450,Antonio Jaén,DLR,Liberales,CD,76,14,True,False,revisada
+1931-1933,451,Alejandro Jaume,PSOE,Socialista,I,33,10,True,False,revisada
+1931-1933,455,Luis Jiménez de Asúa,PSOE,Socialista,I,73,11,True,False,revisada
+1931-1933,457,Manuel Jiménez García de la Serrana,PSOE,Socialista,I,8,2,True,False,revisada
+1931-1933,458,Antonio Jiménez Jiménez,EIF,Republicanos,I,72,13,True,False,revisada
+1931-1933,462,César Juarros,DLR,Liberales,CD,57,6,True,False,revisada
+1931-1933,463,Francisco Juliá Perelló,Federalista,Republicanos,CI,75,3,True,False,revisada
+1931-1933,466,Julio Just,PURA,Republicanos,C,101,14,True,False,revisada
+1931-1933,467,Victoria Kent,PRRS,Republicanos,CI,89,11,True,False,revisada
+1931-1933,470,José María Lamamié de Clairac,CT,Carlistas,ED,57,25,True,False,revisada
+1931-1933,473,Casimiro Lana Sarrate,PRRS,Republicanos,CI,23,3,True,False,revisada
+1931-1933,477,Antonio Lara,PRR,Republicanos,C,137,28,True,False,revisada
+1931-1933,479,Francisco Largo Caballero,PSOE,Socialista,I,39,3,True,False,revisada
+1931-1933,483,Eduardo Layret,ERC,Catalanista de izquierda,I,109,14,True,False,revisada
+1931-1933,485,Jesús María Leizaola,PNV,Nacionalista Vasco,CD,21,12,True,False,revisada
+1931-1933,487,Alejandro Lerroux,PRR,Republicanos,C,149,19,True,False,revisada
+1931-1933,488,Aurelio Lerroux y Romero de Oca,PRR,Republicanos,C,17,2,True,False,sin revisar (CGOCUS)
+1931-1933,490,José Lladó,RI,Conservadores,C,36,5,True,False,revisada
+1931-1933,491,Rodolfo Llopis,PSOE,Socialista,I,29,6,True,False,revisada
+1931-1933,492,Juan Lluhí,ERC,Catalanista de izquierda,I,63,11,True,False,revisada
+1931-1933,494,Juan Loperena,PRRS,Republicanos,CI,74,11,True,False,revisada
+1931-1933,495,Francisco López de Goicoechea,PRRS,Republicanos,CI,193,55,True,False,revisada
+1931-1933,497,Luis López Dóriga,PRRS,Republicanos,CI,57,7,True,False,revisada
+1931-1933,499,Julio Maria Lopez Orozco,PRRS,Republicanos,CI,31,2,True,False,sin revisar (CGOCUS)
+1931-1933,503,José López Varela,PRR,Republicanos,C,100,18,True,False,revisada
+1931-1933,505,Manuel Lorente Atienza,PRR,Republicanos,C,6,1,True,False,sin revisar (CGOCUS)
+1931-1933,507,Edmundo Lorenzo,PSOE,Socialista,I,68,11,True,False,revisada
+1931-1933,508,Juan Lozano,PSOE,Socialista,I,25,3,True,False,revisada
+1931-1933,511,Francisco Macia Llusa,ERC,Catalanista de izquierda,I,12,1,True,False,sin revisar (CGOCUS)
+1931-1933,512,Dimas Madariaga,CEDA,Conservadores,D,102,49,True,False,revisada
+1931-1933,513,Salvador Madariaga,FRG,Galleguista,CI,6,1,True,False,revisada
+1931-1933,520,Joaquin Mallo Castan,PRR,Republicanos,C,74,8,True,False,sin revisar (CGOCUS)
+1931-1933,524,José Manteca,PURA,Republicanos,C,115,14,True,False,revisada
+1931-1933,525,Gregorio Marañon Posadillo,ASR,Liberales,C,22,2,True,False,sin revisar (CGOCUS)
+1931-1933,528,Jose Marcial Dorado,PRR,Republicanos,C,42,7,True,False,sin revisar (CGOCUS)
+1931-1933,529,Vicente Marco Miranda,PURA,Republicanos,C,99,13,True,False,revisada
+1931-1933,531,Tomás Marcos Escribano,DLR,Liberales,CD,56,11,True,False,revisada
+1931-1933,532,Agustín Marcos Escudero,PSOE,Socialista,I,14,1,True,False,revisada
+1931-1933,533,José Mareque,PSOE,Socialista,I,14,1,True,False,revisada
+1931-1933,534,Melchor Marial,PRDF,Republicanos,CI,192,36,True,False,revisada
+1931-1933,538,Manuel Marraco,PRR,Republicanos,C,125,29,True,False,revisada
+1931-1933,541,Juan Luis Martín de Antonio,PRRS,Republicanos,CI,102,18,True,False,revisada
+1931-1933,545,Marcelino Martín González del Arco,PSOE,Socialista,I,50,9,True,False,revisada
+1931-1933,548,Pedro Martín y Martín,Agrarios,Agrarios,CD,95,31,True,False,revisada
+1931-1933,550,Diego Martínez Barrio,AR,Republicanos,CI,188,39,True,False,revisada
+1931-1933,556,José Martínez de Velasco,Agrarios,Agrarios,CD,132,42,True,False,revisada
+1931-1933,558,Lucio Martínez Gil,PSOE,Socialista,I,9,2,True,False,revisada
+1931-1933,561,José María Martínez Jiménez,PRRS,Republicanos,CI,35,4,True,False,revisada
+1931-1933,565,Salvador Martínez Moya,PRR,Republicanos,C,134,35,True,False,revisada
+1931-1933,568,Manuel Martínez Risco,AR,Republicanos,CI,61,11,True,False,revisada
+1931-1933,571,Florentino Martinez Torner,PSOE,Socialista,I,30,2,True,False,sin revisar (CGOCUS)
+1931-1933,572,Carlos Martínez y Martínez,PRRS,Republicanos,CI,83,20,True,False,revisada
+1931-1933,581,Miguel Maura,DLR,Liberales,CD,170,20,True,False,revisada
+1931-1933,589,Teodomiro Menéndez,PSOE,Socialista,I,81,9,True,False,revisada
+1931-1933,590,Ángel Menéndez Suárez,PRDF,Republicanos,CI,69,9,True,False,revisada
+1931-1933,603,Esteban Mirasol,AR,Republicanos,CI,140,23,True,False,revisada
+1931-1933,606,José Molina Moreno,PSOE,Socialista,I,15,1,True,False,revisada
+1931-1933,607,Ramón Molina,CEDA,Conservadores,D,66,32,True,False,revisada
+1931-1933,622,José Morales Robles,PSOE,Socialista,I,50,5,True,False,revisada
+1931-1933,623,Juan Morán,PSOE,Socialista,I,33,4,True,False,revisada
+1931-1933,628,José Moreno Galvache,PRRS,Republicanos,CI,119,26,True,False,revisada
+1931-1933,631,Mariano Moreno Mateo,PSOE,Socialista,I,93,10,True,False,revisada
+1931-1933,632,Manuel Moreno Mendoza,AR,Republicanos,CI,121,19,True,False,revisada
+1931-1933,636,Gabriel Morón,PSOE,Socialista,I,56,8,True,False,revisada
+1931-1933,640,Manuel Muiño,PSOE,Socialista,I,68,5,True,False,revisada
+1931-1933,644,Manuel Muñoz Martínez,PRRS,Republicanos,CI,93,10,True,False,revisada
+1931-1933,651,Ramón Navarro Vives,PRRS,Republicanos,CI,117,38,True,False,revisada
+1931-1933,652,Juan Negrín,PSOE,Socialista,I,50,6,True,False,revisada
+1931-1933,653,Margarita Nelken,PSOE,Socialista,I,101,12,True,False,revisada
+1931-1933,654,Luis Nicoláu d'Olwer,ACR,Catalanista de izquierda,I,42,5,True,False,revisada
+1931-1933,655,Emilio Niembro,PRDF,Republicanos,CI,96,20,True,False,revisada
+1931-1933,656,Alfredo Nistal,PSOE,Socialista,I,33,4,True,False,revisada
+1931-1933,657,Ramón Nogués,PRRS,Republicanos,CI,132,17,True,False,revisada
+1931-1933,658,Roberto Novoa Santos,FRG,Galleguista,CI,31,3,True,False,revisada
+1931-1933,660,Francisco Núñez Tomás,PSOE,Socialista,I,53,5,True,False,revisada
+1931-1933,662,César Oarrichena,PRR,Republicanos,C,102,8,True,False,revisada
+1931-1933,665,Manuel Olmedo,PSOE,Socialista,I,25,4,True,False,revisada
+1931-1933,666,Marcelino de Oreja Elósegui,CT,Carlistas,ED,65,6,True,False,revisada
+1931-1933,669,José Luis de Oriol,CT,Carlistas,ED,5,1,True,False,revisada
+1931-1933,670,Andrés Orozco,PRR,Republicanos,C,70,18,True,False,revisada
+1931-1933,672,Eduardo Ortega y Gasset,PRRS,Republicanos,CI,196,44,True,False,revisada
+1931-1933,673,José Ortega y Gasset,ASR,Liberales,C,49,5,True,False,revisada
+1931-1933,674,Tomás Ortiz de Solórzano,CEDA,Conservadores,CD,76,53,True,False,revisada
+1931-1933,675,Manuel Osorio Florit,DLR,Liberales,CD,23,5,True,False,revisada
+1931-1933,676,Ángel Ossorio Gallardo,Independiente,Liberales,CD,105,29,True,False,revisada
+1931-1933,677,Alejandro Otero Fernandez,PSOE,Socialista,I,29,5,True,False,sin revisar (CGOCUS)
+1931-1933,678,Ramón Otero Pedrayo,PG,Galleguista,CI,47,11,True,False,revisada
+1931-1933,680,Andrés Ovejero,PSOE,Socialista,I,35,5,True,False,revisada
+1931-1933,686,Ricardo Palacín,ERC,Catalanista de izquierda,I,8,1,True,False,revisada
+1931-1933,688,José Palanco,PRR,Republicanos,C,61,7,True,False,revisada
+1931-1933,690,Domingo Palet,ERC,Catalanista de izquierda,I,48,10,True,False,revisada
+1931-1933,692,Emilio Palomo,PRR,Republicanos,C,54,6,True,False,revisada
+1931-1933,693,Basilio Paraíso,PRR,Republicanos,C,60,6,True,False,revisada
+1931-1933,696,José Pareja Yévenes,PRR,Republicanos,C,54,5,True,False,revisada
+1931-1933,698,Marcelino Pascua,PSOE,Socialista,I,23,3,True,False,revisada
+1931-1933,700,Álvaro Pascual Leone,PRR,Republicanos,C,138,23,True,False,revisada
+1931-1933,701,Alfonso Pazos,PRR,Republicanos,C,8,1,True,False,revisada
+1931-1933,703,Tomás Peire,PRR,Republicanos,C,94,12,True,False,revisada
+1931-1933,708,Matías Peñalba,AR,Republicanos,CI,103,16,True,False,revisada
+1931-1933,712,Rogelio Perez Burgos,DLR,Liberales,CD,23,6,True,False,sin revisar (CGOCUS)
+1931-1933,714,Ramon Perez de Ayala,ASR,Liberales,C,34,3,True,False,sin revisar (CGOCUS)
+1931-1933,718,Alonso Pérez Díaz,PRR,Republicanos,C,43,7,True,False,revisada
+1931-1933,719,Dario Perez Garcia,PRR,Republicanos,C,129,13,True,False,sin revisar (CGOCUS)
+1931-1933,720,Eduardo Pérez Iglesias,PRDF,Republicanos,CI,42,5,True,False,revisada
+1931-1933,722,Joaquín Pérez Madrigal,PRRS,Republicanos,CI,162,32,True,False,revisada
+1931-1933,724,Antonio Pérez Torreblanca,PRRS,Republicanos,CI,12,2,True,False,revisada
+1931-1933,728,Alejandro Peris,PSOE,Socialista,I,47,5,True,False,revisada
+1931-1933,731,Joaquín Pi y Arsuaga,PRDF,Republicanos,CI,90,14,True,False,revisada
+1931-1933,732,Carlos Pi y Suñer,ERC,Catalanista de izquierda,I,9,1,True,False,sin revisar (CGOCUS)
+1931-1933,733,Rafael Picavea,PNV,Nacionalista Vasco,CD,37,14,True,False,revisada
+1931-1933,735,Antonio Pildain,CT,Carlistas,ED,45,22,True,False,revisada
+1931-1933,739,Fernando Piñuela,PSOE,Socialista,I,36,8,True,False,revisada
+1931-1933,740,Jose Piqueras Muñoz,PSOE,Socialista,I,27,4,True,False,sin revisar (CGOCUS)
+1931-1933,741,Leandro Pita Romero,FRG,Galleguista,CI,36,5,True,False,revisada
+1931-1933,742,Gustavo Pittaluga,DLR,Liberales,CD,13,1,True,False,revisada
+1931-1933,745,Manuel Portela Valladares,Independiente,Liberales,C,26,3,True,False,revisada
+1931-1933,747,Joaquín Poza Juncal,AR,Republicanos,CI,79,14,True,False,revisada
+1931-1933,748,Gabriel Pradal,PSOE,Socialista,I,32,3,True,False,revisada
+1931-1933,752,Luis Prieto Jiménez,PSOE,Socialista,I,128,21,True,False,revisada
+1931-1933,754,Indalecio Prieto,PSOE,Socialista,I,39,3,True,False,revisada
+1931-1933,757,José Puig de Asprer,PRR,Republicanos,C,113,19,True,False,revisada
+1931-1933,759,Juan Puig Ferrater,ERC,Catalanista de izquierda,I,25,6,True,False,revisada
+1931-1933,760,César Puig Martínez,PRR,Republicanos,C,70,6,True,False,revisada
+1931-1933,764,Alberto de Quintana de León,ERC,Catalanista de izquierda,I,17,3,True,False,revisada
+1931-1933,765,Alfonso Quintana Peña,PSOE,Socialista,I,95,10,True,False,revisada
+1931-1933,767,Pedro Rahola,Lliga,Catalanista de derecha,CD,43,3,True,False,revisada
+1931-1933,772,Enrique Ramos,AR,Republicanos,CI,18,2,True,False,revisada
+1931-1933,774,Luis Recaséns Siches,DLR,Liberales,CD,26,14,True,False,revisada
+1931-1933,775,Cayetano Redondo,PSOE,Socialista,I,37,4,True,False,revisada
+1931-1933,777,José Reino Caamaño,DLR,Liberales,CD,23,6,True,False,revisada
+1931-1933,781,Juan Revilla,PRR,Republicanos,C,67,12,True,False,revisada
+1931-1933,783,Fernando Rey Mora,PRR,Republicanos,C,150,33,True,False,revisada
+1931-1933,784,Manuel Rico Avello,ASR,Liberales,C,89,17,True,False,revisada
+1931-1933,786,Pedro Rico López,AR,Republicanos,CI,118,14,True,False,revisada
+1931-1933,787,Jose Riera Punti,ERC,Catalanista de izquierda,I,13,1,True,False,sin revisar (CGOCUS)
+1931-1933,788,Pedro Riera Vidal,PRR,Republicanos,C,69,10,True,False,revisada
+1931-1933,790,Cirilo del Río,DLR,Liberales,CD,117,16,True,False,revisada
+1931-1933,791,Fernando de los Ríos,PSOE,Socialista,I,33,2,True,False,revisada
+1931-1933,793,Miguel Rivera Ruiz,PRR,Republicanos,C,29,4,True,False,sin revisar (CGOCUS)
+1931-1933,794,Ángel Rizo,PRR,Republicanos,C,133,18,True,False,revisada
+1931-1933,796,Manuel Robles,PNV,Nacionalista Vasco,CD,7,1,True,False,revisada
+1931-1933,800,Alejandro Rodríguez Cadarso,FRG,Galleguista,CI,30,3,True,False,revisada
+1931-1933,801,Alfonso Daniel Rodríguez Castelao,PG,Galleguista,CI,136,22,True,False,revisada
+1931-1933,803,Romualdo Rodríguez de Vera,PSOE,Socialista,I,101,11,True,False,revisada
+1931-1933,808,Antonio Rodríguez Pérez,FRG,Galleguista,CI,72,7,True,False,revisada
+1931-1933,809,Santiago Rodríguez Piñero,PRR,Republicanos,C,140,33,True,False,revisada
+1931-1933,812,Mariano Rojo,PSOE,Socialista,I,70,13,True,False,revisada
+1931-1933,814,Antonio Roma y Rubies,PSOE,Socialista,I,57,6,True,False,revisada
+1931-1933,817,Pedro Romero,PRR,Republicanos,C,80,10,True,False,revisada
+1931-1933,820,José Royo Gómez,AR,Republicanos,CI,170,23,True,False,revisada
+1931-1933,821,Antonio Royo Villanova,Agrarios,Agrarios,CD,187,95,True,False,revisada
+1931-1933,825,Ángel Rubio,PSOE,Socialista,I,31,5,True,False,revisada
+1931-1933,831,Manuel Ruiz de Villa,PRRS,Republicanos,CI,97,11,True,False,revisada
+1931-1933,832,Jesús Ruiz del Río,PRRS,Republicanos,CI,77,10,True,False,revisada
+1931-1933,833,José Ruiz del Toro,PSOE,Socialista,I,138,26,True,False,revisada
+1931-1933,834,Perfecto Ruiz Dorronsoro,PRR,Republicanos,C,59,8,True,False,sin revisar (CGOCUS)
+1931-1933,835,Mariano Ruiz-Funes,AR,Republicanos,CI,176,32,True,False,revisada
+1931-1933,836,Amós Ruiz Lecina,PSOE,Socialista,I,85,9,True,False,revisada
+1931-1933,838,Ramón Ruiz Rebollo,PRDF,Republicanos,CI,90,12,True,False,revisada
+1931-1933,840,Andrés Saborit,PSOE,Socialista,I,54,5,True,False,revisada
+1931-1933,841,Amós Sabrás,PSOE,Socialista,I,134,18,True,False,revisada
+1931-1933,844,Antonio Sacristán,PSOE,Socialista,I,23,6,True,False,revisada
+1931-1933,847,Pedro Sainz Rodríguez,RI,Conservadores,D,26,3,True,False,revisada
+1931-1933,848,Fernando Sainz Ruiz,PSOE,Socialista,I,59,7,True,False,revisada
+1931-1933,851,Rafael Salazar Alonso,PRR,Republicanos,C,181,40,True,False,revisada
+1931-1933,852,Vicente Sales,DLR,Liberales,CD,25,4,True,False,revisada
+1931-1933,853,Ramón Salgado,PRR,Republicanos,C,75,9,True,False,revisada
+1931-1933,855,José Salmerón,PRRS,Republicanos,CI,96,10,True,False,revisada
+1931-1933,856,Nicolás Salmerón,PRRS,Republicanos,CI,13,2,True,False,revisada
+1931-1933,860,Quirino Salvadores,PSOE,Socialista,I,94,8,True,False,revisada
+1931-1933,862,Ángel Samblancat,PSOE,Socialista,I,49,7,True,False,revisada
+1931-1933,863,Ricardo Samper,PURA,Republicanos,C,77,14,True,False,revisada
+1931-1933,864,Miguel San Andrés,PRRS,Republicanos,CI,133,28,True,False,revisada
+1931-1933,865,Claudio Sánchez Albornoz,AR,Republicanos,CI,48,6,True,False,revisada
+1931-1933,868,José Sánchez-Covisa,DLR,Liberales,CD,79,8,True,False,revisada
+1931-1933,870,Laureano Sánchez Gallego,PSOE,Socialista,I,15,3,True,False,revisada
+1931-1933,871,José Sánchez Guerra,Independiente,Conservadores,D,37,5,True,False,revisada
+1931-1933,873,Antonio L. Sánchez Prados,PRRS,Republicanos,CI,49,7,True,False,revisada
+1931-1933,874,Felipe Sánchez Román,Independiente,Republicanos,CI,44,17,True,False,revisada
+1931-1933,877,José Sanchís Banús,PSOE,Socialista,I,18,2,True,False,revisada
+1931-1933,878,Francisco Sanchis Pascual,PSOE,Socialista,I,17,3,True,False,sin revisar (CGOCUS)
+1931-1933,882,Primitivo Santa Cecilia,PSOE,Socialista,I,22,3,True,False,revisada
+1931-1933,883,Juan José Santa Cruz,ASR,Liberales,C,51,9,True,False,revisada
+1931-1933,884,Miguel Santaló,ERC,Catalanista de izquierda,I,142,25,True,False,revisada
+1931-1933,885,Juan Antonio Santander Carrasco,PSOE,Socialista,I,33,5,True,False,sin revisar (CGOCUS)
+1931-1933,888,Martín Sanz Díez,PSOE,Socialista,I,31,4,True,False,revisada
+1931-1933,889,Juan Sapiña,PSOE,Socialista,I,101,12,True,False,revisada
+1931-1933,890,Ángel Sarmiento,PRDF,Republicanos,CI,25,3,True,False,revisada
+1931-1933,892,Venancio Sarriá,PRRS,Republicanos,CI,60,9,True,False,revisada
+1931-1933,893,Francisco Saval,PRRS,Republicanos,CI,88,10,True,False,revisada
+1931-1933,894,Antonio María Sbert,ERC,Catalanista de izquierda,I,40,2,True,False,revisada
+1931-1933,895,Salvador Sediles,EIF,Republicanos,I,192,42,True,False,revisada
+1931-1933,896,Ángel Segovia,PRRS,Republicanos,CI,52,9,True,False,revisada
+1931-1933,898,Juan Selvas,ERC,Catalanista de izquierda,I,27,4,True,False,revisada
+1931-1933,904,Manuel Serra Moret,ERC,Catalanista de izquierda,I,75,11,True,False,revisada
+1931-1933,905,José Serrano Batanero,AR,Republicanos,CI,158,19,True,False,revisada
+1931-1933,913,Jaime Simó Bofarull,PRR,Republicanos,C,75,12,True,False,revisada
+1931-1933,915,Vicente Sol,AR,Republicanos,CI,33,3,True,False,revisada
+1931-1933,917,Emilio de Solá,AR,Republicanos,CI,101,12,True,False,revisada
+1931-1933,920,Rodrigo Soriano,PRDF,Republicanos,CI,133,21,True,False,revisada
+1931-1933,925,Ramón Suárez Picallo,FRG,Galleguista,CI,105,21,True,False,revisada
+1931-1933,926,Publio Suárez Uriarte,ASR,Liberales,C,58,20,True,False,revisada
+1931-1933,928,José Suñol,ERC,Catalanista de izquierda,I,15,3,True,False,revisada
+1931-1933,929,Félix Susaeta,PRRS,Republicanos,CI,73,11,True,False,revisada
+1931-1933,932,Luis de Tapia,Independiente,Republicanos,I,213,39,True,False,revisada
+1931-1933,936,José Templado,PRR,Republicanos,C,142,26,True,False,revisada
+1931-1933,938,Ramón María Tenreiro,FRG,Galleguista,CI,116,16,True,False,revisada
+1931-1933,939,José Terrero,PRR,Republicanos,C,96,13,True,False,revisada
+1931-1933,950,Domingo de la Torre Moya,PSOE,Socialista,I,20,2,True,False,sin revisar (CGOCUS)
+1931-1933,951,Ángel Torres Alonso,Agrarios,Agrarios,CD,19,3,True,False,revisada
+1931-1933,952,Humberto Torres Barberá,ERC,Catalanista de izquierda,I,33,7,True,False,revisada
+1931-1933,953,Manuel Torres Campaña,PRR,Republicanos,C,124,35,True,False,revisada
+1931-1933,958,Antonio Tuñón de Lara,PRR,Republicanos,C,119,14,True,False,revisada
+1931-1933,959,Rafael Ulled,PRR,Republicanos,C,80,10,True,False,revisada
+1931-1933,960,Miguel de Unamuno,ASR,Liberales,C,167,24,True,False,revisada
+1931-1933,963,Julio Urquijo,CT,Carlistas,ED,23,5,True,False,revisada
+1931-1933,965,Juan Usabiaga,PRR,Republicanos,C,20,4,True,False,revisada
+1931-1933,970,Fernando Valera,PRRS,Republicanos,CI,140,14,True,False,revisada
+1931-1933,971,Pablo Valiente Paredes,PSOE,Socialista,I,11,3,True,False,sin revisar (CGOCUS)
+1931-1933,973,Bernardino Valle,PRDF,Republicanos,CI,122,25,True,False,revisada
+1931-1933,975,Eloy Vaquero,PRR,Republicanos,C,70,11,True,False,revisada
+1931-1933,976,Manuel Varela Radio,FRG,Galleguista,CI,6,1,True,False,sin revisar (CGOCUS)
+1931-1933,977,Pedro Vargas,PRRS,Republicanos,CI,82,9,True,False,revisada
+1931-1933,978,Daniel Vázquez Campo,FRG,Galleguista,CI,49,7,True,False,revisada
+1931-1933,980,Narciso Vázquez Lemus,PSOE,Socialista,I,4,1,True,False,revisada
+1931-1933,982,Narciso Vázquez Torres,PSOE,Socialista,I,53,5,True,False,revisada
+1931-1933,983,Rafael de Vega Barrera,PRR,Republicanos,C,13,2,True,False,sin revisar (CGOCUS)
+1931-1933,988,Antonio Velao,AR,Republicanos,CI,31,3,True,False,revisada
+1931-1933,989,Luis Velasco,PRR,Republicanos,C,72,10,True,False,revisada
+1931-1933,991,Nicasio Velayos,Agrarios,Agrarios,CD,69,8,True,False,revisada
+1931-1933,994,Juan Ventosa,ERC,Catalanista de izquierda,I,57,9,True,False,revisada
+1931-1933,995,Isidoro Vergara,AR,Republicanos,CI,60,6,True,False,revisada
+1931-1933,1000,Juan Simeón Vidarte,PSOE,Socialista,I,140,23,True,False,revisada
+1931-1933,1001,Manuel Vigil Montoto,PSOE,Socialista,I,66,6,True,False,sin revisar (CGOCUS)
+1931-1933,1003,Gregorio Vilatela,PRRS,Republicanos,CI,57,5,True,False,revisada
+1931-1933,1005,Antonio de la Villa,PRRS,Republicanos,CI,119,20,True,False,revisada
+1931-1933,1006,Filiberto Villalobos,LD,Liberales,C,7,2,True,False,revisada
+1931-1933,1011,Justo Villanueva,PRR,Republicanos,C,159,43,True,False,revisada
+1931-1933,1012,Antonio Villar Ponte,FRG,Galleguista,CI,68,12,True,False,revisada
+1931-1933,1013,Gregorio Villarias Lopez,PRRS,Republicanos,CI,100,22,True,False,sin revisar (CGOCUS)
+1931-1933,1016,Rodolfo Viñas,PSOE,Socialista,I,33,4,True,False,revisada
+1931-1933,1018,Antonio Xirau,ERC,Catalanista de izquierda,I,28,6,True,False,revisada
+1931-1933,1019,José Xirau,ERC,Catalanista de izquierda,I,69,8,True,False,revisada
+1931-1933,1024,Julián Zugazagoitia,PSOE,Socialista,I,65,7,True,False,revisada
+1931-1933,1026,Luis Zulueta,ASR,Liberales,C,14,2,True,False,revisada
+1931-1933,24,Salvador Albert Pey,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1931-1933,36,Aurelio Almagro Gracia,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1931-1933,133,Julián Besteiro,PSOE,Socialista,I,0,0,False,True,revisada
+1931-1933,196,Juan Carreño,PSOE,Socialista,I,0,0,False,True,revisada
+1931-1933,259,José Dencás,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1931-1933,320,Antonio Fernández Quer,PSOE,Socialista,I,0,0,False,True,revisada
+1931-1933,609,Pedro Molpeceres,PSOE,Socialista,I,0,0,False,True,revisada
+1931-1933,637,José Mouriz,PSOE,Socialista,I,0,0,False,True,revisada
+1931-1933,725,Domingo Pérez Trujillo,PSOE,Socialista,I,0,0,False,True,revisada
+1931-1933,933,Jose Tarradellas Joan,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1931-1933,941,Juan Tizon Herreros,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1931-1933,1022,Francisco Zafra,PSOE,Socialista,I,0,0,False,True,revisada
+1931-1933,63,Sergio Andion Perez,FRG,Galleguista,CI,0,0,False,True,sin revisar (CGOCUS)
+1931-1933,707,Luis Peña Novo,FRG,Galleguista,CI,0,0,False,True,revisada
+1931-1933,297,Enrique Fajardo Fernandez,ASR,Liberales,C,0,0,False,True,sin revisar (CGOCUS)
+1931-1933,608,Francisco Molleda,Independiente,Independiente,C,0,0,False,True,revisada
+1931-1933,1010,Miguel Villanueva y Gomez,LD,Liberales,C,0,0,False,True,sin revisar (CGOCUS)
+1931-1933,813,José María Roldán,DLR,Liberales,CD,0,0,False,True,revisada
+1931-1933,380,José María Gil Robles,CEDA,Conservadores,D,0,0,False,True,revisada
+1931-1933,526,Juan March,PRC,Conservadores,D,0,0,False,True,revisada
+1931-1933,881,Jose Sanjurjo Sacanell,Independiente,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1931-1933,170,José Calvo Sotelo,UM,Derecha autoritaria,ED,0,0,False,True,revisada
+1933-1936,4,Pedro Acacio Sandoval,Agrarios,Agrarios,CD,15,3,True,False,sin revisar (CGOCUS)
+1933-1936,7,Antonio Acuña,PSOE,Socialista,I,45,10,True,False,revisada
+1933-1936,9,Dimas Adánez,CEDA,Conservadores,D,102,12,True,False,revisada
+1933-1936,15,Manuel Aguillaume,PSOE,Socialista,I,53,13,True,False,revisada
+1933-1936,16,José Antonio Aguirre,PNV,Nacionalista Vasco,CD,74,24,True,False,revisada
+1933-1936,18,Rafael Aizpún,CEDA,Conservadores,D,102,17,True,False,revisada
+1933-1936,19,Luis Alarcón,Agrarios,Agrarios,CD,67,8,True,False,revisada
+1933-1936,20,Santiago Alba,PRR,Republicanos,C,7,2,True,False,revisada
+1933-1936,23,Rafael Alberola Herrera,CEDA,Conservadores,D,62,8,True,False,sin revisar (CGOCUS)
+1933-1936,25,José María Albiñana,PNE,Fascista,ED,87,23,True,False,revisada
+1933-1936,27,Nicolás Alcalá Espinosa,PRR,Republicanos,C,47,6,True,False,revisada
+1933-1936,32,Edmundo Alfaro,PRR,Republicanos,C,116,20,True,False,revisada
+1933-1936,39,Tomás Alonso de Armiño,Agrarios,Agrarios,CD,124,33,True,False,revisada
+1933-1936,40,Bruno Alonso González,PSOE,Socialista,I,63,14,True,False,revisada
+1933-1936,43,Elfidio Alonso Rodríguez,PRR,Republicanos,C,92,26,True,False,revisada
+1933-1936,44,Manuel Alonso Zapata,PSOE,Socialista,I,49,18,True,False,revisada
+1933-1936,47,Tomás Álvarez Angulo,PSOE,Socialista,I,33,14,True,False,revisada
+1933-1936,49,Julio Álvarez del Vayo,PSOE,Socialista,I,32,4,True,False,revisada
+1933-1936,50,Melquíades Álvarez,LD,Liberales,C,82,10,True,False,revisada
+1933-1936,51,León Carlos Álvarez Lara,Agrarios,Agrarios,CD,75,29,True,False,revisada
+1933-1936,52,José María Álvarez Mendizábal,PRR,Republicanos,C,93,19,True,False,revisada
+1933-1936,54,Antonio Álvarez Robles,CEDA,Conservadores,D,138,25,True,False,revisada
+1933-1936,55,Basilio Álvarez,PRR,Republicanos,C,142,37,True,False,revisada
+1933-1936,57,Ramón Álvarez Valdés,LD,Liberales,C,118,20,True,False,revisada
+1933-1936,58,Romualdo Alvargonzález,CEDA,Conservadores,D,49,6,True,False,revisada
+1933-1936,59,Andrés Amado,RE,Derecha autoritaria,ED,139,31,True,False,revisada
+1933-1936,62,Luis Amores,Agrarios,Agrarios,CD,79,16,True,False,revisada
+1933-1936,64,José Andrés Manso,PSOE,Socialista,I,42,8,True,False,revisada
+1933-1936,67,Ángel Aperribay,Independiente,Conservadores,D,82,7,True,False,revisada
+1933-1936,68,Amadeo Aragay,ERC,Catalanista de izquierda,I,3,1,True,False,revisada
+1933-1936,71,Luis Araquistáin,PSOE,Socialista,I,41,8,True,False,revisada
+1933-1936,75,Luis Arellano,CT,Carlistas,ED,78,26,True,False,revisada
+1933-1936,76,José Arizcún,CEDA,Conservadores,D,125,21,True,False,revisada
+1933-1936,77,Pedro Armasa,PRR,Republicanos,C,132,16,True,False,revisada
+1933-1936,80,Gregorio Arranz,PRC,Conservadores,CD,55,9,True,False,revisada
+1933-1936,81,Mariano Arrazola,PRR,Republicanos,C,111,15,True,False,revisada
+1933-1936,84,Félix Avia,Agrarios,Agrarios,CD,116,21,True,False,revisada
+1933-1936,85,José Ayats,CEDA,Conservadores,D,15,3,True,False,revisada
+1933-1936,88,Bernardo Aza,CEDA,Conservadores,D,61,7,True,False,revisada
+1933-1936,94,Mateo Azpeitia,CEDA,Conservadores,D,135,23,True,False,revisada
+1933-1936,96,Carlos Badía,Lliga,Catalanista de derecha,CD,92,14,True,False,revisada
+1933-1936,103,Augusto Barcia,AR,Republicanos,CI,102,25,True,False,revisada
+1933-1936,104,Luis Bardají,PRR,Republicanos,C,77,7,True,False,revisada
+1933-1936,106,Felipe Barjau Riera,USC,Socialista,I,14,1,True,False,sin revisar (CGOCUS)
+1933-1936,108,Miguel Barquero,PRR,Republicanos,C,95,24,True,False,revisada
+1933-1936,115,Severino Barros de Lis,CEDA,Conservadores,D,115,21,True,False,revisada
+1933-1936,117,Francisco Bastos,Lliga,Catalanista de derecha,CD,25,8,True,False,revisada
+1933-1936,118,Joaquín Bau,CT,Carlistas,ED,88,20,True,False,revisada
+1933-1936,120,Manuel Beca,CEDA,Conservadores,D,90,17,True,False,revisada
+1933-1936,121,Manuel Becerra,PRR,Republicanos,C,52,6,True,False,revisada
+1933-1936,122,Epifanio Belli,ERC,Catalanista de izquierda,I,34,5,True,False,revisada
+1933-1936,123,Luis Bello,AR,Republicanos,CI,8,1,True,False,revisada
+1933-1936,133,Julián Besteiro,PSOE,Socialista,I,21,3,True,False,revisada
+1933-1936,135,Crescenciano Bilbao Castellanos,PSOE,Socialista,I,48,11,True,False,revisada
+1933-1936,136,Esteban Bilbao y Eguía,CT,Carlistas,ED,70,16,True,False,revisada
+1933-1936,138,José María Blanc,PRR,Republicanos,C,60,8,True,False,revisada
+1933-1936,141,Benito Blanco-Rajoy,CEDA,Conservadores,D,66,13,True,False,revisada
+1933-1936,142,José Blanco Rodríguez,Agrarios,Agrarios,CD,128,28,True,False,revisada
+1933-1936,143,Sigfrido Blasco-Ibáñez,PURA,Republicanos,C,59,7,True,False,revisada
+1933-1936,144,Manuel Blasco Garzón,PRR,Republicanos,C,86,11,True,False,revisada
+1933-1936,146,Fermín Blázquez,PSOE,Socialista,I,49,19,True,False,revisada
+1933-1936,147,Francisca Bohigas,CEDA,Conservadores,D,75,13,True,False,revisada
+1933-1936,148,Cayetano Bolívar,PCE,Comunista,EI,46,6,True,False,revisada
+1933-1936,153,Francisco Javier Bosch Marín,CEDA,Conservadores,D,68,11,True,False,revisada
+1933-1936,159,Francisco Burgos,PRR,Republicanos,C,58,8,True,False,revisada
+1933-1936,161,Miguel Cabanellas,PRR,Republicanos,C,11,2,True,False,revisada
+1933-1936,163,Miguel Cabrera Castro,CEDA,Conservadores,D,35,5,True,False,sin revisar (CGOCUS)
+1933-1936,166,Abilio Calderón,Agrarios,Agrarios,CD,131,33,True,False,revisada
+1933-1936,170,José Calvo Sotelo,RE,Derecha autoritaria,ED,112,35,True,False,revisada
+1933-1936,171,Luciano de la Calzada,CEDA,Conservadores,D,37,6,True,False,revisada
+1933-1936,172,Miguel de Cámara,PRR,Republicanos,C,113,15,True,False,revisada
+1933-1936,173,Francisco de Asís Cambó,Lliga,Catalanista de derecha,CD,77,13,True,False,revisada
+1933-1936,180,José Teodoro Canet,PRR,Republicanos,C,82,15,True,False,revisada
+1933-1936,183,Rufino Cano de Rueda,Agrarios,Agrarios,CD,31,7,True,False,revisada
+1933-1936,184,Dionisio Cano López,PRC,Conservadores,CD,141,25,True,False,revisada
+1933-1936,185,Blas Cantalapiedra,Agrarios,Agrarios,CD,59,20,True,False,revisada
+1933-1936,186,Vicente Cantos Figuerola,PRR,Republicanos,C,55,11,True,False,revisada
+1933-1936,187,Ramón Cantos Saiz de Carlos,PURA,Republicanos,C,63,8,True,False,revisada
+1933-1936,188,Jose Cardona Serra,PRR,Republicanos,C,55,13,True,False,sin revisar (CGOCUS)
+1933-1936,189,Juan Antonio de Careaga,PNV,Nacionalista Vasco,CD,73,25,True,False,revisada
+1933-1936,191,Ramón de Carranza,RE,Derecha autoritaria,ED,96,30,True,False,revisada
+1933-1936,192,Geminiano Carrascal,CEDA,Conservadores,D,150,30,True,False,revisada
+1933-1936,193,Manuel Carrascal Montero de Espinosa,PRR,Republicanos,C,88,14,True,False,sin revisar (CGOCUS)
+1933-1936,194,José Carrasco,PRR,Republicanos,C,7,6,True,False,revisada
+1933-1936,199,Gerardo Carreres,PURA,Republicanos,C,35,5,True,False,revisada
+1933-1936,203,José María Casabó,Lliga,Catalanista de derecha,CD,89,10,True,False,revisada
+1933-1936,208,Cándido Casanueva,CEDA,Conservadores,D,94,15,True,False,revisada
+1933-1936,210,Hermenegildo Casas,PSOE,Socialista,I,119,31,True,False,revisada
+1933-1936,212,Andres Cassinello Barroeta,CEDA,Conservadores,D,14,3,True,False,sin revisar (CGOCUS)
+1933-1936,213,Ernesto Castaño,Agrarios,Agrarios,CD,57,5,True,False,revisada
+1933-1936,217,Enrique del Castillo Folache,PRC,Conservadores,CD,20,6,True,False,revisada
+1933-1936,222,José Cazorla,PRR,Republicanos,C,67,11,True,False,revisada
+1933-1936,227,Juan Chabret Bru,PURA,Republicanos,C,46,10,True,False,sin revisar (CGOCUS)
+1933-1936,229,Joaquín Chapaprieta,RI,Conservadores,CD,76,11,True,False,revisada
+1933-1936,230,Manuel de la Chica Damas,CEDA,Conservadores,D,20,10,True,False,sin revisar (CGOCUS)
+1933-1936,231,José María Cid,Agrarios,Agrarios,CD,17,3,True,False,revisada
+1933-1936,232,José Cimas Leal,CEDA,Conservadores,D,78,14,True,False,revisada
+1933-1936,235,Jaime Comas Jo,USC,Socialista,I,15,2,True,False,sin revisar (CGOCUS)
+1933-1936,236,Jesús Comín,CT,Carlistas,ED,131,43,True,False,revisada
+1933-1936,241,Juan de Contreras y Lopez de Ayala,Agrarios,Agrarios,CD,22,6,True,False,sin revisar (CGOCUS)
+1933-1936,247,Ricardo Cortes,CEDA,Conservadores,D,120,18,True,False,revisada
+1933-1936,248,Jose Cos Serrano,Agrarios,Agrarios,CD,51,8,True,False,sin revisar (CGOCUS)
+1933-1936,252,Tomás Cruz,CEDA,Conservadores,D,44,9,True,False,revisada
+1933-1936,254,Enrique Cuartero,CEDA,Conservadores,D,93,12,True,False,revisada
+1933-1936,255,Ramón de la Cuesta,Agrarios,Agrarios,CD,53,18,True,False,revisada
+1933-1936,256,Benito Davila Sanchez Monje,CEDA,Conservadores,D,26,4,True,False,sin revisar (CGOCUS)
+1933-1936,257,Fermín Daza,PRC,Conservadores,CD,178,40,True,False,revisada
+1933-1936,261,José Díaz Ambrona,PRC,Conservadores,CD,127,23,True,False,revisada
+1933-1936,269,Fulgencio Díez Pastor,PRR,Republicanos,C,122,37,True,False,revisada
+1933-1936,273,Tomás Domínguez Arévalo,CT,Carlistas,ED,134,46,True,False,revisada
+1933-1936,277,Carlos Echeguren,PRR,Republicanos,C,63,8,True,False,revisada
+1933-1936,285,Luciano Escribano Lozano,PRR,Republicanos,C,17,2,True,False,sin revisar (CGOCUS)
+1933-1936,287,Rafael Esparza,CEDA,Conservadores,D,80,17,True,False,revisada
+1933-1936,290,Juan Estelrich,Lliga,Catalanista de derecha,CD,80,6,True,False,revisada
+1933-1936,292,Francisco Estévanez,CT,Carlistas,ED,34,6,True,False,revisada
+1933-1936,296,Luis Fábrega,PRR,Republicanos,C,126,29,True,False,revisada
+1933-1936,298,Joaquín Fanjul,Agrarios,Agrarios,CD,23,3,True,False,revisada
+1933-1936,304,Antonio Fernández-Bolaños,PSOE,Socialista,I,39,15,True,False,revisada
+1933-1936,305,Federico Fernández Castillejo,PRP,Liberales,CD,60,12,True,False,revisada
+1933-1936,307,Mariano Fernández de Córdoba,Agrarios,Agrarios,CD,45,11,True,False,revisada
+1933-1936,311,Adolfo Fernández Gutiérrez,CEDA,Conservadores,D,62,8,True,False,revisada
+1933-1936,312,Luis Fernández Heredia,CEDA,Conservadores,D,119,24,True,False,revisada
+1933-1936,315,José María Fernández Ladreda,CEDA,Conservadores,D,81,14,True,False,revisada
+1933-1936,316,Laureano Fernández Martos,CEDA,Conservadores,D,73,7,True,False,revisada
+1933-1936,318,Amador Fernandez Montes,PSOE,Socialista,I,26,4,True,False,sin revisar (CGOCUS)
+1933-1936,321,Ángel Fernández Ruano,Agrarios,Agrarios,CD,43,5,True,False,revisada
+1933-1936,328,Juan Ferret,PRF,Republicanos,I,37,6,True,False,revisada
+1933-1936,332,Álvaro Figueroa y Torres,Independiente,Liberales,CD,26,3,True,False,revisada
+1933-1936,333,José Finat,CEDA,Conservadores,D,86,14,True,False,revisada
+1933-1936,334,Manuel Florensa,Lliga,Catalanista de derecha,CD,55,10,True,False,revisada
+1933-1936,335,Bartolomé Fons,RI,Conservadores,D,2,2,True,False,revisada
+1933-1936,336,Luis Fontaiña Sarrapio,PRR,Republicanos,C,64,12,True,False,sin revisar (CGOCUS)
+1933-1936,341,Eduardo Frápolli,PRR,Republicanos,C,49,6,True,False,revisada
+1933-1936,342,Santiago Fuentes Pila,RE,Derecha autoritaria,ED,150,63,True,False,revisada
+1933-1936,343,Antonio Gabarró,Lliga,Catalanista de derecha,CD,44,8,True,False,revisada
+1933-1936,344,José Gafo,RE,Derecha autoritaria,ED,47,5,True,False,revisada
+1933-1936,346,Lorenzo Gallardo,CEDA,Conservadores,D,30,6,True,False,revisada
+1933-1936,347,Alejandro Gallart,Lliga,Catalanista de derecha,CD,53,8,True,False,revisada
+1933-1936,352,Manuel García Atance,CEDA,Conservadores,D,72,10,True,False,revisada
+1933-1936,354,José García Berlanga,PURA,Republicanos,C,69,18,True,False,revisada
+1933-1936,355,Veneranda Garcia Blanco Manzano,PSOE,Socialista,I,41,8,True,False,sin revisar (CGOCUS)
+1933-1936,356,Miguel García-Bravo Ferrer,PRC,Conservadores,CD,71,14,True,False,revisada
+1933-1936,361,Raimundo García,Independiente,Derecha autoritaria,ED,87,23,True,False,revisada
+1933-1936,362,Luis García Guijarro,CEDA,Conservadores,D,44,7,True,False,revisada
+1933-1936,367,Jose Garcia Ramos y Segond,PRR,Republicanos,C,75,15,True,False,sin revisar (CGOCUS)
+1933-1936,371,Ángel García Vedoya,Agrarios,Agrarios,CD,84,35,True,False,revisada
+1933-1936,374,Mariano Gaspar Lausin,PRR,Republicanos,C,80,12,True,False,sin revisar (CGOCUS)
+1933-1936,378,Ángeles Gil Albarellos,CEDA,Conservadores,D,75,10,True,False,revisada
+1933-1936,379,Felipe Gil Casares,CEDA,Conservadores,D,107,17,True,False,revisada
+1933-1936,380,José María Gil Robles,CEDA,Conservadores,D,19,2,True,False,revisada
+1933-1936,385,Antonio Goicoechea,RE,Derecha autoritaria,ED,78,22,True,False,revisada
+1933-1936,388,Aurelio Gómez González,Agrarios,Agrarios,CD,84,23,True,False,revisada
+1933-1936,390,Enrique Gómez Jiménez,PRC,Conservadores,CD,45,8,True,False,revisada
+1933-1936,394,Trifón Gómez,PSOE,Socialista,I,43,9,True,False,revisada
+1933-1936,399,José González Fernández de la Bandera,PRR,Republicanos,C,89,37,True,False,revisada
+1933-1936,400,Francisco González García,PRC,Conservadores,CD,71,11,True,False,revisada
+1933-1936,401,Emilio González López,FRG,Galleguista,CI,62,12,True,False,revisada
+1933-1936,403,Ruperto González Negrín,Independiente,Independiente,D,110,25,True,False,revisada
+1933-1936,404,Ramón González Peña,PSOE,Socialista,I,19,2,True,False,revisada
+1933-1936,405,Manuel González Ramos,PSOE,Socialista,I,40,6,True,False,revisada
+1933-1936,406,Julio González Sandoval,Agrarios,Agrarios,CD,18,2,True,False,revisada
+1933-1936,407,Ramón González Sicilia,PRR,Republicanos,C,78,23,True,False,revisada
+1933-1936,408,Eusebio González Suárez,PSOE,Socialista,I,25,5,True,False,revisada
+1933-1936,412,Félix Gordón Ordás,PRRS,Republicanos,CI,36,6,True,False,revisada
+1933-1936,414,Modesto Gosálvez,Agrarios,Agrarios,CD,23,4,True,False,revisada
+1933-1936,415,Anastasio de Gracia,PSOE,Socialista,I,31,4,True,False,revisada
+1933-1936,416,Higinio Felipe Granado,PSOE,Socialista,I,17,2,True,False,revisada
+1933-1936,418,Juan Granell Pascual,CT,Carlistas,ED,55,11,True,False,sin revisar (CGOCUS)
+1933-1936,421,Santiago Guallar,CEDA,Conservadores,D,61,15,True,False,revisada
+1933-1936,422,Rafael Guerra del Río,PRR,Republicanos,C,105,13,True,False,revisada
+1933-1936,426,Nicasio Guisasola,CEDA,Conservadores,D,80,9,True,False,revisada
+1933-1936,430,Luis Hermida,CEDA,Conservadores,C,21,3,True,False,revisada
+1933-1936,433,Carlos Hernández Zancajo,PSOE,Socialista,I,27,6,True,False,revisada
+1933-1936,435,Diego Hidalgo,PRR,Republicanos,C,41,5,True,False,revisada
+1933-1936,436,José Horn,PNV,Nacionalista Vasco,CD,82,30,True,False,revisada
+1933-1936,437,Mariano de la Hoz,CEDA,Conservadores,D,73,15,True,False,revisada
+1933-1936,438,José María Hueso,CEDA,Conservadores,D,49,8,True,False,revisada
+1933-1936,440,José Ibáñez Martín,CEDA,Conservadores,D,76,11,True,False,revisada
+1933-1936,442,Manuel Iglesias Corral,FRG,Galleguista,CI,12,2,True,False,revisada
+1933-1936,443,Emiliano Iglesias y Ambrosio,PRR,Republicanos,C,67,10,True,False,revisada
+1933-1936,444,Leopoldo Igual,Agrarios,Agrarios,CD,81,22,True,False,revisada
+1933-1936,445,José Luis Illanes,CEDA,Conservadores,D,78,13,True,False,revisada
+1933-1936,446,Vicente Iranzo,Independiente,Republicanos,C,117,17,True,False,revisada
+1933-1936,447,Juan Antonio Irazusta,PNV,Nacionalista Vasco,CD,51,23,True,False,revisada
+1933-1936,448,Manuel Irujo,PNV,Nacionalista Vasco,CD,136,47,True,False,revisada
+1933-1936,449,Enrique Izquierdo Jiménez,PRR,Republicanos,C,112,20,True,False,revisada
+1933-1936,454,Luis Giménez Canga-Argüelles,CEDA,Conservadores,D,13,2,True,False,revisada
+1933-1936,455,Luis Jiménez de Asúa,PSOE,Socialista,I,26,3,True,False,revisada
+1933-1936,456,Manuel Giménez Fernández,CEDA,Conservadores,D,57,5,True,False,revisada
+1933-1936,460,Enrique Jimenez Molinero,PRR,Republicanos,C,22,8,True,False,sin revisar (CGOCUS)
+1933-1936,466,Julio Just,PURA,Republicanos,C,35,11,True,False,revisada
+1933-1936,470,José María Lamamié de Clairac,CT,Carlistas,ED,107,40,True,False,revisada
+1933-1936,471,Vicente Lambies,PURA,Republicanos,C,77,10,True,False,revisada
+1933-1936,472,Ramón Lamoneda,PSOE,Socialista,I,68,31,True,False,revisada
+1933-1936,474,Francisco Javier de Landaburu,PNV,Nacionalista Vasco,CD,28,20,True,False,revisada
+1933-1936,476,Federico Landrove,PSOE,Socialista,I,49,8,True,False,revisada
+1933-1936,477,Antonio Lara,PRR,Republicanos,C,87,35,True,False,revisada
+1933-1936,479,Francisco Largo Caballero,PSOE,Socialista,I,12,1,True,False,revisada
+1933-1936,482,Bernardo Laude Alvarez,PRR,Republicanos,C,107,11,True,False,sin revisar (CGOCUS)
+1933-1936,484,Felipe Lazcano,CEDA,Conservadores,D,125,24,True,False,revisada
+1933-1936,485,Jesús María Leizaola,PNV,Nacionalista Vasco,CD,8,1,True,False,revisada
+1933-1936,486,María Lejárraga,PSOE,Socialista,I,51,21,True,False,revisada
+1933-1936,487,Alejandro Lerroux,PRR,Republicanos,C,30,4,True,False,revisada
+1933-1936,489,Victor Lis Quiben,CEDA,Conservadores,D,47,6,True,False,sin revisar (CGOCUS)
+1933-1936,491,Rodolfo Llopis,PSOE,Socialista,I,36,16,True,False,revisada
+1933-1936,500,Ángel López Pérez,CEDA,Conservadores,D,46,6,True,False,revisada
+1933-1936,503,José López Varela,PRR,Republicanos,C,58,18,True,False,revisada
+1933-1936,506,Manuel Lorenzo Pardo,PRR,Republicanos,C,101,14,True,False,revisada
+1933-1936,508,Juan Lozano,PSOE,Socialista,I,39,11,True,False,revisada
+1933-1936,509,Luis Lucía,CEDA,Conservadores,D,119,24,True,False,revisada
+1933-1936,510,Benito Luna,PSOE,Socialista,I,39,11,True,False,revisada
+1933-1936,512,Dimas Madariaga,CEDA,Conservadores,D,142,27,True,False,revisada
+1933-1936,514,Jesús Salvador Madero,Agrarios,Agrarios,CD,126,22,True,False,revisada
+1933-1936,515,Tomás Maestre,Agrarios,Agrarios,CD,163,24,True,False,revisada
+1933-1936,517,Ramiro de Maeztu,RE,Derecha autoritaria,ED,88,23,True,False,revisada
+1933-1936,518,Antonio Mairal,PSOE,Socialista,I,48,10,True,False,revisada
+1933-1936,520,Joaquin Mallo Castan,PRR,Republicanos,C,43,8,True,False,sin revisar (CGOCUS)
+1933-1936,521,Joaquín Manglano,CT,Carlistas,ED,104,38,True,False,revisada
+1933-1936,522,Daniel Mangrané,ERC,Catalanista de izquierda,I,122,15,True,False,revisada
+1933-1936,529,Vicente Marco Miranda,PURA,Republicanos,C,37,4,True,False,revisada
+1933-1936,534,Melchor Marial,PRF,Republicanos,I,58,13,True,False,revisada
+1933-1936,535,Rubens Marichal Lopez,PRR,Republicanos,C,29,7,True,False,sin revisar (CGOCUS)
+1933-1936,537,Andrés Maroto,CEDA,Conservadores,C,102,27,True,False,revisada
+1933-1936,539,Antonio Martí Olucha,CEDA,Conservadores,D,60,11,True,False,revisada
+1933-1936,540,Javier Martín Artajo,CEDA,Conservadores,D,74,16,True,False,revisada
+1933-1936,544,Jose Martin Gomez,PRR,Republicanos,C,74,19,True,False,sin revisar (CGOCUS)
+1933-1936,546,Diego Martin Rodriguez,PRR,Republicanos,C,35,5,True,False,sin revisar (CGOCUS)
+1933-1936,548,Pedro Martín y Martín,Agrarios,Agrarios,CD,54,10,True,False,revisada
+1933-1936,549,José Martínez Arenas,PRC,Conservadores,CD,86,12,True,False,revisada
+1933-1936,550,Diego Martínez Barrio,PRR,Republicanos,C,70,12,True,False,revisada
+1933-1936,553,José Martínez de Azagra,Agrarios,Agrarios,CD,69,10,True,False,revisada
+1933-1936,554,Francisco Javier Martinez de Morentin Lopez,CT,Carlistas,ED,96,31,True,False,sin revisar (CGOCUS)
+1933-1936,555,Miguel Martinez de Pinillos Saenz,CT,Carlistas,ED,14,1,True,False,sin revisar (CGOCUS)
+1933-1936,556,José Martínez de Velasco,Agrarios,Agrarios,CD,110,24,True,False,revisada
+1933-1936,557,Alfredo Martínez García Argüelles,LD,Liberales,C,57,13,True,False,revisada
+1933-1936,558,Lucio Martínez Gil,PSOE,Socialista,I,44,11,True,False,revisada
+1933-1936,559,Esteban Martínez Hervás,PSOE,Socialista,I,7,1,True,False,revisada
+1933-1936,562,Pedro Martínez Juárez,CEDA,Conservadores,D,85,10,True,False,revisada
+1933-1936,565,Salvador Martínez Moya,PRR,Republicanos,C,148,17,True,False,revisada
+1933-1936,566,Juan Martínez Ortiz,PRC,Conservadores,CD,75,11,True,False,revisada
+1933-1936,569,Ginés Martínez Rubio,CT,Carlistas,ED,49,5,True,False,revisada
+1933-1936,570,Pascual Martínez Sala,PURA,Republicanos,C,60,10,True,False,revisada
+1933-1936,573,Camilo Martinon Navarro,PRR,Republicanos,C,9,2,True,False,sin revisar (CGOCUS)
+1933-1936,574,José Mascort,ERC,Catalanista de izquierda,I,72,13,True,False,revisada
+1933-1936,576,Luis Massot,Lliga,Catalanista de derecha,CD,68,8,True,False,revisada
+1933-1936,577,José María de Mateo la Iglesia,CEDA,Conservadores,D,67,8,True,False,revisada
+1933-1936,578,Manuel Mateos Silva,PRR,Republicanos,C,73,26,True,False,sin revisar (CGOCUS)
+1933-1936,579,Mariano Matesanz,Independiente,Conservadores,D,26,4,True,False,revisada
+1933-1936,580,Pedro Matutes Noguera,PRC,Conservadores,D,21,8,True,False,sin revisar (CGOCUS)
+1933-1936,581,Miguel Maura,PRC,Conservadores,CD,110,12,True,False,revisada
+1933-1936,582,Honorio Maura,RE,Derecha autoritaria,ED,137,50,True,False,revisada
+1933-1936,585,Jose de Medina Togores,CEDA,Conservadores,D,15,2,True,False,sin revisar (CGOCUS)
+1933-1936,587,José María Méndez Gil,CEDA,Conservadores,D,115,26,True,False,revisada
+1933-1936,589,Teodomiro Menéndez,PSOE,Socialista,I,68,13,True,False,revisada
+1933-1936,592,Gonzalo Meras Navia Osorio,CEDA,Conservadores,D,58,9,True,False,sin revisar (CGOCUS)
+1933-1936,593,Mariano Merediz,LD,Liberales,C,51,13,True,False,revisada
+1933-1936,594,José Mesa,CEDA,Conservadores,D,29,4,True,False,revisada
+1933-1936,595,Jose Mestre Puig,ERC,Catalanista de izquierda,I,17,2,True,False,sin revisar (CGOCUS)
+1933-1936,599,Isidoro Millan Mariño,PRR,Republicanos,C,42,9,True,False,sin revisar (CGOCUS)
+1933-1936,600,José Miñones,PRR,Republicanos,C,71,13,True,False,revisada
+1933-1936,601,Pedro Miñor Rivas,LD,Liberales,C,31,9,True,False,sin revisar (CGOCUS)
+1933-1936,602,Miguel de Miranda y Mateo,CT,Carlistas,ED,69,16,True,False,sin revisar (CGOCUS)
+1933-1936,604,Eduardo Molero,PRC,Conservadores,CD,66,8,True,False,revisada
+1933-1936,607,Ramón Molina,CEDA,Conservadores,D,69,10,True,False,revisada
+1933-1936,610,Francisco Moltó,CEDA,Conservadores,D,72,7,True,False,revisada
+1933-1936,611,José Moncasí,Agrarios,Agrarios,CD,110,26,True,False,revisada
+1933-1936,612,Daniel Mondéjar,PRC,Conservadores,CD,112,23,True,False,revisada
+1933-1936,613,Jose Monje y Bernal,CEDA,Conservadores,D,82,12,True,False,sin revisar (CGOCUS)
+1933-1936,614,José María Montenegro,RE,Derecha autoritaria,ED,34,3,True,False,revisada
+1933-1936,615,José Montero Tirado,CEDA,Conservadores,D,41,8,True,False,revisada
+1933-1936,617,Rafael Montes Díaz,CEDA,Conservadores,D,20,5,True,False,revisada
+1933-1936,618,Luis Montes López de la Torre,CEDA,Conservadores,D,94,16,True,False,revisada
+1933-1936,620,Telesforo Monzón,PNV,Nacionalista Vasco,CD,48,21,True,False,revisada
+1933-1936,621,José del Moral,RE,Derecha autoritaria,ED,83,13,True,False,revisada
+1933-1936,624,Francisco Morayta,PRR,Republicanos,C,177,31,True,False,revisada
+1933-1936,625,Jose Morello del Pozo,PRR,Republicanos,C,19,3,True,False,sin revisar (CGOCUS)
+1933-1936,626,Carlos Morenilla,CEDA,Conservadores,D,85,22,True,False,revisada
+1933-1936,627,Julio Moreno Dávila,CEDA,Conservadores,D,63,24,True,False,revisada
+1933-1936,629,Francisco Moreno Herrera,RE,Derecha autoritaria,ED,119,35,True,False,revisada
+1933-1936,633,Ricardo Moreno Navarrete,CEDA,Conservadores,D,95,10,True,False,sin revisar (CGOCUS)
+1933-1936,634,Adolfo Moreno Quesada,PSOE,Socialista,I,66,18,True,False,revisada
+1933-1936,635,José Moreno Torres,CEDA,Conservadores,D,48,6,True,False,revisada
+1933-1936,638,José María Moutas,CEDA,Conservadores,D,15,2,True,False,revisada
+1933-1936,641,Jose Mullerat Soldevilla,Lliga,Catalanista de derecha,CD,37,6,True,False,sin revisar (CGOCUS)
+1933-1936,642,Alfonso Muñoz de Diego,LD,Liberales,C,49,10,True,False,revisada
+1933-1936,644,Manuel Muñoz Martínez,PRSI,Republicanos,CI,36,3,True,False,revisada
+1933-1936,647,Joaquín María de Nadal,Lliga,Catalanista de derecha,CD,40,6,True,False,revisada
+1933-1936,648,Antonio Navajas,Agrarios,Agrarios,CD,76,19,True,False,revisada
+1933-1936,650,Jenaro Navarro López,PRC,Conservadores,CD,64,16,True,False,revisada
+1933-1936,652,Juan Negrín,PSOE,Socialista,I,39,4,True,False,revisada
+1933-1936,653,Margarita Nelken,PSOE,Socialista,I,46,10,True,False,revisada
+1933-1936,659,Carlos Núñez Manso,CEDA,Conservadores,D,89,15,True,False,revisada
+1933-1936,661,Eduardo O'Shea,Independiente,Conservadores,D,165,25,True,False,revisada
+1933-1936,662,César Oarrichena,PRR,Republicanos,C,62,11,True,False,revisada
+1933-1936,663,Roman Ochando y Valera,PRR,Republicanos,C,59,8,True,False,sin revisar (CGOCUS)
+1933-1936,666,Marcelino de Oreja Elósegui,CT,Carlistas,ED,35,3,True,False,revisada
+1933-1936,667,Fernando Oria de Rueda,CEDA,Conservadores,D,102,20,True,False,revisada
+1933-1936,668,Jaime Oriol de la Puerta,Agrarios,Agrarios,CD,122,21,True,False,revisada
+1933-1936,669,José Luis de Oriol,CT,Carlistas,ED,53,9,True,False,revisada
+1933-1936,670,Andrés Orozco,PRR,Republicanos,C,75,13,True,False,revisada
+1933-1936,674,Tomás Ortiz de Solórzano,Agrarios,Agrarios,CD,83,12,True,False,revisada
+1933-1936,681,Joaquín de Pablo-Blanco,PRR,Republicanos,C,47,6,True,False,revisada
+1933-1936,683,Jesús Pabón,CEDA,Conservadores,D,82,20,True,False,revisada
+1933-1936,687,José Alberto Palanca,CEDA,Conservadores,D,109,15,True,False,revisada
+1933-1936,689,Juan Palau,PRR,Republicanos,C,78,10,True,False,revisada
+1933-1936,690,Domingo Palet,ERC,Catalanista de izquierda,I,60,13,True,False,revisada
+1933-1936,691,Juan J. Palomino,CT,Carlistas,ED,61,13,True,False,revisada
+1933-1936,696,José Pareja Yévenes,PRR,Republicanos,C,21,2,True,False,revisada
+1933-1936,699,Teodoro Pascual Cordero,PRR,Republicanos,C,137,21,True,False,revisada
+1933-1936,700,Álvaro Pascual Leone,PRR,Republicanos,C,104,36,True,False,revisada
+1933-1936,702,Manuel Pedregal,LD,Liberales,C,97,20,True,False,revisada
+1933-1936,703,Tomás Peire,PRR,Republicanos,C,108,18,True,False,revisada
+1933-1936,705,Joaquín Pellicena,Lliga,Catalanista de derecha,CD,107,25,True,False,revisada
+1933-1936,706,José María Pemán,RE,Derecha autoritaria,ED,15,2,True,False,revisada
+1933-1936,710,Juan Antonio Perea Martinez,Independiente,Conservadores,D,54,6,True,False,sin revisar (CGOCUS)
+1933-1936,711,Robustiano Pérez Arroyo,CEDA,Conservadores,D,30,3,True,False,revisada
+1933-1936,713,Antonio Perez Crespo,Agrarios,Agrarios,CD,26,2,True,False,sin revisar (CGOCUS)
+1933-1936,715,Francisco Perez de Guzman y Urzaiz,PRC,Conservadores,CD,59,9,True,False,sin revisar (CGOCUS)
+1933-1936,716,José Pérez de Rozas,PRR,Republicanos,C,184,51,True,False,revisada
+1933-1936,717,Eduardo Pérez del Molino,Agrarios,Agrarios,CD,119,21,True,False,revisada
+1933-1936,718,Alonso Pérez Díaz,PRR,Republicanos,C,56,21,True,False,revisada
+1933-1936,719,Dario Perez Garcia,PRR,Republicanos,C,37,5,True,False,sin revisar (CGOCUS)
+1933-1936,722,Joaquín Pérez Madrigal,PRR,Republicanos,C,158,34,True,False,revisada
+1933-1936,733,Rafael Picavea,PNV,Nacionalista Vasco,CD,41,22,True,False,revisada
+1933-1936,737,Eduardo Piñán,CEDA,Conservadores,D,94,18,True,False,revisada
+1933-1936,738,Luis Piñol,Lliga,Catalanista de derecha,CD,80,10,True,False,revisada
+1933-1936,744,Francisco Pons y Pla,Lliga,Catalanista de derecha,CD,13,1,True,False,sin revisar (CGOCUS)
+1933-1936,749,José Prat,PSOE,Socialista,I,52,24,True,False,revisada
+1933-1936,752,Luis Prieto Jiménez,PSOE,Socialista,I,55,11,True,False,revisada
+1933-1936,753,Antonio Prieto Rivas,PRR,Republicanos,C,79,11,True,False,revisada
+1933-1936,754,Indalecio Prieto,PSOE,Socialista,I,43,5,True,False,revisada
+1933-1936,755,José Antonio Primo de Rivera,FE,Fascista,ED,8,1,True,False,revisada
+1933-1936,758,Luis Puig de la Bellacasa,Lliga,Catalanista de derecha,CD,47,15,True,False,revisada
+1933-1936,761,Ángel Puig Puig,PRR,Republicanos,C,60,15,True,False,revisada
+1933-1936,763,Juan Pujol,CEDA,Conservadores,D,114,14,True,False,revisada
+1933-1936,767,Pedro Rahola,Lliga,Catalanista de derecha,CD,92,10,True,False,revisada
+1933-1936,768,Javier Ramirez Sinues,CT,Carlistas,ED,119,39,True,False,sin revisar (CGOCUS)
+1933-1936,769,Aurelio Ramos Acosta,PRSI,Republicanos,CI,36,5,True,False,revisada
+1933-1936,770,Fernando Ramos Cerviño,PRR,Republicanos,C,67,14,True,False,sin revisar (CGOCUS)
+1933-1936,771,Antonio Ramos González,PSOE,Socialista,I,41,9,True,False,revisada
+1933-1936,773,Eutiquiano Rebollar Rodriguez,PRR,Republicanos,C,56,8,True,False,sin revisar (CGOCUS)
+1933-1936,774,Luis Recaséns Siches,PRC,Conservadores,CD,96,18,True,False,revisada
+1933-1936,776,Joaquín Reig,Lliga,Catalanista de derecha,CD,49,14,True,False,revisada
+1933-1936,777,José Reino Caamaño,PRC,Conservadores,CD,10,1,True,False,revisada
+1933-1936,778,Salvador Represa,CEDA,Conservadores,D,32,5,True,False,revisada
+1933-1936,780,Antonio Reverte,CEDA,Conservadores,D,44,4,True,False,revisada
+1933-1936,783,Fernando Rey Mora,PRR,Republicanos,C,108,16,True,False,revisada
+1933-1936,789,Honorio Riesgo,CEDA,Conservadores,D,34,7,True,False,revisada
+1933-1936,790,Cirilo del Río,PRP,Liberales,CD,100,19,True,False,revisada
+1933-1936,791,Fernando de los Ríos,PSOE,Socialista,I,44,17,True,False,revisada
+1933-1936,795,Francisco Roa,CEDA,Conservadores,D,63,8,True,False,revisada
+1933-1936,796,Manuel Robles,PNV,Nacionalista Vasco,CD,66,21,True,False,revisada
+1933-1936,797,Francisco Roca,PRR,Republicanos,C,10,2,True,False,revisada
+1933-1936,803,Romualdo Rodríguez de Vera,PSOE,Socialista,I,24,6,True,False,revisada
+1933-1936,804,Luis Rodríguez de Viguri,Agrarios,Agrarios,CD,173,48,True,False,revisada
+1933-1936,806,Adolfo Rodríguez Jurado,Agrarios,Agrarios,CD,58,9,True,False,revisada
+1933-1936,808,Antonio Rodríguez Pérez,RI,Conservadores,C,37,6,True,False,revisada
+1933-1936,810,Vicente de Roig Ibáñez,PURA,Republicanos,C,59,7,True,False,revisada
+1933-1936,811,José Rojas Marcos,CEDA,Conservadores,D,47,5,True,False,revisada
+1933-1936,816,José Romero Radigales,Agrarios,Agrarios,CD,116,38,True,False,revisada
+1933-1936,818,Luis Romero Solano,PSOE,Socialista,I,43,7,True,False,revisada
+1933-1936,821,Antonio Royo Villanova,Agrarios,Agrarios,CD,133,20,True,False,revisada
+1933-1936,823,José Tomás Rubio Chávarri,PRP,Liberales,CD,72,14,True,False,revisada
+1933-1936,824,Pedro Rubio Heredia,PSOE,Socialista,I,39,9,True,False,revisada
+1933-1936,826,Mariano Rubio Tuduri,ERC,Catalanista de izquierda,I,65,6,True,False,revisada
+1933-1936,829,Ramón Ruiz Alonso,CEDA,Conservadores,D,24,12,True,False,revisada
+1933-1936,833,José Ruiz del Toro,PSOE,Socialista,I,42,12,True,False,revisada
+1933-1936,836,Amós Ruiz Lecina,PSOE,Socialista,I,29,4,True,False,revisada
+1933-1936,837,José María Ruiz Pérez Aguila,PRR,Republicanos,C,53,9,True,False,revisada
+1933-1936,839,Luis Ruiz Valdepeñas,CEDA,Conservadores,D,119,21,True,False,revisada
+1933-1936,840,Andrés Saborit,PSOE,Socialista,I,18,3,True,False,revisada
+1933-1936,841,Amós Sabrás,PSOE,Socialista,I,38,8,True,False,revisada
+1933-1936,842,Jose Sabucedo Morales,RE,Derecha autoritaria,ED,27,2,True,False,sin revisar (CGOCUS)
+1933-1936,843,Manuel Saco Rivera,Independiente,Conservadores,D,71,10,True,False,revisada
+1933-1936,845,Manuel Sáenz de Miera,Agrarios,Agrarios,CD,55,15,True,False,revisada
+1933-1936,847,Pedro Sainz Rodríguez,RE,Derecha autoritaria,ED,75,15,True,False,revisada
+1933-1936,851,Rafael Salazar Alonso,PRR,Republicanos,C,43,5,True,False,revisada
+1933-1936,853,Ramón Salgado,PRR,Republicanos,C,22,4,True,False,revisada
+1933-1936,854,Francisco de P. Salinas,PRR,Republicanos,C,41,5,True,False,revisada
+1933-1936,857,Federico Salmón,CEDA,Conservadores,D,86,11,True,False,revisada
+1933-1936,858,Tomas Salort y de Olives,CEDA,Conservadores,D,73,11,True,False,sin revisar (CGOCUS)
+1933-1936,859,Amós Salvador,AR,Republicanos,CI,40,11,True,False,revisada
+1933-1936,861,Francisco Salvans Armengol,Lliga,Catalanista de derecha,CD,17,2,True,False,sin revisar (CGOCUS)
+1933-1936,863,Ricardo Samper,PURA,Republicanos,C,86,8,True,False,revisada
+1933-1936,865,Claudio Sánchez Albornoz,AR,Republicanos,CI,17,7,True,False,revisada
+1933-1936,872,Francisco de Asís Sánchez Miranda,CEDA,Conservadores,D,76,11,True,False,revisada
+1933-1936,879,Miguel Sancho Izquierdo,CEDA,Conservadores,D,56,11,True,False,revisada
+1933-1936,880,Casimiro de Sangenís,CT,Carlistas,ED,121,29,True,False,revisada
+1933-1936,884,Miguel Santaló,ERC,Catalanista de izquierda,I,79,10,True,False,revisada
+1933-1936,886,Bienvenido Santos,PSOE,Socialista,I,44,7,True,False,revisada
+1933-1936,887,Juan Félix Sanz Blanco,PRR,Republicanos,C,56,12,True,False,revisada
+1933-1936,897,Matias Segui Tarrazo,PRR,Republicanos,C,16,3,True,False,sin revisar (CGOCUS)
+1933-1936,900,Francisco Senyal,ERC,Catalanista de izquierda,I,66,13,True,False,revisada
+1933-1936,902,Antonio Septién,PSOE,Socialista,I,36,6,True,False,revisada
+1933-1936,904,Manuel Serra Moret,ERC,Catalanista de izquierda,I,41,5,True,False,revisada
+1933-1936,906,Emilio Alfredo Serrano Jover,RE,Derecha autoritaria,ED,146,35,True,False,revisada
+1933-1936,908,Ramón Serrano Suñer,Agrarios,Agrarios,CD,135,30,True,False,revisada
+1933-1936,909,Vicente Sierra Martínez,PRR,Republicanos,C,113,17,True,False,revisada
+1933-1936,910,Manuel Sierra Pomares,CEDA,Conservadores,D,77,25,True,False,revisada
+1933-1936,911,Tomás Sierra Rustarazo,PRR,Republicanos,C,89,14,True,False,revisada
+1933-1936,912,Eduardo Silva Gregorio,CEDA,Conservadores,D,56,7,True,False,sin revisar (CGOCUS)
+1933-1936,914,Casto Simón Castillo,CEDA,Conservadores,D,56,11,True,False,revisada
+1933-1936,916,Felipe de Solá y Cañizares,Lliga,Catalanista de derecha,CD,6,2,True,False,revisada
+1933-1936,918,Vicente Solé de Sojo,Lliga,Catalanista de derecha,CD,46,20,True,False,revisada
+1933-1936,923,Fernando Suárez de Tangil,RE,Derecha autoritaria,ED,128,53,True,False,revisada
+1933-1936,926,Publio Suárez Uriarte,Independiente,Liberales,C,17,4,True,False,revisada
+1933-1936,928,José Suñol,ERC,Catalanista de izquierda,I,17,2,True,False,revisada
+1933-1936,930,Antonio Taboada,Agrarios,Agrarios,ED,91,23,True,False,revisada
+1933-1936,931,Carlos Taboada Tundidor,CEDA,Conservadores,D,43,5,True,False,sin revisar (CGOCUS)
+1933-1936,934,Domingo Tejera,CT,Carlistas,ED,78,19,True,False,revisada
+1933-1936,940,Juan Tirado,PSOE,Socialista,I,19,2,True,False,revisada
+1933-1936,942,Romualdo de Toledo,CT,Carlistas,ED,85,29,True,False,revisada
+1933-1936,944,José Tomás y Piera,ERC,Catalanista de izquierda,I,55,6,True,False,revisada
+1933-1936,946,Vicente Tome Prieto,Agrarios,Agrarios,CD,48,11,True,False,sin revisar (CGOCUS)
+1933-1936,948,Matilde de la Torre,PSOE,Socialista,I,56,11,True,False,revisada
+1933-1936,949,Heliodoro de la Torre Larrinaga,PNV,Nacionalista Vasco,CD,62,17,True,False,sin revisar (CGOCUS)
+1933-1936,955,Juan Torres Sala,CEDA,Conservadores,D,44,6,True,False,sin revisar (CGOCUS)
+1933-1936,956,José Antonio Trabal,ERC,Catalanista de izquierda,I,71,14,True,False,revisada
+1933-1936,958,Antonio Tuñón de Lara,PRR,Republicanos,C,85,15,True,False,revisada
+1933-1936,968,Faustino Valentín,PRR,Republicanos,C,52,16,True,False,revisada
+1933-1936,972,José María Valiente,CEDA,Conservadores,D,26,5,True,False,revisada
+1933-1936,975,Eloy Vaquero,PRR,Republicanos,C,72,8,True,False,revisada
+1933-1936,979,Eugenio Vázquez Gundín,CEDA,Conservadores,D,140,23,True,False,revisada
+1933-1936,981,Fernando Vazquez Ocaña,PSOE,Socialista,I,5,1,True,False,sin revisar (CGOCUS)
+1933-1936,984,Fernando Vega Bermejo,CEDA,Conservadores,D,54,6,True,False,revisada
+1933-1936,985,Francisco Vega de la Iglesia,PRR,Republicanos,C,49,9,True,False,revisada
+1933-1936,986,Constantino Vega Gregorio,Agrarios,Agrarios,CD,9,2,True,False,sin revisar (CGOCUS)
+1933-1936,991,Nicasio Velayos,Agrarios,Agrarios,CD,113,22,True,False,revisada
+1933-1936,992,Dámaso Vélez,PRR,Republicanos,C,115,21,True,False,revisada
+1933-1936,994,Juan Ventosa,ERC,Catalanista de izquierda,I,75,17,True,False,revisada
+1933-1936,997,Ramón de Vicuña,PNV,Nacionalista Vasco,CD,29,10,True,False,revisada
+1933-1936,998,Miguel Vidal Guardiola,Lliga,Catalanista de derecha,CD,73,17,True,False,revisada
+1933-1936,999,Lorenzo Vidal Tolosana,Agrarios,Agrarios,CD,45,9,True,False,revisada
+1933-1936,1000,Juan Simeón Vidarte,PSOE,Socialista,I,51,11,True,False,revisada
+1933-1936,1006,Filiberto Villalobos,LD,Liberales,C,54,2,True,False,revisada
+1933-1936,1007,Ignacio Villalonga,CEDA,Conservadores,D,142,27,True,False,revisada
+1933-1936,1011,Justo Villanueva,PRR,Republicanos,C,152,25,True,False,revisada
+1933-1936,1017,Agustín Virgili,Independiente,Conservadores,D,70,10,True,False,revisada
+1933-1936,1021,Luis Zaforteza,CEDA,Conservadores,D,91,13,True,False,revisada
+1933-1936,1023,José Luis Zamanillo,CT,Carlistas,ED,78,29,True,False,revisada
+1933-1936,11,Jaime Aguadé,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1933-1936,13,Crescenciano Aguado,PSOE,Socialista,I,0,0,False,True,revisada
+1933-1936,157,Jerónimo Bugeda,PSOE,Socialista,I,0,0,False,True,revisada
+1933-1936,168,Jose Calvet y Mora,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,239,Luis Companys,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1933-1936,419,José Grau,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1933-1936,511,Francisco Macia Llusa,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,682,Nicolas de Pablo Hernandez,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,846,Jose Sagrera y Corominas,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,12,Francisco Aguado de Miguel,PRSI,Republicanos,CI,0,0,False,True,revisada
+1933-1936,89,Manuel Azaña,AR,Republicanos,CI,0,0,False,True,revisada
+1933-1936,209,Santiago Casares Quiroga,FRG,Galleguista,CI,0,0,False,True,revisada
+1933-1936,79,Antonio Arqueros Garrido,PRR,Republicanos,C,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,95,Ubaldo de Azpiazu,PRR,Republicanos,C,0,0,False,True,revisada
+1933-1936,167,Juan Calot,PRR,Republicanos,C,0,0,False,True,revisada
+1933-1936,402,Jose Gonzalez Navas,PRR,Republicanos,C,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,463,Francisco Juliá Perelló,PRR,Republicanos,C,0,0,False,True,revisada
+1933-1936,616,Ernesto Montes Azcona,PRR,Republicanos,C,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,693,Basilio Paraíso,PRR,Republicanos,C,0,0,False,True,revisada
+1933-1936,741,Leandro Pita Romero,PRR,Republicanos,C,0,0,False,True,revisada
+1933-1936,798,Juan José Rocha,PRR,Republicanos,C,0,0,False,True,revisada
+1933-1936,366,Alfredo Garcia Ramos,Agrarios,Agrarios,CD,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,957,José María Trías de Bes,Lliga,Catalanista de derecha,CD,0,0,False,True,revisada
+1933-1936,993,Juan Ventosa Calvell,Lliga,Catalanista de derecha,CD,0,0,False,True,revisada
+1933-1936,1004,Cayetano Vilella Puig,Agrarios,Agrarios,CD,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,1009,Fernando Villamarin Rodriguez,PRC,Conservadores,CD,0,0,False,True,sin revisar (CGOCUS)
+1933-1936,464,José María Julián Gil,CEDA,Conservadores,D,0,0,False,True,revisada
+1933-1936,526,Juan March,PRC,Conservadores,D,0,0,False,True,revisada
+1933-1936,785,Gumersindo Rico González,Independiente,Independiente,D,0,0,False,True,revisada
+1933-1936,126,Rafael Benjumea Burin,RE,Derecha autoritaria,ED,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,7,Antonio Acuña,PSOE,Socialista,I,42,3,True,False,revisada
+1936-1939,9,Dimas Adánez,CEDA,Conservadores,D,12,1,True,False,revisada
+1936-1939,10,German Adanez Horcajuelo,CEDA,Conservadores,D,4,1,True,False,sin revisar (CGOCUS)
+1936-1939,11,Jaime Aguadé,ERC,Catalanista de izquierda,I,14,1,True,False,revisada
+1936-1939,12,Francisco Aguado de Miguel,AR,Republicanos,CI,13,1,True,False,revisada
+1936-1939,14,Juan María Aguilar Calvo,AR,Republicanos,CI,22,2,True,False,revisada
+1936-1939,16,José Antonio Aguirre,PNV,Nacionalista Vasco,CD,48,3,True,False,revisada
+1936-1939,18,Rafael Aizpún,CEDA,Conservadores,D,6,1,True,False,revisada
+1936-1939,20,Santiago Alba,PRR,Republicanos,C,3,1,True,False,revisada
+1936-1939,25,José María Albiñana,PNE,Fascista,ED,2,1,True,False,revisada
+1936-1939,26,Álvaro de Albornoz,Independiente,Independiente,CD,61,3,True,False,revisada
+1936-1939,34,Jose Aliseda Olivares,PSOE,Socialista,I,7,1,True,False,sin revisar (CGOCUS)
+1936-1939,40,Bruno Alonso González,PSOE,Socialista,I,31,2,True,False,revisada
+1936-1939,42,Antonio Alonso Ríos,PG,Galleguista,CI,16,1,True,False,revisada
+1936-1939,43,Elfidio Alonso Rodríguez,UR,Republicanos,CI,53,2,True,False,revisada
+1936-1939,49,Julio Álvarez del Vayo,PSOE,Socialista,I,55,3,True,False,revisada
+1936-1939,53,Julia Álvarez Resano,PSOE,Socialista,I,31,2,True,False,revisada
+1936-1939,54,Antonio Álvarez Robles,CEDA,Conservadores,D,25,2,True,False,revisada
+1936-1939,56,Manuel Álvarez Ugena,AR,Republicanos,CI,58,3,True,False,revisada
+1936-1939,57,Ramón Álvarez Valdés,LD,Liberales,C,13,1,True,False,revisada
+1936-1939,59,Andrés Amado,RE,Derecha autoritaria,ED,19,3,True,False,revisada
+1936-1939,61,Miguel Amilibia Machimbarrena,PSOE,Socialista,I,17,1,True,False,sin revisar (CGOCUS)
+1936-1939,64,José Andrés Manso,PSOE,Socialista,I,43,2,True,False,revisada
+1936-1939,65,Mariano Ansó,AR,Republicanos,CI,49,3,True,False,revisada
+1936-1939,66,Graciano Antuña Alvarez,PSOE,Socialista,I,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,75,Luis Arellano,CT,Carlistas,ED,6,2,True,False,revisada
+1936-1939,76,José Arizcún,CEDA,Conservadores,D,29,4,True,False,revisada
+1936-1939,78,Antonio Arnedo,CEDA,Conservadores,D,2,1,True,False,revisada
+1936-1939,83,Benito Artigas Arpón,UR,Republicanos,CI,77,6,True,False,revisada
+1936-1939,88,Bernardo Aza,CEDA,Conservadores,D,1,2,True,False,revisada
+1936-1939,96,Carlos Badía,Lliga,Catalanista de derecha,CD,33,3,True,False,revisada
+1936-1939,97,Emilio Baeza Medina,AR,Republicanos,CI,79,4,True,False,revisada
+1936-1939,100,Faustino Ballve Pallicer,AR,Republicanos,CI,21,1,True,False,sin revisar (CGOCUS)
+1936-1939,101,Juan Bañeres Cateura,ERC,Catalanista de izquierda,I,55,3,True,False,sin revisar (CGOCUS)
+1936-1939,109,Luis Barrena,UR,Republicanos,CI,22,1,True,False,revisada
+1936-1939,115,Severino Barros de Lis,CEDA,Conservadores,D,9,3,True,False,revisada
+1936-1939,118,Joaquín Bau,CT,Carlistas,ED,37,4,True,False,revisada
+1936-1939,119,Ramón Beade,PSOE,Socialista,I,20,1,True,False,revisada
+1936-1939,121,Manuel Becerra,Centro,Liberales,C,5,1,True,False,revisada
+1936-1939,125,Félix Eleuterio Benítez de Lugo,Centro,Liberales,C,5,1,True,False,revisada
+1936-1939,129,Manuel Bermejillo,CEDA,Conservadores,D,2,4,True,False,revisada
+1936-1939,130,Antonio Bermúdez Cañete,CEDA,Conservadores,D,25,3,True,False,revisada
+1936-1939,132,Antonio Bernabeu,CEDA,Conservadores,D,12,1,True,False,revisada
+1936-1939,133,Julián Besteiro,PSOE,Socialista,I,29,2,True,False,revisada
+1936-1939,139,Eduardo Blanco Fernandez,PSOE,Socialista,I,20,1,True,False,sin revisar (CGOCUS)
+1936-1939,141,Benito Blanco-Rajoy,CEDA,Conservadores,D,6,2,True,False,revisada
+1936-1939,142,José Blanco Rodríguez,Agrarios,Agrarios,CD,10,4,True,False,revisada
+1936-1939,148,Cayetano Bolívar,PCE,Comunista,EI,44,2,True,False,revisada
+1936-1939,157,Jerónimo Bugeda,PSOE,Socialista,I,12,1,True,False,revisada
+1936-1939,158,Antonio Bujalance Lopez,PSOE,Socialista,I,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,160,Inocencio Burgos Riestra,PSOE,Socialista,I,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,166,Abilio Calderón,Independiente,Conservadores,D,3,5,True,False,revisada
+1936-1939,168,Jose Calvet y Mora,ERC,Catalanista de izquierda,I,16,1,True,False,sin revisar (CGOCUS)
+1936-1939,169,Jose Calviño Dominguez,AR,Republicanos,CI,20,2,True,False,sin revisar (CGOCUS)
+1936-1939,170,José Calvo Sotelo,RE,Derecha autoritaria,ED,38,5,True,False,revisada
+1936-1939,171,Luciano de la Calzada,CEDA,Conservadores,D,13,1,True,False,revisada
+1936-1939,176,Juan Campos Villagran,PSOE,Socialista,I,25,3,True,False,sin revisar (CGOCUS)
+1936-1939,191,Ramón de Carranza,RE,Derecha autoritaria,ED,19,4,True,False,revisada
+1936-1939,192,Geminiano Carrascal,CEDA,Conservadores,D,39,7,True,False,revisada
+1936-1939,201,Wenceslao Carrillo,PSOE,Socialista,I,27,2,True,False,revisada
+1936-1939,202,Leandro Carro Hernaez,PCE,Comunista,EI,49,3,True,False,sin revisar (CGOCUS)
+1936-1939,203,José María Casabó,Lliga,Catalanista de derecha,CD,22,3,True,False,revisada
+1936-1939,207,Valeriano Casanueva Picazo,PSOE,Socialista,I,61,4,True,False,sin revisar (CGOCUS)
+1936-1939,208,Cándido Casanueva,CEDA,Conservadores,D,6,2,True,False,revisada
+1936-1939,209,Santiago Casares Quiroga,AR,Republicanos,CI,14,1,True,False,revisada
+1936-1939,211,Francisco Casas Sala,AR,Republicanos,CI,13,1,True,False,sin revisar (CGOCUS)
+1936-1939,215,Eduardo Castillo,PSOE,Socialista,I,60,4,True,False,revisada
+1936-1939,219,Honorato de Castro,AR,Republicanos,CI,9,1,True,False,revisada
+1936-1939,223,Pablo Ceballos,CEDA,Conservadores,D,17,2,True,False,revisada
+1936-1939,225,Enrique Cerezo Senis,PSOE,Socialista,I,14,1,True,False,sin revisar (CGOCUS)
+1936-1939,226,Francisco Cervera,CEDA,Conservadores,D,2,1,False,False,revisada
+1936-1939,231,José María Cid,Agrarios,Agrarios,CD,30,7,True,False,revisada
+1936-1939,232,José Cimas Leal,CEDA,Conservadores,D,34,2,True,False,revisada
+1936-1939,234,Julio Colomer Vidal,CEDA,Conservadores,D,13,1,True,False,sin revisar (CGOCUS)
+1936-1939,235,Jaime Comas Jo,USC,Socialista,I,49,4,True,False,sin revisar (CGOCUS)
+1936-1939,236,Jesús Comín,CT,Carlistas,ED,25,2,True,False,revisada
+1936-1939,238,Juan Company Jiménez,AR,Republicanos,CI,6,1,True,False,revisada
+1936-1939,241,Juan de Contreras y Lopez de Ayala,CEDA,Conservadores,D,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,242,Luis Cordero,PRDF,Republicanos,CI,16,1,True,False,revisada
+1936-1939,245,Pedro Corominas,ERC,Catalanista de izquierda,I,36,2,True,False,revisada
+1936-1939,247,Ricardo Cortes,CEDA,Conservadores,D,12,8,True,False,revisada
+1936-1939,250,Juan Antonio Cremades Royo,CEDA,Conservadores,D,34,3,True,False,sin revisar (CGOCUS)
+1936-1939,258,Rafael Delgado Benitez,PRP,Liberales,CD,22,1,True,False,sin revisar (CGOCUS)
+1936-1939,262,Emiliano Díaz Castro,PSOE,Socialista,I,29,3,True,False,revisada
+1936-1939,264,José Díaz Fernández,AR,Republicanos,CI,62,3,True,False,revisada
+1936-1939,266,José Díaz Ramos,PCE,Comunista,EI,66,6,True,False,revisada
+1936-1939,267,Jose Maria Diaz y Diaz Villamil,AR,Republicanos,CI,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,268,Ramon Diez de Rivera y Casares,CEDA,Conservadores,D,11,2,True,False,sin revisar (CGOCUS)
+1936-1939,269,Fulgencio Díez Pastor,UR,Republicanos,CI,59,4,True,False,revisada
+1936-1939,272,Marcelino Domingo,AR,Republicanos,CI,10,1,True,False,revisada
+1936-1939,273,Tomás Domínguez Arévalo,CT,Carlistas,ED,18,3,True,False,revisada
+1936-1939,275,Luis Dorado Luque,PSOE,Socialista,I,59,3,True,False,sin revisar (CGOCUS)
+1936-1939,276,Jose Duato Chapa,CEDA,Conservadores,D,1,1,False,False,sin revisar (CGOCUS)
+1936-1939,279,Jesus Elizalde y Sainz de Robles,CT,Carlistas,ED,6,2,True,False,sin revisar (CGOCUS)
+1936-1939,282,Isidro Escandell,PSOE,Socialista,I,48,2,True,False,revisada
+1936-1939,284,Roberto Escribano,AR,Republicanos,CI,94,4,True,False,revisada
+1936-1939,287,Rafael Esparza,CEDA,Conservadores,D,8,2,True,False,revisada
+1936-1939,288,Carlos Esplá,AR,Republicanos,CI,60,3,True,False,revisada
+1936-1939,290,Juan Estelrich,Lliga,Catalanista de derecha,CD,30,2,True,False,revisada
+1936-1939,291,Bartolome Estevan Mata,CEDA,Conservadores,D,22,1,True,False,sin revisar (CGOCUS)
+1936-1939,303,Alberto Fernandez Ballesteros,PSOE,Socialista,I,25,2,True,False,sin revisar (CGOCUS)
+1936-1939,304,Antonio Fernández-Bolaños,PSOE,Socialista,I,6,1,True,False,revisada
+1936-1939,306,Luis Fernández Clérigo,AR,Republicanos,CI,102,8,True,False,revisada
+1936-1939,309,Virgilio Fernández de la Vega,Centro,Liberales,C,18,3,True,False,revisada
+1936-1939,313,Pedro Fernandez Hernandez,AR,Republicanos,CI,17,2,True,False,sin revisar (CGOCUS)
+1936-1939,315,José María Fernández Ladreda,CEDA,Conservadores,D,27,6,True,False,revisada
+1936-1939,317,Ramón Fernández Mato,Centro,Liberales,C,20,3,True,False,revisada
+1936-1939,319,Bibiano Fernández-Osorio,AR,Republicanos,CI,56,2,True,False,revisada
+1936-1939,322,Félix Fernández Vega,AR,Republicanos,CI,44,4,True,False,revisada
+1936-1939,326,Benigno Ferrer Domingo,PSOE,Socialista,I,53,3,True,False,revisada
+1936-1939,330,Manuel Figueroa Rojas,DLR,Liberales,CD,13,1,True,False,revisada
+1936-1939,333,José Finat,CEDA,Conservadores,D,12,1,True,False,revisada
+1936-1939,334,Manuel Florensa,Lliga,Catalanista de derecha,CD,22,3,True,False,revisada
+1936-1939,338,Enrique de Francisco,PSOE,Socialista,I,102,9,True,False,revisada
+1936-1939,340,Gabriel Franco López,AR,Republicanos,CI,12,1,True,False,revisada
+1936-1939,342,Santiago Fuentes Pila,RE,Derecha autoritaria,ED,20,5,True,False,revisada
+1936-1939,345,Ángel Galarza,PSOE,Socialista,I,55,6,True,False,revisada
+1936-1939,348,Juan Antonio Gamazo,RE,Derecha autoritaria,ED,12,2,True,False,revisada
+1936-1939,349,Gines Ganga Tremiño,PSOE,Socialista,I,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,350,Bautista Garcet Granell,PCE,Comunista,EI,44,2,True,False,sin revisar (CGOCUS)
+1936-1939,360,Pedro Garcia Garcia,PSOE,Socialista,I,20,1,True,False,sin revisar (CGOCUS)
+1936-1939,364,Salvador García Muñoz,PSOE,Socialista,I,58,3,True,False,revisada
+1936-1939,367,Jose Garcia Ramos y Segond,UR,Republicanos,CI,40,2,True,False,sin revisar (CGOCUS)
+1936-1939,375,Ricardo Gasset,UR,Republicanos,CI,61,5,True,False,revisada
+1936-1939,378,Ángeles Gil Albarellos,CEDA,Conservadores,D,8,2,True,False,revisada
+1936-1939,379,Felipe Gil Casares,CEDA,Conservadores,D,23,4,True,False,revisada
+1936-1939,383,Bernardo Giner de los Ríos,UR,Republicanos,CI,15,1,True,False,revisada
+1936-1939,386,Jerónimo Gomariz,UR,Republicanos,CI,25,3,True,False,revisada
+1936-1939,389,Francisco Gomez Hidalgo y Alvarez,UR,Republicanos,CI,85,7,True,False,sin revisar (CGOCUS)
+1936-1939,396,Eliseo Gomez Serrano,AR,Republicanos,CI,37,3,True,False,sin revisar (CGOCUS)
+1936-1939,401,Emilio González López,AR,Republicanos,CI,47,3,True,False,revisada
+1936-1939,404,Ramón González Peña,PSOE,Socialista,I,36,1,True,False,revisada
+1936-1939,407,Ramón González Sicilia,UR,Republicanos,CI,63,6,True,False,revisada
+1936-1939,409,Gabriel González Taltabull,UR,Republicanos,CI,22,1,True,False,revisada
+1936-1939,411,Julio Gonzalo Soto,CEDA,Conservadores,D,24,7,True,False,revisada
+1936-1939,412,Félix Gordón Ordás,UR,Republicanos,CI,13,1,True,False,revisada
+1936-1939,423,Juan Bautista Guerra,CEDA,Conservadores,D,3,5,True,False,revisada
+1936-1939,425,Amando Guiance Pampin,PSOE,Socialista,I,12,1,True,False,sin revisar (CGOCUS)
+1936-1939,428,Juan Gutiérrez Prieto,PSOE,Socialista,I,20,1,True,False,revisada
+1936-1939,429,Manuel Guzman Garcia,AR,Republicanos,CI,12,1,True,False,sin revisar (CGOCUS)
+1936-1939,432,Jesús Hernández Tomás,PCE,Comunista,EI,50,4,True,False,revisada
+1936-1939,433,Carlos Hernández Zancajo,PSOE,Socialista,I,15,1,True,False,revisada
+1936-1939,441,Dolores Ibárruri,PCE,Comunista,EI,73,7,True,False,revisada
+1936-1939,447,Juan Antonio Irazusta,PNV,Nacionalista Vasco,CD,22,1,True,False,revisada
+1936-1939,448,Manuel Irujo,PNV,Nacionalista Vasco,CD,21,2,True,False,revisada
+1936-1939,450,Antonio Jaén,AR,Republicanos,CI,50,5,True,False,revisada
+1936-1939,452,Julio Jáuregui Lasanta,PNV,Nacionalista Vasco,CD,15,1,True,False,revisada
+1936-1939,456,Manuel Giménez Fernández,CEDA,Conservadores,D,21,2,True,False,revisada
+1936-1939,461,Mariano Joven,AR,Republicanos,CI,95,7,True,False,revisada
+1936-1939,465,José Antonio Junco Toral,PSOE,Socialista,I,3,1,True,False,revisada
+1936-1939,466,Julio Just,AR,Republicanos,CI,49,3,True,False,revisada
+1936-1939,467,Victoria Kent,AR,Republicanos,CI,109,8,True,False,revisada
+1936-1939,469,Luis Labin Besuita,PSOE,Socialista,I,20,1,True,False,sin revisar (CGOCUS)
+1936-1939,472,Ramón Lamoneda,PSOE,Socialista,I,38,1,True,False,revisada
+1936-1939,477,Antonio Lara,UR,Republicanos,CI,49,3,True,False,revisada
+1936-1939,478,Luis Laredo Vega,AR,Republicanos,CI,39,4,True,False,revisada
+1936-1939,479,Francisco Largo Caballero,PSOE,Socialista,I,34,3,True,False,revisada
+1936-1939,480,José María Lasarte Arana,PNV,Nacionalista Vasco,CD,16,1,True,False,revisada
+1936-1939,482,Bernardo Laude Alvarez,CEDA,Conservadores,D,8,2,True,False,sin revisar (CGOCUS)
+1936-1939,491,Rodolfo Llopis,PSOE,Socialista,I,78,7,True,False,revisada
+1936-1939,493,Pedro Longueira Patiño,PSOE,Socialista,I,72,3,True,False,sin revisar (CGOCUS)
+1936-1939,495,Francisco López de Goicoechea,UR,Republicanos,CI,60,5,True,False,revisada
+1936-1939,498,Aurelio Lopez Malo Andres,AR,Republicanos,CI,38,1,True,False,sin revisar (CGOCUS)
+1936-1939,507,Edmundo Lorenzo,PSOE,Socialista,I,38,1,True,False,revisada
+1936-1939,508,Juan Lozano,PSOE,Socialista,I,12,1,True,False,revisada
+1936-1939,509,Luis Lucía,CEDA,Conservadores,D,1,1,False,False,revisada
+1936-1939,512,Dimas Madariaga,CEDA,Conservadores,D,16,2,True,False,revisada
+1936-1939,516,José Maestro,PSOE,Socialista,I,20,1,True,False,revisada
+1936-1939,519,Jose Maldonado Gonzalez,AR,Republicanos,CI,54,3,True,False,sin revisar (CGOCUS)
+1936-1939,529,Vicente Marco Miranda,ERC,Catalanista de izquierda,I,44,3,True,False,revisada
+1936-1939,530,Dario Marcos Cano,AR,Republicanos,CI,58,2,True,False,sin revisar (CGOCUS)
+1936-1939,539,Antonio Martí Olucha,CEDA,Conservadores,D,7,2,True,False,revisada
+1936-1939,552,Luis Martínez Carvajal,AR,Republicanos,CI,37,2,True,False,revisada
+1936-1939,563,Federico Martinez Miñana,AR,Republicanos,CI,54,4,True,False,sin revisar (CGOCUS)
+1936-1939,567,Manuel Martínez Pedroso,PSOE,Socialista,I,20,1,True,False,revisada
+1936-1939,568,Manuel Martínez Risco,AR,Republicanos,CI,43,2,True,False,revisada
+1936-1939,574,José Mascort,ERC,Catalanista de izquierda,I,49,4,True,False,revisada
+1936-1939,577,José María de Mateo la Iglesia,CEDA,Conservadores,D,2,1,False,False,revisada
+1936-1939,581,Miguel Maura,PRC,Conservadores,CD,22,1,True,False,revisada
+1936-1939,583,Joaquín Maurín,POUM,Comunista,EI,18,2,True,False,revisada
+1936-1939,584,Francisco Medina Clarés,Centro,Liberales,C,1,1,True,False,revisada
+1936-1939,586,Rafael Melgarejo,CEDA,Conservadores,D,2,1,False,False,revisada
+1936-1939,587,José María Méndez Gil,CEDA,Conservadores,D,12,1,True,False,revisada
+1936-1939,588,Juan Antonio Méndez Martínez,UR,Republicanos,CI,48,4,True,False,revisada
+1936-1939,590,Ángel Menéndez Suárez,AR,Republicanos,CI,113,8,True,False,revisada
+1936-1939,591,Francisco Menoyo Baños,PSOE,Socialista,I,12,1,True,False,sin revisar (CGOCUS)
+1936-1939,597,Jesús de Miguel,AR,Republicanos,CI,47,5,True,False,revisada
+1936-1939,598,Antonio Mije,PCE,Comunista,EI,58,4,True,False,revisada
+1936-1939,600,José Miñones,UR,Republicanos,CI,21,1,True,False,revisada
+1936-1939,603,Esteban Mirasol,AR,Republicanos,CI,74,5,True,False,revisada
+1936-1939,605,Manuel Molina Conejero,PSOE,Socialista,I,7,1,True,False,sin revisar (CGOCUS)
+1936-1939,607,Ramón Molina,CEDA,Conservadores,D,4,1,True,False,revisada
+1936-1939,628,José Moreno Galvache,UR,Republicanos,CI,40,3,True,False,revisada
+1936-1939,630,Antonio Moreno Jover,AR,Republicanos,CI,40,2,True,False,revisada
+1936-1939,631,Mariano Moreno Mateo,PSOE,Socialista,I,16,2,True,False,revisada
+1936-1939,635,José Moreno Torres,CEDA,Conservadores,D,8,2,True,False,revisada
+1936-1939,643,Miguel Muñoz Gonzalez de Ocampo,AR,Republicanos,CI,38,1,True,False,sin revisar (CGOCUS)
+1936-1939,644,Manuel Muñoz Martínez,AR,Republicanos,CI,38,1,True,False,revisada
+1936-1939,646,Amancio Muñoz Zafra,PSOE,Socialista,I,35,3,True,False,revisada
+1936-1939,649,Enrique Navarro Esparcia,AR,Republicanos,CI,52,2,True,False,sin revisar (CGOCUS)
+1936-1939,652,Juan Negrín,PSOE,Socialista,I,3,1,True,False,revisada
+1936-1939,653,Margarita Nelken,PSOE,Socialista,I,31,2,True,False,revisada
+1936-1939,654,Luis Nicoláu d'Olwer,ACR,Catalanista de izquierda,I,14,1,True,False,revisada
+1936-1939,657,Ramón Nogués,ERC,Catalanista de izquierda,I,70,4,True,False,revisada
+1936-1939,669,José Luis de Oriol,CT,Carlistas,ED,5,1,True,False,revisada
+1936-1939,671,Daniel Ortega Martínez,PCE,Comunista,EI,43,4,True,False,revisada
+1936-1939,674,Tomás Ortiz de Solórzano,CEDA,Conservadores,D,2,1,True,False,revisada
+1936-1939,679,Roberto Ouro Vazquez,AR,Republicanos,CI,12,1,True,False,sin revisar (CGOCUS)
+1936-1939,682,Nicolas de Pablo Hernandez,PSOE,Socialista,I,20,1,True,False,sin revisar (CGOCUS)
+1936-1939,683,Jesús Pabón,CEDA,Conservadores,D,42,5,True,False,revisada
+1936-1939,684,Benito Pabón,Independiente,Republicanos,I,40,4,True,False,revisada
+1936-1939,690,Domingo Palet,ERC,Catalanista de izquierda,I,24,2,True,False,revisada
+1936-1939,692,Emilio Palomo,AR,Republicanos,CI,79,4,True,False,revisada
+1936-1939,694,Jose Pardo Gayoso,AR,Republicanos,CI,34,4,True,False,sin revisar (CGOCUS)
+1936-1939,695,Jose Benito Pardo y Pardo,CEDA,Conservadores,D,4,1,True,False,sin revisar (CGOCUS)
+1936-1939,697,Antonio Pasagali Lobo,PSOE,Socialista,I,38,1,True,False,sin revisar (CGOCUS)
+1936-1939,699,Teodoro Pascual Cordero,PRR,Republicanos,C,6,1,True,False,revisada
+1936-1939,700,Álvaro Pascual Leone,UR,Republicanos,CI,74,7,True,False,revisada
+1936-1939,702,Manuel Pedregal,LD,Liberales,C,17,2,True,False,revisada
+1936-1939,704,Laureano Pelaez Canellas,CEDA,Conservadores,D,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,709,Armando Peñamaría,Centro,Liberales,C,5,1,True,False,revisada
+1936-1939,717,Eduardo Pérez del Molino,CEDA,Conservadores,D,17,2,True,False,revisada
+1936-1939,721,Manuel Pérez Jofre,AR,Republicanos,CI,67,2,True,False,revisada
+1936-1939,722,Joaquín Pérez Madrigal,PRR,Republicanos,C,12,1,True,False,revisada
+1936-1939,723,Miguel Perez Martinez,AR,Republicanos,CI,55,2,True,False,sin revisar (CGOCUS)
+1936-1939,726,Leandro Pérez Urría,AR,Republicanos,CI,88,7,True,False,revisada
+1936-1939,729,Juan Peset Aleixandre,AR,Republicanos,CI,46,4,True,False,sin revisar (CGOCUS)
+1936-1939,730,Ángel Pestaña,P. Sindicalista,Anarcosindicalista,EI,76,8,True,False,revisada
+1936-1939,736,Rafael Pina Milán,UR,Republicanos,CI,55,3,True,False,revisada
+1936-1939,738,Luis Piñol,Lliga,Catalanista de derecha,CD,22,3,True,False,revisada
+1936-1939,745,Manuel Portela Valladares,Centro,Liberales,C,19,2,True,False,revisada
+1936-1939,748,Gabriel Pradal,PSOE,Socialista,I,43,3,True,False,revisada
+1936-1939,749,José Prat,PSOE,Socialista,I,33,3,True,False,revisada
+1936-1939,750,Antonio Pretel Fernandez,PCE,Comunista,EI,15,1,True,False,sin revisar (CGOCUS)
+1936-1939,754,Indalecio Prieto,PSOE,Socialista,I,48,4,True,False,revisada
+1936-1939,756,Cesar Puget Piquer,CEDA,Conservadores,D,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,758,Luis Puig de la Bellacasa,Lliga,Catalanista de derecha,CD,33,3,True,False,revisada
+1936-1939,762,Jose Puig Pujadas,ERC,Catalanista de izquierda,I,33,2,True,False,sin revisar (CGOCUS)
+1936-1939,766,Eduardo Ragassol y Sarra,ACR,Catalanista de izquierda,I,38,1,True,False,sin revisar (CGOCUS)
+1936-1939,767,Pedro Rahola,Lliga,Catalanista de derecha,CD,51,5,True,False,revisada
+1936-1939,779,Jesús Requejo,CT,Carlistas,ED,17,3,True,False,revisada
+1936-1939,782,Andrés Revuelta Melgarejo,RE,Derecha autoritaria,ED,15,2,True,False,revisada
+1936-1939,786,Pedro Rico López,UR,Republicanos,CI,77,6,True,False,revisada
+1936-1939,796,Manuel Robles,PNV,Nacionalista Vasco,CD,22,1,True,False,revisada
+1936-1939,799,Felipe Rodés,Lliga,Catalanista de derecha,CD,22,2,True,False,revisada
+1936-1939,801,Alfonso Daniel Rodríguez Castelao,PG,Galleguista,CI,37,3,True,False,revisada
+1936-1939,802,Antonio Rodriguez Cid,Agrarios,Agrarios,CD,28,6,True,False,sin revisar (CGOCUS)
+1936-1939,804,Luis Rodríguez de Viguri,Agrarios,Agrarios,CD,26,5,True,False,revisada
+1936-1939,805,Luis Rodríguez Figueroa,AR,Republicanos,CI,19,2,True,False,revisada
+1936-1939,807,Miguel Rodriguez Molina,AR,Republicanos,CI,14,1,True,False,sin revisar (CGOCUS)
+1936-1939,818,Luis Romero Solano,PSOE,Socialista,I,66,5,True,False,revisada
+1936-1939,819,José Rosado Gil,Centro,Liberales,C,9,2,True,False,revisada
+1936-1939,822,Carlos Rubiera Rodriguez,PSOE,Socialista,I,40,3,True,False,sin revisar (CGOCUS)
+1936-1939,826,Mariano Rubio Tuduri,ERC,Catalanista de izquierda,I,21,2,True,False,revisada
+1936-1939,828,Luis Rufilanchas,PSOE,Socialista,I,81,7,True,False,revisada
+1936-1939,830,Alfonso Ruiz Blazquez,AR,Republicanos,CI,6,1,True,False,sin revisar (CGOCUS)
+1936-1939,835,Mariano Ruiz-Funes,AR,Republicanos,CI,15,1,True,False,revisada
+1936-1939,836,Amós Ruiz Lecina,PSOE,Socialista,I,36,1,True,False,revisada
+1936-1939,838,Ramón Ruiz Rebollo,AR,Republicanos,CI,85,4,True,False,revisada
+1936-1939,842,Jose Sabucedo Morales,RE,Derecha autoritaria,ED,13,1,True,False,sin revisar (CGOCUS)
+1936-1939,849,Marino Saiz Sanchez,PSOE,Socialista,I,54,2,True,False,sin revisar (CGOCUS)
+1936-1939,850,Pelayo Sala y Berenguer,USC,Socialista,I,6,1,True,False,revisada
+1936-1939,858,Tomas Salort y de Olives,CEDA,Conservadores,D,12,1,True,False,sin revisar (CGOCUS)
+1936-1939,859,Amós Salvador,AR,Republicanos,CI,100,5,True,False,revisada
+1936-1939,864,Miguel San Andrés,AR,Republicanos,CI,25,2,True,False,revisada
+1936-1939,867,Luis Felipe Sanchez Cabezudo Salanova,Agrarios,Agrarios,CD,6,3,True,False,sin revisar (CGOCUS)
+1936-1939,869,Ricardo Sánchez de Movellán,CEDA,Conservadores,D,25,3,True,False,revisada
+1936-1939,875,Mateo Sanchez Rovira,Agrarios,Agrarios,CD,6,3,True,False,sin revisar (CGOCUS)
+1936-1939,876,José María Sánchez Ventura,CEDA,Conservadores,D,6,1,True,False,revisada
+1936-1939,879,Miguel Sancho Izquierdo,CEDA,Conservadores,D,6,1,True,False,revisada
+1936-1939,884,Miguel Santaló,ERC,Catalanista de izquierda,I,89,6,True,False,revisada
+1936-1939,889,Juan Sapiña,PSOE,Socialista,I,30,2,True,False,revisada
+1936-1939,891,Vicente Sarmiento,PSOE,Socialista,I,36,1,True,False,revisada
+1936-1939,899,Juan Sentís Nogués,ERC,Catalanista de izquierda,I,6,1,True,False,revisada
+1936-1939,900,Francisco Senyal,ERC,Catalanista de izquierda,I,54,4,True,False,revisada
+1936-1939,901,Ignacio Seoane Fernandez,PSOE,Socialista,I,12,1,True,False,sin revisar (CGOCUS)
+1936-1939,908,Ramón Serrano Suñer,CEDA,Conservadores,D,19,2,True,False,revisada
+1936-1939,915,Vicente Sol,AR,Republicanos,CI,78,6,True,False,revisada
+1936-1939,919,Alfredo Somoza Gutierrez,AR,Republicanos,CI,27,2,True,False,sin revisar (CGOCUS)
+1936-1939,923,Fernando Suárez de Tangil,RE,Derecha autoritaria,ED,3,4,True,False,revisada
+1936-1939,925,Ramón Suárez Picallo,PG,Galleguista,CI,57,4,True,False,revisada
+1936-1939,928,José Suñol,ERC,Catalanista de izquierda,I,22,1,True,False,revisada
+1936-1939,930,Antonio Taboada,Agrarios,Agrarios,CD,14,5,True,False,revisada
+1936-1939,935,Mariano Tejero,AR,Republicanos,CI,102,6,True,False,revisada
+1936-1939,937,Felix Templado Martinez,AR,Republicanos,CI,38,1,True,False,sin revisar (CGOCUS)
+1936-1939,943,Belarmino Tomás Álvarez,PSOE,Socialista,I,48,4,True,False,revisada
+1936-1939,944,José Tomás y Piera,ERC,Catalanista de izquierda,I,77,7,True,False,revisada
+1936-1939,945,Pascual Tomás Taengua,PSOE,Socialista,I,15,1,True,False,revisada
+1936-1939,948,Matilde de la Torre,PSOE,Socialista,I,19,1,True,False,revisada
+1936-1939,953,Manuel Torres Campaña,UR,Republicanos,CI,45,4,True,False,revisada
+1936-1939,956,José Antonio Trabal,ERC,Catalanista de izquierda,I,73,8,True,False,revisada
+1936-1939,961,Vicente Uribe,PCE,Comunista,EI,88,7,True,False,revisada
+1936-1939,962,Jose Antonio Uribes Moreno,PCE,Comunista,EI,56,3,True,False,sin revisar (CGOCUS)
+1936-1939,964,Joaquin de Urzaiz y Cadaval,PRP,Liberales,CD,16,1,True,False,sin revisar (CGOCUS)
+1936-1939,968,Faustino Valentín,UR,Republicanos,CI,27,2,True,False,revisada
+1936-1939,969,Felix Valenzuela de Hita,CEDA,Conservadores,D,12,1,True,False,sin revisar (CGOCUS)
+1936-1939,970,Fernando Valera,UR,Republicanos,CI,25,2,True,False,revisada
+1936-1939,973,Bernardino Valle,PRDF,Republicanos,CI,33,2,True,False,revisada
+1936-1939,974,Fernando Valls Taberner,Lliga,Catalanista de derecha,CD,22,3,True,False,revisada
+1936-1939,977,Pedro Vargas,AR,Republicanos,CI,56,2,True,False,revisada
+1936-1939,987,Victorino Veiga Gonzalez,AR,Republicanos,CI,20,2,True,False,sin revisar (CGOCUS)
+1936-1939,988,Antonio Velao,AR,Republicanos,CI,14,1,True,False,revisada
+1936-1939,990,Luis Velasco Damas,AR,Republicanos,CI,52,3,True,False,revisada
+1936-1939,993,Juan Ventosa Calvell,Lliga,Catalanista de derecha,CD,38,5,True,False,revisada
+1936-1939,995,Isidoro Vergara,AR,Republicanos,CI,98,5,True,False,revisada
+1936-1939,996,Alejandro Viana Esperon,AR,Republicanos,CI,43,2,True,False,sin revisar (CGOCUS)
+1936-1939,998,Miguel Vidal Guardiola,Lliga,Catalanista de derecha,CD,47,3,True,False,revisada
+1936-1939,1000,Juan Simeón Vidarte,PSOE,Socialista,I,74,4,True,False,revisada
+1936-1939,1002,Ramon Viguri y Ruiz de Olano,AR,Republicanos,CI,54,2,True,False,sin revisar (CGOCUS)
+1936-1939,1003,Gregorio Vilatela,AR,Republicanos,CI,49,6,True,False,revisada
+1936-1939,1007,Ignacio Villalonga,CEDA,Conservadores,D,5,1,True,False,revisada
+1936-1939,1008,Miguel Villalta,PSOE,Socialista,I,41,3,True,False,revisada
+1936-1939,1015,Elpidio Villaverde Rey,AR,Republicanos,CI,14,1,True,False,sin revisar (CGOCUS)
+1936-1939,1020,Ricardo Zabalza,PSOE,Socialista,I,17,1,True,False,revisada
+1936-1939,1025,Fernando Zulueta,ERC,Catalanista de izquierda,I,78,5,True,False,revisada
+1936-1939,92,Pedro Aznar y Seserra,PCP,Comunista,EI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,523,Juan Jose Manso del Abad,PCE,Comunista,EI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,551,Pedro Martínez Cartón,PCE,Comunista,EI,0,0,False,True,revisada
+1936-1939,815,Adriano Romero Cachinero,PCE,Comunista,EI,0,0,False,True,revisada
+1936-1939,921,Florencio Sosa Acevedo,PCE,Comunista,EI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,924,Eduardo Suarez Morales,PCE,Comunista,EI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,966,Miguel Valdes y Valdes,PCP,Comunista,EI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,36,Aurelio Almagro Gracia,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,47,Tomás Álvarez Angulo,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,60,Claudio Ametlla y Coll,ACR,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,71,Luis Araquistáin,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,110,Martin Barrera y Masesma,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,114,Manuel Barrios Jimenez,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,131,Rafael Bermudo Ardura,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,135,Crescenciano Bilbao Castellanos,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,137,Antonio Bilbatua Zubeldia,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,150,Julian Borderas Pallaruelo,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,156,José Briansó Salvado,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1936-1939,164,Antonio Cabrera,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,165,Rafael Calbo Cuadrado,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,200,Victor Alfredo Carretero Rodriguez,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,205,Juan Casanellas Ibarz,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,220,Manuel Castro Molina,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,237,Juan Comorera Sole,USC,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,239,Luis Companys,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1936-1939,293,Martín Esteve,ACR,Catalanista de izquierda,I,0,0,False,True,revisada
+1936-1939,314,Ernesto Fernandez Jimenez,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,318,Amador Fernandez Montes,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,327,Pedro Ferrer y Batlle,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,357,Luis Garcia Cubertoret,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,377,Ventura Gassol,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1936-1939,415,Anastasio de Gracia,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,416,Higinio Felipe Granado,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,424,Melchor Guerrero,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,453,Francisco de Paula Jené,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1936-1939,455,Luis Jiménez de Asúa,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,459,Nicolas Jimenez Molina,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,475,Federico Landrove Lopez,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,492,Juan Lluhí,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1936-1939,501,José López Quero,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,543,Antonio Martin Garcia,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,547,Vicente Martin Romera,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,575,José María Masip e Izábal,ERC,Catalanista de izquierda,I,0,0,False,True,revisada
+1936-1939,596,Pedro Mestres y Albet,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,619,Francisco Félix Montiel,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,639,Jose Moya Navarro,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,685,Pablo Padro y Canyellas,ERC,Catalanista de izquierda,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,728,Alejandro Peris,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,743,Ramon Pla y Armengol,USC,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,791,Fernando de los Ríos,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,922,José Sosa Hormigo,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,947,Francisco de Toro Cuevas,PSOE,Socialista,I,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,1024,Julián Zugazagoitia,PSOE,Socialista,I,0,0,False,True,revisada
+1936-1939,46,Federico Alva Varela,UR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,89,Manuel Azaña,AR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,103,Augusto Barcia,AR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,111,Moises Barrio Duque,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,124,Ildefonso Beltran Pueyo,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,144,Manuel Blasco Garzón,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,204,Federico Casamayor Toscano,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,246,Ricardo Corro Moncho,UR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,249,Juan Jose Cremades Fons,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,253,Eliseo Cuadrado Garcia,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,300,Vicente Fe Castell,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,341,Eduardo Frápolli,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,354,José García Berlanga,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,384,José Giral,AR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,399,José González Fernández de la Bandera,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,468,Joaquin la Casta España,UR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,473,Casimiro Lana Sarrate,AR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,481,Albino Lasso Conde,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,502,Santiago López Rodríguez,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,520,Joaquin Mallo Castan,UR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,542,Arturo Martín de Nicolás,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,550,Diego Martínez Barrio,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,560,Emilio Martínez Jerez,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,564,Maximiliano Martínez Moreno,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,688,José Palanco,AR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,701,Alfonso Pazos,UR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,746,Celestino Poza Cobas,UR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,751,Casto Prieto Carrasco,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,772,Enrique Ramos,AR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,827,Ramon Rubio Vicenti,AR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,865,Claudio Sánchez Albornoz,AR,Republicanos,CI,0,0,False,True,revisada
+1936-1939,866,Juan Manuel Sanchez Caballero,UR,Republicanos,CI,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,1012,Antonio Villar Ponte,PG,Galleguista,CI,0,0,False,True,revisada
+1936-1939,8,José Acuña y Gómez de la Torre,Mesocrata,Liberales,C,0,0,False,True,revisada
+1936-1939,37,Melchor Almagro San Martin,Centro,Liberales,C,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,50,Melquíades Álvarez,LD,Liberales,C,0,0,False,True,revisada
+1936-1939,52,José María Álvarez Mendizábal,PRR,Republicanos,C,0,0,False,True,revisada
+1936-1939,104,Luis Bardají,PRR,Republicanos,C,0,0,False,True,revisada
+1936-1939,257,Fermín Daza,Centro,Liberales,C,0,0,False,True,revisada
+1936-1939,422,Rafael Guerra del Río,PRR,Republicanos,C,0,0,False,True,revisada
+1936-1939,716,José Pérez de Rozas,PRR,Republicanos,C,0,0,False,True,revisada
+1936-1939,734,Jose Picon Meilhon,PRR,Republicanos,C,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,770,Fernando Ramos Cerviño,Centro,Liberales,C,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,784,Manuel Rico Avello,Centro,Liberales,C,0,0,False,True,revisada
+1936-1939,792,Natalio Rivas Santiago,Centro,Liberales,C,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,903,Antonio de Seras Gonzalez,Centro,Liberales,C,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,911,Tomás Sierra Rustarazo,PRR,Republicanos,C,0,0,False,True,revisada
+1936-1939,1006,Filiberto Villalobos,Centro,Liberales,C,0,0,False,True,revisada
+1936-1939,1011,Justo Villanueva,PRR,Republicanos,C,0,0,False,True,revisada
+1936-1939,80,Gregorio Arranz,PRC,Conservadores,CD,0,0,False,True,revisada
+1936-1939,179,José Antonio Canals,Independiente,Republicanos,CD,0,0,False,True,revisada
+1936-1939,229,Joaquín Chapaprieta,RI,Conservadores,CD,0,0,False,True,revisada
+1936-1939,244,Luis Cornide,Independiente,Liberales,CD,0,0,False,True,revisada
+1936-1939,298,Joaquín Fanjul,Agrarios,Agrarios,CD,0,0,False,True,revisada
+1936-1939,305,Federico Fernández Castillejo,PRP,Liberales,CD,0,0,False,True,revisada
+1936-1939,332,Álvaro Figueroa y Torres,Independiente,Liberales,CD,0,0,False,True,revisada
+1936-1939,390,Enrique Gómez Jiménez,PRC,Conservadores,CD,0,0,False,True,revisada
+1936-1939,397,Francisco Gonzalez Carrascosa,Agrarios,Agrarios,CD,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,414,Modesto Gosálvez,Agrarios,Agrarios,CD,0,0,False,True,revisada
+1936-1939,436,José Horn,PNV,Nacionalista Vasco,CD,0,0,False,True,revisada
+1936-1939,504,Leopoldo Lopez y Lopez,PRP,Liberales,CD,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,612,Daniel Mondéjar,Agrarios,Agrarios,CD,0,0,False,True,revisada
+1936-1939,645,Gonzalo Muñoz Ruiz,PRP,Liberales,CD,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,713,Antonio Perez Crespo,Agrarios,Agrarios,CD,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,733,Rafael Picavea,PNV,Nacionalista Vasco,CD,0,0,False,True,revisada
+1936-1939,813,José María Roldán,PRP,Liberales,CD,0,0,False,True,revisada
+1936-1939,823,José Tomás Rubio Chávarri,PRP,Liberales,CD,0,0,False,True,revisada
+1936-1939,845,Manuel Sáenz de Miera,Agrarios,Agrarios,CD,0,0,False,True,revisada
+1936-1939,949,Heliodoro de la Torre Larrinaga,PNV,Nacionalista Vasco,CD,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,957,José María Trías de Bes,Lliga,Catalanista de derecha,CD,0,0,False,True,revisada
+1936-1939,991,Nicasio Velayos,Agrarios,Agrarios,CD,0,0,False,True,revisada
+1936-1939,4,Pedro Acacio Sandoval,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,58,Romualdo Alvargonzález,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,84,Félix Avia,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,113,Pedro Barrios Caamaño,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,128,Víctor José Berjano,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,145,Miguel Blasco Roncal,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,153,Francisco Javier Bosch Marín,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,183,Rufino Cano de Rueda,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,206,Manuel Casanova Conderana,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,213,Ernesto Castaño,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,240,Cesar Contreras Dueñas,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,254,Enrique Cuartero,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,256,Benito Davila Sanchez Monje,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,283,Eusebio Escolano Gonzalvo,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,286,Luis Espada Guntin,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,302,Jose Fernandez Arroyo y Caro,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,312,Luis Fernández Heredia,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,331,Álvaro de Figueroa y Alonso Martínez,Independiente,Conservadores,D,0,0,False,True,revisada
+1936-1939,335,Bartolomé Fons,RI,Conservadores,D,0,0,False,True,revisada
+1936-1939,346,Lorenzo Gallardo,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,362,Luis García Guijarro,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,380,José María Gil Robles,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,398,Emilio Gonzalez de Mesa y Suarez,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,413,Miguel Gortari,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,434,Francisco Herrera Oria,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,454,Luis Giménez Canga-Argüelles,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,464,José María Julián Gil,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,496,Jose Victor Lopez de Vergara y Larraondo,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,514,Jesús Salvador Madero,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,527,Juan March Servera,PRC,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,536,Rafael Marín Lázaro,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,562,Pedro Martínez Juárez,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,580,Pedro Matutes Noguera,PRC,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,611,José Moncasí,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,627,Julio Moreno Dávila,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,638,José María Moutas,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,664,Ramon Olleros Gregorio,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,715,Francisco Perez de Guzman y Urzaiz,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,727,Dionisio Pérez Viana,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,763,Juan Pujol,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,778,Salvador Represa,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,789,Honorio Riesgo,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,829,Ramón Ruiz Alonso,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,839,Luis Ruiz Valdepeñas,CEDA,Conservadores,D,0,0,False,True,revisada
+1936-1939,907,Mariano Serrano Mendicute,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,927,Jaime Suau Pons,PRC,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,954,Manuel Torres Lopez,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,955,Juan Torres Sala,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,967,Amando Valentin Aguilar,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,1014,Ramon Villarino de Saa,CEDA,Conservadores,D,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,1017,Agustín Virgili,Independiente,Conservadores,D,0,0,False,True,revisada
+1936-1939,72,Jose Maria Arauz de Robles,CT,Carlistas,ED,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,292,Francisco Estévanez,CT,Carlistas,ED,0,0,False,True,revisada
+1936-1939,361,Raimundo García,Independiente,Derecha autoritaria,ED,0,0,False,True,revisada
+1936-1939,385,Antonio Goicoechea,RE,Derecha autoritaria,ED,0,0,False,True,revisada
+1936-1939,470,José María Lamamié de Clairac,CT,Carlistas,ED,0,0,False,True,revisada
+1936-1939,489,Victor Lis Quiben,RE,Derecha autoritaria,ED,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,554,Francisco Javier Martinez de Morentin Lopez,CT,Carlistas,ED,0,0,False,True,sin revisar (CGOCUS)
+1936-1939,569,Ginés Martínez Rubio,CT,Carlistas,ED,0,0,False,True,revisada
+1936-1939,795,Francisco Roa,RE,Derecha autoritaria,ED,0,0,False,True,revisada
+1936-1939,847,Pedro Sainz Rodríguez,RE,Derecha autoritaria,ED,0,0,False,True,revisada
+1936-1939,972,José María Valiente,CT,Carlistas,ED,0,0,False,True,revisada

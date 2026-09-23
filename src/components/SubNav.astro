@@ -1,0 +1,40 @@
+---
+/**
+ * Subnavegación, solo donde hace falta (plan § Navegación global):
+ *  · Las Cortes: «Etapas · Sesiones y votaciones»;
+ *  · Datos: «Usar los datos · Versiones».
+ */
+import { rotulo, plano } from '../lib/i18n';
+import { url, PAGINAS } from '../lib/rutas';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang; grupo: 'cortes' | 'datos'; actual: string }
+const { lang, grupo, actual } = Astro.props;
+const OPCIONES = {
+  cortes: [
+    { clave: 'comun.subnav.cortes.etapas', ruta: PAGINAS.cortes },
+    { clave: 'comun.subnav.cortes.sesiones', ruta: PAGINAS.sesiones },
+  ],
+  datos: [
+    { clave: 'comun.subnav.datos.usar', ruta: PAGINAS.datos },
+    { clave: 'comun.subnav.datos.versiones', ruta: PAGINAS.versiones },
+  ],
+}[grupo];
+// «Etapas» sigue activa dentro de una ficha (cortes/1931), pero no en Sesiones, que tiene la suya.
+const activa = (r: string) => actual === r || (actual.startsWith(r + '/') && !OPCIONES.some((o) => o.ruta !== r && o.ruta.startsWith(r + '/') && (actual === o.ruta || actual.startsWith(o.ruta + '/'))));
+---
+<nav class="subnav no-imprimir" aria-label={plano(lang, `comun.subnav.${grupo}.aria`)}>
+  <div class="contenedor">
+    <ul>
+      {OPCIONES.map((o) => <li><a href={url(lang, o.ruta)} aria-current={activa(o.ruta) ? 'page' : undefined} set:html={rotulo(lang, o.clave)} /></li>)}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .subnav { border-bottom: 1px solid var(--hair); }
+  ul { display: flex; flex-wrap: wrap; gap: 0 1.6rem; list-style: none; margin: 0; padding: 0; }
+  a { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: .96rem; color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; }
+  a:hover { color: var(--ink); border-bottom-color: var(--hair-2); }
+  a[aria-current='page'] { color: var(--ink); border-bottom-color: var(--accent); }
+</style>

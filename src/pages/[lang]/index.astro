@@ -1,0 +1,187 @@
+---
+/**
+ * A · Inicio (plan § Plantilla A; narrativa § 6; DESIGN.md § Esquemas · A). La puerta: se decide en noventa segundos.
+ * ≤ 700 palabras de copy y ≤ 120 de límites, cada límite en la frase de su cifra. Inicio REMITE y no resume. Sin
+ * rotación, sin ranking de personas, sin cifras exactas de Afinidades (D-3), sin catálogo de funciones del explorador,
+ * sin selector de etapa. Copy: `inicio.*` (docs/copy_es/inicio.md); hemiciclo y rótulos en comun.md.
+ *
+ * Movimientos: 0 portada (H1 + hemiciclo: la Cámara se sienta) · 1 tesis (la ÚNICA banda invertida del sitio) ·
+ * 2 calendario (F01c, protagonista, con sus límites al margen) · 3 votaciones (F26 ligera, secundaria) · 4 la fila (en
+ * tipografía: la Presidencia en pequeño, Campoamor en cursiva grande) · 5 las puertas (registro) · 6 lo que no trae
+ * (cuatro cajas vacías de filete discontinuo) · 7 por dónde empezar (la escalera, la cita y el remate).
+ */
+import Base from '../../layouts/Base.astro';
+import Hemiciclo from '../../components/Hemiciclo.astro';
+import Seccion from '../../components/Seccion.astro';
+import FigHueco from '../../components/FigHueco.astro';
+import FigCalendario from '../../components/FigCalendario.astro';
+import RegistroPuertas from '../../components/RegistroPuertas.astro';
+import Salidas from '../../components/Salidas.astro';
+import Cita from '../../components/Cita.astro';
+import SinSitio from '../../components/SinSitio.astro';
+import { t, tEnlaces, existe } from '../../lib/i18n';
+import { marcaPendiente } from '../../lib/cifras';
+import { meta } from '../../lib/pagina';
+import { restoDe, anclasTras, htmlFija } from '../../lib/lectura';
+import { url, PAGINAS, PUERTAS_PUBLICADAS } from '../../lib/rutas';
+import { ENLACES } from '../../config/enlaces';
+import { remata } from '../../lib/remata';
+import { citaConjunto, bibtex, ris, jsonldDe } from '../../lib/cita';
+import { rutasPorIdioma, type Lang } from '../../lib/idiomas';
+
+export const getStaticPaths = rutasPorIdioma;
+const lang = Astro.params.lang as Lang;
+const { titulo, descripcion } = meta(lang, 'inicio');
+const o = (k: string) => (existe(k) ? t(lang, k) : marcaPendiente(k, 'copy'));
+// Un solo botón primario por pantalla (DESIGN.md): «Abrir el explorador», en oro y delante (decisión 2 del
+// investigador, 23-09-2026); «Descargar los datos», secundario. El destino de cada corchete se elige por su rótulo y el
+// primario se pone delante, así que vale el orden que traiga el copy.
+const DATOS_EMPEZAR = url(lang, `${PAGINAS.datos}#empezar`);
+const rotulosPortada = [...t(lang, 'inicio.portada.llamada').matchAll(/(?<!⟦)\[([^\]⟦⟧]+)\](?!⟧)/g)].map((m) => m[1]);
+const aExplorador = (r: string) => /explor/i.test(r);
+const llamadaPortada = (remata(tEnlaces(lang, 'inicio.portada.llamada', rotulosPortada.map((r) => (aExplorador(r) ? ENLACES.explorador : DATOS_EMPEZAR)), {}, 'boton'))
+  .match(/<a\b[\s\S]*?<\/a>/g) ?? [])
+  .map((a) => (a.includes(`href="${ENLACES.explorador}`) ? { a, primero: 0 } : { a: a.replace('class="boton"', 'class="boton sec"'), primero: 1 }))
+  .sort((x, y) => x.primero - y.primero)
+  .map((x) => x.a)
+  .join(' ');
+const tesis = restoDe(lang, 'inicio.tesis', { excluir: ['grito'] }).html;
+const slugs = PUERTAS_PUBLICADAS.map((p) => p.slug);
+const PELDANOS = ['sin_programar', 'programar', 'redes'];
+const LIMITES_CAL = ['guerra', 'palabras', 'cotejo'];
+const CAJAS = ['tema', 'tono', 'posicion', 'voto'];
+const tras = (k: string) => anclasTras(k).map((f) => htmlFija(lang, f)).join('');
+
+// F26 ligera es del grupo de Sesiones: se usa si su componente ya existe; si no, su hueco (vista previa).
+const F26 = import.meta.glob<{ default: unknown }>('../../components/FigVotaciones.astro', { eager: true });
+const FigVotaciones = Object.values(F26)[0]?.default as any;
+---
+<Base lang={lang} ruta={PAGINAS.inicio} titulo={titulo} descripcion={descripcion} jsonld={jsonldDe('thqcmi', lang)} esInicio>
+  <!-- 0 · Portada: la pregunta y el hemiciclo de 1936 (H). La Cámara se sienta (CSS, 0 KB de JS). -->
+  <section class="portada" aria-labelledby="portada-titulo">
+    <div class="contenedor rejilla">
+      <div class="portada-texto">
+        <h1 id="portada-titulo" set:html={o('inicio.portada.pregunta')} />
+        {existe('inicio.portada.entrada') && <p class="entrada" set:html={t(lang, 'inicio.portada.entrada')} />}
+        <p class="botones" set:html={llamadaPortada} />
+        {existe('inicio.portada.asiento') && <p class="asiento portada-asiento" set:html={t(lang, 'inicio.portada.asiento')} />}
+      </div>
+      <div class="portada-fig">
+        <Hemiciclo lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 1 · Tesis: la ÚNICA banda invertida del sitio. El grito «Luz y taquigrafos.» (V2 71330 / v3 80306), letra a letra -->
+  <section class="tesis" aria-labelledby="tesis-grito">
+    <div class="contenedor rejilla">
+      <blockquote class="grito cita-diario" id="tesis-grito"><p set:html={o('inicio.tesis.grito')} /></blockquote>
+      {existe('inicio.tesis.grito.pie') && <p class="asiento" set:html={t(lang, 'inicio.tesis.grito.pie')} />}
+      <div class="tesis-texto" set:html={tesis} />
+      <p class="credencial" set:html={o('inicio.credencial')} />
+    </div>
+  </section>
+
+  <div class="contenedor inicio">
+    <!-- 2 · ¿Cuándo se reunieron las Cortes? F01c, protagonista; sus límites, al margen, junto a la figura -->
+    <Seccion lang={lang} id="calendario" prefijo="inicio.calendario" clase="seccion-cal" espera={['titulo', 'entrada']} excluir={LIMITES_CAL} botones={['comun.boton.ver_cortes']}>
+      <FigCalendario lang={lang} escala="compacta" />
+      <aside class="al-margen limites-cal">
+        {LIMITES_CAL.filter((k) => existe(`inicio.calendario.${k}`)).map((k) => <p set:html={t(lang, `inicio.calendario.${k}`)} />)}
+      </aside>
+    </Seccion>
+
+    <!-- 3 · ¿Qué se decidía allí? F26 ligera (secundaria, sin pestañas) -->
+    <Seccion lang={lang} id="votaciones" prefijo="inicio.votaciones" espera={['titulo', 'entrada']} botones={['comun.boton.ver_votaciones']}>
+      {FigVotaciones
+        ? <FigVotaciones lang={lang} variante="ligera" rotulos="inicio.f26.v." sufijo="-inicio" />
+        : <FigHueco lang={lang} id="F26" que="votaciones nominales, versión ligera" />}
+    </Seccion>
+
+    <!-- 4 · ¿Qué es una fila? La Presidencia (V2 5423) y Campoamor (V2 5424), en tipografía: dos filas seguidas -->
+    <Seccion lang={lang} id="fila" prefijo="inicio.fila" espera={['titulo']} excluir={['presidencia', 'campoamor']} botones={['comun.boton.ver_columnas']}>
+      <Fragment slot="antes">
+        <figure class="fila-tipo ancho">
+          <div class="fila-una presi">
+            <p class="dicho" set:html={o('inicio.fila.presidencia')} />
+            <p class="asiento" set:html={o('inicio.fila.presidencia.pie')} />
+          </div>
+          <div class="fila-una campo">
+            <blockquote><p class="cuelga" set:html={o('inicio.fila.campoamor')} /></blockquote>
+            <p class="asiento" set:html={o('inicio.fila.campoamor.pie')} />
+          </div>
+        </figure>
+      </Fragment>
+    </Seccion>
+
+    <!-- 5 · ¿Qué sesión leo primero? Registro de las ocho puertas -->
+    <Seccion lang={lang} id="puertas" prefijo="inicio.puertas" espera={['titulo', 'entrada']} excluir={slugs} botones={['comun.boton.ver_sesiones']}>
+      <RegistroPuertas lang={lang} familia="inicio" />
+    </Seccion>
+
+    <!-- 6 · ¿Qué no trae la base? Tema · Tono · Posición · Voto: cuatro cajas vacías (el vacío es el contenido) -->
+    <Seccion lang={lang} id="no-trae" prefijo="inicio.falta" espera={['titulo', 'entrada']} excluir={CAJAS} botones={['comun.boton.ver_afinidades']}>
+      <Fragment slot="antes">
+        <ul class="cajas ancho" role="list">
+          {CAJAS.map((k) => <li set:html={o(`inicio.falta.${k}`) + tras(`inicio.falta.${k}`)} />)}
+        </ul>
+      </Fragment>
+    </Seccion>
+
+    <!-- 7 · Por dónde empezar: la escalera (↺ 3 encima), la cita y el remate -->
+    <Seccion lang={lang} id="empezar" prefijo="inicio.empezar" espera={['titulo']} excluir={[...PELDANOS, 'cita']}>
+      <Fragment slot="antes">
+        <Salidas lang={lang} prefijo="inicio.empezar" peldanos={PELDANOS} primario="sin_programar" />
+        <Cita lang={lang} texto={citaConjunto('thqcmi', lang)} bibtex={bibtex('thqcmi')} ris={ris('thqcmi')} lenguaTexto="en" nota={existe('comun.cita.dataverse') ? t(lang, 'comun.cita.dataverse') : undefined} />
+      </Fragment>
+    </Seccion>
+  </div>
+  <SinSitio lang={lang} prefijo="inicio" usados={['inicio.portada', 'inicio.tesis', 'inicio.credencial', 'inicio.calendario', 'inicio.votaciones', 'inicio.fila', 'inicio.puertas', 'inicio.falta', 'inicio.empezar']} ignorar={['f01c', 'f26']} />
+</Base>
+
+<style>
+  .portada { padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(3rem, 7vw, 6rem); }
+  /* La columna del texto arranca arriba, a la altura de la planta del hemiciclo: centrada con una figura de casi mil
+     píxeles, dejaba los botones bajo el pliegue de los portátiles (1.280 × 800 y 1.440 × 900). */
+  .portada .rejilla { align-items: start; row-gap: var(--e7); }
+  .portada-texto h1 { font-size: var(--fs-portada); line-height: 1; max-width: 13.5ch; text-wrap: balance; }
+  .portada-texto .entrada { margin-top: var(--e5); color: var(--ink-2); }
+  .portada-asiento { margin: var(--e4) 0 0; }
+  @media (min-width: 64rem) {
+    .portada-texto { grid-column: 1 / span 5; padding-top: var(--e7); }
+    .portada-fig { grid-column: 6 / -1; }
+  }
+
+  /* La banda invertida: tinta de fondo, fondo de texto y el oro invertido (DESIGN.md § Banda invertida). La comilla
+     colgada del grito la limita base.css (`.tesis .rejilla blockquote.grito.cita-diario > p`). */
+  .tesis { background: var(--ink); color: var(--bg); padding-block: clamp(4rem, 9vw, 9rem); --accent: var(--accent-inv); }
+  .grito p { font: italic 500 var(--fs-grito)/.98 var(--display); letter-spacing: -.02em; margin: 0 0 var(--e7); max-width: none; }
+  .tesis .asiento { color: color-mix(in oklab, var(--bg) 70%, var(--ink)); }
+  .tesis-texto :global(p) { font-size: var(--fs-entrada); line-height: 1.38; max-width: 36rem; }
+  .tesis-texto :global(p + p) { margin-top: var(--e5); }
+  .tesis-texto :global(.pieza-nota) { border-top-color: color-mix(in oklab, var(--bg) 22%, transparent); color: inherit; }
+  .tesis .credencial { color: inherit; margin-top: var(--e7); padding-top: var(--e4); border-top: 1px solid color-mix(in oklab, var(--bg) 22%, transparent); overflow-wrap: anywhere; }
+  @media (min-width: 64rem) {
+    .tesis .grito { grid-column: 1 / -1; }
+    .tesis .asiento { grid-column: 1 / span 3; }
+    .tesis-texto { grid-column: 4 / span 7; }
+    .tesis .credencial { grid-column: 4 / -1; }
+  }
+
+  /* 2 · los límites del calendario, al margen de la figura (en el móvil, detrás, con su filete) */
+  .limites-cal p { margin: 0 0 .6em; }
+
+  /* 4 · la fila, en tipografía: la Presidencia en pequeño, Campoamor en cursiva grande; cada una, su asiento */
+  .fila-tipo { margin: var(--e5) 0 var(--e6); display: grid; gap: var(--e5); max-width: 46rem; }
+  .fila-una { border-top: 1px solid var(--hair); padding-top: var(--e3); }
+  .fila-una .asiento { margin: var(--e2) 0 0; }
+  .presi .dicho { font: italic 400 1.12rem/1.4 var(--text); color: var(--ink-2); margin: 0; }
+  .campo blockquote { margin: 0; }
+  .campo blockquote p { font: italic 400 var(--fs-cita)/1.26 var(--text); max-width: 30ch; margin: 0; text-wrap: pretty; }
+
+  /* 6 · cuatro cajas vacías: filete discontinuo (lo que la base no trae); el nombre, en mono, como rótulo */
+  .cajas { list-style: none; margin: var(--e5) 0 var(--e6); padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--e3); }
+  .cajas li { border: 1px dashed var(--ausencia-trazo); border-radius: var(--radio); padding: var(--e4) var(--e4) var(--e6); min-height: 9rem; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); }
+  .cajas li :global(strong) { display: block; font: 400 var(--fs-mono)/1.3 var(--mono); color: var(--ink); margin-bottom: var(--e3); }
+  @media (min-width: 64rem) { .cajas { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+</style>

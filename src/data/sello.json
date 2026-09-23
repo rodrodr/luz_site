@@ -1,0 +1,38 @@
+{
+ "exportado": "2026-09-23",
+ "v2_md5": "360332a0ff1327671530f15eed46ac0c",
+ "v3_sha256": "3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15",
+ "v3_csv_sha256": "e1906abc601795860a2da5835571dc0f10b58e3679aa6867a27d68af843eb5f9",
+ "proyecto_sha256": "b3295e99f45af95a4d6f47f910fcacea7fc5f6da98ffde38df726fda1d7231da",
+ "afin_version": "V1.1",
+ "afin_unf": "UNF:6:CMFrKjuOq5l9fBChyzsMsQ==",
+ "hemiciclo_sha256": "54ee48fedda9f179f87ecd3c87d0cef38c17bc71cd329529cacc73707fb812c7",
+ "motor_sha256": "b8c0f571c65dcc40f1aafe8634b6449200d58146c748f7d5fb42d77d8db66b52",
+ "instantanea": "2026-09-22",
+ "explorador_md5": "155b10fd087f4fcac308dc628dea16ab",
+ "explorador_etag": "\"6ab07d95-2bc4d3\"",
+ "clima_v3_cache": true,
+ "puertas": 8,
+ "cifras": 1758,
+ "modulos": {
+  "base": 376,
+  "cortes": 677,
+  "sesiones": 262,
+  "diario": 145,
+  "metodo": 50,
+  "datos": 43,
+  "explorador": 28,
+  "afinidades": 45
+ },
+ "controles": {
+  "total": 32,
+  "ok": 32,
+  "distintos_del_plan": 1
+ },
+ "entorno": {
+  "python": "3.12.7",
+  "pandas": "3.0.3",
+  "node": "v22.22.2"
+ },
+ "avisos": ["[exportar] inicio.md:109 {{dv.thqcmi.cita}}: el valor esperado «la cita entera» no se puede comparar con «Rodrigues-Silveira, Rodrigo; García-Díez, Fátima; Llamazares»","control «Sesiones con un vicepresidente en algún tramo (filas · fechas)»: el plan dice (584, 10009); la fuente da (586, 10025, 584). Con parse_speaker del explorador, el método que cita el plan, son 586 sesiones (fecha y número), 10.025 filas y 584 fechas. El «584 (10.009 filas)» del plan cuenta la cadena «VICEPRESIDENTE» en la etiqueta: deja fuera 17 filas cuya etiqueta trae erratas del reconocimiento óptico («VIEPRESIDENTE», «VICFPRESIDENTE»…) y cuenta una que no es de la Presidencia («El Sr. S. VICEPRESIDENTE»). El copy usa {{pres.vice_ses}} (sesiones) o {{pres.vice_fechas}} (fechas), nunca «584» tecleado."]
+}

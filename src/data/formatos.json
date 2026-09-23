@@ -1,0 +1,296 @@
+{
+ "version": 1,
+ "tipos": {
+  "n": "número; entero agrupado siempre (D-16); decimal con `dec` (1 por defecto)",
+  "id": "entero que nunca se agrupa: ids de fila, números de sesión, del Diario o de página",
+  "anio": "año, sin agrupar",
+  "pct": "fracción 0–1; ×100 con `dec` decimales (2 por defecto); es: espacio indivisible + «%»",
+  "peso": "bytes; bytes/1.024² rotulado MB con `dec` decimales (1 por defecto); KB bajo 1 MB, GB desde 1.024 MB",
+  "fecha": "AAAA-MM-DD (o AAAA-MM); por defecto fecha larga",
+  "texto": "cadena tal cual, o {es, en}"
+ },
+ "formatos": {
+  "n": "número con el formato de su tipo (por defecto)",
+  "id": "entero SIN separador de miles: ids de fila, números de sesión, años («71330»)",
+  "letra": "número en palabras (0–30), en femenino en español («seis votaciones», «una sesión»)",
+  "pct": "porcentaje con los decimales de la cifra (`dec`, 2 por defecto)",
+  "pct0": "porcentaje sin decimales",
+  "pct1": "porcentaje con un decimal",
+  "pct2": "porcentaje con dos decimales",
+  "peso": "peso con los decimales de la cifra (`dec`, 1 por defecto): «158,1 MB»",
+  "peso0": "peso sin decimales: «unos 107 MB»",
+  "peso1": "peso con un decimal",
+  "peso2": "peso con dos decimales",
+  "fecha": "fecha larga: «1 de octubre de 1931» · «1 October 1931»",
+  "fecha_corta": "fecha con el mes en romanos, como en el Diario y en este sitio: «1-X-1931»",
+  "mes": "mes y año: «octubre de 1931» · «October 1931»",
+  "anio": "solo el año, sin agrupar: «1931»",
+  "texto": "el valor tal cual"
+ },
+ "campos": {
+  "v": "valor",
+  "t": "tipo",
+  "base": "V2 | v3 | proyecto | afin | dv | explorador | croquis",
+  "clave": "letra de fuente (ver claves_de_fuente)",
+  "f": "fórmula o fuente legible",
+  "d": "fecha de cálculo o de consulta",
+  "dec": "decimales (opcional)",
+  "n": "numerador (opcional, en porcentajes)",
+  "den": "denominador (opcional, en porcentajes)"
+ },
+ "bases": ["V2","v3","proyecto","afin","dv","explorador","croquis"],
+ "claves_de_fuente": {
+  "C": "recuento directo sobre la base (filas, palabras, claves de sesión)",
+  "CALC": "aritmética sobre otras cifras de este archivo (porcentajes, sumas, diferencias)",
+  "L": "lectura: filas leídas una a una; el exportador comprueba en cada ejecución que siguen diciendo lo mismo",
+  "M": "metadato leído tal cual en su archivo de origen (API de Dataverse, manifiesto del explorador, sessions.json)",
+  "R": "regla fijada por el plan (cortes de etapa, límites de un tramo)"
+ },
+ "separadores": {
+  "es": {
+   "miles": ".",
+   "decimal": ",",
+   "pct": " %"
+  },
+  "en": {
+   "miles": ",",
+   "decimal": ".",
+   "pct": "%"
+  }
+ },
+ "pruebas": [
+  {"v":107551,"t":"n","fmt":"","es":"107.551","en":"107,551"},
+  {"v":1460,"t":"n","fmt":"","es":"1.460","en":"1,460"},
+  {"v":755,"t":"n","fmt":"","es":"755","en":"755"},
+  {"v":71330,"t":"id","fmt":"","es":"71330","en":"71330"},
+  {"v":71330,"t":"n","fmt":"id","es":"71330","en":"71330"},
+  {"v":1931,"t":"anio","fmt":"","es":"1931","en":"1931"},
+  {"v":6,"t":"n","fmt":"letra","es":"seis","en":"six"},
+  {"v":1,"t":"n","fmt":"letra","es":"una","en":"one"},
+  {"v":0.008348,"t":"pct","fmt":"","es":"0,83 %","en":"0.83%"},
+  {"v":0.4485,"t":"pct","dec":2,"fmt":"","es":"44,85 %","en":"44.85%"},
+  {"v":0.513,"t":"pct","dec":1,"fmt":"","es":"51,3 %","en":"51.3%"},
+  {"v":0.6653,"t":"pct","fmt":"pct0","es":"67 %","en":"67%"},
+  {"v":165785782,"t":"peso","fmt":"","es":"158,1 MB","en":"158.1 MB"},
+  {"v":111733652,"t":"peso","fmt":"peso0","es":"107 MB","en":"107 MB"},
+  {"v":282316800,"t":"peso","fmt":"","es":"269,2 MB","en":"269.2 MB"},
+  {"v":14919,"t":"peso","fmt":"","es":"14,6 KB","en":"14.6 KB"},
+  {"v":12884901888,"t":"peso","fmt":"","es":"12,0 GB","en":"12.0 GB"},
+  {"v":"1931-10-01","t":"fecha","fmt":"","es":"1 de octubre de 1931","en":"1 October 1931"},
+  {"v":"1931-10-01","t":"fecha","fmt":"fecha_corta","es":"1-X-1931","en":"1-X-1931"},
+  {"v":"1933-02","t":"fecha","fmt":"mes","es":"febrero de 1933","en":"February 1933"},
+  {"v":"1945-11-09","t":"fecha","fmt":"anio","es":"1945","en":"1945"},
+  {"v":24335896.0,"t":"n","fmt":"","es":"24.335.896","en":"24,335,896"},
+  {"v":44.5,"t":"n","dec":1,"fmt":"","es":"44,5","en":"44.5"},
+  {"v":"CGOCUS V1.1","t":"texto","fmt":"","es":"CGOCUS V1.1","en":"CGOCUS V1.1"}
+ ],
+ "familias": {
+  "sesion.<AAAA-MM-DD>-<n>.<campo>": {
+   "archivo": "sesiones.json",
+   "lista": "sesiones",
+   "id": "clave",
+   "campos": {
+    "fecha": {
+     "ruta": "f",
+     "t": "fecha",
+     "base": "V2",
+     "f": "fecha de la sesión"
+    },
+    "numero": {
+     "ruta": "s",
+     "t": "id",
+     "base": "V2",
+     "f": "num_session"
+    },
+    "filas": {
+     "ruta": "filas",
+     "t": "n",
+     "base": "V2",
+     "f": "filas V2 de la sesión"
+    },
+    "palabras": {
+     "ruta": "pal",
+     "t": "n",
+     "base": "V2",
+     "f": "suma de nwords de la sesión"
+    },
+    "diputados": {
+     "ruta": "dip",
+     "t": "n",
+     "base": "V2",
+     "f": "rep_id distintos, incluido el de quien preside"
+    },
+    "diputados_sp": {
+     "ruta": "dip_sp",
+     "t": "n",
+     "base": "V2",
+     "f": "rep_id distintos fuera de la Presidencia"
+    },
+    "largas": {
+     "ruta": "largas",
+     "t": "n",
+     "base": "V2",
+     "f": "filas de más de 300 palabras"
+    },
+    "filas_pres": {
+     "ruta": "filas_pres",
+     "t": "n",
+     "base": "V2",
+     "f": "filas de la Presidencia (parse_speaker)"
+    },
+    "id_v2.desde": {
+     "ruta": "id_v2.0",
+     "t": "id",
+     "base": "V2",
+     "f": "primer id V2"
+    },
+    "id_v2.hasta": {
+     "ruta": "id_v2.1",
+     "t": "id",
+     "base": "V2",
+     "f": "último id V2"
+    },
+    "filas_v3": {
+     "ruta": "filas_v3",
+     "t": "n",
+     "base": "v3",
+     "f": "filas v3 de la sesión"
+    },
+    "habla_v3": {
+     "ruta": "habla_v3",
+     "t": "n",
+     "base": "v3",
+     "f": "filas v3 de habla"
+    },
+    "id_v3.desde": {
+     "ruta": "id_v3.0",
+     "t": "id",
+     "base": "v3",
+     "f": "primer id v3"
+    },
+    "id_v3.hasta": {
+     "ruta": "id_v3.1",
+     "t": "id",
+     "base": "v3",
+     "f": "último id v3"
+    },
+    "diario": {
+     "ruta": "meta.num",
+     "t": "id",
+     "base": "proyecto",
+     "f": "número del Diario (sessions.json)"
+    },
+    "pag.desde": {
+     "ruta": "meta.paginas.0",
+     "t": "id",
+     "base": "proyecto",
+     "f": "primera página verificada (sessions.json)"
+    },
+    "pag.hasta": {
+     "ruta": "meta.paginas.1",
+     "t": "id",
+     "base": "proyecto",
+     "f": "última página verificada (sessions.json)"
+    },
+    "pp_desde": {
+     "ruta": "meta.paginas.0",
+     "t": "id",
+     "base": "proyecto",
+     "f": "primera página verificada (sessions.json)"
+    },
+    "pp_hasta": {
+     "ruta": "meta.paginas.1",
+     "t": "id",
+     "base": "proyecto",
+     "f": "última página verificada (sessions.json)"
+    },
+    "id_min": {
+     "ruta": "id_v2.0",
+     "t": "id",
+     "base": "V2",
+     "f": "primer id V2"
+    },
+    "id_max": {
+     "ruta": "id_v2.1",
+     "t": "id",
+     "base": "V2",
+     "f": "último id V2"
+    },
+    "filas.v3": {
+     "ruta": "filas_v3",
+     "t": "n",
+     "base": "v3",
+     "f": "filas v3 de la sesión"
+    },
+    "habla.v3": {
+     "ruta": "habla_v3",
+     "t": "n",
+     "base": "v3",
+     "f": "filas v3 de habla"
+    },
+    "num": {
+     "ruta": "s",
+     "t": "id",
+     "base": "V2",
+     "f": "num_session"
+    },
+    "diario_num": {
+     "ruta": "meta.num",
+     "t": "id",
+     "base": "proyecto",
+     "f": "número del Diario (sessions.json)"
+    },
+    "paginas": {
+     "ruta": "meta.paginas",
+     "t": "texto",
+     "unir": "–",
+     "base": "proyecto",
+     "f": "páginas verificadas del Diario, primera–última (sessions.json)"
+    },
+    "id.desde": {
+     "ruta": "id_v2.0",
+     "t": "id",
+     "base": "V2",
+     "f": "primer id V2"
+    },
+    "id.hasta": {
+     "ruta": "id_v2.1",
+     "t": "id",
+     "base": "V2",
+     "f": "último id V2"
+    }
+   }
+  },
+  "mes.<AAAA-MM>.<campo>": {
+   "archivo": "meses.json",
+   "lista": "meses",
+   "id": "mes",
+   "campos": {
+    "sesiones": {
+     "ruta": "sesiones",
+     "t": "n",
+     "base": "V2",
+     "f": "sesiones del mes"
+    },
+    "filas": {
+     "ruta": "filas",
+     "t": "n",
+     "base": "V2",
+     "f": "filas V2 del mes"
+    },
+    "palabras": {
+     "ruta": "pal",
+     "t": "n",
+     "base": "V2",
+     "f": "palabras V2 del mes"
+    },
+    "diputados": {
+     "ruta": "dip",
+     "t": "n",
+     "base": "V2",
+     "f": "rep_id distintos del mes"
+    }
+   }
+  }
+ }
+}

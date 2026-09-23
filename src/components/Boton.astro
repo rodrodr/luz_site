@@ -1,0 +1,52 @@
+---
+/**
+ * Botón o enlace con forma de botón (DESIGN.md § Buttons; peticiones/diseno.md § 4). Etiqueta en EB Garamond 560, en
+ * caja normal, con infinitivo y objeto («Descargar los datos»); 44 px de alto; radio de 2 px. Un primario por pantalla
+ * como mucho.
+ *  · `variante`: `primario` (relleno oro, texto `oro-tinta`) · `sec` (transparente, filete `hair-2`; al pasar, oro).
+ *  · `externo`: se abre en otra pestaña y lleva la flecha dibujada `i-ext` (nunca el carácter «↗»), `rel="noopener
+ *    external"` y la frase del pie que lo dice (`aria-describedby`, lib/remata.ts).
+ *  · `copiar`: un <button> que copia el texto de `[data-copiar-texto]` de su contenedor `[data-copiable]`
+ *    (scripts/copiar.ts): nace oculto (sin JS no haría nada) y, tras copiar, dice «Copiada» durante 1,6 s.
+ *  · `descarga`: el enlace lleva `download` y el icono `i-bajar`.
+ * El rótulo llega ya resuelto del copy (`rotulo(lang, 'comun.boton.*')`): este componente no escribe texto.
+ */
+import { ID_NOTA_PESTANA } from '../lib/remata';
+
+interface Props {
+  /** HTML del rótulo, ya sin corchetes (`rotulo()`), o texto plano. */
+  rotulo: string;
+  href?: string;
+  variante?: 'primario' | 'sec';
+  externo?: boolean;
+  copiar?: boolean;
+  descarga?: boolean;
+  class?: string;
+  [k: `data-${string}`]: string | undefined;
+}
+const { rotulo, href, variante = 'sec', externo = false, copiar = false, descarga = false, class: clase, ...datos } = Astro.props;
+const clases = ['boton', variante === 'sec' && 'sec', clase].filter(Boolean).join(' ');
+// El rótulo puede traer ya el icono (conIcono convierte la «↗» final): entonces no se repite.
+const traeIcono = /<svg class="icono"/.test(rotulo);
+const icono = copiar ? 'i-copiar' : descarga ? 'i-bajar' : externo && !traeIcono ? 'i-ext' : null;
+const Etiqueta = copiar || !href ? 'button' : 'a';
+---
+{Etiqueta === 'button' ? (
+  <button type="button" class={clases} data-copiar={copiar ? '' : undefined} hidden={copiar || undefined} {...datos}>
+    {icono && <svg class="icono" aria-hidden="true" focusable="false"><use href={`#${icono}`}></use></svg>}
+    <span set:html={rotulo} />
+  </button>
+) : (
+  <a
+    class={clases}
+    href={href}
+    download={descarga || undefined}
+    target={externo ? '_blank' : undefined}
+    rel={externo ? 'noopener external' : undefined}
+    aria-describedby={externo ? ID_NOTA_PESTANA : undefined}
+    {...datos}
+  >
+    <span set:html={rotulo} />
+    {icono && <svg class="icono" aria-hidden="true" focusable="false"><use href={`#${icono}`}></use></svg>}
+  </a>
+)}

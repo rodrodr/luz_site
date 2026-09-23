@@ -1,0 +1,222 @@
+---
+/**
+ * I · Versiones, identificadores y cita (plan § Plantilla I; narrativa § 14). Qué cambió, qué citar y por qué hay dos
+ * cifras. Lectura técnica con índice lateral. Dueño: grupo 5 (datos).
+ * Resuelve REVISION_FASE1 P1-5: la plantilla usa SOLO las claves de `docs/copy_es/versiones.md` (`versiones.donde.*`,
+ * `versiones.resultado.*`, `fig.F35.tabla.col.*`); la antigua `TablaFiguras` (claves `fig.F35.col.*`) ya no se usa aquí.
+ * Figuras: F25 (#fechas, la protagonista de la página), F18 (#destino-filas, tabla con nota), F07 (#quien-habla) y F35
+ * (#bases, generada del registro). Los apartados tienen sus propias anclas; las figuras, las del registro.
+ */
+import Base from '../../../layouts/Base.astro';
+import SubNav from '../../../components/SubNav.astro';
+import CabezaPagina from '../../../components/CabezaPagina.astro';
+import IndiceLateral from '../../../components/IndiceLateral.astro';
+import VolverIndice from '../../../components/VolverIndice.astro';
+import NotaBases from '../../../components/NotaBases.astro';
+import Sello from '../../../components/Sello.astro';
+import FigLinea from '../../../components/datos/FigLinea.astro';
+import FigDestino from '../../../components/datos/FigDestino.astro';
+import FigEdiciones from '../../../components/datos/FigEdiciones.astro';
+import FigBases from '../../../components/datos/FigBases.astro';
+import { meta } from '../../../lib/pagina';
+import { t, tBloques, existe, plano } from '../../../lib/i18n';
+import { fmt, marcaPendiente, type Base as BaseDato } from '../../../lib/cifras';
+import { conDestinos } from '../../../lib/lectura';
+import { remata } from '../../../lib/remata';
+import { dato } from '../../../lib/datos';
+import { url, PAGINAS } from '../../../lib/rutas';
+import { rutasPorIdioma, type Lang } from '../../../lib/idiomas';
+
+export const getStaticPaths = rutasPorIdioma;
+const lang = Astro.params.lang as Lang;
+const { titulo, descripcion } = meta(lang, 'versiones');
+/** Un rótulo de años («1933-1935») no se parte por el guion al final de línea: se envuelve en `.nw`, solo en el texto. */
+const nw = (html: string) => html.replace(/(^|>)([^<]+)/g, (_x, a: string, txt: string) => a + txt.replace(/\b(1[89]\d\d)-(1[89]\d\d)\b/g, '<span class="nw">$1-$2</span>'));
+const L = (k: string, ctx = {}) => nw(existe(k) ? t(lang, k, ctx) : marcaPendiente(k, 'copy'));
+const B = (k: string, ctx = {}) => nw(remata(existe(k) ? tBloques(lang, k, ctx) : `<p>${marcaPendiente(k, 'copy')}</p>`));
+
+const S = [
+  { id: 'depositadas', x: 'depositadas' }, { id: 'v3', x: 'v3' }, { id: 'resultado', x: 'resultado' },
+  { id: 'identificadores', x: 'ids' }, { id: 'que-base', x: 'bases' }, { id: 'citar', x: 'citar' },
+];
+const dep = dato<{ versiones: { version: string; fecha: string; licencia: string }[] }>('depositos');
+const VERSION_COPY: Record<string, string> = { 'V1.0': 'v10', 'V1.1': 'v11', 'V2.0': 'v20' };
+const CLAVE_FECHA: Record<string, string> = { 'V1.0': 'dv.thqcmi.v1_0.fecha', 'V1.1': 'dv.thqcmi.v1_1.fecha', 'V2.0': 'dv.thqcmi.v2_0.fecha' };
+const vigente = (existe('versiones.depositadas.vigente') ? t(lang, 'versiones.depositadas.vigente') : '');
+// Qué edición ve usted en cada sitio: cada línea del copy, con el sello de su base en pequeño.
+const donde = B('versiones.donde.texto');
+const lineas = [...donde.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => m[1]);
+const SELLOS: BaseDato[][] = [['V2'], ['v3'], ['V2', 'v3'], ['afin'], ['proyecto']];
+const licencia = (v: string, lic: string) => `<span class="dato-texto" data-k="dv.thqcmi.${v.toLowerCase().replace('.', '_')}.licencia" data-base="dv">${lic}</span>`;
+const verTxt = (v: string) => `<span class="dato-texto" data-k="dv.thqcmi.${v.toLowerCase().replace('.', '_')}" data-base="dv">${v}</span>`;
+---
+<Base lang={lang} ruta={PAGINAS.versiones} titulo={titulo} descripcion={descripcion}>
+  <SubNav lang={lang} grupo="datos" actual={PAGINAS.versiones} />
+  <CabezaPagina lang={lang} prefijo="versiones" bases={['V2', 'v3']} />
+  <div class="contenedor con-indice versiones" style={`timeline-scope: ${S.map((s) => `--${s.id}`).join(', ')}`}>
+    <IndiceLateral lang={lang} titulo={L('versiones.indice.titulo')} entradas={S.map((s) => ({ id: s.id, rotulo: L(`versiones.indice.${s.x}`) }))} />
+    <div class="lectura">
+
+      <!-- Qué edición ve usted en cada sitio: una lista corta, sin tarjetas, con el sello de cada base -->
+      <section class="donde" aria-labelledby="donde-titulo">
+        <h2 id="donde-titulo" class="donde-titulo" set:html={L('versiones.donde.titulo')} />
+        <ul class="donde-lista" role="list">
+          {lineas.map((l, i) => (
+            <li>
+              <span class="donde-texto" set:html={l} />
+              <span class="donde-sellos">{(SELLOS[i] ?? []).map((b) => <Sello lang={lang} base={b} />)}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- 1 · Tres versiones depositadas y F25, las siete fechas corregidas (la figura protagonista) -->
+      <section class="seccion" id="depositadas" aria-labelledby="depositadas-titulo" style="view-timeline-name: --depositadas">
+        <div class="seccion-cuerpo">
+          <h2 id="depositadas-titulo" set:html={L('versiones.depositadas.titulo')} />
+          <p class="lede" set:html={L('versiones.depositadas.entrada')} />
+          <div class="fig-desliza tabla-versiones" tabindex="0" role="region" aria-label={`${plano(lang, 'versiones.depositadas.titulo')} · ${plano(lang, 'versiones.depositadas.tabla.col.version')}, ${plano(lang, 'versiones.depositadas.tabla.col.fecha')}, ${plano(lang, 'versiones.depositadas.tabla.col.licencia')}`}>
+            <table class="fig-tabla">
+              <thead>
+                <tr>
+                  <th scope="col" set:html={L('versiones.depositadas.tabla.col.version')} />
+                  <th scope="col" set:html={L('versiones.depositadas.tabla.col.fecha')} />
+                  <th scope="col" set:html={L('versiones.depositadas.tabla.col.licencia')} />
+                  <th scope="col" set:html={L('versiones.depositadas.tabla.col.cambio')} />
+                </tr>
+              </thead>
+              <tbody>
+                {(dep?.versiones ?? []).map((v, i, arr) => (
+                  <tr class:list={[{ vigente: i === arr.length - 1 }]}>
+                    <th scope="row"><Fragment set:html={verTxt(v.version)} />{i === arr.length - 1 && vigente && <span class="vig" set:html={vigente} />}</th>
+                    <td class="fecha" set:html={CLAVE_FECHA[v.version] ? fmt.clave(CLAVE_FECHA[v.version], lang, 'fecha') : `<time datetime="${v.fecha}">${v.fecha}</time>`} />
+                    <td set:html={licencia(v.version, v.licencia)} />
+                    <td class="cambio" set:html={L(`versiones.depositadas.${VERSION_COPY[v.version] ?? 'v20'}`)} />
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="prosa" set:html={B('versiones.depositadas.texto')} />
+          <aside class="al-margen"><p set:html={t(lang, 'comun.fija.readme')} /></aside>
+          <p class="botones" set:html={conDestinos(lang, 'versiones.depositadas.metodo', {}, [url(lang, `${PAGINAS.metodo}#m07`)])} />
+          <FigLinea lang={lang} />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 2 · La edición del explorador: qué es, cómo se hizo y adónde va cada fila (F18, tabla con nota) -->
+      <section class="seccion" id="v3" aria-labelledby="v3-titulo" style="view-timeline-name: --v3">
+        <div class="seccion-cuerpo">
+          <h2 id="v3-titulo" set:html={L('versiones.v3.titulo')} />
+          <p class="lede" set:html={L('versiones.v3.entrada')} />
+          <div class="prosa" set:html={B('versiones.v3.texto')} />
+          <NotaBases lang={lang} />
+          <aside class="al-margen"><p set:html={t(lang, 'comun.fija.ids')} /></aside>
+          <FigDestino lang={lang} />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 3 · Qué cambia en un resultado: F07, quién habla más según la edición -->
+      <section class="seccion" id="resultado" aria-labelledby="resultado-titulo" style="view-timeline-name: --resultado">
+        <div class="seccion-cuerpo">
+          <h2 id="resultado-titulo" set:html={L('versiones.resultado.titulo')} />
+          <p class="lede" set:html={L('versiones.resultado.entrada')} />
+          <div class="prosa" set:html={B('versiones.resultado.texto')} />
+          <FigEdiciones lang={lang} />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 4 · Identificadores: la sesión es la clave común; la fila, no -->
+      <section class="seccion" id="identificadores" aria-labelledby="identificadores-titulo" style="view-timeline-name: --identificadores">
+        <div class="seccion-cuerpo">
+          <h2 id="identificadores-titulo" set:html={L('versiones.ids.titulo')} />
+          <p class="lede" set:html={L('versiones.ids.entrada')} />
+          <div class="prosa" set:html={B('versiones.ids.texto')} />
+          <div class="fig-desliza equivalencia" tabindex="0" role="region" aria-labelledby="equivalencia-titulo">
+            <table class="fig-tabla">
+              <caption id="equivalencia-titulo"><span class="fig-rotulo-tabla" set:html={L('versiones.ids.tabla.titulo')} /></caption>
+              <thead>
+                <tr>
+                  <th scope="col" set:html={L('versiones.ids.tabla.col.que')} />
+                  <th scope="col"><Sello lang={lang} base="V2" /></th>
+                  <th scope="col"><Sello lang={lang} base="v3" /></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="igual">
+                  <th scope="row" set:html={L('versiones.ids.tabla.fila.sesion')} />
+                  <td colspan="2" set:html={L('versiones.ids.tabla.sesion')} />
+                </tr>
+                <tr>
+                  <th scope="row" set:html={L('versiones.ids.tabla.fila.presidencia')} />
+                  <td set:html={fmt.clave('fila.presidencia.id.V2', lang)} />
+                  <td set:html={fmt.clave('fila.presidencia.id.v3', lang)} />
+                </tr>
+                <tr>
+                  <th scope="row" set:html={L('versiones.ids.tabla.fila.campoamor')} />
+                  <td set:html={fmt.clave('fila.campoamor.id.V2', lang)} />
+                  <td set:html={fmt.clave('fila.campoamor.id.v3', lang)} />
+                </tr>
+                <tr>
+                  <th scope="row" set:html={L('versiones.ids.tabla.fila.orden')} />
+                  <td set:html={fmt.clave('fila.campoamor.orden.V2', lang)} />
+                  <td><Fragment set:html={fmt.clave('fila.campoamor.orden.v3', lang)} /> <span class="pantalla" set:html={L('versiones.ids.tabla.pantalla')} /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 5 · Qué base usa cada figura de este sitio (F35), generada del registro -->
+      <section class="seccion" id="que-base" aria-labelledby="que-base-titulo" style="view-timeline-name: --que-base">
+        <div class="seccion-cuerpo">
+          <h2 id="que-base-titulo" set:html={L('versiones.bases.titulo')} />
+          <p class="lede" set:html={L('versiones.bases.entrada')} />
+          <FigBases lang={lang} />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 6 · Cómo citar cada edición: el explorador sirve la v3, pero su cita dice «V2» (D-18, abierta) -->
+      <section class="seccion" id="citar" aria-labelledby="citar-titulo" style="view-timeline-name: --citar">
+        <div class="seccion-cuerpo">
+          <h2 id="citar-titulo" set:html={L('versiones.citar.titulo')} />
+          <div class="prosa" set:html={B('versiones.citar.texto')} />
+          <p class="botones" set:html={conDestinos(lang, 'versiones.citar.enlace', {}, [url(lang, `${PAGINAS.datos}#citar`)])} />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .donde { padding-top: var(--e5); }
+  .donde-titulo { font: 600 var(--fs-h3)/1.2 var(--text); font-style: normal; margin: 0 0 var(--e4); max-width: none; }
+  .donde-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair-2); max-width: 52rem; }
+  .donde-lista li { display: grid; grid-template-columns: minmax(0, 1fr); gap: .35rem 1.5rem; padding: .8rem 0; border-bottom: 1px solid var(--hair); }
+  .donde-texto { font-size: var(--fs-small); line-height: 1.5; }
+  .donde-sellos { display: flex; flex-wrap: wrap; gap: .35rem; align-content: start; }
+  @media (min-width: 48rem) { .donde-lista li { grid-template-columns: minmax(0, 1fr) 17rem; align-items: baseline; } .donde-sellos { justify-content: flex-end; } }
+  .tabla-versiones { margin: var(--e5) 0 var(--e6); }
+  .tabla-versiones th[scope='row'] { font-family: var(--mono); white-space: nowrap; }
+  .tabla-versiones .vig { display: inline-block; margin-left: .5rem; font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--ink); border: 1px solid var(--accent); border-radius: var(--radio); padding: .05rem .35rem; }
+  .tabla-versiones .fecha { font-family: var(--text); white-space: nowrap; }
+  .tabla-versiones .cambio { font-family: var(--text); font-size: var(--fs-small); min-width: 14rem; white-space: normal; }
+  .equivalencia { margin: var(--e5) 0 0; }
+  .equivalencia table { max-width: 40rem; }
+  .nw { white-space: nowrap; }
+  .equivalencia th[scope='row'] { font-family: var(--text); font-size: var(--fs-small); white-space: normal; min-width: 11rem; width: 45%; }
+  .equivalencia thead :global(.sello) { font-weight: 400; }
+  .equivalencia .igual td { text-align: center; color: var(--ink); border-bottom-style: dashed; }
+  .pantalla { display: block; font-family: var(--text); font-size: var(--fs-small); color: var(--mute); }
+  @media (min-width: 64rem) {
+    .versiones .seccion-cuerpo > :is(.tabla-versiones, .equivalencia, .bases) { grid-column: 1 / -1; }
+    .versiones :global(.seccion-cuerpo > .bases) { grid-column: 1 / -1; }
+  }
+</style>

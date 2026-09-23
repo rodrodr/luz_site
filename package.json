@@ -1,0 +1,39 @@
+{
+  "name": "luz-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio de presentación de Luz y Taquígrafos (Diarios de Sesiones del Congreso, 1931–1945). Los datos los escribe exportador/exportar.py; los textos salen de docs/copy_es/*.md y docs/copy_en/*.md.",
+  "scripts": {
+    "i18n": "python3 scripts/copy2i18n.py es && python3 scripts/copy2i18n.py en",
+    "lectura": "python3 scripts/copy_lectura.py es",
+    "tokens": "node scripts/tokens.mjs",
+    "og": "node scripts/og.mjs",
+    "predev": "node scripts/tokens.mjs",
+    "dev": "astro dev",
+    "prebuild": "node scripts/tokens.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "formatos": "node --experimental-strip-types --no-warnings scripts/check-formatos.mjs",
+    "check": "astro check && node scripts/check-i18n.mjs && npm run formatos",
+    "audit": "node scripts/audit-cifras.mjs",
+    "procedencia": "python3 exportador/claves_figura.py",
+    "test": "playwright test",
+    "publicar": "npm run i18n && node scripts/check-i18n.mjs --strict && npm run formatos && astro check && node scripts/tokens.mjs && node scripts/og.mjs && STRICT=1 astro build && python3 exportador/claves_figura.py --estricto && STRICT=1 node scripts/audit-cifras.mjs && STRICT=1 playwright test"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/cormorant-garamond": "^5.3.0",
+    "@fontsource-variable/eb-garamond": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "astro": "^7.3.3",
+    "graphology": "0.26.0",
+    "sharp": "^0.35.4",
+    "sigma": "3.0.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.63.0",
+    "typescript": "^5.9.0"
+  }
+}

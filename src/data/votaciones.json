@@ -1,0 +1,27 @@
+{
+ "_meta": {
+  "fuente": "V2 (texto de las filas) y v3; umbrales y totales leídos en su fila",
+  "exportado": "2026-09-23",
+  "patron_listas": "senores que (?:dijeron|han dicho) (?:si|no)\\b"
+ },
+ "votaciones": [
+  {"clave":"141-106","fecha":"1931-10-01","num_session":48,"legislatura":"1931-1933","etapa":"I","si":141,"no":106,"nominal":false,"v2":5453,"v3":6110,"puerta":"sufragio-1931","literal":"En votación ordinaria fue desechada la proposición del grupo socialista por 141 votos contra 106."},
+  {"clave":"161-121","fecha":"1931-10-01","num_session":48,"legislatura":"1931-1933","etapa":"I","si":161,"no":121,"nominal":true,"v2":5453,"v3":6110,"puerta":"sufragio-1931","literal":"Total, 161. … Total, 121."},
+  {"clave":"178-59","fecha":"1931-10-13","num_session":55,"legislatura":"1931-1933","etapa":"I","si":178,"no":59,"nominal":true,"v2":6994,"v3":7800,"puerta":"cuestion-religiosa-1931","literal":"quedó aprobado el artículo 24 por 178 votos contra 59"},
+  {"clave":"368-466","fecha":"1931-12-09","num_session":88,"legislatura":"1931-1933","etapa":"I","si":368,"no":0,"nominal":true,"v2":13531,"v3":15043,"puerta":null,"lista_v2":13525,"lista_v3":15037,"total":466,"mitad":234,"mitad_v2":13531,"mitad_v3":15043,"literal":"Los Sres. Diputados que han prometido en estas Cortes suman 466; la mitad más uno, 234. Han tomado parte en la votación 368 señores Diputados y este mismo número ha votado que sí."},
+  {"clave":"318-19","fecha":"1932-09-09","num_session":233,"legislatura":"1931-1933","etapa":"I","si":318,"no":19,"nominal":true,"v2":37177,"v3":41627,"puerta":null,"total":462,"mitad":232,"mitad_v2":37178,"mitad_v3":41628,"literal":"votaron en pro del proyecto de Reforma agraria 318 Sres. Diputados, y en contra, 19"},
+  {"clave":"314-24","fecha":"1932-09-09","num_session":233,"legislatura":"1931-1933","etapa":"I","si":314,"no":24,"nominal":true,"v2":37178,"v3":41629,"puerta":null,"literal":"Total, 314. … Total, 24."},
+  {"clave":"238-5","fecha":"1936-04-07","num_session":15,"legislatura":"1936-1939","etapa":"III","si":238,"no":5,"nominal":true,"v2":102358,"v3":115675,"puerta":null,"total":417,"mitad":209,"mitad_v2":102359,"mitad_v3":115676,"literal":"resultado que habían votado a favor de la proposición 238 Sres. Diputados y en contra 5"}
+ ],
+ "listas": {
+  "filas": 1023,
+  "sesiones": 405,
+  "etapas": [
+   {"etapa":"I","filas":532,"sesiones":206},
+   {"etapa":"II","filas":408,"sesiones":165},
+   {"etapa":"III","filas":81,"sesiones":32},
+   {"etapa":"IV","filas":2,"sesiones":2},
+   {"etapa":"V","filas":0,"sesiones":0}
+  ]
+ }
+}

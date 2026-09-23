@@ -1,0 +1,220 @@
+---
+/**
+ * F20 · Anatomía de una fila (grupo 4, Método 01; plan § F20). Dos filas seguidas de la sesión del 1 de octubre de
+ * 1931 —la Presidencia pide silencio; Campoamor pide que la escuchen en silencio— desplegadas en sus columnas.
+ *  · Dato: `src/data/fila_ejemplo.json` (exportador/modulos/metodo.py): las catorce columnas de la V2 5423 y 5424 tal
+ *    como están en el CSV, y sus pares v3 6078 y 6079 con los campos que solo trae la v3.
+ *  · Conmutador «Como en el CSV» · «Como en el explorador»: radios, sin JS (`:has()`; sin `:has()`, las dos vistas se
+ *    leen seguidas). Las columnas van en tres bandas: la sesión y el lugar, lo impreso, el diputado.
+ *  · Cada clave es una marca: su nota da la definición de la columna, la MISMA que la tabla de columnas de Datos (F32,
+ *    `datos.columnas.<col>.definicion`). La vista es UNA parada de tabulación y las flechas recorren las columnas.
+ *  · Los valores van en mono, tal cual; `speech` en cursiva de libro, cortado con «[…]».
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import Sello from './Sello.astro';
+import { t, plano, existe } from '../lib/i18n';
+import { fmt, marcaPendiente } from '../lib/cifras';
+import { conDestinos } from '../lib/lectura';
+import { dato } from '../lib/datos';
+import type { Lang } from '../lib/idiomas';
+
+type Valor = string | number | null;
+interface FilaEj { clave: string; v2: Record<string, Valor>; v3: Record<string, Valor>; cortado: boolean; nwords: number; uso: string }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<{ filas: FilaEj[] }>('fila_ejemplo');
+const filas = D?.filas ?? [];
+const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
+
+// Tres bandas (metodo.01.texto: «la sesión y el lugar de la fila en ella, la fórmula impresa y el texto… su diputado»).
+const GRUPOS_V2: [string, string[]][] = [
+  ['sesion', ['id', 'num_session', 'order', 'date', 'legislature']],
+  ['texto', ['speaker', 'speech', 'nwords']],
+  ['diputado', ['rep_id', 'rep_name', 'district', 'party', 'party_family', 'ideology']],
+];
+const GRUPOS_V3: [string, string[]][] = [
+  ['sesion', ['id', 'num_session', 'ord', 'date', 'year', 'legislature']],
+  ['texto', ['speaker', 'speaker_fold', 'speech', 'nwords']],
+  ['diputado', ['rep_id', 'rep_name', 'rep_name_fold', 'district', 'party', 'party_family_raw', 'party_family', 'ideology_raw', 'ideology']],
+];
+// La Tabla: todas las columnas de las dos ediciones, en el orden de la ficha.
+const TABLA = ['id', 'num_session', 'order', 'ord', 'date', 'year', 'legislature', 'speaker', 'speaker_fold', 'speech', 'nwords', 'rep_id',
+  'rep_name', 'rep_name_fold', 'district', 'party', 'party_family_raw', 'party_family', 'ideology_raw', 'ideology'];
+const SOLO_V3 = new Set(['ord', 'speaker_fold', 'rep_name_fold', 'party_family_raw', 'ideology_raw', 'year']);
+const definicion = (col: string) => {
+  const k = SOLO_V3.has(col) ? `fig.F20.campo.${col}` : `datos.columnas.${col}.definicion`;
+  return existe(k) ? plano(lang, k) : '';
+};
+// En la Tabla, la definición con sus cifras envueltas (su marcador y su base); en la nota emergente, en texto plano.
+const definicionHtml = (col: string) => {
+  const k = SOLO_V3.has(col) ? `fig.F20.campo.${col}` : `datos.columnas.${col}.definicion`;
+  return existe(k) ? t(lang, k) : '';
+};
+const valor = (f: FilaEj, ed: 'v2' | 'v3', col: string): Valor => (col === 'speech' ? f.v2.speech : f[ed][col]);
+const vacio = (v: Valor) => v === null || v === undefined || v === '';
+const vistas = [
+  { ed: 'v2' as const, clave: 'csv', grupos: GRUPOS_V2, base: 'V2' as const, ids: filas.map((f) => Number(f.v2.id)) },
+  { ed: 'v3' as const, clave: 'explorador', grupos: GRUPOS_V3, base: 'v3' as const, ids: filas.map((f) => Number(f.v3.id)) },
+];
+const alt = plano(lang, 'fig.F20.alt');
+const cortado = plano(lang, 'fig.F20.texto.cortado');
+---
+<FiguraMarco lang={lang} id="F20" plantillaT="{definicion}" plantilla="{columna}">
+  <fieldset slot="barra" class="fig-conmuta f20-conmuta">
+    <legend set:html={o('fig.F20.conmutador.leyenda')} />
+    <label><input type="radio" name="f20-vista" value="csv" checked /><span set:html={o('fig.F20.conmutador.csv')} /></label>
+    <label><input type="radio" name="f20-vista" value="explorador" /><span set:html={o('fig.F20.conmutador.explorador')} /></label>
+  </fieldset>
+
+  <div slot="grafico" class="f20">
+    {!D ? <p class="nota" set:html={marcaPendiente('fila_ejemplo.json', 'dato')} /> : (
+      <>
+        <p class="f20-que nota" set:html={o('fig.F20.que_mide')} />
+        {vistas.map((v) => (
+          <div class="f20-vista" data-vista={v.clave}>
+            <div class="f20-marco fig-desliza">
+              <div class="f20-ficha" role="group" tabindex="0" data-recorre aria-label={alt}>
+                <div class="f20-cab" aria-hidden="true">
+                  <span class="f20-cab-sello"><Sello lang={lang} base={v.base} /></span>
+                  {filas.map((f, i) => (
+                    <span class="f20-cab-fila">
+                      <span class="f20-cab-quien">{String(f.v2.speaker).replace(/:$/, '')}</span>
+                      <code>{v.ids[i]}</code>
+                    </span>
+                  ))}
+                </div>
+                {v.grupos.map(([g, cols]) => (
+                  <div class="f20-grupo" data-grupo={g}>
+                    <p class="f20-grupo-rotulo" set:html={o(`fig.F20.grupo.${g}`)} />
+                    {cols.map((col) => (
+                      <div class:list={['f20-campo', { 'f20-solo': v.ed === 'v3' && SOLO_V3.has(col), 'f20-texto': col === 'speech' }]}
+                           data-paso data-nota data-v-columna={col} data-v-definicion={definicion(col)}>
+                        <span class="f20-clave">
+                          <code>{col}</code>
+                          {v.ed === 'v3' && SOLO_V3.has(col) && <span class="f20-marca-v3" set:html={o('fig.F20.solo_v3')} />}
+                        </span>
+                        {filas.map((f) => {
+                          const x = valor(f, v.ed, col);
+                          return col === 'speech' ? (
+                            <span class="f20-valor f20-speech">
+                              <span class="f20-dicho">{String(x)}{f.cortado && <span class="f20-corte" title={cortado}> […]</span>}</span>
+                              {f.cortado && <span class="sr-only">{cortado}</span>}
+                            </span>
+                          ) : (
+                            <span class:list={['f20-valor', { 'f20-vacio': vacio(x) }]}>{vacio(x) ? <span aria-hidden="true">—</span> : <code>{String(x)}</code>}</span>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+            {v.ed === 'v3' && (
+              <div class="f20-v3-texto nota">
+                <p set:html={o('fig.F20.explorador.texto')} />
+                <p set:html={o('fig.F20.explorador.ordenes')} />
+                <p set:html={o('fig.F20.explorador.pantalla')} />
+              </div>
+            )}
+          </div>
+        ))}
+        <p class="f20-enlace" set:html={conDestinos(lang, 'fig.F20.enlace')} />
+      </>
+    )}
+  </div>
+
+  <div slot="tabla" class="fig-desliza" tabindex="0" role="region" aria-label={plano(lang, 'fig.F20.titulo')}>
+    {D && (
+      <table class="fig-tabla f20-tabla">
+        <caption><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F20.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={o('fig.F20.tabla.col.columna')} />
+            {filas.map((f) => <th scope="col">V2 <code>{String(f.v2.id)}</code></th>)}
+            {filas.map((f) => <th scope="col">v3 <code>{String(f.v3.id)}</code></th>)}
+            <th scope="col" set:html={o('fig.F20.tabla.col.definicion')} />
+          </tr>
+        </thead>
+        <tbody>
+          {TABLA.map((col) => (
+            <tr>
+              <th scope="row"><code>{col}</code></th>
+              {filas.map((f) => <td>{col in f.v2 ? (col === 'speech' ? <span class="f20-t-speech">{String(f.v2.speech)}{f.cortado ? ' […]' : ''}</span> : <code>{vacio(f.v2[col]) ? '' : String(f.v2[col])}</code>) : '—'}</td>)}
+              {filas.map((f) => <td>{col === 'speech' ? <span class="f20-t-speech">{String(f.v2.speech)}{f.cortado ? ' […]' : ''}</span> : col in f.v3 ? <code>{vacio(f.v3[col]) ? '' : String(f.v3[col])}</code> : '—'}</td>)}
+              <td class="f20-t-def" set:html={definicionHtml(col)} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'comun.fig.tabla.nota')} />
+  </div>
+</FiguraMarco>
+
+<style>
+  .f20 { min-width: 0; }
+  .f20-que { margin: 0 0 var(--e5); max-width: 40rem; }
+  .f20-conmuta { gap: 0 1.2rem; }
+  /* Una vista a la vez, con el conmutador (sin JS: radios y :has()). Sin :has(), las dos se leen seguidas. */
+  @supports selector(:has(*)) {
+    :global(.pestanas):has(input[name='f20-vista'][value='csv']:checked) .f20-vista[data-vista='explorador'],
+    :global(.pestanas):has(input[name='f20-vista'][value='explorador']:checked) .f20-vista[data-vista='csv'] { display: none; }
+  }
+  .f20-vista + .f20-vista { margin-top: var(--e6); }
+  .f20-marco { margin: 0 calc(-1 * var(--e1)); padding: var(--e1); }
+  .f20-ficha { min-width: 36rem; border-top: 1px solid var(--hair-2); border-radius: var(--radio); }
+  .f20-ficha:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+
+  /* Rejilla: clave · fila de la Presidencia · fila de Campoamor. La primera columna, fija al desplazar en el móvil. */
+  .f20-cab, .f20-campo { display: grid; grid-template-columns: 11.5rem minmax(9rem, 1fr) minmax(12rem, 1.5fr); column-gap: var(--e5); }
+  .f20-cab { align-items: end; padding: .6rem 0 .7rem; border-bottom: 1px solid var(--hair-2); position: sticky; top: 0; background: var(--bg); z-index: 1; }
+  .f20-cab-fila { display: grid; gap: .1rem; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .f20-cab-quien { font: 560 .8rem/1.3 var(--text); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+  .f20-cab-fila code { color: var(--ink); font-size: var(--fs-mono); }
+
+  .f20-grupo { position: relative; padding: .2rem 0 .5rem; border-bottom: 1px solid var(--hair-2); }
+  .f20-grupo-rotulo { margin: .6rem 0 .3rem; font: 600 var(--fs-small)/1.3 var(--text); color: var(--ink); }
+  .f20-grupo-rotulo::before { content: ''; display: inline-block; width: .9rem; margin-right: .5rem; vertical-align: .3em; border-top: 1px solid var(--accent); }
+  .f20-campo { align-items: baseline; padding: .32rem 0; border-top: 1px solid var(--hair); cursor: default; border-radius: 1px; }
+  .f20-grupo-rotulo + .f20-campo { border-top: 0; }
+  .f20-clave { position: sticky; left: 0; background: var(--bg); display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .5rem; }
+  .f20-clave code { font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); }
+  .f20-marca-v3 { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--ink-2); border: 1px dashed var(--hair-2); border-radius: var(--radio); padding: 0 .3em; }
+  .f20-valor { min-width: 0; overflow-wrap: anywhere; }
+  .f20-valor code { font: 400 .88rem/1.45 var(--mono); color: var(--ink); }
+  .f20-vacio { color: var(--mute); }
+  .f20-speech .f20-dicho { font: italic 400 1.02rem/1.45 var(--text); color: var(--ink); display: block; max-width: 34rem; }
+  .f20-corte { font-style: normal; color: var(--mute); }
+  .f20-solo .f20-valor code { color: var(--ink-2); }
+  .f20-campo:hover, .f20-campo:global(.fig-activa) { background: var(--bg-2); outline: none; }
+  .f20-campo:hover .f20-clave, .f20-campo:global(.fig-activa) .f20-clave { background: var(--bg-2); }
+  .f20-campo:global(.fig-activa) .f20-clave code { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .2em; }
+
+  .f20-v3-texto { margin-top: var(--e5); max-width: 40rem; display: grid; gap: .4rem; }
+  .f20-v3-texto p { margin: 0; }
+  .f20-enlace { margin: var(--e5) 0 0; }
+
+  .f20-tabla td, .f20-tabla th { vertical-align: top; }
+  .f20-t-speech { font: italic 400 .92rem/1.4 var(--text); display: block; min-width: 14rem; max-width: 22rem; }
+  .f20-t-def { font: 400 .9rem/1.4 var(--text); color: var(--ink-2); min-width: 14rem; }
+
+  @media (min-width: 64rem) {
+    .f20-marco { overflow: visible; }
+    .f20-ficha { min-width: 0; }
+  }
+  /* Móvil: la clave encima y las dos filas debajo, una junto a otra; nada se esconde tras un desplazamiento. */
+  @media (max-width: 47.99rem) {
+    .f20-marco { overflow: visible; margin: 0; padding: 0; }
+    .f20-ficha { min-width: 0; }
+    .f20-cab, .f20-campo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--e4); row-gap: .15rem; }
+    .f20-cab-sello, .f20-clave { grid-column: 1 / -1; }
+    .f20-clave { position: static; background: none; }
+    .f20-campo:hover .f20-clave, .f20-campo:global(.fig-activa) .f20-clave { background: none; }
+    .f20-valor code { font-size: .8rem; }
+    .f20-speech .f20-dicho { font-size: .95rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .f20-campo { transition: background-color var(--t-puntero) var(--ease); }
+  }
+</style>

@@ -1,0 +1,1395 @@
+{
+"_meta": {
+"fuente": "2REP_Diaries.csv (THQCMI V2.0)",
+"md5": "360332a0ff1327671530f15eed46ac0c",
+"calculado": "2026-09-22",
+"definicion": "Una fila por mes de 1931-07 a 1945-11. estado: sesion | sin_sesion_en_legislatura (mes sin sesión entre la primera y la última sesión de una legislatura del corpus) | sin_sesion_entre_legislaturas | sin_sesion_guerra_exilio (tras julio de 1936). Las causas (receso, disolución, guerra) NO se infieren: son externas al corpus.",
+"numeracion": "num_session contiguo sin huecos ni duplicados: 1-405 (1931-1933), 1-276 (1933-1935), 1-74 (1936-1939), igual en V2 y v3 y en el sidecar (diario_num)."
+},
+"meses": [
+{
+"mes": "1931-07",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 13,
+"filas": 1282,
+"palabras": 208229
+},
+{
+"mes": "1931-08",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 1482,
+"palabras": 371244
+},
+{
+"mes": "1931-09",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 18,
+"filas": 2633,
+"palabras": 565120
+},
+{
+"mes": "1931-10",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 19,
+"filas": 3519,
+"palabras": 598938
+},
+{
+"mes": "1931-11",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 3818,
+"palabras": 568308
+},
+{
+"mes": "1931-12",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 10,
+"filas": 1145,
+"palabras": 206907
+},
+{
+"mes": "1932-01",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 2343,
+"palabras": 474874
+},
+{
+"mes": "1932-02",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 3340,
+"palabras": 512213
+},
+{
+"mes": "1932-03",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 22,
+"filas": 3283,
+"palabras": 680087
+},
+{
+"mes": "1932-04",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 10,
+"filas": 1700,
+"palabras": 315121
+},
+{
+"mes": "1932-05",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 1473,
+"palabras": 530057
+},
+{
+"mes": "1932-06",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 18,
+"filas": 2371,
+"palabras": 591946
+},
+{
+"mes": "1932-07",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 3479,
+"palabras": 740388
+},
+{
+"mes": "1932-08",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 18,
+"filas": 3555,
+"palabras": 722454
+},
+{
+"mes": "1932-09",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 6,
+"filas": 1758,
+"palabras": 288973
+},
+{
+"mes": "1932-10",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 1601,
+"palabras": 377037
+},
+{
+"mes": "1932-11",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 18,
+"filas": 2404,
+"palabras": 575950
+},
+{
+"mes": "1932-12",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 19,
+"filas": 3604,
+"palabras": 858083
+},
+{
+"mes": "1933-01",
+"legislatura": "1931-1933",
+"estado": "sin_sesion_en_legislatura",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1933-02",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 1843,
+"palabras": 574317
+},
+{
+"mes": "1933-03",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 19,
+"filas": 2249,
+"palabras": 606144
+},
+{
+"mes": "1933-04",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 8,
+"filas": 887,
+"palabras": 241193
+},
+{
+"mes": "1933-05",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 18,
+"filas": 2424,
+"palabras": 537331
+},
+{
+"mes": "1933-06",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 2187,
+"palabras": 488887
+},
+{
+"mes": "1933-07",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 2862,
+"palabras": 566163
+},
+{
+"mes": "1933-08",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 19,
+"filas": 3067,
+"palabras": 564881
+},
+{
+"mes": "1933-09",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 5,
+"filas": 901,
+"palabras": 148313
+},
+{
+"mes": "1933-10",
+"legislatura": "1931-1933",
+"estado": "sesion",
+"sesiones": 2,
+"filas": 145,
+"palabras": 53132
+},
+{
+"mes": "1933-11",
+"legislatura": null,
+"estado": "sin_sesion_entre_legislaturas",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1933-12",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 14,
+"filas": 835,
+"palabras": 174929
+},
+{
+"mes": "1934-01",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 1564,
+"palabras": 470660
+},
+{
+"mes": "1934-02",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 12,
+"filas": 1282,
+"palabras": 374866
+},
+{
+"mes": "1934-03",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 1655,
+"palabras": 579955
+},
+{
+"mes": "1934-04",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 14,
+"filas": 1742,
+"palabras": 408007
+},
+{
+"mes": "1934-05",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 2301,
+"palabras": 697690
+},
+{
+"mes": "1934-06",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 19,
+"filas": 3511,
+"palabras": 870822
+},
+{
+"mes": "1934-07",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 2,
+"filas": 392,
+"palabras": 98730
+},
+{
+"mes": "1934-08",
+"legislatura": "1933-1935",
+"estado": "sin_sesion_en_legislatura",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1934-09",
+"legislatura": "1933-1935",
+"estado": "sin_sesion_en_legislatura",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1934-10",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 2,
+"filas": 67,
+"palabras": 17245
+},
+{
+"mes": "1934-11",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 2476,
+"palabras": 618027
+},
+{
+"mes": "1934-12",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 14,
+"filas": 2053,
+"palabras": 475119
+},
+{
+"mes": "1935-01",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 6,
+"filas": 1096,
+"palabras": 225421
+},
+{
+"mes": "1935-02",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 3627,
+"palabras": 621181
+},
+{
+"mes": "1935-03",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 13,
+"filas": 2744,
+"palabras": 489426
+},
+{
+"mes": "1935-04",
+"legislatura": "1933-1935",
+"estado": "sin_sesion_en_legislatura",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1935-05",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 16,
+"filas": 1500,
+"palabras": 482963
+},
+{
+"mes": "1935-06",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 18,
+"filas": 3743,
+"palabras": 703891
+},
+{
+"mes": "1935-07",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 3183,
+"palabras": 649380
+},
+{
+"mes": "1935-08",
+"legislatura": "1933-1935",
+"estado": "sin_sesion_en_legislatura",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1935-09",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 4,
+"palabras": 4214
+},
+{
+"mes": "1935-10",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 21,
+"filas": 2713,
+"palabras": 643600
+},
+{
+"mes": "1935-11",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 2835,
+"palabras": 639359
+},
+{
+"mes": "1935-12",
+"legislatura": "1933-1935",
+"estado": "sesion",
+"sesiones": 6,
+"filas": 1019,
+"palabras": 230635
+},
+{
+"mes": "1936-01",
+"legislatura": null,
+"estado": "sin_sesion_entre_legislaturas",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1936-02",
+"legislatura": null,
+"estado": "sin_sesion_entre_legislaturas",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1936-03",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 11,
+"filas": 297,
+"palabras": 61880
+},
+{
+"mes": "1936-04",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 12,
+"filas": 1098,
+"palabras": 357203
+},
+{
+"mes": "1936-05",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 13,
+"filas": 1145,
+"palabras": 379069
+},
+{
+"mes": "1936-06",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 17,
+"filas": 1961,
+"palabras": 585654
+},
+{
+"mes": "1936-07",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 7,
+"filas": 867,
+"palabras": 306513
+},
+{
+"mes": "1936-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1936-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1936-10",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 29,
+"palabras": 6716
+},
+{
+"mes": "1936-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1936-12",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 27,
+"palabras": 14645
+},
+{
+"mes": "1937-01",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-02",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 17,
+"palabras": 4294
+},
+{
+"mes": "1937-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-10",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 2,
+"filas": 80,
+"palabras": 34459
+},
+{
+"mes": "1937-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1937-12",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-01",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-02",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 36,
+"palabras": 19302
+},
+{
+"mes": "1938-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-09",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 55,
+"palabras": 35873
+},
+{
+"mes": "1938-10",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 16,
+"palabras": 1968
+},
+{
+"mes": "1938-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1938-12",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-01",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-02",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 16,
+"palabras": 10452
+},
+{
+"mes": "1939-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-10",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1939-12",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-01",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-02",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-10",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1940-12",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-01",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-02",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-10",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1941-12",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-01",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-02",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-10",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1942-12",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-01",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-02",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-10",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1943-12",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-01",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-02",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-08",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-10",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-11",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1944-12",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-01",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 27,
+"palabras": 8027
+},
+{
+"mes": "1945-02",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-03",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-04",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-05",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-06",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-07",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-08",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 1,
+"filas": 5,
+"palabras": 1473
+},
+{
+"mes": "1945-09",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-10",
+"legislatura": "1936-1939",
+"estado": "sin_sesion_guerra_exilio",
+"sesiones": 0,
+"filas": 0,
+"palabras": 0
+},
+{
+"mes": "1945-11",
+"legislatura": "1936-1939",
+"estado": "sesion",
+"sesiones": 3,
+"filas": 178,
+"palabras": 65958
+}
+]
+}

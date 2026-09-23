@@ -1,0 +1,230 @@
+---
+/**
+ * F09 · Qué familias ocupan la palabra (grupo 2, fichas; plan § F09). Figura secundaria de la ficha. Base V2.
+ *  · Dato: palabras y filas V2 por familia política, sin la Presidencia (`src/data/familias_etapa.json`, de
+ *    `exportador/modulos/fichas.py`; normalización de familias del explorador).
+ *  · Marca: una tira al cien por cien en ORDEN FIJO de familias (de izquierda a derecha por su posición media, la misma
+ *    en las cinco etapas), coloreada con la paleta de ideología (DESIGN.md: la ideología solo se colorea aquí, en F26 y
+ *    en F21). Debajo, la leyenda en el mismo orden, con la cifra de cada tramo: el color nunca es la única pista.
+ *    Las familias por debajo del umbral del plan se reúnen en «Otras» solo en la tira; la tabla las da todas.
+ *  · Contexto: las cinco etapas en tiras finas, en el mismo orden, con esta resaltada y las demás enlazadas.
+ *  · La única conmutación: palabras · filas (radios y `:has()`, sin JS). Sin `:has()`, las dos vistas se leen seguidas.
+ *  · Isla genérica (`scripts/figuras.ts`): cada tira es UNA parada; ← → recorren sus tramos; Esc cierra la nota.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano, plantillaNota, existe } from '../lib/i18n';
+import { fmt, marcaPendiente } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { url, PAGINAS, ETAPAS } from '../lib/rutas';
+import { tira, OTRAS, type DatosFamilias, type Medida, type Tramo } from '../viz/geom/familias';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang; etapa: string; slug: string }
+const { lang, etapa, slug } = Astro.props;
+const D = dato<DatosFamilias>('familias_etapa');
+const E = D?.etapas?.[etapa];
+const MEDIDAS: Medida[] = ['palabras', 'filas'];
+const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
+const nombreOtras = existe('fig.F09.otras') ? plano(lang, 'fig.F09.otras') : 'Otras';
+// Decimales de una parte: una cifra decimal basta salvo en las familias minúsculas, que no deben leerse «0,0 %».
+const dec = (x: number) => (x >= 0.001 ? 1 : x >= 0.0001 ? 2 : 3);
+const pctTexto = (x: number) => fmt.pct(x, lang, dec(x));
+const nombreDe = (tr: Tramo) => (tr.familia === OTRAS ? nombreOtras : tr.familia);
+const detalle = (tr: Tramo) => (tr.reune.length ? `${nombreOtras}: ${tr.reune.map((f) => f.familia).join(', ')}` : nombreDe(tr));
+// La parte de cada tramo, con su envoltorio: la clave de cifras.json si la hay (familias.etapa.<E>.<clave>.pct).
+const pctDato = (e: string, tr: Tramo, m: Medida) => {
+  const clave = tr.familia === OTRAS ? `familias.etapa.${e}.otras.${m}.pct` : `familias.etapa.${e}.${tr.clave}${m === 'filas' ? '.filas' : ''}.pct`;
+  return tr.familia === OTRAS ? fmt.dato(tr.pct, pctTexto(tr.pct), clave, 'V2') : fmt.clave(clave, lang, `pct${dec(tr.pct)}`);
+};
+// Notas emergentes: «{{familia}} · {{pct}} · {{n}} de {{den}} …»; la primera parte, en garamond; el resto, en mono.
+const partes = (clave: string) => {
+  const p = plantillaNota(lang, clave, ['familia', 'pct', 'n', 'den']);
+  const [cabeza, ...resto] = p.split(' · ');
+  return { t: cabeza, d: resto.join(' · ') };
+};
+const NOTA = { palabras: partes('fig.F09.nota.palabras'), filas: partes('fig.F09.nota.filas') };
+const rotuloEtapa = existe('comun.fig.filtro.etapa') ? plano(lang, 'comun.fig.filtro.etapa') : '';
+const den = (e: string, m: Medida) => { const x = D?.etapas?.[e]; return x ? fmt.n(m === 'palabras' ? x.den_palabras : x.den_filas, lang) : ''; };
+const titulo = plano(lang, 'fig.F09.titulo');
+const ESCALA = ['ei', 'i', 'ci', 'c', 'cd', 'd', 'ed'];
+const etapas = ETAPAS.filter((x) => D?.etapas?.[x.id]);
+const estilo = (tr: Tramo) => `--ancho: ${(tr.ancho * 100).toFixed(4)}%; --fc: ${tr.familia === OTRAS ? 'var(--f09-otras)' : `var(--${tr.color})`}`;
+---
+<FiguraMarco lang={lang} id="F09" sub={{ etapa: slug }}>
+  <fieldset slot="barra" class="fig-conmuta f09-medida">
+    <legend set:html={t(lang, 'fig.F09.conmuta.titulo')} />
+    {MEDIDAS.map((m, i) => (
+      <label><input type="radio" name={`f09-${slug}-medida`} value={m} checked={i === 0} /><span set:html={t(lang, `fig.F09.conmuta.${m}`)} /></label>
+    ))}
+  </fieldset>
+
+  <div slot="grafico" class="f09">
+    {!E || !D ? (
+      <p class="nota" set:html={marcaPendiente('familias_etapa.json', 'dato')} />
+    ) : (
+      <>
+        <div class="f09-clave">
+          <p class="nota f09-orden" set:html={o('fig.F09.orden')} />
+          <p class="f09-escala" aria-hidden="true">
+            <span class="f09-extremo" set:html={o('fig.F09.color.izq')} />
+            <span class="f09-muestras">{ESCALA.map((c) => <span class="f09-muestra" style={`--fc: var(--${c})`} />)}</span>
+            <span class="f09-extremo" set:html={o('fig.F09.color.der')} />
+          </p>
+        </div>
+
+        {MEDIDAS.map((m) => {
+          const tramos = tira(D, etapa, m);
+          return (
+            <div class="f09-vista" data-medida={m} data-plantilla={NOTA[m].d} data-plantilla-t={NOTA[m].t} data-v-den={den(etapa, m)}>
+              <div class="f09-tira" tabindex="0" data-recorre role="group" aria-label={`${titulo} · ${plano(lang, `fig.F09.conmuta.${m}`)}`}>
+                {tramos.map((tr) => (
+                  <span class:list={['f09-tramo', { 'no-revisado': tr.sinIdentificar }]} data-paso data-nota aria-hidden="true"
+                        data-v-familia={detalle(tr)} data-v-pct={pctTexto(tr.pct)} data-v-n={fmt.n(tr.n, lang)} style={estilo(tr)} />
+                ))}
+              </div>
+              <ol class="f09-leyenda" role="list">
+                {tramos.map((tr) => (
+                  <li style={estilo(tr)} class:list={{ 'no-revisado': tr.sinIdentificar }}>
+                    <span class="f09-muestra" aria-hidden="true" />
+                    <span class="f09-nombre">{nombreDe(tr)}</span>
+                    <span class="f09-cifra" set:html={pctDato(etapa, tr, m)} />
+                  </li>
+                ))}
+              </ol>
+            </div>
+          );
+        })}
+
+        {etapas.length > 1 && (
+          <div class="f09-cinco">
+            <p class="f09-cinco-titulo" set:html={o('fig.F09.cinco.titulo')} />
+            {MEDIDAS.map((m) => (
+              <div class="f09-vista" data-medida={m} data-plantilla={NOTA[m].d} data-plantilla-t={NOTA[m].t} data-plantilla-b={`${rotuloEtapa} {etapa}`}>
+                <div class="f09-cinco-grupo" tabindex="0" data-recorre role="group" aria-label={`${plano(lang, 'fig.F09.cinco.titulo')} · ${plano(lang, `fig.F09.conmuta.${m}`)}`}>
+                  {etapas.map((x) => (
+                    <div class:list={['f09-mini', { esta: x.id === etapa }]} data-v-etapa={x.id} data-v-den={den(x.id, m)}>
+                      {x.id === etapa
+                        ? <span class="f09-mini-e" aria-current="page">{x.id}</span>
+                        : <a class="f09-mini-e" href={url(lang, `${PAGINAS.cortes}/${x.slug}`)}>{x.id}</a>}
+                      <span class="f09-mini-tira">
+                        {tira(D, x.id, m).map((tr) => (
+                          <span class="f09-tramo" data-paso data-nota aria-hidden="true" data-v-familia={detalle(tr)} data-v-pct={pctTexto(tr.pct)}
+                                data-v-n={fmt.n(tr.n, lang)} style={estilo(tr)} />
+                        ))}
+                      </span>
+                      {x.id === etapa && <span class="f09-mini-esta" set:html={o('fig.F09.cinco.esta')} />}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        <p class="nota f09-otras-nota" set:html={o('fig.F09.otras.nota')} />
+        {existe('fig.F09.salvedad.normalizacion') && <p class="nota f09-otras-nota" set:html={t(lang, 'fig.F09.salvedad.normalizacion')} />}
+      </>
+    )}
+  </div>
+
+  <div slot="tabla" class="fig-desliza" tabindex="0" role="region" aria-label={`${plano(lang, 'fig.F09.titulo')}. ${plano(lang, 'comun.fig.tabla.nota')}`}>
+    {E && (
+      <table class="fig-tabla f09-tabla">
+        <caption><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F09.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={t(lang, 'fig.F09.tabla.col.familia')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F09.tabla.col.palabras')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F09.tabla.col.pct_palabras')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F09.tabla.col.filas')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F09.tabla.col.pct_filas')} />
+          </tr>
+        </thead>
+        <tbody>
+          {E.familias.map((f) => (
+            <tr>
+              <th scope="row">{f.familia}</th>
+              <td class="num" set:html={fmt.dato(f.palabras, fmt.n(f.palabras, lang), `familias.etapa.${etapa}.${f.clave}.palabras`, 'V2')} />
+              <td class="num" set:html={fmt.clave(`familias.etapa.${etapa}.${f.clave}.pct`, lang, `pct${dec(f.pct_palabras)}`)} />
+              <td class="num" set:html={fmt.dato(f.filas, fmt.n(f.filas, lang), `familias.etapa.${etapa}.${f.clave}.filas`, 'V2')} />
+              <td class="num" set:html={fmt.clave(`familias.etapa.${etapa}.${f.clave}.filas.pct`, lang, `pct${dec(f.pct_filas)}`)} />
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="row" class="mute">Σ</th>
+            <td class="num" set:html={fmt.clave(`familias.etapa.${etapa}.den`, lang)} />
+            <td />
+            <td class="num" set:html={fmt.clave(`familias.etapa.${etapa}.den_filas`, lang)} />
+            <td />
+          </tr>
+        </tfoot>
+      </table>
+    )}
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'comun.fig.tabla.nota')} />
+  </div>
+</FiguraMarco>
+
+<style>
+  .f09 { --f09-otras: color-mix(in oklab, var(--ink-2) 38%, var(--bg)); }
+  .f09-clave { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--e3) var(--e6); margin-bottom: var(--e5); }
+  .f09-orden { margin: 0; max-width: 34rem; }
+  .f09-escala { display: inline-flex; align-items: center; gap: .5rem; margin: 0; font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); max-width: none; flex-wrap: wrap; }
+  .f09-muestras { display: inline-flex; gap: 2px; }
+  .f09-muestras .f09-muestra { width: 1.1rem; }
+  .f09-muestra { display: inline-block; width: .8rem; height: .8rem; border-radius: 1px; background: var(--fc); flex: none; }
+
+  /* La tira: tramos HTML con un hueco de 2 px del color del fondo entre ellos (el color no se funde con su vecino). */
+  .f09-tira { display: flex; gap: 2px; height: 3rem; border-radius: var(--radio); }
+  .f09-tira:focus-visible, .f09-cinco-grupo:focus-visible { outline: 3px solid var(--focus); outline-offset: 5px; }
+  .f09-tramo { display: block; flex: 0 0 calc(var(--ancho) - 2px); min-width: 1px; background: var(--fc); border-radius: 1px; }
+  .f09-tramo.no-revisado, .f09-leyenda li.no-revisado .f09-muestra { background: transparent; border: 1px dashed var(--ausencia-trazo); }
+  .f09-tira:has(:global(.fig-activa)) .f09-tramo:not(:global(.fig-activa)),
+  .f09-mini-tira:has(:global(.fig-activa)) .f09-tramo:not(:global(.fig-activa)) { opacity: var(--atenua); }
+  .f09-tramo:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; position: relative; z-index: 1; }
+
+  .f09-leyenda { list-style: none; margin: var(--e4) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; }
+  .f09-leyenda li { display: inline-flex; align-items: baseline; gap: .45rem; font-size: var(--fs-small); color: var(--ink-2); }
+  .f09-leyenda .f09-muestra { align-self: center; }
+  .f09-nombre { color: var(--ink); }
+  .f09-cifra { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--ink-2); }
+  .f09-cifra :global(data.cifra) { font-family: var(--mono); }
+
+  /* Las cinco etapas: tiras finas en el mismo orden; esta, resaltada; las demás, enlazadas a su ficha. */
+  .f09-cinco { margin-top: var(--e7); padding-top: var(--e4); border-top: 1px solid var(--hair); }
+  .f09-cinco-titulo { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); margin: 0 0 var(--e3); max-width: none; }
+  .f09-cinco-grupo { display: grid; gap: .1rem; }
+  .f09-mini { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr) 5.5rem; align-items: center; column-gap: var(--e3); min-height: 2.75rem; }
+  .f09-mini-e { display: inline-flex; align-items: center; min-height: 2.75rem; min-width: 2.75rem; font: italic 500 1.15rem/1 var(--display); color: var(--ink-2); text-decoration: none; }
+  a.f09-mini-e:hover { color: var(--accent); }
+  .f09-mini.esta .f09-mini-e { color: var(--ink); }
+  .f09-mini-tira { display: flex; gap: 2px; height: .75rem; }
+  .f09-mini.esta .f09-mini-tira { height: 1.1rem; }
+  .f09-mini-esta { grid-column: 3; font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--ink-2); }
+  .f09-otras-nota { margin: var(--e4) 0 0; max-width: 40rem; }
+
+  /* La conmutación palabras · filas: sin `:has()`, las dos vistas se leen seguidas (degradación prevista). */
+  @supports selector(:has(*)) {
+    .f09-vista[data-medida='filas'] { display: none; }
+    :global(.figura):has(.f09-medida input[value='filas']:checked) .f09-vista[data-medida='filas'] { display: block; }
+    :global(.figura):has(.f09-medida input[value='filas']:checked) .f09-vista[data-medida='palabras'] { display: none; }
+  }
+  @supports not selector(:has(*)) {
+    .f09-vista + .f09-vista { margin-top: var(--e6); }
+  }
+  @media (max-width: 30rem) {
+    .f09-muestras .f09-muestra { width: .7rem; }
+    .f09-escala { gap: .35rem; }
+  }
+  @media (min-width: 48rem) {
+    .f09-tira { height: 3.5rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .f09-tramo { transition: opacity var(--t-estado) var(--ease); }
+  }
+  @media (forced-colors: active) {
+    .f09-tramo, .f09-muestra { background: CanvasText; border: 1px solid Canvas; }
+  }
+  /* Las cabeceras dicen su denominador («sin la Presidencia»): se parten en dos líneas en vez de ensanchar la tabla. */
+  .f09-tabla thead th { white-space: normal; min-width: 6.5rem; max-width: 11rem; }
+</style>

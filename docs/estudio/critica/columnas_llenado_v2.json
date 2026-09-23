@@ -1,0 +1,76 @@
+{
+ "_meta": {
+  "fuente": "2REP_Diaries.csv THQCMI V2.0 md5 360332a0…",
+  "definicion": "% de filas con valor no vacío por columna y legislatura",
+  "calculado": "2026-09-22"
+ },
+ "por_legislatura": {
+  "1931-1933": {
+   "id": 100.0,
+   "num_session": 100.0,
+   "order": 100.0,
+   "date": 100.0,
+   "speaker": 100.0,
+   "speech": 100.0,
+   "rep_id": 99.93,
+   "rep_name": 99.93,
+   "district": 99.93,
+   "party": 99.93,
+   "party_family": 99.93,
+   "ideology": 99.93,
+   "nwords": 100.0,
+   "legislature": 100.0,
+   "_filas": 61355
+  },
+  "1933-1935": {
+   "id": 100.0,
+   "num_session": 100.0,
+   "order": 100.0,
+   "date": 100.0,
+   "speaker": 100.0,
+   "speech": 100.0,
+   "rep_id": 99.77,
+   "rep_name": 99.77,
+   "district": 99.77,
+   "party": 99.77,
+   "party_family": 99.76,
+   "ideology": 99.77,
+   "nwords": 100.0,
+   "legislature": 100.0,
+   "_filas": 40342
+  },
+  "1936-1939": {
+   "id": 100.0,
+   "num_session": 100.0,
+   "order": 100.0,
+   "date": 100.0,
+   "speaker": 100.0,
+   "speech": 100.0,
+   "rep_id": 99.73,
+   "rep_name": 99.73,
+   "district": 99.73,
+   "party": 99.73,
+   "party_family": 99.73,
+   "ideology": 99.73,
+   "nwords": 100.0,
+   "legislature": 100.0,
+   "_filas": 5854
+  }
+ },
+ "total": {
+  "id": 100.0,
+  "num_session": 100.0,
+  "order": 100.0,
+  "date": 100.0,
+  "speaker": 100.0,
+  "speech": 100.0,
+  "rep_id": 99.863,
+  "rep_name": 99.863,
+  "district": 99.863,
+  "party": 99.863,
+  "party_family": 99.86,
+  "ideology": 99.863,
+  "nwords": 100.0,
+  "legislature": 100.0
+ }
+}

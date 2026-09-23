@@ -1,0 +1,198 @@
+# Traducciones de las citas del Diario (y de otros textos citados en español), pendientes del mecanismo `.trad`
+# (docs/peticiones/glosario.md, punto 1). Una línea por cita: clave · cita española · traducción inglesa.
+# Cuando la clave lleva varias citas, van por orden. La marca «(our translation)» la pondrá el componente.
+
+## inicio.md
+inicio.tesis.grito · «Luz y taquigrafos.» · ‘Light and shorthand writers.’
+inicio.fila.presidencia · «Ruego a la Cámara que guarde silencio.» · ‘I ask the Chamber to keep silent.’
+inicio.fila.campoamor · «Yo ruego a la Cámara que me escuche en silencio…» · ‘I ask the Chamber to hear me in silence…’
+inicio.puertas.cuestion-religiosa-1931.que · «España ha dejado de ser católica» · ‘Spain has ceased to be Catholic’
+
+## cortes.md
+cortes.ausente.caratula · «sólo tenemos noticia de ellas por citas bibliográficas pero no se dispone de los textos ni en forma de fotocopia» · ‘we know of them only through bibliographical references, but the texts are not available, not even as photocopies’
+
+## cortes_1931.md
+cortes.1931.contexto.1.c · «resignar sus Poderes en fecha próxima» · ‘to resign his Powers at an early date’
+cortes.1931.contexto.1.d · «acogido con una gran ovación» · ‘received with a great ovation’
+cortes.1931.contexto.2.a (1) · «en nombre de la Comisión» · ‘on behalf of the Committee’
+cortes.1931.contexto.2.a (2) · «es una Constitución de izquierda» · ‘it is a Constitution of the left’
+cortes.1931.contexto.2.e · «la sensible baja que nos ha forzado hoy a este cambio ministerial» · ‘the regrettable loss that has forced this ministerial change upon us today’
+cortes.1931.contexto.3.a · «El centro de gravedad de la política de la República española está en el Parlamento, aquí en este salón» · ‘The centre of gravity of the politics of the Spanish Republic is in Parliament, here in this chamber’
+cortes.1931.contexto.3.b · «es un problema que no se puede resolver, que sólo se puede conllevar» · ‘it is a problem that cannot be solved, that can only be endured’
+cortes.1931.contexto.3.c · «después de hacerlo el ilustre maestro de todos» · ‘after the illustrious master of us all has done so’
+cortes.1931.contexto.3.e · «los sucesos acaecidos esta madrugada en Madrid» · ‘the events that took place in Madrid in the early hours of this morning’
+cortes.1931.contexto.5.b · «Señores Diputados, los que van a morir os saludan.» · ‘Deputies, those who are about to die salute you.’
+cortes.1931.contexto.5.e · «En vista de la declaración del Gobierno, se suspenden las sesiones de Cortes» · ‘In view of the Government’s statement, the sessions of the Cortes are suspended’
+cortes.1931.puertas.religiosa · «España ha dejado de ser católica» · ‘Spain has ceased to be Catholic’
+
+## cortes_1933.md
+cortes.1933.contexto.1.d · «la fracción numéricamente más importante de la Cámara» · ‘the numerically largest group in the Chamber’
+cortes.1933.contexto.2.b · «¿Por qué es inicuo el acto que van a realizar las Cortes al aprobar este proyecto de ley?» · ‘Why is the act that the Cortes are about to perform in approving this bill iniquitous?’
+cortes.1933.contexto.2.e · «Casas Viejas! Casas Viejas! Tiros a la barriga, a la barriga!» · ‘Casas Viejas! Casas Viejas! Shots in the belly, in the belly!’
+cortes.1933.contexto.2.f (1) · «han de tratarse en sesión secreta» · ‘must be dealt with in secret session’
+cortes.1933.contexto.2.f (2) · «Luz y taquigrafos.» · ‘Light and shorthand writers.’
+cortes.1933.contexto.2.h · «¿por qué se retiran los Sres. Diputados de la Esquerra catalana?» · ‘why are the Deputies of the Catalan Esquerra withdrawing?’
+cortes.1933.contexto.2.i · «La minoría vasca se retira del salón» · ‘The Basque minority withdraws from the chamber’
+cortes.1933.contexto.3.a · «dijerase que acaba de transcurrir la noche del 4 de Julio en que el Parlamento acordó suspender sus tareas» · ‘one would say that the night of 4 July, when Parliament agreed to suspend its work, has only just passed’
+cortes.1933.contexto.3.b (1) · «una rectificación» · ‘a correction of course’
+cortes.1933.contexto.3.b (2) · «ha puesto de relieve que no es posible seguir por ese camino» · ‘has made it plain that it is not possible to continue down that road’
+cortes.1933.contexto.3.d · «hasta completar la pacificación y el imperio de la Ley, interrumpida por la huelga revolucionaria» · ‘until pacification and the rule of Law, interrupted by the revolutionary strike, are complete’
+cortes.1933.contexto.3.e · «nuestros compañeros Diputados por Asturias» · ‘our fellow Deputies for Asturias’
+cortes.1933.contexto.3.f · «son contestados con unánimes aplausos y aclamaciones» · ‘they are answered with unanimous applause and acclamation’
+cortes.1933.contexto.4.a · «un presunto acusado y culpable» · ‘a presumed accused and guilty man’
+cortes.1933.contexto.4.e · «aparato de juego de salón que ha motivado todo este asunto» · ‘parlour gaming device that has given rise to this whole affair’
+cortes.1933.contexto.4.f · «vengo apesadumbrado por una grave acusación» · ‘I come here weighed down by a serious accusation’
+cortes.1933.contexto.4.i · «las sesiones hasta nuevo aviso» · ‘the sessions until further notice’
+cortes.1933.contexto.4.j · «las primeras Cortes ordinarias de la República» · ‘the first ordinary Cortes of the Republic’ (del decreto, no del Diario)
+
+## cortes_1936.md
+cortes.1936.contexto.1.b · «solicitó de la Presidencia un viva a la República, negándose el Sr. Presidente» · ‘asked the Chair for a cheer for the Republic, which the President refused’
+cortes.1936.contexto.1.c · «¡Viva la República! ¡Viva España!» · ‘Long live the Republic! Long live Spain!’
+cortes.1936.contexto.2.b · «dejamos en vuestras manos, señores de la mayoría, la suerte del sistema parlamentario» · ‘we leave in your hands, gentlemen of the majority, the fate of the parliamentary system’
+cortes.1936.contexto.3.b · «el primer acto de las nuevas Cortes será examinar y resolver sobre la necesidad del decreto» · ‘the first act of the new Cortes shall be to examine and rule on whether the decree was necessary’
+cortes.1936.contexto.3.d · «no era necesario el decreto de disolución de Cortes de 7 de Enero de 1936» · ‘the decree dissolving the Cortes of 7 January 1936 was not necessary’
+cortes.1936.contexto.3.e · «El Reglamento dispone que se haga nominalmente» · ‘The Standing Orders require it to be done by roll call’
+cortes.1936.contexto.3.f · «se hallaba descansando» · ‘he was resting’
+cortes.1936.contexto.3.g · «pasa a ser Presidente de la República» · ‘becomes President of the Republic’
+cortes.1936.contexto.4.b · «para que el Presidente electo preste la promesa» · ‘so that the President-elect may take the oath’
+cortes.1936.contexto.4.c · «Encontrándose el Gobierno en crisis se suspenden las sesiones de Cortes» · ‘The Government being in crisis, the sessions of the Cortes are suspended’
+cortes.1936.contexto.5.a (1) · «Se acaba de hacer una incitación al asesinato» · ‘There has just been an incitement to murder’
+cortes.1936.contexto.5.a (2) · «Esas palabras no constarán en el Diario de Sesiones» · ‘Those words will not appear in the Diario de Sesiones’
+cortes.1936.contexto.5.c · «no se consignan por orden» · ‘are not recorded by order’
+cortes.1936.contexto.6.c (1) · «Orden del día para el martes» · ‘Order of the day for Tuesday’
+cortes.1936.contexto.6.c (2) · «ese movimiento sedicioso» · ‘that seditious movement’
+
+## datos.md
+datos.columnas.speaker.trampa · «El Sr. PRESIDENTE:» · ‘The President:’ · «El Sr. Ministro de HACIENDA:» · ‘The Minister of Finance:’
+datos.columnas.speech.dentro · «(Muy bien.—Aplausos.)» · ‘(Hear, hear. – Applause.)’
+
+## versiones.md
+fig.F07.nota.presidencia · «El Sr. PRESIDENTE:» · ‘The President:’
+
+## explorador.md
+explorador.leer.lector · «La señorita CAMPOAMOR» · ‘Miss CAMPOAMOR’ · «La Srta. CAMPOAMOR:» · ‘Miss CAMPOAMOR:’
+explorador.img.lector.alt · «La señorita CAMPOAMOR» · ‘Miss CAMPOAMOR’
+(las cadenas del explorador y las consultas llevan su glosa inglesa en línea, entre paréntesis; no esperan `.trad`)
+
+## afinidades.md
+afinidades.limites.truncadas · «Siguen las firmas hasta…» · ‘The signatures continue up to…’ (ya glosada en línea)
+
+## cortes_guerra.md
+cortes.guerra.contexto.1.a · «CON POSTERIORIDAD AL 18 DE JULIO» · ‘AFTER 18 JULY’
+cortes.guerra.contexto.1.b (1) · «Palacio del Congreso» · ‘Palace of the Congress’
+cortes.guerra.contexto.1.b (2) · «nos reunimos en Madrid» · ‘we met in Madrid’
+cortes.guerra.contexto.1.c (1) · «al pueblo de Valencia» · ‘the people of Valencia’
+cortes.guerra.contexto.1.c (2) · «Palacio del Ayuntamiento de Valencia» · ‘Valencia City Hall’
+cortes.guerra.contexto.1.d · «congregarnos en la histórica Lonja» · ‘to gather in the historic Lonja’
+cortes.guerra.contexto.1.e (1) · «del antiguo monasterio de San Cugat del Vallés» · ‘of the old monastery of San Cugat del Vallés’
+cortes.guerra.contexto.1.e (2) · «las Cortes de Montserrat» · ‘the Cortes of Montserrat’
+cortes.guerra.contexto.1.f · «Castillo de Figueras» · ‘Figueres Castle’
+cortes.guerra.contexto.2.a · «ese movimiento sedicioso» · ‘that seditious movement’
+cortes.guerra.contexto.2.b · «por aclamación» · ‘by acclamation’
+cortes.guerra.contexto.3.a · «de ciertas cosas no se puede hablar en la Cámara» · ‘certain things cannot be spoken of in the Chamber’
+cortes.guerra.contexto.3.b · «Pero si el Parlamento no es eso, no será nada» · ‘But if Parliament is not that, it will be nothing’
+cortes.guerra.contexto.3.c · «El Gobierno no acepta, ni admite votos de confianza condicionados y con reservas» · ‘The Government neither accepts nor admits votes of confidence that are conditional and with reservations’
+cortes.guerra.contexto.4.a (1) · «a las veintidos horas treinta minutos» · ‘at twenty-two hours thirty minutes’
+cortes.guerra.contexto.4.a (2) · «Señores Diputados, se reúne hoy la Cámara en un severo ambiente de guerra» · ‘Deputies, the Chamber meets today in a grave atmosphere of war’
+cortes.guerra.contexto.4.b · «Han votado afirmativamente los sesenta y dos señores Diputados» · ‘All sixty-two Deputies have voted in favour’
+cortes.guerra.contexto.4.c (1) · «NO EXISTE DATO ALGUNO» · ‘NO DATA WHATSOEVER EXIST’
+cortes.guerra.contexto.4.c (2) · «se ha podido obtener fotocopia del ejemplar del Extracto de dicha sesión» · ‘it has been possible to obtain a photocopy of the copy of the Extract of that session’
+cortes.guerra.sesiones.1938-09-30-67 · «con reservas» · ‘with reservations’
+cortes.guerra.sesiones.1938-10-01-68 · «hasta nuevo aviso» · ‘until further notice’
+
+## cortes_mexico.md
+cortes.mexico.contexto.1.a · «de 2 de febrero de 1939 a 9 de enero de 1945» · ‘from 2 February 1939 to 9 January 1945’
+cortes.mexico.contexto.1.b · «por enterada» · ‘as informed’
+cortes.mexico.contexto.1.d · «celebrábamos las exequias temporales de la República Española» · ‘we were holding the temporary funeral rites of the Spanish Republic’
+cortes.mexico.contexto.2.a · «Promesa del Excmo. señor don Diego Martínez Barrio, Presidente de las Cortes, como Presidente interino de la República Española» · ‘Oath of His Excellency Don Diego Martínez Barrio, President of the Cortes, as interim President of the Spanish Republic’
+cortes.mexico.contexto.2.b · «Si, prometo» · ‘Yes, I promise’
+cortes.mexico.contexto.3.a · «el primer Gobierno de la República que ha sido posible instrumentar constitucionalmente» · ‘the first Government of the Republic that it has been possible to form constitutionally’
+cortes.mexico.contexto.3.b (1) · «No otorgaremos, pues, la confianza al Gobierno» · ‘We shall not, therefore, give the Government our confidence’
+cortes.mexico.contexto.3.b (2) · «por aclamación» · ‘by acclamation’
+cortes.mexico.contexto.3.c · «las circunstancias que impiden con carácter de fuerza mayor la convocatoria de elecciones» · ‘the circumstances of force majeure that prevent elections from being called’
+cortes.mexico.contexto.4.a · «de Santiago de Chile para asistir a estas sesiones» · ‘from Santiago de Chile to attend these sessions’
+cortes.mexico.contexto.4.b · «esta satisfacción moral a nuestros compañeros los Diputados gallegos» · ‘this moral satisfaction to our colleagues the Galician Deputies’
+cortes.mexico.contexto.4.c · «a México, a su Gobierno, a su Prensa y a su pueblo» · ‘Mexico, its Government, its Press and its people’
+cortes.mexico.antes.no_esta · «no se dispone de los textos ni en forma de fotocopia» · ‘the texts are not available, not even as photocopies’
+cortes.mexico.antes.paris · «las cuatro de la Diputación Permanente, celebradas en París» · ‘the four of the Standing Committee, held in Paris’
+
+# Lote sesiones, sesiones_*, diario, metodo · clave<TAB>traducción (23-09-2026)
+sesiones.sufragio-1931.que_paso.cita.articulo	‘Citizens of either sex, over twenty-three years of age, shall have the same electoral rights…’ (our translation)
+sesiones.sufragio-1931.diario.cita.kent	‘…that I believe the women's vote should be postponed.’ (our translation)
+sesiones.sufragio-1931.diario.cita.presidencia	‘I ask the Chamber to keep silent.’ (our translation)
+sesiones.sufragio-1931.diario.cita.silencio	‘I ask the Chamber to hear me in silence…’ (our translation)
+sesiones.sufragio-1931.diario.cita.ciudadana	‘I, Honourable Deputies, feel myself a citizen before I am a woman, and I consider that it would be a profound political error to leave women outside that right…’ (our translation)
+sesiones.sufragio-1931.diario.cita.resultado	‘Total, 161.’ … ‘Total, 121.’ (our translation)
+sesiones.sufragio-1931.votacion.cita.ordinaria	‘In an ordinary vote the motion of the Socialist group was rejected by 141 votes to 106.’ (our translation)
+sesiones.cuestion-religiosa-1931.que_paso.cita.articulo	‘Art. 24. All religious denominations shall be regarded as Associations subject to a special law.’ (our translation)
+sesiones.cuestion-religiosa-1931.diario.cita.azana	‘Spain has ceased to be Catholic: the political problem that follows is to organise the State in such a way that it may [sic] suited to this new and historic phase of the Spanish people.’ (our translation)
+sesiones.cuestion-religiosa-1931.diario.cita.resultado	‘…article 24 was approved by 178 votes to 59…’ (our translation)
+sesiones.cuestion-religiosa-1931.diario.cita.apertura	‘The session was opened at four thirty in the afternoon…’ (our translation)
+sesiones.cuestion-religiosa-1931.diario.cita.cierre	‘It was seven thirty-five in the morning of the 14th.’ (our translation)
+sesiones.estatuto-1932.diario.cita.azana	‘Catalonia says, the Catalans say: “we wants [sic] to live differently within the Spanish State”. The claim is legitimate; it is legitimate because the law authorises it, no less than the constitutional law.’ (our translation)
+sesiones.estatuto-1932.turnos.cita.rotulo	‘The President of the Council of Ministers has the floor.’ … ‘The President of the COUNCIL OF MINIS’ (our translation)
+sesiones.casas-viejas-1933.diario.cita.hurgue	‘…however much one digs, not a trace of responsibility will be found for the Government.’ (our translation)
+sesiones.casas-viejas-1933.diario.cita.azana	‘In Casas Viejas nothing has happened but what had to happen. (Loud murmurs and protests from the minority benches; counter-protests from the majority.)’ (our translation)
+sesiones.casas-viejas-1933.diario.cita.martinezbarrio	‘…he told us: “In the events of Casas Viejas, Honourable Deputies, however much one digs…”’ (our translation)
+sesiones.casas-viejas-1933.no_esta.cita.barriga	‘Casas Viejas! Casas Viejas! Shots to the belly, to the belly!’ (our translation)
+sesiones.pistola-1934.diario.cita.tumulto	‘A violent altercation broke out between Messrs Tirado and Oriol de la Puerta, the said Deputies coming to blows.—This caused a veritable uproar in the Chamber.’ (our translation)
+sesiones.pistola-1934.diario.cita.golpes	‘These incidents confined to words are common; today's has turned into blows.’ (our translation)
+sesiones.pistola-1934.diario.cita.pistola	‘…it is true, Mr President, that a pistol or two has come to light, mine at least…’ (our translation)
+sesiones.pistola-1934.diario.cita.oriol	‘I invite Mr Prieto to say who drew the pistol; what is an entirely certain fact, known to all present, is that Mr Prieto had it.’ (our translation)
+sesiones.antesala-1936.diario.cita.calvo	‘I say what Saint Dominic of Silos answered a Castilian king: “Sire, you may take my life, but no more than that.”’ (our translation)
+sesiones.antesala-1936.diario.cita.casares	‘…I shall hold Your Honour responsible before the country.’ (our translation)
+sesiones.antesala-1936.diario.cita.galarza	‘Ah!, but I proclaim one thing: violence... (The end of the sentence is not recorded by order of the President.—Applause.—Murmurs.)’ (our translation)
+sesiones.antesala-1936.diario.cita.presidencia	‘Your Honour's words, in that respect, will not appear in the Diario de Sesiones.’ (our translation)
+sesiones.antesala-1936.diario.cita.galarza2	‘…those words, which will not appear in the Diario de Sesiones, the country will come to know…’ (our translation)
+sesiones.figueres-1939.que_paso.cita.votacion	‘All sixty-two Deputies have voted in favour.’ (our translation)
+sesiones.figueres-1939.diario.cita.negrin	‘Deputies, the Chamber meets today in a grave atmosphere of war.’ (our translation)
+sesiones.figueres-1939.diario.cita.martinezbarrio	‘We do so on a piece of Catalan soil which, like other parts of Spain, is at present nuancilada [sic] and trodden by the foot of foreign invaders…’ (our translation)
+sesiones.figueres-1939.diario.cita.castillo	‘Castle of Figueres, on the first of February, of nineteen hundred and thrity-nine [sic].’ (our translation)
+sesiones.figueres-1939.no_esta.cita.nota	‘OF THE LASTT [sic] SESSION, WHICH TOOK PLACE IN THE CITY OF FIGUERES FOLLOWING THE LIBERATION OF BARCELONA ON 26 JANUARY 1.939, NO RECORD WHATSOEVER EXISTS.’ (our translation)
+sesiones.figueres-1939.no_esta.cita.fotocopia	‘After lengthy and constant efforts, it has been possible to obtain a photocopy of the copy of the Summary of that session…’ (our translation)
+sesiones.mexico-1945.diario.cita.lugar	‘…of the extraordinary session held in Mexico City on Friday 17 August 1945’ (our translation)
+sesiones.mexico-1945.diario.cita.orden	‘Oath of His Excellency Don Diego Martínez Barrio, President of the Cortes, as acting President of the Spanish Republic.’ (our translation)
+sesiones.mexico-1945.diario.cita.promesa	‘Do you solemnly promise loyalty to the Republic and to the Constitution?’ … ‘Yes, I promise.’ (our translation)
+sesiones.mexico-1945.diario.cita.giral	‘…as the first Government of the Republic that it has been possible to constitute constitutionally since the day misfortune made us cross the border comes before the Spanish Cortes…’ (our translation)
+sesiones.mexico-1945.no_esta.cita.permanente	‘…we know of them only through bibliographical references, but the texts are not available, not even as photocopies.’ (our translation)
+diario.que_es.cita.interrupcion	‘(Mr Guerra del Río: The cavemen are talking about pie.)’ (our translation)
+diario.luz.cita.secreta	‘Under the Standing Orders, requests to waive immunity must be dealt with in secret session;’ (our translation)
+diario.luz.cita.grito	‘Light and shorthand writers.’ (our translation)
+diario.luz.cita.reglamento	‘The Standing Orders, Deputies – I did not see who interrupted – protect above all the minorities…’ (our translation)
+diario.luz.cita.prieto	‘The Socialist minority has no objection to this being discussed in public.’ (our translation)
+diario.luz.cita.royo	‘…here everything is settled with light and shorthand writers, as Maura used to say…’ (our translation)
+diario.luz.cita.maurin	‘There is light and there are shorthand writers; the shorthand writers will take that down. (Mr Comín: Poor shorthand writers.)’ (our translation)
+diario.calla.cita.sainz	‘…those Standing Orders provide that the President may even order a Deputy to be silent, may order that his words not be recorded in the Diario de Sesiones…’ (our translation)
+diario.calla.cita.abril	‘That is not enough.’ (our translation)
+diario.calla.cita.prieto	‘As far as I am concerned, let them be recorded.’ (our translation)
+diario.calla.cita.tachado	‘…that has been struck out in the Diario de Sesiones.’ (our translation)
+diario.calla.cita.no_oye	‘(A Deputy utters words that cannot be made out)’ … ‘A Deputy utters words that provoke protests from the minorities and that are not recorded by order of the President.’ (our translation)
+diario.habla.cita.volumen	‘THIS VOLUME CONTAINS THE SUMMARIES OF THE SESSIONS HELD BY THE CORTES OF 1.936 AFTER 18 JULY.’ (our translation)
+diario.habla.cita.fotocopia	‘After lengthy and constant efforts, it has been possible to obtain a photocopy of the copy of the Summary of that session…’ (our translation)
+diario.habla.cita.censura	‘…that the full texts taken from the Diario de Sesiones be neither struck out nor mutilated by it…’ (our translation)
+diario.habla.cita.campoamor	‘In my absence, and reading the Diario de Sesiones, I could see in it that a doctor was saying here that no equation was possible…’ (our translation)
+fig.F27.cita.1	‘…misdeeds, which are not usually done in the light and before the shorthand writers…’ (our translation)
+fig.F27.cita.2	‘…were discussed at length with light and shorthand writers and in the presence of all the Deputies of the other minorities…’ (our translation)
+fig.F27.cita.3	‘…the greatest guarantee is free opposition, with light and shorthand writers…’ (our translation)
+fig.F27.cita.4	‘…I have raised my voice here, with light and shorthand writers, against the gunmen…’ (our translation)
+fig.F27.cita.5	‘…here everything is settled with light and shorthand writers, as Maura used to say…’ (our translation)
+fig.F27.cita.6	‘Light and shorthand writers.’ (our translation)
+fig.F27.cita.7	‘…there is no objection, no obstacle and no difficulty to examining the budget with light and shorthand writers…’ (our translation)
+fig.F27.cita.8	‘…that Parliament carries out usually says that “light and shorthand writers” are needed…’ (our translation)
+fig.F27.cita.9	‘Whoever is crouching in his seat, with light and shorthand writers, naturally does not wish to avail himself of night-time or of darkness of any kind.’ (our translation)
+fig.F27.cita.10	‘There is light and there are shorthand writers; the shorthand writers will take that down.’ (our translation)
+fig.F28.cita.orden.1	‘That they should not be recorded in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.orden.2	‘Those words, which will not be recorded in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.orden.3	‘…I assure you that the words you have uttered will not be recorded in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.orden.4	‘Those words will not be recorded in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.orden.5	‘It has already been said that those words will not be recorded in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.orden.6	‘The Chair has already given notice that those words will not be recorded in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.orden.7	‘It will not be recorded in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.orden.8	‘Your Honour's words, in that respect, will not appear in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.acotacion.1	‘(Mr Muñoz de Zafra utters words that are not recorded by order of the President…’ (our translation)
+fig.F28.cita.acotacion.2	‘A Deputy utters words that provoke protests from the minorities and that are not recorded by order of the President.’ (our translation)
+fig.F28.cita.acotacion.3	‘(The speaker utters words that are not recorded by order of the President…’ (our translation)
+fig.F28.cita.acotacion.4	‘(Mr Carrillo replies with words that raise loud protests and that are not recorded by order of the Chair.)’ (our translation)
+fig.F28.cita.acotacion.5	‘(The end of the sentence is not recorded by order of the President.—Applause.—Murmurs.)’ (our translation)
+fig.F28.cita.peticion	‘…certain insulting and unspeakable words with which the Sisters of Charity have been abused will not be recorded in the Diario de Sesiones.’ (our translation)
+fig.F28.cita.ajena	‘…as it sheems [sic] to me unjust that it should not be recorded in the Diario de Sesión…’ (our translation)

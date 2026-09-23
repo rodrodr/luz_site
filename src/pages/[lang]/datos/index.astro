@@ -1,0 +1,431 @@
+---
+/**
+ * H · Usar los datos (plan § Plantilla H; narrativa § 13; DESIGN.md «Método, Datos, Versiones»). De «quiero» a «tengo el
+ * archivo abierto, sé qué significa cada columna, sé unirlo y sé citarlo». Lectura técnica con índice lateral.
+ * Dueño: grupo 5 (datos). Los textos se COLOCAN A MANO, en el orden de `docs/copy_es/datos.md`, con la gramática de
+ * sección de DESIGN.md: asiento · H2 · entrada · cuerpo en seis columnas · nota al margen en las tres de la derecha
+ * (la rejilla la sube a la fila de su párrafo; en el móvil va detrás) · llamada.
+ * Figura protagonista: F32 (las columnas). F33 y F34 son figuras de apoyo de su apartado.
+ * Anclas fijas que otras páginas enlazan: #empezar · #columnas · #palabra · #unir · #codigo · #citar (comun.md § 3).
+ * Las figuras llevan el sufijo «-fig»: el ancla del registro (`lib/figuras.ts`) es la del APARTADO, que las contiene.
+ */
+import Base from '../../../layouts/Base.astro';
+import SubNav from '../../../components/SubNav.astro';
+import CabezaPagina from '../../../components/CabezaPagina.astro';
+import IndiceLateral from '../../../components/IndiceLateral.astro';
+import VolverIndice from '../../../components/VolverIndice.astro';
+import NotaBases from '../../../components/NotaBases.astro';
+import Sello from '../../../components/Sello.astro';
+import FigColumnas from '../../../components/datos/FigColumnas.astro';
+import FigRecuentos from '../../../components/datos/FigRecuentos.astro';
+import FigUnion from '../../../components/datos/FigUnion.astro';
+import CitaPestanas from '../../../components/datos/CitaPestanas.astro';
+import { meta } from '../../../lib/pagina';
+import { t, tBloques, rotulo, plano, existe } from '../../../lib/i18n';
+import { fmt, marcaPendiente } from '../../../lib/cifras';
+import { enlaceFinal } from '../../../lib/lectura';
+import { remata } from '../../../lib/remata';
+import { dato } from '../../../lib/datos';
+import { url, recurso, PAGINAS } from '../../../lib/rutas';
+import { bibtex, ris, citaConjunto, jsonldDe } from '../../../lib/cita';
+import { ENLACES, hrefContacto } from '../../../config/enlaces';
+import { rutasPorIdioma, type Lang } from '../../../lib/idiomas';
+
+export const getStaticPaths = rutasPorIdioma;
+const lang = Astro.params.lang as Lang;
+const { titulo, descripcion } = meta(lang, 'datos');
+/** Un rótulo de años («1933-1935») no se parte por el guion al final de línea: se envuelve en `.nw`, solo en el texto. */
+const nw = (html: string) => html.replace(/(^|>)([^<]+)/g, (_x, a: string, txt: string) => a + txt.replace(/\b(1[89]\d\d)-(1[89]\d\d)\b/g, '<span class="nw">$1-$2</span>'));
+const L = (k: string, ctx = {}) => nw(existe(k) ? t(lang, k, ctx) : marcaPendiente(k, 'copy'));
+const B = (k: string, ctx = {}) => nw(remata(existe(k) ? tBloques(lang, k, ctx) : `<p>${marcaPendiente(k, 'copy')}</p>`));
+const R = (k: string) => (existe(k) ? rotulo(lang, k) : marcaPendiente(k, 'copy'));
+
+const S = [
+  { id: 'empezar', x: 'empezar' }, { id: 'camino', x: 'camino' }, { id: 'columnas', x: 'columnas' },
+  { id: 'decisiones', x: 'decisiones' }, { id: 'palabra', x: 'palabra' }, { id: 'unir', x: 'unir' },
+  { id: 'codigo', x: 'codigo' }, { id: 'citar', x: 'citar' }, { id: 'erratas', x: 'erratas' },
+];
+const LEGS = ['1931-1933', '1933-1935', '1936-1939'];
+const ARCH: Record<string, string> = { '2REP_Diaries.csv': 'csv', 'changelog_es_09_2026.txt': 'changelog_es', 'changelog_en_09_2026.txt': 'changelog_en', 'Luz_y_Taquigrafos_README.txt': 'readme' };
+const dep = dato<{ archivos: { nombre: string; bytes: number; md5: string }[] }>('depositos');
+const frag = dato<{ _meta: { ejecutado: string; python: string; pandas: string; r: string }; python: { salida: string }; r: { salida: string } }>('fragmentos');
+const DEC = ['1', '2', '3', '4', '5', '6'];
+const ext = (href: string | null, clave: string, primario = false) => href
+  ? remata(`<a class="boton${primario ? '' : ' sec'}" href="${href}"${/^https?:/.test(href) ? ' rel="noopener external"' : ''}>${R(clave)}</a>`)
+  : `<span class="boton sec">${marcaPendiente(clave, 'dato')}</span>`;
+const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
+---
+<Base lang={lang} ruta={PAGINAS.datos} titulo={titulo} descripcion={descripcion} jsonld={jsonldDe('thqcmi', lang)}>
+  <SubNav lang={lang} grupo="datos" actual={PAGINAS.datos} />
+  <CabezaPagina lang={lang} prefijo="datos">
+    <!-- La descarga, en la primera pantalla (pulido fase 2): ↺ 3 encima del botón de Dataverse, como en la escalera. -->
+    <div class="cabeza-descarga">
+      <p class="fija-p aviso" set:html={t(lang, 'comun.fija.formulario')} />
+      <p class="botones" set:html={ext(ENLACES.thqcmi, 'comun.boton.dataverse', true)} />
+    </div>
+  </CabezaPagina>
+  <div class="contenedor con-indice datos" style={`timeline-scope: ${S.map((s) => `--${s.id}`).join(', ')}`}>
+    <IndiceLateral lang={lang} titulo={L('datos.indice.titulo')} entradas={S.map((s) => ({ id: s.id, rotulo: L(`datos.indice.${s.x}`) }))} />
+    <div class="lectura">
+
+      <!-- 1 · Por dónde empezar: la escalera, de menos a más fricción; ↺ 3 ENCIMA del botón de Dataverse -->
+      <section class="seccion" id="empezar" aria-labelledby="empezar-titulo" style="view-timeline-name: --empezar">
+        <div class="seccion-cuerpo">
+          <h2 id="empezar-titulo" set:html={L('datos.empezar.titulo')} />
+          <p class="lede" set:html={L('datos.empezar.entrada')} />
+          <ol class="escalera" role="list">
+            <li class="peldano">
+              <h3 set:html={L('datos.empezar.s1.titulo')} />
+              <p set:html={L('datos.empezar.s1.texto')} />
+              <p class="fija-p" set:html={t(lang, 'comun.fija.sin_formulario')} />
+              <p class="accion"><a class="boton sec" href={aVersionesBases} set:html={R('datos.empezar.s1.accion')} /></p>
+            </li>
+            <li class="peldano">
+              <h3 set:html={L('datos.empezar.s2.titulo')} />
+              <p set:html={L('datos.empezar.s2.texto')} />
+              <p class="peso" set:html={L('datos.empezar.s2.peso')} />
+              <p class="fija-p"><Fragment set:html={t(lang, 'comun.fija.explorador')} /> <Fragment set:html={t(lang, 'comun.fija.local')} /></p>
+              <p class="accion" set:html={ext(ENLACES.explorador, 'comun.boton.explorador')} />
+            </li>
+            <li class="peldano">
+              <h3 set:html={L('datos.empezar.s3.titulo')} />
+              <p set:html={L('datos.empezar.s3.texto')} />
+              <p class="peso" set:html={L('datos.empezar.s3.peso')} />
+              <p class="fija-p aviso" set:html={t(lang, 'comun.fija.formulario')} />
+              <p class="accion" set:html={ext(ENLACES.thqcmi, 'comun.boton.dataverse', true)} />
+            </li>
+            <li class="peldano">
+              <h3 set:html={L('datos.empezar.s4.titulo')} />
+              <p set:html={L('datos.empezar.s4.texto')} />
+              <p class="accion"><a class="boton sec" href={url(lang, PAGINAS.afinidades)} set:html={R('comun.boton.ver_afinidades')} /></p>
+            </li>
+          </ol>
+          <p class="cierre" set:html={L('datos.empezar.cierre')} />
+          <aside class="al-margen"><p set:html={t(lang, 'comun.fija.ids')} /></aside>
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 2 · El camino hasta el archivo: DOI, un archivo, los parámetros; la tabla de comprobación; los archivos -->
+      <section class="seccion" id="camino" aria-labelledby="camino-titulo" style="view-timeline-name: --camino">
+        <div class="seccion-cuerpo">
+          <h2 id="camino-titulo" set:html={L('datos.camino.titulo')} />
+          <p class="lede" set:html={L('datos.camino.entrada')} />
+          <div class="pasos-camino" set:html={B('datos.camino.texto')} />
+          <aside class="al-margen">
+            <p set:html={t(lang, 'comun.fija.formulario')} />
+            <p set:html={t(lang, 'comun.fija.formulario.motivo')} />
+          </aside>
+          <div class="fig-desliza comprobar" tabindex="0" role="region" aria-label={plano(lang, 'datos.camino.comprobar.aria')}>
+            <table class="fig-tabla">
+              <thead>
+                <tr>
+                  <th scope="col" set:html={L('datos.camino.comprobar.col.legislatura')} />
+                  <th scope="col" class="num" set:html={L('datos.camino.comprobar.col.sesiones')} />
+                  <th scope="col" class="num" set:html={L('datos.camino.comprobar.col.filas')} />
+                  <th scope="col" class="num" set:html={L('datos.camino.comprobar.col.palabras')} />
+                </tr>
+              </thead>
+              <tbody>
+                {LEGS.map((lg) => (
+                  <tr>
+                    <th scope="row">{lg}</th>
+                    <td class="num" set:html={fmt.clave(`leg.${lg}.sesiones`, lang)} />
+                    <td class="num" set:html={fmt.clave(`leg.${lg}.filas`, lang)} />
+                    <td class="num" set:html={fmt.clave(`leg.${lg}.palabras`, lang)} />
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row" set:html={L('datos.camino.comprobar.total')} />
+                  <td class="num" set:html={fmt.clave('sesiones', lang)} />
+                  <td class="num" set:html={fmt.clave('filas.V2', lang)} />
+                  <td class="num" set:html={fmt.clave('palabras.V2', lang)} />
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <p class="no-trae" set:html={L('datos.camino.no_trae')} />
+          <aside class="al-margen"><p class="pieza-sello"><Sello lang={lang} base="proyecto" /></p></aside>
+          <p class="botones" set:html={ext(ENLACES.thqcmi, 'comun.boton.dataverse')} />
+          <div class="fig-desliza archivos" tabindex="0" role="region" aria-labelledby="archivos-titulo">
+            <table class="fig-tabla" role="table">
+              <caption id="archivos-titulo"><span class="fig-rotulo-tabla" set:html={L('datos.camino.tabla.titulo')} /></caption>
+              <thead role="rowgroup">
+                <tr role="row">
+                  <th role="columnheader" scope="col" set:html={L('datos.camino.tabla.col.archivo')} />
+                  <th role="columnheader" scope="col" class="num" set:html={L('datos.camino.tabla.col.bytes')} />
+                  <th role="columnheader" scope="col" set:html={L('datos.camino.tabla.col.que')} />
+                  <th role="columnheader" scope="col" set:html={L('datos.camino.tabla.col.md5')} />
+                </tr>
+              </thead>
+              <tbody role="rowgroup">
+                {(dep?.archivos ?? []).map((a) => (
+                  <tr role="row">
+                    <th role="rowheader" scope="row"><code>{a.nombre}</code></th>
+                    <td role="cell" class="num" data-col={plano(lang, 'datos.camino.tabla.col.bytes')} set:html={fmt.dato(a.bytes, fmt.n(a.bytes, lang), `dv.thqcmi.${ARCH[a.nombre]}.bytes`, 'dv')} />
+                    <td role="cell" class="que" data-col={plano(lang, 'datos.camino.tabla.col.que')} set:html={L(`datos.camino.archivo.${ARCH[a.nombre]}`)} />
+                    <td role="cell" class="md5" data-col={plano(lang, 'datos.camino.tabla.col.md5')}><code>{a.md5}</code></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p set:html={L('datos.camino.integridad')} />
+          <aside class="al-margen"><p set:html={enlaceFinal(lang, 'comun.fija.readme', url(lang, PAGINAS.versiones))} /></aside>
+          <p class="excel" set:html={L('datos.camino.excel')} />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 3 · Las 14 columnas (F32, la figura protagonista): definición, valor en V2 5423 y 5424, trampa al margen -->
+      <section class="seccion" id="columnas" aria-labelledby="columnas-titulo" style="view-timeline-name: --columnas">
+        <div class="seccion-cuerpo">
+          <h2 id="columnas-titulo" set:html={L('datos.columnas.titulo')} />
+          <p class="lede" set:html={L('datos.columnas.entrada')} />
+          <p set:html={L('datos.columnas.texto')} />
+          <FigColumnas lang={lang} sufijo="-fig" />
+          <div class="dentro" set:html={B('datos.columnas.speech.dentro')} />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 4 · Antes de contar: seis decisiones, cada una con su cifra y su línea de código -->
+      <section class="seccion" id="decisiones" aria-labelledby="decisiones-titulo" style="view-timeline-name: --decisiones">
+        <div class="seccion-cuerpo">
+          <h2 id="decisiones-titulo" set:html={L('datos.decisiones.titulo')} />
+          <p class="lede" set:html={L('datos.decisiones.entrada')} />
+          <ol class="decisiones" role="list">
+            {DEC.map((n) => (
+              <li class="decision" id={`decision-${n}`}>
+                <h3 set:html={L(`datos.decisiones.${n}.titulo`)} />
+                <div class="texto" set:html={B(`datos.decisiones.${n}.texto`)} />
+                <div class="codigo" set:html={B(`datos.decisiones.${n}.codigo`).replace('<pre>', '<pre translate="no" tabindex="0">')} />
+                {n === '6' && <p class="nota" set:html={t(lang, 'comun.fija.ids')} />}
+              </li>
+            ))}
+          </ol>
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 5 · Cinco maneras de contar «palabra» (F33) -->
+      <section class="seccion" id="palabra" aria-labelledby="palabra-titulo" style="view-timeline-name: --palabra">
+        <div class="seccion-cuerpo">
+          <h2 id="palabra-titulo" set:html={L('datos.palabra.titulo')} />
+          <p class="lede" set:html={L('datos.palabra.entrada')} />
+          <div class="prosa" set:html={B('datos.palabra.texto')} />
+          <NotaBases lang={lang} />
+          <FigRecuentos lang={lang} sufijo="-fig" />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 6 · Unir con Afinidades Elegidas (F34): la regla en el texto, las cifras solo en la figura (D-3) -->
+      <section class="seccion" id="unir" aria-labelledby="unir-titulo" style="view-timeline-name: --unir">
+        <div class="seccion-cuerpo">
+          <h2 id="unir-titulo" set:html={L('datos.unir.titulo')} />
+          <p class="lede" set:html={L('datos.unir.entrada')} />
+          <div class="prosa" set:html={B('datos.unir.texto')} />
+          <aside class="al-margen"><p set:html={t(lang, 'comun.fija.legislatura')} /></aside>
+          <FigUnion lang={lang} sufijo="-fig" />
+          <p set:html={L('datos.unir.archivo')} />
+          <aside class="al-margen"><p class="pieza-sello"><Sello lang={lang} base="afin" /></p></aside>
+          <p class="fija-p aviso" set:html={t(lang, 'comun.fija.formulario')} />
+          <p class="botones" set:html={ext(ENLACES.cgocus, 'comun.boton.dataverse')} />
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 7 · Dos fragmentos, en R y en Python: el exportador los vuelve a ejecutar en cada compilación -->
+      <section class="seccion" id="codigo" aria-labelledby="codigo-titulo" style="view-timeline-name: --codigo">
+        <div class="seccion-cuerpo">
+          <h2 id="codigo-titulo" set:html={L('datos.codigo.titulo')} />
+          <p class="lede" set:html={L('datos.codigo.entrada')} />
+          <div class="prosa" set:html={B('datos.codigo.reproduce')} />
+          <aside class="al-margen"><p set:html={L('datos.codigo.reejecuta')} /></aside>
+          <p set:html={L('datos.codigo.archivos')} />
+          <div class="fragmentos">
+            <div class="frag-barra no-imprimir" role="radiogroup" aria-labelledby="codigo-titulo">
+              {['r', 'python'].map((lg, i) => (
+                <span class="opcion">
+                  <input class="radio" type="radio" name="frag-lengua" id={`frag-${lg}`} value={lg} checked={i === 0} />
+                  <label for={`frag-${lg}`} set:html={L(`datos.codigo.${lg}.rotulo`)} />
+                </span>
+              ))}
+            </div>
+            {['r', 'python'].map((lg) => (
+              <div class="frag-panel" data-lengua={lg} data-copiable>
+                <p class="frag-rotulo" set:html={L(`datos.codigo.${lg}.rotulo`)} />
+                <Fragment set:html={B(`datos.codigo.${lg}`).replace('<pre>', '<pre data-copiar-texto translate="no" tabindex="0">')} />
+                <p class="cita-acciones no-imprimir">
+                  <button type="button" class="boton sec" data-copiar hidden><svg class="icono" aria-hidden="true" focusable="false"><use href="#i-copiar"></use></svg><span set:html={R('datos.codigo.copiar')} /></button>
+                  <span class="cita-aviso" role="status" data-copiar-aviso data-copiada={plano(lang, 'comun.isla.copiado')} data-no-copiada={plano(lang, 'comun.isla.no_copiado')}></span>
+                </p>
+              </div>
+            ))}
+          </div>
+          <div class="salida">
+            <p class="asiento" set:html={L('datos.codigo.salida.rotulo')} />
+            {frag ? <pre class="salida-pre" tabindex="0"><code>{frag.python.salida}</code></pre> : <p set:html={marcaPendiente('fragmentos.json')} />}
+            {frag && <p class="asiento entorno"><code>Python {frag._meta.python}</code> · <code>pandas {frag._meta.pandas}</code> · <code>R {frag._meta.r}</code></p>}
+            <p><a href={recurso('datos/fragmentos_salida.txt')} download set:html={R('datos.codigo.salida.archivo')} /></p>
+          </div>
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 8 · Cómo citar: THQCMI y CGOCUS tal como los da Dataverse (texto · BibTeX · RIS), una figura, un pasaje -->
+      <section class="seccion" id="citar" aria-labelledby="citar-titulo" style="view-timeline-name: --citar">
+        <div class="seccion-cuerpo">
+          <h2 id="citar-titulo" set:html={L('datos.citar.titulo')} />
+          <p class="lede" set:html={L('datos.citar.entrada')} />
+          <p set:html={L('datos.citar.thqcmi')} />
+          <CitaPestanas lang={lang} id="cita-thqcmi" texto={citaConjunto('thqcmi', lang)} bibtex={bibtex('thqcmi')} ris={ris('thqcmi')} nota={t(lang, 'comun.cita.dataverse')} />
+          <p set:html={L('datos.citar.cgocus')} />
+          <CitaPestanas lang={lang} id="cita-cgocus" texto={citaConjunto('cgocus', lang)} bibtex={bibtex('cgocus')} ris={ris('cgocus')} nota={t(lang, 'comun.cita.cgocus.nota')} />
+          <p set:html={L('datos.citar.figura')} />
+          <p set:html={L('datos.citar.pasaje')} />
+          <aside class="al-margen"><p set:html={L('datos.citar.pasaje.2')} /></aside>
+          <p set:html={L('datos.citar.explorador')} />
+          <p set:html={L('datos.citar.licencia')} />
+          <aside class="al-margen"><p set:html={t(lang, 'comun.fija.diario')} /></aside>
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+
+      <!-- 9 · Erratas y contacto -->
+      <section class="seccion" id="erratas" aria-labelledby="erratas-titulo" style="view-timeline-name: --erratas">
+        <div class="seccion-cuerpo">
+          <h2 id="erratas-titulo" set:html={L('datos.erratas.titulo')} />
+          <p set:html={L('datos.erratas.texto')} />
+          <p class="botones">
+            <Fragment set:html={ext(ENLACES.erratas, 'comun.boton.errata')} />
+            <Fragment set:html={ext(hrefContacto(), 'comun.boton.escribirnos')} />
+          </p>
+          <VolverIndice lang={lang} />
+        </div>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import '../../../scripts/copiar.ts';
+</script>
+
+<style>
+  .nw { white-space: nowrap; }
+  :global(.cita-pest) { border-top: 0; padding-top: 0; }
+  /* ── la escalera de descarga: cuatro peldaños, de menos a más fricción; sube hacia la derecha en escritorio ── */
+  .escalera { list-style: none; margin: var(--e6) 0 var(--e5); padding: 0; display: grid; gap: var(--e6); }
+  .peldano { border-top: 1px solid var(--ink-2); padding-top: var(--e4); min-width: 0; display: flex; flex-direction: column; }
+  .peldano h3 { margin-bottom: .55rem; }
+  .peldano p { margin: 0 0 .7rem; font-size: clamp(1rem, .96rem + .2vw, 1.1rem); line-height: 1.55; }
+  .peldano .peso { font: 400 var(--fs-mono)/1.5 var(--mono); color: var(--ink-2); }
+  .peldano .fija-p { font-size: var(--fs-small); color: var(--ink-2); }
+  .peldano .accion { margin-top: auto; padding-top: .4rem; }
+  .fija-p.aviso { color: var(--ink); }
+  .cabeza-descarga { margin-top: var(--e5); max-width: 34rem; }
+  .cabeza-descarga .fija-p { font-size: var(--fs-small); margin: 0; }
+  .cabeza-descarga .botones { margin-top: var(--e3); }
+  /* En escritorio, la descarga ocupa la columna derecha de la cabecera, a la altura del H1: la primera pantalla ya no es
+     solo título (pulido fase 2). */
+  @media (min-width: 64rem) {
+    :global(.pagina-cabeza:has(> .cabeza-descarga)) { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); }
+    :global(.pagina-cabeza:has(> .cabeza-descarga) > *) { grid-column: 1 / span 7; }
+    :global(.pagina-cabeza) > .cabeza-descarga { grid-column: 9 / -1; grid-row: 2; align-self: end; margin: 0 0 .5rem; padding-top: var(--e3); border-top: 1px solid var(--hair); }
+  }
+  @media (min-width: 64rem) {
+    .datos .seccion-cuerpo > .escalera { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--col-gap); align-items: stretch; --peldano: clamp(1.25rem, 2.2vw, 2.25rem); }
+    .peldano:nth-child(1) { margin-top: calc(3 * var(--peldano)); }
+    .peldano:nth-child(2) { margin-top: calc(2 * var(--peldano)); }
+    .peldano:nth-child(3) { margin-top: var(--peldano); }
+  }
+
+  /* ── el camino: los pasos en negrita llevan su número de orden (la secuencia informa) ── */
+  .pasos-camino { counter-reset: paso; }
+  .pasos-camino :global(p) { margin: 0 0 .8em; }
+  .pasos-camino :global(p:has(> strong:first-child)) { counter-increment: paso; position: relative; margin-top: 1.2em; }
+  .pasos-camino :global(p:has(> strong:first-child))::before {
+    content: counter(paso); font: 500 var(--fs-mono)/1 var(--mono); color: var(--accent);
+    position: absolute; left: -1.6rem; top: .4em;
+  }
+  @media (max-width: 63.99rem) { .pasos-camino :global(p:has(> strong:first-child))::before { position: static; margin-right: .5rem; } }
+  .comprobar, .archivos { margin: var(--e5) 0 var(--e6); }
+  .comprobar table { max-width: 36rem; }
+  .comprobar tfoot th, .comprobar tfoot td { border-bottom: 0; border-top: 1px solid var(--hair-2); color: var(--ink); }
+  .comprobar th[scope='row'] { font-family: var(--mono); }
+  .archivos .que { font-family: var(--text); font-size: var(--fs-small); min-width: 14rem; white-space: normal; }
+  /* El MD5 entero en una línea: partido carácter a carácter (22 px de columna a 375) no se podía cotejar. El marco
+     desliza en horizontal. */
+  .archivos .md5 code { font-size: .74rem; color: var(--ink-2); white-space: nowrap; }
+  /* En el móvil, una ficha por archivo (clave · valor), con el MD5 entero a la vista: la tabla de cuatro columnas no
+     cabía y el MD5, que es con lo que se coteja la copia, quedaba fuera. Los roles ARIA de la tabla se conservan. */
+  @media (max-width: 47.99rem) {
+    .archivos .fig-tabla, .archivos tbody, .archivos tbody tr { display: block; }
+    .archivos thead { display: none; }
+    .archivos caption { display: block; }
+    .archivos tbody tr { padding: .7rem 0 .8rem; border-bottom: 1px solid var(--hair); }
+    .archivos tbody th, .archivos tbody td { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: .75rem; border: 0; padding: .12rem 0; text-align: left; min-width: 0; }
+    .archivos tbody th { display: block; padding-bottom: .3rem; }
+    .archivos tbody td::before { content: attr(data-col); font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); }
+    .archivos .que { min-width: 0; }
+    .archivos .md5 code { white-space: normal; overflow-wrap: anywhere; }
+  }
+  .archivos th[scope='row'] code { font-size: .8rem; white-space: nowrap; }
+  .no-trae, .excel { margin-top: var(--e4); }
+  .datos .seccion-cuerpo > .botones { margin: var(--e3) 0 var(--e5); }
+
+  /* ── dentro del texto, bajo F32 ── */
+  .dentro { margin-top: var(--e5); }
+  .dentro :global(p) { margin: 0 0 .8em; }
+
+  /* ── las seis decisiones: registro numerado (la secuencia informa), código siempre a la vista ── */
+  .decisiones { list-style: none; margin: var(--e6) 0 0; padding: 0; counter-reset: dec; display: grid; gap: var(--e7); }
+  .decision { counter-increment: dec; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 var(--col-gap); border-top: 1px solid var(--hair-2); padding-top: var(--e4); }
+  .decision h3::before { content: counter(dec); font: 400 1rem/1 var(--mono); color: var(--accent); margin-right: .75rem; vertical-align: .1em; }
+  .decision h3 { margin-bottom: var(--e4); }
+  .decision .texto :global(p) { margin: 0 0 .8em; max-width: var(--measure); }
+  .decision .codigo :global(pre) { margin: var(--e3) 0 0; }
+  .decision .nota { margin-top: var(--e4); }
+  @media (min-width: 64rem) {
+    .datos .seccion-cuerpo > .decisiones { grid-column: 1 / -1; }
+    .decision { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+    .decision > * { grid-column: 1 / span 6; }
+    .decision > .codigo { grid-column: 1 / -1; }
+  }
+
+  /* ── los fragmentos: pestañas R · Python con radios y :has(); sin :has(), los dos seguidos ── */
+  .fragmentos { margin: var(--e5) 0 var(--e4); min-width: 0; }
+  .frag-barra { display: flex; gap: .15rem; border-bottom: 1px solid var(--hair-2); margin-bottom: var(--e4); }
+  .opcion { position: relative; display: inline-flex; }
+  .radio { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+  .opcion label { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 .8rem; font: 400 1rem/1 var(--text); color: var(--ink-2); border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; }
+  .opcion:first-child label { padding-left: 0; }
+  .radio:checked + label { color: var(--ink); border-bottom-color: var(--accent); }
+  .radio:focus-visible + label { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: var(--radio); }
+  .frag-rotulo { display: none; }
+  .frag-panel :global(pre) { margin: 0; max-height: 34rem; }
+  @supports selector(:has(*)) {
+    .frag-panel { display: none; }
+    .fragmentos:has(.radio[value='python']:checked) .frag-panel[data-lengua='python'],
+    .fragmentos:has(.radio[value='r']:checked) .frag-panel[data-lengua='r'] { display: block; }
+  }
+  @supports not selector(:has(*)) {
+    .frag-barra { display: none; }
+    .frag-rotulo { display: block; font-weight: 600; }
+    .frag-panel + .frag-panel { margin-top: 2rem; }
+  }
+  .cita-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin: .9rem 0 0; max-width: none; }
+  .cita-acciones [hidden] { display: none; }
+  .cita-aviso { font: 500 .75rem/1.2 var(--mono); color: var(--ink-2); }
+  .salida { margin: var(--e5) 0 0; min-width: 0; }
+  .salida-pre { margin: .4rem 0 .6rem; background: var(--bg); border-style: dashed; }
+  .entorno { margin-bottom: .6rem; }
+  @media (min-width: 64rem) {
+    .datos .seccion-cuerpo > :is(.fragmentos, .salida, .comprobar, .archivos) { grid-column: 1 / -1; }
+  }
+  @media print { .frag-panel { display: block !important; } }
+</style>

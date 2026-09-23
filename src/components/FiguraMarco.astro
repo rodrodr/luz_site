@@ -1,0 +1,150 @@
+---
+/**
+ * Marco COMÚN de una figura (plan § Figuras · Contrato común; comun.md § 6). El componente de cada figura (su dueño)
+ * pone el dibujo y la tabla; el marco pone lo que todas repiten igual:
+ *  · el sello de su base, el título (`fig.<id>.titulo`, H3) y, si existe, su pregunta (`fig.<id>.pregunta`);
+ *  · las pestañas Gráfico · Tabla · Datos (`comun.fig.pestanas`), si la figura tiene datos; si no, solo el gráfico;
+ *  · la pestaña Datos por omisión, en este orden: [Descargar los datos de la figura] · `comun.fig.datos.nota` · ↺ 12 ·
+ *    los archivos (CSV, XLSX y LÉAME en las dos lenguas) · la base con su huella y su fecha · la cita de la figura;
+ *    en F01 y F26, además, [Descargar la imagen] con `comun.fig.imagen.nota`;
+ *  · al pie, la salvedad rotulada (`comun.fig.salvedad` + `fig.<id>.salvedad`) y las frases de la isla
+ *    (`comun.fig.teclado`; `comun.isla.tactil` si sus marcas llevan a una página), que nacen ocultas;
+ *  · la isla (`scripts/figuras.ts`), con la plantilla de posición del aria-live (`comun.isla.posicion`) y el rótulo del
+ *    botón que cierra la nota abierta con el dedo (`comun.isla.cerrar`).
+ * Anatomía (DESIGN.md § Sistema de figuras): la BARRA lleva el código en mono y el título, a la izquierda, y las
+ * pestañas, a la derecha; debajo, la pregunta, común a los tres paneles.
+ * Ranuras: `grafico` (obligatoria) · `tabla` · `datos` (sustituye a la de omisión) · `barra` (la única conmutación).
+ * Una figura sin archivos pero con ranura `datos` (F30) lleva también sus pestañas.
+ * Props de copy (integración, fase 2): `titulo` y `pregunta` sustituyen a `fig.<id>.titulo|pregunta` (la F26 ligera de
+ * Inicio, las puertas de varias sesiones); `teclado` (por omisión, `interactiva` del registro) pinta o no la frase
+ * «← y → recorren…»; `salvedad={false}` quita la salvedad rotulada (F35).
+ */
+import Pestanas from './Pestanas.astro';
+import Sello from './Sello.astro';
+import { t, plano, rotulo, existe } from '../lib/i18n';
+import { figura, rutaDatos, rutaLeame, rutaImagen } from '../lib/figuras';
+import { recurso } from '../lib/rutas';
+import { citaFigura, huella } from '../lib/cita';
+import { marcaPendiente } from '../lib/cifras';
+import { LANGS, type Lang } from '../lib/idiomas';
+
+interface Props {
+  lang: Lang;
+  id: string;
+  /** Sustituciones para las figuras de plantilla (`{ etapa: '1931' }`): van a la cita y al ancla. */
+  sub?: Record<string, string>;
+  /** Sufijo del ancla cuando la misma figura sale dos veces en una página. */
+  sufijo?: string;
+  /** Sin pestañas (la versión ligera de Inicio). */
+  ligera?: boolean;
+  /** Plantilla de la nota emergente (con huecos `{nombre}`), ya en la lengua de la página: la línea de cifras (mono). */
+  plantilla?: string;
+  /** Primera línea de la nota: qué es la marca (EB Garamond 600). */
+  plantillaT?: string;
+  /** Tercera línea: base y fuente (mono pequeña, al 72 %). */
+  plantillaB?: string;
+  /** Las marcas llevan a una página: la isla enseña también `comun.isla.tactil`. */
+  tactil?: boolean;
+  /** Clave del título en lugar de `fig.<id>.titulo`. */
+  titulo?: string;
+  /** Clave de la pregunta en lugar de `fig.<id>.pregunta`. */
+  pregunta?: string;
+  /** Frase del teclado; por omisión, solo si la figura se recorre (`interactiva` en lib/figuras.ts). */
+  teclado?: boolean;
+  /** Salvedad rotulada al pie (por omisión, sí). */
+  salvedad?: boolean;
+}
+const { lang, id, sub = {}, sufijo = '', ligera = false, plantilla, plantillaT, plantillaB, tactil = false, titulo, pregunta, salvedad = true } = Astro.props;
+const f = figura(id);
+if (!f) throw new Error(`Figura desconocida: ${id} (src/lib/figuras.ts)`);
+const conTeclado = Astro.props.teclado ?? f.interactiva;
+const ancla = f.ancla + sufijo;
+const tituloId = `${ancla}-titulo`;
+const hayDatosPropios = Astro.slots.has('datos');
+const conPestanas = !ligera && (f.archivos.length > 0 || hayDatosPropios);
+const fam = f.familia;
+const o = (k: string) => (existe(k) ? t(lang, k) : marcaPendiente(k, 'copy'));
+const h = huella(f.base[0]);
+const csv = f.archivos[0] ? recurso(rutaDatos(f.archivos[0], 'csv')) : null;
+const archivos = [
+  ...f.archivos.flatMap((a) => [rutaDatos(a, 'csv'), rutaDatos(a, 'xlsx')]),
+  ...LANGS.map((l) => rutaLeame(f.id, l)),
+];
+const posicion = plano(lang, 'comun.isla.posicion', { vars: { i: '{i}', total: '{total}' } });
+const cerrar = existe('comun.isla.cerrar') ? plano(lang, 'comun.isla.cerrar') : undefined;
+const teclado = existe('comun.fig.teclado') ? 'comun.fig.teclado' : 'comun.isla.teclado';
+const hayBarra = Astro.slots.has('barra');
+const claveTitulo = titulo ?? `${fam}.titulo`;
+const clavePregunta = pregunta ?? `${fam}.pregunta`;
+const hayPregunta = existe(clavePregunta);
+---
+<figure class="figura" id={ancla} data-figura={f.id} data-base={f.base.join(' ')} data-plantilla={plantilla} data-plantilla-t={plantillaT} data-plantilla-b={plantillaB} data-posicion={posicion} data-cerrar={cerrar} aria-labelledby={tituloId}>
+  {!conPestanas && (
+    <header class="fig-cabeza">
+      <p class="fig-sellos">{f.base.filter((b) => b !== 'croquis').map((b) => <Sello lang={lang} base={b} />)}</p>
+      <h3 class="fig-titulo" id={tituloId}><span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">{f.id}</span><Fragment set:html={o(claveTitulo)} /></h3>
+      {hayPregunta && <p class="fig-pregunta" set:html={t(lang, clavePregunta)} />}
+    </header>
+  )}
+  {conPestanas ? (
+    <Pestanas lang={lang} id={ancla} etiquetadoPor={tituloId}>
+      <header class="fig-cabeza" slot="cabeza">
+        <p class="fig-sellos">{f.base.filter((b) => b !== 'croquis').map((b) => <Sello lang={lang} base={b} />)}</p>
+        <h3 class="fig-titulo" id={tituloId}><span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">{f.id}</span><Fragment set:html={o(claveTitulo)} /></h3>
+      </header>
+      {hayPregunta && <p class="fig-pregunta" slot="pregunta" set:html={t(lang, clavePregunta)} />}
+      {hayBarra && <slot name="barra" slot="barra" />}
+      <div slot="grafico" class="fig-lienzo"><slot name="grafico" /></div>
+      <div slot="tabla"><slot name="tabla" /></div>
+      <div slot="datos">
+        {hayDatosPropios ? <slot name="datos" /> : (
+          <div class="fig-datos">
+            <div class="fig-descarga">
+              {csv && <a class="boton" href={csv} download set:html={rotulo(lang, 'comun.boton.datos_figura')} />}
+              <p class="nota" set:html={t(lang, 'comun.fig.datos.nota')} />
+              <p class="nota" set:html={t(lang, 'comun.fija.sin_formulario')} />
+              <ul class="fig-archivos" role="list">
+                {archivos.map((a) => <li><a href={recurso(a)} download>{a.replace(/^datos\//, '')}</a></li>)}
+              </ul>
+              {f.imagen && (
+                <>
+                  <p class="botones">
+                    <a class="boton sec" href={recurso(rutaImagen(f.id, lang, 'svg'))} download set:html={rotulo(lang, 'comun.boton.imagen') + ' · SVG'} />
+                    <a class="boton sec" href={recurso(rutaImagen(f.id, lang, 'png'))} download set:html={rotulo(lang, 'comun.boton.imagen') + ' · PNG'} />
+                  </p>
+                  <p class="nota" set:html={t(lang, 'comun.fig.imagen.nota')} />
+                </>
+              )}
+            </div>
+            <dl class="fig-leame">
+              <dt set:html={t(lang, 'comun.fig.base')} />
+              <dd>
+                {f.base.map((b) => <Sello lang={lang} base={b} />)}
+                <br /><span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
+                {h.fecha && <><br /><span set:html={t(lang, 'comun.sello.exportado', { vars: { fecha: `<time datetime="${h.fecha}">${h.fecha}</time>` } })} /></>}
+              </dd>
+              <dt set:html={t(lang, 'comun.cita.titulo')} /><dd set:html={citaFigura(lang, f.id, Astro.site, sub)} />
+            </dl>
+          </div>
+        )}
+      </div>
+    </Pestanas>
+  ) : (
+    <div class="fig-lienzo"><slot name="grafico" /></div>
+  )}
+  <figcaption class="fig-pie">
+    {salvedad && <p class="fig-salvedad"><span class="fig-salvedad-rotulo" set:html={t(lang, 'comun.fig.salvedad')} /> <span set:html={o(`${fam}.salvedad`)} /></p>}
+    {conTeclado && <p class="fig-teclado" data-solo-isla hidden id={`${ancla}-teclado`} set:html={t(lang, teclado)} />}
+    {tactil && <p class="fig-teclado fig-tactil" data-solo-isla hidden set:html={t(lang, 'comun.isla.tactil')} />}
+  </figcaption>
+</figure>
+
+<script>
+  import '../scripts/figuras.ts';
+</script>
+
+<style>
+  .fig-sellos { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .6rem; }
+  .fig-sellos:empty { display: none; }
+  .fig-salvedad-rotulo { font-weight: 600; color: var(--ink); margin-right: .25rem; }
+</style>

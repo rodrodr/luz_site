@@ -1,0 +1,6 @@
+recuento,palabras,edicion,diferencia_con_nwords,codigo
+nwords,24335896,V2,0,d.nwords.sum()
+split,24700474,V2,364578,d.speech.str.split().str.len().sum()
+total,25364144,v3,1028248,
+habla,22096389,v3,-2239507,
+tendencia,25903736,v3,1567840,

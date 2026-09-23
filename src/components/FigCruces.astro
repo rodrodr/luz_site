@@ -1,0 +1,149 @@
+---
+/**
+ * F22 · Dos cruces (plan § F22; copy `fig.F22.*` en docs/copy_es/afinidades.md). Una barra por legislatura: la parte de
+ * las relaciones par-medida que cruza de bloque. Como cruzar de bloque es firmar con el centro o firmar izquierda con
+ * derecha, la barra se parte en esos dos tramos: el ESTRICTO (izquierda con derecha), en oro y siempre desde el cero, para
+ * que se compare de una legislatura a otra; el resto, con un firmante del centro. Sin colores de ideología.
+ * Datos: `src/data/afinidades/cruces.json` y las cifras `afin.<leg>.cruce_*` (exportador/modulos/afinidades.py), sobre
+ * CGOCUS V1.1 depositada (D-3). Denominador: las filas del edgelist de cada legislatura.
+ *  · Sin JS: barras, números y tabla. Teclado: una parada; ← → recorren los seis tramos (isla genérica).
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano } from '../lib/i18n';
+import { fmt, cifra } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { escalaPct } from '../viz/geom/cruces';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang; anotacion?: string }
+const { lang, anotacion } = Astro.props;
+interface Leg { clave: string; leg: string; relaciones: number; bloque: number; estricto: number; centro: number; medidas: number }
+const d = dato<{ version: string; legislaturas: Leg[] }>('afinidades/cruces');
+const L = d?.legislaturas ?? [];
+const E = escalaPct(Math.max(0.01, ...L.map((l) => l.bloque / l.relaciones)));
+const pct = (x: number) => fmt.pct(x, lang, 1);
+const n = (x: number) => fmt.n(x, lang);
+const nota = (serie: string, p: number, a: number, b: number, leg: string) =>
+  plano(lang, 'fig.F22.nota', { vars: { legislatura: leg, serie, pct: pct(p), n: n(a), den: n(b) } });
+const rotBloque = plano(lang, 'fig.F22.leyenda.bloque');
+const rotEstricto = plano(lang, 'fig.F22.leyenda.estricto');
+const version = d?.version ?? 'CGOCUS';
+const ultimo = L[L.length - 1]?.clave;
+---
+<FiguraMarco lang={lang} id="F22">
+  <div slot="grafico">
+    <div class="f22-leyenda">
+      <p class="f22-claves" aria-hidden="true">
+        <span class="f22-clave"><span class="f22-muestra estricto"></span><Fragment set:html={t(lang, 'fig.F22.leyenda.estricto')} /></span>
+        <span class="f22-clave"><span class="f22-muestra centro"></span><Fragment set:html={t(lang, 'fig.F22.leyenda.centro')} /></span>
+      </p>
+      <p class="nota f22-lectura" set:html={t(lang, 'fig.F22.leyenda.lectura')} />
+    </div>
+    <div class="f22-cuerpo">
+      <ol class="f22-filas" role="list" data-recorre tabindex="0" aria-label={plano(lang, 'fig.F22.titulo')} aria-describedby="cruces-teclado">
+        {L.map((l) => {
+          const pb = l.bloque / l.relaciones, pe = l.estricto / l.relaciones, pc = l.centro / l.bloque;
+          const c = cifra(`afin.${l.clave}.cruce_bloque`);
+          return (
+            <li class="f22-fila" data-leg={l.clave}>
+              <span class="f22-leg">{l.leg}</span>
+              <span class="f22-pista">
+                {E.marcas.slice(1).map((m) => <span class="f22-rejilla" style={`left: ${E.x(m)}%`}></span>)}
+                <span class="f22-tramo estricto" data-nota data-paso style={`width: ${E.x(pe)}%`}
+                  data-plantilla-t={l.leg} data-plantilla={nota(rotEstricto, pe, l.estricto, l.relaciones, l.leg).replace(`${l.leg} · `, '')} data-plantilla-b={version}>
+                  <span class="sr-only">{l.leg} · {rotEstricto}</span>
+                </span>
+                <span class="f22-tramo centro" data-nota data-paso style={`left: ${E.x(pe)}%; width: ${E.x(pb) - E.x(pe)}%`}
+                  data-plantilla-t={l.leg} data-plantilla={nota(rotBloque, pb, l.bloque, l.relaciones, l.leg).replace(`${l.leg} · `, '')}
+                  data-plantilla-b={plano(lang, 'fig.F22.nota.centro', { vars: { pct: pct(pc), n: n(l.centro), den: n(l.bloque) } })}>
+                  <span class="sr-only">{l.leg} · {rotBloque}</span>
+                </span>
+                <span class="f22-valor bloque" style={`left: ${E.x(pb)}%`} set:html={fmt.clave(`afin.${l.clave}.cruce_bloque`, lang, 'pct1')} />
+              </span>
+              <span class="f22-valor estricto" set:html={fmt.clave(`afin.${l.clave}.cruce_estricto`, lang, 'pct1')} />
+              {c === null && <span class="sr-only">{pct(pb)}</span>}
+            </li>
+          );
+        })}
+      </ol>
+      <div class="f22-eje" aria-hidden="true" data-audit-exento="eje de la figura (porcentaje)">
+        {E.marcas.map((m) => <span style={`left: ${E.x(m)}%`}>{pct(m).replace(/,0(?=\s)/, '')}</span>)}
+      </div>
+      {anotacion && ultimo && (
+        <p class="f22-anota" data-leg={ultimo}><span class="f22-trazo" aria-hidden="true"></span><span set:html={anotacion} /></p>
+      )}
+    </div>
+  </div>
+  <div slot="tabla">
+    <div class="fig-desliza" tabindex="0" role="region" aria-labelledby="f22-caption">
+      <table class="fig-tabla">
+        <caption id="f22-caption"><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F22.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={t(lang, 'fig.F22.tabla.col.leg')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F22.tabla.col.bloque')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F22.tabla.col.estricto')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F22.tabla.col.centro')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F22.tabla.col.relaciones')} />
+          </tr>
+        </thead>
+        <tbody>
+          {L.map((l) => (
+            <tr>
+              <th scope="row">{l.leg}</th>
+              <td class="num"><Fragment set:html={fmt.clave(`afin.${l.clave}.cruce_bloque`, lang, 'pct1')} /> · <Fragment set:html={fmt.dato(l.bloque, n(l.bloque), `cruces.json › ${l.clave}.bloque`, 'afin')} /></td>
+              <td class="num"><Fragment set:html={fmt.clave(`afin.${l.clave}.cruce_estricto`, lang, 'pct1')} /> · <Fragment set:html={fmt.dato(l.estricto, n(l.estricto), `cruces.json › ${l.clave}.estricto`, 'afin')} /></td>
+              <td class="num"><Fragment set:html={fmt.clave(`afin.${l.clave}.cruce_centro`, lang, 'pct1')} /> · <Fragment set:html={fmt.dato(l.centro, n(l.centro), `cruces.json › ${l.clave}.centro`, 'afin')} /></td>
+              <td class="num" set:html={fmt.clave(`afin.${l.clave}.relaciones`, lang)} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'fig.F22.denominador')} />
+  </div>
+</FiguraMarco>
+
+<style>
+  .f22-leyenda { display: grid; gap: .5rem; margin: 0 0 var(--e5); }
+  .f22-claves { display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; margin: 0; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--ink-2); max-width: none; }
+  .f22-clave { display: inline-flex; align-items: center; gap: .45rem; }
+  .f22-muestra { display: inline-block; width: 1.1rem; height: .7rem; border-radius: 1px; }
+  .f22-muestra.estricto { background: var(--dato-2); }
+  .f22-muestra.centro { background: var(--dato); opacity: .55; }
+  .f22-lectura { margin: 0; max-width: 38rem; }
+
+  .f22-cuerpo { position: relative; --etiqueta: 6.2rem; }
+  .f22-filas { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; border-radius: var(--radio); }
+  .f22-filas:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; }
+  .f22-fila { display: grid; grid-template-columns: var(--etiqueta) minmax(0, 1fr); column-gap: 1rem; row-gap: .35rem; align-items: center; }
+  .f22-leg { font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--ink-2); }
+  .f22-pista { position: relative; display: block; height: 2.2rem; margin-right: 4.5rem; }
+  .f22-rejilla { position: absolute; top: -.5rem; bottom: -.5rem; width: 1px; background: var(--hair); }
+  .f22-tramo { position: absolute; top: 0; bottom: 0; border-radius: 1px; cursor: default; }
+  .f22-tramo.estricto { left: 0; background: var(--dato-2); min-width: 2px; z-index: 1; }
+  .f22-tramo.centro { background: color-mix(in oklab, var(--dato) 55%, transparent); }
+  .f22-tramo:global(.fig-activa) { outline: 2px solid var(--ink); outline-offset: 1px; z-index: 2; }
+  .f22-filas:has(:global(.fig-activa)) .f22-tramo:not(:global(.fig-activa)) { opacity: var(--atenua); }
+  .f22-valor.bloque { position: absolute; top: 50%; transform: translate(.6rem, -50%); white-space: nowrap; font: 600 1.05rem/1 var(--text); color: var(--ink); }
+  .f22-valor.bloque :global(data.cifra) { font-variant-numeric: tabular-nums; }
+  .f22-valor.estricto { grid-column: 2; font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--accent); }
+  .f22-eje { position: relative; height: 1.4rem; margin: .9rem 4.5rem 0 calc(var(--etiqueta) + 1rem); font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); border-top: 1px solid var(--hair-2); }
+  .f22-eje span { position: absolute; top: .45rem; transform: translateX(-50%); white-space: nowrap; }
+  .f22-eje span:first-child { transform: none; }
+  .f22-anota {
+    display: flex; gap: .7rem; align-items: baseline; margin: 1.4rem 0 0 calc(var(--etiqueta) + 1rem); max-width: 30rem;
+    font-size: var(--fs-small); line-height: 1.5; color: var(--ink-2);
+  }
+  .f22-trazo { flex: none; width: .9rem; height: 1px; background: var(--accent); transform: translateY(-.3em); }
+  @media (max-width: 40rem) {
+    .f22-cuerpo { --etiqueta: 100%; }
+    .f22-fila { grid-template-columns: minmax(0, 1fr); }
+    .f22-valor.estricto { grid-column: 1; }
+    .f22-eje, .f22-anota { margin-left: 0; }
+    .f22-pista { margin-right: 4rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .f22-tramo { transition: opacity var(--t-estado) var(--ease); }
+  }
+</style>

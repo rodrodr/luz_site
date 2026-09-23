@@ -1,0 +1,157 @@
+---
+/**
+ * B · Las Cortes, 1931–1945 (plan § Plantilla B; narrativa § 7). Qué Cortes hay aquí, cuándo se reunieron y cómo se
+ * corta la historia en cinco etapas. El calendario ES el índice: cada bloque abre su ficha y cada anillo, su puerta.
+ * 600–800 palabras. Copy: `cortes.*` (docs/copy_es/cortes.md). Una sola figura protagonista: F01, a todo el ancho.
+ *
+ * Movimientos: cabecera (asiento con su base · H1-pregunta · entrada) → cómo leer el calendario, al margen (cuatro muestras
+ * dibujadas y la regla, ANTES de la figura) → F01 completa, con el registro de las cinco etapas → legislaturas y etapas
+ * (tabla tipográfica, NotaBases por la columna v3, la frase del margen) → lo que no está aquí.
+ */
+import Base from '../../../layouts/Base.astro';
+import SubNav from '../../../components/SubNav.astro';
+import CabezaPagina from '../../../components/CabezaPagina.astro';
+import Seccion from '../../../components/Seccion.astro';
+import FigCalendario from '../../../components/FigCalendario.astro';
+import Registro from '../../../components/Registro.astro';
+import RegistroPuertas from '../../../components/RegistroPuertas.astro';
+import NotaBases from '../../../components/NotaBases.astro';
+import SinSitio from '../../../components/SinSitio.astro';
+import { meta } from '../../../lib/pagina';
+import { url, PAGINAS, ETAPAS } from '../../../lib/rutas';
+import { t, existe } from '../../../lib/i18n';
+import { fmt, marcaPendiente } from '../../../lib/cifras';
+import { rutasPorIdioma, type Lang } from '../../../lib/idiomas';
+
+export const getStaticPaths = rutasPorIdioma;
+const lang = Astro.params.lang as Lang;
+const { titulo, descripcion } = meta(lang, 'cortes');
+const o = (k: string) => (existe(k) ? t(lang, k) : marcaPendiente(k, 'copy'));
+const c = (k: string, f = '') => fmt.clave(k, lang, f);
+
+// Cómo leer: cada línea con su muestra dibujada (la ausencia nunca es un color: contorno, vacío o «//»).
+const MUESTRAS = [
+  { k: 'con_sesion', m: 'con' },
+  { k: 'sin_sesion', m: 'sin' },
+  { k: 'fuera', m: 'fuera' },
+  { k: 'salto', m: 'salto' },
+];
+// Registro de las etapas (cortes.md § 1.5): fechas en mono · nombre enlazado · lo que tiene y lo que le falta.
+const entradas = ETAPAS.map((e) => ({
+  href: url(lang, `${PAGINAS.cortes}/${e.slug}`),
+  fecha: `${c(`etapa.${e.id}.fecha.desde`, 'fecha_corta')} → ${c(`etapa.${e.id}.fecha.hasta`, 'fecha_corta')}`,
+  titulo: `<span class="rom">${e.id}</span> ${o(`cortes.etapa.${e.id}.nombre`)}`,
+  linea: existe(`cortes.etapa.${e.id}.linea`) ? t(lang, `cortes.etapa.${e.id}.linea`) : undefined,
+  recuento: t(lang, 'cortes.etapa.recuento', { vars: { n: c(`etapa.${e.id}.sesiones`) } }),
+}));
+const COLS = ['etapa', 'sesiones', 'fechas', 'serie', 'filas', 'palabras', 'pct', 'diputados', 'filas_v3'] as const;
+const NUM = new Set(['sesiones', 'filas', 'palabras', 'pct', 'diputados', 'filas_v3']);
+---
+<Base lang={lang} ruta={PAGINAS.cortes} titulo={titulo} descripcion={descripcion}>
+  <SubNav lang={lang} grupo="cortes" actual={PAGINAS.cortes} />
+  <CabezaPagina lang={lang} prefijo="cortes" bases={['V2', 'proyecto']} />
+  <div class="contenedor cortes">
+    <!-- 3 · F01 completa: una marca por sesión; las puertas con anillo; cada bloque abre su ficha -->
+    <!-- «Cómo leer» (cuatro muestras dibujadas y la regla), ANTES de la figura y al margen de su entrada: era un H2 propio
+         que repetía la leyenda de F01 y bajaba el calendario dos pantallas (pulido fase 2, PULIDO.md). -->
+    <Seccion lang={lang} id="cuando" prefijo="cortes.calendario" clase="seccion-f01" espera={['titulo', 'entrada']} excluir={['dice']} botones={['comun.boton.ver_sesiones']}>
+      <aside class="al-margen como-leer" id="como-leer" aria-labelledby="como-leer-t">
+        <p class="como-leer-t" id="como-leer-t" set:html={o('cortes.leer.titulo')} />
+        <ul class="muestras" role="list">
+          {MUESTRAS.map((x) => (
+            <li><span class:list={['muestra', `m-${x.m}`]} aria-hidden="true">{x.m === 'con' ? <><b style="--h:.45"></b><b style="--h:.9"></b><b style="--h:.3"></b><b style="--h:.65"></b></> : x.m === 'salto' ? '//' : null}</span><span class="muestra-t" set:html={o(`cortes.leer.${x.k}`)} /></li>
+          ))}
+        </ul>
+        {existe('cortes.leer.regla') && <p class="como-leer-regla" set:html={t(lang, 'cortes.leer.regla')} />}
+      </aside>
+      <FigCalendario lang={lang} escala="completa" />
+      <nav class="etapas-registro ancho" aria-labelledby="etapas-registro-t">
+        <h3 id="etapas-registro-t" set:html={o('cortes.etapa.registro')} />
+        <Registro entradas={entradas} />
+      </nav>
+      <!-- WCAG 2.5.8 (excepción «Equivalente»): por debajo de 48 rem, las barras de puerta de octubre de 1931 miden 1 px y
+           están pegadas; este registro da a cada puerta un enlace de tamaño completo (docs/peticiones/diseno_final.md). -->
+      <nav class="etapas-registro puertas-registro ancho" aria-labelledby="puertas-registro-t">
+        <h3 id="puertas-registro-t" set:html={o('cortes.puertas.registro')} />
+        <RegistroPuertas lang={lang} linea={false} fijas={false} />
+      </nav>
+    </Seccion>
+
+    <!-- 4 · Tres legislaturas, cinco etapas: tabla tipográfica con las filas v3 rotuladas (NotaBases) y el margen -->
+    <Seccion lang={lang} id="etapas" prefijo="cortes.etapas" espera={['titulo', 'entrada']} excluir={['tabla']}>
+      <div class="fig-desliza tabla-etapas" tabindex="0" role="region" aria-labelledby="tabla-etapas-t">
+        <table class="fig-tabla">
+          <caption id="tabla-etapas-t"><span class="fig-rotulo-tabla" set:html={o('cortes.etapas.tabla.titulo')} /></caption>
+          <thead><tr>{COLS.map((k) => <th scope="col" class:list={[{ num: NUM.has(k) }]} set:html={o(`cortes.etapas.tabla.col.${k}`)} />)}</tr></thead>
+          <tbody>
+            {ETAPAS.map((e) => (
+              <tr>
+                <th scope="row"><a href={url(lang, `${PAGINAS.cortes}/${e.slug}`)}><span class="rom">{e.id}</span> <Fragment set:html={o(`comun.etapa.${e.id}.nombre`)} /></a></th>
+                <td class="num" set:html={c(`etapa.${e.id}.sesiones`)} />
+                <td class="fechas" set:html={`${c(`etapa.${e.id}.fecha.desde`, 'fecha_corta')} → ${c(`etapa.${e.id}.fecha.hasta`, 'fecha_corta')}`} />
+                <td class="serie" set:html={c(`etapa.${e.id}.serie`)} />
+                <td class="num" set:html={c(`etapa.${e.id}.filas`)} />
+                <td class="num" set:html={c(`etapa.${e.id}.palabras`)} />
+                <td class="num" set:html={c(`etapa.${e.id}.palabras.pct`)} />
+                <td class="num" set:html={c(`etapa.${e.id}.diputados`)} />
+                <td class="num v3" set:html={c(`etapa.${e.id}.filas_v3`)} />
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="nota pie-tabla" set:html={o('cortes.etapas.tabla.pie')} />
+      <p class="nota pie-tabla" set:html={o('cortes.etapas.tabla.pie_leg')} />
+      <NotaBases lang={lang} />
+      {existe('cortes.margen') && <p class="al-margen margen-numero" set:html={t(lang, 'cortes.margen')} />}
+    </Seccion>
+
+    <!-- 5 · Lo que no está aquí -->
+    <Seccion lang={lang} id="no-esta" prefijo="cortes.ausente" espera={['titulo']} />
+  </div>
+  <SinSitio lang={lang} prefijo="cortes" usados={['cortes.antetitulo', 'cortes.titulo', 'cortes.entrada', 'cortes.leer', 'cortes.calendario', 'cortes.etapas', 'cortes.ausente', 'cortes.margen', 'cortes.etapa', 'cortes.puertas', 'cortes.subnav']} ignorar={['ficha', '1931', '1933', '1936', 'guerra', 'mexico', 'meta']} />
+</Base>
+
+<style>
+  /* «Cómo leer» es la instrucción de la figura: una nota al margen de su entrada (cols 10–12 en escritorio, detrás de la
+     entrada en el móvil), no un H2 que la separe de la cabecera. */
+  .como-leer-t { font-weight: 600; color: var(--ink); margin: 0 0 .2rem; }
+  .como-leer-regla { margin: .6rem 0 0 !important; }
+  .muestras { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .muestras li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: var(--e3); align-items: center; padding: .45rem 0; border-bottom: 1px solid var(--hair); }
+  .muestras li:last-child { border-bottom: 0; }
+  @media (min-width: 64rem) {
+    /* La nota ocupa la fila del H2 y la de la entrada; lo que mide de más lo absorbe la fila flexible de la entrada,
+       así el H2 no se separa de ella. */
+    .cortes :global(.seccion-f01 .seccion-cuerpo) { grid-template-rows: auto 1fr; }
+    .cortes :global(.seccion-f01 .seccion-cuerpo > .como-leer) { grid-row: 1 / span 2; margin-bottom: var(--e6); }
+  }
+  .muestra-t { font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); }
+  .muestra-t :global(strong) { color: var(--ink); font-weight: 600; }
+  .muestra { display: flex; align-items: flex-end; justify-content: center; gap: 1px; width: 2.6rem; height: 1.7rem; border-radius: 1px; }
+  .m-con { background: var(--bg-2); box-shadow: inset 0 -1px 0 var(--hair-2); padding: 0 .35rem; }
+  .m-con b { flex: 1; height: calc(var(--h) * 100%); background: var(--rampa-3); }
+  .m-sin { box-shadow: inset 0 0 0 1px var(--ausencia-trazo); }
+  .m-fuera { box-shadow: none; }
+  .m-salto { align-items: center; font: 400 1rem/1 var(--mono); color: var(--mute); letter-spacing: -.08em; }
+  @media (forced-colors: active) {
+    .m-con b { forced-color-adjust: none; }
+    .m-sin { outline: 1px solid CanvasText; outline-offset: -1px; }
+  }
+
+  /* La figura protagonista, a todo el ancho de la rejilla. */
+  .cortes :global(.seccion-f01 .seccion-cuerpo > .figura) { grid-column: 1 / -1; }
+  .etapas-registro { margin-top: var(--e7); }
+  .etapas-registro h3 { font: 600 var(--fs-h3)/1.2 var(--text); margin: 0; }
+  .etapas-registro :global(.rom), .tabla-etapas .rom { font: italic 600 1.1em/1 var(--display); color: var(--accent); margin-right: .15em; }
+
+  .tabla-etapas th[scope='row'] a { font: 500 1rem/1.3 var(--text); text-decoration-color: var(--hair-2); white-space: nowrap; }
+  .tabla-etapas th[scope='row'] a:hover { text-decoration-color: var(--accent); }
+  .tabla-etapas .serie { font: 400 var(--fs-small)/1.35 var(--text); min-width: 14rem; color: var(--ink-2); }
+  .tabla-etapas .fechas { white-space: nowrap; }
+  .tabla-etapas .v3 { border-left: 1px dashed var(--hair-2); padding-left: .8rem; }
+  .pie-tabla { max-width: var(--measure); margin: var(--e3) 0 0; }
+  @media (min-width: 64rem) {
+    .cortes :global(#etapas .seccion-cuerpo > .tabla-etapas) { grid-column: 1 / -1; }
+  }
+</style>

@@ -1,0 +1,292 @@
+---
+/**
+ * Layout único (plan § Navegación global; DESIGN.md § Cabecera y § Pie). Cabecera NO pegajosa: marca (el hemiciclo
+ * mínimo en oro y «Luz y Taquígrafos») con su descriptor, seis pestañas en dos grupos (la historia: Las Cortes · El Diario
+ * ┃ la base: Método · Datos · Explorador · Afinidades), ES · EN, tema y «Saltar al contenido». Sin botones de acción y
+ * sin menú hamburguesa: en una fila desde 72 rem; por debajo, marca y utilidades arriba y los dos grupos debajo.
+ * Pie en orden fijo y SIN mención de financiación (decisión del investigador, 22-09-2026).
+ * Los iconos van dibujados, en un sprite (`i-ext`, `i-tema`, `i-copiar`, `i-bajar`, `i-marca`): nunca ◐, ↗ ni →.
+ * Todo texto sale del copy (`comun.*`). Lo que aún no está se pinta como ⟦clave⟧ en la vista previa.
+ */
+import '../styles/fuentes.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/figuras.css';
+import '../styles/piezas.css';
+import '../styles/movimiento.css';
+import cormorantItalica from '@fontsource-variable/cormorant-garamond/files/cormorant-garamond-latin-wght-italic.woff2?url';
+import Sprite from '../components/Sprite.astro';
+import { t, plano, rotulo, tEnlaces, hayLengua } from '../lib/i18n';
+import { url, recurso, raiz, PAGINAS } from '../lib/rutas';
+import { LANGS, HTML_LANG, OG_LOCALE, type Lang } from '../lib/idiomas';
+import { ENLACES, hrefContacto, pendientesAbiertos } from '../config/enlaces';
+import { enOtraPestana, ID_NOTA_PESTANA } from '../lib/remata';
+
+interface Props {
+  lang: Lang;
+  /** Ruta de la página SIN la lengua: '' · 'cortes' · 'cortes/1931' · 'datos/versiones'… */
+  ruta: string;
+  /** Título de la página, en texto plano (sin la marca: la añade el layout). */
+  titulo: string;
+  /** Descripción, en texto plano (≤ 155 caracteres; la auditoría lo vigila). */
+  descripcion: string;
+  /** JSON-LD adicional (el Dataset de THQCMI o de CGOCUS, en la lengua de la página). */
+  jsonld?: unknown;
+  /** En Inicio el título empieza por la marca, y se precarga la cursiva de la portada. */
+  esInicio?: boolean;
+  /** Página de trabajo (el catálogo de componentes): fuera de los buscadores y del mapa del sitio. */
+  noindex?: boolean;
+}
+const { lang, ruta, titulo, descripcion, jsonld, esInicio = false, noindex = false } = Astro.props;
+const ESTRICTO = process.env.STRICT === '1';
+const marca = plano(lang, 'comun.cabecera.nombre');
+// La marca la pone el layout, una vez: si el título del copy ya la trae, no se repite (pestaña, historial, tarjeta social).
+const sinMarca = titulo.replace(new RegExp(`\\s*·\\s*${marca.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`), '');
+const tituloCompleto = esInicio ? `${marca} · ${sinMarca}` : `${sinMarca} · ${marca}`;
+const canonica = new URL(url(lang, ruta), Astro.site).href;
+
+// Dos grupos de pestañas, separados por un filete: la historia y la base.
+const GRUPOS = [
+  { aria: 'comun.nav.historia.aria', clase: 'historia', items: [
+    { clave: 'comun.nav.cortes', ruta: PAGINAS.cortes },
+    { clave: 'comun.nav.diario', ruta: PAGINAS.diario },
+  ] },
+  { aria: 'comun.nav.base.aria', clase: 'base', items: [
+    { clave: 'comun.nav.metodo', ruta: PAGINAS.metodo },
+    { clave: 'comun.nav.datos', ruta: PAGINAS.datos },
+    // La acción primaria de la cabecera es el explorador (decisión 2 del investigador, 23-09-2026): su pestaña, en oro.
+    { clave: 'comun.nav.explorador', ruta: PAGINAS.explorador, primaria: true },
+    { clave: 'comun.nav.afinidades', ruta: PAGINAS.afinidades },
+  ] },
+];
+const activa = (r: string) => ruta === r || ruta.startsWith(r + '/');
+
+// Pie: un destino por corchete, en su orden (comun.md § 4).
+const enlacesPie = enOtraPestana(tEnlaces(lang, 'comun.pie.enlaces', [
+  url(lang, `${PAGINAS.datos}#citar`), recurso('datos/procedencia.csv'), ENLACES.erratas, hrefContacto(), ENLACES.parlaibero,
+])).replace(/(<a\b[^>]*>(?:(?!<\/a>)[\s\S])*<\/a>)([^<]*\S[^<]*)$/, '<span class="cola">$1$2</span>'); // «[ParlaIbero], proyecto…» va junto
+const depositos = tEnlaces(lang, 'comun.pie.depositos', [ENLACES.thqcmi, ENLACES.cgocus]);
+const licencias = tEnlaces(lang, 'comun.pie.licencias', [ENLACES.licenciaDatos, ENLACES.licenciaCodigo]);
+const autoria = tEnlaces(lang, 'comun.pie.autoria', [ENLACES.usal]);
+
+const sitio = {
+  '@context': 'https://schema.org', '@type': 'WebSite', name: marca, url: new URL(raiz(), Astro.site).href,
+  inLanguage: LANGS.map((l) => HTML_LANG[l]),
+};
+const abiertos = ESTRICTO ? [] : pendientesAbiertos();
+---
+<!doctype html>
+<html lang={HTML_LANG[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    {LANGS.map((l) => <link rel="alternate" hreflang={HTML_LANG[l]} href={new URL(url(l, ruta), Astro.site).href} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(url('es', ruta), Astro.site).href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={marca} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:locale" content={OG_LOCALE[lang]} />
+    {LANGS.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={OG_LOCALE[l]} />)}
+    <meta property="og:image" content={new URL(recurso(`og-${lang}.png`), Astro.site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href={recurso('favicon.svg')} />
+    <link rel="sitemap" href={recurso('sitemap-index.xml')} />
+    <meta name="color-scheme" content="dark light" />
+    {/* Una lengua sin traducir sirve el español prestado: fuera de los buscadores hasta que tenga su copy. */}
+    {(noindex || !hayLengua(lang)) && <meta name="robots" content="noindex, nofollow" />}
+    {esInicio && <link rel="preload" as="font" type="font/woff2" href={cormorantItalica} crossorigin />}
+    <script type="application/ld+json" set:html={JSON.stringify(sitio)} />
+    {jsonld ? <script type="application/ld+json" set:html={JSON.stringify(jsonld)} /> : null}
+    {/* Tema antes del primer pintado: la elección guardada manda; si no, la preferencia del sistema (tokens.css).
+        La clave es `lyt-tema` y no `tema`: rodrodr.github.io es un solo origen para ParlaIbero, el explorador y este sitio. */}
+    <script is:inline>
+      try { var e = localStorage.getItem('lyt-tema'); if (e === 'light' || e === 'dark') document.documentElement.dataset.theme = e; } catch (x) {}
+    </script>
+    {/* Transiciones entre documentos (DESIGN.md § Movimiento, «Sistema · entre páginas»; styles/movimiento.css). SOLO
+        AÑADE: sin soporte (Firefox, Safari antiguo) o con menos movimiento, se navega como siempre. Va en <head> porque
+        `pagereveal` debe escucharse antes del primer pintado.
+         · Vecinas: el tipo `adelante` o `atras` sale del `rel` del enlace que lleva de vuelta a la página de origen.
+         · ES ↔ EN no se anima.
+         · Un enlace con `data-transicion` (la fila de un registro) presta su título al H1 de destino: crece desde él.
+         · Al llegar por una transición, el foco va al H1 de destino (sin anillo: no es un control). */}
+    <script is:inline>
+      (function () {
+        var pulsado = null;
+        document.addEventListener('click', function (e) { pulsado = e.target && e.target.closest ? e.target.closest('a[href]') : null; }, true);
+        var sinAncla = function (u) { return String(u || '').split('#')[0]; };
+        addEventListener('pageswap', function (e) {
+          var a = pulsado; pulsado = null;
+          if (!e.viewTransition || !a || !a.hasAttribute('data-transicion')) return;
+          var destino = e.activation && e.activation.entry && e.activation.entry.url;
+          if (destino && sinAncla(a.href) !== sinAncla(destino)) return;
+          var h1 = document.querySelector('main h1');
+          if (h1) h1.style.viewTransitionName = 'none';
+          (a.querySelector('[data-vt-titulo]') || a).style.viewTransitionName = 'titulo-pagina';
+        });
+        addEventListener('pagereveal', function (e) {
+          if (!e.viewTransition) return;
+          var act = window.navigation && navigation.activation;
+          var desde = act && act.from && act.from.url;
+          if (!desde) return;
+          var sinLengua = function (u) { return sinAncla(u).replace(/\/(es|en)\//, '/·/'); };
+          if (sinAncla(desde) !== sinAncla(location.href) && sinLengua(desde) === sinLengua(location.href)) { e.viewTransition.skipTransition(); return; }
+          var prev = document.querySelector('a[rel="prev"]'), next = document.querySelector('a[rel="next"]');
+          if (prev && sinAncla(prev.href) === sinAncla(desde)) e.viewTransition.types.add('adelante');
+          else if (next && sinAncla(next.href) === sinAncla(desde)) e.viewTransition.types.add('atras');
+          if (location.hash) return;
+          e.viewTransition.finished.then(function () {
+            var h1 = document.querySelector('main h1');
+            if (!h1 || document.activeElement !== document.body) return;
+            h1.setAttribute('tabindex', '-1'); h1.setAttribute('data-foco-titulo', ''); h1.focus({ preventScroll: true });
+          }, function () {});
+        });
+        addEventListener('pageshow', function (e) {
+          if (e.persisted) document.querySelectorAll('[style*="view-transition-name"]').forEach(function (n) { n.style.viewTransitionName = ''; });
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <Sprite />
+    <a class="saltar" href="#contenido" set:html={rotulo(lang, 'comun.nav.saltar')} />
+    <header class="cabecera">
+      <div class="contenedor cab-fila">
+        <a class="marca" href={url(lang)} aria-label={plano(lang, 'comun.cabecera.inicio.aria')}>
+          <svg class="marca-icono" aria-hidden="true"><use href="#i-marca"></use></svg>
+          <span class="marca-texto">
+            <span class="marca-nombre" set:html={t(lang, 'comun.cabecera.nombre')} />
+            <span class="marca-desc" set:html={t(lang, 'comun.cabecera.descriptor')} />
+          </span>
+        </a>
+        <nav class="nav-sitio" aria-label={plano(lang, 'comun.nav.aria')}>
+          {GRUPOS.map((g) => (
+            <ul class:list={['nav-grupo', g.clase]} aria-label={plano(lang, g.aria)}>
+              {g.items.map((n) => (
+                <li><a href={url(lang, n.ruta)} class:list={[{ primaria: 'primaria' in n && n.primaria }]} aria-current={activa(n.ruta) ? 'page' : undefined} set:html={rotulo(lang, n.clave)} /></li>
+              ))}
+            </ul>
+          ))}
+        </nav>
+        <div class="util">
+          <div class="idioma" role="group" aria-label={plano(lang, 'comun.idioma.aria')}>
+            {LANGS.map((l) => (
+              <a href={url(l, ruta)} hreflang={HTML_LANG[l]} lang={HTML_LANG[l]} aria-current={l === lang ? 'true' : undefined}>
+                <span aria-hidden="true">{l.toUpperCase()}</span><span class="sr-only" set:html={rotulo(l, `comun.idioma.${l}`)} />
+              </a>
+            ))}
+          </div>
+          {/* Nace oculto: sin JavaScript no haría nada. Su rótulo nombra el estado al que lleva. */}
+          <button type="button" class="tema" hidden data-claro={plano(lang, 'comun.nav.tema.claro')} data-oscuro={plano(lang, 'comun.nav.tema.oscuro')} aria-label={plano(lang, 'comun.nav.tema.claro')}>
+            <svg class="icono" aria-hidden="true"><use href="#i-tema"></use></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido" tabindex="-1"><slot /></main>
+
+    <footer class="pie">
+      <div class="contenedor rejilla">
+        <div class="c1">
+          <p class="pie-marca"><svg aria-hidden="true"><use href="#i-marca"></use></svg><span set:html={t(lang, 'comun.cabecera.nombre')} /></p>
+          <p set:html={autoria} />
+        </div>
+        <div class="c2">
+          <p set:html={depositos} />
+          <p set:html={t(lang, 'comun.fija.diario')} />
+          <p set:html={licencias} />
+        </div>
+        <div class="c3">
+          <p set:html={t(lang, 'comun.pie.privacidad')} />
+          <p class="pie-enlaces" set:html={enlacesPie} />
+        </div>
+        <p class="c4 ediciones" set:html={t(lang, 'comun.pie.ediciones')} />
+        {abiertos.length > 0 && (
+          <p class="c4 vista-previa" data-pendiente="investigador">
+            <span set:html={t(lang, 'comun.vista_previa.pendientes')} />{' '}
+            {abiertos.map((k, i) => <><mark class="pendiente" data-pendiente="investigador">{k}</mark>{i < abiertos.length - 1 ? ' ' : ''}</>)}
+          </p>
+        )}
+        {/* La dicen una vez por página; la señalan con `aria-describedby` los enlaces a las herramientas (lib/remata.ts). */}
+        <p id={ID_NOTA_PESTANA} hidden set:html={t(lang, 'comun.enlace.otra_pestana')} />
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var b = document.querySelector('.tema'); if (!b) return;
+        var r = document.documentElement;
+        var actual = function () { return r.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); };
+        var rotular = function () { b.setAttribute('aria-label', actual() === 'dark' ? b.dataset.claro : b.dataset.oscuro); };
+        b.hidden = false; rotular();
+        b.addEventListener('click', function () {
+          var n = actual() === 'dark' ? 'light' : 'dark';
+          var cambia = function () { r.dataset.theme = n; try { localStorage.setItem('lyt-tema', n); } catch (x) {} rotular(); };
+          if (document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.startViewTransition(cambia); else cambia();
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<style>
+  .cabecera { border-bottom: 1px solid var(--hair); background: var(--bg); }
+  .cab-fila { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "marca util" "nav nav"; align-items: center; gap: var(--e2) var(--e5); padding-block: var(--e3) var(--e2); }
+  .marca { grid-area: marca; display: flex; align-items: center; gap: var(--e3); text-decoration: none; color: var(--ink); min-width: 0; min-height: 2.75rem; }
+  .marca:hover { color: var(--ink); }
+  .marca-icono { width: 2rem; height: 1.4rem; color: var(--accent); flex: none; }
+  .marca-texto { display: flex; flex-direction: column; min-width: 0; }
+  .marca-nombre { font: italic 500 1.55rem/1 var(--display); letter-spacing: -.01em; white-space: nowrap; }
+  .marca-desc { display: none; font-size: .9rem; color: var(--mute); line-height: 1.25; margin-top: .2rem; }
+  .nav-sitio { grid-area: nav; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--e4); }
+  .nav-grupo { display: flex; flex-wrap: wrap; gap: 0 var(--e4); list-style: none; margin: 0; padding: 0; }
+  .nav-grupo + .nav-grupo { border-left: 1px solid var(--hair-2); padding-left: var(--e4); }
+  .nav-sitio a { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: 1.02rem; text-decoration: none; color: var(--ink-2); border-bottom: 2px solid transparent; }
+  .nav-sitio a:hover { color: var(--ink); border-bottom-color: var(--hair-2); }
+  .nav-sitio a[aria-current='page'] { color: var(--ink); border-bottom-color: var(--accent); }
+  /* La pestaña del explorador es la acción primaria de la cabecera: en oro (enlace, no adorno) y siempre en oro. */
+  .nav-sitio a.primaria, .nav-sitio a.primaria[aria-current='page'] { color: var(--accent); font-weight: 600; }
+  .nav-sitio a.primaria:hover { border-bottom-color: var(--accent); }
+  .util { grid-area: util; display: flex; align-items: center; gap: var(--e2); }
+  .idioma { display: flex; font: 500 var(--fs-mono-s)/1 var(--mono); }
+  .idioma a { display: grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; text-decoration: none; color: var(--mute); }
+  .idioma a:hover { color: var(--accent); }
+  .idioma a[aria-current='true'] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .35em; }
+  .tema { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid var(--hair-2); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; }
+  .tema:hover { border-color: var(--accent); color: var(--accent); }
+  .tema[hidden] { display: none; }
+  .tema .icono { width: 1.15rem; height: 1.15rem; }
+  @media (min-width: 40rem) { .marca-desc { display: block; } }
+  /* En el móvil, la historia y la base van en dos líneas: el filete vertical pasa a ser una línea encima. */
+  @media (max-width: 39.99rem) {
+    .nav-grupo { flex-basis: 100%; }
+    .nav-grupo + .nav-grupo { border-left: 0; padding-left: 0; border-top: 1px solid var(--hair); }
+  }
+  @media (min-width: 72rem) {
+    .cab-fila { grid-template-columns: auto 1fr auto; grid-template-areas: "marca nav util"; padding-block: var(--e3); }
+    .nav-sitio { justify-content: center; }
+  }
+
+  .pie { border-top: 1px solid var(--hair-2); background: var(--bg); padding-block: var(--e8) var(--e7); font-size: var(--fs-small); color: var(--ink-2); line-height: 1.5; }
+  .pie .rejilla { row-gap: var(--e5); }
+  .pie p { margin: 0 0 .6rem; max-width: 30rem; }
+  .pie-marca { display: flex; gap: var(--e3); align-items: center; font: italic 500 1.35rem/1 var(--display); color: var(--ink); margin-bottom: var(--e4) !important; }
+  .pie-marca svg { width: 1.8rem; height: 1.25rem; color: var(--accent); flex: none; }
+  /* Cada enlace del pie, un objetivo táctil de 44 px. */
+  .pie-enlaces { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--e4); }
+  .pie-enlaces :global(a), .pie-enlaces :global(mark), .pie-enlaces :global(.cola) { display: inline-flex; align-items: center; min-height: 2.75rem; }
+  .pie-enlaces :global(.cola) { display: inline; line-height: 2.75rem; }
+  .ediciones { font: 400 var(--fs-mono-s)/1.7 var(--mono); color: var(--mute); max-width: none !important; border-top: 1px solid var(--hair); padding-top: var(--e4); }
+  .vista-previa { font: 400 var(--fs-mono-s)/1.7 var(--mono); color: var(--mute); max-width: none !important; }
+  @media (min-width: 64rem) {
+    .c1 { grid-column: 1 / span 4; } .c2 { grid-column: 5 / span 4; } .c3 { grid-column: 9 / -1; }
+    .c4 { grid-column: 1 / -1; }
+  }
+</style>

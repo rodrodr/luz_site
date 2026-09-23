@@ -1,0 +1,24 @@
+{
+ "_meta": {
+  "base": "dv",
+  "instantanea": "2026-09-22",
+  "d": "2026-09-23"
+ },
+ "versiones": [
+  {"version":"V1.0","fecha":"2026-03-23","licencia":"CC0 1.0","archivos":["2REP_Diaries.csv","Luz_y_Taquigrafos_README.txt"]},
+  {"version":"V1.1","fecha":"2026-05-06","licencia":"CC BY 4.0","archivos":["2REP_Diaries.csv","Luz_y_Taquigrafos_README.txt"]},
+  {"version":"V2.0","fecha":"2026-09-15","licencia":"CC BY 4.0","archivos":["2REP_Diaries.csv","changelog_en_09_2026.txt","changelog_es_09_2026.txt","Luz_y_Taquigrafos_README.txt"]}
+ ],
+ "archivos": [
+  {"nombre":"2REP_Diaries.csv","bytes":165785782,"md5":"360332a0ff1327671530f15eed46ac0c"},
+  {"nombre":"changelog_es_09_2026.txt","bytes":704,"md5":"096580562ab5c7fac1c602e99086174e"},
+  {"nombre":"changelog_en_09_2026.txt","bytes":680,"md5":"235b312ad40d98067ca5c885e513ce16"},
+  {"nombre":"Luz_y_Taquigrafos_README.txt","bytes":8340,"md5":"f2638800977f78a7d8273440c9c806b3"}
+ ],
+ "clave_archivo": {
+  "2REP_Diaries.csv": "csv",
+  "changelog_es_09_2026.txt": "changelog_es",
+  "changelog_en_09_2026.txt": "changelog_en",
+  "Luz_y_Taquigrafos_README.txt": "readme"
+ }
+}

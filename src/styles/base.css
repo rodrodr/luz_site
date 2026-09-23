@@ -1,0 +1,216 @@
+/* Luz y Taquígrafos · sistema de diseño (DESIGN.md: «El Diario, anotado al margen»). Oscuro editorial: crema sobre casi
+   negro, oro que ANOTA (marca lo activo, subraya los enlaces, numera las notas, pinta los datos), azul solo para el foco.
+   El claro se deriva conservando matiz y croma (no es una inversión). Los TOKENS los genera scripts/tokens.mjs desde
+   src/styles/tokens.json en tokens.css; aquí va su uso. Implementación de referencia: docs/diseno/fuente/muestra.css.
+   Reglas: la mono solo donde se copia o se compara; la cursiva de la garamond de lectura, solo para lo que alguien dijo;
+   la ausencia nunca es un color; sin sombras, sin degradados; radio de 2 px. */
+
+/* ── fuentes: respaldo métrico sobre Georgia, para que la portada no salte al llegar la web font ─────────── */
+@font-face { font-family: 'Cormorant respaldo'; src: local('Georgia'); size-adjust: 86%; ascent-override: 92%; descent-override: 29%; }
+@font-face { font-family: 'Garamond respaldo'; src: local('Georgia'); size-adjust: 92%; ascent-override: 96%; descent-override: 28%; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 var(--fs-body)/1.58 var(--text);
+  font-variant-numeric: lining-nums tabular-nums; /* en la prosa, las cifras van en Garamond, alineadas */
+  text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  caret-color: var(--accent); scrollbar-color: var(--hair-2) var(--bg);
+}
+img, svg { max-width: 100%; height: auto; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: var(--radio); }
+
+/* El oro subraya; ya no tiñe el texto de lectura. */
+a { color: inherit; text-decoration-line: underline; text-decoration-color: var(--accent); text-decoration-thickness: .07em; text-underline-offset: .2em; }
+a:hover { color: var(--accent); text-decoration-thickness: .12em; }
+
+/* Titulares: Cormorant cursiva 500 (la voz del sitio). El H3 baja a la garamond de libro para no cansar. */
+h1, h2 { font-family: var(--display), 'Cormorant respaldo', serif; font-style: italic; font-weight: 500; letter-spacing: -.012em; margin: 0; text-wrap: balance; }
+h1 { font-size: var(--fs-h1); line-height: 1.02; }
+h2 { font-size: var(--fs-h2); line-height: 1.06; }
+h3 { font: 600 var(--fs-h3)/1.16 var(--text); letter-spacing: -.004em; margin: 0; text-wrap: balance; }
+h4 { font: 600 var(--fs-body)/1.3 var(--text); margin: 0; }
+p { margin: 0 0 1em; max-width: var(--measure); text-wrap: pretty; }
+/* La cursiva es para lo que alguien dijo; el énfasis, con peso. */
+em, i { font-style: italic; }
+strong, b { font-weight: 600; }
+code, pre, kbd, .mono { font-family: var(--mono); font-variant-ligatures: none; letter-spacing: 0; }
+.mono, pre { font-size: var(--fs-mono); }
+code, kbd { font-size: .86em; }
+pre { background: var(--bg-2); color: var(--ink); padding: 1.1rem 1.25rem; overflow-x: auto; border-radius: var(--radio); line-height: 1.55; max-width: 100%; border: 1px solid var(--hair); }
+pre code { font-size: .78rem; }
+kbd { border: 1px solid var(--hair-2); border-radius: var(--radio); padding: .05em .35em; }
+blockquote, figure { margin: 0; }
+hr { border: 0; border-top: 1px solid var(--hair); margin: 2rem 0; }
+table { font-variant-numeric: tabular-nums; }
+
+/* Comillas por lengua. `q` en cursiva solo donde es lo que alguien dijo. */
+:lang(es) q { quotes: '«' '»' '“' '”'; }
+:lang(en) q { quotes: '“' '”' '‘' '’'; }
+.texto-largo q, .registro q, .cita-diario q, q.dicho { font-style: italic; }
+/* Versalitas simuladas: el woff2 servido no trae `smcp` (verificado), así que no se usa `font-variant-caps`. */
+.versal { text-transform: uppercase; font-size: .8em; letter-spacing: .07em; font-weight: 560; }
+
+/* Toda cifra lleva su envoltorio auditable (<data class="cifra" data-k data-base>). En la PROSA va en Garamond; la mono
+   la pone su contenedor donde el lector copia o compara (tablas, asientos, credencial). */
+data.cifra { font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+.mono data.cifra, .asiento data.cifra, .kicker data.cifra, .credencial data.cifra, .fig-tabla data.cifra { font-family: var(--mono); }
+data.cifra[data-fmt='letra'] { white-space: normal; }
+
+/* Lo que aún falta (vista previa). En publicación (STRICT=1) la compilación falla antes de pintarlo. */
+mark.pendiente {
+  background: var(--pendiente-bg); color: var(--pendiente-ink); font: 600 .74em/1.35 var(--mono); padding: .08em .35em;
+  border-radius: var(--radio); overflow-wrap: anywhere; word-break: break-word; font-style: normal; letter-spacing: 0; text-transform: none;
+}
+[data-sin-traducir] { outline: 1px dashed var(--accent); outline-offset: 2px; }
+
+.contenedor { width: min(100% - 2 * var(--gutter), var(--ancho)); margin-inline: auto; }
+.rejilla { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: var(--col-gap); }
+@media (min-width: 64rem) { .rejilla { grid-template-columns: repeat(12, minmax(0, 1fr)); } }
+.sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.icono { width: 1em; height: 1em; flex: none; display: inline-block; vertical-align: -.12em; }
+.icono.atras { transform: scaleX(-1); }
+.estrecho { max-width: var(--measure); }
+
+/* Asiento: la línea de registro. Mono en caja normal, sin oro: un hecho con su base, nunca una etiqueta.
+   `.kicker` queda como alias mientras las plantillas migran (DESIGN.md, «La regla del asiento»). */
+.asiento, .kicker { display: block; font: 400 var(--fs-mono)/1.5 var(--mono); color: var(--mute); margin: 0 0 var(--e4); max-width: none; font-variant-ligatures: none; letter-spacing: 0; text-transform: none; }
+.asiento b, .kicker b { font-weight: 500; color: var(--ink-2); }
+.entrada, .lede { font-size: var(--fs-entrada); line-height: 1.34; max-width: 34rem; }
+.nota { font-size: var(--fs-small); color: var(--ink-2); line-height: 1.5; }
+.mute { color: var(--mute); }
+.credencial { font: 400 var(--fs-mono)/1.7 var(--mono); color: var(--ink-2); max-width: none; }
+
+/* Saltar al contenido: invertido y visible al recibir el foco. */
+.saltar { position: absolute; left: var(--gutter); top: -4rem; z-index: 60; background: var(--ink); color: var(--bg); padding: .6rem .9rem; text-decoration: none; border-radius: var(--radio); }
+.saltar:focus, .saltar:hover { top: .6rem; color: var(--bg); text-decoration-color: var(--accent-inv); }
+
+/* ── botones: infinitivo + objeto, en EB Garamond (no en mono). 44 px de alto como mínimo. ─────────────── */
+.boton {
+  display: inline-flex; align-items: center; gap: .55em; min-height: 2.75rem; padding: .55em 1.15em .6em;
+  border-radius: var(--radio); border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink);
+  font: 560 .98rem/1.1 var(--text); letter-spacing: .005em; text-decoration: none; cursor: pointer; text-transform: none;
+}
+.boton:hover { color: var(--accent-ink); background: color-mix(in oklab, var(--accent) 86%, var(--ink)); }
+.boton.sec, .boton.secundario { background: transparent; color: var(--ink); border-color: var(--hair-2); }
+.boton.sec:hover, .boton.secundario:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+.boton .icono { width: .9em; height: .9em; }
+.boton[hidden] { display: none; }
+.botones { display: flex; flex-wrap: wrap; gap: var(--e3); margin: var(--e6) 0 0; max-width: none; }
+
+/* ── secciones: asiento → H2 → entrada → figura o lista → nota al margen → llamada; con mucho aire, sin filetes ── */
+.seccion { padding-block: var(--aire) 0; }
+.seccion:last-child { padding-bottom: var(--aire); }
+.seccion-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: var(--col-gap); align-items: start; }
+.seccion-cuerpo > h2 { max-width: 20ch; margin-bottom: var(--e4); }
+.seccion-cuerpo > .prosa { display: contents; }
+.seccion-cuerpo > *, .seccion-cuerpo > .prosa > * { min-width: 0; }
+.seccion-cuerpo > .prosa > h3, .seccion-cuerpo > .prosa > h4 { margin: var(--e7) 0 var(--e4); }
+.seccion-cuerpo > .prosa > ul, .seccion-cuerpo > .prosa > ol { padding-left: 1.2rem; max-width: var(--measure); margin: 0 0 1em; }
+.seccion-cuerpo > .prosa li { margin-bottom: .45em; }
+.seccion-cuerpo .lede, .seccion-cuerpo .entrada { margin-bottom: var(--e5); }
+
+/* Notas al margen: la nota sigue a su bloque en el DOM y la colocación automática la sube a su fila en escritorio.
+   En el móvil va detrás, con un filete encima. Nunca un filete de color a la izquierda. */
+.al-margen, .nota-m, .salvedad, .pieza-nota, .nota-bases, .seccion-cuerpo > .prosa > .fija, .seccion-cuerpo > .fija {
+  font-size: var(--fs-small); line-height: 1.5; color: var(--ink-2); max-width: 30rem;
+  margin: 0 0 var(--e5); padding-top: var(--e3); border-top: 1px solid var(--hair);
+}
+.al-margen p, .nota-m p, .pieza-nota p { margin: 0 0 .5em; font-size: inherit; }
+.al-margen .asiento, .nota-m .asiento { margin: 0 0 .35rem; font-size: var(--fs-mono-s); }
+.llamada-n { font: 500 .66em/0 var(--mono); color: var(--accent); vertical-align: super; margin-left: .1em; }
+/* En el asiento de su nota, el número de la llamada va a su tamaño, en línea: volado a .66 em de 12 px daba 8 px. */
+:is(.al-margen, .nota-m) .asiento .llamada-n { font-size: 1em; line-height: inherit; vertical-align: baseline; margin: 0; }
+/* El código dentro de una línea que ya es mono (asiento, miga, credencial, tabla) va a su tamaño: el .86em de `code`
+   bajaba de los 12 px del suelo (DESIGN.md § Typography, «Dato»). */
+:is(.asiento, .kicker, .miga, .credencial, .mono, .fig-tabla, .fig-teclado, .fila-pie, .consulta-rotulo) code { font-size: 1em; }
+
+@media (min-width: 64rem) {
+  .seccion-cuerpo { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .seccion-cuerpo > *, .seccion-cuerpo > .prosa > * { grid-column: 1 / span 7; }
+  .seccion-cuerpo > :is(.figura, .fig-hueco, .registro, .peldanos, .salidas, .ancho, .botones, .consulta, .cita, pre, .fig-desliza, nav),
+  .seccion-cuerpo > .prosa > :is(.consulta, .cita, pre, .botones) { grid-column: 1 / span 9; }
+  .seccion-cuerpo > :is(.al-margen, .nota-m, .salvedad, .pieza-nota, .nota-bases, .fija, .pieza-sello),
+  .seccion-cuerpo > .prosa > :is(.al-margen, .nota-m, .salvedad, .pieza-nota, .nota-bases, .fija, .pieza-sello) {
+    grid-column: 10 / -1; border-top: 0; padding-top: .35rem; margin-top: 0;
+  }
+  /* Las lecturas largas (con índice): el cuerpo es de 9 columnas; el texto en 6 y el margen en 3. */
+  .con-indice .seccion-cuerpo { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  .con-indice .seccion-cuerpo > *, .con-indice .seccion-cuerpo > .prosa > * { grid-column: 1 / span 6; }
+  .con-indice .seccion-cuerpo > :is(.figura, .fig-hueco, .registro, .peldanos, .salidas, .ancho, .fig-desliza, nav) { grid-column: 1 / -1; }
+  .con-indice .seccion-cuerpo > :is(.al-margen, .nota-m, .salvedad, .pieza-nota, .nota-bases, .fija, .pieza-sello),
+  .con-indice .seccion-cuerpo > .prosa > :is(.al-margen, .nota-m, .salvedad, .pieza-nota, .nota-bases, .fija, .pieza-sello) { grid-column: 7 / -1; }
+}
+
+/* ── cabecera de página ─────────────────────────────────────────────────────────────────────── */
+.pagina-cabeza { padding-block: clamp(3rem, 8vw, 7rem) clamp(2rem, 5vw, 4rem); }
+/* 16 ch, el tope de DESIGN.md para el display: a 13 ch las preguntas largas (Datos, Método) iban a cinco líneas y la
+   primera pantalla era solo título. */
+.pagina-cabeza h1 { max-width: 16ch; text-wrap: balance; }
+.pagina-cabeza .lede, .pagina-cabeza .entrada { margin-top: var(--e5); }
+.miga { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); margin: 0 0 var(--e5); }
+.miga a { text-decoration-color: var(--hair-2); }
+
+/* ── lectura larga con índice: 12 columnas; índice en 1–3 (pegajoso), cuerpo en 4–12 ─────────────────── */
+.con-indice { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: var(--col-gap); padding-bottom: var(--aire); }
+.con-indice > .lectura > .seccion:last-child { padding-bottom: 0; }
+/* «Dónde estoy» sin JS (IndiceLateral: view-timeline): la ventana de cada apartado se estrecha a una franja al 40 % de
+   la pantalla, como el IntersectionObserver de la isla. Sin eso, dos apartados cortos a la vista se marcaban a la vez. */
+.con-indice section[style*='view-timeline-name'] { view-timeline-inset: 40% 59%; }
+/* Entre la cabecera y el primer apartado basta un e7: el aire entero, sumado al pie de la cabecera, dejaba 270 px vacíos
+   antes del índice y del primer H2. */
+.con-indice > .lectura > .seccion:first-child,
+.pagina-cabeza + .contenedor > .seccion:first-child { padding-top: var(--e7); }
+@media (min-width: 64rem) {
+  .con-indice { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; }
+  .con-indice > .indice { grid-column: 1 / span 3; }
+  .con-indice > .lectura { grid-column: 4 / -1; }
+}
+
+/* ── el sprite de iconos va en el documento sin ocupar sitio ─────────────────────────────────────── */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ── citas grandes: la comilla CUELGA dentro de su propia caja ─────────────────────────────────────────
+   Una comilla colgada con `text-indent` negativo sin más invade lo que haya a su izquierda: el margen de la página (a
+   360 px quedan 16 px), la calle de la rejilla o el índice lateral. `.cuelga` reserva el hueco DENTRO de la caja: la
+   comilla de apertura queda en el borde de la columna y las letras, alineadas con el orador y el asiento, un poco más
+   adentro. Nunca asoma fuera de su columna. `--cuelga` es el ancho de «, en em de la cita. */
+.cuelga { --cuelga: .45em; padding-inline-start: var(--cuelga); text-indent: calc(-1 * var(--cuelga)); }
+
+/* Pasaje del Diario pintado por el pintor genérico (lib/lectura.ts: claves `….cita.<nombre>`): lo que alguien dijo, en
+   cursiva de libro y con la comilla colgada dentro de su caja; su pie (V2 · v3) sube al margen como toda nota. */
+.pasaje { margin: var(--e5) 0; }
+.pasaje > p { font: italic 400 clamp(1.2rem, 1.05rem + .75vw, 1.7rem)/1.32 var(--text); max-width: 32ch; margin: 0;
+  --cuelga: .42em; padding-inline-start: var(--cuelga); text-indent: calc(-1 * var(--cuelga)); }
+.pasaje > p strong, .pasaje > p b { font-style: normal; }
+
+/* ── banda invertida (tesis): la única del sitio (DESIGN.md § Banda invertida). Las reglas de su rejilla viven con su
+   plantilla (Inicio); aquí, lo que es del sistema: la selección invertida y el límite de la comilla colgada del grito,
+   que desde 64 rem cuelga en el margen de la página, pero nunca más allá de él (a 1.024 px el margen mide 35 px y la
+   comilla, a 6 rem, 35 px: tocaba el borde de la ventana). */
+.tesis ::selection { background: var(--bg); color: var(--ink); }
+@media (min-width: 64rem) {
+  /* La plantilla de Inicio declara `.grito p { text-indent: -.36em }` con ámbito (0,4,1); esta regla la supera (0,4,2)
+     hasta que su dueño la retire (peticiones/integrador-diseno.md § 2.1). */
+  .tesis .rejilla blockquote.grito.cita-diario > p { text-indent: max(-.36em, calc(var(--e3) - var(--gutter))); }
+}
+
+@media print {
+  .no-imprimir, .cabecera, .util, .utilidades, .pest-barra .pest-radios, .banda-cta, .indice, .saltar, .vecinas { display: none !important; }
+  body { background: #fff; color: #000; }
+  a { color: inherit; text-decoration-color: currentColor; }
+}
+
+/* Rótulo de años que no se parte por el guion (lib/remata.ts › anios). */
+.nw { white-space: nowrap; }
+
+/* ── desplegables: una sola marca para todos (la del índice: «+», que pasa a «–» al abrir), detrás del rótulo.
+   F19 lleva su propio cheurón dibujado (.paso-abre) y se queda con él. ─────────────────────────────────────── */
+summary { cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary:not(:has(.paso-abre))::after { content: '+'; display: inline-block; flex: none; margin-inline-start: .6em; font: 400 1.15rem/1 var(--mono); color: var(--ink-2); text-decoration: none; }
+details[open] > summary:not(:has(.paso-abre))::after { content: '–'; }
+summary:hover::after { color: var(--accent); }

@@ -1,0 +1,25 @@
+# Salida de los dos fragmentos de «Usar los datos» (docs/copy_es/datos.md, claves datos.codigo.r y datos.codigo.python)
+# Ejecutados el 2026-09-22T23:50:11 con Python 3.12.7 · pandas 3.0.3 (avisos elevados a error) y R 4.5.2
+# 2REP_Diaries.csv (THQCMI V2.0) MD5 360332a0ff1327671530f15eed46ac0c · representative_metadata.tab reconstruido del original de CGOCUS V1.1 (MD5 c9e660131cbfbe0ac96e56e59c94837d), 156736 bytes como el depositado
+# Comprobado: R y Python dan los mismos números, y reproducen filas.V2, palabras.V2, meses.con_sesion, mes.1933-02.* y union.* de marcadores_metodo_datos.json
+
+## Python
+             sesiones  filas  palabras
+legislature                           
+1931-1933         405  61355  12966290
+1933-1935         276  40342   9476120
+1936-1939          74   5854   1893486
+meses con sesión: 64
+febrero de 1933: 16 sesiones, 1843 filas, 574317 palabras
+unión solo por el id: 247327 filas
+unión por id y legislatura: 107551 filas; 426 filas y 13 pares sin ficha en CGOCUS
+
+## R
+          sesiones filas palabras
+1931-1933      405 61355 12966290
+1933-1935      276 40342  9476120
+1936-1939       74  5854  1893486
+meses con sesión: 64 
+febrero de 1933: 16 sesiones, 1843 filas, 574317 palabras
+unión solo por el id: 247327 filas
+unión por id y legislatura: 107551 filas; 426 filas y 13 pares sin ficha en CGOCUS

@@ -1,0 +1,53 @@
+---
+/**
+ * Una captura del explorador (plan § Capturas del explorador): <figure> con su pie, la imagen en formatos modernos y
+ * un enlace a la versión grande, que es como se amplía SIN JavaScript. Las capturas son de interfaz CLARA: van sobre
+ * placa clara (`--placa`) con un filete también en el tema oscuro. Las imágenes viven en `src/assets/explorador/`
+ * (con su LEEME: URL, fecha, build_id, sha256 del corpus servido y ventana) y NO son de este componente.
+ *  · `alt`: `explorador.img.<cual>.alt` si existe; si no, el texto plano del pie.
+ *  · El enlace abre otra pestaña y lo dice (`comun.enlace.ampliar`, solo para el lector de pantalla); a la vista, «↗».
+ */
+import { Picture, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { t, plano, existe } from '../lib/i18n';
+import type { Lang } from '../lib/idiomas';
+
+interface Props {
+  lang: Lang;
+  src: ImageMetadata;
+  /** Prefijo de su copy: `explorador.img.lector` → `.pie` y, opcional, `.alt`. */
+  clave: string;
+  /** `ancha`: todo el ancho · `media`: una columna (los diálogos, a su tamaño natural) · `estrecha`: un panel lateral
+   *  (`sobre.png`, 291 px CSS), junto al texto en escritorio (petición de «capturas», 22-09-2026). */
+  talla?: 'ancha' | 'media' | 'estrecha';
+  primera?: boolean;
+  class?: string;
+}
+const { lang, src, clave, talla = 'ancha', primera = false, class: clase, ...resto } = Astro.props;
+const SIZES = {
+  ancha: '(min-width: 86rem) 1280px, 92vw',
+  media: '(min-width: 86rem) 760px, (min-width: 60rem) 56vw, 92vw',
+  estrecha: '(min-width: 40rem) 352px, 92vw',
+};
+const grande = await getImage({ src, format: 'webp', quality: 90 });
+const alt = existe(`${clave}.alt`) ? plano(lang, `${clave}.alt`) : plano(lang, `${clave}.pie`);
+---
+<figure class:list={['captura', talla, clase]} {...resto}>
+  <a class="marco" href={grande.src} target="_blank">
+    <Picture src={src} formats={['avif', 'webp']} widths={[480, 800, 1120, 1440]} sizes={SIZES[talla]} quality={80} alt={alt} loading={primera ? 'eager' : 'lazy'} decoding="async" />
+    <svg class="flecha icono" aria-hidden="true" focusable="false"><use href="#i-ext"></use></svg>
+    <span class="sr-only" set:html={'. ' + t(lang, existe('comun.captura.ampliar') ? 'comun.captura.ampliar' : 'comun.enlace.ampliar')} />
+  </a>
+  <figcaption class="nota" set:html={t(lang, `${clave}.pie`)} />
+</figure>
+
+<style>
+  .captura { margin: 0; min-width: 0; }
+  .captura.media { max-width: 47.5rem; }
+  .captura.estrecha { max-width: 22rem; }
+  .marco { position: relative; display: block; line-height: 0; text-decoration: none; background: var(--placa); border: 1px solid var(--placa-trazo); border-radius: var(--radio); padding: clamp(.3rem, .9vw, .7rem); }
+  .marco :global(img) { display: block; width: 100%; height: auto; }
+  .flecha { position: absolute; right: 0; top: calc(100% + .7rem); width: 1rem; height: 1rem; color: var(--accent); }
+  .marco:hover { border-color: var(--accent); }
+  figcaption { margin: .6rem 0 0; padding-right: 2rem; max-width: 42rem; }
+</style>

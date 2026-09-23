@@ -1,0 +1,66 @@
+---
+/**
+ * Raíz (plan § L): el hemiciclo en pequeño, «Luz y Taquígrafos» y dos enlaces, «Español» y «English». Sin cifras y SIN
+ * redirección por JavaScript: el lector elige su lengua. El descriptor va en cada lengua que lo tenga escrito (mientras
+ * no exista `en.json`, solo el español: la raíz no enseña nada «sin traducir»). El nombre de cada lengua se escribe en
+ * esa lengua («English» es inglés en cualquier página), con su `lang` y su `hreflang`.
+ */
+import '../styles/fuentes.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import Hemiciclo from '../components/Hemiciclo.astro';
+import { LANGS, HTML_LANG } from '../lib/idiomas';
+import { plano, rotulo, t, existe, existeEn } from '../lib/i18n';
+import { url, recurso, raiz } from '../lib/rutas';
+const nombre = plano('es', 'comun.cabecera.nombre');
+const tituloRaiz = existe('comun.raiz.titulo') ? plano('es', 'comun.raiz.titulo') : nombre;
+// El rótulo de cada lengua sale del copy español (es su nombre propio, igual en las dos) y se marca con su lengua.
+const rotuloLengua = (l: (typeof LANGS)[number]) => rotulo(existeEn(l, `comun.idioma.${l}`) ? l : 'es', `comun.idioma.${l}`);
+const descriptores = LANGS.filter((l) => l === 'es' || existeEn(l, 'comun.cabecera.descriptor'));
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloRaiz}</title>
+    <meta name="description" content={plano('es', 'comun.cabecera.descriptor')} />
+    <link rel="canonical" href={new URL(raiz(), Astro.site).href} />
+    {LANGS.map((l) => <link rel="alternate" hreflang={HTML_LANG[l]} href={new URL(url(l), Astro.site).href} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(raiz(), Astro.site).href} />
+    <link rel="icon" type="image/svg+xml" href={recurso('favicon.svg')} />
+    <meta name="color-scheme" content="dark light" />
+    <meta property="og:title" content={nombre} />
+    <meta property="og:image" content={new URL(recurso('og-es.png'), Astro.site).href} />
+    <script is:inline>
+      try { var e = localStorage.getItem('lyt-tema'); if (e === 'light' || e === 'dark') document.documentElement.dataset.theme = e; } catch (x) {}
+    </script>
+  </head>
+  <body>
+    <main class="contenedor raiz" id="contenido">
+      <Hemiciclo lang="es" variante="raiz" id="hemiciclo-raiz" />
+      <div class="raiz-texto">
+        <h1 set:html={t('es', 'comun.cabecera.nombre')} />
+        {descriptores.map((l) => <p class="descriptor" lang={HTML_LANG[l]} set:html={t(l, 'comun.cabecera.descriptor')} />)}
+      </div>
+      <nav aria-label={plano('es', 'comun.raiz.aria')}>
+        <ul class="lenguas" role="list">
+          {LANGS.map((l, i) => (
+            <li><a class:list={['boton', { sec: i > 0 }]} href={url(l)} hreflang={HTML_LANG[l]} lang={HTML_LANG[l]} set:html={rotuloLengua(l)} /></li>
+          ))}
+        </ul>
+      </nav>
+    </main>
+  </body>
+</html>
+
+<style>
+  .raiz { min-height: 100vh; min-height: 100dvh; display: grid; align-content: center; justify-items: center; gap: var(--e5); padding-block: var(--e7); text-align: center; }
+  .raiz :global(.hemi-fig) { width: min(100%, 30rem); color: var(--mute); }
+  .raiz-texto { display: grid; gap: var(--e2); justify-items: center; }
+  h1 { font-size: var(--fs-h2); margin: 0; }
+  .descriptor { margin: 0; color: var(--ink-2); font-size: var(--fs-small); max-width: 24rem; text-wrap: balance; }
+  .lenguas { list-style: none; margin: var(--e3) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--e3); justify-content: center; }
+  .lenguas .boton { min-width: 9rem; justify-content: center; }
+  /* La marca de «sin traducir» no se enseña aquí: el nombre de una lengua es el mismo en todas. */
+  .lenguas :global([data-sin-traducir]) { outline: 0; background: none; }
+</style>

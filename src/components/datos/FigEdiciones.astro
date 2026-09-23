@@ -1,0 +1,163 @@
+---
+/**
+ * F07 · ¿Quién habla más? Depende de la edición (Versiones, #quien-habla). Plan § F07.
+ * Barras dobles para los diez diputados que más palabras suman en la V2, EN ORDEN FIJO POR LA V2 (no se reordena al
+ * conmutar): arriba la V2, en oro lleno, con la parte que está en filas de la Presidencia rayada dentro (otro trazo, no
+ * solo otro color); debajo la v3, con el contorno discontinuo de lo que no está depositado. A la derecha, el cambio.
+ * Conmutación Filas · Palabras con radios y `:has()` (sin JS; sin `:has()`, las dos vistas se leen seguidas).
+ * Nota emergente: nombre · V2 · v3 · cambio y, en quien presidió, de dónde sale «El Sr. PRESIDENTE:» (V2 5423).
+ * Tabla: la de la vista Palabras; Datos: los 773 diputados en `datos/quien_habla.csv`.
+ * Datos: `src/data/quien_habla.json`. Copy: `fig.F07.*`. Nombres: `grafias.json` (nunca el `rep_name` crudo).
+ */
+import FiguraMarco from '../FiguraMarco.astro';
+import { t, plano, plantillaNota, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import { lineal, marcasAjustadas, pct } from '../../viz/geom/escalas';
+import type { Lang } from '../../lib/idiomas';
+
+interface P { rep_id: number; nombre: string; filas_v2: number; palabras_v2: number; filas_v2_pres: number; palabras_v2_pres: number; filas_v3: number; palabras_v3: number }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const Q = dato<{ diez: P[]; maximos: { palabras: number; filas: number } }>('quien_habla');
+const L = Q?.diez ?? [];
+const o = (k: string, ctx = {}) => (existe(k) ? t(lang, k, ctx) : marcaPendiente(k, 'copy'));
+const MEDIDAS = [
+  { m: 'palabras', v2: 'palabras_v2', pres: 'palabras_v2_pres', v3: 'palabras_v3' },
+  { m: 'filas', v2: 'filas_v2', pres: 'filas_v2_pres', v3: 'filas_v3' },
+] as const;
+const escala = Object.fromEntries(MEDIDAS.map(({ m }) => {
+  const mk = marcasAjustadas(Q?.maximos[m] ?? 1, 4);
+  return [m, { ...mk, x: lineal([0, mk.tope]) }];
+})) as unknown as Record<'palabras' | 'filas', { tope: number; valores: number[]; x: (v: number) => number }>;
+const cambio = (a: number, b: number) => (a ? b / a - 1 : 0);
+const cambioTxt = (c: number) => `${c > 0 ? '+' : c < 0 ? '−' : '±'}${fmt.pct(Math.abs(c), lang, 1)}`;
+const dv = (p: P, campo: string, v: number, base: 'V2' | 'v3') => fmt.dato(v, fmt.n(v, lang), `fig.F07.${p.rep_id}.${campo}`, base);
+const presNota = plano(lang, 'fig.F07.nota.presidencia');
+const pD = plantillaNota(lang, 'fig.F07.nota', ['nombre', 'v2', 'v3', 'cambio']);
+---
+<FiguraMarco lang={lang} id="F07" plantilla={pD} plantillaB="{pres}">
+  <fieldset slot="barra" class="fig-conmuta">
+    <legend set:html={o('fig.F07.conmutador.leyenda')} />
+    <label><input type="radio" name="f07-medida" value="palabras" checked /><span set:html={o('fig.F07.conmutador.palabras')} /></label>
+    <label><input type="radio" name="f07-medida" value="filas" /><span set:html={o('fig.F07.conmutador.filas')} /></label>
+  </fieldset>
+  <div slot="grafico" class="ediciones">
+    <ul class="leyenda" role="list">
+      <li><span class="muestra v2" aria-hidden="true"></span><span set:html={t(lang, 'comun.sello.V2')} /></li>
+      <li><span class="muestra pres" aria-hidden="true"></span><span set:html={o('fig.F07.leyenda.presidencia')} /></li>
+      <li><span class="muestra v3" aria-hidden="true"></span><span set:html={t(lang, 'comun.sello.v3')} /></li>
+    </ul>
+    {MEDIDAS.map(({ m, v2, pres, v3 }) => {
+      const E = escala[m];
+      return (
+        <div class:list={['vista', `vista-${m}`]} data-medida={m}>
+          <div class="plano">
+            <div class="rejilla" aria-hidden="true">{E.valores.map((v) => <span style={`--x: ${pct(E.x(v))}`} />)}</div>
+            <ol class="personas" role="list" data-recorre tabindex="0" aria-label={`${plano(lang, 'fig.F07.pregunta')} (${plano(lang, `fig.F07.conmutador.${m}`)})`} aria-describedby="quien-habla-teclado">
+              {L.map((p) => {
+                const a = p[v2], pr = p[pres], b = p[v3], c = cambio(a, b);
+                return (
+                  <li class="persona" data-paso data-nota data-v-nombre={p.nombre} data-v-v2={fmt.n(a, lang)} data-v-v3={fmt.n(b, lang)} data-v-cambio={cambioTxt(c)}
+                    data-v-pres={pr > 0 ? presNota : undefined}>
+                    <span class="nombre">{p.nombre}</span>
+                    <span class="carriles">
+                      <span class="carril v2"><span class="barra" style={`--p: ${pct(E.x(a))}`}>{pr > 0 && <span class="pres" style={`--q: ${pct((pr / a) * 100)}`} />}</span><span class="cifra-b" set:html={dv(p, `${m}.v2`, a, 'V2')} /></span>
+                      <span class="carril v3"><span class="barra" style={`--p: ${pct(E.x(b))}`} /><span class="cifra-b" set:html={dv(p, `${m}.v3`, b, 'v3')} /></span>
+                    </span>
+                    <span class:list={['cambio', { baja: c < -0.2 }]} set:html={fmt.dato(c, cambioTxt(c), `fig.F07.${p.rep_id}.${m}.cambio`, 'v3')} />
+                  </li>
+                );
+              })}
+            </ol>
+            <div class="eje" aria-hidden="true" data-audit-exento="eje de la figura">{E.valores.map((v) => <span style={`--x: ${pct(E.x(v))}`}>{fmt.n(v, lang)}</span>)}</div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+  <div slot="tabla">
+    <div class="fig-desliza" tabindex="0" role="region" aria-labelledby="quien-habla-caption">
+      <table class="fig-tabla">
+        <caption id="quien-habla-caption"><span class="fig-rotulo-tabla" set:html={o('fig.F07.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={o('fig.F07.tabla.col.nombre')} />
+            <th scope="col" class="num" set:html={o('fig.F07.tabla.col.v2')} />
+            <th scope="col" class="num" set:html={o('fig.F07.tabla.col.v2_presidencia')} />
+            <th scope="col" class="num" set:html={o('fig.F07.tabla.col.v3')} />
+            <th scope="col" class="num" set:html={o('fig.F07.tabla.col.cambio')} />
+          </tr>
+        </thead>
+        {MEDIDAS.map(({ m, v2, pres, v3 }) => (
+          <tbody>
+            <tr class="grupo"><th scope="colgroup" colspan="5" set:html={o(`fig.F07.conmutador.${m}`)} /></tr>
+            {L.map((p) => (
+              <tr>
+                <th scope="row">{p.nombre}</th>
+                <td class="num" set:html={dv(p, `${m}.v2`, p[v2], 'V2')} />
+                <td class="num" set:html={dv(p, `${m}.pres`, p[pres], 'V2')} />
+                <td class="num" set:html={dv(p, `${m}.v3`, p[v3], 'v3')} />
+                <td class="num" set:html={fmt.dato(cambio(p[v2], p[v3]), cambioTxt(cambio(p[v2], p[v3])), `fig.F07.${p.rep_id}.${m}.cambio`, 'v3')} />
+              </tr>
+            ))}
+          </tbody>
+        ))}
+      </table>
+    </div>
+  </div>
+</FiguraMarco>
+
+<style>
+  /* La conmutación: la vista elegida; sin `:has()`, las dos se leen seguidas. */
+  @supports selector(:has(*)) {
+    :global(.figura):has(input[name='f07-medida'][value='palabras']:checked) .vista-filas,
+    :global(.figura):has(input[name='f07-medida'][value='filas']:checked) .vista-palabras { display: none; }
+  }
+  .vista + .vista { margin-top: var(--e6); }
+  .leyenda { list-style: none; margin: 0 0 var(--e5); padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; font-size: var(--fs-small); color: var(--ink-2); }
+  .leyenda li { display: inline-flex; align-items: center; gap: .5rem; }
+  .muestra { width: 1.6rem; height: .75rem; flex: none; border-radius: 1px; }
+  .muestra.v2 { background: var(--dato-2); }
+  .muestra.pres, .pres { background: repeating-linear-gradient(135deg, var(--bg) 0 1.5px, transparent 1.5px 5px), var(--dato-2); }
+  .muestra.v3 { border: 1.5px dashed var(--dato-2); background: color-mix(in oklab, var(--dato-2) 18%, transparent); }
+  .plano { position: relative; --nom: 12rem; --cam: 5rem; padding-bottom: 1.6rem; }
+  .rejilla, .eje { position: absolute; left: 0; right: 0; }
+  .rejilla { top: 0; bottom: 1.6rem; pointer-events: none; }
+  .rejilla span, .eje span { position: absolute; left: var(--x); }
+  .rejilla span { top: 0; bottom: 0; border-left: 1px solid var(--hair); }
+  .rejilla span:first-child { border-left-color: var(--hair-2); }
+  .eje { bottom: 0; height: 1.6rem; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .eje span { transform: translateX(-50%); top: .55rem; white-space: nowrap; }
+  .eje span:first-child { transform: none; }
+  .personas { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: .1rem; }
+  .persona {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'nombre cambio' 'carriles carriles';
+    gap: .25rem 1rem; align-items: center; padding: .5rem 0;
+  }
+  .persona:global(.fig-activa) { outline: none; }
+  .persona:global(.fig-activa) .carriles > .carril > .barra { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .nombre { grid-area: nombre; font-size: var(--fs-small); color: var(--ink); }
+  .cambio { grid-area: cambio; font: 500 .8rem/1.2 var(--mono); color: var(--ink-2); text-align: right; white-space: nowrap; }
+  .cambio.baja { color: var(--ink); font-weight: 600; }
+  .carriles { grid-area: carriles; display: grid; gap: 3px; }
+  .carril { position: relative; height: .8rem; display: flex; align-items: center; }
+  .barra { position: relative; height: 100%; width: var(--p); border-radius: 0 1px 1px 0; flex: none; }
+  .v2 .barra { background: var(--dato-2); }
+  .v3 .barra { border: 1.5px dashed var(--dato-2); background: color-mix(in oklab, var(--dato-2) 18%, transparent); }
+  .pres { position: absolute; left: 0; top: 0; bottom: 0; width: var(--q); }
+  .cifra-b { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); margin-left: .45rem; white-space: nowrap; }
+  @media (min-width: 48rem) {
+    .persona { grid-template-columns: var(--nom) minmax(0, 1fr) var(--cam); grid-template-areas: 'nombre carriles cambio'; }
+    .rejilla, .eje { left: calc(var(--nom) + 1rem); right: calc(var(--cam) + 1rem); }
+    /* La cifra no puede empujar la barra fuera de su carril: el carril reserva su sitio. */
+    .carriles { padding-right: 5.5rem; }
+    .rejilla, .eje { right: calc(var(--cam) + 1rem + 5.5rem); }
+  }
+  @media (max-width: 47.99rem) {
+    .rejilla, .eje { display: none; }
+    .plano { padding-bottom: 0; }
+    .carriles { padding-right: 5rem; }
+  }
+  tbody .grupo th { font: 500 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); padding-top: 1.1rem; }
+</style>

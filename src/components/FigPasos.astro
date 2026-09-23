@@ -1,0 +1,101 @@
+---
+/**
+ * F19 · Del Diario a la fila, en cinco pasos (grupo 4, Método 02; plan § F19). La figura es su propia tabla: cinco
+ * pasos numerados, cada uno un `<details>` nativo (sin JS se abre y se cierra igual) con su cifra en la línea del
+ * resumen y, dentro, de dónde sale y el enlace al apartado que lo cuenta. Sin pestañas (la versión ligera del marco):
+ * los datos, en `public/datos/pasos.csv`.
+ *  · Cifras: todas por marcador (`fig.F19.pasoN.cifra`), con su base; las que no salen de lo depositado (páginas,
+ *    fallos de lectura) lo dicen en su detalle y en la salvedad.
+ *  · Escritorio: los cinco en fila, unidos por un filete con una estación por paso (el orden informa). Móvil: en
+ *    columna, con el filete en vertical.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, existe } from '../lib/i18n';
+import { marcaPendiente } from '../lib/cifras';
+import { recurso } from '../lib/rutas';
+import { rutaDatos } from '../lib/figuras';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
+// Cada paso lleva al apartado que lo cuenta (anclas m01…m10 de la página).
+const PASOS = [
+  { n: 1, apartado: '10' },
+  { n: 2, apartado: '03' },
+  { n: 3, apartado: '01' },
+  { n: 4, apartado: '06' },
+  { n: 5, apartado: '04' },
+];
+const csv = recurso(rutaDatos('pasos', 'csv'));
+---
+<FiguraMarco lang={lang} id="F19" ligera teclado={false}>
+  <div slot="grafico" class="pasos">
+    <ol class="pasos-lista" role="list">
+      {PASOS.map((p) => (
+        <li class="paso" style={`--i: ${p.n}`}>
+          <details>
+            <summary>
+              <span class="paso-n" aria-hidden="true" data-audit-exento="numeración">{String(p.n).padStart(2, '0')}</span>
+              <span class="paso-titulo" set:html={o(`fig.F19.paso${p.n}.titulo`)} />
+              <span class="paso-cifra" set:html={o(`fig.F19.paso${p.n}.cifra`)} />
+              <span class="paso-abre" aria-hidden="true"><svg class="icono" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" /></svg></span>
+            </summary>
+            <div class="paso-detalle">
+              <p set:html={o(`fig.F19.paso${p.n}.detalle`)} />
+              <p class="paso-ir"><a href={`#m${p.apartado}`} set:html={o(`metodo.indice.${p.apartado}`)} /></p>
+            </div>
+          </details>
+        </li>
+      ))}
+    </ol>
+    <p class="pasos-datos nota"><a href={csv} download>pasos.csv</a></p>
+  </div>
+</FiguraMarco>
+
+<style>
+  .pasos { min-width: 0; }
+  .pasos-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; position: relative; }
+  /* El filete que une los pasos: vertical en el móvil, horizontal en escritorio. */
+  .pasos-lista::before { content: ''; position: absolute; left: .42rem; top: .9rem; bottom: .9rem; border-left: 1px solid var(--hair-2); }
+  .paso { position: relative; padding-left: 2rem; min-width: 0; }
+  .paso::before { content: ''; position: absolute; left: .1rem; top: 1.08rem; width: .65rem; height: .65rem; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--accent); }
+  .paso:has(details[open])::before { background: var(--accent); }
+  details { border-bottom: 1px solid var(--hair); }
+  summary {
+    list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "n abre" "t abre" "c abre";
+    gap: .1rem .8rem; padding: .7rem 0 .9rem; min-height: 2.75rem; border-radius: var(--radio);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+  .paso-n { grid-area: n; font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); }
+  .paso-titulo { grid-area: t; font: 600 1.05rem/1.25 var(--text); color: var(--ink); }
+  .paso-cifra { grid-area: c; font: italic 500 clamp(1.35rem, 1.1rem + .9vw, 1.85rem)/1.12 var(--display); color: var(--ink); font-variant-numeric: lining-nums; }
+  .paso-cifra :global(data.cifra) { font-family: inherit; }
+  .paso-abre { grid-area: abre; align-self: center; color: var(--ink-2); display: grid; place-items: center; width: 2.75rem; height: 2.75rem; }
+  .paso-abre .icono { width: 1rem; height: 1rem; }
+  /* F19 no tiene marcas que recorrer con las flechas: la frase del teclado del marco no es verdad aquí (se abren los
+     pasos con Tab e Intro). Petición al andamiaje: una prop del marco para no pintarla (docs/peticiones/diario-metodo.md). */
+  details[open] .paso-abre { transform: rotate(180deg); }
+  summary:hover .paso-titulo { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .2em; }
+  .paso-detalle { padding: 0 0 1rem; font-size: var(--fs-small); line-height: 1.5; color: var(--ink-2); max-width: 34rem; }
+  .paso-detalle p { margin: 0 0 .5rem; }
+  .paso-ir a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+  .pasos-datos { margin: var(--e4) 0 0; font-family: var(--mono); font-size: var(--fs-mono-s); }
+  .pasos-datos a { display: inline-flex; min-height: 2.75rem; align-items: center; }
+
+  @media (min-width: 60rem) {
+    .pasos-lista { grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: start; }
+    .pasos-lista::before { left: .35rem; right: .35rem; top: .35rem; bottom: auto; border-left: 0; border-top: 1px solid var(--hair-2); }
+    .paso { padding: 1.4rem 0 0; }
+    .paso::before { left: 0; top: .02rem; }
+    summary { grid-template-columns: minmax(0, 1fr) 2.75rem; grid-template-areas: "n abre" "t t" "c c"; padding-top: .2rem; }
+    .paso-abre { align-self: start; margin-top: -.8rem; justify-self: end; }
+    details { border-bottom: 0; }
+    .paso-detalle { border-top: 1px solid var(--hair); padding-top: .8rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .paso-abre { transition: transform var(--t-estado) var(--ease); }
+    .paso::before { transition: background-color var(--t-estado) var(--ease); }
+  }
+</style>

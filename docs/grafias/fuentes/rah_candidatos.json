@@ -1,0 +1,4239 @@
+{
+"_meta": {
+"fuente": "Real Academia de la Historia, Diccionario Biográfico electrónico (historia-hispanica.rah.es, antes dbe.rah.es), API /api/search/<texto> y /api/search/searchByTesaurus (Diputado)",
+"consulta": "2026-09-22"
+},
+"candidatos": {
+"1": {
+"Gerardo Abad Conde": [
+{
+"nid": 46,
+"titulo": "Gerardo Abad Conde",
+"nacimiento": "1881"
+}
+]
+},
+"16": {
+"Jose Antonio Aguirre Y Lecube": [
+{
+"nid": 860,
+"titulo": "José Antonio de Aguirre Lecube",
+"nacimiento": "1904"
+}
+]
+},
+"18": {
+"Rafael Aizpun Santafe": [
+{
+"nid": 1744,
+"titulo": "Rafael Aizpún Santafé",
+"nacimiento": "1889"
+}
+]
+},
+"20": {
+"Santiago Alba Bonifaz": [
+{
+"nid": 1380,
+"titulo": "Santiago Alba y Bonifaz",
+"nacimiento": "1872"
+}
+]
+},
+"25": {
+"Jose Maria Albiñana Sanz": [
+{
+"nid": 1549,
+"titulo": "José María Albiñana Sanz",
+"nacimiento": "1883"
+}
+]
+},
+"26": {
+"Alvaro De Albornoz Y Liminiana": [
+{
+"nid": 1640,
+"titulo": "Álvaro de Albornoz y Liminiana",
+"nacimiento": "1879"
+}
+]
+},
+"28": {
+"Niceto Alcala Zamora Y Torres": [
+{
+"nid": 1404,
+"titulo": "Niceto Alcalá-Zamora y Torres",
+"nacimiento": "1877"
+}
+]
+},
+"30": {
+"Ramon Maria Aldasoro Y Galarza": []
+},
+"32": {
+"Edmundo Alfaro Gironda": []
+},
+"33": {
+"Jose Algora Gorbea": []
+},
+"39": {
+"Tomas Alonso De Armiño Y Calleja": [
+{
+"nid": 2701,
+"titulo": "Tomás Alonso de Armiño y Calleja",
+"nacimiento": "1872"
+}
+]
+},
+"43": {
+"Elfidio Alonso Rodriguez": []
+},
+"47": {
+"Tomas Alvarez Angulo": [
+{
+"nid": 2306,
+"titulo": "Tomás Álvarez Angulo",
+"nacimiento": "1878"
+}
+]
+},
+"48": {
+"Jose Alvarez Buylla Y Godino": [
+{
+"nid": 2321,
+"titulo": "Plácido Álvarez-Buylla Godino",
+"nacimiento": "1898"
+}
+]
+},
+"50": {
+"Melquiades Alvarez Gonzalez Posada": [
+{
+"nid": 2133,
+"titulo": "Melquíades Álvarez y González Posada",
+"nacimiento": "1864"
+}
+]
+},
+"52": {
+"Jose Maria Alvarez Mendizabal Y Bonilla": [
+{
+"nid": 1869,
+"titulo": "José María Álvarez Mendizábal Bonilla",
+"nacimiento": "1891"
+},
+{
+"nid": 2654,
+"titulo": "José María Álvarez",
+"nacimiento": "1871"
+},
+{
+"nid": 3876,
+"titulo": "José María de Arróspide y Álvarez",
+"nacimiento": "1877"
+}
+]
+},
+"54": {
+"Antonio Alvarez Robles": []
+},
+"55": {
+"Basilio Alvarez Rodriguez": [
+{
+"nid": 2142,
+"titulo": "Basilio Álvarez Rodríguez",
+"nacimiento": "1877"
+}
+]
+},
+"57": {
+"Ramon Alvarez Valdes Y Castañon": [
+{
+"nid": 2236,
+"titulo": "Ramón María Rafael Baltasar Álvarez-Valdés Castañón",
+"nacimiento": "1866"
+}
+]
+},
+"59": {
+"Andres Amado Y Reygondaud De Villebardet": [
+{
+"nid": 2194,
+"titulo": "Andrés Amado Reygondaud y de Villebardet",
+"nacimiento": "1886"
+}
+]
+},
+"64": {
+"Jose Andres Manso": [
+{
+"nid": 3582,
+"titulo": "José Andrés Manso",
+"nacimiento": "1896"
+}
+]
+},
+"65": {
+"Mariano Anso Zunzarren": [
+{
+"nid": 3506,
+"titulo": "Mariano Anso y Zunzarren",
+"nacimiento": "1899"
+}
+]
+},
+"77": {
+"Pedro Armasa Briales": []
+},
+"80": {
+"Gregorio Arranz Olalla": []
+},
+"87": {
+"Manuel Hilario Ayuso E Iglesias": [
+{
+"nid": 5355,
+"titulo": "Manuel Hilario Ayuso Iglesias",
+"nacimiento": "1880"
+}
+]
+},
+"89": {
+"Manuel Azaña Diaz": [
+{
+"nid": 5420,
+"titulo": "Manuel Azaña Díaz",
+"nacimiento": "1880"
+}
+]
+},
+"94": {
+"Mateo Azpeitia Esteban": []
+},
+"96": {
+"Carlos Badia Malagrida": [
+{
+"nid": 5122,
+"titulo": "Carlos Badía Malagrida",
+"nacimiento": "1890"
+}
+]
+},
+"97": {
+"Emilio Baeza Medina": []
+},
+"98": {
+"Jose Antonio Balbontin Y Gutierrez": [
+{
+"nid": 4793,
+"titulo": "José Antonio Balbontín",
+"nacimiento": "1893"
+}
+]
+},
+"103": {
+"Augusto Barcia Y Trelles": [
+{
+"nid": 4631,
+"titulo": "Augusto Barcia Trelles",
+"nacimiento": "1881"
+}
+]
+},
+"104": {
+"Luis Bardaji Lopez": [
+{
+"nid": 4654,
+"titulo": "Luis Bardají López",
+"nacimiento": "1880"
+}
+]
+},
+"107": {
+"Francisco Barnes Salinas": [
+{
+"nid": 4684,
+"titulo": "Francisco José Barnés Salinas",
+"nacimiento": "1887"
+}
+]
+},
+"112": {
+"Eduardo Barriobero Herran": [
+{
+"nid": 6342,
+"titulo": "Eduardo Barriobero y Herrán",
+"nacimiento": "1875"
+}
+]
+},
+"121": {
+"Manuel Becerra Fernandez": [
+{
+"nid": 5897,
+"titulo": "Manuel Becerra Fernández",
+"nacimiento": "1867"
+}
+]
+},
+"125": {
+"Felix Eleuterio Benitez De Lugo Y Rodriguez": []
+},
+"130": {
+"Antonio Bermudez Cañete": []
+},
+"133": {
+"Julian Besteiro Fernandez": [
+{
+"nid": 7180,
+"titulo": "Julián Mateo José María Besteiro Fernández",
+"nacimiento": "1870"
+}
+]
+},
+"144": {
+"Manuel Blasco Garzon": [
+{
+"nid": 6424,
+"titulo": "Manuel Blasco Garzón",
+"nacimiento": "1887"
+}
+]
+},
+"148": {
+"Cayetano Bolivar Escribano": []
+},
+"155": {
+"Juan Botella Asensi": [
+{
+"nid": 8184,
+"titulo": "Juan Botella Asensi",
+"nacimiento": "1884"
+}
+]
+},
+"166": {
+"Abilio Calderon Rojo": [
+{
+"nid": 8724,
+"titulo": "Abilio Calderón Rojo",
+"nacimiento": "1867"
+}
+]
+},
+"170": {
+"Jose Calvo Sotelo": [
+{
+"nid": 8233,
+"titulo": "José Calvo Sotelo",
+"nacimiento": "1893"
+}
+]
+},
+"172": {
+"Miguel De Camara Cendoya": []
+},
+"173": {
+"Francisco De Asis Cambo Y Batlle": [
+{
+"nid": 8621,
+"titulo": "Francesc Cambó i Batlle",
+"nacimiento": "1876"
+}
+]
+},
+"174": {
+"Rafael Campalans Puig": [
+{
+"nid": 8359,
+"titulo": "Rafael Campalans Puig",
+"nacimiento": "1887"
+}
+]
+},
+"175": {
+"Clara Campoamor Y Rodriguez": [
+{
+"nid": 8249,
+"titulo": "Clara Campoamor Rodríguez",
+"nacimiento": "1888"
+}
+]
+},
+"178": {
+"Juan Canales Gonzalez": []
+},
+"179": {
+"Jose Antonio Canals Alvarez": []
+},
+"186": {
+"Vicente Cantos Figuerola": [
+{
+"nid": 9567,
+"titulo": "José Vicente Cantos Figuerola",
+"nacimiento": "1868"
+}
+]
+},
+"187": {
+"Ramon Cantos Saiz De Carlos": []
+},
+"190": {
+"Jaime Carner Romeu": [
+{
+"nid": 9335,
+"titulo": "Jaume Carner Romeu",
+"nacimiento": "1867"
+}
+]
+},
+"191": {
+"Ramon De Carranza Y Fernandez Reguera": [
+{
+"nid": 9317,
+"titulo": "Ramón de Carranza y Fernández de la Reguera",
+"nacimiento": "1863"
+}
+]
+},
+"208": {
+"Candido Casanueva Y Gorjon": [
+{
+"nid": 10581,
+"titulo": "Cándido Casanueva y Gorjón",
+"nacimiento": "1881"
+}
+]
+},
+"209": {
+"Santiago Casares Quiroga": [
+{
+"nid": 10653,
+"titulo": "Santiago Casares Quiroga",
+"nacimiento": "1884"
+}
+]
+},
+"218": {
+"Juan Castrillo Santos": []
+},
+"229": {
+"Joaquin Chapaprieta Y Torregrosa": [
+{
+"nid": 11484,
+"titulo": "Joaquín Chapaprieta Torregrosa",
+"nacimiento": "1871"
+}
+]
+},
+"231": {
+"Jose Maria Cid Ruiz Zorrilla": [
+{
+"nid": 11379,
+"titulo": "José María Cid y Ruiz Zorrilla",
+"nacimiento": "1882"
+}
+]
+},
+"236": {
+"Jesus Comin Sagues": []
+},
+"239": {
+"Luis Companys Jover": [
+{
+"nid": 12636,
+"titulo": "Lluís Companys i Jover",
+"nacimiento": "1882"
+}
+]
+},
+"244": {
+"Luis Cornide Quiroga": []
+},
+"245": {
+"Pedro Corominas Y Montaña": [
+{
+"nid": 12129,
+"titulo": "Corominas Montaña, Pedro",
+"nacimiento": ""
+}
+]
+},
+"257": {
+"Fermin Daza Diaz Del Castillo": []
+},
+"266": {
+"Jose Diaz Ramos": [
+{
+"nid": 14079,
+"titulo": "José Díaz Ramos",
+"nacimiento": "1896"
+}
+]
+},
+"272": {
+"Marcelino Domingo Sanjuan": [
+{
+"nid": 13903,
+"titulo": "Marcelino Domingo Sanjuán",
+"nacimiento": "1884"
+}
+]
+},
+"280": {
+"Francisco Javier Elola Y Diaz Varela": [
+{
+"nid": 15123,
+"titulo": "Francisco Javier Elola y Díaz Varela",
+"nacimiento": "1877"
+}
+]
+},
+"289": {
+"Jose Estadella Arno": [
+{
+"nid": 15976,
+"titulo": "José Estadella y Arnó",
+"nacimiento": "1880"
+}
+]
+},
+"290": {
+"Juan Estelrich Artigues": [
+{
+"nid": 16211,
+"titulo": "Joan Estelrich i Artigues",
+"nacimiento": "1896"
+}
+]
+},
+"298": {
+"Joaquin Fanjul Goñi": [
+{
+"nid": 15932,
+"titulo": "Joaquín Fanjul Goñi",
+"nacimiento": "1880"
+}
+]
+},
+"301": {
+"Ramon Feced Gresa": [
+{
+"nid": 15629,
+"titulo": "Ramón Feced Gresa",
+"nacimiento": "1894"
+}
+]
+},
+"304": {
+"Antonio Fernandez Bolaños Mora": []
+},
+"305": {
+"Federico Fernandez Castillejo": [
+{
+"nid": 46915,
+"titulo": "Federico Fernández de Castillejo",
+"nacimiento": "1899"
+}
+]
+},
+"306": {
+"Luis Fernandez Clerigo": []
+},
+"319": {
+"Bibiano Fernandez Osorio Tafall": [
+{
+"nid": 16752,
+"titulo": "Bibiano Fernández Osorio Tafall",
+"nacimiento": "1902"
+}
+]
+},
+"337": {
+"Jose Franchy Roca": [
+{
+"nid": 17299,
+"titulo": "José Franchy Roca",
+"nacimiento": "1871"
+}
+]
+},
+"340": {
+"Gabriel Franco Lopez": [
+{
+"nid": 17221,
+"titulo": "Gabriel Franco López",
+"nacimiento": "1897"
+}
+]
+},
+"341": {
+"Eduardo Frapolli Y Ruiz De La Herran": []
+},
+"342": {
+"Santiago Fuentes Pila": []
+},
+"345": {
+"Angel Galarza Gago": [
+{
+"nid": 18608,
+"titulo": "Ángel Galarza Gago",
+"nacimiento": "1892"
+}
+]
+},
+"359": {
+"Jeronimo Garcia Gallego": [
+{
+"nid": 18330,
+"titulo": "Jerónimo García Gallego",
+"nacimiento": "1894"
+}
+]
+},
+"362": {
+"Luis Garcia Guijarro": []
+},
+"380": {
+"Jose Maria Gil Robles Y Quiñones De Leon": [
+{
+"nid": 18934,
+"titulo": "José María Gil-Robles y Quiñones",
+"nacimiento": "1898"
+},
+{
+"nid": 48359,
+"titulo": "José María Sánchez de Muniain y Gil de Vidaurre",
+"nacimiento": "1909"
+}
+]
+},
+"383": {
+"Bernardo Giner De Los Rios Garcia": [
+{
+"nid": 20485,
+"titulo": "Bernardo Giner de los Ríos García",
+"nacimiento": "1888"
+}
+]
+},
+"384": {
+"Jose Giral Pereira": [
+{
+"nid": 20541,
+"titulo": "José Giral y Pereira",
+"nacimiento": "1879"
+}
+]
+},
+"385": {
+"Antonio Goicoechea Y Cosculluela": [
+{
+"nid": 20308,
+"titulo": "Antonio Goicoechea y Cosculluela",
+"nacimiento": "1876"
+}
+]
+},
+"386": {
+"Jeronimo Gomariz Latorre": []
+},
+"392": {
+"Laureano Gomez Paratcha": [
+{
+"nid": 19968,
+"titulo": "Laureano Gómez Paratcha",
+"nacimiento": "1884"
+}
+]
+},
+"393": {
+"Ricardo Gomez Roji": []
+},
+"394": {
+"Trifon Gomez San Jose": [
+{
+"nid": 20096,
+"titulo": "Trifón Gómez San José",
+"nacimiento": "1889"
+}
+]
+},
+"399": {
+"Jose Gonzalez Fernandez De La Bandera": [
+{
+"nid": 16531,
+"titulo": "José Fernández-Quevedo y González-Llanos",
+"nacimiento": "1849"
+},
+{
+"nid": 19798,
+"titulo": "José Manuel González y Fernández Valles",
+"nacimiento": "1907"
+}
+]
+},
+"405": {
+"Manuel Gonzalez Ramos": []
+},
+"412": {
+"Felix Gordon Ordas": [
+{
+"nid": 21089,
+"titulo": "Félix Gordón Ordás",
+"nacimiento": "1885"
+}
+]
+},
+"417": {
+"Miguel Granados Ruiz": []
+},
+"420": {
+"Antonio Guallar Poza": []
+},
+"421": {
+"Santiago Guallar Poza": []
+},
+"422": {
+"Rafael Guerra Del Rio": [
+{
+"nid": 20651,
+"titulo": "Rafael Guerra del Río",
+"nacimiento": "1885"
+}
+]
+},
+"423": {
+"Juan Bautista Guerra Garcia": []
+},
+"435": {
+"Diego Hidalgo Duran": [
+{
+"nid": 22997,
+"titulo": "Diego Hidalgo Durán",
+"nacimiento": "1886"
+}
+]
+},
+"436": {
+"Jose Horn Areilza": []
+},
+"441": {
+"Dolores Ibarruri Gomez": [
+{
+"nid": 22432,
+"titulo": "Dolores Ibárruri Gómez",
+"nacimiento": "1895"
+}
+]
+},
+"446": {
+"Vicente Iranzo Enguita": [
+{
+"nid": 24116,
+"titulo": "Vicente Iranzo Enguita",
+"nacimiento": "1889"
+}
+]
+},
+"448": {
+"Manuel Irujo Ollo": [
+{
+"nid": 23976,
+"titulo": "Manuel de Irujo Ollo",
+"nacimiento": "1891"
+}
+]
+},
+"449": {
+"Enrique Izquierdo Jimenez": []
+},
+"450": {
+"Antonio Jaen Morente": [
+{
+"nid": 23465,
+"titulo": "Antonio Jaén Morente",
+"nacimiento": "1879"
+}
+]
+},
+"452": {
+"Julio Jauregui Lasanta": []
+},
+"455": {
+"Luis Jimenez De Asua": [
+{
+"nid": 23449,
+"titulo": "Luis Jiménez de Asúa",
+"nacimiento": "1889"
+}
+]
+},
+"456": {
+"Manuel Jimenez Fernandez": [
+{
+"nid": 20317,
+"titulo": "Manuel Giménez Fernández",
+"nacimiento": "1896"
+}
+]
+},
+"461": {
+"Mariano Joven Hernandez": []
+},
+"467": {
+"Victoria Kent Siano": [
+{
+"nid": 24638,
+"titulo": "Victoria Kent Siano",
+"nacimiento": "1892"
+}
+]
+},
+"470": {
+"Jose Maria Lamamie De Clairac Y De La Colina": [
+{
+"nid": 24514,
+"titulo": "José María Lamamié de Clairac y de la Colina",
+"nacimiento": "1887"
+},
+{
+"nid": 24513,
+"titulo": "José María Lamamié de Clairac y Alonso",
+"nacimiento": "1911"
+}
+]
+},
+"472": {
+"Ramon Lamoneda Fernandez": [
+{
+"nid": 24595,
+"titulo": "Ramón Lamoneda Fernández",
+"nacimiento": "1892"
+}
+]
+},
+"477": {
+"Antonio Lara Zarate": [
+{
+"nid": 24443,
+"titulo": "Antonio Lara Zárate",
+"nacimiento": "1881"
+}
+]
+},
+"479": {
+"Francisco Largo Caballero": [
+{
+"nid": 24554,
+"titulo": "Francisco Largo Caballero",
+"nacimiento": "1869"
+}
+]
+},
+"485": {
+"Jesus Maria Leizaola Sanchez": [
+{
+"nid": 26035,
+"titulo": "Jesús María de Leizaola Sánchez",
+"nacimiento": "1896"
+}
+]
+},
+"487": {
+"Alejandro Lerroux Garcia": [
+{
+"nid": 25738,
+"titulo": "Alejandro Lerroux García",
+"nacimiento": "1864"
+}
+]
+},
+"491": {
+"Rodolfo Llopis Ferrandiz": [
+{
+"nid": 25587,
+"titulo": "Rodolfo Llopis Ferrándiz",
+"nacimiento": "1895"
+}
+]
+},
+"492": {
+"Juan Lluhi Vallesca": [
+{
+"nid": 25241,
+"titulo": "Joan Lluhí i Vallescà",
+"nacimiento": "1897"
+}
+]
+},
+"495": {
+"Francisco Lopez De Goicoechea E Inchaurrandieta": [
+{
+"nid": 26572,
+"titulo": "Francisco López de Goicoechea Inchaurrandieta",
+"nacimiento": "1894"
+}
+]
+},
+"503": {
+"Jose Lopez Varela": []
+},
+"509": {
+"Luis Lucia Lucia": [
+{
+"nid": 27613,
+"titulo": "Luis Lucía y Lucía",
+"nacimiento": "1888"
+},
+{
+"nid": 27614,
+"titulo": "Luis Lucia Mingarro",
+"nacimiento": "1914"
+}
+]
+},
+"512": {
+"Dimas Madariaga Almendros": []
+},
+"513": {
+"Salvador Madariaga Rojo": [
+{
+"nid": 27474,
+"titulo": "Salvador de Madariaga Rojo",
+"nacimiento": "1886"
+}
+]
+},
+"521": {
+"Joaquin Manglano Y Cucalo De Montull": [
+{
+"nid": 27396,
+"titulo": "Joaquín Manglano y Cucaló de Montull",
+"nacimiento": "1892"
+}
+]
+},
+"522": {
+"Daniel Mangrane Escardo": []
+},
+"534": {
+"Melchor Marial Mundet": []
+},
+"538": {
+"Manuel Marraco Ramon": [
+{
+"nid": 28115,
+"titulo": "Manuel Marraco y Ramón",
+"nacimiento": "1870"
+}
+]
+},
+"548": {
+"Pedro Martin Y Martin": [
+{
+"nid": 11724,
+"titulo": "Cermeño, Pedro Martín",
+"nacimiento": ""
+},
+{
+"nid": 28149,
+"titulo": "Martín de Artasona, Pedro",
+"nacimiento": ""
+},
+{
+"nid": 28130,
+"titulo": "Martín Martínez, Pedro",
+"nacimiento": ""
+}
+]
+},
+"550": {
+"Diego Martinez Barrio": [
+{
+"nid": 27958,
+"titulo": "Diego Martínez Barrio",
+"nacimiento": "1883"
+}
+]
+},
+"556": {
+"Jose Martinez De Velasco Escolar": [
+{
+"nid": 29631,
+"titulo": "José Martínez de Velasco Escolar",
+"nacimiento": "1875"
+},
+{
+"nid": 20288,
+"titulo": "José Gómez de Arteche y Martínez de Velasco",
+"nacimiento": "1889"
+}
+]
+},
+"557": {
+"Alfredo Martinez Garcia Arguelles": [
+{
+"nid": 29686,
+"titulo": "Alfredo Martínez y García Argüelles",
+"nacimiento": "1877"
+}
+]
+},
+"558": {
+"Lucio Martinez Gil": [
+{
+"nid": 29691,
+"titulo": "Lucio Martínez Gil",
+"nacimiento": "1883"
+}
+]
+},
+"559": {
+"Esteban Martinez Hervas": []
+},
+"565": {
+"Salvador Martinez Moya Crespo": []
+},
+"581": {
+"Miguel Maura Gamazo": [
+{
+"nid": 29009,
+"titulo": "Miguel Maura Gamazo",
+"nacimiento": "1887"
+}
+]
+},
+"583": {
+"Joaquin Maurin Julia": [
+{
+"nid": 29089,
+"titulo": "Joaquín Maurín Julià",
+"nacimiento": "1896"
+}
+]
+},
+"588": {
+"Juan Antonio Mendez Martinez": []
+},
+"607": {
+"Ramon Molina Nieto": []
+},
+"622": {
+"Jose Morales Robles": []
+},
+"652": {
+"Juan Negrin Lopez": [
+{
+"nid": 33054,
+"titulo": "Juan Negrín López",
+"nacimiento": "1892"
+}
+]
+},
+"654": {
+"Luis Nicolau D'olwer": []
+},
+"655": {
+"Emilio Niembro Gutierrez": []
+},
+"666": {
+"Marcelino De Oreja Y Elosegui": [
+{
+"nid": 33867,
+"titulo": "Marcelino Oreja Elósegui",
+"nacimiento": "1894"
+}
+]
+},
+"668": {
+"Jaime Oriol De La Puerta": []
+},
+"670": {
+"Andres Orozco Batista": [
+{
+"nid": 33718,
+"titulo": "Andrés Orozco y Batista",
+"nacimiento": "1888"
+}
+]
+},
+"672": {
+"Eduardo Ortega Y Gasset": [
+{
+"nid": 33609,
+"titulo": "Eduardo Ortega y Gasset",
+"nacimiento": "1882"
+}
+]
+},
+"673": {
+"Jose Ortega Y Gasset": [
+{
+"nid": 33632,
+"titulo": "José Ortega y Gasset",
+"nacimiento": "1883"
+}
+]
+},
+"674": {
+"Tomas Ortiz De Solorzano Y Ortiz De La Puente": []
+},
+"676": {
+"Angel Osorio Gallardo": [
+{
+"nid": 33472,
+"titulo": "Ángel Ossorio y Gallardo",
+"nacimiento": "1873"
+}
+]
+},
+"681": {
+"Joaquin De Pablo Blanco Torres": [
+{
+"nid": 35086,
+"titulo": "Joaquín de Pablo-Blanco Torres",
+"nacimiento": "1896"
+}
+]
+},
+"696": {
+"Jose Pareja Yevenes": []
+},
+"700": {
+"Alvaro Pascual Leone": []
+},
+"703": {
+"Tomas Peire Cabaleiro": []
+},
+"722": {
+"Joaquin Perez Madrigal": [
+{
+"nid": 51598,
+"titulo": "Joaquín Pérez-Eguía Madrigal",
+"nacimiento": "1898"
+}
+]
+},
+"730": {
+"Angel Pestaña Nuñez": [
+{
+"nid": 36697,
+"titulo": "Ángel Pestaña Núñez",
+"nacimiento": "1886"
+}
+]
+},
+"741": {
+"Leandro Pita Romero": [
+{
+"nid": 36476,
+"titulo": "Leandro Pita Romero",
+"nacimiento": "1898"
+}
+]
+},
+"745": {
+"Manuel Portela Valladares": [
+{
+"nid": 36183,
+"titulo": "Manuel Portela Valladares",
+"nacimiento": "1867"
+}
+]
+},
+"747": {
+"Joaquin Poza Juncal": []
+},
+"749": {
+"Jose Prat Garcia": [
+{
+"nid": 37791,
+"titulo": "José Diosdado Prat García",
+"nacimiento": "1905"
+}
+]
+},
+"754": {
+"Indalecio Prieto Tuero": [
+{
+"nid": 37677,
+"titulo": "Indalecio Prieto Tuero",
+"nacimiento": "1883"
+}
+]
+},
+"755": {
+"Jose Antonio Primo De Rivera Y Saenz De Heredia": [
+{
+"nid": 37745,
+"titulo": "José Antonio Primo de Rivera y Sáenz de Heredia",
+"nacimiento": "1903"
+}
+]
+},
+"767": {
+"Pedro Rahola Y Molinas": [
+{
+"nid": 37385,
+"titulo": "Pedro Rahola Molinas",
+"nacimiento": "1877"
+}
+]
+},
+"772": {
+"Enrique Ramos Ramos": [
+{
+"nid": 38530,
+"titulo": "Enrique Ramos y Ramos",
+"nacimiento": "1890"
+}
+]
+},
+"774": {
+"Luis Recasens Siches": [
+{
+"nid": 38903,
+"titulo": "Luis Recaséns Siches",
+"nacimiento": "1903"
+}
+]
+},
+"783": {
+"Fernando Rey Mora": []
+},
+"784": {
+"Manuel Rico Avello": [
+{
+"nid": 38509,
+"titulo": "Manuel Rico Avello",
+"nacimiento": "1886"
+}
+]
+},
+"789": {
+"Honorio Riesgo Garcia": []
+},
+"790": {
+"Cirilo Del Rio Rodriguez": [
+{
+"nid": 38213,
+"titulo": "Cirilo del Río Rodríguez",
+"nacimiento": "1892"
+}
+]
+},
+"791": {
+"Fernando De Los Rios Urruti": [
+{
+"nid": 38394,
+"titulo": "Fernando de los Ríos y Urruti",
+"nacimiento": "1879"
+}
+]
+},
+"797": {
+"Francisco Roca Yevenes": []
+},
+"798": {
+"Juan Jose Rocha Garcia": [
+{
+"nid": 38358,
+"titulo": "Juan José Rocha García",
+"nacimiento": "1876"
+}
+]
+},
+"804": {
+"Luis Rodriguez De Viguri": [
+{
+"nid": 39624,
+"titulo": "Luis Rodríguez de Viguri y Seoane",
+"nacimiento": "1881"
+}
+]
+},
+"808": {
+"Antonio Rodriguez Perez": []
+},
+"809": {
+"Santiago Rodriguez Piñero": []
+},
+"819": {
+"Jose Rosado Gil": []
+},
+"821": {
+"Antonio Royo Villanova Morales": [
+{
+"nid": 39172,
+"titulo": "Antonio Royo Villanova",
+"nacimiento": "1869"
+}
+]
+},
+"823": {
+"Jose Tomas Rubio Chavarri": []
+},
+"835": {
+"Mariano Ruiz Funes Garcia": [
+{
+"nid": 38997,
+"titulo": "Mariano Ruiz-Funes García",
+"nacimiento": "1889"
+}
+]
+},
+"836": {
+"Amos Ruiz Lecina": [],
+"Mariano Ruiz Funes Garcia": [
+{
+"nid": 38997,
+"titulo": "Mariano Ruiz-Funes García",
+"nacimiento": "1889"
+}
+]
+},
+"841": {
+"Amos Sabras Gurrea": [
+{
+"nid": 40430,
+"titulo": "Amós Sabrás Gurrea",
+"nacimiento": "1890"
+}
+]
+},
+"850": {
+"Pelayo Sala Y Berenguer": []
+},
+"851": {
+"Rafael Salazar Alonso": [
+{
+"nid": 40031,
+"titulo": "Rafael Salazar Alonso",
+"nacimiento": "1895"
+}
+]
+},
+"857": {
+"Federico Salmon Amorin": [
+{
+"nid": 40180,
+"titulo": "Federico Salmón Amorín",
+"nacimiento": "1900"
+}
+]
+},
+"863": {
+"Ricardo Samper Ibañez": [
+{
+"nid": 40224,
+"titulo": "Ricardo Samper Ibáñez",
+"nacimiento": "1881"
+}
+]
+},
+"865": {
+"Claudio Sanchez Albornoz Menduiña": [
+{
+"nid": 41351,
+"titulo": "Claudio Sánchez-Albornoz y Menduiña",
+"nacimiento": "1893"
+}
+]
+},
+"868": {
+"Jose Sanchez Covisa Y Sanchez Covisa": [
+{
+"nid": 41176,
+"titulo": "José Sánchez-Covisa y Sánchez-Covisa",
+"nacimiento": "1881"
+}
+]
+},
+"874": {
+"Felipe Sanchez Roman Y Gallifa": [
+{
+"nid": 41362,
+"titulo": "Felipe Sánchez Román y Gallifa",
+"nacimiento": "1893"
+},
+{
+"nid": 41342,
+"titulo": "Felipe Sánchez Román",
+"nacimiento": "1850"
+}
+]
+},
+"883": {
+"Juan Jose Santa Cruz Garces": [
+{
+"nid": 48449,
+"titulo": "Juan José Santa Cruz Garcés de Marcilla",
+"nacimiento": "1880"
+}
+]
+},
+"884": {
+"Miguel Santalo Y Parvorell": [
+{
+"nid": 40954,
+"titulo": "Miguel Santaló y Parvorell",
+"nacimiento": "1888"
+}
+]
+},
+"908": {
+"Ramon Serrano Suñer": [
+{
+"nid": 42239,
+"titulo": "Ramón Serrano Súñer",
+"nacimiento": "1901"
+}
+]
+},
+"911": {
+"Tomas Sierra Rustarazo": []
+},
+"923": {
+"Fernando Suarez De Tangil Y Angulo": [
+{
+"nid": 43435,
+"titulo": "Fernando Suárez de Tangil y Angulo",
+"nacimiento": "1886"
+}
+]
+},
+"925": {
+"Ramon Suarez Picallo": [
+{
+"nid": 43380,
+"titulo": "Ramón Suárez Picallo",
+"nacimiento": "1892"
+}
+]
+},
+"930": {
+"Antonio Taboada Tundidor": []
+},
+"942": {
+"Romualdo De Toledo Y Robles": []
+},
+"953": {
+"Manuel Torres Campaña": []
+},
+"956": {
+"Jose Antonio Trabal Y Saus": []
+},
+"958": {
+"Antonio Tuñon De Lara": []
+},
+"960": {
+"Miguel De Unamuno Y Jugo": [
+{
+"nid": 44412,
+"titulo": "Miguel de Unamuno y Jugo",
+"nacimiento": "1864"
+}
+]
+},
+"965": {
+"Juan Usabiaga Lasquibar": [
+{
+"nid": 43941,
+"titulo": "Juan Usabiaga Lasquíbar",
+"nacimiento": "1879"
+}
+]
+},
+"973": {
+"Bernardino Valle Gracia": []
+},
+"975": {
+"Eloy Vaquero Cantillo": [
+{
+"nid": 45378,
+"titulo": "Eloy Vaquero Cantillo",
+"nacimiento": "1888"
+}
+]
+},
+"980": {
+"Narciso Vazquez Lemus": []
+},
+"985": {
+"Francisco Vega De La Iglesia Manteca": []
+},
+"988": {
+"Antonio Velao Oñate": [
+{
+"nid": 45373,
+"titulo": "Antonio Velao Oñate",
+"nacimiento": "1884"
+}
+]
+},
+"991": {
+"Nicasio Velayos Y Velayos": [
+{
+"nid": 45080,
+"titulo": "Nicasio Velayos Velayos",
+"nacimiento": "1876"
+}
+]
+},
+"993": {
+"Juan Ventosa Calvell": [
+{
+"nid": 44855,
+"titulo": "Joan Ventosa i Calvell",
+"nacimiento": "1879"
+}
+]
+},
+"998": {
+"Miguel Vidal Guardiola": [
+{
+"nid": 44666,
+"titulo": "Miquel Vidal i Guardiola",
+"nacimiento": "1887"
+}
+]
+},
+"1000": {
+"Juan Simeon Vidarte Franco Romero": [
+{
+"nid": 46839,
+"titulo": "Juan Simeón Vidarte Franco-Romero",
+"nacimiento": "1902"
+}
+]
+},
+"1006": {
+"Filiberto Villalobos Gonzalez": [
+{
+"nid": 46326,
+"titulo": "Filiberto Villalobos González",
+"nacimiento": "1879"
+}
+]
+},
+"1011": {
+"Justo Villanueva Y Gomez": []
+},
+"1026": {
+"Luis Zulueta Y Escolano": [
+{
+"nid": 45560,
+"titulo": "Luis de Zulueta y Escolano",
+"nacimiento": "1878"
+}
+]
+},
+"_sin_rep_id": {
+"Agustín Viñuales Pardo": {
+"nid": 46117
+},
+"Joaquín Dualde Gómez": {
+"nid": 13821
+},
+"Josep Oriol Anguera de Sojo": {
+"nid": 3588
+},
+"César Jalón Aragón": {
+"nid": 23558
+},
+"Carlos Masquelet Lacaci": {
+"nid": 29131
+},
+"Juan Moles Ormella": {
+"nid": 31444
+},
+"Antonio Maura y Montaner": {
+"nid": 29034
+}
+},
+"2": {
+"Raimundo De Abadal Caldero": []
+},
+"6": {
+"Amos Acero Perez": [
+{
+"nid": 326,
+"titulo": "Amós Acero Pérez",
+"nacimiento": "1893"
+}
+]
+},
+"7": {
+"Antonio Acuña Carballar": []
+},
+"8": {
+"Jose Acuña Y Gomez De La Torre": []
+},
+"9": {
+"Dimas Adanez Horcajuelo": []
+},
+"11": {
+"Jaime Aguade Miro": []
+},
+"12": {
+"Francisco Aguado De Miguel": []
+},
+"13": {
+"Crescenciano Aguado Merino": []
+},
+"14": {
+"Juan Maria Aguilar Calvo": []
+},
+"15": {
+"Manuel Aguillaume Valdes": []
+},
+"17": {
+"Francisco Agustin Rodriguez": []
+},
+"19": {
+"Luis Alarcon De La Lastra": [
+{
+"nid": 1651,
+"titulo": "Luis de Alarcón y de la Lastra",
+"nacimiento": "1891"
+}
+]
+},
+"21": {
+"Manuel Albar Catalan": [
+{
+"nid": 1607,
+"titulo": "Manuel Albar Catalán",
+"nacimiento": "1900"
+}
+]
+},
+"22": {
+"Gumersindo Alberca Montoya": []
+},
+"27": {
+"Nicolas Alcala Espinosa": []
+},
+"35": {
+"Rodrigo Almada Rodriguez": []
+},
+"38": {
+"Gabriel Alomar Villalonga": [
+{
+"nid": 2576,
+"titulo": "Gabriel Alomar i Villalonga",
+"nacimiento": "1873"
+}
+]
+},
+"40": {
+"Bruno Alonso Gonzalez": [
+{
+"nid": 2455,
+"titulo": "Bruno Alonso González",
+"nacimiento": "1887"
+}
+]
+},
+"41": {
+"Domingo Alonso Jimeno": []
+},
+"42": {
+"Antonio Alonso Rios": []
+},
+"44": {
+"Manuel Alonso Zapata": []
+},
+"45": {
+"Hector Altabas Alio": []
+},
+"49": {
+"Julio Alvarez Del Vayo": [
+{
+"nid": 2238,
+"titulo": "Julio Álvarez del Vayo y Olloqui",
+"nacimiento": "1890"
+}
+]
+},
+"51": {
+"Leon Carlos Alvarez Lara": []
+},
+"53": {
+"Julia Alvarez Resano": [
+{
+"nid": 2140,
+"titulo": "Julia Álvarez Resano",
+"nacimiento": "1903"
+}
+]
+},
+"56": {
+"Manuel Alvarez Ugena Y Sanchez Tembleque": []
+},
+"58": {
+"Romualdo Alvargonzalez Lanquinez": []
+},
+"62": {
+"Luis Amores Jimenez": []
+},
+"67": {
+"Angel Aperribay Y Pita Da Veiga": []
+},
+"68": {
+"Amadeo Aragay Davi": []
+},
+"70": {
+"Fermin Aranda Y Fernandez Caballero": [
+{
+"nid": 3032,
+"titulo": "Fermín Aranda y Fernández Caballero",
+"nacimiento": "1886"
+}
+]
+},
+"71": {
+"Luis Araquistain Quevedo": [
+{
+"nid": 2910,
+"titulo": "Luis Araquistáin Quevedo",
+"nacimiento": "1886"
+}
+]
+},
+"73": {
+"Eugenio Arauz Payardo": []
+},
+"74": {
+"Eugenio Arbones Castellanzuelo": []
+},
+"75": {
+"Luis Arellano Dihinx": []
+},
+"76": {
+"Jose Arizcun Moreno": []
+},
+"78": {
+"Antonio Arnedo Monguilan": []
+},
+"81": {
+"Mariano Arrazola Madera": []
+},
+"82": {
+"Andres De Arroyo Y Gonzalez De Chaves": []
+},
+"83": {
+"Benito Artigas Arpon": [
+{
+"nid": 3835,
+"titulo": "Benito Artigas Arpón",
+"nacimiento": "1881"
+}
+]
+},
+"84": {
+"Felix Avia Garcia": []
+},
+"85": {
+"Jose Ayats Surribas": []
+},
+"86": {
+"Julian Ayesta Manchola": [
+{
+"nid": 5231,
+"titulo": "Julián Ayesta Manchola",
+"nacimiento": "1893"
+}
+]
+},
+"88": {
+"Bernardo Aza Gonzalez Escalada": [
+{
+"nid": 5388,
+"titulo": "Bernardo Aza y González Escalada",
+"nacimiento": "1887"
+}
+]
+},
+"90": {
+"Emilio Azarola Gresillon": []
+},
+"91": {
+"Justino De Azcarate Y Florez": [
+{
+"nid": 5497,
+"titulo": "Justino Azcárate y Flórez",
+"nacimiento": "1903"
+}
+]
+},
+"93": {
+"Francisco Azorin Izquierdo": [
+{
+"nid": 5476,
+"titulo": "Francisco Azorín Izquierdo",
+"nacimiento": "1885"
+}
+]
+},
+"95": {
+"Ubaldo De Azpiazu Y Artazu": []
+},
+"99": {
+"Jose Ballester Gozalvo": []
+},
+"102": {
+"Sebastian Banzo Urrea": []
+},
+"105": {
+"Miguel Bargallo Ardevol": []
+},
+"108": {
+"Miguel Barquero Hidalgo Barquero": []
+},
+"109": {
+"Luis Barrena Y Alonso De Ojeda": []
+},
+"115": {
+"Severino Barros De Lis": []
+},
+"116": {
+"Francisco Basterrechea Zaldivar": []
+},
+"117": {
+"Francisco Bastos Ansart": [
+{
+"nid": 6254,
+"titulo": "Francisco Bastos Ansart",
+"nacimiento": "1875"
+}
+]
+},
+"118": {
+"Joaquin Bau Nolla": [
+{
+"nid": 6414,
+"titulo": "Joaquín Bau Nolla",
+"nacimiento": "1897"
+}
+]
+},
+"119": {
+"Ramon Beade Mendez": []
+},
+"120": {
+"Manuel Beca Mateos": []
+},
+"122": {
+"Epifanio Belli Castiel": []
+},
+"123": {
+"Luis Bello Trompeta": [
+{
+"nid": 5964,
+"titulo": "Luis Bello Trompeta",
+"nacimiento": "1872"
+}
+]
+},
+"127": {
+"Jose Berenguer Cros": []
+},
+"128": {
+"Victor Jose Berjano Gomez": []
+},
+"129": {
+"Manuel Bermejillo Martinez": [
+{
+"nid": 7309,
+"titulo": "Manuel Bermejillo Martínez",
+"nacimiento": "1897"
+}
+]
+},
+"132": {
+"Antonio Bernabeu De Yeste": []
+},
+"134": {
+"Joaquin Beunza Y Redin": [
+{
+"nid": 7293,
+"titulo": "Joaquín Beúnza Redín",
+"nacimiento": "1872"
+}
+]
+},
+"135": {
+"Crescenciano Bilbao Castellano": []
+},
+"136": {
+"Esteban Bilbao Y Eguia": [
+{
+"nid": 6910,
+"titulo": "Esteban de Bilbao y Eguía",
+"nacimiento": "1879"
+}
+]
+},
+"138": {
+"Jose Maria Blanc Rodriguez": [
+{
+"nid": 6952,
+"titulo": "José María Blanc Rodríguez",
+"nacimiento": "1896"
+}
+]
+},
+"140": {
+"Carlos Blanco Perez": []
+},
+"141": {
+"Benito Blanco Rajoy Y Espada": []
+},
+"142": {
+"Jose Blanco Rodriguez": []
+},
+"143": {
+"Sigfrido Blasco Blasco": []
+},
+"146": {
+"Fermin Blazquez Nieto": [
+{
+"nid": 6668,
+"titulo": "Fermín Blázquez Nieto",
+"nacimiento": "1882"
+}
+]
+},
+"147": {
+"Francisca Bohigas Gavilanes": []
+},
+"152": {
+"Juan Bort Olmos": []
+},
+"153": {
+"Francisco Javier Bosch Marin": []
+},
+"154": {
+"Enrique Heraclio Botana Perez": [
+{
+"nid": 8162,
+"titulo": "Enrique Heraclio Botana Pérez",
+"nacimiento": "1871"
+}
+]
+},
+"156": {
+"Jose Brianso Salvado": []
+},
+"157": {
+"Jeronimo Bugeda Muñoz": []
+},
+"159": {
+"Francisco Burgos Diaz": []
+},
+"161": {
+"Miguel Cabanellas Ferrer": [
+{
+"nid": 8848,
+"titulo": "Miguel Cabanellas Ferrer",
+"nacimiento": "1872"
+}
+]
+},
+"162": {
+"Remigio Cabello Toral": [
+{
+"nid": 9046,
+"titulo": "Remigio Cabello Toral",
+"nacimiento": "1869"
+}
+]
+},
+"164": {
+"Antonio Cabrera Toba": []
+},
+"167": {
+"Juan Calot Sanz": []
+},
+"171": {
+"Luciano De La Calzada Rodriguez": []
+},
+"177": {
+"Antonio Canales Gonzalez": []
+},
+"180": {
+"Jose Teodoro Canet Menendez": []
+},
+"181": {
+"Antonio Cañizares Peñalva": []
+},
+"182": {
+"Jose Cano Coloma": []
+},
+"183": {
+"Rufino Cano De Rueda": [
+{
+"nid": 9823,
+"titulo": "Rufino Cano de Rueda",
+"nacimiento": "1868"
+}
+]
+},
+"184": {
+"Dionisio Cano Lopez": []
+},
+"185": {
+"Blas Cantalapiedra Gutierrez": []
+},
+"189": {
+"Juan Antonio De Careaga Y Andueza": []
+},
+"192": {
+"Geminiano Carrascal Martin": []
+},
+"194": {
+"Jose Carrasco Cabezuelo": []
+},
+"195": {
+"Manuel Carrasco Y Formiguera": [
+{
+"nid": 9365,
+"titulo": "Manuel Carrasco i Formiguera",
+"nacimiento": "1890"
+}
+]
+},
+"196": {
+"Juan Carreño Vargas": []
+},
+"197": {
+"Ramon Carreras Pons": []
+},
+"198": {
+"Francisco Carreras Reura": []
+},
+"199": {
+"Gerardo Carreres Bayarri": []
+},
+"201": {
+"Wenceslao Carrillo Alonso": [
+{
+"nid": 9534,
+"titulo": "Wenceslao Carrillo Alonso-Forjador",
+"nacimiento": "1889"
+}
+]
+},
+"203": {
+"Jose Maria Casabo Torras": []
+},
+"210": {
+"Hermenegildo Casas Jimenez": [
+{
+"nid": 10768,
+"titulo": "Hermenegildo Casas Jiménez",
+"nacimiento": "1892"
+}
+]
+},
+"213": {
+"Ernesto Castaño Arevalo": []
+},
+"215": {
+"Eduardo Castillo Blasco": []
+},
+"216": {
+"Federico Del Castillo Extremera": []
+},
+"217": {
+"Enrique Del Castillo Folache": []
+},
+"219": {
+"Honorato De Castro Bonel": []
+},
+"221": {
+"Roberto Castrovido Sanz": []
+},
+"222": {
+"Jose Cazorla Salcedo": []
+},
+"223": {
+"Pablo Ceballos Botin": []
+},
+"224": {
+"Jose Centeno Gonzalez": []
+},
+"226": {
+"Francisco Cervera Jimenez Alfaro": []
+},
+"228": {
+"Adolfo Chacon De La Mata": []
+},
+"232": {
+"Jose Cimas Leal": []
+},
+"233": {
+"Fernando Coca Gonzalez Saavedra": []
+},
+"238": {
+"Juan Company Jimenez": []
+},
+"242": {
+"Luis Cordero Bel": []
+},
+"243": {
+"Manuel Cordero Perez": [
+{
+"nid": 11845,
+"titulo": "Manuel Cordero Pérez",
+"nacimiento": "1881"
+}
+]
+},
+"247": {
+"Ricardo Cortes Villasana": [
+{
+"nid": 11901,
+"titulo": "Ricardo Cortes Villasana",
+"nacimiento": "1890"
+}
+]
+},
+"251": {
+"Ricardo Crespo Romero": []
+},
+"252": {
+"Tomas Cruz Garcia": []
+},
+"254": {
+"Enrique Cuartero Pascual": []
+},
+"255": {
+"Ramon De La Cuesta Y Cobo De La Torre": [
+{
+"nid": 13245,
+"titulo": "Ramón de la Cuesta y Cobo de la Torre",
+"nacimiento": "1871"
+}
+]
+},
+"259": {
+"Jose Dencas Puigdollers": []
+},
+"260": {
+"Perfecto Diaz Alonso": []
+},
+"261": {
+"Jose Diaz Ambrona Moreno": []
+},
+"262": {
+"Emiliano Diaz Castro": []
+},
+"263": {
+"Juan Diaz Del Moral": [
+{
+"nid": 14403,
+"titulo": "Juan Díaz del Moral",
+"nacimiento": "1870"
+}
+]
+},
+"264": {
+"Jose Diaz Fernandez": [
+{
+"nid": 14500,
+"titulo": "José Díaz Fernández",
+"nacimiento": "1898"
+},
+{
+"nid": 14504,
+"titulo": "José Avelino Díaz y Fernández Omaña",
+"nacimiento": "1889"
+}
+]
+},
+"269": {
+"Fulgencio Diez Pastor": []
+},
+"270": {
+"Manuel Dolcet Carmen": []
+},
+"271": {
+"Andres Domingo Martinez": []
+},
+"273": {
+"Tomas Dominguez Arevalo": [
+{
+"nid": 13961,
+"titulo": "Tomás Domínguez Arévalo y Fernández de Navarrete",
+"nacimiento": "1882"
+}
+]
+},
+"274": {
+"Jose Dominguez Barbero": []
+},
+"277": {
+"Carlos Echeguren Ocio": []
+},
+"281": {
+"Enrique Esbri Fernandez": []
+},
+"282": {
+"Isidro Escandell Ubeda": []
+},
+"284": {
+"Roberto Escribano Iglesias": []
+},
+"287": {
+"Rafael Esparza Garcia": []
+},
+"288": {
+"Carlos Espla Rizo": [
+{
+"nid": 14576,
+"titulo": "Carlos Esplá Rizo",
+"nacimiento": "1895"
+}
+]
+},
+"292": {
+"Francisco Estevanez Rodriguez": []
+},
+"293": {
+"Martin Esteve Guau": []
+},
+"294": {
+"Antonio Fabra Ribas": [
+{
+"nid": 16004,
+"titulo": "Antonio Fabra Ribas",
+"nacimiento": "1879"
+}
+]
+},
+"295": {
+"Luis Fabrega Coello": []
+},
+"296": {
+"Luis Fabrega Santamaria": []
+},
+"299": {
+"Vicente Fatras Neira": []
+},
+"307": {
+"Mariano Fernandez De Cordoba Y Castrillo": []
+},
+"308": {
+"Herminio Fernandez De La Poza": []
+},
+"309": {
+"Virgilio Fernandez De La Vega Lombau": []
+},
+"310": {
+"Eladio Fernandez Egocheaga": [
+{
+"nid": 16784,
+"titulo": "Eladio Fernández Egocheaga",
+"nacimiento": "1886"
+}
+]
+},
+"311": {
+"Adolfo Fernandez Gutierrez": []
+},
+"312": {
+"Luis Fernandez Heredia Y Del Pozo": []
+},
+"315": {
+"Jose Maria Fernandez Ladreda Y Menendez Valdes": [
+{
+"nid": 16980,
+"titulo": "José María Fernández Ladreda y Menéndez Valdés",
+"nacimiento": "1885"
+},
+{
+"nid": 16908,
+"titulo": "José María Fernandez y Martínez",
+"nacimiento": "1855"
+},
+{
+"nid": 32761,
+"titulo": "José María Noval Fernández",
+"nacimiento": "1901"
+}
+]
+},
+"316": {
+"Laureano Fernandez Martos": []
+},
+"317": {
+"Ramon Fernandez Mato": []
+},
+"320": {
+"Antonio Fernandez Quer": []
+},
+"321": {
+"Angel Fernandez Ruano": []
+},
+"322": {
+"Felix Fernandez Vega": [
+{
+"nid": 16470,
+"titulo": "Félix Fernández-Vega y de la Vega",
+"nacimiento": "1886"
+}
+]
+},
+"323": {
+"Felix Fernandez Villarrubia": []
+},
+"324": {
+"Rodrigo Fernandez Y Garcia De La Villa": []
+},
+"325": {
+"Lauro Fernandez Y Gonzalez": []
+},
+"326": {
+"Benigno Ferrer Domingo": []
+},
+"328": {
+"Juan Ferret Navarro": []
+},
+"329": {
+"Gonzalo Figueroa O'neill": []
+},
+"330": {
+"Manuel Figueroa Rojas": []
+},
+"331": {
+"Alvaro De Figueroa Y Alonso Martinez": [
+{
+"nid": 17678,
+"titulo": "Álvaro de Figueroa y Alonso Martínez",
+"nacimiento": "1893"
+}
+]
+},
+"332": {
+"Alvaro Figueroa Y Torres": [
+{
+"nid": 17733,
+"titulo": "Álvaro de Figueroa y Torres",
+"nacimiento": "1863"
+}
+]
+},
+"333": {
+"Jose Finat Y Escriva De Romani": [
+{
+"nid": 17843,
+"titulo": "José Finat y Escrivá de Romaní",
+"nacimiento": "1904"
+}
+]
+},
+"334": {
+"Manuel Florensa Farre": []
+},
+"335": {
+"Bartolome Fons Jofre De Villegas": []
+},
+"338": {
+"Enrique De Francisco Jimenez": [
+{
+"nid": 17468,
+"titulo": "Enrique de Francisco Jiménez",
+"nacimiento": "1878"
+}
+]
+},
+"339": {
+"Ramon Franco Bahamonde": [
+{
+"nid": 17069,
+"titulo": "Ramón Franco Bahamonde",
+"nacimiento": "1896"
+}
+]
+},
+"343": {
+"Antonio Gabarro Y Torres": []
+},
+"344": {
+"Jose Gafo Muñiz": [
+{
+"nid": 24755,
+"titulo": "Gafo Muñiz, José",
+"nacimiento": ""
+},
+{
+"nid": 18806,
+"titulo": "Beato José Gafo Muñiz",
+"nacimiento": "1881"
+}
+]
+},
+"346": {
+"Lorenzo Gallardo Y Gallardo": []
+},
+"347": {
+"Alejandro Gallart Y Folch": [
+{
+"nid": 18593,
+"titulo": "Alejandro Gallart Folch",
+"nacimiento": "1893"
+}
+]
+},
+"348": {
+"Juan Antonio Gamazo Y Abarca": [
+{
+"nid": 18656,
+"titulo": "Juan Antonio Gamazo Abarca",
+"nacimiento": "1883"
+}
+]
+},
+"351": {
+"Leopoldo Garcia Alas Y Garcia Arguelles": [
+{
+"nid": 18105,
+"titulo": "Leopoldo García-Alas y García-Argüelles",
+"nacimiento": "1883"
+},
+{
+"nid": 1752,
+"titulo": "Alas Argüelles, Leopoldo",
+"nacimiento": ""
+},
+{
+"nid": 18107,
+"titulo": "Leopoldo García-Alas y Ureña",
+"nacimiento": "1852"
+}
+]
+},
+"352": {
+"Manuel Garcia Atance": []
+},
+"353": {
+"Manuel Garcia Becerra": []
+},
+"354": {
+"Jose Garcia Berlanga Pardo": []
+},
+"356": {
+"Miguel Garcia Bravo Ferrer": []
+},
+"361": {
+"Raimundo Garcia Garcia": [
+{
+"nid": 18359,
+"titulo": "Raimundo García García",
+"nacimiento": "1884"
+},
+{
+"nid": 19415,
+"titulo": "Raimundo García Moreno",
+"nacimiento": "1896"
+},
+{
+"nid": 38438,
+"titulo": "Raimundo de los Reyes García-Martínez",
+"nacimiento": "1896"
+}
+]
+},
+"363": {
+"Joaquin Garcia Hidalgo Villanueva": []
+},
+"364": {
+"Salvador Garcia Muñoz": []
+},
+"365": {
+"Antonio Garcia Prieto": []
+},
+"368": {
+"Joaquin Garcia Ribes": []
+},
+"369": {
+"Celestino Garcia Santos": []
+},
+"370": {
+"Alfonso Garcia Valdecasas Y Garcia Valdecasas": [
+{
+"nid": 19334,
+"titulo": "Alfonso García-Valdecasas y García-Valdecasas",
+"nacimiento": "1904"
+}
+]
+},
+"371": {
+"Angel Garcia Vedoya": []
+},
+"372": {
+"Luis Garcia Y Garcia Lozano": []
+},
+"373": {
+"Jose Garrote Tebar": []
+},
+"375": {
+"Ricardo Gasset Y Alzugaray": [
+{
+"nid": 51931,
+"titulo": "Ricardo Gasset Alzugaray",
+"nacimiento": "1883"
+}
+]
+},
+"376": {
+"Fernando Gasset Y Lacasaña": []
+},
+"377": {
+"Ventura Gassol Rovira": []
+},
+"378": {
+"Angeles Gil Albarellos": []
+},
+"379": {
+"Felipe Gil Casares": []
+},
+"381": {
+"Ramon Gil Roldan Y Martin": []
+},
+"382": {
+"Gil Gil Y Gil": [
+{
+"nid": 18899,
+"titulo": "Gil Gil y Gil",
+"nacimiento": "1865"
+},
+{
+"nid": 1615,
+"titulo": "Albornoz, Gil de",
+"nacimiento": ""
+},
+{
+"nid": 15286,
+"titulo": "Enberres, Gil de",
+"nacimiento": ""
+}
+]
+},
+"387": {
+"Pedro Gomez Chaix": [
+{
+"nid": 20474,
+"titulo": "Pedro Gómez Chaix",
+"nacimiento": "1864"
+}
+]
+},
+"388": {
+"Aurelio Gomez Gonzalez": [
+{
+"nid": 20166,
+"titulo": "Aurelio Gómez González",
+"nacimiento": "1875"
+}
+]
+},
+"390": {
+"Enrique Gomez Jimenez": []
+},
+"391": {
+"Jose Gomez Osorio": []
+},
+"395": {
+"Pedro Vicente Gomez Sanchez": []
+},
+"400": {
+"Francisco Gonzalez Garcia": [
+{
+"nid": 18029,
+"titulo": "Candido Francisco García González",
+"nacimiento": "1905"
+}
+]
+},
+"401": {
+"Emilio Gonzalez Lopez": []
+},
+"403": {
+"Ruperto Gonzalez Negrin": []
+},
+"404": {
+"Ramon Gonzalez Peña": [
+{
+"nid": 21017,
+"titulo": "Ramón González Peña",
+"nacimiento": "1888"
+}
+]
+},
+"406": {
+"Julio Gonzalez Sandoval Mogollon": []
+},
+"407": {
+"Ramon Gonzalez Sicilia Y De La Corte": []
+},
+"408": {
+"Eusebio Gonzalez Suarez": []
+},
+"409": {
+"Gabriel Gonzalez Taltabull": []
+},
+"410": {
+"Jose Fernando Gonzalez Uña": []
+},
+"411": {
+"Julio Gonzalo Soto": []
+},
+"413": {
+"Miguel Gortari Errea": []
+},
+"414": {
+"Modesto Gosalvez Fuentes Manresa": []
+},
+"415": {
+"Anastasio De Gracia Villarrubia": [
+{
+"nid": 20997,
+"titulo": "Anastasio de Gracia Villarrubia",
+"nacimiento": "1890"
+}
+]
+},
+"416": {
+"Higinio Felipe Granado Valdivia": []
+},
+"419": {
+"Jose Grau Jasans": []
+},
+"424": {
+"Melchor Guerrero Periago": []
+},
+"426": {
+"Nicasio Guisasola Dominguez": []
+},
+"427": {
+"Cesar Gusano Rodriguez": []
+},
+"428": {
+"Juan Gutierrez Prieto": []
+},
+"430": {
+"Luis Hermida Villelga": []
+},
+"432": {
+"Jesus Hernandez Tomas": [
+{
+"nid": 21499,
+"titulo": "Jesús Hernández Tomás",
+"nacimiento": "1907"
+}
+]
+},
+"433": {
+"Carlos Hernandez Zancajo": [
+{
+"nid": 21505,
+"titulo": "Carlos Hernández Zancajo",
+"nacimiento": "1902"
+}
+]
+},
+"437": {
+"Mariano De La Hoz Saldaña": []
+},
+"438": {
+"Jose Maria Hueso Ballester": []
+},
+"439": {
+"Amadeo Hurtado Miro": [
+{
+"nid": 22561,
+"titulo": "Amadeo Hurtado Miró",
+"nacimiento": "1875"
+}
+]
+},
+"440": {
+"Jose Ibañez Martin": [
+{
+"nid": 22478,
+"titulo": "José Ibáñez Martín",
+"nacimiento": "1896"
+}
+]
+},
+"442": {
+"Manuel Iglesias Corral": [
+{
+"nid": 24098,
+"titulo": "Manuel Iglesias Corral",
+"nacimiento": "1900"
+}
+]
+},
+"443": {
+"Emiliano Iglesias Y Ambrosio": [
+{
+"nid": 24013,
+"titulo": "Emiliano Iglesias Ambrosio",
+"nacimiento": "1878"
+}
+]
+},
+"444": {
+"Leopoldo Igual Padilla": []
+},
+"445": {
+"Jose Luis Illanes Del Rio": []
+},
+"447": {
+"Juan Antonio Irazusta Muñoa": []
+},
+"451": {
+"Alejandro Jaume Rossello": []
+},
+"453": {
+"Francisco De Paula Jene Aixala": []
+},
+"454": {
+"Luis Jimenez Canga Arguelles": [
+{
+"nid": 20294,
+"titulo": "Luis Giménez Canga-Arguelles",
+"nacimiento": "1880"
+}
+]
+},
+"457": {
+"Manuel Jimenez Garcia De La Serrana": []
+},
+"458": {
+"Antonio Jimenez Jimenez": [
+{
+"nid": 38770,
+"titulo": "Antonio Reverte Jiménez",
+"nacimiento": "1870"
+},
+{
+"nid": 21305,
+"titulo": "Juan Antonio González Jiménez",
+"nacimiento": "1842"
+},
+{
+"nid": 23447,
+"titulo": "Jiménez-Arnau, José Antonio",
+"nacimiento": ""
+}
+]
+},
+"462": {
+"Cesar Juarros Ortega": [
+{
+"nid": 25104,
+"titulo": "César Juarros y Ortega",
+"nacimiento": "1879"
+}
+]
+},
+"463": {
+"Francisco Julia Perello": []
+},
+"464": {
+"Jose Maria Julian Gil": [
+{
+"nid": 18934,
+"titulo": "José María Gil-Robles y Quiñones",
+"nacimiento": "1898"
+},
+{
+"nid": 7180,
+"titulo": "Julián Mateo José María Besteiro Fernández",
+"nacimiento": "1870"
+}
+]
+},
+"465": {
+"Jose Antonio Junco Toral": []
+},
+"466": {
+"Julio Just Gimeno": [
+{
+"nid": 25023,
+"titulo": "Julio Just Gimeno",
+"nacimiento": "1897"
+}
+]
+},
+"471": {
+"Vicente Lambies Grancha": []
+},
+"473": {
+"Casimiro Lana Sarrate": []
+},
+"474": {
+"Francisco Javier De Landaburu Fernandez De Betoño": []
+},
+"476": {
+"Federico Landrove Moiño": [
+{
+"nid": 24464,
+"titulo": "Federico Landrove Moiño",
+"nacimiento": "1883"
+}
+]
+},
+"478": {
+"Luis Laredo Vega": []
+},
+"480": {
+"Jose Maria Lasarte Arana": [
+{
+"nid": 22893,
+"titulo": "José María Hinojosa Lasarte",
+"nacimiento": "1904"
+}
+]
+},
+"483": {
+"Eduardo Layret Foix": []
+},
+"484": {
+"Felipe Lazcano Y Morales De Setien": []
+},
+"486": {
+"Maria Lejarraga Y Garcia": [
+{
+"nid": 26062,
+"titulo": "María de la O Lejárraga García",
+"nacimiento": "1874"
+}
+]
+},
+"490": {
+"Jose Llado Y Valles": []
+},
+"494": {
+"Juan Loperena Roma": []
+},
+"497": {
+"Luis Lopez Doriga Meseguer": [
+{
+"nid": 38602,
+"titulo": "Luis Redonet y López-Dóriga",
+"nacimiento": "1875"
+}
+]
+},
+"500": {
+"Angel Lopez Perez": []
+},
+"501": {
+"Jose Lopez Quero": []
+},
+"502": {
+"Santiago Lopez Rodriguez": []
+},
+"506": {
+"Manuel Lorenzo Pardo": [
+{
+"nid": 26163,
+"titulo": "Manuel Lorenzo Pardo",
+"nacimiento": "1881"
+}
+]
+},
+"507": {
+"Edmundo Lorenzo Santiago": []
+},
+"508": {
+"Juan Lozano Ruiz": []
+},
+"510": {
+"Benito Luna Anoria": []
+},
+"514": {
+"Jesus Salvador Madero Ortiz Cicuendez": []
+},
+"515": {
+"Tomas Maestre Zapata": []
+},
+"516": {
+"Jose Maestro San Jose": []
+},
+"517": {
+"Ramiro De Maeztu Whitney": [
+{
+"nid": 27150,
+"titulo": "Ramiro de Maeztu y Whitney",
+"nacimiento": "1874"
+}
+]
+},
+"518": {
+"Antonio Mairal Perallos": []
+},
+"524": {
+"Jose Manteca Roger": []
+},
+"526": {
+"Juan March Ordinas": [
+{
+"nid": 28325,
+"titulo": "Juan March Ordinas",
+"nacimiento": "1880"
+}
+]
+},
+"529": {
+"Vicente Marco Miranda": []
+},
+"531": {
+"Tomas Marcos Escribano": []
+},
+"532": {
+"Agustin Marcos Escudero": []
+},
+"533": {
+"Jose Mareque Santos": []
+},
+"536": {
+"Rafael Marin Lazaro": []
+},
+"537": {
+"Andres Maroto Rodriguez De Vera": []
+},
+"539": {
+"Antonio Marti Olucha": []
+},
+"540": {
+"Javier Martin Artajo Y Alvarez": []
+},
+"541": {
+"Juan Luis Martin De Antonio": []
+},
+"542": {
+"Arturo Martin De Nicolas Y Garcia": []
+},
+"545": {
+"Marcelino Martin Gonzalez Del Arco": []
+},
+"549": {
+"Jose Martinez Arenas": []
+},
+"551": {
+"Pedro Martinez Carton": []
+},
+"552": {
+"Luis Martinez Carvajal": []
+},
+"553": {
+"Jose Martinez De Azagra": []
+},
+"560": {
+"Emilio Martinez Jerez": []
+},
+"561": {
+"Jose Maria Martinez Jimenez": [
+{
+"nid": 1770,
+"titulo": "José María Alcácer Martínez",
+"nacimiento": "1899"
+},
+{
+"nid": 1188,
+"titulo": "José María Alfaro y Martínez",
+"nacimiento": "1856"
+},
+{
+"nid": 16908,
+"titulo": "José María Fernandez y Martínez",
+"nacimiento": "1855"
+}
+]
+},
+"562": {
+"Pedro Martinez Juarez": []
+},
+"564": {
+"Maximiliano Martinez Moreno": [
+{
+"nid": 29449,
+"titulo": "Maximiliano Martínez Moreno",
+"nacimiento": "1899"
+}
+]
+},
+"566": {
+"Juan Martinez Ortiz": []
+},
+"567": {
+"Manuel Martinez Pedroso": [
+{
+"nid": 28194,
+"titulo": "Manuel Martínez Aguilar y de Pedroso",
+"nacimiento": "1883"
+}
+]
+},
+"568": {
+"Manuel Martinez Risco Y Macias": [
+{
+"nid": 29675,
+"titulo": "Manuel Martínez-Risco Macías",
+"nacimiento": "1888"
+}
+]
+},
+"569": {
+"Gines Martinez Rubio": []
+},
+"570": {
+"Pascual Martinez Sala": []
+},
+"572": {
+"Carlos Martinez Y Martinez": [
+{
+"nid": 29671,
+"titulo": "Carlos Martínez Martínez",
+"nacimiento": "1899"
+},
+{
+"nid": 8644,
+"titulo": "Carlos Cambronero Martínez",
+"nacimiento": "1849"
+},
+{
+"nid": 40481,
+"titulo": "Carlos Ruiz Martínez",
+"nacimiento": "1898"
+}
+]
+},
+"574": {
+"Jose Mascort Ribot": []
+},
+"575": {
+"Jose Maria Masip E Izabal": [
+{
+"nid": 29073,
+"titulo": "Marcelo de Santa Ana, Beata. José María Masip Tamarit",
+"nacimiento": ""
+}
+]
+},
+"576": {
+"Luis Massot Balaguer": []
+},
+"577": {
+"Jose Maria De Mateo La Iglesia": [
+{
+"nid": 7180,
+"titulo": "Julián Mateo José María Besteiro Fernández",
+"nacimiento": "1870"
+}
+]
+},
+"579": {
+"Mariano Matesanz De La Torre": [
+{
+"nid": 29110,
+"titulo": "Mariano Matesanz de la Torre",
+"nacimiento": "1867"
+}
+]
+},
+"582": {
+"Honorio Maura Gamazo": [
+{
+"nid": 29008,
+"titulo": "Honorio Maura Gamazo",
+"nacimiento": "1886"
+}
+]
+},
+"584": {
+"Francisco Medina Clares": []
+},
+"586": {
+"Rafael Melgarejo Tordesillas": [
+{
+"nid": 30612,
+"titulo": "Rafael Melgarejo y Tordesillas",
+"nacimiento": "1892"
+}
+]
+},
+"587": {
+"Jose Maria Mendez Gil Brandon": [
+{
+"nid": 18934,
+"titulo": "José María Gil-Robles y Quiñones",
+"nacimiento": "1898"
+}
+]
+},
+"589": {
+"Teodomiro Menendez Fernandez": [
+{
+"nid": 30209,
+"titulo": "Teodomiro Menéndez Fernández",
+"nacimiento": "1879"
+}
+]
+},
+"590": {
+"Angel Menendez Suarez": [
+{
+"nid": 30230,
+"titulo": "Ángel Menéndez Suárez",
+"nacimiento": "1903"
+}
+]
+},
+"593": {
+"Mariano Merediz Diaz Parreño": []
+},
+"594": {
+"Jose Mesa Lopez": []
+},
+"597": {
+"Jesus De Miguel Lancho": []
+},
+"598": {
+"Antonio Mije Garcia": []
+},
+"600": {
+"Jose Miñones Bernardez": []
+},
+"603": {
+"Esteban Mirasol Ruiz": []
+},
+"604": {
+"Eduardo Molero Massa": []
+},
+"606": {
+"Jose Molina Moreno": []
+},
+"608": {
+"Francisco Molleda Garces": []
+},
+"609": {
+"Pedro Molpeceres Ramos": [
+{
+"nid": 31544,
+"titulo": "Pedro Molpeceres Ramos",
+"nacimiento": "1900"
+}
+]
+},
+"610": {
+"Francisco Molto Pascual": []
+},
+"611": {
+"Jose Moncasi Sangenis": []
+},
+"612": {
+"Daniel Mondejar Funez": []
+},
+"614": {
+"Jose Maria Montenegro Soto": []
+},
+"615": {
+"Jose Montero Tirado": []
+},
+"617": {
+"Rafael Montes Diaz": []
+},
+"618": {
+"Luis Montes Lopez De La Torre": []
+},
+"619": {
+"Francisco Felix Montiel Jimenez": []
+},
+"620": {
+"Telesforo Monzon Y Ortiz De Urruela": [
+{
+"nid": 30629,
+"titulo": "Telesforo Monzón Ortiz de Urruela",
+"nacimiento": "1904"
+}
+]
+},
+"621": {
+"Jose Del Moral Sanjurjo": []
+},
+"623": {
+"Juan Moran Bayo": []
+},
+"624": {
+"Francisco Morayta Martinez": []
+},
+"626": {
+"Carlos Morenilla Blanes": []
+},
+"627": {
+"Julio Moreno Davila": []
+},
+"628": {
+"Jose Moreno Galvache": []
+},
+"629": {
+"Francisco Moreno Herrera": [
+{
+"nid": 32220,
+"titulo": "Francisco de Asís Moreno y de Herrera",
+"nacimiento": "1909"
+}
+]
+},
+"630": {
+"Antonio Moreno Jover": []
+},
+"631": {
+"Mariano Moreno Mateo": []
+},
+"632": {
+"Manuel Moreno Mendoza": [
+{
+"nid": 32283,
+"titulo": "Manuel Moreno Mendoza",
+"nacimiento": "1862"
+}
+]
+},
+"634": {
+"Adolfo Moreno Quesada": []
+},
+"635": {
+"Jose Moreno Torres": [
+{
+"nid": 32424,
+"titulo": "José Moreno Torres",
+"nacimiento": "1900"
+}
+]
+},
+"636": {
+"Gabriel Moron Diaz": []
+},
+"637": {
+"Jose Mouriz Riesgo": [
+{
+"nid": 32434,
+"titulo": "José Mouriz Riesgo",
+"nacimiento": "1884"
+}
+]
+},
+"638": {
+"Jose Maria Moutas Meras": [
+{
+"nid": 32436,
+"titulo": "José María Moutas Merás",
+"nacimiento": "1892"
+}
+]
+},
+"640": {
+"Manuel Muiño Arroyo": [
+{
+"nid": 31801,
+"titulo": "Manuel Muiño Arroyo",
+"nacimiento": "1897"
+}
+]
+},
+"642": {
+"Alfonso Muñoz De Diego": [
+{
+"nid": 31983,
+"titulo": "Alfonso Muñoz de Diego",
+"nacimiento": "1888"
+}
+]
+},
+"644": {
+"Manuel Muñoz Martinez": [
+{
+"nid": 31736,
+"titulo": "Manuel Muñoz Martínez",
+"nacimiento": "1888"
+}
+]
+},
+"646": {
+"Amancio Muñoz Zafra": []
+},
+"647": {
+"Joaquin Maria De Nadal Y Ferrer": []
+},
+"648": {
+"Antonio Navajas Moreno": []
+},
+"650": {
+"Jenaro Navarro Lopez": []
+},
+"651": {
+"Ramon Navarro Vives": []
+},
+"653": {
+"Margarita Nelken Mansberger De Paul": [
+{
+"nid": 33112,
+"titulo": "Margarita Nelken y Mansberger",
+"nacimiento": "1894"
+}
+]
+},
+"656": {
+"Alfredo Nistal Martinez": []
+},
+"657": {
+"Ramon Nogues Y Bizet": []
+},
+"658": {
+"Roberto Novoa Santos": [
+{
+"nid": 32900,
+"titulo": "Roberto Novoa Santos",
+"nacimiento": "1885"
+}
+]
+},
+"659": {
+"Carlos Nuñez Manso": [
+{
+"nid": 32597,
+"titulo": "Carlos Núñez Manso",
+"nacimiento": "1894"
+}
+]
+},
+"660": {
+"Francisco Nuñez Tomas": [
+{
+"nid": 32801,
+"titulo": "Francisco Núñez Tomás",
+"nacimiento": "1877"
+}
+]
+},
+"661": {
+"Eduardo O'shea Y Verdes Montenegro": []
+},
+"662": {
+"Cesar Oarrichena Jenaro": []
+},
+"665": {
+"Manuel Olmedo Serrano": []
+},
+"667": {
+"Fernando Oria De Rueda Y Fontan": []
+},
+"669": {
+"Jose Luis De Oriol Y Uriguen": [
+{
+"nid": 33922,
+"titulo": "José Luis de Oriol y Urigüen",
+"nacimiento": "1877"
+}
+]
+},
+"671": {
+"Daniel Ortega Martinez": [
+{
+"nid": 33661,
+"titulo": "Daniel Ortega Martínez",
+"nacimiento": "1898"
+}
+]
+},
+"675": {
+"Manuel Osorio Florit": []
+},
+"678": {
+"Ramon Otero Pedrayo": [
+{
+"nid": 35079,
+"titulo": "Ramón Otero Pedrayo",
+"nacimiento": "1888"
+}
+]
+},
+"680": {
+"Andres Ovejero Bustamante": [
+{
+"nid": 34834,
+"titulo": "Andrés Ovejero Bustamante",
+"nacimiento": "1871"
+}
+]
+},
+"683": {
+"Jesus Pabon Y Suarez De Urbina": [
+{
+"nid": 35145,
+"titulo": "Jesús Pabón y Suárez de Urbina",
+"nacimiento": "1902"
+}
+]
+},
+"684": {
+"Benito Pabon Y Suarez De Urbina": [
+{
+"nid": 35123,
+"titulo": "Benito Pabón y Suárez de Urbina",
+"nacimiento": "1895"
+}
+]
+},
+"686": {
+"Ricardo Palacin Soldevilla": []
+},
+"687": {
+"Jose Alberto Palanca Y Martinez Fortun": [
+{
+"nid": 34787,
+"titulo": "José Alberto Palanca y Martínez Fortún",
+"nacimiento": "1888"
+}
+]
+},
+"688": {
+"Jose Palanco Romero": []
+},
+"689": {
+"Juan Palau Mayor": []
+},
+"690": {
+"Domingo Palet Y Barba": []
+},
+"691": {
+"Juan J. Palomino Jimenez": []
+},
+"692": {
+"Emilio Palomo Aguado": [
+{
+"nid": 34711,
+"titulo": "Emilio Palomo Aguado",
+"nacimiento": "1898"
+}
+]
+},
+"693": {
+"Basilio Paraiso Labad": []
+},
+"698": {
+"Marcelino Pascua Martinez": [
+{
+"nid": 34335,
+"titulo": "Marcelino Pascua Martínez",
+"nacimiento": "1897"
+}
+]
+},
+"699": {
+"Teodoro Pascual Cordero": []
+},
+"701": {
+"Alfonso Pazos Cid": []
+},
+"702": {
+"Manuel Pedregal Fernandez": []
+},
+"705": {
+"Joaquin Pellicena Y Camacho": []
+},
+"706": {
+"Jose Maria Peman Pemartin": [
+{
+"nid": 35903,
+"titulo": "José María Pemán y Pemartín",
+"nacimiento": "1897"
+}
+]
+},
+"707": {
+"Luis Peña Novo": []
+},
+"708": {
+"Matias Peñalba Alonso De Ojeda": []
+},
+"709": {
+"Armando Peñamaria Alvarez": []
+},
+"711": {
+"Robustiano Perez Arroyo": []
+},
+"716": {
+"Jose Perez De Rozas Y Masdeu": []
+},
+"717": {
+"Eduardo Perez Del Molino Herrera": []
+},
+"718": {
+"Alonso Perez Diaz": []
+},
+"720": {
+"Eduardo Perez Iglesias": []
+},
+"721": {
+"Manuel Perez Jofre De Villegas": []
+},
+"724": {
+"Antonio Perez Torreblanca": []
+},
+"725": {
+"Domingo Perez Trujillo": []
+},
+"726": {
+"Leandro Perez Urria": []
+},
+"727": {
+"Dionisio Perez Viana": []
+},
+"728": {
+"Alejandro Peris Caruana": []
+},
+"731": {
+"Joaquin Pi Y Arsuaga": []
+},
+"733": {
+"Rafael Picavea Leguia": [
+{
+"nid": 36928,
+"titulo": "Rafael Picavea Leguía",
+"nacimiento": "1867"
+}
+]
+},
+"735": {
+"Antonio Pildain Zapiain": [
+{
+"nid": 47345,
+"titulo": "Antonio Pildáin Zapiáin",
+"nacimiento": "1890"
+}
+]
+},
+"736": {
+"Rafael Pina Milan": []
+},
+"737": {
+"Eduardo Piñan Y Malvar": []
+},
+"738": {
+"Luis Piñol Agullo": []
+},
+"739": {
+"Fernando Piñuela Y Romero": []
+},
+"742": {
+"Gustavo Pittaluga Fattorini": [
+{
+"nid": 36503,
+"titulo": "Gustavo Pittaluga Fattorini",
+"nacimiento": "1876"
+}
+]
+},
+"748": {
+"Gabriel Pradal Gomez": [
+{
+"nid": 37579,
+"titulo": "Gabriel Pradal Gómez",
+"nacimiento": "1891"
+}
+]
+},
+"752": {
+"Luis Prieto Jimenez": []
+},
+"753": {
+"Antonio Prieto Rivas": []
+},
+"757": {
+"Jose Puig De Asprer": []
+},
+"758": {
+"Luis Puig De La Bellacasa Y Deu": []
+},
+"759": {
+"Juan Puig Ferrater": []
+},
+"760": {
+"Cesar Puig Martinez": []
+},
+"761": {
+"Angel Puig Puig": []
+},
+"763": {
+"Juan Pujol Martinez": []
+},
+"764": {
+"Alberto De Quintana De Leon": []
+},
+"765": {
+"Alfonso Quintana Pena": []
+},
+"769": {
+"Aurelio Ramos Acosta": []
+},
+"771": {
+"Antonio Ramos Gonzalez": []
+},
+"775": {
+"Cayetano Redondo Aceña": [
+{
+"nid": 47641,
+"titulo": "Cayetano Redondo Aceña",
+"nacimiento": "1888"
+}
+]
+},
+"776": {
+"Joaquin Reig Y Rodriguez": []
+},
+"777": {
+"Jose Reino Caamaño": []
+},
+"778": {
+"Salvador Represa Marazuela": []
+},
+"779": {
+"Jesus Requejo San Roman": []
+},
+"780": {
+"Antonio Reverte Moreno": []
+},
+"781": {
+"Juan Revilla Garcia": []
+},
+"782": {
+"Andres Revuelta Melgarejo": []
+},
+"785": {
+"Gumersindo Rico Gonzalez": [
+{
+"nid": 38511,
+"titulo": "Gumersindo Rico González",
+"nacimiento": "1891"
+}
+]
+},
+"786": {
+"Pedro Rico Lopez": []
+},
+"788": {
+"Pedro Riera Vidal": []
+},
+"794": {
+"Angel Rizo Bayona": []
+},
+"795": {
+"Francisco Roa De La Vega": []
+},
+"796": {
+"Manuel Robles Aranguiz": []
+},
+"799": {
+"Felipe Rodes Baldrich": [
+{
+"nid": 37976,
+"titulo": "Felipe Rodés y Baldrich",
+"nacimiento": "1877"
+}
+]
+},
+"800": {
+"Alejandro Rodriguez Cadarso": []
+},
+"801": {
+"Alfonso Daniel Rodriguez Castelao": [
+{
+"nid": 10601,
+"titulo": "Castelao, Alfonso Daniel Rodríguez",
+"nacimiento": ""
+},
+{
+"nid": 39715,
+"titulo": "Alfonso Daniel Rodríguez Castelao",
+"nacimiento": "1886"
+}
+]
+},
+"803": {
+"Romualdo Rodriguez De Vera Y Romero": []
+},
+"805": {
+"Luis Rodriguez Figueroa": []
+},
+"806": {
+"Adolfo Rodriguez Jurado Y De La Hera": [
+{
+"nid": 47976,
+"titulo": "Adolfo Rodríguez Jurado",
+"nacimiento": "1865"
+}
+]
+},
+"810": {
+"Vicente De Roig Ibañez": []
+},
+"811": {
+"Jose Rojas Marcos": []
+},
+"812": {
+"Mariano Rojo Gonzalez": []
+},
+"813": {
+"Jose Maria Roldan Sanchez De La Fuente": []
+},
+"814": {
+"Antonio Roma Y Rubies": [
+{
+"nid": 46745,
+"titulo": "Antonio Romá Rubies",
+"nacimiento": "1872"
+}
+]
+},
+"815": {
+"Adriano Romero Cachinero": []
+},
+"816": {
+"Jose Romero Radigales": []
+},
+"817": {
+"Pedro Romero Rodriguez": []
+},
+"818": {
+"Luis Romero Solano": [
+{
+"nid": 46743,
+"titulo": "Luis Romero Solano",
+"nacimiento": "1908"
+}
+]
+},
+"820": {
+"Jose Royo Gomez": [
+{
+"nid": 39147,
+"titulo": "José Royo Gómez",
+"nacimiento": "1895"
+}
+]
+},
+"824": {
+"Pedro Rubio Heredia": []
+},
+"825": {
+"Angel Rubio Muñoz Bocanegra": [
+{
+"nid": 39063,
+"titulo": "Ángel Rubio Muñoz Bocanegra",
+"nacimiento": "1901"
+}
+]
+},
+"826": {
+"Mariano Rubio Tuduri": []
+},
+"828": {
+"Luis Rufilanchas Salcedo": []
+},
+"829": {
+"Ramon Ruiz Alonso": []
+},
+"831": {
+"Manuel Ruiz De Villa Y P. Carral": []
+},
+"832": {
+"Jesus Ruiz Del Rio": []
+},
+"833": {
+"Jose Ruiz Del Toro": []
+},
+"837": {
+"Jose Maria Ruiz Perez Aguila": [
+{
+"nid": 9761,
+"titulo": "José María Carbonell y Ruiz",
+"nacimiento": "1840"
+},
+{
+"nid": 25874,
+"titulo": "José María Lazaga Ruiz",
+"nacimiento": "1896"
+},
+{
+"nid": 49202,
+"titulo": "José María Tutor y Ruiz",
+"nacimiento": "1880"
+}
+]
+},
+"838": {
+"Ramon Ruiz Rebollo": []
+},
+"839": {
+"Luis Ruiz Valdepeñas Utrilla": []
+},
+"840": {
+"Andres Saborit Colomer": [
+{
+"nid": 40376,
+"titulo": "Andrés Saborit Colomer",
+"nacimiento": "1889"
+}
+]
+},
+"843": {
+"Manuel Saco Rivera": []
+},
+"844": {
+"Antonio Sacristan Colas": []
+},
+"845": {
+"Manuel Saenz De Miera Millan": []
+},
+"847": {
+"Pedro Sainz Rodriguez": [
+{
+"nid": 40623,
+"titulo": "Pedro Enrique Sainz Rodríguez",
+"nacimiento": "1897"
+}
+]
+},
+"848": {
+"Fernando Sainz Ruiz": []
+},
+"852": {
+"Vicente Sales Musoles": []
+},
+"853": {
+"Ramon Salgado Perez": []
+},
+"854": {
+"Francisco De P. Salinas Dieguez": []
+},
+"855": {
+"Jose Salmeron Garcia": []
+},
+"856": {
+"Nicolas Salmeron Garcia": []
+},
+"859": {
+"Amos Salvador Saenz Y Carreras": [
+{
+"nid": 39911,
+"titulo": "Amós Salvador y Carreras",
+"nacimiento": "1879"
+}
+]
+},
+"860": {
+"Quirino Salvadores Crespo": []
+},
+"862": {
+"Angel Samblancat Salanova": [
+{
+"nid": 40165,
+"titulo": "Ángel Samblancat Salanova",
+"nacimiento": "1885"
+}
+]
+},
+"864": {
+"Miguel San Andres Castro": []
+},
+"869": {
+"Ricardo Sanchez De Movellan Y Gutierrez De Celis": []
+},
+"870": {
+"Laureano Sanchez Gallego": []
+},
+"871": {
+"Jose Sanchez Guerra Y Martinez": [
+{
+"nid": 41384,
+"titulo": "José Sánchez-Guerra Martínez",
+"nacimiento": "1859"
+}
+]
+},
+"872": {
+"Francisco De Asis Sanchez Miranda": []
+},
+"873": {
+"Antonio L. Sanchez Prados": []
+},
+"876": {
+"Jose Maria Sanchez Ventura": [
+{
+"nid": 29456,
+"titulo": "José María Martínez Sánchez-Arjona",
+"nacimiento": "1905"
+},
+{
+"nid": 48359,
+"titulo": "José María Sánchez de Muniain y Gil de Vidaurre",
+"nacimiento": "1909"
+},
+{
+"nid": 41473,
+"titulo": "José María Sánchez-Silva y García Morales",
+"nacimiento": "1911"
+}
+]
+},
+"877": {
+"Jose Sanchis Banus": [
+{
+"nid": 41601,
+"titulo": "José Sanchís Banús",
+"nacimiento": "1893"
+}
+]
+},
+"879": {
+"Miguel Sancho Izquierdo": [
+{
+"nid": 48506,
+"titulo": "Miguel Sancho Izquierdo",
+"nacimiento": "1890"
+}
+]
+},
+"880": {
+"Casimiro De Sangenis Bertrand": []
+},
+"882": {
+"Primitivo Santa Cecilia Rivas": []
+},
+"886": {
+"Bienvenido Santos Borrego": []
+},
+"887": {
+"Juan Felix Sanz Blanco": []
+},
+"888": {
+"Martin Sanz Diez": []
+},
+"889": {
+"Juan Sapiña Camaro": []
+},
+"890": {
+"Angel Sarmiento Gonzalez": [
+{
+"nid": 48576,
+"titulo": "Ángel Sarmiento González",
+"nacimiento": "1880"
+}
+]
+},
+"891": {
+"Vicente Sarmiento Ruiz": []
+},
+"892": {
+"Venancio Sarria Simon": []
+},
+"893": {
+"Francisco Saval Moris": []
+},
+"894": {
+"Antonio Maria Sbert Massanet": []
+},
+"895": {
+"Salvador Sediles Moreno": []
+},
+"896": {
+"Angel Segovia Burillo": []
+},
+"898": {
+"Juan Selvas Carne": []
+},
+"899": {
+"Juan Sentis Nogues": []
+},
+"900": {
+"Francisco Senyal Ferrer": []
+},
+"902": {
+"Antonio Septien Aladren": []
+},
+"904": {
+"Manuel Serra Moret": []
+},
+"905": {
+"Jose Serrano Batanero": [
+{
+"nid": 42488,
+"titulo": "José Serrano Batanero",
+"nacimiento": "1879"
+}
+]
+},
+"906": {
+"Emilio Alfredo Serrano Jover": []
+},
+"909": {
+"Vicente Sierra Martinez": []
+},
+"910": {
+"Manuel Sierra Pomares": []
+},
+"913": {
+"Jaime Simo Bofarull": []
+},
+"914": {
+"Casto Simon Castillo": []
+},
+"915": {
+"Vicente Sol Sanchez": []
+},
+"916": {
+"Felipe De Sola Y Cañizares": []
+},
+"917": {
+"Emilio De Sola Y Ramos": []
+},
+"918": {
+"Vicente Sole De Sojo": []
+},
+"920": {
+"Rodrigo Soriano Barroeta Aldamar": []
+},
+"922": {
+"Jose Sosa Hormigo": []
+},
+"926": {
+"Publio Suarez Uriarte": []
+},
+"928": {
+"Jose Suñol Y Garriga": []
+},
+"929": {
+"Felix Susaeta Y Mardones": []
+},
+"932": {
+"Luis De Tapia Romero": []
+},
+"934": {
+"Domingo Tejera De Quesada": []
+},
+"935": {
+"Mariano Tejero Manero": []
+},
+"936": {
+"Jose Templado Martinez": []
+},
+"938": {
+"Ramon Maria Tenreiro Rodriguez": []
+},
+"939": {
+"Jose Terrero Sanchez": []
+},
+"940": {
+"Juan Tirado Figueroa": []
+},
+"943": {
+"Belarmino Tomas Alvarez": []
+},
+"944": {
+"Jose Tomas Piera": [
+{
+"nid": 43064,
+"titulo": "José Tomás y Piera",
+"nacimiento": "1900"
+}
+]
+},
+"945": {
+"Pascual Tomas Taengua": [
+{
+"nid": 42591,
+"titulo": "Pascual Tomás Taengua",
+"nacimiento": "1893"
+}
+]
+},
+"948": {
+"Matilde De La Torre Gutierrez": [
+{
+"nid": 42744,
+"titulo": "Matilde de la Torre Gutiérrez",
+"nacimiento": "1884"
+}
+]
+},
+"951": {
+"Angel Torres Alonso": []
+},
+"952": {
+"Humberto Torres Barbera": []
+},
+"957": {
+"Jose Maria Trias De Bes": []
+},
+"959": {
+"Rafael Ulled Altimer": []
+},
+"961": {
+"Vicente Uribe Galdeano": [
+{
+"nid": 44128,
+"titulo": "Vicente Uribe Galdeano",
+"nacimiento": "1902"
+}
+]
+},
+"963": {
+"Julio Urquijo Ibarra": []
+},
+"968": {
+"Faustino Valentin Torrejon": []
+},
+"970": {
+"Fernando Valera Aparicio": [
+{
+"nid": 43820,
+"titulo": "Fernando Valera Aparicio",
+"nacimiento": "1889"
+}
+]
+},
+"972": {
+"Jose Maria Valiente Soriano": []
+},
+"974": {
+"Fernando Valls Taberner": [
+{
+"nid": 45109,
+"titulo": "Fernando Valls Taberner",
+"nacimiento": "1888"
+}
+]
+},
+"977": {
+"Pedro Vargas Guerendiain": []
+},
+"978": {
+"Daniel Vazquez Campo": []
+},
+"979": {
+"Eugenio Vazquez Gundin": []
+},
+"982": {
+"Narciso Vazquez Torres": [
+{
+"nid": 46832,
+"titulo": "Narciso Vázquez Torres",
+"nacimiento": "1875"
+}
+]
+},
+"984": {
+"Fernando Vega Bermejo": []
+},
+"989": {
+"Luis Velasco Coffin": []
+},
+"990": {
+"Luis Velasco Damas": []
+},
+"992": {
+"Damaso Velez Gonzalvez": []
+},
+"994": {
+"Juan Ventosa Roig": []
+},
+"995": {
+"Isidoro Vergara Castrillon": []
+},
+"997": {
+"Ramon De Vicuña Y Epalza": []
+},
+"999": {
+"Lorenzo Vidal Tolosana": [
+{
+"nid": 49610,
+"titulo": "Lorenzo Vidal y Tolosana",
+"nacimiento": "1883"
+}
+]
+},
+"1003": {
+"Gregorio Vilatela Abad": []
+},
+"1005": {
+"Antonio De La Villa Gutierrez": []
+},
+"1007": {
+"Ignacio Villalonga Villalba": [
+{
+"nid": 46354,
+"titulo": "Ignacio Villalonga y Villalba",
+"nacimiento": "1895"
+}
+]
+},
+"1008": {
+"Miguel Villalta Gisbert": []
+},
+"1012": {
+"Antonio Villar Ponte": []
+},
+"1016": {
+"Rodolfo Viñas Arcos": []
+},
+"1017": {
+"Agustin Virgili Quintanilla": []
+},
+"1018": {
+"Antonio Xirau Palau": []
+},
+"1019": {
+"Jose Xirau Palau": []
+},
+"1020": {
+"Ricardo Zabalza Elorga": [
+{
+"nid": 45881,
+"titulo": "Ricardo Zabalza Elorga",
+"nacimiento": "1898"
+}
+]
+},
+"1021": {
+"Luis Zaforteza Villalonga": []
+},
+"1022": {
+"Francisco Zafra Contreras": []
+},
+"1023": {
+"Jose Luis Zamanillo Y Gonzalez Camino": []
+},
+"1024": {
+"Julian Zugazagoitia Mendieta": [
+{
+"nid": 45565,
+"titulo": "Julián Zugazagoitia Mendieta",
+"nacimiento": "1899"
+}
+]
+},
+"1025": {
+"Fernando Zulueta Giberga": []
+}
+}
+}

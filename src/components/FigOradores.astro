@@ -1,0 +1,149 @@
+---
+/**
+ * F05 · Quién tomó la palabra en la etapa (grupo 2, fichas; plan § F05). Figura secundaria de la ficha.
+ *  · Dato: los diez diputados con más palabras de habla en la v3, sin la Presidencia, sin sumarios ni comentarios
+ *    (`src/data/oradores_etapa.json`, de `exportador/modulos/fichas.py`). Denominador de la nota: las palabras de habla
+ *    sin Presidencia de la etapa. Orden fijo por palabras; sin conmutador.
+ *  · Marca: una fila por diputado (lista ordenada; el puesto lo numera CSS, no el HTML), con la barra en oro desde cero.
+ *    Todo el texto es HTML: nombre (tabla de grafías, D-22), partido · familia, palabras y su parte de la etapa.
+ *  · Leyenda antes de las barras: qué mide y que NO mide importancia (plan § Qué no se afirma). Una anotación al margen:
+ *    cuánto suman los diez.
+ *  · Isla genérica (`scripts/figuras.ts`): la lista es UNA parada de tabulación; ← → Inicio Fin recorren las filas y la
+ *    nota dice nombre · palabras de denominador · partido. Sin JS, se lee entera (y la pestaña Tabla dice lo mismo).
+ * Va en la v3: la página lleva NotaBases.
+ */
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano, plantillaNota, existe } from '../lib/i18n';
+import { fmt, marcaPendiente } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { barrasOradores, type DatosOradores } from '../viz/geom/oradores';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang; etapa: string; slug: string }
+const { lang, etapa, slug } = Astro.props;
+const D = dato<DatosOradores>('oradores_etapa');
+const E = D?.etapas?.[etapa];
+const { barras } = E ? barrasOradores(E) : { barras: [] };
+const ctx = { sub: { etapa } };
+const k = (p: number, s: string) => `oradores.etapa.${etapa}.${p}.${s}`;
+// La nota emergente, en tres líneas (DESIGN.md § Nota emergente): qué · cifras con su denominador · partido y familia.
+// La plantilla del copy («{{nombre}} · {{n}} de {{den}} …») se parte por su primer « · ».
+const nota = plantillaNota(lang, 'fig.F05.nota', ['nombre', 'n', 'den']);
+const [notaT, ...notaResto] = nota.split(' · ');
+const notaD = notaResto.join(' · ');
+const notaB = plantillaNota(lang, 'fig.F05.nota_partido', ['partido', 'familia']);
+const den = E ? fmt.n(E.den, lang) : '';
+const o = (c: string) => (existe(c) ? t(lang, c, ctx) : marcaPendiente(c, 'copy'));
+const pct = (p: number) => fmt.clave(k(p, 'pct'), lang, 'pct1');
+const titulo = plano(lang, 'fig.F05.titulo');
+---
+<FiguraMarco lang={lang} id="F05" sub={{ etapa: slug }} plantilla={notaD} plantillaT={notaT} plantillaB={notaB}>
+  <div slot="grafico" class="f05" data-v-den={den}>
+    {!E ? (
+      <p class="nota" set:html={marcaPendiente('oradores_etapa.json', 'dato')} />
+    ) : (
+      <>
+        <p class="f05-leyenda nota" set:html={o('fig.F05.leyenda')} />
+        <div class="f05-cuerpo">
+          <ol class="f05-lista" role="list" tabindex="0" data-recorre aria-label={titulo}>
+            {barras.map((b) => (
+              <li class="f05-fila" data-paso data-nota data-v-nombre={b.nombre} data-v-n={fmt.n(b.palabras, lang)}
+                  data-v-partido={b.partido ?? ''} data-v-familia={b.familia ?? ''} style={`--largo: ${(b.largo * 100).toFixed(3)}%`}>
+                <span class="f05-quien">
+                  <span class="f05-nombre">{b.nombre}</span>
+                  <span class="f05-partido">{[b.partido, b.familia].filter(Boolean).join(' · ')}</span>
+                </span>
+                <span class="f05-pista" aria-hidden="true"><span class="f05-barra" /></span>
+                <span class="f05-valor">
+                  <Fragment set:html={fmt.clave(k(b.puesto, 'pal'), lang)} />
+                  <span class="f05-pct" set:html={pct(b.puesto)} />
+                </span>
+              </li>
+            ))}
+          </ol>
+          <div class="f05-anota"><p class="nota" set:html={o('fig.F05.anotacion')} /></div>
+        </div>
+      </>
+    )}
+  </div>
+
+  <div slot="tabla" class="fig-desliza" tabindex="0" role="region" aria-label={`${plano(lang, 'fig.F05.titulo')}. ${plano(lang, 'comun.fig.tabla.nota')}`}>
+    {E && (
+      <table class="fig-tabla">
+        <caption><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F05.titulo')} /></caption>
+        <thead>
+          <tr>
+            <th scope="col" set:html={t(lang, 'fig.F05.tabla.col.puesto')} />
+            <th scope="col" set:html={t(lang, 'fig.F05.tabla.col.nombre')} />
+            <th scope="col" set:html={t(lang, 'fig.F05.tabla.col.partido')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F05.tabla.col.palabras')} />
+            <th scope="col" class="num" set:html={t(lang, 'fig.F05.tabla.col.pct')} />
+          </tr>
+        </thead>
+        <tbody>
+          {barras.map((b) => (
+            <tr>
+              <td set:html={fmt.dato(b.puesto, String(b.puesto), k(b.puesto, 'puesto'), 'v3')} />
+              <th scope="row">{b.nombre}</th>
+              <td>{[b.partido, b.familia].filter(Boolean).join(' · ')}</td>
+              <td class="num" set:html={fmt.clave(k(b.puesto, 'pal'), lang)} />
+              <td class="num" set:html={pct(b.puesto)} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'comun.fig.tabla.nota')} />
+  </div>
+</FiguraMarco>
+
+<style>
+  .f05-leyenda { margin: 0 0 var(--e5); max-width: 40rem; }
+  .f05-cuerpo { display: grid; gap: var(--e5); }
+  .f05-lista { list-style: none; margin: 0; padding: 0; counter-reset: puesto; border-top: 1px solid var(--hair-2); }
+  .f05-lista:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; border-radius: var(--radio); }
+  /* Una fila: puesto · quién · barra · cifra. En el móvil, la barra baja a su propia línea bajo el nombre. */
+  .f05-fila {
+    counter-increment: puesto; position: relative;
+    display: grid; grid-template-columns: 1.9rem minmax(0, 1fr) auto; grid-template-areas: "n q v" "n b b";
+    align-items: baseline; column-gap: var(--e3); row-gap: .35rem; padding: .7rem 0 .75rem; border-bottom: 1px solid var(--hair);
+  }
+  .f05-fila::before { content: counter(puesto, decimal-leading-zero); grid-area: n; font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); }
+  .f05-quien { grid-area: q; min-width: 0; display: grid; gap: .05rem; }
+  .f05-nombre { font-size: 1.02rem; line-height: 1.25; color: var(--ink); }
+  .f05-partido { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); overflow-wrap: anywhere; }
+  .f05-pista { grid-area: b; display: block; height: .7rem; align-self: center; }
+  .f05-barra { display: block; height: 100%; width: var(--largo); background: var(--accent); border-radius: 0 var(--radio-celda, 1px) var(--radio-celda, 1px) 0; }
+  .f05-valor { grid-area: v; display: grid; justify-items: end; font: 400 var(--fs-mono)/1.35 var(--mono); color: var(--ink); white-space: nowrap; }
+  .f05-valor :global(data.cifra) { font-family: var(--mono); }
+  .f05-pct { font-size: var(--fs-mono-s); color: var(--mute); }
+  /* La fila activa (puntero, foco de la lista o toque) resalta; las demás barras se atenúan (--atenua, por tema). */
+  .f05-lista:has(:global(.fig-activa)) .f05-fila:not(:global(.fig-activa)) .f05-barra { opacity: var(--atenua); }
+  /* Estado activo (DESIGN.md § Estados de la marca): la barra lleva el contorno de 2 px en tinta; la fila, el fondo de nota. */
+  .f05-fila:global(.fig-activa) { outline: none; background: var(--bg-2); }
+  .f05-fila:global(.fig-activa) .f05-barra { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .f05-fila:global(.fig-activa) .f05-nombre { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .2em; }
+
+  /* La anotación: una frase con un trazo oro de 0,9 rem que la une a las diez barras (DESIGN.md § Anotaciones). En el
+     móvil va debajo de la lista; en escritorio ancho, a su derecha, con una llave de 1 px que abarca las diez filas. */
+  .f05-anota { position: relative; padding-left: 1.4rem; }
+  .f05-anota p { margin: 0; max-width: 22rem; color: var(--ink-2); }
+  .f05-anota::before { content: ''; position: absolute; left: 0; top: .72em; width: .9rem; border-top: 1px solid var(--accent); }
+  @media (min-width: 48rem) {
+    .f05-fila { grid-template-columns: 1.9rem minmax(11rem, 15rem) minmax(0, 1fr) 6.5rem; grid-template-areas: "n q b v"; align-items: center; row-gap: 0; }
+    .f05-pista { height: .8rem; }
+  }
+  @media (min-width: 72rem) {
+    /* En escritorio ancho, la anotación va a la derecha de las barras, unida a todas por una llave de 1 px. */
+    .f05-cuerpo { grid-template-columns: minmax(0, 1fr) 13.5rem; gap: 0 var(--e5); align-items: stretch; }
+    .f05-anota { display: flex; align-items: center; padding: 0 0 0 1.6rem; border-left: 1px solid color-mix(in oklab, var(--accent) 60%, transparent); margin-block: .6rem; }
+    .f05-anota::before { top: 50%; left: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .f05-barra { transition: opacity var(--t-estado) var(--ease); }
+    .f05-fila { transition: background-color var(--t-puntero) var(--ease); }
+  }
+  @media (forced-colors: active) {
+    .f05-barra { background: CanvasText; }
+  }
+</style>

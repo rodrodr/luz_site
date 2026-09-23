@@ -1,0 +1,33 @@
+---
+/**
+ * VISTA PREVIA: el copy que existe bajo el prefijo de la página y que la plantilla aún no coloca. Se pinta al final,
+ * en una caja rayada, en el orden del copy, para que su dueño lo vea y lo lleve a su sitio. En publicación (STRICT=1)
+ * no se pinta. No es texto para el lector: la auditoría lo exime (`data-audit-exento`).
+ */
+import { sinSitio, restoDe } from '../lib/lectura';
+import { t, existe } from '../lib/i18n';
+import type { Lang } from '../lib/idiomas';
+import type { Contexto } from '../lib/cifras';
+
+interface Props { lang: Lang; prefijo: string; usados: string[]; ignorar?: string[]; ctx?: Contexto }
+const { lang, prefijo, usados, ignorar = [], ctx = {} } = Astro.props;
+const ESTRICTO = process.env.STRICT === '1';
+const quedan = ESTRICTO ? [] : sinSitio(prefijo, usados, ignorar);
+// Se agrupan por su primer segmento, y cada grupo se pinta con el pintor genérico.
+const grupos = [...new Set(quedan.map((k) => k.slice(prefijo.length + 1).split('.')[0]))];
+---
+{quedan.length > 0 && (
+  <aside class="sin-sitio contenedor" data-audit-exento="copy aún sin sitio en la plantilla (vista previa)" data-todo-copy={quedan.join(' ')}>
+    <p class="asiento">⟦sin sitio en la plantilla⟧</p>
+    {grupos.map((g) => {
+      const k = `${prefijo}.${g}`;
+      const hoja = existe(k) && !quedan.some((x) => x.startsWith(k + '.'));
+      return (
+        <div>
+          <p class="clave-sin-sitio">{k}</p>
+          {hoja ? <p set:html={t(lang, k, ctx)} /> : <Fragment set:html={(existe(k) ? `<p>${t(lang, k, ctx)}</p>` : '') + restoDe(lang, k, { ctx }).html} />}
+        </div>
+      );
+    })}
+  </aside>
+)}

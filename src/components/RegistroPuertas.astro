@@ -1,0 +1,37 @@
+---
+/**
+ * Registro de las puertas de lectura (Inicio, Sesiones, fichas), sobre `Registro`. Solo las puertas PUBLICADAS (las de
+ * la 0.2 no se pintan). Las claves las pone cada copy a su manera; `familia` dice cuáles:
+ *   `inicio`   → `inicio.puertas.<slug>.fecha` · `.que` · `.filas`
+ *   `sesiones` → `sesiones.lista.<slug>.fecha` · `.titulo` · `.linea` · `.filas` (también en las fichas)
+ * Tras la última puerta, las frases fijas que el copy repitió con ↺ (p. ej. ↺ 9, «Que estén no valida su contenido»).
+ */
+import Registro from './Registro.astro';
+import { t, existe } from '../lib/i18n';
+import { marcaPendiente } from '../lib/cifras';
+import { anclasTras, htmlFija } from '../lib/lectura';
+import { url, PAGINAS, PUERTAS_PUBLICADAS } from '../lib/rutas';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang; familia?: 'inicio' | 'sesiones'; etapa?: string; linea?: boolean; fijas?: boolean }
+const { lang, familia = 'sesiones', etapa, linea = true, fijas: conFijas = true } = Astro.props;
+const K = familia === 'inicio'
+  ? { p: 'inicio.puertas', titulo: 'que', linea: '' }
+  : { p: 'sesiones.lista', titulo: 'titulo', linea: 'linea' };
+const puertas = PUERTAS_PUBLICADAS.filter((p) => !etapa || p.etapa === etapa);
+const o = (k: string) => (existe(k) ? t(lang, k) : marcaPendiente(k, 'copy'));
+const entradas = puertas.map((p) => {
+  const c = (s: string) => `${K.p}.${p.slug}.${s}`;
+  return {
+    href: url(lang, `${PAGINAS.sesiones}/${p.slug}`),
+    fecha: o(c('fecha')),
+    titulo: o(c(K.titulo)),
+    linea: linea && K.linea && existe(c(K.linea)) ? t(lang, c(K.linea)) : undefined,
+    recuento: o(c('filas')),
+  };
+});
+const ultima = puertas.at(-1);
+const fijas = conFijas && !etapa && ultima ? anclasTras(`${K.p}.${ultima.slug}.filas`).map((f) => htmlFija(lang, f)).join('') : '';
+---
+<Registro entradas={entradas} />
+{fijas && <Fragment set:html={fijas} />}

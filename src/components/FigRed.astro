@@ -1,0 +1,242 @@
+---
+/**
+ * F21 · Tres redes (plan § F21; DESIGN.md § Movimiento, momento 4; copy `fig.F21.*` en docs/copy_es/afinidades.md).
+ * Una red por legislatura, REGENERADA por el exportador desde el edgelist y el censo de CGOCUS V1.1 (475 · 470 · 501
+ * nodos): un punto por diputado del censo, del color de su ideología (solo aquí y en F09/F26), una línea por par que
+ * firmó junto; los que no firman con nadie, huecos y en el anillo exterior.
+ *  · SIN JS (y antes de que cargue el motor): el póster de la legislatura elegida (radios y `:has()`), uno por tema,
+ *    optimizado por Astro; la leyenda con sus recuentos; la tabla de grados en su pestaña; el censo en CSV.
+ *  · CON el motor (`scripts/fig-red-carga.ts` → `fig-red.ts`, sigma.js 3 + graphology, bajo demanda): la red viva, que
+ *    se reordena al cambiar de legislatura, el buscador del censo y la lista de cofirmantes.
+ * Datos: `src/data/afinidades/redes.json` (compilación), `public/datos/red-<leg>.json` (cliente), pósteres en
+ * `src/data/afinidades/red-<leg>-<tema>.png`, todo de exportador/modulos/afinidades.py.
+ */
+import { readFileSync } from 'node:fs';
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import FiguraMarco from './FiguraMarco.astro';
+import { t, plano, rotulo, plantillaNota, existe } from '../lib/i18n';
+import { ROTULOS, anclaGrupo, W, H, type NodoRed } from '../viz/red-encuadre';
+import { fmt } from '../lib/cifras';
+import { dato } from '../lib/datos';
+import { recurso } from '../lib/rutas';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+interface Top { id: number; nombre: string; partido: string; familia: string; ideologia: string; grado: number }
+interface RedR { clave: string; leg: string; censo: number; firman: number; aislados: number; aristas: number; ideologias: Record<string, number>; top: Top[] }
+const d = dato<{ version: string; ideologias: string[]; redes: RedR[] }>('afinidades/redes');
+const R = d?.redes ?? [];
+const IDEOS = d?.ideologias ?? ['EI', 'I', 'CI', 'C', 'CD', 'D', 'ED'];
+const POSTERES = import.meta.glob<{ default: ImageMetadata }>('../data/afinidades/red-*.png', { eager: true });
+const poster = (clave: string, tema: string) => POSTERES[`../data/afinidades/red-${clave}-${tema}.png`]?.default ?? null;
+const n = (x: number) => fmt.n(x, lang);
+const dv = (v: number, clave: string) => fmt.dato(v, n(v), clave, 'afin');
+const HUECOS = ['nombre', 'partido', 'familia', 'grado', 'n'];
+const sinNombre = (s: string) => s.replace(/^\{nombre\}\s*·\s*/, '');
+const urls = Object.fromEntries(R.map((r) => [r.clave, recurso(`datos/red-${r.clave}.json`)]));
+const alt = plano(lang, 'fig.F21.alt');
+
+// Rótulos editoriales donde la red se parte (revisión del director, 23-09-2026). El texto, de su clave de copy si ya
+// existe; si no, el de la leyenda («Izquierda», «Derecha»): petición en docs/peticiones/diseno_final.md.
+const rotulos = Object.fromEntries(Object.entries(ROTULOS).map(([leg, gs]) => [leg, gs.map((g) => ({ t: plano(lang, existe(g.clave) ? g.clave : g.respaldo), ideos: g.ideos }))]));
+// En el póster (sin JS), el mismo rótulo sobre las posiciones del exportador, en % de la caja 16:10.
+const rotulosPoster = (leg: string) => {
+  let nodos: NodoRed[] = [];
+  try { nodos = JSON.parse(readFileSync(`${process.cwd()}/public/datos/red-${leg}.json`, 'utf8')).nodos; } catch { return []; }
+  return (rotulos[leg] ?? []).flatMap((g) => {
+    const a = anclaGrupo(nodos, g.ideos);
+    return a ? [{ t: g.t, x: ((a[0] + W) / (2 * W)) * 100, y: ((a[1] + H) / (2 * H)) * 100 }] : [];
+  });
+};
+---
+<FiguraMarco lang={lang} id="F21" plantillaB={d?.version ?? 'CGOCUS'}>
+  <fieldset slot="barra" class="fig-conmuta f21-legs">
+    <legend set:html={t(lang, 'fig.F21.conmuta.titulo')} />
+    {R.map((r, i) => (
+      <label><input type="radio" name="f21-leg" id={`f21-leg-${r.clave}`} value={r.clave} checked={i === 0} /><span>{r.leg}</span></label>
+    ))}
+  </fieldset>
+  <div slot="grafico" class="f21">
+    <div class="f21-cuerpo">
+      <lyt-red class="f21-lienzo" role="group" aria-label={plano(lang, 'fig.F21.titulo')} aria-describedby="f21-teclado"
+        data-urls={JSON.stringify(urls)}
+        data-t-grado={sinNombre(plantillaNota(lang, 'fig.F21.nota', HUECOS))}
+        data-t-uno={sinNombre(plantillaNota(lang, 'fig.F21.nota.uno', HUECOS))}
+        data-t-aislado={sinNombre(plantillaNota(lang, 'fig.F21.nota.aislado', HUECOS))}
+        data-t-medidas={plantillaNota(lang, 'fig.F21.coautores.medidas', HUECOS)}
+        data-t-una={plano(lang, 'fig.F21.coautores.una')}
+        data-t-resto={plantillaNota(lang, 'fig.F21.coautores.resto', HUECOS)}
+        data-t-vacio={plano(lang, 'fig.F21.buscar.vacio')}
+        data-t-titulo={plano(lang, 'fig.F21.coautores.titulo')}
+        data-rotulos={JSON.stringify(rotulos)}>
+        {R.map((r) => (
+          <div class="f21-poster" data-leg={r.clave}>
+            {['oscuro', 'claro'].map((tema) => {
+              const img = poster(r.clave, tema);
+              return img && <Picture src={img} class={`f21-img ${tema}`} formats={['avif', 'webp']} widths={[640, 960, 1280, 1600]} sizes="(min-width: 86rem) 900px, (min-width: 64rem) 66vw, 92vw" quality={82} alt={`${r.leg}. ${alt}`} loading="lazy" decoding="async" />;
+            })}
+            {rotulosPoster(r.clave).map((g) => <p class="f21-rot" aria-hidden="true" style={`left: ${g.x.toFixed(2)}%; top: ${g.y.toFixed(2)}%`}>{g.t}</p>)}
+          </div>
+        ))}
+        <p class="f21-aviso f21-cargando" set:html={t(lang, 'comun.isla.cargando')} />
+        <p class="f21-aviso f21-error" set:html={t(lang, 'comun.isla.error')} />
+        <button type="button" class="boton sec f21-cargar" hidden set:html={rotulo(lang, 'comun.boton.cargar')} />
+      </lyt-red>
+      <div class="f21-margen">
+        <div class="f21-buscar" hidden>
+          <label for="f21-q" set:html={t(lang, 'fig.F21.buscar')} />
+          <div class="f21-q-fila">
+            <input id="f21-q" type="search" list="f21-censo" autocomplete="off" spellcheck="false" />
+            <button type="button" class="boton sec f21-limpiar" set:html={t(lang, 'fig.F21.buscar.limpiar')} />
+          </div>
+          <datalist id="f21-censo"></datalist>
+          <p class="f21-estado" role="status" aria-live="polite"></p>
+        </div>
+        <div class="f21-coautores" hidden aria-live="polite"></div>
+        <div class="f21-leyenda">
+          <p class="f21-ley-t" set:html={t(lang, 'fig.F21.leyenda.titulo')} />
+          <ul class="f21-ideos" role="list">
+            {IDEOS.map((i) => (
+              <li><span class="f21-punto" style={`--col: var(--${i.toLowerCase()})`} aria-hidden="true"></span><span class="f21-ideo-n" set:html={t(lang, `fig.F21.leyenda.${i}`)} />
+                {R.map((r) => <span class="f21-cuenta" data-leg={r.clave} set:html={dv(r.ideologias[i] ?? 0, `redes.json › ${r.clave}.${i}`)} />)}
+              </li>
+            ))}
+          </ul>
+          <p class="f21-sueltos"><span class="f21-punto hueco" aria-hidden="true"></span><span set:html={t(lang, 'fig.F21.leyenda.aislados')} />
+            {R.map((r) => <span class="f21-cuenta" data-leg={r.clave} set:html={fmt.clave(`afin.${r.clave}.aislados`, lang)} />)}
+          </p>
+          <p class="nota f21-tamano" set:html={t(lang, 'fig.F21.leyenda.tamano')} />
+        </div>
+        <p class="nota f21-grafia" set:html={t(lang, 'fig.F21.sin_grafia')} />
+      </div>
+    </div>
+    <p class="sr-only" id="f21-teclado" set:html={t(lang, 'fig.F21.teclado')} />
+  </div>
+  <div slot="tabla">
+    {R.map((r) => (
+      <div class="f21-tabla" data-leg={r.clave}>
+        <div class="fig-desliza" tabindex="0" role="region" aria-labelledby={`f21-caption-${r.clave}`}>
+          <table class="fig-tabla">
+            <caption id={`f21-caption-${r.clave}`}><span class="fig-rotulo-tabla" set:html={t(lang, 'fig.F21.tabla.titulo', { vars: { legislatura: r.leg } })} /></caption>
+            <thead>
+              <tr>
+                <th scope="col" set:html={t(lang, 'fig.F21.tabla.col.nombre')} />
+                <th scope="col" set:html={t(lang, 'fig.F21.tabla.col.partido')} />
+                <th scope="col" set:html={t(lang, 'fig.F21.tabla.col.familia')} />
+                <th scope="col" class="num" set:html={t(lang, 'fig.F21.tabla.col.grado')} />
+              </tr>
+            </thead>
+            <tbody>
+              {r.top.map((x) => (
+                <tr>
+                  <th scope="row"><span class="f21-punto chico" style={`--col: var(--${x.ideologia.toLowerCase()})`} aria-hidden="true"></span>{x.nombre}</th>
+                  <td>{x.partido}</td>
+                  <td>{x.familia}</td>
+                  <td class="num" set:html={dv(x.grado, `redes.json › ${r.clave}.grado`)} />
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ))}
+    <p class="nota fig-pie-tabla" set:html={t(lang, 'fig.F21.tabla.nota')} />
+  </div>
+</FiguraMarco>
+
+<script>
+  import '../scripts/fig-red-carga.ts';
+</script>
+
+<style>
+  .f21-legs legend { float: none; }
+  .f21-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem var(--col-gap); align-items: start; }
+  @media (min-width: 64rem) { .f21-cuerpo { grid-template-columns: minmax(0, 3fr) minmax(13rem, 1fr); } }
+
+  .f21-lienzo { position: relative; display: block; aspect-ratio: 16 / 10; min-width: 0; border-radius: var(--radio); }
+  .f21-lienzo:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+  .f21-poster { position: absolute; inset: 0; display: none; }
+  .f21-poster :global(img) { display: block; width: 100%; height: 100%; object-fit: contain; }
+  /* Las dos imágenes (tema oscuro y claro) se apilan en la misma caja: Astro pone la clase en el <img>, no en el
+     <picture>, así que el <picture> del tema oculto seguía ocupando su alto y empujaba el póster fuera del lienzo, encima
+     de la leyenda (integración, fase 2: tema claro a 375 px). */
+  .f21-poster :global(picture) { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+  .f21-poster :global(picture.claro), .f21-poster :global(.f21-img.claro) { display: none; }
+  @media (prefers-color-scheme: light) {
+    :global(:root:not([data-theme='dark'])) .f21-poster :global(picture.oscuro),
+    :global(:root:not([data-theme='dark'])) .f21-poster :global(.f21-img.oscuro) { display: none; }
+    :global(:root:not([data-theme='dark'])) .f21-poster :global(picture.claro),
+    :global(:root:not([data-theme='dark'])) .f21-poster :global(.f21-img.claro) { display: block; }
+  }
+  :global(:root[data-theme='light']) .f21-poster :global(picture.oscuro), :global(:root[data-theme='light']) .f21-poster :global(.f21-img.oscuro) { display: none; }
+  :global(:root[data-theme='light']) .f21-poster :global(picture.claro), :global(:root[data-theme='light']) .f21-poster :global(.f21-img.claro) { display: block; }
+
+  /* Una legislatura a la vista: la de su radio (sin :has(), la primera). */
+  .f21-cuenta, .f21-tabla { display: none; }
+  @supports not selector(:has(*)) { .f21-poster[data-leg='1931'], .f21-tabla[data-leg='1931'] { display: block; } .f21-cuenta[data-leg='1931'] { display: inline; } }
+  :global(.figura:has(#f21-leg-1931:checked)) :is(.f21-poster, .f21-tabla)[data-leg='1931'],
+  :global(.figura:has(#f21-leg-1933:checked)) :is(.f21-poster, .f21-tabla)[data-leg='1933'],
+  :global(.figura:has(#f21-leg-1936:checked)) :is(.f21-poster, .f21-tabla)[data-leg='1936'] { display: block; }
+  :global(.figura:has(#f21-leg-1931:checked)) .f21-cuenta[data-leg='1931'],
+  :global(.figura:has(#f21-leg-1933:checked)) .f21-cuenta[data-leg='1933'],
+  :global(.figura:has(#f21-leg-1936:checked)) .f21-cuenta[data-leg='1936'] { display: inline; }
+
+  /* La red viva: el motor pinta encima y el póster se queda como caja (mantiene la proporción). */
+  .f21-lienzo :global(.f21-sigma) { position: absolute; inset: 0; }
+  .f21-lienzo.f21-vivo .f21-poster { visibility: hidden; }
+  .f21-lienzo :global(.f21-ancla) { position: absolute; pointer-events: none; }
+  /* Rótulos editoriales (como mucho tres por figura): EB Garamond de nota, en cursiva, con su trazo oro de 0,9 rem que
+     baja hasta el bloque. Un halo del color del fondo los despega de las aristas. */
+  .f21-lienzo :global(.f21-rotulos) { position: absolute; inset: 0; pointer-events: none; }
+  .f21-lienzo :global(.f21-rot) {
+    position: absolute; margin: 0; max-width: none; transform: translate(-50%, calc(-100% - .9rem)); pointer-events: none;
+    font: italic 500 clamp(.92rem, .8rem + .4vw, 1.12rem)/1.1 var(--text); color: var(--ink); white-space: nowrap;
+    text-shadow: 0 0 .2em var(--bg), 0 0 .2em var(--bg), 0 0 .45em var(--bg);
+  }
+  .f21-lienzo :global(.f21-rot)::after { content: ''; position: absolute; left: 50%; top: calc(100% + .1rem); width: 1.5px; height: .8rem; background: var(--accent); }
+  @media (max-width: 40rem) {
+    .f21-lienzo :global(.f21-rot) { font-size: .84rem; transform: translate(-50%, calc(-100% - .5rem)); }
+    .f21-lienzo :global(.f21-rot)::after { height: .4rem; }
+  }
+  .f21-aviso { position: absolute; left: 0; bottom: 0; margin: 0; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); display: none; }
+  .f21-lienzo[data-cargando] .f21-cargando, .f21-lienzo[data-error] .f21-error { display: block; }
+  .f21-cargar { position: absolute; left: 50%; bottom: .5rem; transform: translateX(-50%); background: var(--bg); }
+  .f21-cargar[hidden] { display: none; }
+  /* La frase de teclado de la isla solo es verdad cuando la red está viva. */
+  :global(.figura[data-figura='F21']:not(:has(.f21-vivo)) .fig-teclado) { display: none; }
+
+  .f21-margen { display: grid; gap: 1.2rem; font-size: var(--fs-small); color: var(--ink-2); min-width: 0; }
+  .f21-buscar[hidden], .f21-coautores[hidden] { display: none; }
+  .f21-buscar { display: grid; gap: .4rem; }
+  .f21-buscar label { font-weight: 600; color: var(--ink); }
+  .f21-q-fila { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .f21-q-fila input {
+    flex: 1 1 11rem; min-width: 0; min-height: 2.75rem; padding: .35rem .6rem; border: 1px solid var(--hair-2); border-radius: var(--radio);
+    background: var(--bg-2); color: var(--ink); font: 400 1rem/1.2 var(--text); caret-color: var(--accent);
+  }
+  .f21-q-fila input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .f21-limpiar { font-size: .88rem; padding: .35em .8em; }
+  .f21-estado { margin: 0; min-height: 1.2em; }
+  .f21-coautores { border-top: 1px solid var(--hair); padding-top: .6rem; }
+  .f21-coautores :global(.f21-co-t) { margin: 0 0 .35rem; font-weight: 600; color: var(--ink); }
+  .f21-coautores :global(ol) { margin: 0; padding-left: 1.2rem; }
+  .f21-coautores :global(li) { margin: 0 0 .1rem; }
+  .f21-coautores :global(.f21-co-nombre) { all: unset; cursor: pointer; color: var(--ink); text-decoration: underline; text-decoration-color: var(--hair-2); text-underline-offset: .18em; min-height: 1.6rem; }
+  .f21-coautores :global(.f21-co-nombre:hover) { text-decoration-color: var(--accent); }
+  .f21-coautores :global(.f21-co-nombre:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: var(--radio); }
+  .f21-coautores :global(.f21-co-n) { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); }
+  .f21-coautores :global(.f21-co-resto) { margin: .3rem 0 0; }
+  .f21-leyenda { display: grid; gap: .45rem; }
+  .f21-ley-t { margin: 0; font-weight: 600; color: var(--ink); }
+  .f21-ideos { list-style: none; margin: 0; padding: 0; display: grid; gap: .15rem; }
+  .f21-ideos li, .f21-sueltos { display: grid; grid-template-columns: .9rem minmax(0, 1fr) auto; align-items: center; gap: .55rem; margin: 0; }
+  .f21-cuenta { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); text-align: right; }
+  .f21-punto { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; background: var(--col); }
+  /* La misma saturación que los puntos de la red (× 1,3 de croma en OKLCH; el motor la aplica en JS). */
+  @supports (color: oklch(from red l c h)) { .f21-punto:not(.hueco) { background: oklch(from var(--col) l calc(c * 1.3) h); } }
+  .f21-punto.hueco { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink-2); }
+  .f21-punto.chico { width: .55rem; height: .55rem; margin-right: .5rem; vertical-align: .05em; }
+  .f21-tamano, .f21-grafia { margin: 0; }
+</style>

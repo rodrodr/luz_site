@@ -1,0 +1,21 @@
+---
+/**
+ * Cifras en frase (DESIGN.md § Cifras en frase): la cifra en Cormorant cursiva grande DENTRO de su frase, que sigue en
+ * cuerpo de lectura con su salvedad; apiladas como un libro de registro, con filetes. No son la «banda de cifras».
+ * Cada frase llega ya resuelta (HTML del copy, con su `<data class="cifra">`): la primera cifra de la frase se agranda.
+ * La base va en una nota al margen (NotaMargen), no aquí.
+ */
+interface Props { frases: string[] }
+const { frases } = Astro.props;
+---
+<div class="cifras">
+  {frases.map((f) => <p set:html={f} />)}
+</div>
+
+<style>
+  .cifras { display: grid; gap: 0; border-top: 1px solid var(--hair-2); }
+  .cifras p { margin: 0; padding: var(--e4) 0 var(--e5); border-bottom: 1px solid var(--hair); max-width: 36rem; }
+  .cifras p > :global(data.cifra:first-child), .cifras p > :global(:first-child data.cifra) {
+    display: block; font: italic 500 var(--fs-cifra)/1 var(--display); font-variant-numeric: lining-nums; letter-spacing: -.01em; margin-bottom: .2rem; color: var(--ink);
+  }
+</style>

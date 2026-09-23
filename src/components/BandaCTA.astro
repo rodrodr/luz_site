@@ -1,0 +1,76 @@
+---
+/**
+ * Banda fija, SOLO en Método y Explorador (plan § Navegación global). El primario, en oro y delante, es el explorador
+ * (decisión 2 del investigador, 23-09-2026); la descarga, secundaria:
+ *  · [Abrir el explorador ↗] → en otra pestaña, con «Sirve la edición v3, sin depositar; pide un ordenador»;
+ *  · [Descargar los datos] → `datos/#empezar` (nunca directamente a Dataverse), con la frase ↺ 3 a la vista.
+ * Los dos avisos van siempre pegados a su botón, nunca en una nota emergente. Va FIJA (no pegajosa) y reserva su
+ * hueco al final del documento (`:has`) para no tapar el pie ni el elemento con el foco (WCAG 2.4.11).
+ */
+import { t, rotulo, plano, existe } from '../lib/i18n';
+import { faltaDelInvestigador } from '../lib/cifras';
+import { url, PAGINAS } from '../lib/rutas';
+import { ENLACES } from '../config/enlaces';
+import type { Lang } from '../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+// D-20: el motivo del formulario lo redacta el investigador. Mientras falte, la vista previa lo enseña como pendiente.
+const MOTIVO = 'comun.fija.formulario.motivo';
+---
+<aside class="banda-cta no-imprimir" aria-label={plano(lang, 'comun.banda.aria')}>
+  <div class="contenedor banda-fila">
+    <div class="banda-accion">
+      <a class="boton" href={ENLACES.explorador} target="_blank" rel="noopener external" aria-describedby="banda-aviso-explorador" set:html={rotulo(lang, 'comun.boton.explorador')} />
+      <p class="banda-aviso" id="banda-aviso-explorador">
+        <span set:html={t(lang, 'comun.fija.explorador')} />
+        <span class="sr-only" set:html={' ' + t(lang, 'comun.enlace.otra_pestana')} />
+      </p>
+    </div>
+    <div class="banda-accion">
+      <a class="boton sec" href={url(lang, `${PAGINAS.datos}#empezar`)} aria-describedby="banda-aviso-formulario" set:html={rotulo(lang, 'comun.boton.descargar')} />
+      <p class="banda-aviso" id="banda-aviso-formulario">
+        <span set:html={t(lang, 'comun.fija.formulario')} />
+        {existe(MOTIVO) ? <span set:html={' ' + t(lang, MOTIVO)} /> : <span set:html={' ' + faltaDelInvestigador('D-20', 'motivo del formulario')} />}
+      </p>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .banda-cta {
+    position: fixed; inset: auto 0 0 0; z-index: 20;
+    background: var(--bg); border-top: 1px solid var(--hair-2);
+    padding-block: .6rem calc(.6rem + env(safe-area-inset-bottom, 0px));
+  }
+  .banda-fila { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem .9rem; align-items: start; }
+  .banda-accion { display: grid; gap: .35rem; min-width: 0; }
+  .banda-accion .boton { justify-content: center; text-align: center; padding: .5em .6em; font-size: .9rem; }
+  .banda-aviso { margin: 0; max-width: none; font: 400 .74rem/1.3 var(--text); color: var(--ink-2); text-wrap: pretty; }
+  .banda-aviso :global(mark.pendiente) { font-size: .9em; }
+  @media (min-width: 56rem) {
+    .banda-cta { padding-block: .7rem; }
+    .banda-fila { gap: 1rem 2.5rem; }
+    .banda-accion { grid-template-columns: auto minmax(0, 26rem); align-items: center; gap: .9rem; }
+    .banda-accion .boton { font-size: .98rem; padding: .55em 1.1em .6em; white-space: nowrap; }
+    .banda-aviso { font-size: .82rem; }
+  }
+  :global(body:has(.banda-cta)) { padding-bottom: 10.5rem; }
+  :global(html:has(.banda-cta)) { scroll-padding-bottom: 11rem; }
+  @media (min-width: 56rem) {
+    :global(body:has(.banda-cta)) { padding-bottom: 5.5rem; }
+    :global(html:has(.banda-cta)) { scroll-padding-bottom: 6.5rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .banda-cta { animation: banda-sube var(--t-estado) var(--ease) both; }
+    @keyframes banda-sube { from { transform: translateY(100%); } to { transform: none; } }
+  }
+  /* Donde no cabe (el móvil, zoom del 400 %, ventana baja) deja de ir fija y se queda al final (WCAG 1.4.10 y 2.4.11).
+     En el móvil la banda fija medía 116 px, el 14 % de una pantalla de 812, durante 25 pantallas de lectura: al final
+     de la página, con sus dos avisos a la vista, cumple lo mismo sin tapar el texto (pulido fase 2). */
+  @media (max-width: 47.99rem), (max-height: 34rem) {
+    .banda-cta { position: static; animation: none; }
+    :global(body:has(.banda-cta)) { padding-bottom: 0; }
+    :global(html:has(.banda-cta)) { scroll-padding-bottom: 0; }
+  }
+</style>

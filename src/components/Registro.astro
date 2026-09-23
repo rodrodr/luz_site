@@ -1,0 +1,45 @@
+---
+/**
+ * Registro (DESIGN.md § Registro): una línea por entrada, toda ella un enlace: fecha en mono · qué pasó (en cursiva si es
+ * una frase citada) · recuento en mono a la derecha. Hover: fondo `fondo-2` y subrayado oro del título. No son tarjetas.
+ * Lo usan las puertas (RegistroPuertas), las sesiones de las etapas IV y V y la lista de Sesiones.
+ * En el móvil, fecha y recuento comparten la primera línea y el recuento PARTE su línea si no cabe (el de México,
+ * «5 + 56 + 27 + 95 filas en 4 sesiones», medía 492 px a 375): nunca empuja la página hacia la derecha.
+ * `transicion`: la entrada lleva `data-transicion` y su título crece hasta el H1 de la página de destino
+ * (movimiento.css › titulo-pagina).
+ */
+interface Entrada { href: string; fecha: string; titulo: string; recuento?: string; linea?: string }
+interface Props { entradas: Entrada[]; transicion?: boolean }
+const { entradas, transicion = true } = Astro.props;
+---
+<ol class="registro" role="list">
+  {entradas.map((e) => (
+    <li>
+      <a href={e.href} data-transicion={transicion ? 'titulo' : undefined}>
+        <span class="fecha" set:html={e.fecha} />
+        <span class="que"><span class="titulo" data-vt-titulo set:html={e.titulo} />{e.linea && <span class="resumen" set:html={e.linea} />}</span>
+        {e.recuento && <span class="filas" set:html={e.recuento} />}
+      </a>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .registro { list-style: none; margin: var(--e6) 0 0; padding: 0; border-top: 1px solid var(--hair-2); }
+  .registro a { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "f n" "t t"; gap: .15rem var(--e4); padding: .95rem 0 1rem; border-bottom: 1px solid var(--hair); text-decoration: none; color: var(--ink); }
+  .fecha { grid-area: f; font: 400 var(--fs-mono)/1.5 var(--mono); color: var(--mute); }
+  .que { grid-area: t; }
+  .titulo { display: block; font-size: 1.12rem; line-height: 1.3; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .2em; }
+  .resumen { display: block; margin-top: .2rem; font-size: var(--fs-small); color: var(--ink-2); }
+  .filas { grid-area: n; min-width: 0; font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); text-align: right; text-wrap: balance; overflow-wrap: anywhere; }
+  .filas :global(data.cifra) { font-family: var(--mono); }
+  .registro a:hover { color: var(--ink); background: var(--bg-2); }
+  .registro a:hover .titulo { text-decoration-color: var(--accent); }
+  @media (min-width: 48rem) {
+    .registro a { grid-template-columns: 11rem minmax(0, 1fr) minmax(auto, 16rem); grid-template-areas: "f t n"; align-items: baseline; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .registro a { transition: background-color var(--t-puntero) var(--ease); }
+    .titulo { transition: text-decoration-color var(--t-puntero) var(--ease); }
+  }
+</style>
