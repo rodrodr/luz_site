@@ -14,7 +14,8 @@ export const RUTAS = [
  * cincuentena de arriba, para que el copy no crezca; los demás siguen como en el plan.
  */
 export function presupuesto(ruta: string): { palabras: number; kb: number } {
-  if (ruta === '') return { palabras: 700, kb: 300 };
+  // Rediseño del 23-09-2026 (docs/REDISENO_23-09.md): Inicio, 450 palabras de copy (antes, 700).
+  if (ruta === '') return { palabras: 450, kb: 300 };
   if (ruta === 'cortes/') return { palabras: 800, kb: 250 };
   const ficha: Record<string, number> = { 'cortes/1931/': 1600, 'cortes/1933/': 1500, 'cortes/1936/': 1500, 'cortes/guerra/': 1250, 'cortes/mexico/': 1150 };
   if (ruta in ficha) return { palabras: ficha[ruta], kb: 200 };

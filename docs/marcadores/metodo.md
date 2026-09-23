@@ -99,3 +99,4 @@ Cadenas con dígitos que no son cifras del corpus (las lee `scripts/vetos.mjs �
 
 - «E1 Sr.»: `metodo.02.texto`: variante de lectura de la fórmula «El Sr.» (el 1 es una l mal leída)
 - «escriba 77»: `metodo.07.pruebelo.explorador`: lo que se teclea en «Nº de sesión» para la sesión 77
+- «type 77»: lo mismo en el borrador inglés de `metodo.07.pruebelo.explorador`

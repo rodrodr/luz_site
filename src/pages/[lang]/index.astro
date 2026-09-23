@@ -1,29 +1,32 @@
 ---
 /**
- * A · Inicio (plan § Plantilla A; narrativa § 6; DESIGN.md § Esquemas · A). La puerta: se decide en noventa segundos.
- * ≤ 700 palabras de copy y ≤ 120 de límites, cada límite en la frase de su cifra. Inicio REMITE y no resume. Sin
- * rotación, sin ranking de personas, sin cifras exactas de Afinidades (D-3), sin catálogo de funciones del explorador,
- * sin selector de etapa. Copy: `inicio.*` (docs/copy_es/inicio.md); hemiciclo y rótulos en comun.md.
+ * A · Inicio · REDISEÑO del 23-09-2026 (docs/REDISENO_23-09.md; decisiones 1–5 del investigador y su petición: gráficos
+ * interactivos y atractivos, que se manipulan y se juegan). La versión anterior está en la etiqueta
+ * `v0.1-antes-del-rediseno` (commit 240b401).
  *
- * Movimientos: 0 portada (H1 + hemiciclo: la Cámara se sienta) · 1 tesis (la ÚNICA banda invertida del sitio) ·
- * 2 calendario (F01c, protagonista, con sus límites al margen) · 3 votaciones (F26 ligera, secundaria) · 4 la fila (en
- * tipografía: la Presidencia en pequeño, Campoamor en cursiva grande) · 5 las puertas (registro) · 6 lo que no trae
- * (cuatro cajas vacías de filete discontinuo) · 7 por dónde empezar (la escalera, la cita y el remate).
+ * Siete bloques, una idea, una figura y una acción cada uno; ni «V2» ni «v3» (las cifras son de la edición depositada y
+ * las redondas valen en las dos: formato `|redondo`); las salvedades viven en Método.
+ *   0 portada: la pregunta, el hemiciclo de 1936 (la Cámara se sienta) y la credencial
+ *   1 el nombre: «Luz y taquígrafos.» (la única banda invertida)
+ *   2 más que una base de datos: las seis piezas de la infraestructura
+ *   3 juego 1 · ¿Cuándo se habló de…? (laboratorio de palabras + calendario + los ocho momentos)
+ *   4 juego 2 · ¿Cuántos votaron sí? (seis votaciones nominales para apostar)
+ *   5 juego 3 · ¿Con quién firmaba cada diputado? (F21 de Afinidades, en escaparate)
+ *   6 empiece hoy: la escalera, la cita y el remate (D-24)
+ * Copy: `inicio.*` (docs/copy_es/inicio.md). Las claves `inicio.{puertas,f26,f01c,falta,fila}.*` las leen otras páginas.
  */
 import Base from '../../layouts/Base.astro';
 import Hemiciclo from '../../components/Hemiciclo.astro';
-import Seccion from '../../components/Seccion.astro';
-import FigHueco from '../../components/FigHueco.astro';
-import FigCalendario from '../../components/FigCalendario.astro';
-import RegistroPuertas from '../../components/RegistroPuertas.astro';
+import Laboratorio from '../../components/inicio/Laboratorio.astro';
+import Apuesta from '../../components/inicio/Apuesta.astro';
+import FigRed from '../../components/FigRed.astro';
 import Salidas from '../../components/Salidas.astro';
 import Cita from '../../components/Cita.astro';
 import SinSitio from '../../components/SinSitio.astro';
-import { t, tEnlaces, existe } from '../../lib/i18n';
+import { t, tEnlaces, existe, rotulo } from '../../lib/i18n';
 import { marcaPendiente } from '../../lib/cifras';
 import { meta } from '../../lib/pagina';
-import { restoDe, anclasTras, htmlFija } from '../../lib/lectura';
-import { url, PAGINAS, PUERTAS_PUBLICADAS } from '../../lib/rutas';
+import { url, PAGINAS } from '../../lib/rutas';
 import { ENLACES } from '../../config/enlaces';
 import { remata } from '../../lib/remata';
 import { citaConjunto, bibtex, ris, jsonldDe } from '../../lib/cita';
@@ -33,9 +36,7 @@ export const getStaticPaths = rutasPorIdioma;
 const lang = Astro.params.lang as Lang;
 const { titulo, descripcion } = meta(lang, 'inicio');
 const o = (k: string) => (existe(k) ? t(lang, k) : marcaPendiente(k, 'copy'));
-// Un solo botón primario por pantalla (DESIGN.md): «Abrir el explorador», en oro y delante (decisión 2 del
-// investigador, 23-09-2026); «Descargar los datos», secundario. El destino de cada corchete se elige por su rótulo y el
-// primario se pone delante, así que vale el orden que traiga el copy.
+// Un solo botón primario por pantalla: «Abrir el explorador», en oro y delante (decisión 2 del 23-09-2026).
 const DATOS_EMPEZAR = url(lang, `${PAGINAS.datos}#empezar`);
 const rotulosPortada = [...t(lang, 'inicio.portada.llamada').matchAll(/(?<!⟦)\[([^\]⟦⟧]+)\](?!⟧)/g)].map((m) => m[1]);
 const aExplorador = (r: string) => /explor/i.test(r);
@@ -45,26 +46,18 @@ const llamadaPortada = (remata(tEnlaces(lang, 'inicio.portada.llamada', rotulosP
   .sort((x, y) => x.primero - y.primero)
   .map((x) => x.a)
   .join(' ');
-const tesis = restoDe(lang, 'inicio.tesis', { excluir: ['grito'] }).html;
-const slugs = PUERTAS_PUBLICADAS.map((p) => p.slug);
+const PIEZAS = ['diario', 'fila', 'orador', 'explorador', 'redes', 'abierto'];
 const PELDANOS = ['sin_programar', 'programar', 'redes'];
-const LIMITES_CAL = ['guerra', 'palabras', 'cotejo'];
-const CAJAS = ['tema', 'tono', 'posicion', 'voto'];
-const tras = (k: string) => anclasTras(k).map((f) => htmlFija(lang, f)).join('');
-
-// F26 ligera es del grupo de Sesiones: se usa si su componente ya existe; si no, su hueco (vista previa).
-const F26 = import.meta.glob<{ default: unknown }>('../../components/FigVotaciones.astro', { eager: true });
-const FigVotaciones = Object.values(F26)[0]?.default as any;
 ---
 <Base lang={lang} ruta={PAGINAS.inicio} titulo={titulo} descripcion={descripcion} jsonld={jsonldDe('thqcmi', lang)} esInicio>
-  <!-- 0 · Portada: la pregunta y el hemiciclo de 1936 (H). La Cámara se sienta (CSS, 0 KB de JS). -->
+  <!-- 0 · Portada: la pregunta y el hemiciclo de 1936. La Cámara se sienta (CSS, 0 KB de JS). -->
   <section class="portada" aria-labelledby="portada-titulo">
     <div class="contenedor rejilla">
       <div class="portada-texto">
         <h1 id="portada-titulo" set:html={o('inicio.portada.pregunta')} />
-        {existe('inicio.portada.entrada') && <p class="entrada" set:html={t(lang, 'inicio.portada.entrada')} />}
+        <p class="entrada" set:html={o('inicio.portada.entrada')} />
         <p class="botones" set:html={llamadaPortada} />
-        {existe('inicio.portada.asiento') && <p class="asiento portada-asiento" set:html={t(lang, 'inicio.portada.asiento')} />}
+        <p class="credencial" set:html={o('inicio.credencial')} />
       </div>
       <div class="portada-fig">
         <Hemiciclo lang={lang} />
@@ -72,116 +65,96 @@ const FigVotaciones = Object.values(F26)[0]?.default as any;
     </div>
   </section>
 
-  <!-- 1 · Tesis: la ÚNICA banda invertida del sitio. El grito «Luz y taquigrafos.» (V2 71330 / v3 80306), letra a letra -->
-  <section class="tesis" aria-labelledby="tesis-grito">
+  <!-- 1 · El nombre: la ÚNICA banda invertida del sitio. -->
+  <section class="banda" aria-labelledby="banda-grito">
     <div class="contenedor rejilla">
-      <blockquote class="grito cita-diario" id="tesis-grito"><p set:html={o('inicio.tesis.grito')} /></blockquote>
-      {existe('inicio.tesis.grito.pie') && <p class="asiento" set:html={t(lang, 'inicio.tesis.grito.pie')} />}
-      <div class="tesis-texto" set:html={tesis} />
-      <p class="credencial" set:html={o('inicio.credencial')} />
+      <blockquote class="grito cita-diario" id="banda-grito"><p set:html={o('inicio.nombre.grito')} /></blockquote>
+      <p class="banda-texto" set:html={o('inicio.nombre.texto')} />
     </div>
   </section>
 
-  <div class="contenedor inicio">
-    <!-- 2 · ¿Cuándo se reunieron las Cortes? F01c, protagonista; sus límites, al margen, junto a la figura -->
-    <Seccion lang={lang} id="calendario" prefijo="inicio.calendario" clase="seccion-cal" espera={['titulo', 'entrada']} excluir={LIMITES_CAL} botones={['comun.boton.ver_cortes']}>
-      <FigCalendario lang={lang} escala="compacta" />
-      <aside class="al-margen limites-cal">
-        {LIMITES_CAL.filter((k) => existe(`inicio.calendario.${k}`)).map((k) => <p set:html={t(lang, `inicio.calendario.${k}`)} />)}
-      </aside>
-    </Seccion>
+  <!-- 2 · Más que una base de datos: las seis piezas de la infraestructura. -->
+  <section class="piezas" aria-labelledby="piezas-titulo">
+    <div class="contenedor">
+      <h2 id="piezas-titulo" set:html={o('inicio.piezas.titulo')} />
+      <p class="entrada" set:html={o('inicio.piezas.entrada')} />
+      <ol class="piezas-lista" role="list">
+        {PIEZAS.map((k) => <li set:html={o(`inicio.piezas.${k}`)} />)}
+      </ol>
+    </div>
+  </section>
 
-    <!-- 3 · ¿Qué se decidía allí? F26 ligera (secundaria, sin pestañas) -->
-    <Seccion lang={lang} id="votaciones" prefijo="inicio.votaciones" espera={['titulo', 'entrada']} botones={['comun.boton.ver_votaciones']}>
-      {FigVotaciones
-        ? <FigVotaciones lang={lang} variante="ligera" rotulos="inicio.f26.v." sufijo="-inicio" />
-        : <FigHueco lang={lang} id="F26" que="votaciones nominales, versión ligera" />}
-    </Seccion>
+  <!-- 3 · Juego 1: ¿Cuándo se habló de…? -->
+  <Laboratorio lang={lang} />
 
-    <!-- 4 · ¿Qué es una fila? La Presidencia (V2 5423) y Campoamor (V2 5424), en tipografía: dos filas seguidas -->
-    <Seccion lang={lang} id="fila" prefijo="inicio.fila" espera={['titulo']} excluir={['presidencia', 'campoamor']} botones={['comun.boton.ver_columnas']}>
-      <Fragment slot="antes">
-        <figure class="fila-tipo ancho">
-          <div class="fila-una presi">
-            <p class="dicho" set:html={o('inicio.fila.presidencia')} />
-            <p class="asiento" set:html={o('inicio.fila.presidencia.pie')} />
-          </div>
-          <div class="fila-una campo">
-            <blockquote><p class="cuelga" set:html={o('inicio.fila.campoamor')} /></blockquote>
-            <p class="asiento" set:html={o('inicio.fila.campoamor.pie')} />
-          </div>
-        </figure>
-      </Fragment>
-    </Seccion>
+  <!-- 4 · Juego 2: ¿Cuántos votaron sí? -->
+  <Apuesta lang={lang} />
 
-    <!-- 5 · ¿Qué sesión leo primero? Registro de las ocho puertas -->
-    <Seccion lang={lang} id="puertas" prefijo="inicio.puertas" espera={['titulo', 'entrada']} excluir={slugs} botones={['comun.boton.ver_sesiones']}>
-      <RegistroPuertas lang={lang} familia="inicio" />
-    </Seccion>
+  <!-- 5 · Juego 3: la red de las firmas (F21 de Afinidades, en escaparate). -->
+  <section class="red" aria-labelledby="red-titulo">
+    <div class="contenedor">
+      <h2 id="red-titulo" set:html={o('inicio.red.titulo')} />
+      <p class="entrada" set:html={o('inicio.red.entrada')} />
+      <FigRed lang={lang} escaparate />
+      <p class="botones"><a class="boton sec" href={url(lang, PAGINAS.afinidades)} set:html={rotulo(lang, 'comun.boton.ver_afinidades')} /></p>
+    </div>
+  </section>
 
-    <!-- 6 · ¿Qué no trae la base? Tema · Tono · Posición · Voto: cuatro cajas vacías (el vacío es el contenido) -->
-    <Seccion lang={lang} id="no-trae" prefijo="inicio.falta" espera={['titulo', 'entrada']} excluir={CAJAS} botones={['comun.boton.ver_afinidades']}>
-      <Fragment slot="antes">
-        <ul class="cajas ancho" role="list">
-          {CAJAS.map((k) => <li set:html={o(`inicio.falta.${k}`) + tras(`inicio.falta.${k}`)} />)}
-        </ul>
-      </Fragment>
-    </Seccion>
+  <!-- 6 · Empiece hoy: la escalera, la cita y el remate. -->
+  <section class="empezar" aria-labelledby="empezar-titulo">
+    <div class="contenedor">
+      <h2 id="empezar-titulo" set:html={o('inicio.empezar.titulo')} />
+      <Salidas lang={lang} prefijo="inicio.empezar" peldanos={PELDANOS} primario="sin_programar" />
+      <Cita lang={lang} texto={citaConjunto('thqcmi', lang)} bibtex={bibtex('thqcmi')} ris={ris('thqcmi')} lenguaTexto="en" nota={existe('comun.cita.dataverse') ? t(lang, 'comun.cita.dataverse') : undefined} />
+      <p class="remate" set:html={o('inicio.empezar.remate')} />
+    </div>
+  </section>
 
-    <!-- 7 · Por dónde empezar: la escalera (↺ 3 encima), la cita y el remate -->
-    <Seccion lang={lang} id="empezar" prefijo="inicio.empezar" espera={['titulo']} excluir={[...PELDANOS, 'cita']}>
-      <Fragment slot="antes">
-        <Salidas lang={lang} prefijo="inicio.empezar" peldanos={PELDANOS} primario="sin_programar" />
-        <Cita lang={lang} texto={citaConjunto('thqcmi', lang)} bibtex={bibtex('thqcmi')} ris={ris('thqcmi')} lenguaTexto="en" nota={existe('comun.cita.dataverse') ? t(lang, 'comun.cita.dataverse') : undefined} />
-      </Fragment>
-    </Seccion>
-  </div>
-  <SinSitio lang={lang} prefijo="inicio" usados={['inicio.portada', 'inicio.tesis', 'inicio.credencial', 'inicio.calendario', 'inicio.votaciones', 'inicio.fila', 'inicio.puertas', 'inicio.falta', 'inicio.empezar']} ignorar={['f01c', 'f26']} />
+  <SinSitio lang={lang} prefijo="inicio" usados={['inicio.meta', 'inicio.portada', 'inicio.credencial', 'inicio.nombre', 'inicio.piezas', 'inicio.lab', 'inicio.apuesta', 'inicio.red', 'inicio.empezar']} ignorar={['puertas', 'f26', 'f01c', 'falta', 'fila']} />
 </Base>
 
 <style>
-  .portada { padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(3rem, 7vw, 6rem); }
-  /* La columna del texto arranca arriba, a la altura de la planta del hemiciclo: centrada con una figura de casi mil
-     píxeles, dejaba los botones bajo el pliegue de los portátiles (1.280 × 800 y 1.440 × 900). */
-  .portada .rejilla { align-items: start; row-gap: var(--e7); }
+  /* Menos aire que en la 0.1 (hasta 16 rem entre secciones): cada bloque respira por su propio relleno. */
+  section:not(.portada):not(.banda) { padding-block: clamp(2.5rem, 4.5vw, 4.5rem); }
+  section h2 { font: italic 500 var(--fs-h2)/1.05 var(--display); margin: 0 0 var(--e4); max-width: 22ch; text-wrap: balance; }
+  section .entrada { color: var(--ink-2); max-width: 40rem; margin: 0 0 var(--e5); }
+
+  .portada { padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 5vw, 4rem); }
+  .portada .rejilla { align-items: start; row-gap: var(--e6); }
   .portada-texto h1 { font-size: var(--fs-portada); line-height: 1; max-width: 13.5ch; text-wrap: balance; }
-  .portada-texto .entrada { margin-top: var(--e5); color: var(--ink-2); }
-  .portada-asiento { margin: var(--e4) 0 0; }
+  .portada-texto .entrada { margin-top: var(--e5); }
+  .credencial { margin: var(--e4) 0 0; font: 400 var(--fs-mono-s)/1.6 var(--mono); color: var(--mute); overflow-wrap: anywhere; }
   @media (min-width: 64rem) {
     .portada-texto { grid-column: 1 / span 5; padding-top: var(--e7); }
     .portada-fig { grid-column: 6 / -1; }
   }
+  /* La leyenda del hemiciclo, plegada en sus cuatro bloques: las minorías de un bloque aparecen al elegirlo. */
+  .portada :global(.leg-bloque > ul) { display: none; }
+  .portada :global(.hemi-leyenda:has(input[value='der']:checked) .leg-bloque[data-b='der'] > ul),
+  .portada :global(.hemi-leyenda:has(input[value='cen']:checked) .leg-bloque[data-b='cen'] > ul),
+  .portada :global(.hemi-leyenda:has(input[value='izq']:checked) .leg-bloque[data-b='izq'] > ul),
+  .portada :global(.hemi-leyenda:has(input[value='gob']:checked) .leg-bloque[data-b='gob'] > ul) { display: block; margin-top: .4rem; }
 
-  /* La banda invertida: tinta de fondo, fondo de texto y el oro invertido (DESIGN.md § Banda invertida). La comilla
-     colgada del grito la limita base.css (`.tesis .rejilla blockquote.grito.cita-diario > p`). */
-  .tesis { background: var(--ink); color: var(--bg); padding-block: clamp(4rem, 9vw, 9rem); --accent: var(--accent-inv); }
-  .grito p { font: italic 500 var(--fs-grito)/.98 var(--display); letter-spacing: -.02em; margin: 0 0 var(--e7); max-width: none; }
-  .tesis .asiento { color: color-mix(in oklab, var(--bg) 70%, var(--ink)); }
-  .tesis-texto :global(p) { font-size: var(--fs-entrada); line-height: 1.38; max-width: 36rem; }
-  .tesis-texto :global(p + p) { margin-top: var(--e5); }
-  .tesis-texto :global(.pieza-nota) { border-top-color: color-mix(in oklab, var(--bg) 22%, transparent); color: inherit; }
-  .tesis .credencial { color: inherit; margin-top: var(--e7); padding-top: var(--e4); border-top: 1px solid color-mix(in oklab, var(--bg) 22%, transparent); overflow-wrap: anywhere; }
+  /* 1 · la banda invertida: tinta de fondo, fondo de texto y el oro invertido. */
+  .banda { background: var(--ink); color: var(--bg); padding-block: clamp(3.5rem, 7vw, 7rem); --accent: var(--accent-inv); }
+  .grito p { font: italic 500 var(--fs-grito)/.98 var(--display); letter-spacing: -.02em; margin: 0 0 var(--e5); max-width: none; }
+  .banda-texto { font-size: var(--fs-entrada); line-height: 1.4; max-width: 38rem; margin: 0; }
   @media (min-width: 64rem) {
-    .tesis .grito { grid-column: 1 / -1; }
-    .tesis .asiento { grid-column: 1 / span 3; }
-    .tesis-texto { grid-column: 4 / span 7; }
-    .tesis .credencial { grid-column: 4 / -1; }
+    .banda .grito { grid-column: 1 / -1; }
+    .banda-texto { grid-column: 4 / span 7; }
   }
 
-  /* 2 · los límites del calendario, al margen de la figura (en el móvil, detrás, con su filete) */
-  .limites-cal p { margin: 0 0 .6em; }
+  /* 2 · las seis piezas: tipografía y filete, sin tarjetas ni iconos (DESIGN.md). */
+  .piezas-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e5) var(--e6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); counter-reset: pieza; }
+  .piezas-lista li { counter-increment: pieza; border-top: 1px solid var(--hair-2); padding-top: var(--e3); font: 400 var(--fs-body)/1.45 var(--text); color: var(--ink-2); }
+  .piezas-lista li::before { content: counter(pieza, upper-roman); display: block; font: italic 500 1.5rem/1 var(--display); color: var(--accent); margin-bottom: var(--e2); }
+  .piezas-lista li :global(strong) { display: block; font: 600 var(--fs-body)/1.3 var(--text); color: var(--ink); margin-bottom: .2rem; }
 
-  /* 4 · la fila, en tipografía: la Presidencia en pequeño, Campoamor en cursiva grande; cada una, su asiento */
-  .fila-tipo { margin: var(--e5) 0 var(--e6); display: grid; gap: var(--e5); max-width: 46rem; }
-  .fila-una { border-top: 1px solid var(--hair); padding-top: var(--e3); }
-  .fila-una .asiento { margin: var(--e2) 0 0; }
-  .presi .dicho { font: italic 400 1.12rem/1.4 var(--text); color: var(--ink-2); margin: 0; }
-  .campo blockquote { margin: 0; }
-  .campo blockquote p { font: italic 400 var(--fs-cita)/1.26 var(--text); max-width: 30ch; margin: 0; text-wrap: pretty; }
+  /* 5 · la red */
+  .red .botones { margin-top: var(--e5); }
+  .red :global(.fig-barra-sola) { margin: 0 0 var(--e4); }
+  .red :global(.f21-cuenta), .red :global(.f21-grafia) { display: none !important; }
 
-  /* 6 · cuatro cajas vacías: filete discontinuo (lo que la base no trae); el nombre, en mono, como rótulo */
-  .cajas { list-style: none; margin: var(--e5) 0 var(--e6); padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--e3); }
-  .cajas li { border: 1px dashed var(--ausencia-trazo); border-radius: var(--radio); padding: var(--e4) var(--e4) var(--e6); min-height: 9rem; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); }
-  .cajas li :global(strong) { display: block; font: 400 var(--fs-mono)/1.3 var(--mono); color: var(--ink); margin-bottom: var(--e3); }
-  @media (min-width: 64rem) { .cajas { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  /* 6 · empiece hoy */
+  .remate { margin: var(--e6) 0 0; font: italic 500 var(--fs-h3)/1.2 var(--display); color: var(--accent); }
 </style>

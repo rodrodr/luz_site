@@ -1,5 +1,41 @@
 # Cambios · Luz y Taquígrafos (sitio)
 
+## 2026-09-23 · rediseño de Inicio: una infraestructura que se juega
+
+**Huella del copy:** `src/i18n/es.json`, SHA-256 `162c9aa22b398bd716ca528841b998b3619005eb587b9efa7aff42815d785582` (2.453 claves). Cambia `docs/copy_es/inicio.md` (y su borrador
+inglés); el resto del copy, igual que en el congelado de abajo.
+
+El investigador pidió una landing que presente la infraestructura, no un apéndice metodológico: menos texto, ninguna
+comparación de ediciones y gráficos interactivos que se manipulan y se juegan. Propuesta y decisiones:
+`docs/REDISENO_23-09.md` (decisiones 1–5 del § 8: landing y seis páginas · cifras redondas · «Pruebe una palabra» ·
+fichas de etapa en una página · el grito con tilde y sin la nota del OCR). La versión anterior queda en la etiqueta
+`v0.1-antes-del-rediseno` (commit `240b401`).
+
+- **Inicio, en siete bloques:** portada (hemiciclo, sin cambios; la leyenda se pliega en sus cuatro bloques) · la banda
+  «Luz y taquígrafos.» · «Más que una base de datos» (las seis piezas) · juego 1, **«¿Cuándo se habló de…?»**
+  (laboratorio de palabras con su calendario y los ocho momentos) · juego 2, **«¿Cuántos votaron sí?»** (seis votaciones
+  nominales para apostar) · juego 3, **la red de las firmas** (F21 en escaparate) · «Empiece hoy».
+- **Menos y más ligero:** 447 palabras de copy (tope nuevo en `tests/rutas.ts`: 450; antes, 700) y unas 8 pantallas a
+  1.440 px (antes, 11). Ni «V2» ni «v3» fuera de la cita oficial (prueba nueva, `tests/rediseno.spec.ts`).
+- **Datos nuevos:** `exportador/modulos/laboratorio.py` → `public/datos/laboratorio.json` (3.405 términos × 64 meses,
+  recontados sobre el índice FTS5 del explorador y comprobados contra él: tokens por intervención, `fts5vocab` y `MATCH`).
+  Se ejecuta con el exportador o suelto (`python3 exportador/modulos/laboratorio.py --db …`). El JSON se pide cuando la
+  sección se acerca a la pantalla.
+- **Formato nuevo `|redondo`** («más de…»): hacia abajo a una cifra significativa, para que valga en las dos ediciones
+  (`src/lib/formato.ts` y `exportador/formatos.py`, con siete pruebas nuevas en `formatos.json`). «Más de 20 millones de
+  palabras», no «24 millones», que sigue vetado.
+- **Componentes:** `components/inicio/Laboratorio.astro` + `scripts/laboratorio.ts`, `components/inicio/Apuesta.astro` +
+  `scripts/apuesta.ts`, geometría `viz/geom/laboratorio.ts`; `FiguraMarco` y `FigRed` aceptan `escaparate`.
+- **Reglas:** `PRODUCT.md` (principios 2 y 4 revisados, 6 nuevo) y `DESIGN.md` (cabecera del rediseño).
+- **Otras páginas:** conservan las claves `inicio.{puertas,f26,f01c,falta,fila}.*` que leen; la de componentes lee el
+  grito en `inicio.nombre.grito`. Lista blanca: «type 77» del borrador inglés de Método.
+
+Verificado: `npm run check` (astro check 0 errores, check-i18n, formatos) · build (48 páginas) · `npm run audit` ·
+Playwright 250/250 (las 245 de antes y 5 nuevas) · Inicio en STRICT: 447 de 450 palabras, 27 KB en gzip.
+
+Pendiente del rediseño (fases siguientes): la cabecera y las seis páginas (Momentos, «La República en las Cortes» con las
+cinco etapas, Datos, «Cómo se hizo» con Método, El Diario y Versiones), y la revisión del inglés.
+
 ## 2026-09-23 · español congelado
 
 **Huella del copy:** `src/i18n/es.json`, SHA-256

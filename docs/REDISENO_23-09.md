@@ -2,6 +2,12 @@
 
 > 23-09-2026 · Propuesta para decidir. No toca nada publicado: la versión actual queda en `main` (commit `240b401`)
 > y en tu ordenador.
+>
+> **Estado (23-09-2026, tarde).** Decisiones del § 8: **1 sí · 2 sí · 3 sí · 4 sí · 5 sí**. Petición añadida: gráficos
+> interactivos y atractivos, que se manipulan y se juegan; la red de coautorías de la polarización (F21), «muy lograda»,
+> entra en Inicio. **Hecha la fase 1: la nueva Inicio** (`CHANGELOG.md`). Pendiente: la cabecera y las seis páginas (§ 5)
+> y el inglés. Cambio sobre este texto: la banda dice «más de 20 millones de palabras» (formato `|redondo`, una cifra
+> significativa), porque «24 millones» está vetado como cifra de la ayuda del explorador.
 
 ## En una frase
 
@@ -76,7 +82,7 @@ Parlamento**». Son seis piezas, y la landing las enseña juntas:
 1. **Una idea, una figura y una acción por bloque.** Si un bloque necesita una salvedad para sostenerse, no va en la
    landing.
 2. **Cero ediciones.** Ni «V2», ni «v3», ni identificadores de fila. Solo cifras que valen para las dos ediciones:
-   755 sesiones, 773 diputados, más de 100.000 intervenciones, más de 24 millones de palabras. El detalle, en Datos.
+   755 sesiones, 773 diputados, más de 100.000 intervenciones, más de 20 millones de palabras. El detalle, en Datos.
 3. **Las salvedades se documentan, no se exhiben.** Viven en «Cómo se hizo», enlazada desde el pie.
 4. **Los títulos hablan de la República o de lo que se puede hacer**, nunca de la estructura de la tabla.
 5. **Presupuesto de Inicio:** 450 palabras visibles y unas 5 pantallas a 1.440 px (hoy, 1.561 y 11).
@@ -115,7 +121,7 @@ unas 450 palabras: justo el presupuesto.
 **2 · El nombre.** La banda invertida, en tres frases.
 - *«Luz y taquígrafos.»*
 - *Lo gritó un diputado el 8 de junio de 1934, cuando la Presidencia recordó que los suplicatorios se tratan en sesión
-  secreta. Casi todo lo demás quedaba impreso en el Diario de Sesiones: más de 24 millones de palabras que nadie podía
+  secreta. Casi todo lo demás quedaba impreso en el Diario de Sesiones: más de 20 millones de palabras que nadie podía
   leer enteras. Ahora se pueden buscar.*
 - Cambia: salen el pie del OCR y los identificadores V2 y v3. «Taquígrafos» lleva tilde, como en el Diario impreso;
   la errata es del reconocimiento óptico, no de la fuente.

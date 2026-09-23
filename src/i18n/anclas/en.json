@@ -107,15 +107,10 @@
  "explorador.img.corrida.pie": [
   "comun.fija.sesion48"
  ],
- "inicio.fila.leccion": [
-  "comun.fija.ocr"
- ],
- "inicio.empezar.entrada": [
-  "comun.fija.formulario",
-  "comun.fija.formulario.motivo"
+ "inicio.red.entrada": [
+  "comun.boton.ver_afinidades"
  ],
  "inicio.empezar.sin_programar": [
-  "comun.fija.explorador",
   "comun.boton.explorador"
  ],
  "inicio.empezar.programar": [

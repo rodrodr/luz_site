@@ -22,8 +22,8 @@ import { dato } from '../lib/datos';
 import { recurso } from '../lib/rutas';
 import type { Lang } from '../lib/idiomas';
 
-interface Props { lang: Lang }
-const { lang } = Astro.props;
+interface Props { lang: Lang; /** Inicio: la figura sin sellos, sin código, sin salvedad y sin la tabla (FiguraMarco). */ escaparate?: boolean }
+const { lang, escaparate = false } = Astro.props;
 interface Top { id: number; nombre: string; partido: string; familia: string; ideologia: string; grado: number }
 interface RedR { clave: string; leg: string; censo: number; firman: number; aislados: number; aristas: number; ideologias: Record<string, number>; top: Top[] }
 const d = dato<{ version: string; ideologias: string[]; redes: RedR[] }>('afinidades/redes');
@@ -51,7 +51,7 @@ const rotulosPoster = (leg: string) => {
   });
 };
 ---
-<FiguraMarco lang={lang} id="F21" plantillaB={d?.version ?? 'CGOCUS'}>
+<FiguraMarco lang={lang} id="F21" plantillaB={d?.version ?? 'CGOCUS'} escaparate={escaparate}>
   <fieldset slot="barra" class="fig-conmuta f21-legs">
     <legend set:html={t(lang, 'fig.F21.conmuta.titulo')} />
     {R.map((r, i) => (

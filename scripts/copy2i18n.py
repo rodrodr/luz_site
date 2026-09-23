@@ -33,7 +33,7 @@ MARCADOR = re.compile(r'\{\{([^{}]*)\}\}')
 # P1-4); `peso*` es la unidad de Dataverse (1.024²).
 FORMATOS = {'', 'n', 'id', 'anio', 'letra', 'texto', 'fecha', 'fecha_larga', 'fecha_corta', 'mes',
             'pct', 'pct0', 'pct1', 'pct2', 'pct3', 'peso', 'peso0', 'peso1', 'peso2',
-            'peso_dec', 'peso_dec0', 'peso_dec1', 'peso_dec2'}
+            'peso_dec', 'peso_dec0', 'peso_dec1', 'peso_dec2', 'redondo'}
 try:
     FORMATOS |= set(json.loads((RAIZ / 'src/data/formatos.json').read_text(encoding='utf-8')).get('formatos', {}))
 except (OSError, ValueError):

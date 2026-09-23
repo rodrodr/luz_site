@@ -10,6 +10,12 @@
 
 > ⛔ **23-09-2026: NO PUBLICAR.** El investigador: «No publiques el resultado de la página. Quiero revisar todo muy bien y reformular algunas cosas que no me gustan antes. Esa no es una versión publicable.» La congelación del español queda **REVOCADA**; el flujo `cerrar-y-traducir-lyt` se detuvo durante la traducción (glosario hecho; `docs/copy_en/` son BORRADORES que habrá que rehacer sobre el español definitivo). Nada se ha subido: sin remoto, sin commits, sin despliegue. Siguiente: la revisión del investigador y aplicar sus reformulaciones; solo después, inglés y publicación, y siempre con su visto bueno expreso.
 
+> **23-09-2026, noche: REDISEÑO.** El investigador pidió una landing que presente la infraestructura (no un apéndice
+> metodológico), sin comparar ediciones y con gráficos que se juegan. Propuesta y decisiones: `docs/REDISENO_23-09.md`;
+> hecho y verificado: `CHANGELOG.md` (entrada «rediseño de Inicio»). Rama `claude/trusting-allen-dxol3x`; la versión
+> anterior, en `main` (`240b401`, etiqueta `v0.1-antes-del-rediseno`). Siguen: la cabecera y las seis páginas del § 5
+> de la propuesta, y el inglés. Nada se publica sin su visto bueno expreso.
+
 ## 1. Qué se pide (palabras del investigador, Rodrigo Rodrigues-Silveira)
 
 1. **Sitio multipágina de «Luz y Taquígrafos»** (Diarios de Sesiones del Congreso, 1931–1945; THQCMI V2.0; explorador

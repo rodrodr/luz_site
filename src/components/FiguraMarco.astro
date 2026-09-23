@@ -53,8 +53,13 @@ interface Props {
   teclado?: boolean;
   /** Salvedad rotulada al pie (por omisión, sí). */
   salvedad?: boolean;
+  /** Versión de escaparate (Inicio, rediseño del 23-09-2026): sin sellos de base, sin código de figura, sin salvedad y
+   *  sin pestañas; la barra de conmutación (`barra`) se conserva. */
+  escaparate?: boolean;
 }
-const { lang, id, sub = {}, sufijo = '', ligera = false, plantilla, plantillaT, plantillaB, tactil = false, titulo, pregunta, salvedad = true } = Astro.props;
+const { lang, id, sub = {}, sufijo = '', plantilla, plantillaT, plantillaB, tactil = false, titulo, pregunta, escaparate = false } = Astro.props;
+const ligera = Astro.props.ligera ?? escaparate;
+const salvedad = (Astro.props.salvedad ?? true) && !escaparate;
 const f = figura(id);
 if (!f) throw new Error(`Figura desconocida: ${id} (src/lib/figuras.ts)`);
 const conTeclado = Astro.props.teclado ?? f.interactiva;
@@ -81,9 +86,10 @@ const hayPregunta = existe(clavePregunta);
 <figure class="figura" id={ancla} data-figura={f.id} data-base={f.base.join(' ')} data-plantilla={plantilla} data-plantilla-t={plantillaT} data-plantilla-b={plantillaB} data-posicion={posicion} data-cerrar={cerrar} aria-labelledby={tituloId}>
   {!conPestanas && (
     <header class="fig-cabeza">
-      <p class="fig-sellos">{f.base.filter((b) => b !== 'croquis').map((b) => <Sello lang={lang} base={b} />)}</p>
-      <h3 class="fig-titulo" id={tituloId}><span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">{f.id}</span><Fragment set:html={o(claveTitulo)} /></h3>
-      {hayPregunta && <p class="fig-pregunta" set:html={t(lang, clavePregunta)} />}
+      {!escaparate && <p class="fig-sellos">{f.base.filter((b) => b !== 'croquis').map((b) => <Sello lang={lang} base={b} />)}</p>}
+      <h3 class={`fig-titulo${escaparate ? ' sr-only' : ''}`} id={tituloId}>{!escaparate && <span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">{f.id}</span>}<Fragment set:html={o(claveTitulo)} /></h3>
+      {hayPregunta && !escaparate && <p class="fig-pregunta" set:html={t(lang, clavePregunta)} />}
+      {hayBarra && <div class="fig-barra-sola"><slot name="barra" /></div>}
     </header>
   )}
   {conPestanas ? (

@@ -24,12 +24,14 @@ Presentar «Luz y Taquígrafos», la base de datos de los Diarios de Sesiones de
 
 ## Positioning
 
+> **Rediseño del 23-09-2026** (`docs/REDISENO_23-09.md`, aprobado por el investigador con sus cinco decisiones y la petición de gráficos que se manipulan y se juegan): el sitio presenta **una infraestructura para investigar la Segunda República desde su Parlamento**, no una base de datos que se justifica. Inicio enseña lo que permite hacer; las ediciones, el reconocimiento óptico y los límites se documentan en Método. Lo que sigue se lee con esa corrección.
+
 Los Diarios de Sesiones se imprimieron enteros, con luz y taquígrafos, y por eso nadie pudo leerlos enteros. Luz y Taquígrafos los convierte en una tabla de turnos de palabra que se puede contar, leer y citar: 107.551 filas depositadas (V2), con el orador vinculado a su diputado, su partido y su posición, y un explorador en el navegador que devuelve cada cifra a su pasaje del Diario. El sitio no afirma novedad sin una búsqueda fechada de corpus comparables.
 
 ## Operating Context
 
 - Flujo real: sitio → Harvard Dataverse (formulario obligatorio: nombre, correo e institución) → CSV de 158,1 MB → R o Python; y sitio → explorador en el navegador (descarga única de unos 112 MB; sin enlaces profundos: una URL no abre una búsqueda).
-- Dos ediciones conviven: la depositada (V2, 107.551 filas) y la del explorador (v3, 121.700 filas, sin depositar, ids renumerados). Toda cifra lleva su base.
+- Dos ediciones conviven: la depositada (V2, 107.551 filas) y la del explorador (v3, 121.700 filas, sin depositar, ids renumerados). Toda cifra lleva su base **en el HTML** (`data-k`, `data-base`, `procedencia.csv`), no en la frase: Inicio no nombra ninguna edición y usa solo cifras que valen en las dos (formato `|redondo`: «más de 100.000 intervenciones»); el detalle, en Datos y Método (rediseño del 23-09-2026).
 - Base derivada: Afinidades Elegidas (coautorías, doi:10.7910/DVN/CGOCUS V1.1) y su aplicación.
 - Proyecto hermano y distinto: ParlaIbero.
 
@@ -59,10 +61,16 @@ Los Diarios de Sesiones se imprimieron enteros, con luz y taquígrafos, y por es
 ## Product Principles
 
 1. El sitio lleva a descargar y citar la base depositada: cada página termina en el Diario, en el explorador o en el depósito.
-2. Cada cifra con su base, su denominador y su salvedad en la misma frase.
+2. Cada cifra es verificable a un clic (su base y su fuente van en el HTML y en `procedencia.csv`), pero la frase no se
+   justifica: la salvedad va donde cambia lo que hace el lector (Datos, Método), no junto a cada dato. *(Rediseño del
+   23-09-2026; antes: «su base, su denominador y su salvedad en la misma frase».)*
 3. La profundidad vive en páginas propias; Inicio es la puerta, no el resumen.
-4. Se enseña la costura: lo que el corpus no hace, dicho junto al dato que matiza.
+4. La costura se documenta, no se exhibe: lo que el corpus no hace se explica en Método. *(Rediseño del 23-09-2026; antes:
+   «se enseña la costura, dicho junto al dato que matiza».)*
 5. El lector del Diario (la cita literal, la fila, la sesión) es el argumento; el número, su prueba.
+6. Las figuras de Inicio se juegan: el lector manipula (escribe una palabra, apuesta una votación, mueve una red) y la
+   base contesta. Cada juego funciona también sin JavaScript en su estado estático. *(Petición del investigador,
+   23-09-2026.)*
 
 ## Accessibility & Inclusion
 

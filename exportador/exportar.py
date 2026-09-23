@@ -12,7 +12,7 @@ Pasos
      explorador (sirve la v3 que tenemos). Si algo no cuadra, se para.
   2  Papel de cada fila (V2 y v3) con el motor del explorador (`motor/papel.mjs`); la caché
      `~/.cache/luz_site/clima/*.jsonl` se reutiliza solo si su huella cuadra (mismos ids, ningún error, mismo papel).
-  3  Módulos, en orden: base, cortes, sesiones, diario, metodo, datos, explorador, afinidades. Cada uno devuelve
+  3  Módulos, en orden: base, cortes, sesiones, diario, metodo, datos, explorador, afinidades, laboratorio. Cada uno devuelve
      sus cifras y escribe sus archivos por `ctx`.
   4  Puertas: cifra sin base/t/f/d o con base desconocida · suma de etapas ≠ total · archivo de
      `aecpa2026/figs/data/` distinto del hemiciclo · palabras del prototipo · cita de `citas.json` que no está letra
@@ -54,7 +54,7 @@ from comun import (AFIN_ARCHIVOS, AFIN_UNF, AFIN_VERSION, BYTES_V2, CACHE_EXP, E
                    SHA256_HEMICICLO, SHA256_MOTOR, SHA256_PROYECTO, SHA256_V3, SHA256_V3_CSV, SRC_DATA, V2_CSV, V3_CSV,
                    V3_DB, Contexto, Falla, exige, huella, leer_json, volcar_json)
 
-MODULOS = ["base", "cortes", "sesiones", "diario", "metodo", "datos", "explorador", "afinidades"]
+MODULOS = ["base", "cortes", "sesiones", "diario", "metodo", "datos", "explorador", "afinidades", "laboratorio"]
 AJENOS_EN_DATA = {"tokens.json"}          # archivos de src/data/ que no escribe el exportador (andamiaje)
 PROTOTIPO_DURO = ["libro de códigos", "libro de codigos", "grafo anotado", "acto afectivo", "actos afectivos",
                   "índice de reacción", "indice de reaccion"]
