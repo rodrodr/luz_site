@@ -98,7 +98,7 @@ function iniciar(raiz: HTMLElement): void {
   function dibuja(t: Termino, m: string): void {
     const n = D!.meses.length, w = 640 / n, max = Math.max(...t.s, 1);
     const nodos: SVGElement[] = [];
-    let ultimo = -99;
+    let ultimo = -99, anioPrevio = '';
     D!.meses.forEach((mes, k) => {
       const h = (t.s[k] / max) * 100;
       const r = document.createElementNS(NS, 'rect');
@@ -106,10 +106,19 @@ function iniciar(raiz: HTMLElement): void {
       r.setAttribute('y', String(104 - h)); r.setAttribute('height', String(Math.max(h, 0.8)));
       if (mes === t.pico) r.classList.add('pico'); else if (mes === m) r.classList.add('apuesta');
       nodos.push(r);
-      if (mes.endsWith('-01') || k === 0) {
+      // La apuesta, también marcada bajo el eje: su barra puede ser casi nula.
+      if (mes === m && mes !== t.pico) {
+        const s = document.createElementNS(NS, 'rect');
+        s.setAttribute('x', String(k * w)); s.setAttribute('width', String(w)); s.setAttribute('y', '106'); s.setAttribute('height', '3');
+        s.classList.add('apuesta');
+        nodos.push(s);
+      }
+      // El año, rotulado en su primer mes con sesiones (enero puede no tenerlas), si cabe.
+      if (mes.slice(0, 4) !== anioPrevio) {
+        anioPrevio = mes.slice(0, 4);
         if (k - ultimo >= 5) {
           const tx = document.createElementNS(NS, 'text');
-          tx.setAttribute('x', String(k * w)); tx.setAttribute('y', '122'); tx.textContent = mes.slice(0, 4);
+          tx.setAttribute('x', String(k * w)); tx.setAttribute('y', '122'); tx.textContent = anioPrevio;
           nodos.push(tx); ultimo = k;
         }
       }
