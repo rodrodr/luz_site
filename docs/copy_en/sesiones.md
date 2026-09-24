@@ -6,6 +6,75 @@
 
 ---
 
+## 2 bis. Who said it? (game)
+
+> [design note] Game requested by the researcher (24-09-2026): `components/sesiones/QuienLoDijo.astro`. Reuses the verified sentences of the other two games (only the best-known speakers). Eight quotes per game. Without JS, a table.
+
+<!-- sesiones.quien.titulo -->
+Who said it?
+
+<!-- sesiones.quien.entrada -->
+Each quote comes, letter for letter, from a row of the dataset. Pick its author among four deputies.
+
+<!-- sesiones.quien.juego.pregunta -->
+Whose is it?
+
+<!-- sesiones.quien.juego.cuenta -->
+Quote {{i}} of {{n}} · Right: {{a}}
+
+<!-- sesiones.quien.juego.bien -->
+Spot on!
+
+<!-- sesiones.quien.juego.mal -->
+No: it is by {{orador}}.
+
+<!-- sesiones.quien.juego.quien -->
+{{orador}} · {{partido}} · {{fecha}}
+
+<!-- sesiones.quien.juego.fila -->
+Row {{id}}
+
+<!-- sesiones.quien.juego.siguiente -->
+[Next]
+
+<!-- sesiones.quien.juego.ver -->
+[See the result]
+
+<!-- sesiones.quien.juego.resumen -->
+You got {{n}} of {{total}}.
+
+<!-- sesiones.quien.juego.puesto -->
+Your place in the Chamber:
+
+<!-- sesiones.quien.juego.nivel.0 -->
+public gallery, applauding at the wrong moment.
+
+<!-- sesiones.quien.juego.nivel.1 -->
+usher: knows the faces, not always the voices.
+
+<!-- sesiones.quien.juego.nivel.2 -->
+press gallery reporter.
+
+<!-- sesiones.quien.juego.nivel.3 -->
+shorthand writer: has heard it all.
+
+<!-- sesiones.quien.juego.nivel.4 -->
+President of the Chamber: knows who is speaking without looking.
+
+<!-- sesiones.quien.juego.otra -->
+[Another round]
+
+<!-- sesiones.quien.juego.tabla -->
+The game's quotes and their authors
+
+<!-- sesiones.quien.juego.tabla.col.cita -->
+Quote
+
+<!-- sesiones.quien.juego.tabla.col.quien -->
+Who and when
+
+---
+
 ## 1. Sessions and votes · index (`/en/cortes/sesiones/`)
 
 ### 1.0 Header

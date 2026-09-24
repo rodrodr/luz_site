@@ -34,6 +34,75 @@
 
 ---
 
+## 2 bis. ¿Quién lo dijo? (juego)
+
+> [nota de diseño] Juego de la petición del investigador (24-09-2026): `components/sesiones/QuienLoDijo.astro`. Reutiliza las frases ya comprobadas de «El aplausómetro» y «¿Esta o esta?» (solo las de los oradores más conocidos). Ocho citas por partida. Sin JS, una tabla.
+
+<!-- sesiones.quien.titulo -->
+¿Quién lo dijo?
+
+<!-- sesiones.quien.entrada -->
+Cada cita sale, letra a letra, de una fila de la base. Elija a su autor entre cuatro diputados.
+
+<!-- sesiones.quien.juego.pregunta -->
+¿De quién es?
+
+<!-- sesiones.quien.juego.cuenta -->
+Cita {{i}} de {{n}} · Aciertos: {{a}}
+
+<!-- sesiones.quien.juego.bien -->
+¡Exacto!
+
+<!-- sesiones.quien.juego.mal -->
+No: es de {{orador}}.
+
+<!-- sesiones.quien.juego.quien -->
+{{orador}} · {{partido}} · {{fecha}}
+
+<!-- sesiones.quien.juego.fila -->
+Fila {{id}}
+
+<!-- sesiones.quien.juego.siguiente -->
+[Siguiente]
+
+<!-- sesiones.quien.juego.ver -->
+[Ver el resultado]
+
+<!-- sesiones.quien.juego.resumen -->
+Ha acertado {{n}} de {{total}}.
+
+<!-- sesiones.quien.juego.puesto -->
+Su puesto en la Cámara:
+
+<!-- sesiones.quien.juego.nivel.0 -->
+público de la tribuna, que aplaude cuando no toca.
+
+<!-- sesiones.quien.juego.nivel.1 -->
+ujier: conoce las caras, no siempre las voces.
+
+<!-- sesiones.quien.juego.nivel.2 -->
+cronista de la tribuna de prensa.
+
+<!-- sesiones.quien.juego.nivel.3 -->
+taquígrafo: lo ha oído todo.
+
+<!-- sesiones.quien.juego.nivel.4 -->
+presidente de la Cámara: sabe quién habla sin mirar.
+
+<!-- sesiones.quien.juego.otra -->
+[Otra ronda]
+
+<!-- sesiones.quien.juego.tabla -->
+Las citas del juego y su autor
+
+<!-- sesiones.quien.juego.tabla.col.cita -->
+Cita
+
+<!-- sesiones.quien.juego.tabla.col.quien -->
+Quién y cuándo
+
+---
+
 ## 1. Sesiones y votaciones · índice (`/es/cortes/sesiones/`)
 
 > [nota de diseño] Unas 700 palabras de copy en `<main>`, con el registro de puertas (tope de la plantilla D: 500–700;

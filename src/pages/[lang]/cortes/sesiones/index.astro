@@ -17,6 +17,7 @@ import Seccion from '../../../../components/Seccion.astro';
 import RegistroPuertas from '../../../../components/RegistroPuertas.astro';
 import FigVotaciones from '../../../../components/FigVotaciones.astro';
 import SinSitio from '../../../../components/SinSitio.astro';
+import QuienLoDijo from '../../../../components/sesiones/QuienLoDijo.astro';
 import { meta } from '../../../../lib/pagina';
 import { t, existe, tBloques } from '../../../../lib/i18n';
 import { rotulosConDestino, htmlFija, anclasTras } from '../../../../lib/lectura';
@@ -73,6 +74,10 @@ const citar = existe('sesiones.otra.citar')
     </Seccion>
 
     <!-- 3 · Cualquier otra sesión: los filtros son pasos escritos (no hay consulta que copiar); cómo citarla (↺ 4) -->
+    <Seccion lang={lang} id="quien-lo-dijo" prefijo="sesiones.quien" espera={['titulo', 'entrada']} excluir={['juego']}>
+      <QuienLoDijo lang={lang} />
+    </Seccion>
+
     <Seccion lang={lang} id="otra" prefijo="sesiones.otra" espera={['titulo', 'entrada']} resto={false}>
       <Fragment set:html={bloque('sesiones.otra.pasos', 'pasos-filtro')} />
       <Fragment set:html={bloque('sesiones.otra.dobles')} />
@@ -85,7 +90,7 @@ const citar = existe('sesiones.otra.citar')
     <!-- 4 · «Que esté no quiere decir que esté entera»: la sesión 48 (↺ 8), la 9, las posteriores a julio de 1936 -->
     <Seccion lang={lang} id="entera" prefijo="sesiones.entera" espera={['titulo', 'entrada']} />
   </div>
-  <SinSitio lang={lang} prefijo="sesiones" usados={['sesiones.antetitulo', 'sesiones.h1', 'sesiones.titulo', 'sesiones.entrada', 'sesiones.votos', 'sesiones.puertas', 'sesiones.lista', 'sesiones.otra', 'sesiones.entera', 'sesiones.puerta']} ignorar={['puerta', ...PUERTAS.map((p) => p.slug)]} />
+  <SinSitio lang={lang} prefijo="sesiones" usados={['sesiones.quien', 'sesiones.antetitulo', 'sesiones.h1', 'sesiones.titulo', 'sesiones.entrada', 'sesiones.votos', 'sesiones.puertas', 'sesiones.lista', 'sesiones.otra', 'sesiones.entera', 'sesiones.puerta']} ignorar={['puerta', ...PUERTAS.map((p) => p.slug)]} />
 </Base>
 
 <style>

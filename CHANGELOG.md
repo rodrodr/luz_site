@@ -1,5 +1,12 @@
 # Cambios · Luz y Taquígrafos (sitio)
 
+## 24-09-2026 · «¿Quién lo dijo?» en Sesiones
+
+- Nuevo apartado de Sesiones, tras las puertas: una cita y cuatro diputados; el lector elige al autor y ve su
+  partido, su fecha y su fila. Ocho citas por partida, de autores distintos; al final, «Su puesto en la Cámara», del
+  público de la tribuna al presidente. Reutiliza las frases ya comprobadas de «El aplausómetro» y «¿Esta o esta?»,
+  solo las de veinte oradores conocidos. Sin JS, una tabla. Pruebas: `tests/quien.spec.ts`.
+
 ## 24-09-2026 · «¿Esta o esta?» en Las Cortes; Afinidades sin versiones
 
 - Nuevo apartado de Las Cortes, antes de «Lo que no está»: dos frases del pleno sobre el mismo asunto, sin autor; el
