@@ -17,6 +17,7 @@ import Seccion from '../../components/Seccion.astro';
 import Captura from '../../components/Captura.astro';
 import BandaCTA from '../../components/BandaCTA.astro';
 import SinSitio from '../../components/SinSitio.astro';
+import Pico from '../../components/explorador/Pico.astro';
 import FigBusquedas from '../../components/FigBusquedas.astro';
 import FigBibliotecas from '../../components/FigBibliotecas.astro';
 import { meta } from '../../lib/pagina';
@@ -49,7 +50,7 @@ const B = (k: string) => (existe(k) ? rotulosConDestino(lang, remata(tBloques(la
 /** Una línea de botones: cada [rótulo] recibe el destino de su rótulo único (comun.md § 3). */
 const botones = (k: string, destinos: string[] = []) => `<p class="botones">${conDestinos(lang, k, {}, destinos)}</p>` + tras(k);
 const S = [
-  { id: 'encontrar', x: 'encontrar' }, { id: 'muestra', x: 'busquedas' }, { id: 'leer', x: 'leer' },
+  { id: 'encontrar', x: 'encontrar' }, { id: 'muestra', x: 'busquedas' }, { id: 'pico', x: 'pico' }, { id: 'leer', x: 'leer' },
   { id: 'enfocar', x: 'bibliotecas' }, { id: 'coocurrencias', x: 'coocurrencias' }, { id: 'menciones', x: 'menciones' },
   { id: 'llevar', x: 'llevar' }, { id: 'empezar', x: 'empezar' }, { id: 'no-hace', x: 'limites' },
 ];
@@ -93,6 +94,10 @@ const PASOS = ['paso1', 'paso2', 'paso3'];
       </Seccion>
 
       <!-- 8.3 · Leer como en el Diario: la sección central; las cuatro capturas en fila de dos -->
+      <Seccion lang={lang} id="pico" prefijo={X('pico')} espera={['titulo', 'entrada']} excluir={['juego']} indice>
+        <Pico lang={lang} />
+      </Seccion>
+
       <Seccion lang={lang} id="leer" prefijo={X('leer')} resto={false} indice>
         <Fragment set:html={B(X('leer.lector'))} />
         <Fragment set:html={B(X('leer.acotaciones'))} />

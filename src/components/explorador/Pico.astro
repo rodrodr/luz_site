@@ -1,0 +1,114 @@
+---
+/**
+ * «¿Cuándo fue el pico?» (Explorador; petición del investigador, 24-09-2026). Un término y la pregunta: ¿en qué mes
+ * se habló más de él? El lector elige año y mes; después ve la curva de apariciones por mes, con el pico y su apuesta.
+ *  · Datos: los del laboratorio de Inicio (`public/datos/laboratorio.json`, exportador › laboratorio.py): apariciones
+ *    por mes como las cuenta la Tendencia del explorador. El pico es el mes con más apariciones (no la densidad).
+ *    Diez términos (TERMINOS); cinco por partida. Puntos: 3 el mes justo, 2 a dos meses o menos, 1 a seis o menos.
+ *  · Sin JS: una tabla con cada término, su mes pico y sus apariciones. Con JS (`scripts/pico.ts`): el juego.
+ */
+import { readFileSync } from 'node:fs';
+import { t, plano, rotulo, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import type { Lang } from '../../lib/idiomas';
+
+interface Lab { meses: string[]; terminos: Record<string, { m: string; s: string }> }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+let L: Lab | null = null;
+try { L = JSON.parse(readFileSync(`${process.cwd()}/public/datos/laboratorio.json`, 'utf8')); } catch { L = null; }
+const TERMINOS = ['mujer', 'divorcio', 'reforma agraria', 'cataluna', 'casas viejas', 'congregaciones', 'amnistia', 'asturias', 'jurados mixtos', 'frente popular'];
+const K = (s: string) => `explorador.pico.juego.${s}`;
+const o = (s: string, ctx = {}) => (existe(K(s)) ? t(lang, K(s), ctx) : marcaPendiente(K(s), 'copy'));
+const p = (s: string, vars: Record<string, string> = {}) => (existe(K(s)) ? plano(lang, K(s), { vars }) : '');
+const r = (s: string) => (existe(K(s)) ? rotulo(lang, K(s)) : marcaPendiente(K(s), 'copy'));
+const loc = lang === 'es' ? 'es-ES' : 'en-GB';
+const mesTxt = (m: string) => new Intl.DateTimeFormat(loc, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${m}-01T00:00:00Z`));
+const terminos = L ? TERMINOS.filter((k) => L!.terminos[k]).map((k) => {
+  const s = L!.terminos[k].s.split(',').map((x) => (x ? parseInt(x, 36) : 0));
+  const i = s.reduce((b, v, j) => (v > s[b] ? j : b), 0);
+  return { k, nombre: L!.terminos[k].m, s, pico: L!.meses[i], max: s[i], clave: `pico.${k.replace(/ /g, '_')}.max` };
+}) : [];
+const textos = L && terminos.length > 0 && {
+  cuenta: p('cuenta', { i: '{i}', n: '{n}', p: '{p}' }), pregunta: p('pregunta', { termino: '{termino}' }),
+  exacto: p('exacto'), distancia: p('distancia', { n: '{n}' }), distanciaUno: p('distancia.uno'),
+  pico: p('pico', { mes: '{mes}', n: '{n}' }), leyenda: p('leyenda'), siguiente: r('siguiente'), ver: r('ver'),
+  resumen: p('resumen', { p: '{p}', max: '{max}' }), niveles: [0, 1, 2, 3].map((k) => p(`nivel.${k}`)),
+};
+const lab = L && { meses: L.meses, terminos: terminos.map(({ nombre, s, pico }) => ({ nombre, s, pico })) };
+const tabla = `pic-tabla-${lang}`;
+const idAnio = `pic-anio-${lang}`;
+const idMes = `pic-mes-${lang}`;
+---
+{!textos ? <p class="nota" set:html={marcaPendiente('laboratorio.json', 'dato')} /> : (
+<div class="pic" data-pico data-textos={JSON.stringify(textos)} data-lab={JSON.stringify(lab)} data-locale={loc}>
+  <p class="pic-reglas" set:html={o('reglas')} />
+  <!-- Sin JS: cada término con su mes pico -->
+  <div class="pic-estatico fig-desliza" tabindex="0" role="region" aria-labelledby={tabla}>
+    <table class="fig-tabla pic-tabla">
+      <caption id={tabla}><span class="fig-rotulo-tabla" set:html={o('tabla')} /></caption>
+      <thead><tr><th scope="col" set:html={o('tabla.col.termino')} /><th scope="col" set:html={o('tabla.col.pico')} /><th scope="col" class="num" set:html={o('tabla.col.n')} /></tr></thead>
+      <tbody>
+        {terminos.map((x) => (
+          <tr>
+            <th scope="row">«{x.nombre}»</th>
+            <td><time datetime={x.pico}>{mesTxt(x.pico)}</time></td>
+            <td class="num" set:html={fmt.dato(x.max, fmt.n(x.max, lang), x.clave, 'v3')} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Con JS: el juego -->
+  <div class="pic-juego" hidden>
+    <p class="asiento pic-cuenta" data-pic-cuenta></p>
+    <p class="pic-pregunta" data-pic-pregunta></p>
+    <p class="pic-rotulo" id={idAnio} set:html={o('anio')} />
+    <div class="pic-anios" role="group" aria-labelledby={idAnio} data-pic-anios></div>
+    <p class="pic-rotulo" id={idMes} data-pic-rot-mes hidden set:html={o('mes')} />
+    <div class="pic-meses" role="group" aria-labelledby={idMes} data-pic-meses hidden></div>
+    <div class="pic-revela" data-pic-revela hidden>
+      <p class="pic-aviso" data-pic-aviso></p>
+      <svg class="pic-curva" data-pic-curva viewBox="0 0 640 128" role="img" preserveAspectRatio="none"></svg>
+      <p class="pic-leyenda" data-pic-leyenda></p>
+    </div>
+    <p class="sr-only" aria-live="polite" data-pic-sr></p>
+    <p class="botones"><button type="button" class="boton" data-pic-siguiente hidden></button></p>
+    <div class="pic-final" data-pic-final hidden>
+      <p class="pic-resumen" data-pic-resumen></p>
+      <p class="pic-nivel"><em data-pic-nivel></em></p>
+      <p class="botones"><button type="button" class="boton sec" data-pic-otra set:html={r('otra')} /></p>
+    </div>
+  </div>
+  <p class="pic-salvedad" set:html={o('salvedad')} />
+</div>
+)}
+
+<script>
+  import '../../scripts/pico.ts';
+</script>
+
+<style>
+  .pic { margin: var(--e4) 0 var(--e6); max-width: 46rem; min-width: 0; }
+  .pic [hidden] { display: none !important; }
+  .pic-reglas, .pic-salvedad { color: var(--ink-2); max-width: 40rem; }
+  .pic-salvedad { font-size: .95rem; margin-top: var(--e3); }
+  .pic-cuenta { margin: 0 0 var(--e2); color: var(--mute); }
+  .pic-pregunta { font: italic 500 clamp(1.25rem, 3vw, 1.55rem)/1.3 var(--display); margin: 0 0 var(--e3); }
+  .pic-rotulo { margin: 0 0 .35rem; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .pic-anios, .pic-meses { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 var(--e3); }
+  .pic-anios :global(button), .pic-meses :global(button) { min-width: 3.4rem; padding-inline: .6rem; }
+  .pic-anios :global(button[aria-pressed='true']), .pic-meses :global(button[aria-pressed='true']) { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .pic-meses :global(button.pico) { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .pic-aviso { margin: 0 0 var(--e2); font-weight: 500; }
+  .pic-curva { display: block; width: 100%; height: 8rem; margin: 0 0 .4rem; }
+  .pic-curva :global(rect) { fill: var(--hair-2); }
+  .pic-curva :global(rect.pico) { fill: var(--accent); }
+  .pic-curva :global(rect.apuesta) { fill: var(--ink); }
+  .pic-curva :global(text) { font: 400 11px var(--mono); fill: var(--mute); }
+  .pic-leyenda { margin: 0; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .pic-resumen { font: 500 1.1rem/1.45 var(--text); margin: 0 0 .4rem; }
+  .pic-nivel em { font: italic 500 1.4rem/1.3 var(--display); color: var(--ink); }
+  :global(.pic.pic--juego) .pic-estatico { display: none; }
+</style>

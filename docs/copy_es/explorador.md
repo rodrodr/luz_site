@@ -71,6 +71,9 @@ Encontrar
 <!-- explorador.indice.busquedas -->
 Búsquedas de muestra
 
+<!-- explorador.indice.pico -->
+¿Cuándo fue el pico?
+
 <!-- explorador.indice.leer -->
 Leer
 
@@ -273,6 +276,87 @@ Primera y última
 > cada entrada. La fecha va una vez, en la salvedad. Datos descargables: `busquedas.csv` (id, consulta, n, habla) con su
 > LÉAME (`fig.F29.que_mide`, `.denominador`, `.salvedad`). Si el componente usa `restoDe(lang, 'fig.F29')`, estas
 > claves ya salen en su orden.
+
+## 2 bis. ¿Cuándo fue el pico? (juego)
+
+> [nota de diseño] Juego de la petición del investigador (24-09-2026): `components/explorador/Pico.astro`, con los datos del laboratorio (`public/datos/laboratorio.json`). Diez términos; cinco por partida. Sin JS, una tabla.
+
+<!-- explorador.pico.titulo -->
+¿Cuándo fue el pico?
+
+<!-- explorador.pico.entrada -->
+La Tendencia del explorador cuenta, mes a mes, cuántas veces aparece un término. Adivine en qué mes se habló más de cada uno.
+
+<!-- explorador.pico.juego.reglas -->
+Tres puntos por el mes justo; dos si se queda a dos meses o menos; uno si se queda a seis.
+
+<!-- explorador.pico.juego.cuenta -->
+Término {{i}} de {{n}} · Puntos: {{p}}
+
+<!-- explorador.pico.juego.pregunta -->
+¿En qué mes se habló más de «{{termino}}»?
+
+<!-- explorador.pico.juego.anio -->
+El año
+
+<!-- explorador.pico.juego.mes -->
+El mes
+
+<!-- explorador.pico.juego.exacto -->
+¡En el mes justo!
+
+<!-- explorador.pico.juego.distancia -->
+Se ha quedado a {{n}} meses.
+
+<!-- explorador.pico.juego.distancia.uno -->
+Se ha quedado a un mes.
+
+<!-- explorador.pico.juego.pico -->
+El pico: {{mes}}, con {{n}} apariciones.
+
+<!-- explorador.pico.juego.leyenda -->
+Apariciones por mes. En color, el pico; en negro, su apuesta.
+
+<!-- explorador.pico.juego.siguiente -->
+[Siguiente]
+
+<!-- explorador.pico.juego.ver -->
+[Ver el resultado]
+
+<!-- explorador.pico.juego.resumen -->
+Ha sumado {{p}} de {{max}} puntos.
+
+<!-- explorador.pico.juego.nivel.0 -->
+Se enteró por la radio.
+
+<!-- explorador.pico.juego.nivel.1 -->
+Lee el Diario con unos meses de retraso.
+
+<!-- explorador.pico.juego.nivel.2 -->
+Buen olfato para la actualidad parlamentaria.
+
+<!-- explorador.pico.juego.nivel.3 -->
+Hemeroteca andante.
+
+<!-- explorador.pico.juego.otra -->
+[Otra partida]
+
+<!-- explorador.pico.juego.salvedad -->
+Cuenta las apariciones como la Tendencia del explorador: sin tildes ni mayúsculas, y las expresiones como frase exacta.
+
+<!-- explorador.pico.juego.tabla -->
+Los términos del juego y su pico
+
+<!-- explorador.pico.juego.tabla.col.termino -->
+Término
+
+<!-- explorador.pico.juego.tabla.col.pico -->
+Mes con más apariciones
+
+<!-- explorador.pico.juego.tabla.col.n -->
+Apariciones ese mes
+
+---
 
 ## 8.3 Leer como en el Diario
 

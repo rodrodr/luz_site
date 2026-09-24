@@ -1,5 +1,14 @@
 # Cambios · Luz y Taquígrafos (sitio)
 
+## 24-09-2026 · «¿Cuándo fue el pico?» en el Explorador
+
+- Nuevo apartado del Explorador, tras las búsquedas de muestra: un término («Casas Viejas», «amnistía», «Frente
+  Popular»…) y la pregunta de en qué mes se habló más de él. El lector elige año y mes; se dibuja la curva de
+  apariciones por mes con el pico y su apuesta. 3 puntos el mes justo, 2 a dos meses o menos, 1 a seis o menos; cinco
+  términos por partida, de diez. Datos: los del laboratorio de Inicio (`public/datos/laboratorio.json`), como los
+  cuenta la Tendencia del explorador; el pico es el mes con más apariciones. Sin JS, una tabla. Familia `pico.*` en
+  `claves_figura.py`. Pruebas: `tests/pico.spec.ts`.
+
 ## 24-09-2026 · «¿Quién lo dijo?» en Sesiones
 
 - Nuevo apartado de Sesiones, tras las puertas: una cita y cuatro diputados; el lector elige al autor y ve su

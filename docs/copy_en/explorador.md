@@ -41,6 +41,9 @@ Finding
 <!-- explorador.indice.busquedas -->
 Sample searches
 
+<!-- explorador.indice.pico -->
+When was the peak?
+
 <!-- explorador.indice.leer -->
 Reading
 
@@ -232,6 +235,87 @@ Summaries and comments
 
 <!-- fig.F29.tabla.col.fechas -->
 First and last
+
+## 2 bis. When was the peak? (game)
+
+> [design note] Game requested by the researcher (24-09-2026): `components/explorador/Pico.astro`, with the laboratory data. Ten terms; five per game. Without JS, a table.
+
+<!-- explorador.pico.titulo -->
+When was the peak?
+
+<!-- explorador.pico.entrada -->
+The explorer's Trend counts, month by month, how often a term appears. Guess in which month each one was talked about most.
+
+<!-- explorador.pico.juego.reglas -->
+Three points for the exact month; two if you are two months off or less; one if six or less.
+
+<!-- explorador.pico.juego.cuenta -->
+Term {{i}} of {{n}} · Points: {{p}}
+
+<!-- explorador.pico.juego.pregunta -->
+In which month was «{{termino}}» talked about most?
+
+<!-- explorador.pico.juego.anio -->
+The year
+
+<!-- explorador.pico.juego.mes -->
+The month
+
+<!-- explorador.pico.juego.exacto -->
+The exact month!
+
+<!-- explorador.pico.juego.distancia -->
+You were {{n}} months off.
+
+<!-- explorador.pico.juego.distancia.uno -->
+You were one month off.
+
+<!-- explorador.pico.juego.pico -->
+The peak: {{mes}}, with {{n}} appearances.
+
+<!-- explorador.pico.juego.leyenda -->
+Appearances per month. In colour, the peak; in black, your guess.
+
+<!-- explorador.pico.juego.siguiente -->
+[Next]
+
+<!-- explorador.pico.juego.ver -->
+[See the result]
+
+<!-- explorador.pico.juego.resumen -->
+You scored {{p}} of {{max}} points.
+
+<!-- explorador.pico.juego.nivel.0 -->
+Heard it on the radio.
+
+<!-- explorador.pico.juego.nivel.1 -->
+Reads the Diario a few months late.
+
+<!-- explorador.pico.juego.nivel.2 -->
+A good nose for parliamentary news.
+
+<!-- explorador.pico.juego.nivel.3 -->
+A walking newspaper archive.
+
+<!-- explorador.pico.juego.otra -->
+[Another game]
+
+<!-- explorador.pico.juego.salvedad -->
+Appearances are counted as the explorer's Trend counts them: without accents or capitals, and phrases as exact phrases.
+
+<!-- explorador.pico.juego.tabla -->
+The game's terms and their peak
+
+<!-- explorador.pico.juego.tabla.col.termino -->
+Term
+
+<!-- explorador.pico.juego.tabla.col.pico -->
+Month with most appearances
+
+<!-- explorador.pico.juego.tabla.col.n -->
+Appearances that month
+
+---
 
 ## 8.3 Reading as in the Diario
 
