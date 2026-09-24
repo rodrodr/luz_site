@@ -44,7 +44,7 @@ Busque, lea y cite lo que se dijo en las Cortes de la República, sin programar:
 ## 8.1 Cabecera
 
 <!-- explorador.antetitulo -->
-v3 · {{filas.v3}} intervenciones · unos {{explorador.gz.bytes|peso_dec0}} comprimidos · base construida el {{explorador.construido|fecha_corta}}
+{{filas.v3}} intervenciones · unos {{explorador.gz.bytes|peso_dec0}} comprimidos · base construida el {{explorador.construido|fecha_corta}}
 
 <!-- explorador.titulo -->
 ¿Qué hace el explorador, y qué no?
@@ -58,9 +58,6 @@ Se abre en su navegador; lo que busca y guarda se queda en su equipo.
 <!-- ↺ comun.boton.explorador -->
 [Abrir el explorador ↗]
 
-<!-- ↺ comun.fija.notabases -->
-Esta cifra sale de la edición del explorador (v3, {{filas.v3}} filas, sin depositar); la depositada es la V2 ({{filas.V2}} filas). Por qué hay dos →
-
 <!-- explorador.idioma -->
 El explorador está solo en español.
 
@@ -73,6 +70,9 @@ Encontrar
 
 <!-- explorador.indice.busquedas -->
 Búsquedas de muestra
+
+<!-- explorador.indice.pico -->
+¿Cuándo fue el pico?
 
 <!-- explorador.indice.leer -->
 Leer
@@ -98,7 +98,7 @@ Lo que no hace
 ## 8.2 Primero, encontrar
 
 <!-- explorador.encontrar.antetitulo -->
-v3 · {{habla.v3}} de las {{filas.v3}} intervenciones son de habla
+{{habla.v3}} de las {{filas.v3}} intervenciones son de habla
 
 <!-- explorador.encontrar.titulo -->
 Primero, encontrar
@@ -142,14 +142,13 @@ Contar una palabra no dice quién la defiende ni en qué tono.
 
 ## 8.2 bis · Búsquedas de muestra (F29)
 
-<!-- explorador.busquedas.antetitulo -->
-v3 {{v3.huella}} · recuentos del {{busquedas.fecha|fecha_corta}}
+<!-- explorador.busquedas.antetitulo -->recuentos del {{busquedas.fecha|fecha_corta}}
 
 <!-- explorador.busquedas.titulo -->
 Búsquedas de muestra
 
 <!-- explorador.busquedas.entrada -->
-Son consultas reales, contadas en la edición del explorador. Cópielas, péguelas en el buscador y compare el recuento.
+Son consultas reales, contadas en el explorador. Cópielas, péguelas en el buscador y compare el recuento.
 
 <!-- ↺ comun.fija.enlace -->
 El explorador no abre una búsqueda desde un enlace: cópiela y péguela en su buscador (tecla /).
@@ -164,7 +163,7 @@ Consultas y recuentos
 Cuántas intervenciones devuelve cada consulta en el buscador del explorador, con y sin «Solo lo que se habla».
 
 <!-- fig.F29.denominador -->
-Las {{filas.v3}} intervenciones de la edición del explorador (v3); con «Solo lo que se habla», {{habla.v3}}.
+Las {{filas.v3}} intervenciones del explorador; con «Solo lo que se habla», {{habla.v3}}.
 
 <!-- fig.F29.voto_femenino.consulta -->
 "voto femenino"
@@ -278,6 +277,87 @@ Primera y última
 > LÉAME (`fig.F29.que_mide`, `.denominador`, `.salvedad`). Si el componente usa `restoDe(lang, 'fig.F29')`, estas
 > claves ya salen en su orden.
 
+## 2 bis. ¿Cuándo fue el pico? (juego)
+
+> [nota de diseño] Juego de la petición del investigador (24-09-2026): `components/explorador/Pico.astro`, con los datos del laboratorio (`public/datos/laboratorio.json`). Diez términos; cinco por partida. Sin JS, una tabla.
+
+<!-- explorador.pico.titulo -->
+¿Cuándo fue el pico?
+
+<!-- explorador.pico.entrada -->
+La Tendencia del explorador cuenta, mes a mes, cuántas veces aparece un término. Adivine en qué mes se habló más de cada uno.
+
+<!-- explorador.pico.juego.reglas -->
+Tres puntos por el mes justo; dos si se queda a dos meses o menos; uno si se queda a seis.
+
+<!-- explorador.pico.juego.cuenta -->
+Término {{i}} de {{n}} · Puntos: {{p}}
+
+<!-- explorador.pico.juego.pregunta -->
+¿En qué mes se habló más de «{{termino}}»?
+
+<!-- explorador.pico.juego.anio -->
+El año
+
+<!-- explorador.pico.juego.mes -->
+El mes
+
+<!-- explorador.pico.juego.exacto -->
+¡En el mes justo!
+
+<!-- explorador.pico.juego.distancia -->
+Se ha quedado a {{n}} meses.
+
+<!-- explorador.pico.juego.distancia.uno -->
+Se ha quedado a un mes.
+
+<!-- explorador.pico.juego.pico -->
+El pico: {{mes}}, con {{n}} apariciones.
+
+<!-- explorador.pico.juego.leyenda -->
+Apariciones por mes. En color, el pico; en negro, su apuesta.
+
+<!-- explorador.pico.juego.siguiente -->
+[Siguiente]
+
+<!-- explorador.pico.juego.ver -->
+[Ver el resultado]
+
+<!-- explorador.pico.juego.resumen -->
+Ha sumado {{p}} de {{max}} puntos.
+
+<!-- explorador.pico.juego.nivel.0 -->
+Se enteró por la radio.
+
+<!-- explorador.pico.juego.nivel.1 -->
+Lee el Diario con unos meses de retraso.
+
+<!-- explorador.pico.juego.nivel.2 -->
+Buen olfato para la actualidad parlamentaria.
+
+<!-- explorador.pico.juego.nivel.3 -->
+Hemeroteca andante.
+
+<!-- explorador.pico.juego.otra -->
+[Otra partida]
+
+<!-- explorador.pico.juego.salvedad -->
+Cuenta las apariciones como la Tendencia del explorador: sin tildes ni mayúsculas, y las expresiones como frase exacta.
+
+<!-- explorador.pico.juego.tabla -->
+Los términos del juego y su pico
+
+<!-- explorador.pico.juego.tabla.col.termino -->
+Término
+
+<!-- explorador.pico.juego.tabla.col.pico -->
+Mes con más apariciones
+
+<!-- explorador.pico.juego.tabla.col.n -->
+Apariciones ese mes
+
+---
+
 ## 8.3 Leer como en el Diario
 
 <!-- explorador.leer.antetitulo -->
@@ -313,7 +393,7 @@ Son propuestas, no diálogos probados, y el propio explorador lo advierte. A vec
 ## 8.4 Después, enfocar: las bibliotecas
 
 <!-- explorador.bibliotecas.antetitulo -->
-v3 · {{bib.n}} bibliotecas · {{bib.entradas}} entradas
+{{bib.n}} bibliotecas · {{bib.entradas}} entradas
 
 <!-- explorador.bibliotecas.titulo -->
 Después, enfocar: las bibliotecas
@@ -529,14 +609,8 @@ Cada archivo lleva la cita del corpus. En el CSV va en las líneas de cabecera y
 <!-- explorador.llevar.copiar_pasaje -->
 Si copia un pasaje con el teclado, el portapapeles se lleva también la fuente.
 
-<!-- explorador.llevar.aviso -->
-La cita que pone el explorador dice «V2», pero sus datos y sus identificadores son de la v3. Para volver al archivo depositado, anote la fecha y el número de sesión.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
-
 <!-- explorador.llevar.enlace -->
-[Ver cómo citar cada edición]
+[Ver cómo citar]
 
 > [nota de diseño] `explorador.llevar.aviso` es el aviso de D-18, decidida el 23-09-2026 (opción b): el aviso se queda
 > en esta página, sin marca de pendiente, porque cambiar el explorador está fuera de este trabajo. Se retira solo si el
@@ -684,9 +758,3 @@ Exportar una búsqueda: el CSV lleva la cita en sus líneas de cabecera y en cad
 
 <!-- explorador.img.exportar.alt -->
 El diálogo de exportar del explorador: CSV con el texto completo, y un recuadro que explica que el archivo lleva la cita al principio y en cada fila.
-
-<!-- explorador.img.sobre.pie -->
-El panel «Sobre este corpus»: la cita dice V2, y el archivo que sirve es la v3, sin publicar.
-
-<!-- explorador.img.sobre.alt -->
-El panel «Sobre este corpus» del explorador: la cita termina en «Harvard Dataverse, V2» y, debajo, el archivo servido es la versión v3, resegmentada y sin publicar.

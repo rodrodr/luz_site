@@ -2,11 +2,11 @@
 /**
  * J · El explorador (plan § Plantilla J; narrativa § 15; brief `.impeccable/surfaces/src-pages-lang-explorador-astro.md`).
  * Qué hace la herramienta, enseñada DE VERDAD (doce capturas reales y consultas que funcionan) y, al lado, su límite.
- * Nueve apartados con índice lateral y banda fija. Sirve la edición v3: sello y NotaBases en la cabecera.
- *  · Primera vista: H1, entrada, garantía, [Abrir el explorador ↗] y NotaBases; debajo, la captura principal (la
+ * Nueve apartados con índice lateral y banda fija.
+ *  · Primera vista: H1, entrada, garantía y [Abrir el explorador ↗]; debajo, la captura principal (la
  *    búsqueda del voto femenino) en columnas 1–8 con su pie al margen.
  *  · Figuras: F29 (búsquedas de muestra, lista copiable) y F17 (las bibliotecas del proyecto, en el tiempo).
- *  · D-17: de Menciones, solo la matriz, con sus límites en recuadro. D-18: el aviso de la cita «V2» sobre datos v3.
+ *  · D-17: de Menciones, solo la matriz, con sus límites en recuadro.
  *  · Lo que NO hace va literal, al final, en su recuadro de trazo discontinuo (lo que la herramienta no trae).
  * Copy: `explorador.*` y `fig.F17.*`, `fig.F29.*` (docs/copy_es/explorador.md). Capturas: `src/assets/explorador/`.
  */
@@ -17,6 +17,7 @@ import Seccion from '../../components/Seccion.astro';
 import Captura from '../../components/Captura.astro';
 import BandaCTA from '../../components/BandaCTA.astro';
 import SinSitio from '../../components/SinSitio.astro';
+import Pico from '../../components/explorador/Pico.astro';
 import FigBusquedas from '../../components/FigBusquedas.astro';
 import FigBibliotecas from '../../components/FigBibliotecas.astro';
 import { meta } from '../../lib/pagina';
@@ -25,7 +26,6 @@ import { fmt } from '../../lib/cifras';
 import { primera, anclasTras, htmlFija, rotulosConDestino, conDestinos } from '../../lib/lectura';
 import { remata } from '../../lib/remata';
 import { PAGINAS, url } from '../../lib/rutas';
-import { PENDIENTES_DEL_INVESTIGADOR } from '../../config/enlaces';
 import { rutasPorIdioma, type Lang } from '../../lib/idiomas';
 import busqueda from '../../assets/explorador/busqueda.png';
 import tendencia from '../../assets/explorador/tendencia.png';
@@ -38,7 +38,6 @@ import lexico from '../../assets/explorador/lexico.png';
 import coocurrencias from '../../assets/explorador/coocurrencias.png';
 import menciones from '../../assets/explorador/menciones.png';
 import exportar from '../../assets/explorador/exportar.png';
-import sobre from '../../assets/explorador/sobre.png';
 
 export const getStaticPaths = rutasPorIdioma;
 const lang = Astro.params.lang as Lang;
@@ -51,12 +50,11 @@ const B = (k: string) => (existe(k) ? rotulosConDestino(lang, remata(tBloques(la
 /** Una línea de botones: cada [rótulo] recibe el destino de su rótulo único (comun.md § 3). */
 const botones = (k: string, destinos: string[] = []) => `<p class="botones">${conDestinos(lang, k, {}, destinos)}</p>` + tras(k);
 const S = [
-  { id: 'encontrar', x: 'encontrar' }, { id: 'muestra', x: 'busquedas' }, { id: 'leer', x: 'leer' },
+  { id: 'encontrar', x: 'encontrar' }, { id: 'muestra', x: 'busquedas' }, { id: 'pico', x: 'pico' }, { id: 'leer', x: 'leer' },
   { id: 'enfocar', x: 'bibliotecas' }, { id: 'coocurrencias', x: 'coocurrencias' }, { id: 'menciones', x: 'menciones' },
   { id: 'llevar', x: 'llevar' }, { id: 'empezar', x: 'empezar' }, { id: 'no-hace', x: 'limites' },
 ];
 const fechaCapturas = fmt.clave('explorador.capturas.fecha', lang, 'fecha_larga');
-const d18 = PENDIENTES_DEL_INVESTIGADOR['D-18'] === null;
 const PREGUNTAS = ['p1', 'p2', 'p3', 'p4'];
 const LIMITES = ['tono', 'focos', 'precision', 'cargos', 'externos'];
 const NO_HACE = ['equipo', 'significado', 'operadores', 'mismo_diputado', 'cabecera', 'filtros', 'nombres', 'palabras'];
@@ -65,7 +63,7 @@ const PASOS = ['paso1', 'paso2', 'paso3'];
 <Base lang={lang} ruta={PAGINAS.explorador} titulo={titulo} descripcion={descripcion}>
   <!-- Primera vista: la pregunta a la izquierda; la herramienta, de verdad, a la derecha (captura principal y su pie). -->
   <div class="primera-vista">
-    <CabezaPagina lang={lang} prefijo="explorador" extras={lang !== 'es' ? ['idioma'] : []} bases={['v3']} />
+    <CabezaPagina lang={lang} prefijo="explorador" extras={lang !== 'es' ? ['idioma'] : []} />
     <div class="heroe">
       <Captura lang={lang} src={busqueda} clave="explorador.img.busqueda" talla="ancha" primera />
       <p class="asiento heroe-fecha" set:html={t(lang, 'comun.captura.pie', { vars: { fecha: fechaCapturas } })} />
@@ -96,6 +94,10 @@ const PASOS = ['paso1', 'paso2', 'paso3'];
       </Seccion>
 
       <!-- 8.3 · Leer como en el Diario: la sección central; las cuatro capturas en fila de dos -->
+      <Seccion lang={lang} id="pico" prefijo={X('pico')} espera={['titulo', 'entrada']} excluir={['juego']} indice>
+        <Pico lang={lang} />
+      </Seccion>
+
       <Seccion lang={lang} id="leer" prefijo={X('leer')} resto={false} indice>
         <Fragment set:html={B(X('leer.lector'))} />
         <Fragment set:html={B(X('leer.acotaciones'))} />
@@ -152,18 +154,14 @@ const PASOS = ['paso1', 'paso2', 'paso3'];
         </div>
       </Seccion>
 
-      <!-- 8.7 · Llevárselo, citado: el aviso D-18 (la cita dice V2; los datos son de la v3) -->
+      <!-- 8.7 · Llevárselo, citado -->
       <Seccion lang={lang} id="llevar" prefijo={X('llevar')} resto={false} indice>
         <Fragment set:html={B(X('llevar.formatos'))} />
         <Fragment set:html={B(X('llevar.en_cada'))} />
         <Fragment set:html={B(X('llevar.copiar_pasaje'))} />
-        <div class="aviso-d18" data-pendiente={d18 ? 'D-18' : undefined}>
-          <Fragment set:html={B(X('llevar.aviso'))} />
-        </div>
-        <Fragment set:html={botones(X('llevar.enlace'), [url(lang, `${PAGINAS.versiones}#citar`)])} />
-        <div class="ancho par-capturas estrecha-al-lado">
+        <Fragment set:html={botones(X('llevar.enlace'), [url(lang, `${PAGINAS.datos}#citar`)])} />
+        <div class="ancho">
           <Captura lang={lang} src={exportar} clave="explorador.img.exportar" talla="media" />
-          <Captura lang={lang} src={sobre} clave="explorador.img.sobre" talla="estrecha" />
         </div>
       </Seccion>
 
@@ -179,7 +177,7 @@ const PASOS = ['paso1', 'paso2', 'paso3'];
       <Seccion lang={lang} id="no-hace" prefijo={X('limites')} resto={false} indice>
         <div class="ancho recuadro no-hace">
           <ul>{NO_HACE.map((k) => <li set:html={t(lang, X(`no_hace.${k}`))} />)}</ul>
-          <Fragment set:html={botones(X('no_hace.enlace'), [url(lang, `${PAGINAS.datos}#palabra`)])} />
+          <Fragment set:html={botones(X('no_hace.enlace'), [url(lang, `${PAGINAS.datos}#decision-3`)])} />
         </div>
       </Seccion>
     </div>
@@ -229,9 +227,6 @@ const PASOS = ['paso1', 'paso2', 'paso3'];
   .no-hace :global(.botones) { margin-top: var(--e4); }
   .no-hace :global(.fija) { border-top: 1px solid var(--hair); margin: var(--e4) 0 0; padding-top: var(--e3); max-width: var(--measure); }
 
-  .aviso-d18 { border-top: 1px solid var(--hair-2); padding-top: var(--e3); margin-block: var(--e3) var(--e4); }
-  .aviso-d18 :global(p) { font-weight: 600; }
-  .aviso-d18 :global(.fija) { font-weight: 400; border-top: 0; padding-top: 0; }
 
   .pasos { list-style: none; margin: var(--e4) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--e5) var(--col-gap); counter-reset: paso; }
   .pasos > li { counter-increment: paso; border-top: 1px solid var(--hair-2); padding-top: var(--e3); }

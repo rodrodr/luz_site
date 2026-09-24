@@ -1,0 +1,31 @@
+{
+ "_meta": {
+  "base": "v3",
+  "fuente": "corpus.sqlite del explorador, columna speech",
+  "fecha": "2026-09-24",
+  "criterio": "frase letra a letra en su fila, acotación justo detrás, fuera de la Presidencia; sin cuentas por clase (D-11)"
+ },
+ "categorias": ["aplausos","muy_bien","risas","rumores","protestas"],
+ "rondas": [
+  {"clave":"maura","cat":"risas","id":21037,"fecha":"1932-02-25","sesion":123,"rep_id":581,"orador":"Miguel Maura","partido":"DLR","frase":"Estoy hablando y diciendo mi opinión, si me lo permitís, y si no, también.","acotacion":"(Risas.)"},
+  {"clave":"azana","cat":"risas","id":50380,"fecha":"1933-02-03","sesion":289,"rep_id":89,"orador":"Manuel Azaña","partido":"AR","frase":"Ya es mucho que haya divorcio, porque supone que ha habido matrimonio","acotacion":"(Risas.)"},
+  {"clave":"chapaprieta","cat":"risas","id":105702,"fecha":"1935-07-16","sesion":223,"rep_id":229,"orador":"Joaquín Chapaprieta","partido":"RI","frase":"Pues no lo pueden saber, porque yo tampoco lo sé","acotacion":"(Risas.)"},
+  {"clave":"royo_caspe","cat":"risas","id":3622,"fecha":"1931-09-11","sesion":37,"rep_id":821,"orador":"Antonio Royo Villanova","partido":"Agrarios","frase":"Pero aunque no soy religioso, como soy algo creyente, recuerdo que la clave del Compromiso de Caspe fue San Vicente Ferrer, y me cuesta trabajo creer que un santo hiciese tales barbaridades.","acotacion":"(Grandes risas.)"},
+  {"clave":"royo_siento","cat":"aplausos","id":4319,"fecha":"1931-09-22","sesion":42,"rep_id":821,"orador":"Antonio Royo Villanova","partido":"Agrarios","frase":"Pues yo me siento, pido perdón a la Cámara y hemos terminado.","acotacion":"(Aplausos.)"},
+  {"clave":"prieto","cat":"aplausos","id":3674,"fecha":"1931-09-15","sesion":38,"rep_id":754,"orador":"Indalecio Prieto","partido":"PSOE","frase":"Consolidar la República hoy es levantar a España, y cumplir el deber de republicanos es cumplir netamente el deber de los españoles.","acotacion":"(Grandes aplausos.)"},
+  {"clave":"campoamor_enmienda","cat":"aplausos","id":18816,"fecha":"1932-02-09","sesion":113,"rep_id":175,"orador":"Clara Campoamor","partido":"PRR","frase":"A ruegos de la Comisión retiro la enmienda.","acotacion":"(Aplausos.)"},
+  {"clave":"casares","cat":"aplausos","id":116867,"fecha":"1936-05-19","sesion":29,"rep_id":209,"orador":"Santiago Casares Quiroga","partido":"AR","frase":"Los enemigos crecen, no es ya que ladren, es que intentan morder; y yo os digo, amigos: cabalguemos; pero a galope y a pasarlos por encima.","acotacion":"(Aplausos.)"},
+  {"clave":"asua","cat":"muy_bien","id":3006,"fecha":"1931-08-27","sesion":28,"rep_id":455,"orador":"Luis Jiménez de Asúa","partido":"PSOE","frase":"Somos nosotros, los socialistas, no un partido político, sino una civilización","acotacion":"(Muy bien.)"},
+  {"clave":"unamuno","cat":"muy_bien","id":8905,"fecha":"1931-10-22","sesion":61,"rep_id":960,"orador":"Miguel de Unamuno","partido":"ASR","frase":"Nuestros hijos, nuestros nietos, conocerán en España un partido antipedagogista, porque yo temo mucho a la pedantería de los que nos arrogamos el sacerdocio de la cultura.","acotacion":"(Muy bien, muy bien.)"},
+  {"clave":"nelken","cat":"muy_bien","id":52163,"fecha":"1933-02-28","sesion":302,"rep_id":653,"orador":"Margarita Nelken","partido":"PSOE","frase":"Por lo visto Cristo, dijo: \"Que vengan a mí los de legítimo matrimonio y los demás que se mueran de hambre\".","acotacion":"(Muy bien.)"},
+  {"clave":"gil_robles","cat":"muy_bien","id":69230,"fecha":"1933-12-19","sesion":6,"rep_id":380,"orador":"José María Gil Robles","partido":"CEDA","frase":"Después de esa unanimidad de criterio, ya puede venir el coro de despechados a decir que esta Cámara no es la representación de la voluntad nacional.","acotacion":"(Muy bien.)"},
+  {"clave":"companys","cat":"rumores","id":6093,"fecha":"1931-10-01","sesion":48,"rep_id":239,"orador":"Luis Companys","partido":"ERC","frase":"Ya sé que toda España no es Cataluña.","acotacion":"(Rumores.)"},
+  {"clave":"ortega","cat":"rumores","id":63526,"fecha":"1933-07-21","sesion":375,"rep_id":673,"orador":"José Ortega y Gasset","partido":"ASR","frase":"Deseo, por tanto, hacer constar que este precepto no obliga a ningún español, y que si alguna vez yo publico un periódico, no lo acataré.","acotacion":"(Rumores.)"},
+  {"clave":"besteiro","cat":"rumores","id":73492,"fecha":"1934-03-08","sesion":47,"rep_id":133,"orador":"Julián Besteiro","partido":"PSOE","frase":"Yo me figuro que van camino de ser cada vez más fervientes republicanos; pero ¿de qué República?","acotacion":"(Rumores.)"},
+  {"clave":"campoamor_ateneo","cat":"rumores","id":6077,"fecha":"1931-10-01","sesion":48,"rep_id":175,"orador":"Clara Campoamor","partido":"PRR","frase":"¿Quién nutrió la manifestación pro responsabilidad del Ateneo, con motivo del desastre de Annual, más que las mujeres, que iban en mayor número que los hombres?","acotacion":"(Rumores.)"},
+  {"clave":"balbontin","cat":"protestas","id":68865,"fecha":"1933-10-03","sesion":405,"rep_id":98,"orador":"José Antonio Balbontín","partido":"PRRS","frase":"Pido la palabra para una cuestión de orden.","acotacion":"(Grandes protestas.)"},
+  {"clave":"fuentes_pila","cat":"protestas","id":84218,"fecha":"1934-11-05","sesion":115,"rep_id":342,"orador":"Santiago Fuentes Pila","partido":"RE","frase":"Que conste eso en el Diario de Sesiones.","acotacion":"(Protestas.)"},
+  {"clave":"calvo_sotelo","cat":"protestas","id":83992,"fecha":"1934-07-04","sesion":112,"rep_id":170,"orador":"José Calvo Sotelo","partido":"RE","frase":"He aludido a las voluntades superiores, de cuyas vacilaciones son reflejo, evidentemente, las del Gobierno.","acotacion":"(Fuertes protestas.)"},
+  {"clave":"ibarruri","cat":"protestas","id":118178,"fecha":"1936-06-04","sesion":39,"rep_id":441,"orador":"Dolores Ibárruri","partido":"PCE","frase":"Sobre todo, sabiendo cómo se cotizan ciertas defensas.","acotacion":"(Fuertes protestas.)"}
+ ]
+}

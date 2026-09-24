@@ -44,6 +44,22 @@ export function pesoDecimal(bytes: number, lang: Lang, dec = 0): string {
   if (bytes < 1e6) return agrupado(bytes / 1e3, lang, dec) + NBSP + 'KB';
   return bytes >= 1e9 ? agrupado(bytes / 1e9, lang, Math.max(dec, 1)) + NBSP + 'GB' : agrupado(bytes / 1e6, lang, dec) + NBSP + 'MB';
 }
+/**
+ * «Más de…» (rediseño del 23-09-2026): el número redondeado HACIA ABAJO a UNA cifra significativa, para que valga en
+ * las dos ediciones (107.551 filas V2 y 121.700 v3 → «más de 100.000»). Desde el millón, en millones: 24.335.896 →
+ * «20 millones» · «20 million» (y no «24 millones», cifra vetada por ser la de la ayuda del explorador). Formato
+ * `redondo`; lo reproduce `exportador/formatos.py › redondo` carácter a carácter.
+ */
+export function redondo(x: number, lang: Lang): string {
+  const v = Math.trunc(x);
+  if (v <= 0) return agrupado(v, lang);
+  const p = 10 ** (String(v).length - 1);
+  const r = Math.floor(v / p) * p;
+  if (r < 1e6) return agrupado(r, lang);
+  const m = r / 1e6;
+  const txt = Number.isInteger(m) ? agrupado(m, lang) : agrupado(m, lang, 1);
+  return txt + NBSP + (lang === 'es' ? (m === 1 ? 'millón' : 'millones') : 'million');
+}
 const aFecha = (iso: string) => new Date(iso.slice(0, 10) + 'T00:00:00Z');
 export const fechaLarga = (iso: string, lang: Lang) =>
   new Intl.DateTimeFormat(LOCALE[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(aFecha(iso));
@@ -71,6 +87,7 @@ export function formatea(c: CifraFmt, lang: Lang, fmt = ''): string {
   if (/^peso[0-2]$/.test(fmt)) return peso(Number(v), lang, Number(fmt.slice(4)));
   if (fmt === 'pct') return porcentaje(Number(v), lang, c.dec ?? 2);
   if (/^pct[0-3]$/.test(fmt)) return porcentaje(Number(v), lang, Number(fmt.slice(3)));
+  if (fmt === 'redondo') return redondo(Number(v), lang);
   if (fmt === 'id') return sinAgrupar(Number(v), lang);
   if (fmt === 'n') return agrupado(Number(v), lang, Number.isInteger(Number(v)) ? 0 : (c.dec ?? 1));
   if (fmt === 'texto') return typeof v === 'object' && v ? String(v[lang] ?? v.es ?? '') : String(v);

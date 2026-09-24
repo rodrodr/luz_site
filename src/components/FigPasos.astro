@@ -19,12 +19,12 @@ import type { Lang } from '../lib/idiomas';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
-// Cada paso lleva al apartado que lo cuenta (anclas m01…m10 de la página).
+// Cada paso lleva al apartado que lo cuenta (anclas m01…m09 de la página).
 const PASOS = [
-  { n: 1, apartado: '10' },
+  { n: 1, apartado: '09' },
   { n: 2, apartado: '03' },
   { n: 3, apartado: '01' },
-  { n: 4, apartado: '06' },
+  { n: 4, apartado: '03' },
   { n: 5, apartado: '04' },
 ];
 const csv = recurso(rutaDatos('pasos', 'csv'));

@@ -44,7 +44,6 @@ export function destinoBoton(lang: Lang, clave: string, contexto = ''): string |
     'comun.boton.ver_diario': url(lang, PAGINAS.diario),
     'comun.boton.ver_metodo': url(lang, PAGINAS.metodo),
     'comun.boton.ver_columnas': url(lang, `${PAGINAS.datos}#columnas`),
-    'comun.boton.ver_versiones': url(lang, PAGINAS.versiones),
     'comun.boton.ver_explorador': url(lang, PAGINAS.explorador),
     'comun.boton.ver_afinidades': url(lang, PAGINAS.afinidades),
     'comun.boton.ir_inicio': url(lang),
@@ -54,14 +53,8 @@ export function destinoBoton(lang: Lang, clave: string, contexto = ''): string |
     // Rótulos que la fase 1 dejó sin fila en comun.md § 3 (REVISION_FASE1 P2-12). Sus claves son la PROPUESTA del
     // andamiaje (docs/peticiones/integrador-diseno.md): cuando el copy las cree, los corchetes las encuentran solas.
     'comun.boton.ver_citar': url(lang, `${PAGINAS.datos}#citar`),
-    'comun.boton.ver_citar_ediciones': url(lang, `${PAGINAS.versiones}#citar`),
     'comun.boton.ver_procedencia': recurso('datos/procedencia.csv'),
     'comun.boton.ver_calendario': url(lang, paginaDe('F01')),
-    'comun.boton.ver_palabras': url(lang, paginaDe('F33')),
-    'comun.boton.ver_destino_filas': url(lang, paginaDe('F18')),
-    'comun.boton.ver_fechas': url(lang, paginaDe('F25')),
-    'comun.boton.ver_quien_habla': url(lang, paginaDe('F07')),
-    'comun.boton.ver_auditoria_fechas': url(lang, `${PAGINAS.metodo}#m07`),
   };
   return D[clave] ?? null;
 }
@@ -73,15 +66,10 @@ export function destinoBoton(lang: Lang, clave: string, contexto = ''): string |
  */
 const PROVISIONALES: Record<string, string> = {
   'Ver cómo citar': 'comun.boton.ver_citar',
-  'Ver cómo citar cada edición': 'comun.boton.ver_citar_ediciones',
   'De dónde sale cada cifra': 'comun.boton.ver_procedencia',
+  'Where each number comes from': 'comun.boton.ver_procedencia',
   'Ver el calendario completo': 'comun.boton.ver_calendario',
   'Ver las figuras de Las Cortes': 'comun.boton.ver_calendario', // mismo destino: unificar con el anterior
-  'Ver cómo se cuentan las palabras': 'comun.boton.ver_palabras',
-  'Ver adónde va cada fila de la V2': 'comun.boton.ver_destino_filas',
-  'Ver las fechas corregidas': 'comun.boton.ver_fechas',
-  'Ver quién habla más según la edición': 'comun.boton.ver_quien_habla',
-  'Ver cómo se auditaron las fechas': 'comun.boton.ver_auditoria_fechas',
   'Ver qué significa cada columna': 'comun.boton.ver_columnas', // duplica [Ver qué trae cada columna]: unificar
 };
 
@@ -153,8 +141,6 @@ export function htmlFija(lang: Lang, clave: string): string {
     const base = clave.split('.').pop()!;
     return `<p class="pieza-sello"><span class="sello" data-sello="${escapa(base)}" data-base="${escapa(base)}">${t(lang, clave)}</span></p>`;
   }
-  if (clave === 'comun.fija.notabases') return `<p class="nota-bases" data-notabases>${enlaceFinal(lang, clave, url(lang, PAGINAS.versiones))}</p>`;
-  if (clave === 'comun.fija.readme') return `<p class="nota fija">${enlaceFinal(lang, clave, url(lang, PAGINAS.versiones))}</p>`;
   return `<p class="nota fija">${t(lang, clave)}</p>`;
 }
 

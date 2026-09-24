@@ -6,7 +6,7 @@
  *
  * Movimientos: cabecera (asiento con su base · H1-pregunta · entrada) → cómo leer el calendario, al margen (cuatro muestras
  * dibujadas y la regla, ANTES de la figura) → F01 completa, con el registro de las cinco etapas → legislaturas y etapas
- * (tabla tipográfica, NotaBases por la columna v3, la frase del margen) → lo que no está aquí.
+ * (tabla tipográfica y la frase del margen) → lo que no está aquí.
  */
 import Base from '../../../layouts/Base.astro';
 import SubNav from '../../../components/SubNav.astro';
@@ -15,8 +15,8 @@ import Seccion from '../../../components/Seccion.astro';
 import FigCalendario from '../../../components/FigCalendario.astro';
 import Registro from '../../../components/Registro.astro';
 import RegistroPuertas from '../../../components/RegistroPuertas.astro';
-import NotaBases from '../../../components/NotaBases.astro';
 import SinSitio from '../../../components/SinSitio.astro';
+import EstaOEsta from '../../../components/cortes/EstaOEsta.astro';
 import { meta } from '../../../lib/pagina';
 import { url, PAGINAS, ETAPAS } from '../../../lib/rutas';
 import { t, existe } from '../../../lib/i18n';
@@ -49,7 +49,7 @@ const NUM = new Set(['sesiones', 'filas', 'palabras', 'pct', 'diputados', 'filas
 ---
 <Base lang={lang} ruta={PAGINAS.cortes} titulo={titulo} descripcion={descripcion}>
   <SubNav lang={lang} grupo="cortes" actual={PAGINAS.cortes} />
-  <CabezaPagina lang={lang} prefijo="cortes" bases={['V2', 'proyecto']} />
+  <CabezaPagina lang={lang} prefijo="cortes" />
   <div class="contenedor cortes">
     <!-- 3 · F01 completa: una marca por sesión; las puertas con anillo; cada bloque abre su ficha -->
     <!-- «Cómo leer» (cuatro muestras dibujadas y la regla), ANTES de la figura y al margen de su entrada: era un H2 propio
@@ -77,7 +77,7 @@ const NUM = new Set(['sesiones', 'filas', 'palabras', 'pct', 'diputados', 'filas
       </nav>
     </Seccion>
 
-    <!-- 4 · Tres legislaturas, cinco etapas: tabla tipográfica con las filas v3 rotuladas (NotaBases) y el margen -->
+    <!-- 4 · Tres legislaturas, cinco etapas: tabla tipográfica y el margen -->
     <Seccion lang={lang} id="etapas" prefijo="cortes.etapas" espera={['titulo', 'entrada']} excluir={['tabla']}>
       <div class="fig-desliza tabla-etapas" tabindex="0" role="region" aria-labelledby="tabla-etapas-t">
         <table class="fig-tabla">
@@ -102,14 +102,17 @@ const NUM = new Set(['sesiones', 'filas', 'palabras', 'pct', 'diputados', 'filas
       </div>
       <p class="nota pie-tabla" set:html={o('cortes.etapas.tabla.pie')} />
       <p class="nota pie-tabla" set:html={o('cortes.etapas.tabla.pie_leg')} />
-      <NotaBases lang={lang} />
       {existe('cortes.margen') && <p class="al-margen margen-numero" set:html={t(lang, 'cortes.margen')} />}
     </Seccion>
 
     <!-- 5 · Lo que no está aquí -->
+    <Seccion lang={lang} id="esta-o-esta" prefijo="cortes.esta" espera={['titulo', 'entrada']} excluir={['juego']}>
+      <EstaOEsta lang={lang} />
+    </Seccion>
+
     <Seccion lang={lang} id="no-esta" prefijo="cortes.ausente" espera={['titulo']} />
   </div>
-  <SinSitio lang={lang} prefijo="cortes" usados={['cortes.antetitulo', 'cortes.titulo', 'cortes.entrada', 'cortes.leer', 'cortes.calendario', 'cortes.etapas', 'cortes.ausente', 'cortes.margen', 'cortes.etapa', 'cortes.puertas', 'cortes.subnav']} ignorar={['ficha', '1931', '1933', '1936', 'guerra', 'mexico', 'meta']} />
+  <SinSitio lang={lang} prefijo="cortes" usados={['cortes.antetitulo', 'cortes.titulo', 'cortes.entrada', 'cortes.leer', 'cortes.calendario', 'cortes.etapas', 'cortes.ausente', 'cortes.esta', 'cortes.margen', 'cortes.etapa', 'cortes.puertas', 'cortes.subnav']} ignorar={['ficha', '1931', '1933', '1936', 'guerra', 'mexico', 'meta']} />
 </Base>
 
 <style>

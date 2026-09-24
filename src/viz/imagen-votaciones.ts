@@ -98,7 +98,7 @@ export function imagenVotaciones(lang: Lang, site?: URL): string {
   const hh = huella('V2');
   const href = site ? new URL(url(lang, paginaDe('F26')), site).href : url(lang, paginaDe('F26'));
   const cita = existe('comun.cita.figura') ? plano(lang, 'comun.cita.figura', {
-    vars: { titulo: p(`${F}.titulo`), url: href, base: `${p('comun.sello.V2')}${hh.huella ? ` · ${hh.huella}` : ''}`, fecha: hh.fecha ?? '' },
+    vars: { titulo: p(`${F}.titulo`), url: href, base: `${p('comun.sello.base')}${hh.huella ? ` · ${hh.huella}` : ''}`, fecha: hh.fecha ?? '' },
   }) : href;
   for (const l of parte(cita, 130)) { txt(M, y, l, { f: MONO, t: 12, c: C.apagado }); y += 18; }
   const H = y + M - 18;

@@ -1,5 +1,136 @@
 # Cambios · Luz y Taquígrafos (sitio)
 
+## 24-09-2026 · «¿Izquierda o derecha?» en Método 07
+
+- Nuevo juego en «¿Qué significan partido, familia e ideología?»: una palabra («patria», «Iglesia», «Cataluña»,
+  «monarquía», «caciques», «fascismo», «España»…) y siete bancos, de EI a ED; el lector elige dónde sonó más y ve las
+  siete barras (apariciones por cada 10.000 palabras de las filas de cada ideología, sin la Presidencia). 3 puntos el
+  banco justo, 2 al lado, 1 a dos; seis palabras por partida, de doce. La salvedad dice que la ideología es la del
+  partido, que la extrema izquierda habla poco y su tasa se dispara, y que contar no dice el tono.
+- Datos: `exportador/modulos/izqder.py` → `src/data/izqder.json` (texto plegado, límites de palabra, denominador
+  `nwords`; se para si una palabra aparece menos de 100 veces). Familia `izqder.*` en `claves_figura.py`. Sin JS, una
+  tabla con las doce palabras y sus siete tasas. Pruebas: `tests/izqder.spec.ts`.
+
+## 24-09-2026 · «¿Cuándo fue el pico?» en el Explorador
+
+- Nuevo apartado del Explorador, tras las búsquedas de muestra: un término («Casas Viejas», «amnistía», «Frente
+  Popular»…) y la pregunta de en qué mes se habló más de él. El lector elige año y mes; se dibuja la curva de
+  apariciones por mes con el pico y su apuesta. 3 puntos el mes justo, 2 a dos meses o menos, 1 a seis o menos; cinco
+  términos por partida, de diez. Datos: los del laboratorio de Inicio (`public/datos/laboratorio.json`), como los
+  cuenta la Tendencia del explorador; el pico es el mes con más apariciones. Sin JS, una tabla. Familia `pico.*` en
+  `claves_figura.py`. Pruebas: `tests/pico.spec.ts`.
+
+## 24-09-2026 · «¿Quién lo dijo?» en Sesiones
+
+- Nuevo apartado de Sesiones, tras las puertas: una cita y cuatro diputados; el lector elige al autor y ve su
+  partido, su fecha y su fila. Ocho citas por partida, de autores distintos; al final, «Su puesto en la Cámara», del
+  público de la tribuna al presidente. Reutiliza las frases ya comprobadas de «El aplausómetro» y «¿Esta o esta?»,
+  solo las de veinte oradores conocidos. Sin JS, una tabla. Pruebas: `tests/quien.spec.ts`.
+
+## 24-09-2026 · «¿Esta o esta?» en Las Cortes; Afinidades sin versiones
+
+- Nuevo apartado de Las Cortes, antes de «Lo que no está»: dos frases del pleno sobre el mismo asunto, sin autor; el
+  lector firma una y se descubre quién dijo cada una (partido, familia, ideología, fecha y fila). Diez de las doce
+  parejas aprobadas por partida, con los lados barajados. Al final, «Su escaño»: el lugar en el eje de EI a ED (media
+  de las frases firmadas), la familia más firmada, el compañero de escaño y la lista de firmados, con la salvedad de
+  que familia e ideología son las del partido en la base. Sin JS, una tabla con las doce parejas.
+- Datos: `exportador/modulos/esta.py` → `src/data/esta.json`; cada trozo de frase se comprueba letra a letra en su
+  fila. Familia `esta.*` en `claves_figura.py`. Pruebas: `tests/esta.spec.ts`.
+- Afinidades Elegidas ya no nombra versiones en el texto: el sello es «Afinidades Elegidas (CGOCUS)», los pies de
+  figura dicen «CGOCUS · …» y desaparece «hay una versión corregida en preparación». La cita oficial de Dataverse no
+  se toca. La prueba de menciones de ediciones vigila también «V1.1».
+
+## 24-09-2026 · «El aplausómetro» en El Diario
+
+- Nuevo apartado entre «Luz y taquígrafos» y «Lo que el Diario calla»: una frase real, con su orador, su fecha y su
+  fila; el lector adivina qué anotó el taquígrafo (aplausos, «Muy bien», risas, rumores o protestas). Diez frases por
+  partida, dos de cada acotación, sacadas de un conjunto de veinte; al final, la Cámara le dedica una acotación según
+  sus aciertos. Sin JS, una tabla con las veinte frases y su acotación.
+- Datos: `exportador/modulos/aplausos.py` → `src/data/aplausos.json`. Cada frase se comprueba letra a letra en su fila,
+  con la acotación justo detrás y fuera de la Presidencia; si no cuadra, el exportador se para. Familia `aplausos.*`
+  en `claves_figura.py`.
+- Sin recuentos de acotaciones por clase ni podios: quedan para la 0.2 (D-11).
+- Pruebas: `tests/aplausos.spec.ts` (sin JS, la tabla; con JS, una partida entera en es y en; otra partida).
+- `docs/juegos/ESTA_O_ESTA_candidatas.md`: las parejas de «¿Esta o esta?» aprobadas por el investigador (las doce ★).
+
+## 2026-09-24 · la base corregida, sin ediciones; y «Corrija al Diario»
+
+**Huella del copy:** `src/i18n/es.json`, SHA-256 `779c96d8ee040475ebf74739a36718176b8a3544d74f0e66e7ae283d1e5010bc` (2.167 claves; antes,
+2.453).
+
+El investigador: «Sigues señalando la V2 como problemática. Esos son errores ya corregidos en la v3. "Cada columna, con
+su trampa" eso no es un titular. Solo describe las variables. No menciones siempre que hay problemas en la versión 2.»
+Y: «Cuando actualice la base con las correcciones, esos problemas ya no existirán.» El sitio presenta ahora UNA base, la
+corregida: no nombra ediciones (ni «V2» ni «v3», ni «edición depositada/del explorador») ni cuenta sus problemas.
+
+- **Fuera:** la página Versiones (y F07, F18, F25, F35), Método 06 «¿Por qué hay dos ediciones?» (y F12; Método queda en
+  nueve apartados, renumerados), Datos «Cinco maneras de contar "palabra"» (F33) y las decisiones 4 y 6 (quedan cuatro),
+  la sección «Dos ediciones, dos oradores» de la puerta del Estatuto (ahora «Azaña y el Estatuto de Cataluña»), las
+  chapas de edición (cabeceras y figuras), NotaBases (y su regla 3 en `audit-cifras.mjs`), la captura «Sobre este
+  corpus» del Explorador y las frases fijas ↺ 2 (V2/v3), ↺ 4, ↺ 11 y ↺ 13.
+- **Reescrito en neutro (es y en):** unas 380 unidades por reglas (`limpia_ediciones.py`, en el área de trabajo) y 130 a
+  mano. Las columnas de Datos se describen sin «trampas» («Qué dice cada columna»; F32 sin la columna «Dónde engaña»).
+  Método 06 (antes 07) cuenta cómo se fechó cada sesión, sin la V1. El pie ya no dice versiones. Las citas de un pasaje:
+  «Luz y Taquígrafos, fila N».
+- **Un id por fila:** F20 es una sola vista (el CSV); F26, F27, F28 y F30 enseñan un solo identificador.
+- **Juego nuevo, «Corrija al Diario»** (Método 03, petición del investigador): el lector corrige una fórmula de orador tal
+  como la leyó la máquina y, al corregirla, llega otra; nueve lecturas reales («El Sr PRESIDENTE:», «El Sr, PRESIDENTE:»,
+  «El Sr. PRESIDENT7E:», «La Srta. COMPOAMOR:», «El Sr. QL ROBLES:»…) y una trampa que no es errata («El señor
+  PRESIDENTE:», como la escriben los extractos de 1938 y 1939 y las sesiones de México). Remate con el tiempo del lector
+  y cuánto le llevaría revisar a ese ritmo las 2.460 fórmulas distintas; la de la Presidencia sale escrita de 32 maneras.
+  Sin JS, una tabla con las lecturas. Datos: `exportador/modulos/erratas.py` → `src/data/erratas.json` (sobre la base del
+  explorador; cada lectura se comprueba en ella). Componentes: `components/metodo/Erratas.astro` + `scripts/erratas.ts`.
+- **Exportador:** los archivos de las figuras retiradas ya no se escriben (`comun.py › RETIRADOS`); `claves_figura.py`,
+  con la familia `erratas.*` y sin las de las figuras retiradas; `procedencia.csv` rehecho.
+- **Pruebas:** la guarda «sin ediciones» recorre ahora TODAS las páginas en las dos lenguas (solo exime la cita oficial de
+  Dataverse, que lleva su versión, y el código); dos pruebas nuevas del juego (con y sin JS).
+
+Verificado: `astro check` (0 errores, 0 avisos) · check-i18n · formatos · build (46 páginas: 21 por lengua) ·
+`npm run audit` · `claves_figura.py` · Playwright 243/243.
+
+**Mientras no se deposite la base corregida** (y antes de publicar): las cifras salen de los datos exportados hoy, unas de
+la V2 depositada y otras de la base del explorador, así que conviven dos totales de filas (107.551 y 121.700) y algunas
+figuras aún reflejan la segmentación antigua (p. ej., F30 del Estatuto). Al depositarla: apuntar el exportador a ella y
+reexportar; revisar los nombres de columna y los ids literales de los fragmentos de código; retirar de `datos.py` y
+`metodo.py` los cálculos de las figuras retiradas. Bloqueos de publicación que ya estaban: siete frases del inglés de más
+de 30 palabras (`check-i18n --strict`) y el LÉAME de F05, F09, F19 y F20 sin `que_mide`/`denominador`.
+
+## 2026-09-23 · rediseño de Inicio: una infraestructura que se juega
+
+**Huella del copy:** `src/i18n/es.json`, SHA-256 `162c9aa22b398bd716ca528841b998b3619005eb587b9efa7aff42815d785582` (2.453 claves). Cambia `docs/copy_es/inicio.md` (y su borrador
+inglés); el resto del copy, igual que en el congelado de abajo.
+
+El investigador pidió una landing que presente la infraestructura, no un apéndice metodológico: menos texto, ninguna
+comparación de ediciones y gráficos interactivos que se manipulan y se juegan. Propuesta y decisiones:
+`docs/REDISENO_23-09.md` (decisiones 1–5 del § 8: landing y seis páginas · cifras redondas · «Pruebe una palabra» ·
+fichas de etapa en una página · el grito con tilde y sin la nota del OCR). La versión anterior queda en la etiqueta
+`v0.1-antes-del-rediseno` (commit `240b401`).
+
+- **Inicio, en siete bloques:** portada (hemiciclo, sin cambios; la leyenda se pliega en sus cuatro bloques) · la banda
+  «Luz y taquígrafos.» · «Más que una base de datos» (las seis piezas) · juego 1, **«¿Cuándo se habló de…?»**
+  (laboratorio de palabras con su calendario y los ocho momentos) · juego 2, **«¿Cuántos votaron sí?»** (seis votaciones
+  nominales para apostar) · juego 3, **la red de las firmas** (F21 en escaparate) · «Empiece hoy».
+- **Menos y más ligero:** 447 palabras de copy (tope nuevo en `tests/rutas.ts`: 450; antes, 700) y unas 8 pantallas a
+  1.440 px (antes, 11). Ni «V2» ni «v3» fuera de la cita oficial (prueba nueva, `tests/rediseno.spec.ts`).
+- **Datos nuevos:** `exportador/modulos/laboratorio.py` → `public/datos/laboratorio.json` (3.405 términos × 64 meses,
+  recontados sobre el índice FTS5 del explorador y comprobados contra él: tokens por intervención, `fts5vocab` y `MATCH`).
+  Se ejecuta con el exportador o suelto (`python3 exportador/modulos/laboratorio.py --db …`). El JSON se pide cuando la
+  sección se acerca a la pantalla.
+- **Formato nuevo `|redondo`** («más de…»): hacia abajo a una cifra significativa, para que valga en las dos ediciones
+  (`src/lib/formato.ts` y `exportador/formatos.py`, con siete pruebas nuevas en `formatos.json`). «Más de 20 millones de
+  palabras», no «24 millones», que sigue vetado.
+- **Componentes:** `components/inicio/Laboratorio.astro` + `scripts/laboratorio.ts`, `components/inicio/Apuesta.astro` +
+  `scripts/apuesta.ts`, geometría `viz/geom/laboratorio.ts`; `FiguraMarco` y `FigRed` aceptan `escaparate`.
+- **Reglas:** `PRODUCT.md` (principios 2 y 4 revisados, 6 nuevo) y `DESIGN.md` (cabecera del rediseño).
+- **Otras páginas:** conservan las claves `inicio.{puertas,f26,f01c,falta,fila}.*` que leen; la de componentes lee el
+  grito en `inicio.nombre.grito`. Lista blanca: «type 77» del borrador inglés de Método.
+
+Verificado: `npm run check` (astro check 0 errores, check-i18n, formatos) · build (48 páginas) · `npm run audit` ·
+Playwright 250/250 (las 245 de antes y 5 nuevas) · Inicio en STRICT: 447 de 450 palabras, 27 KB en gzip.
+
+Pendiente del rediseño (fases siguientes): la cabecera y las seis páginas (Momentos, «La República en las Cortes» con las
+cinco etapas, Datos, «Cómo se hizo» con Método, El Diario y Versiones), y la revisión del inglés.
+
 ## 2026-09-23 · español congelado
 
 **Huella del copy:** `src/i18n/es.json`, SHA-256

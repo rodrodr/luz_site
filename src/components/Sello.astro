@@ -1,8 +1,9 @@
 ---
 /**
- * Sello de base (frase fija ↺ 2): «Edición depositada (V2)» · «Edición del explorador (v3, sin depositar)» ·
- * «Metadatos del proyecto (no depositados; el explorador no los muestra)» · «Afinidades Elegidas (CGOCUS V1.1,
- * depositada)». Una sola redacción por base, en `comun.sello.<base>`.
+ * Sello de una fuente que no es la base: «Metadatos del proyecto (no depositados; el explorador no los muestra)» ·
+ * «Afinidades Elegidas (CGOCUS V1.1, depositada)» · los de Dataverse, el explorador y el croquis. Una sola redacción
+ * por fuente, en `comun.sello.<base>`. Las ediciones de la base (V2, v3) no tienen sello: el sitio presenta la base
+ * corregida y no habla de ediciones (24-09-2026).
  */
 import { t } from '../lib/i18n';
 import type { Lang } from '../lib/idiomas';
@@ -14,8 +15,7 @@ const { lang, base, class: clase } = Astro.props;
 <span class:list={['sello', clase]} data-sello={base} data-base={base} set:html={t(lang, `comun.sello.${base}`)} />
 
 <style>
-  /* Un asiento con su base: mono en caja normal, sin oro; el filete dice qué edición es (discontinuo: sin depositar). */
+  /* Un asiento con su fuente: mono en caja normal, sin oro. */
   .sello { display: inline-block; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--ink-2); border: 1px solid var(--hair-2); border-radius: var(--radio); padding: .2em .55em; }
-  .sello[data-sello='v3'] { border-style: dashed; }
   .sello[data-sello='afin'] { border-color: var(--accent); }
 </style>

@@ -1,122 +1,213 @@
 # Copy EN · Home (`/[lang]/`)
 
-> Traducción del copy español congelado (`docs/copy_es/inicio.md`), según `docs/03a_GLOSARIO_es-en.md`. Las notas de
-> diseño y el anexo siguen en el archivo español. Las citas del Diario quedan en español; sus traducciones, en
-> `docs/copy_en/_trad_pendientes.txt`.
+> **Status (23-09-2026).** DRAFT of the redesigned home page, translated from `docs/copy_es/inicio.md` (same keys, same
+> markers). English is reviewed after the Spanish is approved. The keys other pages still read are kept at the end.
 
 ---
 
 ## Metadata
 
 <!-- inicio.meta.titulo -->
-The Diarios de Sesiones of the Cortes, 1931–1945
+The Session Diaries of the Cortes, 1931–1945
 
 <!-- inicio.meta.descripcion -->
-The Diarios de Sesiones of the Cortes of the Second Republic, 1931–1945, in an open table: {{sesiones}} sessions to count, read and cite.
+Everything said in the Cortes of the Second Spanish Republic, 1931 to 1945: {{sesiones}} sessions to search, read, count and cite.
 
-## 0 · Cover
+## 0 · Front
 
 <!-- inicio.portada.pregunta -->
-How did a democracy that was still inventing itself hold its debates?
+How did a democracy argue while it was inventing itself?
 
 <!-- inicio.portada.entrada -->
-What was said in the Cortes of the Republic, session by session, from 1931 to 1945.
+Everything said in the Congress of the Second Spanish Republic, 1931 to 1945, ready to search, read, count and cite.
 
 <!-- inicio.portada.llamada -->
 [Open the explorer ↗] [Download the data]
 
-<!-- inicio.portada.asiento -->
-V2 · a CSV of {{dv.csv.bytes|peso}} · CC BY 4.0 · Harvard Dataverse
-
-## 1 · Thesis
-
-<!-- inicio.tesis.grito -->
-«Luz y taquigrafos.»
-
-<!-- inicio.tesis.grito.pie -->
-8 June 1934 · V2 {{fila.luz.id.V2|id}} · v3 {{fila.luz.id.v3|id}}. Without the accent, as in the row: this is how optical character recognition read it.
-
-<!-- inicio.tesis.contexto -->
-{{fila.luz.nwords|letra}} words with which a deputy interrupted the Chair, which had recalled that requests to prosecute deputies are dealt with in secret session. ‘Light and shorthand writers’ is the Spanish phrase for proceedings held in full public view.
-
-<!-- inicio.tesis.inabarcable -->
-What was said in public session was printed in the *Diario de Sesiones*, the official printed record of the Cortes' proceedings, except what the Chair ordered struck out. It was hardly ever secret: above all, it was too vast to read.
-
-<!-- inicio.tesis.resolucion -->
-Now the Diario is a table: one row each time the tagging recognises a printed speaker heading, with its date and session for returning to the printed page.
-
-<!-- inicio.tesis.remate -->
-Reading is not removed: it is deferred.
-
 <!-- inicio.credencial -->
-{{sesiones}} sessions · 1931–1945 · doi:10.7910/DVN/THQCMI · CC BY 4.0 · University of Salamanca · Harvard Dataverse
+{{sesiones}} sessions · more than {{filas.V2|redondo}} speeches · {{diputados.V2}} deputies · CC BY 4.0 · Harvard Dataverse
 
-## 2 · When did the Cortes meet?
+## 1 · The name
 
-<!-- inicio.calendario.titulo -->
-When did the Cortes meet?
+<!-- inicio.nombre.grito -->
+“Luz y taquígrafos.”
 
-<!-- inicio.calendario.entrada -->
-There are {{sesiones}} sessions, from {{sesion.primera|fecha_larga}} to {{sesion.ultima|fecha_larga}}.
+<!-- inicio.nombre.texto -->
+A deputy shouted it on 8 June 1934, when the Chair recalled that requests to prosecute deputies are dealt with in secret session. Almost everything else was printed in the Session Diary: more than {{palabras.V2|redondo}} words nobody could read in full. Now they can be searched.
 
-<!-- inicio.calendario.como -->
-Each block of the calendar is a stage and opens its page.
+## 2 · More than a database
 
-<!-- inicio.calendario.numeracion -->
-Within each legislature, the session numbering skips no number.
+<!-- inicio.piezas.titulo -->
+More than a database
 
-<!-- inicio.calendario.cotejo -->
-We have not checked whether the last session in the corpus is the last one that was printed.
+<!-- inicio.piezas.entrada -->
+An infrastructure for studying the Republic through its Parliament.
 
-<!-- inicio.calendario.guerra -->
-After 18 July 1936, {{sesiones.tras_18jul|letra}} sessions remain, and they are official extracts, not the full Diario.
+<!-- inicio.piezas.diario -->
+**The whole Diary.** All {{sesiones}} sessions, from the Constituent Cortes to exile in Mexico.
 
-<!-- inicio.calendario.palabras -->
-They account for {{palabras.tras_18jul.pct}} of the words in the corpus.
+<!-- inicio.piezas.fila -->
+**Every speech, a row.** Who speaks, when and in which session, with the text.
 
-### F01c · the compact calendar (Home's own labels)
+<!-- inicio.piezas.orador -->
+**Speakers, identified.** {{diputados.V2}} deputies, with their party and ideology.
+
+<!-- inicio.piezas.explorador -->
+**An explorer in the browser.** Search, collect, read and compare, with nothing to install.
+
+<!-- inicio.piezas.redes -->
+**Co-sponsorship networks.** Afinidades Elegidas: who signed with whom.
+
+<!-- inicio.piezas.abierto -->
+**Open and citable.** A CSV with a DOI and a CC BY 4.0 licence, ready for R or Python.
+
+## 3 · The word lab
+
+<!-- inicio.lab.titulo -->
+When did they talk about…?
+
+<!-- inicio.lab.entrada -->
+Type a word or pick one. The curve counts how often it was said each month; the calendar lights up where it was said most.
+
+<!-- inicio.lab.etiqueta -->
+Word or phrase
+
+<!-- inicio.lab.propuestas -->
+Try
+
+<!-- inicio.lab.comparar -->
+Compare
+
+<!-- inicio.lab.quitar -->
+Remove
+
+<!-- inicio.lab.ninguna -->
+“{palabra}” is not among the words in this lab. The explorer searches everything.
+
+<!-- inicio.lab.cargando -->
+Loading the words…
+
+<!-- inicio.lab.mes -->
+{mes}: {n} times, {d} per ten thousand words
+
+<!-- inicio.lab.nada -->
+{mes}: no sessions
+
+<!-- inicio.lab.nota -->
+Occurrences per ten thousand words, counted as the explorer counts them; months with little text are drawn thin.
+
+<!-- inicio.lab.calendario -->
+Each square is a month with sessions. The rings open eight moments.
+
+<!-- inicio.lab.alt -->
+Curve of the monthly occurrences of the chosen word, 1931 to 1945, and a calendar of the months with sessions shaded by that frequency.
+
+## 4 · How many voted yes?
+
+<!-- inicio.apuesta.titulo -->
+How many voted yes?
+
+<!-- inicio.apuesta.entrada -->
+Six roll-call votes, 1931 to 1936. Drag the bar to where you think the yes vote reached, then check it against the Diary.
+
+<!-- inicio.apuesta.su -->
+Your guess
+
+<!-- inicio.apuesta.si -->
+yes
+
+<!-- inicio.apuesta.no -->
+no
+
+<!-- inicio.apuesta.comprobar -->
+Check
+
+<!-- inicio.apuesta.todas -->
+Show all results
+
+<!-- inicio.apuesta.otra -->
+Play again
+
+<!-- inicio.apuesta.cerca -->
+Almost exact: {d} points off.
+
+<!-- inicio.apuesta.lejos -->
+{d} points off the result.
+
+<!-- inicio.apuesta.marcador -->
+{n} of {total} within ten points.
+
+<!-- inicio.apuesta.pie -->
+Results as printed in the Session Diary. [See the sessions and votes]
+
+## 5 · The signature network
+
+<!-- inicio.red.titulo -->
+Who signed with whom?
+
+<!-- inicio.red.entrada -->
+Each dot is a deputy; each line, a bill signed together. Switch legislature or search for a deputy.
+
+<!-- ↺ comun.boton.ver_afinidades --> [See Afinidades Elegidas]
+
+## 6 · Start today
+
+<!-- inicio.empezar.titulo -->
+Start today
+
+<!-- inicio.empezar.sin_programar -->
+**No programming.** The explorer, in your browser.
+
+<!-- ↺ comun.boton.explorador --> [Open the explorer ↗]
+
+<!-- inicio.empezar.programar -->
+**With R or Python.** The CSV, with its DOI.
+
+<!-- ↺ comun.boton.descargar --> [Download the data]
+
+<!-- inicio.empezar.redes -->
+**With networks.** Afinidades Elegidas: who signed with whom.
+
+<!-- ↺ comun.boton.ver_afinidades --> [See Afinidades Elegidas]
+
+<!-- inicio.empezar.remate -->
+The data are published. Ask your questions.
+
+---
+
+## Keys other pages read
+
+> The home page no longer shows them; kept as they were on 23-09-2026.
 
 <!-- inicio.f01c.titulo --> The sessions, month by month, by stage
+
 <!-- inicio.f01c.nota.etapa --> {{etapa}} · {{n}} sessions · opens its page
 
 <!-- inicio.f01c.alt -->
 Calendar laid out as a grid of years by months, grouped by stage. Each month with a session is shaded by the words printed; months without a session are outlined. The same data are in the Table tab.
 
 <!-- inicio.f01c.anota.I --> The only month without a session in the Constituent Cortes: January 1933.
+
 <!-- inicio.f01c.anota.II --> The month with the most words: {{f01.mes_max|mes}}, with {{f01.mes_max.palabras}} in {{f01.mes_max.sesiones}} sessions.
+
 <!-- inicio.f01c.anota.IV --> From the war, {{etapa.IV.sesiones|letra}} sessions remain in {{etapa.IV.meses}} months, and they are official extracts.
 
-## 3 · What was decided there?
-
-<!-- inicio.votaciones.titulo -->
-What was decided there?
-
-<!-- inicio.votaciones.entrada -->
-In at least {{voto.listas.sesiones}} sessions, the Diario prints roll-call votes, with the list of who said yes and who said no.
-
-<!-- inicio.votaciones.seleccion -->
-Here are {{voto.n|letra}}, selected, from 1931 to 1936.
-
-<!-- inicio.votaciones.mujeres -->
-On 1 October 1931, Article 34 of the draft Constitution, on votes for women, was approved by {{voto.161-121.si}} votes to {{voto.161-121.no}}.
-
-<!-- inicio.votaciones.salvedad -->
-The dataset does not hold the vote as a variable: the lists are in the text.
-
-### F26 · the votes, in their Home version (own labels)
-
 <!-- inicio.f26.titulo --> Roll-call votes, with the result printed in the Diario
+
 <!-- inicio.f26.v.161-121 --> Art. 34: votes for women
+
 <!-- inicio.f26.v.178-59 --> Art. 24: the religious question
+
 <!-- inicio.f26.v.368-466 --> The Constitution
+
 <!-- inicio.f26.v.318-19 --> The Agrarian Reform
+
 <!-- inicio.f26.v.314-24 --> The Statute of Catalonia
+
 <!-- inicio.f26.v.238-5 --> Art. 81: the removal from office of the President of the Republic
 
 <!-- inicio.f26.alt -->
 Horizontal bars with the yes and no votes of each roll-call vote, in date order. The same data, with the Diario's literal text, are in the Table tab.
-
-## 4 · What is a row?
 
 <!-- inicio.fila.titulo -->
 What is a row?
@@ -125,27 +216,22 @@ What is a row?
 «Ruego a la Cámara que guarde silencio.»
 
 <!-- inicio.fila.presidencia.pie -->
-The Chair · V2 {{fila.presidencia.id.V2|id}} · v3 {{fila.presidencia.id.v3|id}}
+The Chair
 
 <!-- inicio.fila.campoamor -->
 «Yo ruego a la Cámara que me escuche en silencio…»
 
 <!-- inicio.fila.campoamor.pie -->
-Clara Campoamor · V2 {{fila.campoamor.id.V2|id}} · v3 {{fila.campoamor.id.v3|id}}
+Clara Campoamor
 
 <!-- inicio.fila.dos -->
-They are two of the {{filas.V2}} rows of the deposited edition, one after the other in the session of 1 October 1931.
+They are two of the {{filas.V2}} rows of the dataset, one after the other in the session of 1 October 1931.
 
 <!-- inicio.fila.palabras -->
 The Chair's row has {{fila.presidencia.nwords|letra}} words; Campoamor's, {{fila.campoamor.nwords}}.
 
 <!-- inicio.fila.leccion -->
 Counting rows is not counting speech.
-
-<!-- ↺ comun.fija.ocr -->
-The text comes from optical character recognition and has not been corrected by hand.
-
-## 5 · Which session should I read first?
 
 <!-- inicio.puertas.titulo -->
 Which session should I read first?
@@ -154,34 +240,55 @@ Which session should I read first?
 Each moment has its own page, with its quotations and how to read it in full in the explorer.
 
 <!-- inicio.puertas.sufragio-1931.fecha --> 1-X-1931
+
 <!-- inicio.puertas.sufragio-1931.que --> Votes for women
-<!-- inicio.puertas.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} rows (V2)
+
+<!-- inicio.puertas.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} rows
+
 <!-- inicio.puertas.cuestion-religiosa-1931.fecha --> 13-X-1931
+
 <!-- inicio.puertas.cuestion-religiosa-1931.que --> «España ha dejado de ser católica»
-<!-- inicio.puertas.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} rows (V2)
+
+<!-- inicio.puertas.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} rows
+
 <!-- inicio.puertas.estatuto-1932.fecha --> 27-V-1932
-<!-- inicio.puertas.estatuto-1932.que --> Azaña's speech, under another speaker's name
-<!-- inicio.puertas.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} rows (V2)
+
+<!-- inicio.puertas.estatuto-1932.que --> The Statute of Catalonia
+
+<!-- inicio.puertas.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} rows
+
 <!-- inicio.puertas.casas-viejas-1933.fecha --> 2-II-1933
+
 <!-- inicio.puertas.casas-viejas-1933.que --> Casas Viejas
-<!-- inicio.puertas.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} rows (V2)
+
+<!-- inicio.puertas.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} rows
+
 <!-- inicio.puertas.pistola-1934.fecha --> 4-VII-1934
+
 <!-- inicio.puertas.pistola-1934.que --> Prieto's pistol
-<!-- inicio.puertas.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} rows (V2)
+
+<!-- inicio.puertas.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} rows
+
 <!-- inicio.puertas.antesala-1936.fecha --> 16-VI and 1-VII-1936
+
 <!-- inicio.puertas.antesala-1936.que --> The prelude
-<!-- inicio.puertas.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} and {{sesion.1936-07-01-54.filas}} rows (V2)
+
+<!-- inicio.puertas.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} and {{sesion.1936-07-01-54.filas}} rows
+
 <!-- inicio.puertas.figueres-1939.fecha --> 1-II-1939
+
 <!-- inicio.puertas.figueres-1939.que --> Figueres
-<!-- inicio.puertas.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} rows (V2)
+
+<!-- inicio.puertas.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} rows
+
 <!-- inicio.puertas.mexico-1945.fecha --> 17-VIII and 7–9-XI-1945
+
 <!-- inicio.puertas.mexico-1945.que --> Mexico
-<!-- inicio.puertas.mexico-1945.filas --> {{puerta.mexico-1945.filas}} rows (V2)
+
+<!-- inicio.puertas.mexico-1945.filas --> {{puerta.mexico-1945.filas}} rows
 
 <!-- inicio.puertas.salvedad -->
 Their presence here does not validate their content: the digitised minutes of 1 October 1931 lost their end in optical character recognition.
-
-## 6 · What does the dataset not hold?
 
 <!-- inicio.falta.titulo -->
 What does the dataset not hold?
@@ -206,41 +313,3 @@ One derived dataset already exists: Afinidades Elegidas, who co-signed with whom
 
 <!-- inicio.falta.usted -->
 This is where you come in.
-
-## 7 · Where do I start?
-
-<!-- inicio.empezar.titulo -->
-Where do I start?
-
-<!-- inicio.empezar.entrada -->
-Choose by what you already know how to do.
-
-<!-- ↺ comun.fija.formulario -->
-Before you download, Harvard Dataverse will ask for your name, email address and institution.
-
-<!-- ↺ comun.fija.formulario.motivo -->
-We use these details to learn who uses the dataset and for what, so that we can improve it and announce updates.
-
-<!-- inicio.empezar.sin_programar -->
-**Without programming.** The data for each figure, in its Data tab, or the explorer: about {{explorador.gz.bytes|peso_dec0}} compressed the first time, no form.
-
-<!-- ↺ comun.fija.explorador -->
-It serves the v3 edition, not deposited; it needs a computer.
-
-<!-- ↺ comun.boton.explorador --> [Open the explorer ↗]
-
-<!-- inicio.empezar.programar -->
-**With R or Python.** The deposited CSV: {{dv.csv.bytes|peso}}.
-
-<!-- ↺ comun.boton.descargar --> [Download the data]
-
-<!-- inicio.empezar.redes -->
-**With network methods.** Afinidades Elegidas: who co-signed with whom.
-
-<!-- ↺ comun.boton.ver_afinidades --> [See Afinidades Elegidas]
-
-<!-- inicio.empezar.remate -->
-The data are published. Ask your questions.
-
-<!-- inicio.empezar.salvedad -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.

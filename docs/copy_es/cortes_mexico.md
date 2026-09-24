@@ -53,7 +53,7 @@ Una promesa, un Gobierno y la lista de quienes ya no estaban, dichos con las pal
 <!-- cortes.mexico.hoy.buscar.consulta --> "Diputación Permanente"
 
 <!-- cortes.mexico.hoy.buscar.recuento -->
-Con esos filtros, la consulta da {{cortes.mexico.consulta.diputacion_permanente.n}} intervenciones (v3), contando todas las filas. Salen en {{cortes.mexico.consulta.diputacion_permanente.sesiones|letra}} de las {{etapa.V.sesiones|letra}} sesiones.
+Con esos filtros, la consulta da {{cortes.mexico.consulta.diputacion_permanente.n}} intervenciones, contando todas las filas. Salen en {{cortes.mexico.consulta.diputacion_permanente.sesiones|letra}} de las {{etapa.V.sesiones|letra}} sesiones.
 
 <!-- cortes.mexico.hoy.sesion -->
 **Abrir una sesión.** Ponga el 17 de agosto de 1945 en Desde y en Hasta, abra una intervención y pulse `s`: tendrá la sesión de la promesa entera.
@@ -73,7 +73,7 @@ Con esos filtros, la consulta da {{cortes.mexico.consulta.diputacion_permanente.
 {{etapa.V.sesiones}} sesiones, de enero a noviembre de 1945, en la Ciudad de México.
 
 <!-- cortes.mexico.cifras.palabras -->
-{{etapa.V.palabras}} palabras en la edición depositada: el {{etapa.V.palabras.pct|pct2}} del corpus.
+{{etapa.V.palabras}} palabras en la base: el {{etapa.V.palabras.pct|pct2}} del corpus.
 
 <!-- cortes.mexico.cifras.diputados -->
 {{etapa.V.diputados}} diputados toman la palabra, contando a quien preside.
@@ -88,16 +88,16 @@ Con esos filtros, la consulta da {{cortes.mexico.consulta.diputacion_permanente.
 <!-- cortes.mexico.contexto.1.titulo --> Volver a reunirse (10 de enero)
 
 <!-- cortes.mexico.contexto.1.a -->
-La primera sesión escucha la relación de acuerdos de la Diputación Permanente «de 2 de febrero de 1939 a 9 de enero de 1945». Son {{cortes.mexico.dp.acuerdos}} acuerdos, de París a México (v3 {{fila.mexico.relacion.v3|id}}, solo en la v3).
+La primera sesión escucha la relación de acuerdos de la Diputación Permanente «de 2 de febrero de 1939 a 9 de enero de 1945». Son {{cortes.mexico.dp.acuerdos}} acuerdos, de París a México.
 
 <!-- cortes.mexico.contexto.1.b -->
-En el primero, la Diputación se da «por enterada» de la dimisión de Azaña como Presidente de la República (v3 {{fila.mexico.dimision_azana.v3|id}}, solo en la v3).
+En el primero, la Diputación se da «por enterada» de la dimisión de Azaña como Presidente de la República.
 
 <!-- cortes.mexico.contexto.1.c -->
-Después se lee la lista de diputados fallecidos desde julio de 1936: {{cortes.mexico.fallecidos.n}} nombres. El primero es el de Azaña (V2 {{fila.mexico.fallecidos.V2|id}} · v3 {{fila.mexico.fallecidos.v3|id}}).
+Después se lee la lista de diputados fallecidos desde julio de 1936: {{cortes.mexico.fallecidos.n}} nombres. El primero es el de Azaña.
 
 <!-- cortes.mexico.contexto.1.d -->
-Martínez Barrio recuerda la noche de Figueres: «celebrábamos las exequias temporales de la República Española» (V2 {{fila.mexico.exequias.V2|id}} · v3 {{fila.mexico.exequias.v3|id}}).
+Martínez Barrio recuerda la noche de Figueres: «celebrábamos las exequias temporales de la República Española».
 
 > [nota de diseño] El primer acuerdo dice «Darse por enterada de la dimisión del Excelentísimo señor Presidente de la
 > República, don Manuel Azaña Díaz» (París, 3 de marzo de 1939): el copy cita solo «por enterada». Los acuerdos se
@@ -108,10 +108,10 @@ Martínez Barrio recuerda la noche de Figueres: «celebrábamos las exequias tem
 <!-- cortes.mexico.contexto.2.titulo --> Una promesa (17 de agosto)
 
 <!-- cortes.mexico.contexto.2.a -->
-Preside Fernández Clérigo. El orden del día dice: «Promesa del Excmo. señor don Diego Martínez Barrio, Presidente de las Cortes, como Presidente interino de la República Española» (V2 {{fila.mexico.orden_promesa.V2|id}} · v3 {{fila.mexico.orden_promesa.v3|id}}).
+Preside Fernández Clérigo. El orden del día dice: «Promesa del Excmo. señor don Diego Martínez Barrio, Presidente de las Cortes, como Presidente interino de la República Española».
 
 <!-- cortes.mexico.contexto.2.b -->
-A la fórmula de la promesa, Martínez Barrio responde: «Si, prometo» (V2 {{fila.mexico.si_prometo.V2|id}} · v3 {{fila.mexico.si_prometo.v3|id}}).
+A la fórmula de la promesa, Martínez Barrio responde: «Si, prometo».
 
 > [nota de diseño] Nunca «elección»: el Diario dice «promesa … como Presidente interino» (discrepancia 31 del plan).
 > «Si, prometo» va sin tilde, como en las dos filas. Debajo, `cortes.ficha.contexto.puerta` → `mexico-1945`.
@@ -121,16 +121,16 @@ A la fórmula de la promesa, Martínez Barrio responde: «Si, prometo» (V2 {{fi
 <!-- cortes.mexico.contexto.3.titulo --> Un Gobierno (7 y 8 de noviembre)
 
 <!-- cortes.mexico.contexto.3.a -->
-Giral presenta «el primer Gobierno de la República que ha sido posible instrumentar constitucionalmente» desde que salieron de España. Habla {{cortes.mexico.giral.palabras}} palabras (V2 {{fila.mexico.giral.V2|id}} · v3 {{fila.mexico.giral.v3|id}}).
+Giral presenta «el primer Gobierno de la República que ha sido posible instrumentar constitucionalmente» desde que salieron de España. Habla {{cortes.mexico.giral.palabras}} palabras.
 
 <!-- cortes.mexico.contexto.3.b -->
-Lamoneda anuncia su voto contrario: «No otorgaremos, pues, la confianza al Gobierno» (V2 {{fila.mexico.lamoneda.V2|id}} · v3 {{fila.mexico.lamoneda.v3|id}}). La confianza se aprueba «por aclamación» (V2 {{fila.mexico.aclamacion.V2|id}} · v3 {{fila.mexico.aclamacion.v3|id}}).
+Lamoneda anuncia su voto contrario: «No otorgaremos, pues, la confianza al Gobierno». La confianza se aprueba «por aclamación».
 
 <!-- cortes.mexico.contexto.3.c -->
-Al día siguiente se debate el segundo punto del orden del día: «las circunstancias que impiden con carácter de fuerza mayor la convocatoria de elecciones» presidenciales (V2 {{fila.mexico.fuerza_mayor.V2|id}} · v3 {{fila.mexico.fuerza_mayor.v3|id}}).
+Al día siguiente se debate el segundo punto del orden del día: «las circunstancias que impiden con carácter de fuerza mayor la convocatoria de elecciones» presidenciales.
 
 <!-- cortes.mexico.contexto.3.d -->
-La propuesta que aprueba la declaración del Gobierno sobre ese punto sale por {{cortes.mexico.voto_8nov.si}} votos a favor y ninguno en contra, en votación ordinaria (V2 {{fila.mexico.voto_8nov.V2|id}} · v3 {{fila.mexico.voto_8nov.v3|id}}).
+La propuesta que aprueba la declaración del Gobierno sobre ese punto sale por {{cortes.mexico.voto_8nov.si}} votos a favor y ninguno en contra, en votación ordinaria.
 
 > [nota de diseño] «Desde que salieron de España» resume la frase de Giral en la misma fila: «desde el día en que el
 > infortunio nos hizo cruzar la frontera de nuestra patria amada».
@@ -140,13 +140,13 @@ La propuesta que aprueba la declaración del Gobierno sobre ese punto sale por {
 <!-- cortes.mexico.contexto.4.titulo --> El Estatuto gallego y el cierre (9 de noviembre)
 
 <!-- cortes.mexico.contexto.4.a -->
-La última sesión discute si se forma una comisión para el Estatuto de Galicia (V2 {{fila.mexico.comision_estatuto.V2|id}} · v3 {{fila.mexico.comision_estatuto.v3|id}}). Suárez Picallo cuenta que salió «de Santiago de Chile para asistir a estas sesiones» (V2 {{fila.mexico.santiago_chile.V2|id}} · v3 {{fila.mexico.santiago_chile.v3|id}}).
+La última sesión discute si se forma una comisión para el Estatuto de Galicia. Suárez Picallo cuenta que salió «de Santiago de Chile para asistir a estas sesiones».
 
 <!-- cortes.mexico.contexto.4.b -->
-Prieto se opone a formarla. Al final, Giral pide dar «esta satisfacción moral a nuestros compañeros los Diputados gallegos», y la minoría socialista accede (V2 {{fila.mexico.satisfaccion.V2|id}} · v3 {{fila.mexico.satisfaccion.v3|id}}; V2 {{fila.mexico.accede.V2|id}} · v3 {{fila.mexico.accede.v3|id}}).
+Prieto se opone a formarla. Al final, Giral pide dar «esta satisfacción moral a nuestros compañeros los Diputados gallegos», y la minoría socialista accede.
 
 <!-- cortes.mexico.contexto.4.c -->
-Jiménez de Asúa cierra agradeciendo «a México, a su Gobierno, a su Prensa y a su pueblo» (V2 {{fila.mexico.gracias_mexico.V2|id}} · v3 {{fila.mexico.gracias_mexico.v3|id}}).
+Jiménez de Asúa cierra agradeciendo «a México, a su Gobierno, a su Prensa y a su pueblo».
 
 > [nota de diseño] La comisión: «una Comisión especial para dictamar [sic] sobre el Estatuto autónómico de la Región
 > gallega» (V2 107466); el copy la resume. Quien cierra es la Presidencia de la sesión, que el sumario da a Jiménez de
@@ -186,13 +186,13 @@ La banda de Gobiernos pasa del de Negrín al de Giral. El corpus solo dice que G
 ## Quién tomó la palabra
 
 <!-- cortes.mexico.palabra.f05 -->
-Sin contar la Presidencia, José Giral encabeza la palabra de la etapa: {{oradores.etapa.V.1.pal}} palabras de habla (v3).
+Sin contar la Presidencia, José Giral encabeza la palabra de la etapa: {{oradores.etapa.V.1.pal}} palabras de habla.
 
 <!-- cortes.mexico.palabra.f05_siguen -->
 Le siguen Indalecio Prieto y Luis Fernández Clérigo.
 
 <!-- cortes.mexico.palabra.f09 -->
-Por familias, los republicanos se llevan el {{familias.etapa.V.republicanos.pct|pct1}} de las palabras sin Presidencia (V2), y los socialistas, el {{familias.etapa.V.socialista.pct|pct1}}.
+Por familias, los republicanos se llevan el {{familias.etapa.V.republicanos.pct|pct1}} de las palabras sin Presidencia, y los socialistas, el {{familias.etapa.V.socialista.pct|pct1}}.
 
 > [nota de diseño] F05 (v3) lleva NotaBases (↺ 13). Guardas: `oradores.etapa.V.1…3.rep_id`.
 
@@ -203,7 +203,7 @@ Por familias, los republicanos se llevan el {{familias.etapa.V.republicanos.pct|
 ## Debates preparados en el explorador
 
 <!-- cortes.mexico.debates.entrada -->
-El explorador trae un debate preparado de esta etapa (v3):
+El explorador trae un debate preparado de esta etapa:
 
 <!-- cortes.mexico.debates.lista -->
 Las Cortes en el exilio
@@ -213,16 +213,13 @@ Las Cortes en el exilio
 ## Antes de usarla
 
 <!-- cortes.mexico.antes.cuadernillos -->
-Son extractos oficiales, impresos en cuadernillos en México por «B. Costa i Amic», según la carátula del volumen (v3 {{fila.mexico.costa_amic.v3|id}}, solo en la v3). Sus páginas no están verificadas.
-
-<!-- cortes.mexico.antes.prieto -->
-El discurso de Prieto del 8 de noviembre es una sola fila en la V2, con {{cortes.mexico.prieto_8nov.palabras}} palabras. La v3 lo parte en dos (V2 {{fila.mexico.prieto_8nov.V2|id}} · v3 {{fila.mexico.prieto_8nov.v3|id}} y {{fila.mexico.prieto_8nov_b.v3|id}}).
+Son extractos oficiales, impresos en cuadernillos en México por «B. Costa i Amic», según la carátula del volumen. Sus páginas no están verificadas.
 
 <!-- cortes.mexico.antes.no_esta -->
-Lo que no está: la carátula enumera reuniones de la Diputación Permanente en México. Avisa de que «no se dispone de los textos ni en forma de fotocopia» (v3 {{fila.mexico.dp_sin_textos.v3|id}}, solo en la v3).
+Lo que no está: la carátula enumera reuniones de la Diputación Permanente en México. Avisa de que «no se dispone de los textos ni en forma de fotocopia».
 
 <!-- cortes.mexico.antes.paris -->
-Tampoco están las que celebró en París. Una nota del volumen de la guerra dice que el tomo reunía «las cuatro de la Diputación Permanente, celebradas en París» (V2 {{fila.guerra.paris.V2|id}} · v3 {{fila.guerra.paris.v3|id}}).
+Tampoco están las que celebró en París. Una nota del volumen de la guerra dice que el tomo reunía «las cuatro de la Diputación Permanente, celebradas en París».
 
 <!-- ↺ comun.fija.ocr -->
 El texto sale del reconocimiento óptico y no está corregido a mano.
@@ -242,7 +239,7 @@ El texto sale del reconocimiento óptico y no está corregido a mano.
 ## Cómo citar
 
 <!-- cortes.mexico.citar.sesion -->
-*Extracto oficial de las sesiones de Cortes celebradas en México*, núm. {{sesion.1945-08-17-71.diario|id}}, 17 de agosto de 1945. En Luz y Taquígrafos (V2), filas {{sesion.1945-08-17-71.id.desde|id}} a {{sesion.1945-08-17-71.id.hasta|id}}.
+*Extracto oficial de las sesiones de Cortes celebradas en México*, núm. {{sesion.1945-08-17-71.diario|id}}, 17 de agosto de 1945. En Luz y Taquígrafos, filas {{sesion.1945-08-17-71.id.desde|id}} a {{sesion.1945-08-17-71.id.hasta|id}}.
 
 <!-- ↺ cortes.guerra.citar.sin_paginas -->
 Estos extractos no tienen páginas verificadas: cítelos por su número y su fecha.

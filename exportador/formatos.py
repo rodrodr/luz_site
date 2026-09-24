@@ -66,6 +66,7 @@ FORMATOS = {
     "mes": "mes y año: «octubre de 1931» · «October 1931»",
     "anio": "solo el año, sin agrupar: «1931»",
     "texto": "el valor tal cual",
+    "redondo": "HACIA ABAJO a una cifra significativa, para «más de…» (vale en las dos ediciones): «100.000», «20 millones»",
 }
 
 
@@ -97,6 +98,20 @@ def peso(b, lang: str = "es", dec: int = 1) -> str:
     if mb < 1:
         return decimal(b / 1024, lang, dec) + NBSP + "KB"
     return decimal(mb, lang, dec) + NBSP + "MB"
+
+
+def redondo(x, lang: str = "es") -> str:
+    """«Más de…»: HACIA ABAJO a una cifra significativa; desde el millón, en millones (`formato.ts › redondo`)."""
+    v = int(float(x))
+    if v <= 0:
+        return entero(v, lang)
+    p = 10 ** (len(str(v)) - 1)
+    r = (v // p) * p
+    if r < 1_000_000:
+        return entero(r, lang)
+    m = r / 1_000_000
+    txt = entero(m, lang) if float(m).is_integer() else decimal(m, lang, 1)
+    return txt + NBSP + (("millón" if m == 1 else "millones") if lang == "es" else "million")
 
 
 def _fecha(v) -> dt.date:
@@ -139,6 +154,8 @@ def formatear(c: dict, fmt: str = "", lang: str = "es") -> str:
         return fecha_corta(v, lang)
     if fmt == "mes":
         return mes(v, lang)
+    if fmt == "redondo":
+        return redondo(v, lang)
     m = re.fullmatch(r"(peso|pct)(\d)?", fmt)
     if m or t in ("peso", "pct"):
         tipo = m.group(1) if m else t
@@ -163,6 +180,9 @@ PRUEBAS = [
     ({"v": "1933-02", "t": "fecha"}, "mes"), ({"v": "1945-11-09", "t": "fecha"}, "anio"),
     ({"v": 24335896.0, "t": "n"}, ""), ({"v": 44.5, "t": "n", "dec": 1}, ""),
     ({"v": "CGOCUS V1.1", "t": "texto"}, ""),
+    ({"v": 107551, "t": "n"}, "redondo"), ({"v": 121700, "t": "n"}, "redondo"), ({"v": 24335896, "t": "n"}, "redondo"),
+    ({"v": 1049000, "t": "n"}, "redondo"), ({"v": 1250000, "t": "n"}, "redondo"), ({"v": 773, "t": "n"}, "redondo"),
+    ({"v": 9, "t": "n"}, "redondo"),
 ]
 
 

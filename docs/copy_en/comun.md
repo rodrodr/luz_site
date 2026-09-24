@@ -33,8 +33,6 @@
 <!-- comun.subnav.cortes.sesiones --> [Sessions and votes]
 <!-- comun.subnav.datos.aria --> Data, by section
 <!-- comun.subnav.datos.usar --> [Using the data]
-<!-- comun.subnav.datos.versiones --> [Versions]
-
 ---
 
 ## 2. Fixed phrases ↺
@@ -42,26 +40,17 @@
 <!-- comun.fija.diario -->
 A derived edition for research: wherever it differs, the *Diario de Sesiones* prevails.
 
-<!-- comun.sello.V2 -->
-Deposited edition (V2)
-
-<!-- comun.sello.v3 -->
-Explorer edition (v3, not deposited)
-
 <!-- comun.sello.proyecto -->
 Project metadata (not deposited; not shown in the explorer)
 
 <!-- comun.sello.afin -->
-Afinidades Elegidas (CGOCUS V1.1, deposited)
+Afinidades Elegidas (CGOCUS)
 
 <!-- comun.fija.formulario -->
 Before you download, Harvard Dataverse will ask for your name, email address and institution.
 
 <!-- comun.fija.formulario.motivo -->
 We use these details to learn who uses the dataset and for what, so that we can improve it and announce updates.
-
-<!-- comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
 
 <!-- comun.fija.enlace -->
 The explorer cannot open a search from a link: copy the query and paste it into its search box (/ key).
@@ -81,17 +70,8 @@ Their presence here does not validate their content.
 <!-- comun.fija.legislatura -->
 The census and the relations of Afinidades Elegidas call 1933-1936 the legislature that this dataset calls 1933-1935; the Diario's sessions end on 10 December 1935.
 
-<!-- comun.fija.readme -->
-The deposited README describes the first version; the differences are set out here.
-
 <!-- comun.fija.sin_formulario -->
 No form: these are aggregate data.
-
-<!-- comun.fija.notabases -->
-This number comes from the explorer edition (v3, {{filas.v3}} rows, not deposited); the deposited edition is V2 ({{filas.V2}} rows). Why there are two →
-
-<!-- comun.fija.notabases.ids -->
-The v3 numbers in these quotations are rows of the explorer edition (v3, {{filas.v3}} rows, not deposited); the V2 numbers are rows of the deposited edition ({{filas.V2}} rows). Why there are two →
 
 ### 2.1 Three more fixed phrases, shared between pages
 
@@ -99,7 +79,7 @@ The v3 numbers in these quotations are rows of the explorer edition (v3, {{filas
 Shading shows how many words were printed, not how much they mattered.
 
 <!-- comun.fija.explorador -->
-It serves the v3 edition, not deposited; it needs a computer.
+It runs in a computer's web browser.
 
 <!-- comun.fija.local -->
 It opens in your browser; what you search for and save stays on your device.
@@ -122,7 +102,6 @@ It opens in your browser; what you search for and save stays on your device.
 <!-- comun.boton.ver_diario --> [See what the Diario records]
 <!-- comun.boton.ver_metodo --> [See how it was made]
 <!-- comun.boton.ver_columnas --> [See what each column holds]
-<!-- comun.boton.ver_versiones --> [See why there are two editions]
 <!-- comun.boton.ver_explorador --> [See what the explorer does]
 <!-- comun.boton.ver_afinidades --> [See Afinidades Elegidas]
 <!-- comun.boton.unir --> [Join with THQCMI]
@@ -139,7 +118,7 @@ It opens in your browser; what you search for and save stays on your device.
 {{dv.thqcmi.autores}} · [University of Salamanca]
 
 <!-- comun.pie.depositos -->
-Deposited in Harvard Dataverse: Luz y Taquígrafos, THQCMI {{dv.version}} ([doi:10.7910/DVN/THQCMI]), and Afinidades Elegidas, CGOCUS {{dv.cgocus.version}} ([doi:10.7910/DVN/CGOCUS]).
+Deposited in Harvard Dataverse: Luz y Taquígrafos ([doi:10.7910/DVN/THQCMI]) and Afinidades Elegidas ([doi:10.7910/DVN/CGOCUS]).
 
 <!-- ↺ comun.fija.diario -->
 A derived edition for research: wherever it differs, the *Diario de Sesiones* prevails.
@@ -148,7 +127,7 @@ A derived edition for research: wherever it differs, the *Diario de Sesiones* pr
 Data, [CC BY 4.0]. Site code, [MIT].
 
 <!-- comun.pie.ediciones -->
-Page, ed. {{edicion_pagina}} · Data: {{dv.version}} deposited ({{filas.V2}} rows) · Explorer: v3 not deposited ({{filas.v3}} rows)
+Page, ed. {{edicion_pagina}} · Data: Luz y Taquígrafos, on Harvard Dataverse
 
 <!-- comun.pie.privacidad -->
 This site uses no cookies and no analytics; Dataverse asks for details when you download, and we tell you before you get there.
@@ -174,14 +153,15 @@ Preview. Awaiting the researcher's decision:
 
 <!-- comun.consulta.etiqueta --> Query for the explorer's search box
 <!-- comun.consulta.filtros --> Filters
-<!-- comun.consulta.recuento --> Count of {{fecha}}: {{n}} interventions in the explorer edition (v3).
-<!-- comun.consulta.recuento.una --> Count of {{fecha}}: one intervention in the explorer edition (v3).
+<!-- comun.consulta.recuento --> Count of {{fecha}}: {{n}} interventions in the explorer.
+<!-- comun.consulta.recuento.una --> Count of {{fecha}}: one intervention in the explorer.
 <!-- comun.consulta.copiada --> Query copied. In the explorer, press / and paste it.
 <!-- comun.consulta.sinjs --> Select the query and copy it.
 
 ### 5.4 Source badge
 
 <!-- comun.sello.titulo --> Source
+<!-- comun.sello.base --> Luz y Taquígrafos
 <!-- comun.sello.huella --> Checksum
 <!-- comun.sello.exportado --> Numbers exported on {{fecha}}
 <!-- comun.sello.dv --> Harvard Dataverse metadata, read from its API
@@ -197,13 +177,13 @@ Preview. Awaiting the researcher's decision:
 <!-- comun.cita.ris --> RIS
 <!-- comun.cita.copiada --> Citation copied.
 <!-- comun.cita.dataverse --> As given by Harvard Dataverse.
-<!-- comun.cita.cgocus.nota --> Harvard Dataverse cites the major version, ‘V1’; the current one is V1.1.
+<!-- comun.cita.cgocus.nota --> Cite it as Harvard Dataverse gives it.
 
 <!-- comun.cita.figura -->
 {{dv.thqcmi.autores}}. ‘{{titulo}}’. Figure from Luz y Taquígrafos. {{url}}. Source: {{base}}. Exported on {{fecha}}.
 
 <!-- comun.cita.pasaje -->
-{{diario}}, no. {{numero}}, {{fecha}}, pp. {{paginas}} (project metadata). Luz y Taquígrafos, {{edicion}}, row {{id}}.
+{{diario}}, no. {{numero}}, {{fecha}}, pp. {{paginas}} (project metadata). Luz y Taquígrafos, row {{id}}.
 
 ### 5.6 Explorer screenshot
 
@@ -330,13 +310,13 @@ Plan: Congress of Deputies, floor plan of the hemicycle (accessibility proposal 
 **Diario.** The printed *Diario de Sesiones* of the Cortes, the official record of their proceedings. It is capitalised, and it prevails over the dataset.
 
 <!-- comun.glosario.fila -->
-**Row.** One row of the deposited CSV (V2). It starts where the tagging recognises a printed speaker heading and ends at the next one it recognises. Sometimes it contains a document read aloud or another speaker's reply.
+**Row.** One row of the CSV. Most are turns of speech, from one printed speaker heading to the next. The rest hold what the Diario prints without anyone saying it: the summary, the lists, the documents.
 
 <!-- comun.glosario.intervencion -->
-**Intervention.** The explorer's term (*intervención*) for each of its rows (v3). This site uses it only when speaking of the explorer, and always with its source.
+**Intervention.** The explorer's term (*intervención*) for each of its rows. This site uses it only when speaking of the explorer.
 
 <!-- comun.glosario.sesion -->
-**Session.** A meeting of the plenary, with its date and its number. Date and number are the key shared by the two editions.
+**Session.** A meeting of the plenary, with its date and its number. Date and number, together, identify it.
 
 <!-- comun.glosario.etapa -->
 **Stage.** Each of the stretches into which this site divides the Cortes: the Constituent Cortes, the 1933-1935 legislature, the Cortes of 1936 until the war, the war and Mexico.
@@ -346,12 +326,6 @@ Plan: Congress of Deputies, floor plan of the hemicycle (accessibility proposal 
 
 <!-- comun.glosario.presidencia -->
 **The Chair.** The office that moderates the session, whether held by the President of the Cortes or by a Vice-President. Whoever is in the Chair is a deputy, and carries their party in the dataset.
-
-<!-- comun.glosario.edicion_depositada -->
-**Deposited edition.** Version V2 of Luz y Taquígrafos in Harvard Dataverse: the CSV that is downloaded and cited.
-
-<!-- comun.glosario.edicion_explorador -->
-**Explorer edition.** The v3 served by the explorer: the same sessions, split into more rows and with other identifiers. It is not deposited.
 
 <!-- comun.glosario.metadatos -->
 **Project metadata.** The Diario, the number, the pages, the President of the Cortes and the Government for each session. The project compiled them; they are not deposited and the explorer does not show them.
@@ -366,7 +340,7 @@ Plan: Congress of Deputies, floor plan of the hemicycle (accessibility proposal 
 **Ready-made debate.** A library that the explorer offers already built, with the name of a debate and its sessions.
 
 <!-- comun.glosario.palabras -->
-**Words.** The word count in the `nwords` column of V2. Other ways of counting give other numbers; each figure states its own.
+**Words.** The word count in the `nwords` column. Other ways of counting give other numbers; each figure states its own.
 
 <!-- comun.glosario.diputados -->
 **Deputies who speak.** The distinct `rep_id` values with at least one row in the period. They include whoever is in the Chair.

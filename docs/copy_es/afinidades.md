@@ -47,7 +47,7 @@ Quién firmó con quién en el Congreso de la República, 1931–1939: tres rede
 ## Cabecera
 
 <!-- afinidades.antetitulo -->
-doi:10.7910/DVN/CGOCUS · {{dv.cgocus.version}} · {{dv.cgocus.version.fecha|fecha_corta}}
+doi:10.7910/DVN/CGOCUS · {{dv.cgocus.version.fecha|fecha_corta}}
 
 <!-- afinidades.titulo -->
 ¿Con quién estaban dispuestos a firmar?
@@ -56,10 +56,10 @@ doi:10.7910/DVN/CGOCUS · {{dv.cgocus.version}} · {{dv.cgocus.version.fecha|fec
 Hablar en contra es público y barato; firmar una medida con otro exige un acuerdo previo, casi siempre fuera del acta.
 
 <!-- ↺ comun.sello.afin -->
-Afinidades Elegidas (CGOCUS V1.1, depositada)
+Afinidades Elegidas (CGOCUS)
 
 <!-- afinidades.que_es -->
-Afinidades Elegidas es una base derivada de Luz y Taquígrafos, con su propio depósito. Reúne quién firmó con quién en el Congreso, de 1931 a 1939. Las cifras de esta página son de la V1.1 depositada; hay una versión corregida en preparación.
+Afinidades Elegidas es una base derivada de Luz y Taquígrafos, con su propio depósito. Reúne quién firmó con quién en el Congreso, de 1931 a 1939. Las cifras de esta página son las de su depósito.
 
 <!-- afinidades.nombre -->
 El nombre viene de la afinidad electiva de Goethe, que Max Weber llevó a la sociología. «Elegidas», y no «electivas», subraya la decisión de quien firma. Y deja oír otra lectura: las afinidades de los electos.
@@ -95,7 +95,7 @@ Los datos
 ## 2. Firmar no es hablar
 
 <!-- afinidades.firmar.antetitulo -->
-CGOCUS {{dv.cgocus.version}} · {{afin.relaciones}} relaciones par-medida · {{afin.medidas}} medidas
+CGOCUS · {{afin.relaciones}} relaciones par-medida · {{afin.medidas}} medidas
 
 <!-- afinidades.firmar.titulo -->
 Firmar no es hablar
@@ -121,7 +121,7 @@ Cubre las tres legislaturas de la República, de 1931 a 1939. Las sesiones de M�
 ## 3. Tres legislaturas en cifras
 
 <!-- afinidades.cifras.antetitulo -->
-CGOCUS {{dv.cgocus.version}} · {{afin.personas}} personas · {{afin.tres_leg}} en las tres legislaturas
+CGOCUS · {{afin.personas}} personas · {{afin.tres_leg}} en las tres legislaturas
 
 <!-- afinidades.cifras.titulo -->
 Tres legislaturas en cifras
@@ -183,7 +183,7 @@ El censo y las relaciones de Afinidades Elegidas llaman 1933-1936 a la legislatu
 ## 4. ¿Se cruzaba de bloque?
 
 <!-- afinidades.cruce.antetitulo -->
-CGOCUS {{dv.cgocus.version}} · denominador: las filas del edgelist de cada legislatura
+CGOCUS · denominador: las filas del edgelist de cada legislatura
 
 <!-- afinidades.cruce.titulo -->
 ¿Se cruzaba de bloque?
@@ -282,7 +282,7 @@ Una barra por legislatura: la parte de las relaciones que cruza de bloque, con s
 ## 5. Tres redes
 
 <!-- afinidades.redes.antetitulo -->
-CGOCUS {{dv.cgocus.version}} · {{afin.1931.censo}} · {{afin.1933.censo}} · {{afin.1936.censo}} diputados en el censo
+CGOCUS · {{afin.1931.censo}} · {{afin.1933.censo}} · {{afin.1936.censo}} diputados en el censo
 
 <!-- afinidades.redes.titulo -->
 Tres redes
@@ -435,7 +435,7 @@ Tres redes de coautoría, una por legislatura: cada punto es un diputado del cen
 ## 6. Personas: los puentes
 
 <!-- afinidades.puentes.antetitulo -->
-CGOCUS {{dv.cgocus.version}} · índice de transversalidad, por legislatura
+CGOCUS · índice de transversalidad, por legislatura
 
 <!-- afinidades.puentes.titulo -->
 Personas: los puentes
@@ -473,7 +473,7 @@ Su vista Diputados busca a cada uno por su nombre y filtra por familia, partido,
 ## 7. Lo que no mide
 
 <!-- afinidades.limites.antetitulo -->
-CGOCUS {{dv.cgocus.version}} · {{afin.truncadas.medidas}} de {{afin.medidas}} medidas con la lista de firmas cortada
+CGOCUS · {{afin.truncadas.medidas}} de {{afin.medidas}} medidas con la lista de firmas cortada
 
 <!-- afinidades.limites.titulo -->
 Lo que no mide, y cómo se mide
@@ -564,7 +564,7 @@ La descripción de cada campo.
 El archivo de firmas trae el texto de cada medida: sirve para leer qué se firmó, no solo quién.
 
 <!-- afinidades.datos.trampa -->
-Una trampa al unir: `2REP_cosponsorship` llama «1933-1935» a la segunda legislatura, y los demás archivos, «1933-1936».
+Al unir, tenga en cuenta que `2REP_cosponsorship` llama «1933-1935» a la segunda legislatura, y los demás archivos, «1933-1936».
 
 <!-- ↺ comun.fija.formulario -->
 Antes de descargar, Harvard Dataverse le pedirá nombre, correo e institución.

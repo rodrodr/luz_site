@@ -27,12 +27,114 @@
 
 ---
 
+## 3 bis. ¿Esta o esta? (juego)
+
+> [nota de diseño] Juego de la petición del investigador (24-09-2026): `components/cortes/EstaOEsta.astro`. Las doce parejas aprobadas (docs/juegos/ESTA_O_ESTA_candidatas.md) salen de `src/data/esta.json` (exportador/modulos/esta.py), letra a letra de su fila; cada partida saca diez y baraja los lados. Sin JS, una tabla.
+
+<!-- cortes.esta.titulo -->
+¿Esta o esta?
+
+<!-- cortes.esta.entrada -->
+Dos frases dichas en el pleno sobre el mismo asunto, sin su autor. Elija la que firmaría. Al final verá con qué familia de partidos coincide.
+
+<!-- cortes.esta.juego.tema.iglesia -->
+La Iglesia y el Estado, octubre de 1931
+
+<!-- cortes.esta.juego.tema.ordenes -->
+Las órdenes religiosas y la escuela, octubre de 1931
+
+<!-- cortes.esta.juego.tema.mujer -->
+El voto de la mujer, 1 de octubre de 1931
+
+<!-- cortes.esta.juego.tema.divorcio -->
+El divorcio, 1931
+
+<!-- cortes.esta.juego.tema.renta -->
+La tierra: ¿trabajo o renta?
+
+<!-- cortes.esta.juego.tema.tierra -->
+La tierra: ¿para quién?
+
+<!-- cortes.esta.juego.tema.cataluna -->
+Cataluña y su Estatuto, 1932
+
+<!-- cortes.esta.juego.tema.parlamento -->
+El Parlamento y el voto
+
+<!-- cortes.esta.juego.tema.clases -->
+Las clases
+
+<!-- cortes.esta.juego.tema.espana -->
+«España roja, España rota», diciembre de 1935
+
+<!-- cortes.esta.juego.tema.octubre -->
+Después de octubre de 1934
+
+<!-- cortes.esta.juego.tema.orden -->
+El orden público, primavera de 1936
+
+<!-- cortes.esta.juego.cuenta -->
+Pareja {{i}} de {{n}}
+
+<!-- cortes.esta.juego.firmo -->
+[Firmo esta]
+
+<!-- cortes.esta.juego.su_firma -->
+Su firma
+
+<!-- cortes.esta.juego.quien -->
+{{orador}} · {{partido}} · {{familia}} · {{ideologia}} · {{fecha}}
+
+<!-- cortes.esta.juego.fila -->
+Fila {{id}}
+
+<!-- cortes.esta.juego.siguiente -->
+[Siguiente]
+
+<!-- cortes.esta.juego.ver -->
+[Ver mi escaño]
+
+<!-- cortes.esta.juego.perfil.titulo -->
+Su escaño
+
+<!-- cortes.esta.juego.perfil.familia -->
+Su familia de partidos: {{familia}}.
+
+<!-- cortes.esta.juego.perfil.eje -->
+Su lugar en el eje: {{ideologia}}.
+
+<!-- cortes.esta.juego.perfil.companero -->
+Su compañero de escaño: {{diputado}}.
+
+<!-- cortes.esta.juego.perfil.firmo -->
+Firmó frases de: {{lista}}.
+
+<!-- cortes.esta.juego.perfil.salvedad -->
+Familia e ideología son las del partido de cada orador en la base, no las de usted ni las de ellos: es un juego, no un test.
+
+<!-- cortes.esta.juego.otra -->
+[Otra partida]
+
+<!-- cortes.esta.juego.tabla -->
+Las parejas del juego
+
+<!-- cortes.esta.juego.tabla.col.tema -->
+Asunto
+
+<!-- cortes.esta.juego.tabla.col.a -->
+Una frase
+
+<!-- cortes.esta.juego.tabla.col.b -->
+La otra
+
+---
+
 ## 1. Las Cortes · índice (`/[lang]/cortes/`)
 
 <!-- cortes.meta.titulo --> Las Cortes, 1931–1945
 <!-- cortes.meta.descripcion --> Las {{sesiones}} sesiones del Congreso entre 1931 y 1945, mes a mes, y las etapas de sus legislaturas: lo que tiene y lo que le falta cada una.
 
-<!-- cortes.antetitulo --> V2 · {{sesiones}} sesiones · {{sesion.primera|fecha_corta}} → {{sesion.ultima|fecha_corta}}
+<!-- cortes.antetitulo --> {{sesiones}} sesiones · {{sesion.primera|fecha_corta}} → {{sesion.ultima|fecha_corta}}
 <!-- cortes.titulo --> ¿Qué Cortes están aquí, y cuándo se reunieron?
 
 <!-- cortes.entrada -->
@@ -122,20 +224,17 @@ De la guerra y de México no hay Diario íntegro, sino extractos oficiales. Lo d
 <!-- cortes.etapas.tabla.col.sesiones --> Sesiones
 <!-- cortes.etapas.tabla.col.fechas --> Fechas
 <!-- cortes.etapas.tabla.col.serie --> Serie del Diario
-<!-- cortes.etapas.tabla.col.filas --> Filas (V2)
-<!-- cortes.etapas.tabla.col.palabras --> Palabras (V2)
+<!-- cortes.etapas.tabla.col.filas --> Filas
+<!-- cortes.etapas.tabla.col.palabras --> Palabras
 <!-- cortes.etapas.tabla.col.pct --> Del corpus
 <!-- cortes.etapas.tabla.col.diputados --> Diputados que intervienen
-<!-- cortes.etapas.tabla.col.filas_v3 --> Filas (v3)
+<!-- cortes.etapas.tabla.col.filas_v3 --> Filas
 
 <!-- cortes.etapas.tabla.pie -->
 «Diputados que intervienen» cuenta identificadores de diputado distintos, incluido el de quien preside. En todo el corpus son {{diputados.V2}}.
 
 <!-- cortes.etapas.tabla.pie_leg -->
 Por legislatura del CSV son {{leg.1931-1933.diputados}}, {{leg.1933-1935.diputados}} y {{leg.1936-1939.diputados}}: la suma por etapas cuenta dos veces a quien habla en más de una.
-
-<!-- ↺ comun.fija.notabases -->
-Esta cifra sale de la edición del explorador (v3, {{filas.v3}} filas, sin depositar); la depositada es la V2 ({{filas.V2}} filas). Por qué hay dos →
 
 ### 1.4 Lo que no está aquí
 
@@ -151,7 +250,7 @@ Sus reuniones no están en el corpus.
 La carátula del volumen de México enumera las que celebró allí, de 1939 a 1943. Y añade: «sólo tenemos noticia de ellas por citas bibliográficas pero no se dispone de los textos ni en forma de fotocopia».
 
 <!-- cortes.ausente.caratula_fila -->
-Esa carátula abre el sumario del 10 de enero de 1945, y solo está en la edición del explorador (v3 {{fila.mexico_caratula.v3|id}}).
+Esa carátula abre el sumario del 10 de enero de 1945, y solo está en el explorador.
 
 <!-- cortes.ausente.discursos -->
 Tampoco están los discursos pronunciados fuera del Parlamento.
@@ -233,12 +332,6 @@ El explorador no abre una búsqueda desde un enlace: cópiela y péguela en su b
 <!-- cortes.ficha.cifras.titulo --> Cifras
 <!-- cortes.ficha.contexto.titulo --> Lo que pasó en la Cámara
 
-<!-- cortes.ficha.contexto.ids -->
-Cada hecho de la Cámara lleva su fila: «V2» es el identificador en la edición depositada; «v3», en la del explorador.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
-
 <!-- cortes.ficha.contexto.externas --> Fuentes externas de este apartado
 <!-- cortes.ficha.contexto.puerta --> Tiene su puerta de lectura →
 
@@ -309,9 +402,9 @@ Calendario de {{sesiones}} sesiones, de julio de 1931 a noviembre de 1945, agrup
 <!-- fig.F01.leyenda.puerta --> Sesión con puerta de lectura
 <!-- fig.F01.leyenda.doble --> Dos sesiones el mismo día
 <!-- fig.F01.leyenda.salto --> Salto: ningún mes con sesión entre 1939 y 1944
-<!-- fig.F01.leyenda.tono --> Palabras impresas en el mes (V2), en cinco clases de {{f01.clase.4.meses|letra}} o {{f01.clase.0.meses|letra}} meses con sesión
-<!-- fig.F01.leyenda.altura --> Altura de la barra: palabras de la sesión (V2). La más alta, {{f01.sesion_max.palabras}}.
-<!-- fig.F01.leyenda.altura_dip --> Altura de la barra: diputados que intervienen, con quien preside (V2). La más alta, {{f01.sesion_max.diputados}}.
+<!-- fig.F01.leyenda.tono --> Palabras impresas en el mes, en cinco clases de {{f01.clase.4.meses|letra}} o {{f01.clase.0.meses|letra}} meses con sesión
+<!-- fig.F01.leyenda.altura --> Altura de la barra: palabras de la sesión. La más alta, {{f01.sesion_max.palabras}}.
+<!-- fig.F01.leyenda.altura_dip --> Altura de la barra: diputados que intervienen, con quien preside. La más alta, {{f01.sesion_max.diputados}}.
 <!-- fig.F01.leyenda.barra --> Una sesión
 
 <!-- fig.F01.salto -->
@@ -336,19 +429,19 @@ una sesión · {{filas}} filas · {{palabras}} palabras · {{diputados}} diputad
 ninguna sesión en el corpus, dentro de su etapa
 
 <!-- fig.F01.nota.base -->
-V2 · 2REP_Diaries.csv · los diputados cuentan a quien preside
+2REP_Diaries.csv · los diputados cuentan a quien preside
 
 <!-- fig.F01.nota.base_vacio -->
-V2 · 2REP_Diaries.csv · la causa no sale del corpus
+2REP_Diaries.csv · la causa no sale del corpus
 
 <!-- fig.F01.nota.sesion -->
 sesión {{num}} · {{filas}} filas · {{palabras}} palabras · {{diputados}} diputados intervienen
 
 <!-- fig.F01.nota.sesion.base -->
-V2 · {{sigla}} núm. {{diario}}, pp. {{p1}}–{{p2}} (metadatos del proyecto)
+{{sigla}} núm. {{diario}}, pp. {{p1}}–{{p2}} (metadatos del proyecto)
 
 <!-- fig.F01.nota.sesion_sin_paginas.base -->
-V2 · {{sigla}} núm. {{diario}}, páginas sin verificar (metadatos del proyecto)
+{{sigla}} núm. {{diario}}, páginas sin verificar (metadatos del proyecto)
 
 <!-- fig.F01.nota.puerta --> Tiene puerta de lectura: pulse para abrirla.
 
@@ -368,9 +461,9 @@ Para abrirla en el explorador, ponga esa fecha en Desde y en Hasta, abra una int
 <!-- fig.F01.tabla.col.mes --> Mes
 <!-- fig.F01.tabla.col.etapa --> Etapa
 <!-- fig.F01.tabla.col.sesiones --> Sesiones
-<!-- fig.F01.tabla.col.filas --> Filas (V2)
-<!-- fig.F01.tabla.col.palabras --> Palabras (V2)
-<!-- fig.F01.tabla.col.diputados --> Diputados que intervienen (V2)
+<!-- fig.F01.tabla.col.filas --> Filas
+<!-- fig.F01.tabla.col.palabras --> Palabras
+<!-- fig.F01.tabla.col.diputados --> Diputados que intervienen
 <!-- fig.F01.tabla.hueco --> {{desde}} → {{hasta}} · {{n}} meses sin sesión
 <!-- fig.F01.tabla.hueco_uno --> {{mes}} · sin sesión
 <!-- fig.F01.tabla.sesiones.resumen --> Las sesiones de esta etapa, una a una
@@ -398,7 +491,7 @@ El tono dice cuántas palabras se imprimieron, no cuánto importó. Las causas d
 <!-- fig.F01.breve.mes --> Las sesiones de {{mes}}
 
 <!-- fig.F01.leame.que_mide -->
-Las sesiones del Congreso de 1931 a 1945, una por fila en sesiones.csv, y los meses con su estado en meses.csv. Cuentan filas, palabras y diputados de la edición depositada (V2).
+Las sesiones del Congreso de 1931 a 1945, una por fila en sesiones.csv, y los meses con su estado en meses.csv. Cuentan filas, palabras y diputados de la base.
 
 <!-- fig.F01.leame.denominador -->
 Son recuentos, sin denominador: filas, suma de nwords y rep_id distintos por sesión o por mes. La clase del tono reparte los {{meses.con_sesion}} meses con sesión en cinco grupos por cuantiles.
@@ -458,7 +551,7 @@ Metadatos del proyecto · por verificar
 <!-- fig.F16.tabla.col.sesiones --> Sesiones
 
 <!-- fig.F16.salvedad -->
-La banda da el presidente titular de la sesión (metadatos del proyecto). En {{pres.vice_ses}} de {{sesiones}} sesiones un vicepresidente presidió algún tramo (V2). Los días de cambio de Gobierno cuentan para el entrante.
+La banda da el presidente titular de la sesión (metadatos del proyecto). En {{pres.vice_ses}} de {{sesiones}} sesiones un vicepresidente presidió algún tramo. Los días de cambio de Gobierno cuentan para el entrante.
 
 > [nota de diseño] La salvedad pasa de 30 palabras en dos frases: la primera tiene 26. `pres.vice_ses` es V2 (analizador
 > de etiquetas del explorador) y lleva `data-base="V2"`; el resto de la banda es «proyecto».
@@ -468,21 +561,21 @@ La banda da el presidente titular de la sesión (metadatos del proyecto). En {{p
 <!-- fig.F05.titulo --> Los diez que más hablaron
 <!-- fig.F05.pregunta --> ¿Quién habló más en esta etapa, sin contar la Presidencia?
 <!-- fig.F05.alt -->
-Barras horizontales con los diez diputados que más palabras de habla suman en la etapa, sin la Presidencia, en la edición del explorador.
+Barras horizontales con los diez diputados que más palabras de habla suman en la etapa, sin la Presidencia, en el explorador.
 
 <!-- fig.F05.nota -->
-{{nombre}} · {{n}} de {{den}} palabras de habla de la etapa, sin la Presidencia (v3)
+{{nombre}} · {{n}} de {{den}} palabras de habla de la etapa, sin la Presidencia
 
 <!-- fig.F05.nota_partido --> {{partido}} · {{familia}}
 
 <!-- fig.F05.tabla.col.puesto --> Puesto
 <!-- fig.F05.tabla.col.nombre --> Diputado
 <!-- fig.F05.tabla.col.partido --> Partido
-<!-- fig.F05.tabla.col.palabras --> Palabras de habla (v3)
+<!-- fig.F05.tabla.col.palabras --> Palabras de habla
 <!-- fig.F05.tabla.col.pct --> De la etapa
 
 <!-- fig.F05.salvedad -->
-Palabras de habla en la edición del explorador, sin la Presidencia, sin sumarios ni documentos. Hablar mucho no es pesar mucho.
+Palabras de habla en el explorador, sin la Presidencia, sin sumarios ni documentos. Hablar mucho no es pesar mucho.
 
 <!-- fig.F05.datos -->
 Los datos de la figura traen a los {{diputados.V2}} diputados que intervienen, etapa a etapa.
@@ -502,15 +595,15 @@ Una tira al cien por cien, dividida por familias políticas, con la parte de las
 <!-- fig.F09.conmuta.filas --> Filas
 
 <!-- fig.F09.nota.palabras -->
-{{familia}} · {{pct}} · {{n}} de {{den}} palabras sin Presidencia (V2)
+{{familia}} · {{pct}} · {{n}} de {{den}} palabras sin Presidencia
 
 <!-- fig.F09.nota.filas -->
-{{familia}} · {{pct}} · {{n}} de {{den}} filas sin Presidencia (V2)
+{{familia}} · {{pct}} · {{n}} de {{den}} filas sin Presidencia
 
 <!-- fig.F09.tabla.col.familia --> Familia
-<!-- fig.F09.tabla.col.palabras --> Palabras sin la Presidencia (V2)
+<!-- fig.F09.tabla.col.palabras --> Palabras sin la Presidencia
 <!-- fig.F09.tabla.col.pct_palabras --> De las palabras sin la Presidencia
-<!-- fig.F09.tabla.col.filas --> Filas sin la Presidencia (V2)
+<!-- fig.F09.tabla.col.filas --> Filas sin la Presidencia
 <!-- fig.F09.tabla.col.pct_filas --> De las filas sin la Presidencia
 
 <!-- fig.F09.salvedad -->

@@ -14,7 +14,6 @@ import Base from '../../layouts/Base.astro';
 import IndiceLateral from '../../components/IndiceLateral.astro';
 import Boton from '../../components/Boton.astro';
 import NotaMargen from '../../components/NotaMargen.astro';
-import NotaBases from '../../components/NotaBases.astro';
 import Sello from '../../components/Sello.astro';
 import CitaDiario from '../../components/CitaDiario.astro';
 import CifraFrase from '../../components/CifraFrase.astro';
@@ -81,7 +80,7 @@ const ESCALA = [
   { tk: '--fs-body', uso: 'cuerpo de lectura, medida de 38 rem', clase: 'm-body', texto: o('inicio.fila.dos') },
   { tk: '--fs-small', uso: 'notas al margen, pies y salvedades', clase: 'm-nota', texto: o('comun.fija.diario') },
   { tk: '--fs-cifra', uso: 'la cifra grande, dentro de su frase', clase: 'm-cifra', texto: fmt.clave('sesiones', lang) },
-  { tk: '--fs-grito', uso: 'solo «Luz y taquigrafos.», en la banda de Inicio', clase: 'm-grito', texto: o('inicio.tesis.grito') },
+  { tk: '--fs-grito', uso: 'solo «Luz y taquígrafos.», en la banda de Inicio', clase: 'm-grito', texto: o('inicio.nombre.grito') },
 ];
 
 // La muestra de figura: las sesiones de cada etapa (cifras.json › etapa.<E>.sesiones, V2).
@@ -118,7 +117,7 @@ const SECCIONES = [
   { id: 'tipografia', rotulo: 'Tipografía' },
   { id: 'rejilla', rotulo: 'Rejilla y ritmo' },
   { id: 'botones', rotulo: 'Enlaces y botones' },
-  { id: 'margen', rotulo: 'Asiento y notas al margen', sub: [{ id: 'sellos', rotulo: 'Sellos de base' }] },
+  { id: 'margen', rotulo: 'Asiento y notas al margen', sub: [{ id: 'sellos', rotulo: 'Sellos de fuente' }] },
   { id: 'citas', rotulo: 'Citas del Diario', sub: [{ id: 'pasaje', rotulo: 'Pasaje del pintor genérico' }, { id: 'cita-copiable', rotulo: 'Cita copiable' }] },
   { id: 'cifras', rotulo: 'Cifras en frase' },
   { id: 'registro', rotulo: 'Registro y fila de datos' },
@@ -204,7 +203,7 @@ const SECCIONES = [
             ))}
             <li>
               <p class="escala-tk"><code>.asiento</code> · la línea de registro: un hecho con su base, en caja normal y en gris; nunca una etiqueta</p>
-              <p class="asiento">V2 · <Fragment set:html={fmt.clave('sesiones', lang)} /> sesiones · <Fragment set:html={fmt.clave('sesion.primera', lang, 'fecha_corta')} /> → <Fragment set:html={fmt.clave('sesion.ultima', lang, 'fecha_corta')} /></p>
+              <p class="asiento"><Fragment set:html={fmt.clave('sesiones', lang)} /> sesiones · <Fragment set:html={fmt.clave('sesion.primera', lang, 'fecha_corta')} /> → <Fragment set:html={fmt.clave('sesion.ultima', lang, 'fecha_corta')} /></p>
             </li>
             <li>
               <p class="escala-tk"><code>.versal</code> · versalitas simuladas (el woff2 no trae <code>smcp</code>): el orador y la Presidencia</p>
@@ -269,14 +268,13 @@ const SECCIONES = [
           <p class="asiento"><code>NotaMargen.astro</code> · <code>.al-margen</code> (secciones) · <code>.nota-m</code> (lecturas) · ≤ 40 palabras</p>
           <h2 id="margen-titulo">¿Dónde va la costura?</h2>
           <p><Fragment set:html={t(lang, 'inicio.fila.dos')} /><sup class="llamada-n">1</sup> <Fragment set:html={t(lang, 'inicio.fila.leccion')} /></p>
-          <NotaMargen n="1" asiento={`V2 · ${fmt.clave('filas.V2', lang)} filas`}>
+          <NotaMargen n="1" asiento={`${fmt.clave('filas.V2', lang)} filas`}>
             <p set:html={t(lang, 'comun.fija.diario')} />
           </NotaMargen>
-          <p>Toda cifra de la edición del explorador lleva al lado su nota de bases: <Fragment set:html={fmt.clave('filas.v3', lang)} /> filas en la v3.</p>
-          <NotaBases lang={lang} />
-          <h3 id="sellos">Sellos de base</h3>
+          <h3 id="sellos">Sellos de fuente</h3>
+          <p>Solo para lo que no es la base: los metadatos del proyecto, Afinidades Elegidas, Dataverse, el explorador y el croquis. La base no lleva sello ni nombra ediciones.</p>
           <p class="sellos-demo">
-            {(['V2', 'v3', 'proyecto', 'afin', 'dv', 'explorador', 'croquis'] as const).map((b) => existe(`comun.sello.${b}`) && <Sello lang={lang} base={b} />)}
+            {(['proyecto', 'afin', 'dv', 'explorador', 'croquis'] as const).map((b) => existe(`comun.sello.${b}`) && <Sello lang={lang} base={b} />)}
           </p>
         </div>
       </section>
@@ -304,7 +302,7 @@ const SECCIONES = [
           <p class="asiento"><code>CifraFrase.astro</code> · la cifra dentro de su frase · no es una banda de cifras</p>
           <h2 id="cifras-titulo">¿Cómo se dice una cifra?</h2>
           <CifraFrase frases={['sesiones', 'palabras', 'diputados'].map((k) => t(lang, `cortes.1931.cifras.${k}`))} />
-          <NotaMargen asiento="V2 · etapa I">
+          <NotaMargen asiento="etapa I">
             <p>La base va en el margen. Cada cifra es un <code>&lt;data&gt;</code> con su clave y su base, que la auditoría compara con <code>cifras.json</code>.</p>
           </NotaMargen>
         </div>
@@ -340,12 +338,11 @@ const SECCIONES = [
           <h2 id="figura-titulo">¿Cómo se lee una figura?</h2>
           <p class="entrada">Barra con título y pestañas; gráfico con texto en HTML; nota emergente invertida; tabla equivalente y datos con su procedencia.</p>
           <figure class="figura" id="cat-fig" data-figura="catalogo" data-base="V2"
-            data-plantilla-t="{etapa}" data-plantilla="{n} sesiones · {anos}" data-plantilla-b="V2 · cifras.json › etapa.{id}.sesiones"
+            data-plantilla-t="{etapa}" data-plantilla="{n} sesiones · {anos}" data-plantilla-b="cifras.json › etapa.{id}.sesiones"
             data-posicion={plano(lang, 'comun.isla.posicion', { vars: { i: '{i}', total: '{total}' } })}
             data-cerrar={existe('comun.isla.cerrar') ? plano(lang, 'comun.isla.cerrar') : undefined} aria-labelledby="cat-fig-titulo">
             <Pestanas lang={lang} id="cat-fig" etiquetadoPor="cat-fig-titulo">
               <header class="fig-cabeza" slot="cabeza">
-                <p class="fig-sellos"><Sello lang={lang} base="V2" /></p>
                 <h3 class="fig-titulo" id="cat-fig-titulo"><span class="fig-id" aria-hidden="true">muestra</span>¿Cuántas sesiones tuvo cada etapa?</h3>
               </header>
               <p class="fig-pregunta" slot="pregunta">Muestra del sistema de figuras (no se publica). Pase el puntero, toque o recorra con las flechas.</p>
@@ -379,7 +376,7 @@ const SECCIONES = [
                 <dl class="fig-leame">
                   <dt>Qué mide</dt><dd>Sesiones por etapa: claves (fecha, número) distintas.</dd>
                   <dt>Cómo se calcula</dt><dd><code>{barras[0].f}</code></dd>
-                  <dt>Base</dt><dd><Sello lang={lang} base="V2" /><br />huella: {h.huella ? <code>{h.huella}</code> : 'sin sello'}{h.fecha && <> · <time datetime={h.fecha}>{h.fecha}</time></>}</dd>
+                  <dt>Base</dt><dd><Fragment set:html={t(lang, 'comun.sello.base')} /><br />huella: {h.huella ? <code>{h.huella}</code> : 'sin sello'}{h.fecha && <> · <time datetime={h.fecha}>{h.fecha}</time></>}</dd>
                 </dl>
               </div>
             </Pestanas>

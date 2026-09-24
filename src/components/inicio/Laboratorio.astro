@@ -1,0 +1,275 @@
+---
+/**
+ * Juego 1 · El laboratorio de palabras (Inicio; docs/REDISENO_23-09.md; copy `inicio.lab.*`).
+ * «¿Cuándo se habló de…?»: la pregunta del título lleva el eco de la palabra elegida; debajo, su curva mes a mes y el
+ * calendario de 1931 a 1945, que se enciende donde más se habló; al pie, los ocho momentos, que abren su página.
+ *  · SIN JS: las ocho palabras de `propuestas` son radios; su curva, su escala y los tonos del calendario vienen
+ *    dibujados en la compilación y se cambian con `:has()`. Todo el texto va en HTML, fuera del SVG.
+ *  · CON JS (`scripts/laboratorio.ts`): cualquier término del laboratorio (las palabras más frecuentes y las
+ *    expresiones del explorador), hasta tres a la vez; la curva se recorre con el puntero o con ← →; el calendario y
+ *    la consulta del explorador siguen a la palabra principal. El JSON se pide la primera vez que alguien juega.
+ * Datos: `public/datos/laboratorio.json` (exportador › laboratorio.py; recontado sobre el índice FTS5 del explorador).
+ */
+import { readFileSync } from 'node:fs';
+import { t, plano, plantillaNota } from '../../lib/i18n';
+import { htmlConsulta } from '../../lib/piezas';
+import { dato } from '../../lib/datos';
+import { url, recurso, PAGINAS, PUERTAS_PUBLICADAS } from '../../lib/rutas';
+import {
+  W, H, PAD, ANIOS, xSalto, serie, densidades, techo, trazos, niveles, rejilla, consulta, type LabDatos,
+} from '../../viz/geom/laboratorio';
+import type { Lang } from '../../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const LOCALE = { es: 'es-ES', en: 'en-GB' }[lang];
+
+let L: LabDatos | null = null;
+try { L = JSON.parse(readFileSync(`${process.cwd()}/public/datos/laboratorio.json`, 'utf8')); } catch { L = null; }
+const umN = L?._meta.umbral_normal ?? 100000;
+const umB = L?._meta.umbral_baja ?? 20000;
+const meses = L?.meses ?? [];
+const tokens = L?.tokens ?? [];
+
+// Las ocho palabras de partida, pre-dibujadas: su curva, su escala y el nivel de cada mes en el calendario.
+const PROP = (L?.propuestas ?? []).filter((k) => L!.terminos[k]).map((k, w) => {
+  const d = densidades(serie(L!.terminos[k].s, meses.length), tokens);
+  const te = techo([d], tokens, umB);
+  const tr = trazos(meses, d, tokens, te, umN, umB);
+  const puntos = tr.pts.filter((p) => !p.debil).map((p) => `M${p.x.toFixed(1)} ${p.y.toFixed(1)}h0`).join('');
+  return { w, k, forma: L!.terminos[k].m, te, ...tr, puntos, niv: niveles(d, tokens, umB) };
+});
+const escala = (x: number) => new Intl.NumberFormat(LOCALE, { maximumFractionDigits: x < 10 ? 1 : 0 }).format(x);
+
+// Los ocho momentos (las puertas publicadas): sus meses se anillan en el calendario; su lista abre cada página.
+const PU = dato<{ puertas: { slug: string; sesiones: { fecha: string }[] }[] }>('puertas')?.puertas ?? [];
+const momentos = PUERTAS_PUBLICADAS.map((p) => {
+  const reg = PU.find((x) => x.slug === p.slug);
+  const mesesP = [...new Set((reg?.sesiones ?? []).map((s) => s.fecha.slice(0, 7)))];
+  return { slug: p.slug, meses: mesesP, fecha: plano(lang, `inicio.puertas.${p.slug}.fecha`), que: t(lang, `inicio.puertas.${p.slug}.que`), href: url(lang, `${PAGINAS.sesiones}/${p.slug}`) };
+});
+const mesMomento = new Map<string, string>();
+for (const m of momentos) for (const mes of m.meses) if (!mesMomento.has(mes)) mesMomento.set(mes, m.slug);
+const REJ = rejilla(meses);
+const ROM = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+
+// El título lleva el eco de la palabra: la clave dice «¿Cuándo se habló de…?», y el eco va donde van los puntos.
+const titulo = t(lang, 'inicio.lab.titulo');
+const [tAntes, tDespues = ''] = titulo.split('…');
+const antes = tAntes.replace(/\s*$/, ' ');
+const primera = PROP[0];
+// Reglas de los radios (sin JS): una por palabra; y el resalte de un mes al pasar por su momento. Generadas, no a mano.
+const css = [
+  '.lab [data-w]{display:none}',
+  ...PROP.map((p) => `.lab:has(#lab-w${p.w}:checked) .lab-c{--q:var(--c${p.w})}.lab:has(#lab-w${p.w}:checked) [data-w="${p.w}"]{display:revert}`),
+  ...momentos.flatMap((m) => m.meses.map((mes) => `.lab:has([data-momento="${m.slug}"]:is(:hover,:focus-visible)) .lab-c[data-mes="${mes}"]{outline:2px solid var(--ink);outline-offset:1px}`)),
+].join('\n');
+const textos = {
+  mes: plantillaNota(lang, 'inicio.lab.mes'), nada: plantillaNota(lang, 'inicio.lab.nada'),
+  ninguna: plantillaNota(lang, 'inicio.lab.ninguna'), cargando: plano(lang, 'inicio.lab.cargando'),
+  quitar: plano(lang, 'inicio.lab.quitar'),
+};
+---
+{L && primera && (
+<section class="lab" id="laboratorio" aria-labelledby="lab-titulo" data-lab data-url={recurso('datos/laboratorio.json')} data-locale={LOCALE} data-textos={JSON.stringify(textos)}>
+  <style set:html={css}></style>
+  <div class="contenedor">
+    <header class="lab-cabeza">
+      <h2 id="lab-titulo"><Fragment set:html={antes} /><span class="lab-eco" aria-live="polite">{PROP.map((p) => <span data-w={p.w}>{p.forma}</span>)}<span class="lab-eco-vivo"></span></span><Fragment set:html={tDespues} /></h2>
+      <p class="entrada" set:html={t(lang, 'inicio.lab.entrada')} />
+    </header>
+
+    <div class="lab-mandos">
+      <fieldset class="lab-propuestas">
+        <legend set:html={t(lang, 'inicio.lab.propuestas')} />
+        {PROP.map((p) => (
+          <label class="lab-chip"><input type="radio" name="lab-w" id={`lab-w${p.w}`} value={p.k} data-forma={p.forma} checked={p.w === 0} /><span>{p.forma}</span></label>
+        ))}
+      </fieldset>
+      <div class="lab-busca" hidden>
+        <label for="lab-q" set:html={t(lang, 'inicio.lab.etiqueta')} />
+        <div class="lab-q-fila">
+          <div class="lab-q-caja">
+            <input id="lab-q" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="lab-sug" autocomplete="off" spellcheck="false" enterkeyhint="search" />
+            <ul id="lab-sug" class="lab-sug" role="listbox" hidden></ul>
+          </div>
+          <button type="button" class="boton sec lab-comparar" aria-pressed="false" set:html={t(lang, 'inicio.lab.comparar')} />
+        </div>
+        <ul class="lab-series" role="list" aria-label={plano(lang, 'inicio.lab.etiqueta')}></ul>
+        <p class="lab-estado nota" role="status"></p>
+        <p class="sr-only lab-anuncio" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <figure class="lab-fig">
+      <div class="lab-grafico" role="img" aria-label={plano(lang, 'inicio.lab.alt')} tabindex="-1">
+        <svg class="lab-svg" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <line class="lab-base" x1={PAD.l} x2={W - PAD.r} y1={H - PAD.b} y2={H - PAD.b} />
+          {ANIOS.map((a) => <line class="lab-tick" x1={a.x} x2={a.x} y1={PAD.t} y2={H - PAD.b} />)}
+          <line class="lab-salto" x1={xSalto} x2={xSalto} y1={PAD.t} y2={H - PAD.b} />
+          {PROP.map((p) => (
+            <g class="lab-s s0" data-w={p.w}>
+              <path class="fino" d={p.fino} />
+              <path class="firme" d={p.firme} />
+              <path class="puntos" d={p.puntos} />
+            </g>
+          ))}
+          <g class="lab-dinamico"></g>
+          <line class="lab-cursor" x1="0" x2="0" y1={PAD.t} y2={H - PAD.b} visibility="hidden" />
+        </svg>
+        <div class="lab-eje" aria-hidden="true">
+          {ANIOS.map((a) => <><span data-a={a.a} style={`left:${((a.x / W) * 100).toFixed(2)}%`}>{a.a}</span>{' '}</>)}
+          <span class="lab-salto-r" style={`left:${((xSalto / W) * 100).toFixed(2)}%`}>//</span>
+        </div>
+        <p class="lab-techo" aria-hidden="true" data-audit-exento="escala del laboratorio">
+          {PROP.map((p) => <span data-w={p.w}>{escala(p.te)}</span>)}<span class="lab-techo-vivo"></span>
+        </p>
+        <div class="lab-nota" hidden></div>
+      </div>
+
+      <div class="lab-cal" aria-hidden="true">
+        <div class="lab-cal-fila lab-cal-meses"><span></span>{ROM.map((r) => <span>{r}</span>)}</div>
+        {REJ.map((f) => (
+          <div class="lab-cal-fila">
+            <span class="lab-cal-anio">{f.a}</span>{' '}
+            {f.celdas.map((c) => c.tipo === 'con'
+              ? <span class={`lab-c${mesMomento.has(c.mes) ? ' momento' : ''}`} data-mes={c.mes} data-i={c.i} style={PROP.map((p) => `--c${p.w}:${p.niv[c.i]}`).join(';')}></span>
+              : <span class={c.tipo === 'sin' ? 'lab-c0' : 'lab-cx'}></span>)}
+          </div>
+        ))}
+      </div>
+      <figcaption class="lab-pie">
+        <p class="nota" set:html={t(lang, 'inicio.lab.calendario')} />
+        <ol class="lab-momentos" role="list">
+          {momentos.map((m) => <li><a href={m.href} data-momento={m.slug} data-meses={m.meses.join(' ')}><span class="lab-m-fecha">{m.fecha}</span>{' '}<span class="lab-m-que" set:html={m.que} /></a></li>)}
+        </ol>
+        <p class="nota" set:html={t(lang, 'inicio.lab.nota')} />
+        <Fragment set:html={htmlConsulta(lang, { consulta: consulta(primera.forma), compacta: true, aviso: false })} />
+      </figcaption>
+    </figure>
+  </div>
+</section>
+)}
+
+<script>
+  import '../../scripts/laboratorio.ts';
+  import '../../scripts/copiar.ts';
+</script>
+
+<style>
+  .lab { padding-block: clamp(2.5rem, 4.5vw, 4.5rem); }
+  .lab-cabeza h2 { font: italic 500 var(--fs-h2)/1.05 var(--display); margin: 0 0 var(--e4); max-width: 22ch; text-wrap: balance; }
+  .lab-eco { color: var(--accent); }
+  .lab-eco-vivo:empty { display: none; }
+  .lab--vivo .lab-eco > [data-w] { display: none !important; }
+  .lab-cabeza .entrada { color: var(--ink-2); max-width: 40rem; margin: 0; }
+
+  .lab-mandos { margin: var(--e5) 0 var(--e4); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--e4); }
+  .lab-propuestas { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem .5rem; align-items: center; }
+  .lab-propuestas legend { float: left; margin: 0 .6rem 0 0; font: 400 var(--fs-small)/2.4 var(--text); color: var(--mute); }
+  .lab-chip { position: relative; }
+  .lab-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+  .lab-chip span {
+    display: inline-flex; align-items: center; min-height: 2.5rem; padding: .2rem .95rem; border: 1px solid var(--hair-2); border-radius: 999px;
+    font: 400 var(--fs-small)/1.2 var(--text); color: var(--ink); cursor: pointer; transition: border-color 120ms, background-color 120ms, color 120ms;
+  }
+  .lab-chip span:hover { border-color: var(--accent); }
+  .lab-chip input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .lab-chip input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 3px; }
+  .lab--vivo .lab-chip input:checked + span { background: transparent; border-color: var(--hair-2); color: var(--ink); }
+  .lab--vivo .lab-chip.activa span { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+  .lab-busca[hidden] { display: none; }
+  .lab-busca { display: grid; grid-template-columns: minmax(0, 1fr); gap: .45rem; }
+  .lab-busca label { font: 400 var(--fs-small)/1.3 var(--text); color: var(--mute); }
+  .lab-q-fila { display: flex; flex-wrap: wrap; gap: .5rem; align-items: stretch; }
+  .lab-q-caja { position: relative; flex: 1 1 16rem; max-width: 30rem; }
+  .lab-q-caja input {
+    width: 100%; min-height: 3rem; padding: .4rem .9rem; border: 1px solid var(--hair-2); border-radius: var(--radio); background: var(--bg-2);
+    color: var(--ink); font: italic 500 1.35rem/1.2 var(--display); caret-color: var(--accent);
+  }
+  .lab-q-caja input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .lab-comparar[aria-pressed='true'] { border-color: var(--accent); color: var(--accent); }
+  .lab-sug { position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 2px); margin: 0; padding: .3rem 0; list-style: none; background: var(--bg-2); border: 1px solid var(--hair-2); border-radius: var(--radio); max-height: 18rem; overflow: auto; box-shadow: 0 .6rem 1.4rem rgb(0 0 0 / .35); }
+  .lab-sug[hidden] { display: none; }
+  .lab-sug :global(li) { padding: .45rem .9rem; cursor: pointer; display: flex; justify-content: space-between; gap: 1rem; font: 400 var(--fs-body)/1.3 var(--text); }
+  .lab-sug :global(li[aria-selected='true']), .lab-sug :global(li:hover) { background: color-mix(in oklab, var(--accent) 18%, transparent); }
+  .lab-sug :global(.lab-sug-n) { font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); }
+  .lab-series { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+  .lab-series:empty { display: none; }
+  .lab-series :global(li) { display: inline-flex; align-items: center; gap: .5rem; padding: .15rem .3rem .15rem .75rem; border: 1px solid var(--hair-2); border-radius: 999px; font: 400 var(--fs-small)/1.2 var(--text); }
+  .lab-series :global(.lab-muestra) { width: 1.6rem; height: 0; border-top: 3px solid var(--accent); }
+  .lab-series :global(li[data-s='1'] .lab-muestra) { border-top: 2px solid var(--ink); }
+  .lab-series :global(li[data-s='2'] .lab-muestra) { border-top: 2px dashed var(--ink-2); }
+  .lab-series :global(button) { all: unset; cursor: pointer; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 50%; color: var(--mute); }
+  .lab-series :global(button:hover) { color: var(--ink); background: var(--hair); }
+  .lab-series :global(button:focus-visible) { outline: 3px solid var(--focus); outline-offset: 1px; }
+  .lab-estado { margin: 0; }
+  .lab-estado:empty { display: none; }
+
+  .lab-fig { margin: 0; }
+  .lab-grafico { position: relative; }
+  .lab-grafico:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; }
+  .lab-svg { display: block; width: 100%; height: clamp(11rem, 26vw, 19rem); overflow: visible; touch-action: pan-y; cursor: crosshair; }
+  .lab-svg :global(path), .lab-svg line { vector-effect: non-scaling-stroke; fill: none; }
+  .lab-base { stroke: var(--hair-2); stroke-width: 1; }
+  .lab-tick { stroke: var(--hair); stroke-width: 1; }
+  .lab-salto { stroke: var(--ausencia-trazo); stroke-width: 1; stroke-dasharray: 2 4; }
+  .lab-svg :global(.s0 .firme) { stroke: var(--accent); stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+  .lab-svg :global(.s0 .fino) { stroke: var(--accent); stroke-width: 1.2; stroke-dasharray: 1 3; stroke-linecap: round; }
+  .lab-svg :global(.s0 .puntos) { stroke: var(--accent); stroke-width: 5; stroke-linecap: round; }
+  .lab-svg :global(.s1 .firme) { stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; }
+  .lab-svg :global(.s1 .fino) { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 1 3; }
+  .lab-svg :global(.s1 .puntos) { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+  .lab-svg :global(.s2 .firme) { stroke: var(--ink-2); stroke-width: 1.8; stroke-dasharray: 7 5; }
+  .lab-svg :global(.s2 .fino) { stroke: var(--ink-2); stroke-width: 1; stroke-dasharray: 1 3; }
+  .lab-svg :global(.s2 .puntos) { stroke: var(--ink-2); stroke-width: 4; stroke-linecap: round; }
+  .lab--vivo .lab-s { display: none !important; }
+  .lab-cursor { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 3; }
+  @media (prefers-reduced-motion: no-preference) {
+    .lab-svg :global(.lab-dinamico .firme) { stroke-dasharray: var(--largo, 3000); stroke-dashoffset: var(--largo, 3000); animation: lab-traza 900ms cubic-bezier(.2, .7, .1, 1) forwards; }
+  }
+  @keyframes lab-traza { to { stroke-dashoffset: 0; } }
+
+  .lab-eje { position: relative; height: 1.6rem; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .lab-eje span { position: absolute; top: .45rem; transform: translateX(-50%); white-space: nowrap; }
+  .lab-salto-r { color: var(--ausencia-trazo); }
+  .lab-techo { position: absolute; top: -.3rem; left: 0; margin: 0; font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); pointer-events: none; }
+  .lab-techo-vivo:empty { display: none; }
+  .lab--vivo .lab-techo > [data-w] { display: none !important; }
+  .lab-nota[hidden] { display: none; }
+  .lab-nota {
+    position: absolute; top: 0; z-index: 3; min-width: 11rem; max-width: 17rem; padding: .5rem .7rem; pointer-events: none;
+    background: var(--ink); color: var(--bg); border-radius: var(--radio); font: 400 .9rem/1.35 var(--text);
+  }
+  .lab-nota :global(b) { display: block; font: 600 .95rem/1.3 var(--text); margin-bottom: .15rem; }
+  .lab-nota :global(span) { display: block; font: 400 var(--fs-mono-s)/1.45 var(--mono); }
+
+  .lab-cal { margin-top: var(--e6); display: grid; gap: 3px; max-width: 46rem; }
+  .lab-cal-fila { display: grid; grid-template-columns: 3.2rem repeat(12, minmax(0, 1fr)); gap: 3px; align-items: center; }
+  .lab-cal-meses span { font: 400 .62rem/1 var(--mono); color: var(--mute); text-align: center; }
+  .lab-cal-anio { font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .lab-c, .lab-c0, .lab-cx { aspect-ratio: 1.6; border-radius: 1px; }
+  .lab-c {
+    --q: var(--c0, 0);
+    background: color-mix(in oklab, color-mix(in oklab, var(--rampa-4) calc(max(var(--q) - 1, 0) * 33.34%), var(--rampa-0)) calc(min(var(--q), 1) * 100%), transparent);
+    box-shadow: inset 0 0 0 1px var(--hair-2); transition: background-color 240ms cubic-bezier(.2, .7, .1, 1);
+  }
+  /* Con JS manda la palabra principal, aunque siga marcado el radio de partida (su regla lleva un id dentro de :has()). */
+  .lab--vivo .lab-c { --q: var(--qv, 0) !important; cursor: pointer; }
+  .lab-c.momento { box-shadow: inset 0 0 0 1px var(--hair-2), 0 0 0 2px var(--bg), 0 0 0 3.5px var(--accent); }
+  .lab-c.activo { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .lab-c0 { box-shadow: inset 0 0 0 1px var(--ausencia-trazo); opacity: .55; }
+  .lab-pie { margin-top: var(--e5); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--e3); }
+  .lab-pie .nota { margin: 0; max-width: 46rem; }
+  .lab-momentos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr)); gap: .2rem var(--e4); max-width: 60rem; }
+  .lab-momentos a { display: grid; gap: .15rem; padding: .45rem 0 .5rem; border-top: 1px solid var(--hair); text-decoration: none; color: var(--ink); min-height: 2.75rem; }
+  .lab-momentos a:hover .lab-m-que, .lab-momentos a:focus-visible .lab-m-que { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .2em; }
+  .lab-m-fecha { font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--mute); }
+  .lab-m-que { font: 400 var(--fs-small)/1.3 var(--text); }
+  @media (max-width: 40rem) {
+    .lab-cal-fila { grid-template-columns: 2.6rem repeat(12, minmax(0, 1fr)); gap: 2px; }
+    /* En el móvil no caben diez años: los impares y 1939 se callan (el salto y 1945, no). */
+    .lab-eje span:is([data-a='1931'], [data-a='1933'], [data-a='1935'], [data-a='1937'], [data-a='1939']), .lab-salto-r { display: none; }
+  }
+</style>

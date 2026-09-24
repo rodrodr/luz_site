@@ -2,13 +2,32 @@
 
 > Documento de traspaso. **Léalo entero antes de seguir.** Se actualiza en cada hito; la instantánea automática de lo
 > que corre está en `docs/estado/AUTO.md` (se regenera a mano en cada hito con `python3 docs/estado/instantanea.py`).
-> Última actualización manual: **23-09-2026, 09:45** (decisiones aplicadas, ronda final de diseño integrada y **español congelado** → `CHANGELOG.md`; sigue el inglés).
+> Última actualización manual: **24-09-2026** (la base corregida, sin ediciones; «Corrija al Diario»; los juegos pedidos). Anterior: **23-09-2026, 09:45** (decisiones aplicadas, ronda final de diseño integrada y **español congelado** → `CHANGELOG.md`; sigue el inglés).
 
 > **Incidente 22-09 ~21:20 (São Paulo):** se agotó el límite de sesión. Cayeron la integración de la skill maestra (`wf_dbf578ff-435`: inventario de 65 fichas hecho; arquitecto, crítico, demos y corrección sin terminar; hay archivos a medias en `~/.claude/skills/maestro-diseno-web/`) y la fase 2 (`wf_93df30d4-88d`: ningún agente terminó; el integrador de diseño y el corrector de copy dejaron cambios parciales en `src/styles/`, `src/lib/` y `docs/copy_es/`). Reanudados los dos a las ~00:35 con `resumeFromRunId`. Si se vuelven a cortar en otra sesión, relance sus guiones de `docs/estado/flujos/`: los agentes leen el estado de los archivos y continúan.
 
 > **23-09-2026: el investigador revisó la vista previa y decidió** (detalle en `docs/DECISIONES_23-09.md`): peso comprimido vale; oro en «Abrir el explorador»; «Hoy puede» primero; nota al margen para «Luz y taquigrafos.»; motivo del formulario (D-20): conocer a los usuarios y los usos de la base para mejorarla y comunicar novedades; el resto, a criterio del director (resuelto en ese archivo). Siguiente: aplicar, congelar el español, inglés y preparar la publicación → flujo LANZADO `cerrar-y-traducir-lyt` (run `wf_3ee15cb5-1fd`, guion en `docs/estado/flujos/`; si se corta: mire CHANGELOG.md —¿español congelado?—, `docs/03a_GLOSARIO_es-en.md` y `docs/copy_en/` para saber hasta dónde llegó, y relance solo lo que falte).
 
 > ⛔ **23-09-2026: NO PUBLICAR.** El investigador: «No publiques el resultado de la página. Quiero revisar todo muy bien y reformular algunas cosas que no me gustan antes. Esa no es una versión publicable.» La congelación del español queda **REVOCADA**; el flujo `cerrar-y-traducir-lyt` se detuvo durante la traducción (glosario hecho; `docs/copy_en/` son BORRADORES que habrá que rehacer sobre el español definitivo). Nada se ha subido: sin remoto, sin commits, sin despliegue. Siguiente: la revisión del investigador y aplicar sus reformulaciones; solo después, inglés y publicación, y siempre con su visto bueno expreso.
+
+> **23-09-2026, noche: REDISEÑO.** El investigador pidió una landing que presente la infraestructura (no un apéndice
+> metodológico), sin comparar ediciones y con gráficos que se juegan. Propuesta y decisiones: `docs/REDISENO_23-09.md`;
+> hecho y verificado: `CHANGELOG.md` (entrada «rediseño de Inicio»). Rama `claude/trusting-allen-dxol3x`; la versión
+> anterior, en `main` (`240b401`, etiqueta `v0.1-antes-del-rediseno`). Siguen: la cabecera y las seis páginas del § 5
+> de la propuesta, y el inglés. Nada se publica sin su visto bueno expreso.
+
+> **24-09-2026: LA BASE CORREGIDA.** El investigador: el sitio no debe señalar la V2 como problemática («esos son errores
+> ya corregidos en la v3»; «cuando actualice la base con las correcciones, esos problemas ya no existirán»), ni hablar de
+> «trampas» de las columnas. Hecho y verificado: `CHANGELOG.md` (entrada del 24-09). Antes de publicar, **con la base
+> corregida ya depositada**: reexportar sobre ella (hoy conviven cifras de la V2 y de la base del explorador) y revisar
+> fragmentos de código e ids literales; ver la lista en esa entrada. Juego nuevo en Método 03, «Corrija al Diario».
+> **Juegos pedidos (24-09):** le gustan los seis propuestos y añade dos ideas; se construirán por fases, con su visto
+> bueno: (1) el aplausómetro (El Diario, acotaciones del taquígrafo), (2) ¿Quién lo dijo? (fichas y puertas),
+> (3) ¿Izquierda o derecha? (Método, ideología), (4) ¿Cuándo fue el pico? (laboratorio de Inicio), (5) ¿Más o menos?
+> (Explorador), (6) ¿Firmaron juntos? (Afinidades) y (7) «¿Esta o esta?» / «Descubra su familia partidaria»: dos frases
+> reales sobre el mismo asunto, sin autor; se elige, se descubre quién las dijo y al final sale la familia y el lugar en
+> el eje EI–ED (mecánica de SexyMP, pero de ideas; la clasificación es la del jugador: una colectiva pediría servidor).
+> Las frases del 7 las revisa el investigador.
 
 ## 1. Qué se pide (palabras del investigador, Rodrigo Rodrigues-Silveira)
 

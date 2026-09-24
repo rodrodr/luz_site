@@ -33,7 +33,7 @@ MARCADOR = re.compile(r'\{\{([^{}]*)\}\}')
 # P1-4); `peso*` es la unidad de Dataverse (1.024²).
 FORMATOS = {'', 'n', 'id', 'anio', 'letra', 'texto', 'fecha', 'fecha_larga', 'fecha_corta', 'mes',
             'pct', 'pct0', 'pct1', 'pct2', 'pct3', 'peso', 'peso0', 'peso1', 'peso2',
-            'peso_dec', 'peso_dec0', 'peso_dec1', 'peso_dec2'}
+            'peso_dec', 'peso_dec0', 'peso_dec1', 'peso_dec2', 'redondo'}
 try:
     FORMATOS |= set(json.loads((RAIZ / 'src/data/formatos.json').read_text(encoding='utf-8')).get('formatos', {}))
 except (OSError, ValueError):
@@ -55,16 +55,14 @@ PREFIJOS = {
     'figuras': ('fig.',),
 }
 
-# Las trece frases fijas del plan (§ Frases fijas ↺), con la marca de enlace [ ] donde el copy la lleva.
+# Las frases fijas del plan (§ Frases fijas ↺) que siguen en pie: las de las ediciones se retiraron el 24-09-2026
+# (el sitio presenta la base corregida y no habla de ediciones; docs/REDISENO_23-09.md), con la marca de enlace [ ] donde el copy la lleva.
 # Se comparan sin corchetes: el enlace es forma, no redacción.
 FIJAS = [
     'Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.',
-    'Edición depositada (V2)',
-    'Edición del explorador (v3, sin depositar)',
     'Metadatos del proyecto (no depositados; el explorador no los muestra)',
-    'Afinidades Elegidas (CGOCUS V1.1, depositada)',
+    'Afinidades Elegidas (CGOCUS)',
     'Antes de descargar, Harvard Dataverse le pedirá nombre, correo e institución.',
-    'Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.',
     'El explorador no abre una búsqueda desde un enlace: cópiela y péguela en su buscador (tecla /).',
     'Contar una palabra no dice quién la defiende ni en qué tono.',
     'El texto sale del reconocimiento óptico y no está corregido a mano.',
@@ -73,9 +71,7 @@ FIJAS = [
     # ↺ 10, redacción de la fase 2 (REVISION_FASE1 P2-4; peticiones/corrector-copy.md § B): en CGOCUS V1.1 el censo y el
     # edgelist dicen 1933-1936, pero `2REP_cosponsorship` dice 1933-1935; la frase ya no generaliza.
     'El censo y las relaciones de Afinidades Elegidas llaman 1933-1936 a la legislatura que esta base llama 1933-1935; las sesiones del Diario terminan el 10 de diciembre de 1935.',
-    'El README depositado describe la primera versión; las diferencias, aquí.',
     'Sin formulario: son datos agregados.',
-    'Esta cifra sale de la edición del explorador (v3, {{filas.v3}} filas, sin depositar); la depositada es la V2 ({{filas.V2}} filas). Por qué hay dos →',
 ]
 
 

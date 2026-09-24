@@ -16,8 +16,8 @@ import CabezaPagina from '../../../../components/CabezaPagina.astro';
 import Seccion from '../../../../components/Seccion.astro';
 import RegistroPuertas from '../../../../components/RegistroPuertas.astro';
 import FigVotaciones from '../../../../components/FigVotaciones.astro';
-import NotaBases from '../../../../components/NotaBases.astro';
 import SinSitio from '../../../../components/SinSitio.astro';
+import QuienLoDijo from '../../../../components/sesiones/QuienLoDijo.astro';
 import { meta } from '../../../../lib/pagina';
 import { t, existe, tBloques } from '../../../../lib/i18n';
 import { rotulosConDestino, htmlFija, anclasTras } from '../../../../lib/lectura';
@@ -49,7 +49,7 @@ const citar = existe('sesiones.otra.citar')
 ---
 <Base lang={lang} ruta={PAGINAS.sesiones} titulo={titulo} descripcion={descripcion}>
   <SubNav lang={lang} grupo="cortes" actual={PAGINAS.sesiones} />
-  <CabezaPagina lang={lang} prefijo="sesiones" bases={['V2', 'v3']} />
+  <CabezaPagina lang={lang} prefijo="sesiones" />
   <div class="contenedor">
     <!-- 1 · Lo que se votó en voz alta: el total, el registro por etapa, la selección y F26 completa -->
     <Seccion lang={lang} id="en-voz-alta" prefijo={V} espera={['titulo', 'entrada']} resto={false}>
@@ -66,7 +66,6 @@ const citar = existe('sesiones.otra.citar')
       <Fragment set:html={bloque(`${V}.destitucion.2`)} />
       <Fragment set:html={nota(`${V}.destitucion.pie`)} />
       <Fragment set:html={bloque(`${V}.mas`)} />
-      <NotaBases lang={lang} compacta />
     </Seccion>
 
     <!-- 2 · Las ocho puertas de lectura, en registro de calendario (las de la 0.2 no se pintan) -->
@@ -75,6 +74,10 @@ const citar = existe('sesiones.otra.citar')
     </Seccion>
 
     <!-- 3 · Cualquier otra sesión: los filtros son pasos escritos (no hay consulta que copiar); cómo citarla (↺ 4) -->
+    <Seccion lang={lang} id="quien-lo-dijo" prefijo="sesiones.quien" espera={['titulo', 'entrada']} excluir={['juego']}>
+      <QuienLoDijo lang={lang} />
+    </Seccion>
+
     <Seccion lang={lang} id="otra" prefijo="sesiones.otra" espera={['titulo', 'entrada']} resto={false}>
       <Fragment set:html={bloque('sesiones.otra.pasos', 'pasos-filtro')} />
       <Fragment set:html={bloque('sesiones.otra.dobles')} />
@@ -87,7 +90,7 @@ const citar = existe('sesiones.otra.citar')
     <!-- 4 · «Que esté no quiere decir que esté entera»: la sesión 48 (↺ 8), la 9, las posteriores a julio de 1936 -->
     <Seccion lang={lang} id="entera" prefijo="sesiones.entera" espera={['titulo', 'entrada']} />
   </div>
-  <SinSitio lang={lang} prefijo="sesiones" usados={['sesiones.antetitulo', 'sesiones.h1', 'sesiones.titulo', 'sesiones.entrada', 'sesiones.votos', 'sesiones.puertas', 'sesiones.lista', 'sesiones.otra', 'sesiones.entera', 'sesiones.puerta']} ignorar={['puerta', ...PUERTAS.map((p) => p.slug)]} />
+  <SinSitio lang={lang} prefijo="sesiones" usados={['sesiones.quien', 'sesiones.antetitulo', 'sesiones.h1', 'sesiones.titulo', 'sesiones.entrada', 'sesiones.votos', 'sesiones.puertas', 'sesiones.lista', 'sesiones.otra', 'sesiones.entera', 'sesiones.puerta']} ignorar={['puerta', ...PUERTAS.map((p) => p.slug)]} />
 </Base>
 
 <style>

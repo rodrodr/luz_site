@@ -29,7 +29,7 @@ Official extracts remain, not the full Diario. Here are all its sessions, one by
 <!-- cortes.guerra.hoy.buscar.consulta --> confianza
 
 <!-- cortes.guerra.hoy.buscar.recuento -->
-With those filters, «confianza» (confidence) returns {{cortes.guerra.consulta.confianza.n}} interventions (v3), counting every row. It appears in {{cortes.guerra.consulta.confianza.sesiones}} of the {{etapa.IV.sesiones}} sessions.
+With those filters, «confianza» (confidence) returns {{cortes.guerra.consulta.confianza.n}} interventions, counting every row. It appears in {{cortes.guerra.consulta.confianza.sesiones}} of the {{etapa.IV.sesiones}} sessions.
 
 <!-- cortes.guerra.hoy.sesion -->
 **Open a session.** Enter 30 September 1938 in «Desde» (from) and «Hasta» (to), open an intervention and press `s`: you will have the session in sequence.
@@ -46,7 +46,7 @@ With those filters, «confianza» (confidence) returns {{cortes.guerra.consulta.
 {{etapa.IV.sesiones}} sessions, from October 1936 to February 1939.
 
 <!-- cortes.guerra.cifras.palabras -->
-{{etapa.IV.palabras}} words in the deposited edition: {{etapa.IV.palabras.pct|pct2}} of the corpus.
+{{etapa.IV.palabras}} words in the dataset: {{etapa.IV.palabras.pct|pct2}} of the corpus.
 
 <!-- cortes.guerra.cifras.diputados -->
 {{etapa.IV.diputados}} deputies take the floor, counting whoever is in the Chair.
@@ -58,61 +58,61 @@ With those filters, «confianza» (confidence) returns {{cortes.guerra.consulta.
 <!-- cortes.guerra.contexto.1.titulo --> Where they met: the text says so
 
 <!-- cortes.guerra.contexto.1.a -->
-The volume opens with a note: it gathers the extracts of the sessions held «CON POSTERIORIDAD AL 18 DE JULIO» (v3 {{fila.guerra.nota_volumen.v3|id}}, only in the v3). The note does not give the places: the text itself names them.
+The volume opens with a note: it gathers the extracts of the sessions held «CON POSTERIORIDAD AL 18 DE JULIO». The note does not give the places: the text itself names them.
 
 <!-- cortes.guerra.contexto.1.b -->
-On 1 October 1936, a motion is dated at the «Palacio del Congreso» (V2 {{fila.guerra.palacio_congreso.V2|id}} · v3 {{fila.guerra.palacio_congreso.v3|id}}). In December, Albornoz will recall that on that day «nos reunimos en Madrid» (V2 {{fila.guerra.madrid.V2|id}} · v3 {{fila.guerra.madrid.v3|id}}).
+On 1 October 1936, a motion is dated at the «Palacio del Congreso». In December, Albornoz will recall that on that day «nos reunimos en Madrid».
 
 <!-- cortes.guerra.contexto.1.c -->
-On 1 December, Martínez Barrio thanks «al pueblo de Valencia» (V2 {{fila.guerra.valencia.V2|id}} · v3 {{fila.guerra.valencia.v3|id}}). A motion of that day is signed at the «Palacio del Ayuntamiento de Valencia» (V2 {{fila.guerra.ayuntamiento.V2|id}} · v3 {{fila.guerra.ayuntamiento.v3|id}}).
+On 1 December, Martínez Barrio thanks «al pueblo de Valencia». A motion of that day is signed at the «Palacio del Ayuntamiento de Valencia».
 
 <!-- cortes.guerra.contexto.1.d -->
-In October 1937, Negrín thanks the city of Valencia for allowing them «congregarnos en la histórica Lonja» (V2 {{fila.guerra.lonja.V2|id}} · v3 {{fila.guerra.lonja.v3|id}}). On 1 February 1938, a motion is dated at «Monserrat», spelt that way (V2 {{fila.guerra.monserrat_fecha.V2|id}} · v3 {{fila.guerra.monserrat_fecha.v3|id}}).
+In October 1937, Negrín thanks the city of Valencia for allowing them «congregarnos en la histórica Lonja». On 1 February 1938, a motion is dated at «Monserrat», spelt that way.
 
 <!-- cortes.guerra.contexto.1.e -->
-On 30 September 1938, Trabal speaks «del antiguo monasterio de San Cugat del Vallés» (V2 {{fila.guerra.san_cugat.V2|id}} · v3 {{fila.guerra.san_cugat.v3|id}}). That day, Irujo recalls «las Cortes de Montserrat» (V2 {{fila.guerra.montserrat.V2|id}} · v3 {{fila.guerra.montserrat.v3|id}}). The next day, the motion suspending the sessions is dated at «Sabadell» (V2 {{fila.guerra.sabadell.V2|id}} · v3 {{fila.guerra.sabadell.v3|id}}).
+On 30 September 1938, Trabal speaks «del antiguo monasterio de San Cugat del Vallés». That day, Irujo recalls «las Cortes de Montserrat». The next day, the motion suspending the sessions is dated at «Sabadell».
 
 <!-- cortes.guerra.contexto.1.f -->
-The last motion of the war is signed at the «Castillo de Figueras» (V2 {{fila.guerra.castillo.V2|id}} · v3 {{fila.guerra.castillo.v3|id}}).
+The last motion of the war is signed at the «Castillo de Figueras».
 
 ### Confidence, session after session
 
 <!-- cortes.guerra.contexto.2.titulo --> Confidence, session after session
 
 <!-- cortes.guerra.contexto.2.a -->
-On 1 October 1936, Martínez Barrio opens by condemning «ese movimiento sedicioso» (V2 {{fila.1936.sedicioso.V2|id}} · v3 {{fila.1936.sedicioso.v3|id}}). Largo Caballero presents his Government (V2 {{fila.guerra.largo_1oct.V2|id}} · v3 {{fila.guerra.largo_1oct.v3|id}}).
+On 1 October 1936, Martínez Barrio opens by condemning «ese movimiento sedicioso». Largo Caballero presents his Government.
 
 <!-- cortes.guerra.contexto.2.b -->
-The motion of support for the Government is approved «por aclamación» (V2 {{fila.guerra.aclamacion.V2|id}} · v3 {{fila.guerra.aclamacion.v3|id}}). That same day the Statute of the Basque Country is given final approval (V2 {{fila.guerra.estatuto_vasco.V2|id}} · v3 {{fila.guerra.estatuto_vasco.v3|id}}).
+The motion of support for the Government is approved «por aclamación». That same day the Statute of the Basque Country is given final approval.
 
 <!-- cortes.guerra.contexto.2.c -->
-Some sessions vote by name. On 1 October 1938, the ratification of the Government's decrees is carried by {{cortes.guerra.voto_convalidacion.si}} votes in favour and none against (V2 {{fila.guerra.voto_convalidacion.V2|id}} · v3 {{fila.guerra.voto_convalidacion.v3|id}}).
+Some sessions vote by name. On 1 October 1938, the ratification of the Government's decrees is carried by {{cortes.guerra.voto_convalidacion.si}} votes in favour and none against.
 
 ### Speech under watch (1937 and 1938)
 
 <!-- cortes.guerra.contexto.3.titulo --> Speech under watch (1937 and 1938)
 
 <!-- cortes.guerra.contexto.3.a -->
-On 2 October 1937, Pestaña denounces the lack of weapons in some brigades (V2 {{fila.guerra.pestana_brigadas.V2|id}} · v3 {{fila.guerra.pestana_brigadas.v3|id}}). The Chair warns him that «de ciertas cosas no se puede hablar en la Cámara» (V2 {{fila.guerra.ciertas_cosas.V2|id}} · v3 {{fila.guerra.ciertas_cosas.v3|id}}).
+On 2 October 1937, Pestaña denounces the lack of weapons in some brigades. The Chair warns him that «de ciertas cosas no se puede hablar en la Cámara».
 
 <!-- cortes.guerra.contexto.3.b -->
-Albornoz replies: «Pero si el Parlamento no es eso, no será nada» (V2 {{fila.guerra.albornoz.V2|id}} · v3 {{fila.guerra.albornoz.v3|id}}).
+Albornoz replies: «Pero si el Parlamento no es eso, no será nada».
 
 <!-- cortes.guerra.contexto.3.c -->
-A year later, Negrín warns: «El Gobierno no acepta, ni admite votos de confianza condicionados y con reservas» (V2 {{fila.guerra.reservas.V2|id}} · v3 {{fila.guerra.reservas.v3|id}}).
+A year later, Negrín warns: «El Gobierno no acepta, ni admite votos de confianza condicionados y con reservas».
 
 ### Figueres (1 February 1939)
 
 <!-- cortes.guerra.contexto.4.titulo --> Figueres (1 February 1939)
 
 <!-- cortes.guerra.contexto.4.a -->
-According to the summary, the session opens «a las veintidos horas treinta minutos» (v3 {{fila.guerra.hora.v3|id}}, only in the v3). Negrín begins: «Señores Diputados, se reúne hoy la Cámara en un severo ambiente de guerra» (V2 {{fila.guerra.negrin_figueres.V2|id}} · v3 {{fila.guerra.negrin_figueres.v3|id}}).
+According to the summary, the session opens «a las veintidos horas treinta minutos». Negrín begins: «Señores Diputados, se reúne hoy la Cámara en un severo ambiente de guerra».
 
 <!-- cortes.guerra.contexto.4.b -->
-The final motion is put to a roll-call vote. The extract closes: «Han votado afirmativamente los sesenta y dos señores Diputados» (V2 {{fila.guerra.votacion_nominal_1939.V2|id}}–{{fila.guerra.sesenta_y_dos.V2|id}} · v3 {{fila.guerra.votacion_nominal_1939.v3|id}}–{{fila.guerra.sesenta_y_dos.v3|id}}).
+The final motion is put to a roll-call vote. The extract closes: «Han votado afirmativamente los sesenta y dos señores Diputados».
 
 <!-- cortes.guerra.contexto.4.c -->
-The note that opens the volume says that of this session «NO EXISTE DATO ALGUNO» (v3 {{fila.guerra.no_existe.v3|id}}, only in the v3). Another note, at the end, explains that later «se ha podido obtener fotocopia del ejemplar del Extracto de dicha sesión» (V2 {{fila.guerra.fotocopia.V2|id}} · v3 {{fila.guerra.fotocopia.v3|id}}).
+The note that opens the volume says that of this session «NO EXISTE DATO ALGUNO». Another note, at the end, explains that later «se ha podido obtener fotocopia del ejemplar del Extracto de dicha sesión».
 
 ## The sessions, one by one
 
@@ -142,23 +142,20 @@ The Governments band runs from Largo Caballero to Negrín.
 ## Who took the floor
 
 <!-- cortes.guerra.palabra.f05 -->
-Leaving out the Chair, Juan Negrín leads the stage in words spoken: {{oradores.etapa.IV.1.pal}} spoken words (v3).
-
-<!-- cortes.guerra.palabra.f05_v3 -->
-Here the explorer edition is essential. In V2, his speeches of 1 October 1937 and 1 February 1938 sit inside rows of the Chair. They are V2 rows {{fila.guerra.negrin_1oct1937.V2|id}} and {{fila.guerra.negrin_1feb1938.V2|id}} (v3 {{fila.guerra.negrin_1oct1937.v3|id}} and {{fila.guerra.negrin_1feb1938.v3|id}}).
+Leaving out the Chair, Juan Negrín leads the stage in words spoken: {{oradores.etapa.IV.1.pal}} spoken words.
 
 <!-- cortes.guerra.palabra.f09 -->
-By family, the socialists take {{familias.etapa.IV.socialista.pct|pct1}} of the words spoken outside the Chair (V2).
+By family, the socialists take {{familias.etapa.IV.socialista.pct|pct1}} of the words spoken outside the Chair.
 
 <!-- cortes.guerra.palabra.f09_salvedad -->
-That count leaves out the two speeches by Negrín that V2 assigns to the Chair. Here the Chair keeps {{etapa.IV.presidencia.pct|pct1}} of the words.
+Here the Chair takes {{etapa.IV.presidencia.pct|pct1}} of the words.
 
 ## Reading gateways for this stage
 
 ## Ready-made debates in the explorer
 
 <!-- cortes.guerra.debates.entrada -->
-The explorer offers one ready-made debate from this stage (v3), under its name in the explorer:
+The explorer offers one ready-made debate from this stage, under its name in the explorer:
 
 <!-- cortes.guerra.debates.lista -->
 Las Cortes en guerra
@@ -172,7 +169,7 @@ These are official extracts, not the full Diario: part of each session is told i
 The pages of these sessions are not verified in the project metadata.
 
 <!-- cortes.guerra.antes.sumario -->
-The volume's note and the summary of each extract are only in the v3. The filter «Solo lo que se habla» (only what is spoken) hides them.
+The volume's note and the summary of each extract sit in rows of their own. The filter «Solo lo que se habla» (only what is spoken) hides them.
 
 <!-- ↺ comun.fija.ocr -->
 The text comes from optical character recognition and has not been corrected by hand.
@@ -191,7 +188,7 @@ The text comes from optical character recognition and has not been corrected by 
 ## How to cite
 
 <!-- cortes.guerra.citar.sesion -->
-*Extracto oficial de las sesiones. Congreso de los Diputados*, no. {{sesion.1939-02-01-69.diario|id}}, 1 February 1939. In Luz y Taquígrafos (V2), rows {{sesion.1939-02-01-69.id.desde|id}} to {{sesion.1939-02-01-69.id.hasta|id}}.
+*Extracto oficial de las sesiones. Congreso de los Diputados*, no. {{sesion.1939-02-01-69.diario|id}}, 1 February 1939. In Luz y Taquígrafos, rows {{sesion.1939-02-01-69.id.desde|id}} to {{sesion.1939-02-01-69.id.hasta|id}}.
 
 <!-- cortes.guerra.citar.sin_paginas -->
 These extracts have no verified pages: cite them by their number and date.

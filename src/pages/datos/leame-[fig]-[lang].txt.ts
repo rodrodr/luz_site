@@ -20,6 +20,7 @@ import { join } from 'node:path';
 import { FIGURAS_CON_DATOS, figura, rutaDatos, paginaDe } from '../../lib/figuras';
 import { plano, existe } from '../../lib/i18n';
 import { huella } from '../../lib/cita';
+import { esEdicion } from '../../lib/cifras';
 import { url } from '../../lib/rutas';
 import { LANGS, type Lang } from '../../lib/idiomas';
 import { ETAPAS, PUERTAS_PUBLICADAS } from '../../lib/rutas';
@@ -35,7 +36,9 @@ export const GET: APIRoute = ({ params, site }) => {
   const primera = (k: string[], resto = '') => { const x = k.find(existe); return x ? plano(lang, x) : resto || `⟦${k[0]}⟧`; };
   const sub = { etapa: ETAPAS[0].slug, puerta: PUERTAS_PUBLICADAS[0].slug };
   const enlace = new URL(url(lang, paginaDe(f.id, sub)), site).href;
-  const bases = f.base.map((b) => { const h = huella(b); return `${p(`comun.sello.${b}`)}${h.huella ? ` · ${h.huella}` : ''}${h.fecha ? ` · ${h.fecha}` : ''}`; });
+  // La base es «Luz y Taquígrafos» (una sola línea, con la huella de su archivo principal); las demás fuentes, con su sello.
+  const fuentes = f.base.filter((b, i) => !esEdicion(b) || f.base.findIndex(esEdicion) === i);
+  const bases = fuentes.map((b) => { const h = huella(b); return `${p(esEdicion(b) ? 'comun.sello.base' : `comun.sello.${b}`)}${h.huella ? ` · ${h.huella}` : ''}${h.fecha ? ` · ${h.fecha}` : ''}`; });
   const linea = (rotulo: string, valor: string) => `${rotulo.toUpperCase()}\n${valor}\n`;
   const cuerpo = [
     `${p(`${f.familia}.titulo`)}`,

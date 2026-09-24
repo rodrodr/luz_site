@@ -28,7 +28,6 @@ export const PAGINAS = {
   diario: 'diario',
   metodo: 'metodo',
   datos: 'datos',
-  versiones: 'datos/versiones',
   explorador: 'explorador',
   afinidades: 'afinidades',
 } as const;
@@ -88,7 +87,6 @@ export function todasLasRutas(): string[] {
     PAGINAS.diario,
     PAGINAS.metodo,
     PAGINAS.datos,
-    PAGINAS.versiones,
     PAGINAS.explorador,
     PAGINAS.afinidades,
   ];

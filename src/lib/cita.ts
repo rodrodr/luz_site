@@ -5,12 +5,13 @@
  *   «V1» para CGOCUS, rotulada «CGOCUS V1.1». Su texto sale de `src/data/cifras.json` (`dv.<conjunto>.cita`, base `dv`),
  *   y BibTeX y RIS se construyen desde `src/data/jsonld/<conjunto>.json` (el Dataset de schema.org que exporta Dataverse).
  * · La cita de una FIGURA dice su ancla, su base (con huella) y su fecha: `comun.cita.figura` con {titulo} {url} {base} {fecha}.
- * · La cita de un PASAJE: Diario, número, fecha y páginas (metadatos del proyecto, rotulados) más el id de la fila con su
- *   edición: `comun.cita.pasaje` con {diario} {numero} {fecha} {paginas} {id} {edicion}.
+ *   La base es «Luz y Taquígrafos» (`comun.sello.base`) o el sello de su otra fuente: el sitio no nombra ediciones.
+ * · La cita de un PASAJE: Diario, número, fecha y páginas (metadatos del proyecto, rotulados) más el id de la fila:
+ *   `comun.cita.pasaje` con {diario} {numero} {fecha} {paginas} {id}.
  * Si falta un dato, lo que falta se pinta como pendiente (vista previa) y falla en publicación.
  */
 import { dato, sello } from './datos';
-import { cifra, resuelve, escapa, marcaPendiente, type Base } from './cifras';
+import { cifra, resuelve, escapa, marcaPendiente, esEdicion, type Base } from './cifras';
 import { t } from './i18n';
 import { figura, paginaDe } from './figuras';
 import { url } from './rutas';
@@ -110,13 +111,13 @@ export function citaFigura(lang: Lang, id: string, site: URL | undefined, sub: R
     vars: {
       titulo: t(lang, `${f.familia}.titulo`),
       url: escapa(href),
-      base: `${t(lang, `comun.sello.${base}`)}${h ? ` · <code>${escapa(h)}</code>` : ''}`,
+      base: `${t(lang, esEdicion(base) ? 'comun.sello.base' : `comun.sello.${base}`)}${h ? ` · <code>${escapa(h)}</code>` : ''}`,
       fecha: fecha ? `<time datetime="${fecha}">${escapa(fecha)}</time>` : marcaPendiente('sello.exportado'),
     },
   });
 }
 
 /** Cita de un pasaje (HTML). Los valores llegan ya resueltos (con su envoltorio) desde la plantilla de la puerta. */
-export function citaPasaje(lang: Lang, v: { diario: string; numero: string; fecha: string; paginas: string; id: string; edicion: string }): string {
+export function citaPasaje(lang: Lang, v: { diario: string; numero: string; fecha: string; paginas: string; id: string }): string {
   return t(lang, 'comun.cita.pasaje', { vars: v });
 }

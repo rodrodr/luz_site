@@ -1,0 +1,119 @@
+---
+/**
+ * Juego 2 · «¿Cuántos votaron sí?» (Inicio; docs/REDISENO_23-09.md; copy `inicio.apuesta.*`, rótulos `inicio.f26.v.*`).
+ * Seis votaciones nominales. La barra entera son los votos emitidos; el tramo de oro, los síes; el trazo fino, los noes.
+ *  · SIN JS: los resultados, a la vista, con su procedencia (`voto.<clave>.si|no`, base V2).
+ *  · CON JS (`scripts/apuesta.ts`): cada barra nace vacía; el lector la arrastra hasta donde crea que llegó el sí (un
+ *    deslizador nativo: puntero, dedo o teclado), la comprueba y ve el reparto real y a cuántos puntos se quedó.
+ *    Al terminar las seis, su marcador.
+ * Datos: `src/data/votaciones.json` (exportador › sesiones.py).
+ */
+import { t, plano, plantillaNota } from '../../lib/i18n';
+import { fmt } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import { fechaCorta } from '../../lib/formato';
+import { url, PAGINAS, PUERTAS_PUBLICADAS } from '../../lib/rutas';
+import { tEnlaces } from '../../lib/i18n';
+import type { Lang } from '../../lib/idiomas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const CLAVES = ['161-121', '178-59', '368-466', '318-19', '314-24', '238-5'];
+interface Voto { clave: string; fecha: string; si: number; no: number; puerta?: string | null }
+const V = dato<{ votaciones: Voto[] }>('votaciones')?.votaciones ?? [];
+const filas = CLAVES.map((c) => V.find((v) => v.clave === c)).filter((v): v is Voto => !!v).map((v) => {
+  const pct = (100 * v.si) / (v.si + v.no);
+  const conPuerta = v.puerta && PUERTAS_PUBLICADAS.some((p) => p.slug === v.puerta);
+  return { ...v, pct, href: conPuerta ? url(lang, `${PAGINAS.sesiones}/${v.puerta}`) : null, rotulo: t(lang, `inicio.f26.v.${v.clave}`) };
+});
+const textos = {
+  su: plano(lang, 'inicio.apuesta.su'), cerca: plantillaNota(lang, 'inicio.apuesta.cerca'), lejos: plantillaNota(lang, 'inicio.apuesta.lejos'),
+  marcador: plantillaNota(lang, 'inicio.apuesta.marcador'), si: plano(lang, 'inicio.apuesta.si'),
+};
+---
+{filas.length > 0 && (
+<section class="apuesta" id="apuesta" aria-labelledby="apuesta-titulo" data-apuesta data-textos={JSON.stringify(textos)} data-locale={lang === 'es' ? 'es-ES' : 'en-GB'}>
+  <div class="contenedor">
+    <h2 id="apuesta-titulo" set:html={t(lang, 'inicio.apuesta.titulo')} />
+    <p class="entrada" set:html={t(lang, 'inicio.apuesta.entrada')} />
+    <ol class="ap-filas" role="list">
+      {filas.map((f) => (
+        <li class="ap-fila" data-real={f.pct.toFixed(3)} style={`--real:${f.pct.toFixed(3)}`}>
+          <p class="ap-rotulo">
+            <span class="ap-fecha">{fechaCorta(f.fecha)}</span>{' '}
+            {f.href ? <a href={f.href} set:html={f.rotulo} /> : <span set:html={f.rotulo} />}
+          </p>
+          <div class="ap-pista">
+            <span class="ap-barra" aria-hidden="true"><span class="ap-si"></span><span class="ap-no"></span></span>
+            <span class="ap-guia" aria-hidden="true"></span>
+            <input class="ap-rango" type="range" min="0" max="100" step="1" value="50" hidden aria-label={`${textos.su}: ${plano(lang, `inicio.f26.v.${f.clave}`)}`} />
+            <span class="ap-valor" aria-hidden="true"></span>
+          </div>
+          <p class="ap-res">
+            <span class="ap-cifras"><Fragment set:html={fmt.clave(`voto.${f.clave}.si`, lang)} /> <Fragment set:html={t(lang, 'inicio.apuesta.si')} /> · <Fragment set:html={fmt.clave(`voto.${f.clave}.no`, lang)} /> <Fragment set:html={t(lang, 'inicio.apuesta.no')} /></span>
+            <span class="ap-dif" aria-live="polite"></span>
+            <button type="button" class="boton sec ap-comprobar" hidden set:html={t(lang, 'inicio.apuesta.comprobar')} />
+          </p>
+        </li>
+      ))}
+    </ol>
+    <p class="ap-final">
+      <span class="ap-marcador" role="status"></span>
+      <button type="button" class="boton sec ap-todas" hidden set:html={t(lang, 'inicio.apuesta.todas')} />
+      <button type="button" class="boton sec ap-otra" hidden set:html={t(lang, 'inicio.apuesta.otra')} />
+    </p>
+    <p class="nota ap-pie" set:html={tEnlaces(lang, 'inicio.apuesta.pie', [url(lang, PAGINAS.sesiones)])} />
+  </div>
+</section>
+)}
+
+<script>
+  import '../../scripts/apuesta.ts';
+</script>
+
+<style>
+  .apuesta { padding-block: clamp(2.5rem, 4.5vw, 4.5rem); }
+  .apuesta h2 { font: italic 500 var(--fs-h2)/1.05 var(--display); margin: 0 0 var(--e4); }
+  .apuesta .entrada { color: var(--ink-2); max-width: 40rem; margin: 0 0 var(--e6); }
+  .ap-filas { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e5); max-width: 60rem; }
+  .ap-fila { display: grid; gap: .5rem var(--e5); align-items: center; }
+  @media (min-width: 56rem) { .ap-fila { grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr) minmax(11rem, 14rem); } }
+  .ap-rotulo { margin: 0; display: grid; gap: .1rem; font: 400 var(--fs-body)/1.3 var(--text); }
+  .ap-rotulo a { color: var(--ink); text-decoration-color: var(--hair-2); text-underline-offset: .2em; }
+  .ap-rotulo a:hover { text-decoration-color: var(--accent); }
+  .ap-fecha { font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--mute); }
+
+  /* La pista: la barra entera son los votos emitidos. El oro llega hasta --real (sin JS) o hasta la apuesta. */
+  .ap-pista { position: relative; height: 2.75rem; display: flex; align-items: center; }
+  .ap-barra { position: absolute; left: 0; right: 0; top: 50%; height: 1.1rem; transform: translateY(-50%); display: flex; align-items: center; }
+  .ap-si { height: 100%; width: calc(var(--real) * 1%); background: var(--accent); border-radius: 1px 0 0 1px; }
+  .ap-no { flex: 1; height: 3px; background: var(--ink-2); }
+  .ap-guia, .ap-valor { display: none; }
+  .ap-res { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .8rem; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--ink-2); }
+  .ap-dif { font: italic 400 var(--fs-small)/1.3 var(--text); color: var(--ink); }
+  .ap-comprobar[hidden], .ap-todas[hidden], .ap-otra[hidden] { display: none; }
+  .ap-comprobar { font-size: .9rem; padding: .3em .9em; min-height: 2.5rem; }
+  .ap-final { margin: var(--e6) 0 var(--e3); display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center; }
+  .ap-marcador { font: italic 500 var(--fs-h3)/1.2 var(--display); color: var(--accent); }
+  .ap-marcador:empty { display: none; }
+  .ap-pie { margin: 0; }
+
+  /* EL JUEGO (con JS): la barra nace vacía y el oro, más tenue, sigue la apuesta; al comprobarla, el oro llega al real. */
+  :global(.apuesta.ap--juego) .ap-fila:not(.revelada) .ap-si { width: calc(var(--apuesta, 50) * 1%); background: color-mix(in oklab, var(--accent) 55%, transparent); }
+  :global(.apuesta.ap--juego) .ap-fila:not(.revelada) .ap-cifras { visibility: hidden; }
+  :global(.apuesta.ap--juego) .ap-fila:not(.revelada) .ap-valor { display: block; position: absolute; top: -.35rem; left: calc(var(--apuesta, 50) * 1%); transform: translate(-50%, -100%); font: 600 var(--fs-mono-s)/1 var(--mono); color: var(--accent); pointer-events: none; }
+  :global(.apuesta.ap--juego) .ap-fila.revelada .ap-guia { display: block; position: absolute; top: .1rem; bottom: .1rem; left: calc(var(--apuesta, 50) * 1%); width: 2px; background: var(--ink); transform: translateX(-1px); }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.apuesta.ap--juego) .ap-si { transition: width 700ms cubic-bezier(.2, .7, .1, 1), background-color 400ms; }
+  }
+  .ap-rango {
+    position: relative; z-index: 2; width: 100%; height: 2.75rem; margin: 0; background: transparent; appearance: none; -webkit-appearance: none; cursor: ew-resize;
+  }
+  .ap-rango[hidden] { display: none; }
+  .ap-rango:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .ap-rango::-webkit-slider-runnable-track { height: 2.75rem; background: transparent; }
+  .ap-rango::-moz-range-track { height: 2.75rem; background: transparent; }
+  .ap-rango::-webkit-slider-thumb { -webkit-appearance: none; width: 1.1rem; height: 2.2rem; margin-top: .275rem; border-radius: 3px; background: var(--ink); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--ink); }
+  .ap-rango::-moz-range-thumb { width: 1rem; height: 2.1rem; border-radius: 3px; background: var(--ink); border: 2px solid var(--bg); }
+  :global(.apuesta.ap--juego) .ap-fila.revelada .ap-rango { pointer-events: none; opacity: 0; }
+</style>

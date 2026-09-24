@@ -1,0 +1,113 @@
+---
+/**
+ * «¿Quién lo dijo?» (Sesiones; petición del investigador, 24-09-2026). Una cita de una fila de la base y cuatro
+ * diputados: el lector elige a su autor. Al final, su puesto en la Cámara según los aciertos.
+ *  · Datos: las frases ya comprobadas letra a letra de «El aplausómetro» (`aplausos.json`) y de «¿Esta o esta?»
+ *    (`esta.json`), solo las de los oradores más conocidos (FAMOSOS, por rep_id): con ellos se hacen las preguntas y
+ *    las opciones. Ocho citas por partida, de autores distintos; tres opciones más, al azar, de la misma lista.
+ *  · Sin JS: una tabla con las citas y su autor. Con JS (`scripts/quien.ts`): el juego.
+ */
+import { t, plano, rotulo, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import type { Lang } from '../../lib/idiomas';
+
+interface Frase { id: number; fecha: string; rep_id: number; orador: string; partido: string; frase: string }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+// Azaña, Gil Robles, Campoamor, Kent, Prieto, Calvo Sotelo, José Antonio Primo de Rivera, Lerroux, Unamuno, Ortega y
+// Gasset, Ibárruri, Companys, Besteiro, Maura, Royo Villanova, Balbontín, Casares Quiroga, Nelken, Jiménez de Asúa,
+// Chapaprieta.
+const FAMOSOS = new Set([89, 380, 175, 467, 754, 170, 755, 487, 960, 673, 441, 239, 133, 581, 821, 98, 209, 653, 455, 229]);
+const A = dato<{ rondas: (Frase & { clave: string })[] }>('aplausos');
+const E = dato<{ parejas: { clave: string; lados: Frase[] }[] }>('esta');
+const K = (s: string) => `sesiones.quien.juego.${s}`;
+const o = (s: string, ctx = {}) => (existe(K(s)) ? t(lang, K(s), ctx) : marcaPendiente(K(s), 'copy'));
+const p = (s: string, vars: Record<string, string> = {}) => (existe(K(s)) ? plano(lang, K(s), { vars }) : '');
+const r = (s: string) => (existe(K(s)) ? rotulo(lang, K(s)) : marcaPendiente(K(s), 'copy'));
+const citas = [
+  ...(A?.rondas ?? []).map((x) => ({ ...x, k: `aplausos.${x.clave}.id` })),
+  ...(E?.parejas ?? []).flatMap((x) => x.lados.map((l, j) => ({ ...l, k: `esta.${x.clave}.${j ? 'b' : 'a'}.id` }))),
+].filter((x) => FAMOSOS.has(x.rep_id)).map((x) => ({ ...x, cuando: fmt.fechaLarga(x.fecha, lang) }));
+const textos = citas.length > 0 && {
+  cuenta: p('cuenta', { i: '{i}', n: '{n}', a: '{a}' }), bien: p('bien'), mal: p('mal', { orador: '{orador}' }),
+  quien: p('quien', { orador: '{orador}', partido: '{partido}', fecha: '{fecha}' }), fila: p('fila', { id: '{id}' }),
+  siguiente: r('siguiente'), ver: r('ver'), resumen: p('resumen', { n: '{n}', total: '{total}' }),
+  niveles: [0, 1, 2, 3, 4].map((k) => p(`nivel.${k}`)),
+};
+const js = citas.map(({ id, rep_id, orador, partido, cuando, frase }) => ({ id, rep_id, orador, partido, cuando, frase }));
+const pregunta = `qui-pregunta-${lang}`;
+const tabla = `qui-tabla-${lang}`;
+---
+{!textos ? <p class="nota" set:html={marcaPendiente('aplausos.json · esta.json', 'dato')} /> : (
+<div class="qui" data-quien data-textos={JSON.stringify(textos)} data-citas={JSON.stringify(js)}>
+  <!-- Sin JS: las citas, con su autor -->
+  <div class="qui-estatico fig-desliza" tabindex="0" role="region" aria-labelledby={tabla}>
+    <table class="fig-tabla qui-tabla">
+      <caption id={tabla}><span class="fig-rotulo-tabla" set:html={o('tabla')} /></caption>
+      <thead><tr><th scope="col" set:html={o('tabla.col.cita')} /><th scope="col" set:html={o('tabla.col.quien')} /></tr></thead>
+      <tbody>
+        {citas.map((x) => (
+          <tr>
+            <td class="qui-frase-t" lang="es">«{x.frase}»</td>
+            <td>{x.orador} · {x.partido} · <time datetime={x.fecha}>{fmt.fechaCorta(x.fecha)}</time> · <span set:html={o('fila', { vars: { id: fmt.dato(x.id, String(x.id), x.k, 'v3') } })} /></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Con JS: el juego -->
+  <div class="qui-juego" hidden>
+    <p class="asiento qui-cuenta" data-qui-cuenta></p>
+    <figure class="qui-hoja" data-qui-hoja><blockquote class="qui-frase cita" lang="es" data-qui-frase></blockquote></figure>
+    <p class="qui-pregunta" id={pregunta} set:html={o('pregunta')} />
+    <div class="qui-opciones" role="group" aria-labelledby={pregunta}>
+      {[0, 1, 2, 3].map(() => <button type="button" class="boton sec qui-op" data-qui-op></button>)}
+    </div>
+    <div class="qui-revela" data-qui-revela hidden>
+      <p class="qui-aviso" data-qui-aviso></p>
+      <p class="qui-quien" data-qui-quien></p>
+    </div>
+    <p class="sr-only" aria-live="polite" data-qui-sr></p>
+    <p class="botones"><button type="button" class="boton" data-qui-siguiente hidden></button></p>
+    <div class="qui-final" data-qui-final hidden>
+      <p class="qui-resumen" data-qui-resumen></p>
+      <p class="qui-puesto"><span class="qui-rotulo" set:html={o('puesto')} /> <em data-qui-nivel></em></p>
+      <p class="botones"><button type="button" class="boton sec" data-qui-otra set:html={r('otra')} /></p>
+    </div>
+  </div>
+</div>
+)}
+
+<script>
+  import '../../scripts/quien.ts';
+</script>
+
+<style>
+  .qui { margin: var(--e5) 0 var(--e6); max-width: 46rem; min-width: 0; }
+  .qui [hidden] { display: none !important; }
+  .qui-frase-t { font-style: italic; }
+  .qui-cuenta { margin: 0 0 var(--e2); color: var(--mute); }
+  .qui-hoja { margin: 0 0 var(--e4); padding: var(--e4) var(--e5); background: var(--bg-2); border: 1px solid var(--hair-2); border-radius: var(--radio); }
+  .qui-frase { margin: 0; font: italic 400 clamp(1.15rem, 2.8vw, 1.45rem)/1.45 var(--text); color: var(--ink); text-wrap: pretty; }
+  .qui-pregunta { margin: 0 0 var(--e2); font-weight: 500; }
+  .qui-opciones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; margin: 0 0 var(--e3); max-width: 36rem; }
+  @media (max-width: 30rem) { .qui-opciones { grid-template-columns: minmax(0, 1fr); } }
+  .qui-op[aria-pressed='true'] { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .qui-op.correcta { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .qui-op:disabled { cursor: default; }
+  .qui-op:disabled:not(.correcta):not([aria-pressed='true']) { opacity: .55; }
+  .qui-revela { margin: 0 0 var(--e3); }
+  .qui-aviso { margin: 0 0 .2rem; font-weight: 500; color: var(--ink); }
+  .qui-quien { margin: 0; font: 400 var(--fs-mono-s)/1.45 var(--mono); color: var(--ink-2); }
+  .qui-resumen { font: 500 1.1rem/1.45 var(--text); margin: 0 0 .4rem; }
+  .qui-puesto { margin: 0 0 var(--e3); }
+  .qui-puesto em { font: italic 500 1.35rem/1.3 var(--display); color: var(--ink); }
+  .qui-rotulo { color: var(--ink-2); }
+  :global(.qui.qui--juego) .qui-estatico { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .qui-hoja.entra { animation: qui-entra 380ms cubic-bezier(.2, .7, .1, 1); }
+    @keyframes qui-entra { from { transform: translateY(.5rem); opacity: 0; } to { transform: none; opacity: 1; } }
+  }
+</style>

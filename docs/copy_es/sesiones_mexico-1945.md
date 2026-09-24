@@ -48,25 +48,25 @@ La primera de las sesiones de México, la del 10 de enero de 1945, está en la f
 «…de la sesión extraordinaria celebrada en la Ciudad de México el viernes 17 de agosto de 1945»
 
 <!-- sesiones.mexico-1945.diario.cita.lugar.pie -->
-Carátula del extracto · solo en la edición del explorador, v3 {{cita.mexico.lugar.v3|id}}
+Carátula del extracto
 
 <!-- sesiones.mexico-1945.diario.cita.orden -->
 «Promesa del Excmo. señor don Diego Martínez Barrio, Presidente de las Cortes, como Presidente interino de la República Española.»
 
 <!-- sesiones.mexico-1945.diario.cita.orden.pie -->
-La Presidencia lee el orden del día · V2 {{cita.mexico.orden.V2|id}} · v3 {{cita.mexico.orden.v3|id}}
+La Presidencia lee el orden del día
 
 <!-- sesiones.mexico-1945.diario.cita.promesa -->
 «¿Prometéis solemnemente fidelidad a la República y a la Constitución?» … «Si, prometo.»
 
 <!-- sesiones.mexico-1945.diario.cita.promesa.pie -->
-La Presidencia y Martínez Barrio, en la misma fila · V2 {{cita.mexico.promesa.V2|id}} · v3 {{cita.mexico.promesa.v3|id}}
+La Presidencia y Martínez Barrio, en la misma fila
 
 <!-- sesiones.mexico-1945.diario.cita.giral -->
 «…al presentarse ante las Cortes españolas el primer Gobierno de la República que ha sido posible instrumentar constitucionalmente desde el día en que el infortunio nos hizo cruzar la frontera…»
 
 <!-- sesiones.mexico-1945.diario.cita.giral.pie -->
-José Giral, 7 de noviembre · V2 {{cita.mexico.giral.V2|id}} · v3 {{cita.mexico.giral.v3|id}} · {{cita.mexico.giral.palabras}} palabras (V2)
+José Giral, 7 de noviembre · {{cita.mexico.giral.palabras}} palabras
 
 > [nota de diseño] «Si, prometo.» va sin tilde, como en el texto digitalizado; no lleva [sic] porque el sentido no
 > cambia. La promesa y la pregunta están en la misma fila V2, a nombre de la Presidencia.
@@ -77,12 +77,12 @@ José Giral, 7 de noviembre · V2 {{cita.mexico.giral.V2|id}} · v3 {{cita.mexic
 Cuatro figuras, una por sesión. La del 17 de agosto tiene {{sesion.1945-08-17-71.filas|letra}} filas, todas de la Presidencia.
 
 <!-- sesiones.mexico-1945.turnos.total -->
-Entre las cuatro suman {{puerta.mexico-1945.filas}} filas de la edición depositada.
+Entre las cuatro suman {{puerta.mexico-1945.filas}} filas de la base.
 
 ## Cómo encontrarla en el explorador
 
 <!-- sesiones.mexico-1945.explorador.fecha -->
-Filtros › Fecha y sesión: Desde 17/08/1945, sin Hasta. Salen {{puerta.mexico-1945.filas_v3}} intervenciones en la edición del explorador (v3); con «Solo lo que se habla», {{puerta.mexico-1945.habla_v3}}.
+Filtros › Fecha y sesión: Desde 17/08/1945, sin Hasta. Salen {{puerta.mexico-1945.filas_v3}} intervenciones en el explorador; con «Solo lo que se habla», {{puerta.mexico-1945.habla_v3}}.
 
 <!-- sesiones.mexico-1945.explorador.consulta -->
 "presidente interino de la república"
@@ -91,7 +91,7 @@ Filtros › Fecha y sesión: Desde 17/08/1945, sin Hasta. Salen {{puerta.mexico-
 Desde 01/01/1945
 
 <!-- sesiones.mexico-1945.explorador.recuento -->
-Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.presidente_interino.n}} intervenciones en la edición del explorador (v3).
+Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.presidente_interino.n}} intervenciones en el explorador.
 
 <!-- sesiones.mexico-1945.explorador.consulta.nota -->
 Con Desde 01/01/1945, salen {{busqueda.ses.presidente_interino.n|letra}} intervenciones, de agosto y noviembre de 1945.
@@ -111,23 +111,20 @@ Entre Figueres y México también se reunió la Diputación Permanente. Sus reun
 «…sólo tenemos noticia de ellas por citas bibliográficas pero no se dispone de los textos ni en forma de fotocopia.»
 
 <!-- sesiones.mexico-1945.no_esta.cita.permanente.pie -->
-Carátula del volumen, en el sumario del 10 de enero de 1945 · solo en la edición del explorador, v3 {{cita.mexico.permanente.v3|id}}
+Carátula del volumen, en el sumario del 10 de enero de 1945
 
 ## Fuentes
 
 <!-- sesiones.mexico-1945.fuentes.texto -->
-Todo lo que dice esta página sale del extracto oficial de las sesiones celebradas en México, editado en la Ciudad de México por B. Costa i Amic, leído en las dos ediciones de la base.
+Todo lo que dice esta página sale del extracto oficial de las sesiones celebradas en México, editado en la Ciudad de México por B. Costa i Amic, leído en la base.
 
 ## Cómo citar un pasaje
 
 <!-- sesiones.mexico-1945.citar.texto -->
-Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila y su edición.
+Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila.
 
 <!-- sesiones.mexico-1945.citar.cita -->
-Extracto oficial de las sesiones de Cortes celebradas en México, núm. {{sesion.1945-08-17-71.diario_num|id}}, 17 de agosto de 1945, páginas sin verificar (metadatos del proyecto). Luz y Taquígrafos, edición depositada (V2), fila {{cita.mexico.promesa.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
+Extracto oficial de las sesiones de Cortes celebradas en México, núm. {{sesion.1945-08-17-71.diario_num|id}}, 17 de agosto de 1945, páginas sin verificar (metadatos del proyecto). Luz y Taquígrafos, fila {{cita.mexico.promesa.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.

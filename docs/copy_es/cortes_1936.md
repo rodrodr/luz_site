@@ -60,7 +60,7 @@ Es la etapa que más se cita, y la que más se ha contado con frases que no est�
 <!-- cortes.1936.hoy.buscar.consulta --> "orden público"
 
 <!-- cortes.1936.hoy.buscar.recuento -->
-Con esos filtros, «orden público» da {{cortes.1936.consulta.orden_publico.n}} intervenciones (v3), contando todas las filas. Salen en {{cortes.1936.consulta.orden_publico.sesiones}} de las {{etapa.III.sesiones}} sesiones.
+Con esos filtros, «orden público» da {{cortes.1936.consulta.orden_publico.n}} intervenciones, contando todas las filas. Salen en {{cortes.1936.consulta.orden_publico.sesiones}} de las {{etapa.III.sesiones}} sesiones.
 
 <!-- cortes.1936.hoy.sesion -->
 **Abrir una sesión.** Ponga el 1 de julio de 1936 en Desde y en Hasta, abra una intervención y pulse `s`: tendrá la sesión corrida.
@@ -86,7 +86,7 @@ Con esos filtros, «orden público» da {{cortes.1936.consulta.orden_publico.n}}
 {{etapa.III.sesiones}} sesiones, del 16 de marzo al 10 de julio de 1936, sin que falte ningún número de la serie.
 
 <!-- cortes.1936.cifras.palabras -->
-{{etapa.III.palabras}} palabras en la edición depositada: el {{etapa.III.palabras.pct|pct2}} del corpus.
+{{etapa.III.palabras}} palabras en la base: el {{etapa.III.palabras.pct|pct2}} del corpus.
 
 <!-- cortes.1936.cifras.diputados -->
 {{etapa.III.diputados}} diputados toman la palabra, contando a quien preside.
@@ -101,29 +101,29 @@ Con esos filtros, «orden público» da {{cortes.1936.consulta.orden_publico.n}}
 <!-- cortes.1936.contexto.1.titulo --> La apertura (15 a 17 de marzo)
 
 <!-- cortes.1936.contexto.1.a -->
-El decreto de convocatoria, leído el 17 de marzo, fijó las elecciones el 16 de febrero y la reunión de las Cortes el 16 de marzo. Está solo en la v3 (v3 {{fila.1936.convocatoria.v3|id}}).
+El decreto de convocatoria, leído el 17 de marzo, fijó las elecciones el 16 de febrero y la reunión de las Cortes el 16 de marzo.
 
 <!-- cortes.1936.contexto.1.b -->
-La víspera de la apertura, en la junta preparatoria, preside Ramón de Carranza, el diputado de más edad. El acta cuenta que Fernández-Osorio y Tafall «solicitó de la Presidencia un viva a la República, negándose el Sr. Presidente» (v3 {{fila.1936.junta_viva.v3|id}}, solo en la v3).
+La víspera de la apertura, en la junta preparatoria, preside Ramón de Carranza, el diputado de más edad. El acta cuenta que Fernández-Osorio y Tafall «solicitó de la Presidencia un viva a la República, negándose el Sr. Presidente».
 
 <!-- cortes.1936.contexto.1.c -->
-El 16 de marzo, Martínez Barrio sale elegido Presidente interino del Congreso con {{cortes.1936.votos.presidente_interino}} votos (V2 {{fila.1936.presidente_interino.V2|id}} · v3 {{fila.1936.presidente_interino.v3|id}}). Cierra la sesión con «¡Viva la República! ¡Viva España!» (V2 {{fila.1936.viva_cierre.V2|id}} · v3 {{fila.1936.viva_cierre.v3|id}}).
+El 16 de marzo, Martínez Barrio sale elegido Presidente interino del Congreso con {{cortes.1936.votos.presidente_interino}} votos. Cierra la sesión con «¡Viva la República! ¡Viva España!».
 
 ### Las actas (marzo y abril)
 
 <!-- cortes.1936.contexto.2.titulo --> Las actas (marzo y abril)
 
 <!-- cortes.1936.contexto.2.a -->
-Hasta el 3 de abril, la Cámara examina las actas de su propia elección (V2 {{fila.1936.actas_fin.V2|id}} · v3 {{fila.1936.actas_fin.v3|id}}). El 31 de marzo se discute el dictamen que propone anular las de Granada.
+Hasta el 3 de abril, la Cámara examina las actas de su propia elección. El 31 de marzo se discute el dictamen que propone anular las de Granada.
 
 <!-- cortes.1936.contexto.2.b -->
-Giménez Fernández anuncia que su minoría se retira: «dejamos en vuestras manos, señores de la mayoría, la suerte del sistema parlamentario» (V2 {{fila.1936.retirada.V2|id}} · v3 {{fila.1936.retirada.v3|id}}).
+Giménez Fernández anuncia que su minoría se retira: «dejamos en vuestras manos, señores de la mayoría, la suerte del sistema parlamentario».
 
 <!-- cortes.1936.contexto.2.c -->
-Goicoechea y Lamamié de Clairac se retiran con las suyas (V2 {{fila.1936.retirada_re.V2|id}} · v3 {{fila.1936.retirada_re.v3|id}}; V2 {{fila.1936.retirada_ct.V2|id}} · v3 {{fila.1936.retirada_ct.v3|id}}).
+Goicoechea y Lamamié de Clairac se retiran con las suyas.
 
 <!-- cortes.1936.contexto.2.d -->
-El explorador reúne este debate en «Comisión de Actas (Cuenca y Granada)», con {{cortes.1936.biblioteca.actas.n}} intervenciones (v3).
+El explorador reúne este debate en «Comisión de Actas (Cuenca y Granada)», con {{cortes.1936.biblioteca.actas.n}} intervenciones.
 
 <!-- cortes.1936.contexto.2.e -->
 Cómo juzgar esa revisión sigue en discusión. Álvarez Tardío y Villa García sostienen que la nueva mayoría la usó para quitar escaños a la oposición, aunque escriben que no fabricó esa mayoría [A]. González Calleja y Sánchez Pérez discuten su tesis del fraude [A]. Este sitio no toma partido.
@@ -140,25 +140,25 @@ Cómo juzgar esa revisión sigue en discusión. Álvarez Tardío y Villa García
 <!-- cortes.1936.contexto.3.titulo --> La destitución (3 y 7 de abril)
 
 <!-- cortes.1936.contexto.3.a -->
-El 3 de abril, recién constituida la Cámara, el grupo socialista presenta una proposición que invoca el artículo 81 de la Constitución (V2 {{fila.1936.propuesta_81.V2|id}} · v3 {{fila.1936.propuesta_81.v3|id}}).
+El 3 de abril, recién constituida la Cámara, el grupo socialista presenta una proposición que invoca el artículo 81 de la Constitución.
 
 <!-- cortes.1936.contexto.3.b -->
-Se lee el artículo: en una segunda disolución, «el primer acto de las nuevas Cortes será examinar y resolver sobre la necesidad del decreto» (V2 {{fila.1936.articulo_81.V2|id}} · v3 {{fila.1936.articulo_81.v3|id}}).
+Se lee el artículo: en una segunda disolución, «el primer acto de las nuevas Cortes será examinar y resolver sobre la necesidad del decreto».
 
 <!-- cortes.1936.contexto.3.c -->
-La proposición sale en votación nominal, por {{cortes.1936.voto_3abril.si}} votos contra {{cortes.1936.voto_3abril.no}} (V2 {{fila.1936.voto_3abril.V2|id}} · v3 {{fila.1936.voto_3abril.v3|id}}).
+La proposición sale en votación nominal, por {{cortes.1936.voto_3abril.si}} votos contra {{cortes.1936.voto_3abril.no}}.
 
 <!-- cortes.1936.contexto.3.d -->
-El 7 de abril se vota que «no era necesario el decreto de disolución de Cortes de 7 de Enero de 1936» (V2 {{fila.1936.propuesta_destitucion.V2|id}} · v3 {{fila.1936.propuesta_destitucion.v3|id}}). Prieto defiende la proposición en {{cortes.1936.prieto_7abril.palabras}} palabras (V2 {{fila.1936.prieto_7abril.V2|id}} · v3 {{fila.1936.prieto_7abril.v3|id}}).
+El 7 de abril se vota que «no era necesario el decreto de disolución de Cortes de 7 de Enero de 1936». Prieto defiende la proposición en {{cortes.1936.prieto_7abril.palabras}} palabras.
 
 <!-- cortes.1936.contexto.3.e -->
-«El Reglamento dispone que se haga nominalmente»: {{voto.238-5.si}} votos contra {{voto.238-5.no}} (V2 {{fila.1936.voto_destitucion.V2|id}} · v3 {{fila.1936.voto_destitucion.v3|id}}).
+«El Reglamento dispone que se haga nominalmente»: {{voto.238-5.si}} votos contra {{voto.238-5.no}}.
 
 <!-- cortes.1936.contexto.3.f -->
-Esa noche, la Mesa no puede notificar el acuerdo en casa de Alcalá-Zamora: le responden que «se hallaba descansando» (V2 {{fila.1936.descansando.V2|id}} · v3 {{fila.1936.descansando.v3|id}}).
+Esa noche, la Mesa no puede notificar el acuerdo en casa de Alcalá-Zamora: le responden que «se hallaba descansando».
 
 <!-- cortes.1936.contexto.3.g -->
-De vuelta en la Cámara se lee el artículo 74, y el Presidente de las Cortes «pasa a ser Presidente de la República» (V2 {{fila.1936.pasa_a_ser.V2|id}} · v3 {{fila.1936.pasa_a_ser.v3|id}}).
+De vuelta en la Cámara se lee el artículo 74, y el Presidente de las Cortes «pasa a ser Presidente de la República».
 
 > [nota de diseño] `voto.238-5.*` son las claves de F26 (dueño: sesiones); aquí solo se consumen. El 238–5 enlaza con su
 > línea de F26 en Sesiones y votaciones; la puerta 0.2 `destitucion-1936` queda oculta mientras no exista.
@@ -171,10 +171,10 @@ De vuelta en la Cámara se lee el artículo 74, y el Presidente de las Cortes «
 Mientras Martínez Barrio ejerce la Presidencia de la República, la cabecera del Diario pone la de la Cámara a nombre de Jiménez de Asúa, vicepresidente.
 
 <!-- cortes.1936.contexto.4.b -->
-El 8 de mayo se acuerda una sesión solemne «para que el Presidente electo preste la promesa» (V2 {{fila.1936.solemne.V2|id}} · v3 {{fila.1936.solemne.v3|id}}). Se celebra el 11 de mayo, y su acta se lee al día siguiente (v3 {{fila.1936.acta_solemne.v3|id}}, solo en la v3).
+El 8 de mayo se acuerda una sesión solemne «para que el Presidente electo preste la promesa». Se celebra el 11 de mayo, y su acta se lee al día siguiente.
 
 <!-- cortes.1936.contexto.4.c -->
-Ese 12 de mayo, Martínez Barrio vuelve a presidir la Cámara. Llega la crisis del Gobierno de Barcia: «Encontrándose el Gobierno en crisis se suspenden las sesiones de Cortes» (V2 {{fila.1936.crisis.V2|id}} · v3 {{fila.1936.crisis.v3|id}}).
+Ese 12 de mayo, Martínez Barrio vuelve a presidir la Cámara. Llega la crisis del Gobierno de Barcia: «Encontrándose el Gobierno en crisis se suspenden las sesiones de Cortes».
 
 > [nota de diseño] «La cabecera del Diario» es la del sumario de las sesiones 17 a 27 (15 de abril a 8 de mayo), que
 > solo está en la v3. Quién ganó la elección presidencial del 10 de mayo no se dice: no está en ninguna fila de esta
@@ -185,16 +185,16 @@ Ese 12 de mayo, Martínez Barrio vuelve a presidir la Cámara. Llega la crisis d
 <!-- cortes.1936.contexto.5.titulo --> Lo que el Diario borra (abril a julio)
 
 <!-- cortes.1936.contexto.5.a -->
-El 15 de abril, Calvo Sotelo protesta: «Se acaba de hacer una incitación al asesinato». La Presidencia contesta: «Esas palabras no constarán en el Diario de Sesiones» (V2 {{fila.1936.incitacion.V2|id}}–{{fila.1936.no_constaran_15abril.V2|id}} · v3 {{fila.1936.incitacion.v3|id}}–{{fila.1936.no_constaran_15abril.v3|id}}).
+El 15 de abril, Calvo Sotelo protesta: «Se acaba de hacer una incitación al asesinato». La Presidencia contesta: «Esas palabras no constarán en el Diario de Sesiones».
 
 <!-- cortes.1936.contexto.5.b -->
-La orden se repite el 6 de mayo y el 1 de julio (V2 {{fila.1936.no_constara_6mayo.V2|id}} · v3 {{fila.1936.no_constara_6mayo.v3|id}}; V2 {{fila.1936.no_constaran_1julio.V2|id}} · v3 {{fila.1936.no_constaran_1julio.v3|id}}).
+La orden se repite el 6 de mayo y el 1 de julio.
 
 <!-- cortes.1936.contexto.5.c -->
-Otras veces es el taquígrafo quien anota palabras que «no se consignan por orden» de la Presidencia (V2 {{fila.1936.no_se_consignan_6mayo.V2|id}} · v3 {{fila.1936.no_se_consignan_6mayo.v3|id}}; V2 {{fila.1936.no_se_consignan_16junio.V2|id}} · v3 {{fila.1936.no_se_consignan_16junio.v3|id}}; V2 {{fila.1936.galarza.V2|id}} · v3 {{fila.1936.galarza.v3|id}}).
+Otras veces es el taquígrafo quien anota palabras que «no se consignan por orden» de la Presidencia.
 
 <!-- cortes.1936.contexto.5.d -->
-El 3 de junio es Calvo Sotelo quien pide que no consten unas palabras sobre las Hermanas de la Caridad (V2 {{fila.1936.calvo_pide.V2|id}} · v3 {{fila.1936.calvo_pide.v3|id}}). [Ver qué recoge el Diario]
+El 3 de junio es Calvo Sotelo quien pide que no consten unas palabras sobre las Hermanas de la Caridad. [Ver qué recoge el Diario]
 
 > [nota de diseño] [Ver qué recoge el Diario] (`comun.boton.ver_diario`) lleva a El Diario, donde F28 recorre todas las
 > órdenes del corpus. Aquí no se cuentan: el recuento es de F28 y lo fija su dueño (discrepancia 21 del plan). El 15 de
@@ -208,10 +208,10 @@ El 3 de junio es Calvo Sotelo quien pide que no consten unas palabras sobre las 
 El 16 de junio y el 1 de julio, la Cámara debate el orden público. Ambas sesiones tienen su puerta de lectura.
 
 <!-- cortes.1936.contexto.6.b -->
-La del 1 de julio es la más larga del corpus: {{sesion.1936-07-01-54.palabras}} palabras en la edición depositada.
+La del 1 de julio es la más larga del corpus: {{sesion.1936-07-01-54.palabras}} palabras en la base.
 
 <!-- cortes.1936.contexto.6.c -->
-La del 10 de julio termina con el «Orden del día para el martes» (V2 {{fila.1936.cierre_10julio.V2|id}} · v3 {{fila.1936.cierre_10julio.v3|id}}). La sesión siguiente del corpus es la del 1 de octubre, cuando Martínez Barrio condena «ese movimiento sedicioso» (V2 {{fila.1936.sedicioso.V2|id}} · v3 {{fila.1936.sedicioso.v3|id}}).
+La del 10 de julio termina con el «Orden del día para el martes». La sesión siguiente del corpus es la del 1 de octubre, cuando Martínez Barrio condena «ese movimiento sedicioso».
 
 > [nota de diseño] Debajo, `cortes.ficha.contexto.puerta` → `antesala-1936`. El asesinato de Calvo Sotelo y la
 > sublevación no se cuentan aquí: el Diario de esta etapa no los recoge. La frase «Este hombre ha hablado por última
@@ -229,7 +229,7 @@ Bajo el calendario van dos bandas de los metadatos del proyecto. Diego Martínez
 Luis Jiménez de Asúa, vicepresidente, lo es de las otras {{etapa.III.pres.jimenez_de_asua}}, del 15 de abril al 8 de mayo. El 7 de abril, el Presidente de las Cortes había pasado a ser Presidente de la República.
 
 <!-- cortes.1936.calendario.vice -->
-Además, un vicepresidente ocupó la Presidencia algún tramo en {{etapa.III.vice_ses}} sesiones de la etapa (V2).
+Además, un vicepresidente ocupó la Presidencia algún tramo en {{etapa.III.vice_ses}} sesiones de la etapa.
 
 <!-- cortes.1936.calendario.gobiernos -->
 La banda de Gobiernos pasa de Azaña a Barcia, interino, y de este a Casares Quiroga.
@@ -237,13 +237,13 @@ La banda de Gobiernos pasa de Azaña a Barcia, interino, y de este a Casares Qui
 ## Quién tomó la palabra
 
 <!-- cortes.1936.palabra.f05 -->
-Sin contar la Presidencia, José Calvo Sotelo encabeza la palabra de la etapa: {{oradores.etapa.III.1.pal}} palabras de habla (v3).
+Sin contar la Presidencia, José Calvo Sotelo encabeza la palabra de la etapa: {{oradores.etapa.III.1.pal}} palabras de habla.
 
 <!-- cortes.1936.palabra.f05_siguen -->
 Le siguen Manuel Giménez Fernández, Juan Bautista Guerra García, Antonio Bermúdez Cañete y Juan Ventosa Calvell. Los cinco son de partidos que la base codifica en la extrema derecha (RE), la derecha (CEDA) o la centro-derecha (Lliga).
 
 <!-- cortes.1936.palabra.f09 -->
-Por familias, los republicanos se llevan el {{familias.etapa.III.republicanos.pct|pct1}} de las palabras sin Presidencia (V2), y los conservadores, el {{familias.etapa.III.conservadores.pct|pct1}}.
+Por familias, los republicanos se llevan el {{familias.etapa.III.republicanos.pct|pct1}} de las palabras sin Presidencia, y los conservadores, el {{familias.etapa.III.conservadores.pct|pct1}}.
 
 > [nota de diseño] F05 (v3) lleva NotaBases (↺ 13); F09 (V2), no. Los cinco nombres deben coincidir con los puestos 1
 > a 5 de `oradores_etapa.json`: guardas `oradores.etapa.III.1…5.rep_id` en `docs/marcadores/cortes_1936.md`. La
@@ -257,7 +257,7 @@ Por familias, los republicanos se llevan el {{familias.etapa.III.republicanos.pc
 ## Debates preparados en el explorador
 
 <!-- cortes.1936.debates.entrada -->
-El explorador trae {{etapa.III.debates|letra}} debates preparados de esta etapa (v3):
+El explorador trae {{etapa.III.debates|letra}} debates preparados de esta etapa:
 
 <!-- cortes.1936.debates.lista -->
 - Las Cortes de 1936 se constituyen
@@ -271,13 +271,13 @@ El explorador trae {{etapa.III.debates|letra}} debates preparados de esta etapa 
 ## Antes de usarla
 
 <!-- cortes.1936.antes.listas -->
-El voto no es una columna. En esta etapa, {{etapa.III.listas_nominales.filas}} filas de la V2 traen una lista de votación nominal, en {{etapa.III.listas_nominales.sesiones}} sesiones.
+El voto no es una columna. En esta etapa, {{etapa.III.listas_nominales.filas}} filas traen una lista de votación nominal, en {{etapa.III.listas_nominales.sesiones}} sesiones.
 
 <!-- cortes.1936.antes.listas_donde -->
-En la V2, cada lista va pegada a la fila de quien habló antes de votar: solo {{cortes.1936.listas.en_presidencia}} de esas filas son de la Presidencia. En la v3, cada lista tiene su propia fila.
+Cada lista tiene su propia fila, de comentarios del Diario.
 
 <!-- cortes.1936.antes.sumario -->
-La junta preparatoria, el decreto de convocatoria y la cabecera de cada sesión solo están en la v3, dentro de la fila del sumario. El filtro «Solo lo que se habla» los oculta.
+La junta preparatoria, el decreto de convocatoria y la cabecera de cada sesión van en la fila del sumario. El filtro «Solo lo que se habla» los oculta.
 
 <!-- ↺ comun.fija.ocr -->
 El texto sale del reconocimiento óptico y no está corregido a mano.
@@ -305,7 +305,7 @@ El texto sale del reconocimiento óptico y no está corregido a mano.
 ## Cómo citar
 
 <!-- cortes.1936.citar.sesion -->
-*Diario de las Sesiones de Cortes. Congreso de los Diputados*, núm. {{sesion.1936-04-07-15.diario|id}}, 7 de abril de 1936, pp. {{sesion.1936-04-07-15.pag.desde|id}}–{{sesion.1936-04-07-15.pag.hasta|id}}. En Luz y Taquígrafos (V2), filas {{sesion.1936-04-07-15.id.desde|id}} a {{sesion.1936-04-07-15.id.hasta|id}}.
+*Diario de las Sesiones de Cortes. Congreso de los Diputados*, núm. {{sesion.1936-04-07-15.diario|id}}, 7 de abril de 1936, pp. {{sesion.1936-04-07-15.pag.desde|id}}–{{sesion.1936-04-07-15.pag.hasta|id}}. En Luz y Taquígrafos, filas {{sesion.1936-04-07-15.id.desde|id}} a {{sesion.1936-04-07-15.id.hasta|id}}.
 
 > [nota de diseño] Mismo formato que `cortes.1933.citar.sesion`. Debajo, `cortes.ficha.citar.paginas`, ↺ 4, la cita
 > del conjunto y [Copiar la cita]. Vecinas: anterior, la ficha II; siguiente, la ficha IV; en el centro, Todas las

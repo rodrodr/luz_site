@@ -51,8 +51,6 @@
 <!-- comun.subnav.cortes.sesiones --> [Sesiones y votaciones]
 <!-- comun.subnav.datos.aria --> Datos, por secciones
 <!-- comun.subnav.datos.usar --> [Usar los datos]
-<!-- comun.subnav.datos.versiones --> [Versiones]
-
 ---
 
 ## 2. Frases fijas ↺
@@ -65,17 +63,11 @@
 <!-- comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.
 
-<!-- comun.sello.V2 -->
-Edición depositada (V2)
-
-<!-- comun.sello.v3 -->
-Edición del explorador (v3, sin depositar)
-
 <!-- comun.sello.proyecto -->
 Metadatos del proyecto (no depositados; el explorador no los muestra)
 
 <!-- comun.sello.afin -->
-Afinidades Elegidas (CGOCUS V1.1, depositada)
+Afinidades Elegidas (CGOCUS)
 
 <!-- comun.fija.formulario -->
 Antes de descargar, Harvard Dataverse le pedirá nombre, correo e institución.
@@ -87,9 +79,6 @@ Con esos datos queremos saber quién usa la base y con qué fin, para poder mejo
 > (D-20) lo dio el investigador el 23-09-2026: «conocer a los usuarios y los usos de la base para poder mejorarla y
 > comunicar novedades»; esta es su redacción final, una sola frase que no promete más (ni boletín, ni respuesta, ni
 > plazo). Es texto para el lector y se traduce. El formulario no se nombra por su título (lleva una errata).
-
-<!-- comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
 
 <!-- comun.fija.enlace -->
 El explorador no abre una búsqueda desde un enlace: cópiela y péguela en su buscador (tecla /).
@@ -109,17 +98,8 @@ Que estén no valida su contenido.
 <!-- comun.fija.legislatura -->
 El censo y las relaciones de Afinidades Elegidas llaman 1933-1936 a la legislatura que esta base llama 1933-1935; las sesiones del Diario terminan el 10 de diciembre de 1935.
 
-<!-- comun.fija.readme -->
-El README depositado describe la primera versión; las diferencias, aquí.
-
 <!-- comun.fija.sin_formulario -->
 Sin formulario: son datos agregados.
-
-<!-- comun.fija.notabases -->
-Esta cifra sale de la edición del explorador (v3, {{filas.v3}} filas, sin depositar); la depositada es la V2 ({{filas.V2}} filas). Por qué hay dos →
-
-<!-- comun.fija.notabases.ids -->
-Los números v3 de estas citas son filas de la edición del explorador (v3, {{filas.v3}} filas, sin depositar); los V2 son de la depositada ({{filas.V2}} filas). Por qué hay dos →
 
 > [nota de diseño] ↺ 11 y ↺ 13 van tal cual el plan, sin corchetes, porque así las repiten ya las demás páginas. El
 > enlace lo pone el componente: en ↺ 13 (`NotaBases`), «Por qué hay dos →» lleva a `/{lang}/datos/versiones/`; en
@@ -138,7 +118,7 @@ Los números v3 de estas citas son filas de la edición del explorador (v3, {{fi
 El tono dice cuántas palabras se imprimieron, no cuánto importó.
 
 <!-- comun.fija.explorador -->
-Sirve la edición v3, sin depositar; pide un ordenador.
+Funciona en el navegador de un ordenador.
 
 <!-- comun.fija.local -->
 Se abre en su navegador; lo que busca y guarda se queda en su equipo.
@@ -223,7 +203,6 @@ Se abre en su navegador; lo que busca y guarda se queda en su equipo.
 <!-- comun.boton.ver_diario --> [Ver qué recoge el Diario]
 <!-- comun.boton.ver_metodo --> [Ver cómo se hizo]
 <!-- comun.boton.ver_columnas --> [Ver qué trae cada columna]
-<!-- comun.boton.ver_versiones --> [Ver por qué hay dos ediciones]
 <!-- comun.boton.ver_explorador --> [Ver qué hace el explorador]
 <!-- comun.boton.ver_afinidades --> [Ver Afinidades Elegidas]
 <!-- comun.boton.unir --> [Unir con THQCMI]
@@ -247,7 +226,7 @@ Se abre en su navegador; lo que busca y guarda se queda en su equipo.
 {{dv.thqcmi.autores}} · [Universidad de Salamanca]
 
 <!-- comun.pie.depositos -->
-Depositados en Harvard Dataverse: Luz y Taquígrafos, THQCMI {{dv.version}} ([doi:10.7910/DVN/THQCMI]), y Afinidades Elegidas, CGOCUS {{dv.cgocus.version}} ([doi:10.7910/DVN/CGOCUS]).
+Depositados en Harvard Dataverse: Luz y Taquígrafos ([doi:10.7910/DVN/THQCMI]) y Afinidades Elegidas ([doi:10.7910/DVN/CGOCUS]).
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.
@@ -256,7 +235,7 @@ Edición derivada para investigación: ante cualquier discrepancia, vale el Diar
 Datos, [CC BY 4.0]. Código del sitio, [MIT].
 
 <!-- comun.pie.ediciones -->
-Página, ed. {{edicion_pagina}} · Datos: {{dv.version}} depositada ({{filas.V2}} filas) · Explorador: v3 sin depositar ({{filas.v3}} filas)
+Página, ed. {{edicion_pagina}} · Datos: Luz y Taquígrafos, en Harvard Dataverse
 
 <!-- comun.pie.privacidad -->
 Este sitio no usa cookies ni analítica; Dataverse pide datos al descargar, y se lo avisamos antes.
@@ -292,8 +271,8 @@ Vista previa. Pendiente de decisión del investigador:
 
 <!-- comun.consulta.etiqueta --> Consulta para el buscador del explorador
 <!-- comun.consulta.filtros --> Filtros
-<!-- comun.consulta.recuento --> Recuento del {{fecha}}: {{n}} intervenciones en la edición del explorador (v3).
-<!-- comun.consulta.recuento.una --> Recuento del {{fecha}}: una intervención en la edición del explorador (v3).
+<!-- comun.consulta.recuento --> Recuento del {{fecha}}: {{n}} intervenciones en el explorador.
+<!-- comun.consulta.recuento.una --> Recuento del {{fecha}}: una intervención en el explorador.
 <!-- comun.consulta.copiada --> Consulta copiada. En el explorador, pulse / y péguela.
 <!-- comun.consulta.sinjs --> Seleccione la consulta y cópiela.
 
@@ -307,6 +286,7 @@ Vista previa. Pendiente de decisión del investigador:
 ### 5.4 Sello de base
 
 <!-- comun.sello.titulo --> Base
+<!-- comun.sello.base --> Luz y Taquígrafos
 <!-- comun.sello.huella --> Huella
 <!-- comun.sello.exportado --> Cifras exportadas el {{fecha}}
 <!-- comun.sello.dv --> Metadatos de Harvard Dataverse, leídos en su API
@@ -325,17 +305,17 @@ Vista previa. Pendiente de decisión del investigador:
 <!-- comun.cita.ris --> RIS
 <!-- comun.cita.copiada --> Cita copiada.
 <!-- comun.cita.dataverse --> Tal como la da Harvard Dataverse.
-<!-- comun.cita.cgocus.nota --> Harvard Dataverse cita la versión mayor, «V1»; la vigente es la V1.1.
+<!-- comun.cita.cgocus.nota --> Cítela tal como la da Harvard Dataverse.
 
 <!-- comun.cita.figura -->
 {{dv.thqcmi.autores}}. «{{titulo}}». Figura de Luz y Taquígrafos. {{url}}. Base: {{base}}. Exportada el {{fecha}}.
 
 <!-- comun.cita.pasaje -->
-{{diario}}, núm. {{numero}}, {{fecha}}, pp. {{paginas}} (metadatos del proyecto). Luz y Taquígrafos, {{edicion}}, fila {{id}}.
+{{diario}}, núm. {{numero}}, {{fecha}}, pp. {{paginas}} (metadatos del proyecto). Luz y Taquígrafos, fila {{id}}.
 
-> [nota de diseño] `comun.cita.figura` y `comun.cita.pasaje` las rellena `lib/cita.ts`. En el pasaje, `{{edicion}}`
-> es `comun.sello.V2` o `comun.sello.v3` en minúscula inicial («edición depositada (V2)»); los otros cuatro valores son
-> metadatos del proyecto y van rotulados como tales. La cita del conjunto se copia tal como la da Dataverse
+> [nota de diseño] `comun.cita.figura` y `comun.cita.pasaje` las rellena `lib/cita.ts`. La base de una figura es
+> `comun.sello.base` («Luz y Taquígrafos») o el sello de su otra fuente; el sitio no nombra ediciones (24-09-2026). En
+> el pasaje, los cuatro primeros valores son metadatos del proyecto y van rotulados como tales. La cita del conjunto se copia tal como la da Dataverse
 > (`{{dv.thqcmi.cita}}`, `{{dv.cgocus.cita}}`), sin retocar su «V2» ni su «V1». Los tres formatos van en `<details>`.
 
 ### 5.6 Captura del explorador
@@ -494,13 +474,13 @@ Plano: Congreso de los Diputados, planta del hemiciclo (propuesta de accesibilid
 **Diario.** El Diario de Sesiones impreso de las Cortes. Va con mayúscula y manda sobre la base.
 
 <!-- comun.glosario.fila -->
-**Fila.** Una línea del CSV depositado (V2). Empieza donde el etiquetado reconoce la fórmula impresa de un orador y acaba en la siguiente que reconoce. A veces lleva dentro un documento leído o la réplica de otro orador.
+**Fila.** Una línea del CSV. La mayoría son turnos de palabra, de una fórmula impresa de orador a la siguiente. Las demás guardan lo que el Diario imprime sin que nadie lo diga: el sumario, las listas, los documentos.
 
 <!-- comun.glosario.intervencion -->
-**Intervención.** El nombre que da el explorador a cada una de sus filas (v3). Aquí solo se usa al hablar del explorador, y con su base.
+**Intervención.** El nombre que da el explorador a cada una de sus filas. Aquí solo se usa al hablar del explorador.
 
 <!-- comun.glosario.sesion -->
-**Sesión.** Una reunión del pleno, con su fecha y su número. Fecha y número son la clave común de las dos ediciones.
+**Sesión.** Una reunión del pleno, con su fecha y su número. Fecha y número, juntos, la identifican.
 
 <!-- comun.glosario.etapa -->
 **Etapa.** Cada tramo en que este sitio parte las Cortes: las Constituyentes, la legislatura de 1933-1935, las Cortes de 1936 hasta la guerra, la guerra y México.
@@ -510,12 +490,6 @@ Plano: Congreso de los Diputados, planta del hemiciclo (propuesta de accesibilid
 
 <!-- comun.glosario.presidencia -->
 **Presidencia.** El cargo que modera la sesión, lo ocupe el Presidente de las Cortes o un vicepresidente. Quien preside es diputado, y en la base lleva su partido.
-
-<!-- comun.glosario.edicion_depositada -->
-**Edición depositada.** La V2 de Luz y Taquígrafos en Harvard Dataverse: el CSV que se descarga y se cita.
-
-<!-- comun.glosario.edicion_explorador -->
-**Edición del explorador.** La v3 que sirve el explorador: las mismas sesiones, partidas en más filas y con otros identificadores. No está depositada.
 
 <!-- comun.glosario.metadatos -->
 **Metadatos del proyecto.** El Diario, el número, las páginas, el presidente titular y el Gobierno de cada sesión. Los reunió el proyecto; no están depositados y el explorador no los muestra.
@@ -530,7 +504,7 @@ Plano: Congreso de los Diputados, planta del hemiciclo (propuesta de accesibilid
 **Debate preparado.** Una biblioteca que el explorador ofrece ya hecha, con el nombre de un debate y sus sesiones.
 
 <!-- comun.glosario.palabras -->
-**Palabras.** Lo que cuenta la columna `nwords` de la V2. Otras maneras de contar dan otras cifras; cada figura dice la suya.
+**Palabras.** Lo que cuenta la columna `nwords`. Otras maneras de contar dan otras cifras; cada figura dice la suya.
 
 <!-- comun.glosario.diputados -->
 **Diputados que intervienen.** Los `rep_id` distintos con al menos una fila en el periodo. Incluyen a quien preside.

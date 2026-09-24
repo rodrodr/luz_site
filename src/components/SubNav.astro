@@ -1,23 +1,18 @@
 ---
 /**
  * Subnavegación, solo donde hace falta (plan § Navegación global):
- *  · Las Cortes: «Etapas · Sesiones y votaciones»;
- *  · Datos: «Usar los datos · Versiones».
+ *  · Las Cortes: «Etapas · Sesiones y votaciones».
  */
 import { rotulo, plano } from '../lib/i18n';
 import { url, PAGINAS } from '../lib/rutas';
 import type { Lang } from '../lib/idiomas';
 
-interface Props { lang: Lang; grupo: 'cortes' | 'datos'; actual: string }
+interface Props { lang: Lang; grupo: 'cortes'; actual: string }
 const { lang, grupo, actual } = Astro.props;
 const OPCIONES = {
   cortes: [
     { clave: 'comun.subnav.cortes.etapas', ruta: PAGINAS.cortes },
     { clave: 'comun.subnav.cortes.sesiones', ruta: PAGINAS.sesiones },
-  ],
-  datos: [
-    { clave: 'comun.subnav.datos.usar', ruta: PAGINAS.datos },
-    { clave: 'comun.subnav.datos.versiones', ruta: PAGINAS.versiones },
   ],
 }[grupo];
 // «Etapas» sigue activa dentro de una ficha (cortes/1931), pero no en Sesiones, que tiene la suya.

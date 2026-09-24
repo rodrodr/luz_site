@@ -25,7 +25,8 @@
   "fecha_corta": "fecha con el mes en romanos, como en el Diario y en este sitio: «1-X-1931»",
   "mes": "mes y año: «octubre de 1931» · «October 1931»",
   "anio": "solo el año, sin agrupar: «1931»",
-  "texto": "el valor tal cual"
+  "texto": "el valor tal cual",
+  "redondo": "HACIA ABAJO a una cifra significativa, para «más de…» (vale en las dos ediciones): «100.000», «20 millones»"
  },
  "campos": {
   "v": "valor",
@@ -82,7 +83,14 @@
   {"v":"1945-11-09","t":"fecha","fmt":"anio","es":"1945","en":"1945"},
   {"v":24335896.0,"t":"n","fmt":"","es":"24.335.896","en":"24,335,896"},
   {"v":44.5,"t":"n","dec":1,"fmt":"","es":"44,5","en":"44.5"},
-  {"v":"CGOCUS V1.1","t":"texto","fmt":"","es":"CGOCUS V1.1","en":"CGOCUS V1.1"}
+  {"v":"CGOCUS V1.1","t":"texto","fmt":"","es":"CGOCUS V1.1","en":"CGOCUS V1.1"},
+  {"v":107551,"t":"n","fmt":"redondo","es":"100.000","en":"100,000"},
+  {"v":121700,"t":"n","fmt":"redondo","es":"100.000","en":"100,000"},
+  {"v":24335896,"t":"n","fmt":"redondo","es":"20 millones","en":"20 million"},
+  {"v":1049000,"t":"n","fmt":"redondo","es":"1 millón","en":"1 million"},
+  {"v":1250000,"t":"n","fmt":"redondo","es":"1 millón","en":"1 million"},
+  {"v":773,"t":"n","fmt":"redondo","es":"700","en":"700"},
+  {"v":9,"t":"n","fmt":"redondo","es":"9","en":"9"}
  ],
  "familias": {
   "sesion.<AAAA-MM-DD>-<n>.<campo>": {

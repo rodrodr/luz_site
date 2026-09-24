@@ -31,7 +31,7 @@ y se hicieron después. Esto cierra el punto E3 de `docs/estudio/estudio_critica
 
 ```
 explorador/
-├── busqueda.png … sobre.png   las 12 del plan, en tema claro (las que usa la página)
+├── busqueda.png … tendencia.png   las del plan, en tema claro (las que usa la página)
 ├── oscuro/                    las mismas 12, con el mismo nombre, en tema oscuro
 ├── otras/                     7 alternativas y estados E4, en claro (+ oscuro/otras/)
 ├── guion/                     capturar.py · recortar.py
@@ -39,7 +39,7 @@ explorador/
 ```
 
 El nombre de cada archivo es la clave de su pie en `docs/copy_es/explorador.md`: `corrida.png` lleva
-`explorador.img.corrida.pie`, `sobre.png` lleva `explorador.img.sobre.pie`, y así las doce.
+`explorador.img.corrida.pie`, y así todas. `sobre.png` se retiró el 24-09-2026: enseñaba las dos ediciones.
 
 ## Las doce
 
@@ -56,7 +56,6 @@ El nombre de cada archivo es la clave de su pie en `docs/copy_es/explorador.md`:
 | `coocurrencias.png` | 8.5 Coocurrencias | 1600 × 290 | 193 KB | `7da632374dca` |
 | `menciones.png` | 8.6 Menciones (D-17: solo la matriz) | 1600 × 330 | 80 KB | `cd9a5ebc35fd` |
 | `exportar.png` | 8.7 Llevárselo, citado | 1040 × 904 | 136 KB | `31c1346fe571` |
-| `sobre.png` | 8.7 | 582 × 1487 | 217 KB | `a2e3faaebb66` |
 
 Cifras «comprobadas» quiere decir recalculadas hoy sobre la base que sirve el explorador (la v3, `corpus.sqlite`
 de arriba), con SQL sobre su tabla `speeches` y su índice FTS5. Las que no se pueden recalcular fuera de la herramienta
@@ -295,4 +294,3 @@ No cuentan entre las doce. Quedan por si la página o una ficha las pide.
 | `coocurrencias.png` | `h_coocurrencias_tema1_sufragio` (sin «Leer primero») |
 | `menciones.png` | `i_menciones_matriz_sufragio` |
 | `exportar.png` | `j_exportar_dialogo_1440` (solo el diálogo, sin el ◆ de fondo) |
-| `sobre.png` | `k_sobre_corpus_panel_recordada`, rehecha en primera visita y recortada antes de «Construido» |

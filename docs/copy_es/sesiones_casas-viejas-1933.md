@@ -48,7 +48,7 @@ El nombre del pueblo vuelve una y otra vez: la búsqueda lo encuentra desde febr
 «…por mucho que se hurgue no se encontrará un atisbo de responsabilidad para el Gobierno.»
 
 <!-- sesiones.casas-viejas-1933.diario.cita.hurgue.pie -->
-Manuel Azaña · V2 {{cita.casasviejas.azana.hurgue.V2|id}} · v3 {{cita.casasviejas.azana.hurgue.v3|id}} · {{cita.casasviejas.azana.hurgue.palabras}} palabras (V2)
+Manuel Azaña · {{cita.casasviejas.azana.hurgue.palabras}} palabras
 
 <!-- sesiones.casas-viejas-1933.diario.cita.azana -->
 «En Casas Viejas no ha ocurrido sino lo que tenía que ocurrir. (Fuertes rumores y protestas en los bancos de las minorías; contraprotestas en la mayoría.)»
@@ -60,7 +60,7 @@ Manuel Azaña, en la misma fila, con la acotación del taquígrafo
 «…nos dijo: “En los sucesos de Casas Viejas, Sres. Diputados, por mucho que se hurgue…”»
 
 <!-- sesiones.casas-viejas-1933.diario.cita.martinezbarrio.pie -->
-Diego Martínez Barrio, 23 de febrero de 1933 · V2 {{cita.casasviejas.martinezbarrio.V2|id}} · v3 {{cita.casasviejas.martinezbarrio.v3|id}}
+Diego Martínez Barrio, 23 de febrero de 1933
 
 ## La sesión, turno a turno
 
@@ -70,13 +70,13 @@ La fila más alta es de Azaña, que interviene varias veces en la sesión.
 ## Cómo encontrarla en el explorador
 
 <!-- sesiones.casas-viejas-1933.explorador.fecha -->
-Filtros › Fecha y sesión: Desde y Hasta 02/02/1933. Salen {{sesion.1933-02-02-288.filas_v3}} intervenciones en la edición del explorador (v3); con «Solo lo que se habla», {{sesion.1933-02-02-288.habla_v3}}.
+Filtros › Fecha y sesión: Desde y Hasta 02/02/1933. Salen {{sesion.1933-02-02-288.filas_v3}} intervenciones en el explorador; con «Solo lo que se habla», {{sesion.1933-02-02-288.habla_v3}}.
 
 <!-- sesiones.casas-viejas-1933.explorador.consulta -->
 "casas viejas"
 
 <!-- sesiones.casas-viejas-1933.explorador.recuento -->
-Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.casas_viejas.n}} intervenciones en la edición del explorador (v3).
+Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.casas_viejas.n}} intervenciones en el explorador.
 
 <!-- sesiones.casas-viejas-1933.explorador.consulta.meses -->
 Contando todas las filas, salen {{busqueda.casas_viejas.m1933_02}} intervenciones en febrero de 1933 y {{busqueda.ses.casas_viejas.m1933_03}} en marzo.
@@ -91,7 +91,7 @@ La frase de Azaña, entre comillas, sale en {{busqueda.ses.tenia_que_ocurrir.n|l
 "no ha ocurrido sino lo que tenía que ocurrir"
 
 <!-- sesiones.casas-viejas-1933.explorador.frase.recuento -->
-Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.tenia_que_ocurrir.n|letra}} intervenciones en la edición del explorador (v3).
+Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.tenia_que_ocurrir.n|letra}} intervenciones en el explorador.
 
 <!-- sesiones.casas-viejas-1933.explorador.biblioteca -->
 El debate preparado «Casas Viejas» reúne {{bib.casas_viejas.entradas}} intervenciones de {{bib.casas_viejas.sesiones|letra}} sesiones, de febrero y marzo de 1933.
@@ -110,7 +110,7 @@ Buscada en el corpus, «tiros a la barriga» no sale en 1933. La primera fila qu
 «Casas Viejas! Casas Viejas! Tiros a la barriga, a la barriga!»
 
 <!-- sesiones.casas-viejas-1933.no_esta.cita.barriga.pie -->
-Varios diputados, en una acotación de la fila de José Tomás y Piera · V2 {{cita.casasviejas.barriga.V2|id}} · v3 {{cita.casasviejas.barriga.v3|id}}
+Varios diputados, en una acotación de la fila de José Tomás y Piera
 
 <!-- ↺ comun.fija.contar -->
 Contar una palabra no dice quién la defiende ni en qué tono.
@@ -118,18 +118,15 @@ Contar una palabra no dice quién la defiende ni en qué tono.
 ## Fuentes
 
 <!-- sesiones.casas-viejas-1933.fuentes.texto -->
-Todo lo que dice esta página sale del Diario de Sesiones, leído en las dos ediciones de la base. No se afirma aquí ningún hecho que el Diario no recoja.
+Todo lo que dice esta página sale del Diario de Sesiones, leído en la base. No se afirma aquí ningún hecho que el Diario no recoja.
 
 ## Cómo citar un pasaje
 
 <!-- sesiones.casas-viejas-1933.citar.texto -->
-Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila y su edición.
+Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila.
 
 <!-- sesiones.casas-viejas-1933.citar.cita -->
-Diario de Sesiones de las Cortes Constituyentes de la República Española, núm. {{sesion.1933-02-02-288.diario_num|id}}, 2 de febrero de 1933, pp. {{sesion.1933-02-02-288.paginas}} (metadatos del proyecto). Luz y Taquígrafos, edición depositada (V2), fila {{cita.casasviejas.azana.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
+Diario de Sesiones de las Cortes Constituyentes de la República Española, núm. {{sesion.1933-02-02-288.diario_num|id}}, 2 de febrero de 1933, pp. {{sesion.1933-02-02-288.paginas}} (metadatos del proyecto). Luz y Taquígrafos, fila {{cita.casasviejas.azana.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.

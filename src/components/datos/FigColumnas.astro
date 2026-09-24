@@ -1,12 +1,12 @@
 ---
 /**
- * F32 · Las 14 columnas del CSV depositado (Usar los datos, #columnas). Plan § F32; DESIGN.md «el Diario, anotado al
+ * F32 · Las columnas del CSV depositado (Usar los datos, #columnas). Plan § F32; DESIGN.md «el Diario, anotado al
  * margen»: cada columna es una línea del registro —su nombre en mono, su tipo y sus vacíos—, su definición con el valor
- * real en las filas V2 5423 (la Presidencia pide silencio) y 5424 (Campoamor empieza a hablar), y SU TRAMPA AL MARGEN,
- * con la llamada en oro. Sin tira de llenado: ocho columnas están llenas y las otras seis casi (no informa).
+ * real en dos filas seguidas (la Presidencia pide silencio; Campoamor empieza a hablar) y, al margen, cuántos valores
+ * distintos tiene. Solo describe las variables (24-09-2026: sin «trampas»). Sin tira de llenado.
  *  · Gráfico: la lista anotada. Cada columna lleva ancla `#col-<columna>` (`:target` la resalta) y su nombre es la marca
  *    recorrible con el teclado (nota: «columna · vacíos de filas»).
- *  · Tabla: las catorce columnas con tipo, vacíos, valores distintos y los dos valores, en su caja deslizable.
+ *  · Tabla: las columnas con tipo, vacíos, valores distintos y los dos valores, en su caja deslizable.
  * Datos: `src/data/columnas.json` (exportador/modulos/datos.py). Copy: `datos.columnas.<columna>.*` y `fig.F32.*`.
  */
 import FiguraMarco from '../FiguraMarco.astro';
@@ -38,7 +38,7 @@ function valor(c: Col, v: string, cortado: number | null = null): string {
 const estado = (c: Col) => c.vacios
   ? o('fig.F32.vacios', { vars: { n: n(c.vacios, `fig.F32.${c.columna}.vacios`) } })
   : o('fig.F32.sin_vacios');
-const tras = (clave: string) => (clave === 'datos.columnas.legislature.trampa' ? htmlFija(lang, 'comun.fija.legislatura') : '');
+const tras = (columna: string) => (columna === 'legislature' ? htmlFija(lang, 'comun.fija.legislatura') : '');
 const plantilla = plantillaNota(lang, 'fig.F32.nota', ['columna', 'vacios', 'den']);
 const colSilencio = o('fig.F32.tabla.col.silencio');
 const colCampoamor = o('fig.F32.tabla.col.campoamor');
@@ -50,7 +50,7 @@ const colCampoamor = o('fig.F32.tabla.col.campoamor');
         <p class="cabecera" aria-hidden="true">
           <span set:html={o('fig.F32.tabla.col.columna')} />
           <span set:html={o('fig.F32.tabla.col.definicion')} />
-          <span set:html={o('fig.F32.tabla.col.trampa')} />
+          <span set:html={o('fig.F32.tabla.col.distintos')} />
         </p>
         <ol class="lista" role="list" data-recorre tabindex="0" aria-label={plano(lang, 'fig.F32.titulo')} aria-describedby={`${ancla}-teclado`}>
           {cols.map((c) => (
@@ -58,7 +58,7 @@ const colCampoamor = o('fig.F32.tabla.col.campoamor');
               <div class="nombre">
                 <a class="marca" href={`#col-${c.columna}`} tabindex="-1" data-nota data-paso
                   data-v-columna={c.columna} data-v-vacios={fmt.n(c.vacios, lang)} data-v-den={fmt.n(c.den, lang)}>
-                  <code>{c.columna}</code><sup class="llamada-n cuenta" aria-hidden="true"></sup>
+                  <code>{c.columna}</code>
                 </a>
                 <span class="tipo"><Fragment set:html={o(`fig.F32.tipo.${c.tipo}`)} /> · <Fragment set:html={estado(c)} /></span>
               </div>
@@ -69,10 +69,9 @@ const colCampoamor = o('fig.F32.tabla.col.campoamor');
                   <div><dt set:html={colCampoamor} /><dd set:html={valor(c, c.v5424, c.v5424_caracteres)} /></div>
                 </dl>
               </div>
-              <aside class="trampa">
-                <p class="asiento"><span class="llamada-n cuenta" aria-hidden="true"></span> <Fragment set:html={o('fig.F32.distintos', { vars: { n: n(c.distintos, `fig.F32.${c.columna}.distintos`) } })} /></p>
-                <p set:html={o(`datos.columnas.${c.columna}.trampa`)} />
-                <Fragment set:html={tras(`datos.columnas.${c.columna}.trampa`)} />
+              <aside class="margen">
+                <p class="asiento" set:html={o('fig.F32.distintos', { vars: { n: n(c.distintos, `fig.F32.${c.columna}.distintos`) } })} />
+                <Fragment set:html={tras(c.columna)} />
               </aside>
             </li>
           ))}
@@ -113,12 +112,9 @@ const colCampoamor = o('fig.F32.tabla.col.campoamor');
 </FiguraMarco>
 
 <style>
-  .columnas { --col-nombre: 11.5rem; --col-trampa: minmax(14rem, 18rem); }
+  .columnas { --col-nombre: 11.5rem; --col-margen: minmax(12rem, 16rem); }
   .cabecera { display: none; }
-  .lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair-2); counter-reset: col; }
-  /* La llamada que une la columna con su trampa: un contador, no un número tecleado. */
-  .col { counter-increment: col; }
-  .cuenta::before { content: counter(col); }
+  .lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair-2); }
   .col {
     display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--e3) var(--col-gap);
     padding: var(--e5) 0 var(--e5); border-bottom: 1px solid var(--hair); scroll-margin-top: 5rem;
@@ -133,7 +129,7 @@ const colCampoamor = o('fig.F32.tabla.col.campoamor');
   .tipo { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
   .def p { margin: 0 0 var(--e3); }
   .ej { margin: 0; display: grid; gap: .35rem; }
-  .ej > div { display: grid; grid-template-columns: 5.6rem minmax(0, 1fr); gap: .75rem; align-items: baseline; }
+  .ej > div { display: grid; grid-template-columns: 8.25rem minmax(0, 1fr); gap: .75rem; align-items: baseline; }
   .ej dt { font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); white-space: nowrap; }
   .ej dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
   .ej code, .celda code { font-size: .82rem; color: var(--ink); }
@@ -141,24 +137,23 @@ const colCampoamor = o('fig.F32.tabla.col.campoamor');
   .corte { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); font-style: normal; white-space: nowrap; }
   /* Una celda vacía es una ausencia medida: contorno continuo `ausencia-trazo`, sin relleno (la ausencia nunca es un color). */
   .vacio { display: inline-block; font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); border: 1px solid var(--ausencia-trazo); border-radius: var(--radio); padding: .05rem .4rem; }
-  .trampa { font-size: var(--fs-small); line-height: 1.5; color: var(--ink-2); border-top: 1px solid var(--hair); padding-top: var(--e3); min-width: 0; }
-  .trampa p { margin: 0 0 .5em; max-width: 32rem; }
-  .trampa .asiento { margin: 0 0 .35rem; font-size: var(--fs-mono-s); }
-  .trampa .asiento .llamada-n { font-size: 1em; line-height: inherit; vertical-align: baseline; margin: 0 .2rem 0 0; }
-  .trampa :global(.fija) { border-top: 0; padding-top: 0; margin: .5rem 0 0; font-size: .92em; color: var(--mute); }
+  .margen { font-size: var(--fs-small); line-height: 1.5; color: var(--ink-2); min-width: 0; }
+  .margen p { margin: 0 0 .5em; max-width: 32rem; }
+  .margen .asiento { margin: 0 0 .35rem; font-size: var(--fs-mono-s); }
+  .margen :global(.fija) { border-top: 0; padding-top: 0; margin: .5rem 0 0; font-size: .92em; color: var(--mute); }
   .tabla-cols .celda { min-width: 14rem; max-width: 26rem; white-space: normal; font-family: var(--text); }
   .tabla-cols tbody th { position: sticky; left: 0; background: var(--bg); z-index: 1; }
   @media (min-width: 48rem) {
     .col { grid-template-columns: var(--col-nombre) minmax(0, 1fr); }
-    .trampa { grid-column: 2; }
+    .margen { grid-column: 2; }
   }
   @media (min-width: 72rem) {
     .cabecera {
-      display: grid; grid-template-columns: var(--col-nombre) minmax(0, 1fr) var(--col-trampa); gap: 0 var(--col-gap);
+      display: grid; grid-template-columns: var(--col-nombre) minmax(0, 1fr) var(--col-margen); gap: 0 var(--col-gap);
       font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); margin: 0 0 .6rem; max-width: none;
     }
-    .col { grid-template-columns: var(--col-nombre) minmax(0, 1fr) var(--col-trampa); }
-    .trampa { grid-column: 3; border-top: 0; padding-top: .45rem; }
+    .col { grid-template-columns: var(--col-nombre) minmax(0, 1fr) var(--col-margen); }
+    .margen { grid-column: 3; padding-top: .45rem; }
   }
   @media (prefers-reduced-motion: no-preference) {
     .col { transition: background-color var(--t-estado) var(--ease); }

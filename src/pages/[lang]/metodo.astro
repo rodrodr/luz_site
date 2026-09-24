@@ -3,8 +3,9 @@
  * G · Método (plan § Plantilla G; narrativa § 12; grupo 4). Lo que preguntaría un revisor, con cada límite en la frase
  * de su cifra. Diez apartados con índice lateral y banda fija (DESIGN.md, plantilla G). Cada apartado se cierra con un
  * «Pruébelo» doble: la consulta para el explorador ([Copiar la consulta]) y una línea de Python sobre el CSV depositado.
- * Copy: `metodo.*` (docs/copy_es/metodo.md). Figuras: F20 (01), F19 (02), F10/F11 (05), F12 (06); en 03, las cinco
- * filas finales de la sesión 48, literales; en 09, las cuatro cajas vacías de Inicio, en pequeño.
+ * Copy: `metodo.*` (docs/copy_es/metodo.md). Figuras: F20 (01), F19 (02), F10/F11 (05); en 03, el juego «Corrija al
+ * Diario» (erratas reales de las fórmulas de orador) y las cinco filas finales de la sesión 48, literales; en 08, las
+ * cuatro cajas vacías de Inicio, en pequeño. Nueve apartados desde el 24-09-2026 (sin «Dos ediciones»).
  */
 import Base from '../../layouts/Base.astro';
 import CabezaPagina from '../../components/CabezaPagina.astro';
@@ -12,16 +13,16 @@ import IndiceLateral from '../../components/IndiceLateral.astro';
 import Seccion from '../../components/Seccion.astro';
 import CopiarConsulta from '../../components/CopiarConsulta.astro';
 import BandaCTA from '../../components/BandaCTA.astro';
-import NotaBases from '../../components/NotaBases.astro';
 import SinSitio from '../../components/SinSitio.astro';
 import FigFila from '../../components/FigFila.astro';
 import FigPasos from '../../components/FigPasos.astro';
 import FigLongitud from '../../components/FigLongitud.astro';
-import FigDespiece from '../../components/FigDespiece.astro';
+import Erratas from '../../components/metodo/Erratas.astro';
+import IzqDer from '../../components/metodo/IzqDer.astro';
 import { meta } from '../../lib/pagina';
 import { t, tBloques, plano, existe } from '../../lib/i18n';
-import { fmt, marcaPendiente } from '../../lib/cifras';
-import { primera, rotulosConDestino, conDestinos, anclasTras, htmlFija } from '../../lib/lectura';
+import { marcaPendiente } from '../../lib/cifras';
+import { primera, rotulosConDestino, anclasTras, htmlFija } from '../../lib/lectura';
 import { remata } from '../../lib/remata';
 import { dato } from '../../lib/datos';
 import { PAGINAS } from '../../lib/rutas';
@@ -30,20 +31,19 @@ import { rutasPorIdioma, type Lang } from '../../lib/idiomas';
 export const getStaticPaths = rutasPorIdioma;
 const lang = Astro.params.lang as Lang;
 const { titulo, descripcion } = meta(lang, 'metodo');
-const NN = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
+const NN = ['01', '02', '03', '04', '05', '06', '07', '08', '09'];
 const ids = NN.map((n) => `m${n}`);
 const primeraConsulta = NN.find((n) => existe(`metodo.${n}.pruebelo.consulta`));
 const o = (c: string) => (existe(c) ? t(lang, c) : marcaPendiente(c, 'copy'));
 // 03 · las cinco últimas filas de la sesión 48, literales (exportador/modulos/metodo.py › cola48.json).
 const cola = dato<{ filas: { id_v2: number; id_v3: number; speaker: string; speech: string }[] }>('cola48')?.filas ?? [];
-// 06 · el enlace va DETRÁS de F12, con la frase fija que el copy ancló tras él (plan: texto · F12 · ↺ 4 · enlace).
-const enlace06 = existe('metodo.06.enlace') ? conDestinos(lang, 'metodo.06.enlace', {}) : '';
-const tras06 = anclasTras('metodo.06.enlace').map((f) => htmlFija(lang, f)).join('');
-// 09 · las cuatro cajas vacías de Inicio (inicio.falta.*), en pequeño: las mismas claves, sin redactar aquí.
+// 03 · tras el juego, las dos incidencias declaradas, con la frase fija que el copy ancló tras ellas (↺ 8).
+const trasIncidencias = anclasTras('metodo.03.incidencias').map((f) => htmlFija(lang, f)).join('');
+// 08 · las cuatro cajas vacías de Inicio (inicio.falta.*), en pequeño: las mismas claves, sin redactar aquí.
 const CAJAS = ['tema', 'tono', 'posicion', 'voto'].map((c) => `inicio.falta.${c}`);
 ---
 <Base lang={lang} ruta={PAGINAS.metodo} titulo={titulo} descripcion={descripcion}>
-  <CabezaPagina lang={lang} prefijo="metodo" bases={['V2', 'v3', 'proyecto']}>
+  <CabezaPagina lang={lang} prefijo="metodo">
     {existe('metodo.pruebelo.carga.texto') && (
       <details class="carga">
         <summary><span set:html={t(lang, 'metodo.pruebelo.carga.texto')} /></summary>
@@ -56,10 +56,14 @@ const CAJAS = ['tema', 'tono', 'posicion', 'voto'].map((c) => `inicio.falta.${c}
     <div class="lectura">
       {NN.map((n) => (
         <Seccion lang={lang} id={`m${n}`} prefijo={`metodo.${n}`} espera={['titulo', 'entrada']}
-                 excluir={['pruebelo', ...(n === '03' ? ['cola'] : []), ...(n === '06' ? ['enlace'] : [])]} indice>
+                 excluir={['pruebelo', ...(n === '03' ? ['cola', 'juego', 'incidencias'] : n === '07' ? ['juego'] : [])]} indice>
           <p slot="antes" class="asiento apartado-n" aria-hidden="true" data-audit-exento="numeración del apartado">{n}</p>
           {n === '01' && <FigFila lang={lang} />}
           {n === '02' && <FigPasos lang={lang} />}
+          {n === '03' && <Erratas lang={lang} />}
+          {n === '07' && <IzqDer lang={lang} />}
+          {n === '03' && existe('metodo.03.incidencias') && <div class="prosa incidencias" set:html={remata(tBloques(lang, 'metodo.03.incidencias'))} />}
+          {n === '03' && trasIncidencias && <Fragment set:html={trasIncidencias} />}
           {n === '03' && cola.length > 0 && (
             <figure class="cola" aria-labelledby="cola-titulo">
               <figcaption id="cola-titulo" class="cola-rotulo" set:html={o('metodo.03.cola.rotulo')} />
@@ -70,22 +74,10 @@ const CAJAS = ['tema', 'tono', 'posicion', 'voto'].map((c) => `inicio.falta.${c}
                   </li>
                 ))}
               </ol>
-              <p class="asiento cola-asiento">
-                V2 <Fragment set:html={fmt.clave('ses.s48.cola.V2.desde', lang, 'id')} />–<Fragment set:html={fmt.clave('ses.s48.cola.V2.hasta', lang, 'id')} /> ·
-                v3 <Fragment set:html={fmt.clave('ses.s48.cola.v3.desde', lang, 'id')} />–<Fragment set:html={fmt.clave('ses.s48.cola.v3.hasta', lang, 'id')} />
-              </p>
             </figure>
           )}
           {n === '05' && <FigLongitud lang={lang} />}
-          {n === '06' && (
-            <>
-              <FigDespiece lang={lang} />
-              <NotaBases lang={lang} compacta />
-              {tras06 && <Fragment set:html={tras06} />}
-              {enlace06 && <p class="botones" set:html={enlace06} />}
-            </>
-          )}
-          {n === '09' && (
+          {n === '08' && (
             <ul class="cajas" role="list">
               {CAJAS.map((k) => <li class="caja-vacia" set:html={o(k)} />)}
             </ul>
@@ -139,9 +131,8 @@ const CAJAS = ['tema', 'tono', 'posicion', 'voto'].map((c) => `inicio.falta.${c}
   .cola-fila { font: italic 400 1.05rem/1.45 var(--text); color: var(--ink); text-indent: -1.2em; padding-left: 1.2em; }
   .cola-quien { font-style: normal; color: var(--ink-2); }
   .cola-fila:last-child .cola-dicho::after { content: ''; display: inline-block; width: 2.2em; margin-left: .3em; border-bottom: 1px dashed var(--ausencia-trazo); vertical-align: .25em; }
-  .cola-asiento { margin: var(--e3) 0 0; }
 
-  /* 09 · las cuatro cajas vacías de Inicio, en pequeño, con filete discontinuo: el vacío es el contenido. */
+  /* 08 · las cuatro cajas vacías de Inicio, en pequeño, con filete discontinuo: el vacío es el contenido. */
   .cajas { list-style: none; margin: var(--e4) 0 var(--e5); padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e3); max-width: 38rem; }
   @media (max-width: 26rem) { .cajas { grid-template-columns: minmax(0, 1fr); } }
   .caja-vacia { border: 1px dashed var(--hair-2); border-radius: var(--radio); padding: .8rem .9rem; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); min-height: 5.5rem; }

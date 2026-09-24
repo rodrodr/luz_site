@@ -1,0 +1,116 @@
+---
+/**
+ * «¿Izquierda o derecha?» (Método 07; petición del investigador, 24-09-2026). Una palabra y siete bancos, de EI a ED:
+ * el lector elige dónde sonó más (apariciones por cada 10.000 palabras de las filas de cada ideología) y ve las siete
+ * barras. Enseña el atributo más delicado de la base: la ideología es la del partido del orador, no la suya.
+ *  · Datos: `src/data/izqder.json` (exportador/modulos/izqder.py). Doce palabras; seis por partida. Puntos: 3 el
+ *    banco justo, 2 al lado, 1 a dos bancos.
+ *  · Sin JS: una tabla con las doce palabras y sus siete tasas. Con JS (`scripts/izqder.ts`): el juego.
+ */
+import { t, plano, rotulo, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import type { Lang } from '../../lib/idiomas';
+
+interface Palabra { clave: string; palabra: string; tasas: Record<string, number>; max: string }
+interface Datos { eje: string[]; palabras: Palabra[] }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<Datos>('izqder');
+const K = (s: string) => `metodo.07.juego.${s}`;
+const o = (s: string, ctx = {}) => (existe(K(s)) ? t(lang, K(s), ctx) : marcaPendiente(K(s), 'copy'));
+const p = (s: string, vars: Record<string, string> = {}) => (existe(K(s)) ? plano(lang, K(s), { vars }) : '');
+const r = (s: string) => (existe(K(s)) ? rotulo(lang, K(s)) : marcaPendiente(K(s), 'copy'));
+// El nombre de cada ideología: el de la leyenda de la red de Afinidades (F21), el mismo en todo el sitio.
+const ideo = (c: string) => (existe(`fig.F21.leyenda.${c}`) ? plano(lang, `fig.F21.leyenda.${c}`) : c);
+const loc = lang === 'es' ? 'es-ES' : 'en-GB';
+const uno = new Intl.NumberFormat(loc, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const eje = D?.eje ?? [];
+const leyendaEje = eje.map((c) => `${c}: ${ideo(c)}`).join(' · ');
+const textos = D && {
+  cuenta: p('cuenta', { i: '{i}', n: '{n}', p: '{p}' }), pregunta: p('pregunta', { palabra: '{palabra}' }),
+  exacto: p('exacto'), cerca: p('cerca', { n: '{n}' }), cercaUno: p('cerca.uno'),
+  mas: p('mas', { ideologia: '{ideologia}', tasa: '{tasa}' }), leyenda: p('leyenda'),
+  siguiente: r('siguiente'), ver: r('ver'), resumen: p('resumen', { p: '{p}', max: '{max}' }),
+  niveles: [0, 1, 2, 3].map((k) => p(`nivel.${k}`)), nombres: eje.map(ideo),
+};
+const tabla = `izq-tabla-${lang}`;
+const idPregunta = `izq-pregunta-${lang}`;
+---
+{!D ? <p class="nota" set:html={marcaPendiente('izqder.json', 'dato')} /> : (
+<div class="izq" data-izqder data-textos={JSON.stringify(textos)} data-palabras={JSON.stringify(D.palabras)} data-eje={JSON.stringify(eje)} data-locale={loc}>
+  <h3 class="izq-titulo" set:html={o('titulo')} />
+  <p class="izq-entrada" set:html={o('entrada')} />
+  <p class="izq-reglas" set:html={o('reglas')} />
+  <!-- Sin JS: las doce palabras y sus siete tasas -->
+  <div class="izq-estatico fig-desliza" tabindex="0" role="region" aria-labelledby={tabla}>
+    <table class="fig-tabla izq-tabla">
+      <caption id={tabla}><span class="fig-rotulo-tabla" set:html={o('tabla')} /></caption>
+      <thead><tr><th scope="col" set:html={o('tabla.col.palabra')} />{eje.map((c) => <th scope="col" class="num" title={ideo(c)}>{c}</th>)}</tr></thead>
+      <tbody>
+        {D.palabras.map((w) => (
+          <tr>
+            <th scope="row" lang="es">«{w.palabra}»</th>
+            {eje.map((c) => <td class:list={['num', { 'izq-max': c === w.max }]} set:html={fmt.dato(w.tasas[c], uno.format(w.tasas[c]), `izqder.${w.clave}.${c}`, 'v3')} />)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Con JS: el juego -->
+  <div class="izq-juego" hidden>
+    <p class="asiento izq-cuenta" data-izq-cuenta></p>
+    <p class="izq-pregunta" id={idPregunta} data-izq-pregunta></p>
+    <div class="izq-bancos" role="group" aria-labelledby={idPregunta}>
+      {eje.map((c, k) => <button type="button" class="boton sec izq-banco" data-izq-banco={k} aria-label={`${c}: ${ideo(c)}`}>{c}</button>)}
+    </div>
+    <p class="izq-leyenda-eje">{leyendaEje}</p>
+    <div class="izq-revela" data-izq-revela hidden>
+      <p class="izq-aviso" data-izq-aviso></p>
+      <div class="izq-barras" data-izq-barras></div>
+      <p class="izq-leyenda" data-izq-leyenda></p>
+    </div>
+    <p class="sr-only" aria-live="polite" data-izq-sr></p>
+    <p class="botones"><button type="button" class="boton" data-izq-siguiente hidden></button></p>
+    <div class="izq-final" data-izq-final hidden>
+      <p class="izq-resumen" data-izq-resumen></p>
+      <p class="izq-nivel"><em data-izq-nivel></em></p>
+      <p class="botones"><button type="button" class="boton sec" data-izq-otra set:html={r('otra')} /></p>
+    </div>
+  </div>
+  <p class="izq-salvedad" set:html={o('salvedad')} />
+</div>
+)}
+
+<script>
+  import '../../scripts/izqder.ts';
+</script>
+
+<style>
+  .izq { margin: var(--e6) 0; padding: var(--e5) 0 0; border-top: 1px solid var(--hair-2); max-width: 46rem; min-width: 0; }
+  .izq [hidden] { display: none !important; }
+  .izq-titulo { font: italic 500 1.55rem/1.1 var(--display); margin: 0 0 var(--e3); }
+  .izq-entrada, .izq-reglas { color: var(--ink-2); margin: 0 0 var(--e3); max-width: 40rem; }
+  .izq-tabla td.izq-max { font-weight: 600; color: var(--ink); }
+  .izq-cuenta { margin: 0 0 var(--e2); color: var(--mute); }
+  .izq-pregunta { font: italic 500 clamp(1.25rem, 3vw, 1.55rem)/1.3 var(--display); margin: 0 0 var(--e3); }
+  .izq-bancos { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .35rem; max-width: 34rem; }
+  .izq-banco { padding-inline: 0; min-width: 0; justify-content: center; text-align: center; }
+  .izq-banco[aria-pressed='true'] { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .izq-banco.max { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .izq-leyenda-eje { margin: .4rem 0 var(--e3); font: 400 var(--fs-mono-s)/1.5 var(--mono); color: var(--mute); max-width: 40rem; }
+  .izq-aviso { margin: 0 0 var(--e2); font-weight: 500; }
+  .izq-barras { display: grid; gap: .25rem; max-width: 34rem; margin: 0 0 .4rem; }
+  .izq-barras :global(.fila) { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) 3.2rem; align-items: center; gap: .5rem; font: 400 var(--fs-mono-s)/1.2 var(--mono); color: var(--ink-2); }
+  .izq-barras :global(.barra) { height: .8rem; background: var(--hair-2); border-radius: 1px; min-width: 2px; }
+  .izq-barras :global(.fila.max .barra) { background: var(--accent); }
+  .izq-barras :global(.fila.apuesta) { color: var(--ink); font-weight: 600; }
+  .izq-barras :global(.fila.apuesta .barra) { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .izq-barras :global(.valor) { text-align: right; }
+  .izq-leyenda { margin: 0; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .izq-resumen { font: 500 1.1rem/1.45 var(--text); margin: 0 0 .4rem; }
+  .izq-nivel em { font: italic 500 1.4rem/1.3 var(--display); color: var(--ink); }
+  .izq-salvedad { margin: var(--e3) 0 0; color: var(--ink-2); font-size: .95rem; max-width: 40rem; }
+  :global(.izq.izq--juego) .izq-estatico { display: none; }
+</style>

@@ -14,14 +14,8 @@
  "cortes.calendario.dice.V": [
   "comun.boton.ver_sesiones"
  ],
- "cortes.etapas.tabla.pie_leg": [
-  "comun.fija.notabases"
- ],
  "cortes.ficha.hoy.recuento": [
   "comun.fija.enlace"
- ],
- "cortes.ficha.contexto.ids": [
-  "comun.fija.ids"
  ],
  "cortes.ficha.citar.paginas": [
   "comun.fija.diario"
@@ -58,14 +52,10 @@
   "comun.fija.local"
  ],
  "datos.empezar.cierre": [
-  "comun.fija.formulario",
-  "comun.fija.ids"
+  "comun.fija.formulario"
  ],
  "datos.camino.entrada": [
   "comun.fija.formulario.motivo"
- ],
- "datos.camino.archivo.readme": [
-  "comun.fija.readme"
  ],
  "datos.columnas.speech.dentro": [
   "comun.fija.legislatura"
@@ -83,22 +73,17 @@
   "comun.fija.contar"
  ],
  "diario.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
  ],
  "explorador.entrada": [
   "comun.fija.local",
-  "comun.boton.explorador",
-  "comun.fija.notabases"
+  "comun.boton.explorador"
  ],
  "explorador.p4.hitos": [
   "comun.fija.contar"
  ],
  "explorador.busquedas.entrada": [
   "comun.fija.enlace"
- ],
- "explorador.llevar.aviso": [
-  "comun.fija.ids"
  ],
  "explorador.no_hace.enlace": [
   "comun.fija.ocr",
@@ -107,15 +92,10 @@
  "explorador.img.corrida.pie": [
   "comun.fija.sesion48"
  ],
- "inicio.fila.leccion": [
-  "comun.fija.ocr"
- ],
- "inicio.empezar.entrada": [
-  "comun.fija.formulario",
-  "comun.fija.formulario.motivo"
+ "inicio.red.entrada": [
+  "comun.boton.ver_afinidades"
  ],
  "inicio.empezar.sin_programar": [
-  "comun.fija.explorador",
   "comun.boton.explorador"
  ],
  "inicio.empezar.programar": [
@@ -124,25 +104,20 @@
  "inicio.empezar.redes": [
   "comun.boton.ver_afinidades"
  ],
- "metodo.03.texto.2": [
-  "comun.fija.ocr",
+ "metodo.03.texto": [
+  "comun.fija.ocr"
+ ],
+ "metodo.03.incidencias": [
   "comun.fija.sesion48"
  ],
- "metodo.06.enlace": [
-  "comun.fija.ids"
- ],
- "metodo.09.texto": [
+ "metodo.08.texto": [
   "comun.fija.contar"
  ],
- "metodo.10.enlace": [
-  "comun.fija.readme",
+ "metodo.09.enlace": [
   "comun.fija.diario"
  ],
  "sesiones.puertas.cobertura": [
   "comun.fija.novalida"
- ],
- "sesiones.otra.habla": [
-  "comun.fija.ids"
  ],
  "sesiones.entera.paginas": [
   "comun.sello.proyecto",
@@ -152,53 +127,33 @@
   "comun.fija.diario"
  ],
  "sesiones.antesala-1936.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
  ],
  "sesiones.casas-viejas-1933.no_esta.cita.barriga.pie": [
   "comun.fija.contar"
  ],
  "sesiones.casas-viejas-1933.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
  ],
  "sesiones.cuestion-religiosa-1931.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
  ],
  "sesiones.estatuto-1932.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
  ],
  "sesiones.figueres-1939.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
  ],
  "sesiones.mexico-1945.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
  ],
  "sesiones.pistola-1934.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
  ],
- "sesiones.sufragio-1931.no_esta.pie": [
+ "sesiones.sufragio-1931.no_esta.texto": [
   "comun.fija.sesion48"
  ],
  "sesiones.sufragio-1931.citar.cita": [
-  "comun.fija.ids",
   "comun.fija.diario"
- ],
- "versiones.meta.descripcion": [
-  "comun.sello.V2",
-  "comun.sello.v3",
-  "comun.sello.proyecto",
-  "comun.sello.afin"
- ],
- "versiones.depositadas.texto": [
-  "comun.fija.readme"
- ],
- "versiones.v3.texto": [
-  "comun.fija.ids"
  ]
 }

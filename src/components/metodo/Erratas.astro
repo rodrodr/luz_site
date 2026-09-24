@@ -1,0 +1,162 @@
+---
+/**
+ * «Corrija al Diario» (Método 03; petición del investigador, 24-09-2026). Un juego sobre lo que cuesta leer a máquina
+ * setecientas sesiones: cada ronda es una fórmula de orador tal como la leyó el reconocimiento óptico —todas están en la
+ * base, con su recuento— y el lector la corrige. Al corregirla, aparece otra. La última no es errata («El señor
+ * PRESIDENTE:», como la escriben los extractos tardíos): normalizar también es decidir.
+ *  · Datos: `src/data/erratas.json` (exportador/modulos/erratas.py). Copy: `metodo.03.juego.*`.
+ *  · Sin JS: una tabla con las lecturas, lo que deberían decir y sus filas, y el remate. Con JS (`scripts/erratas.ts`):
+ *    el juego, con su cuenta, sus avisos en una región viva y el remate con el tiempo y el ritmo del lector.
+ */
+import { t, plano, rotulo, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import type { Lang } from '../../lib/idiomas';
+
+interface Ronda { clave: string; mal: string; bien: string | null; filas: number }
+interface Datos { formulas: number; presidencia: { formas: number }; rondas: Ronda[] }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<Datos>('erratas');
+const K = (s: string) => `metodo.03.juego.${s}`;
+const o = (s: string, ctx = {}) => (existe(K(s)) ? t(lang, K(s), ctx) : marcaPendiente(K(s), 'copy'));
+const p = (s: string, vars: Record<string, string> = {}) => (existe(K(s)) ? plano(lang, K(s), { vars }) : '');
+const r = (s: string) => (existe(K(s)) ? rotulo(lang, K(s)) : marcaPendiente(K(s), 'copy'));
+const n = (v: number) => fmt.n(v, lang);
+const rondas = (D?.rondas ?? []).map((x) => ({ ...x, dicho: p(`r.${x.clave}`) }));
+const dimension = D
+  ? o('resumen.dimension', { vars: {
+      formas: fmt.dato(D.presidencia.formas, n(D.presidencia.formas), 'erratas.presidencia.formas', 'v3'),
+      formulas: fmt.dato(D.formulas, n(D.formulas), 'erratas.formulas', 'v3'),
+    } })
+  : '';
+// Plantillas en texto plano, con sus huecos entre llaves: las rellena el script.
+const textos = D && {
+  leyo: p('leyo'),
+  cuenta: p('cuenta', { i: '{i}', formulas: n(D.formulas) }),
+  filas: p('filas', { n: '{n}' }), filasUna: p('filas.una'),
+  casi: p('casi', { desde: '{desde}' }), bien: p('bien'),
+  trampa: p('trampa'), cayo: p('trampa.cayo'), acierto: p('trampa.bien'),
+  hechas: p('resumen.hechas', { n: '{n}', tiempo: '{tiempo}' }), una: p('resumen.una', { tiempo: '{tiempo}' }), cero: p('resumen.cero'),
+  ritmo: p('resumen.ritmo', { total: '{total}' }),
+};
+const campo = `err-campo-${lang}`;
+---
+{!D ? <p class="nota" set:html={marcaPendiente('erratas.json', 'dato')} /> : (
+<div class="err" data-erratas data-textos={JSON.stringify(textos)} data-rondas={JSON.stringify(rondas)} data-formulas={String(D.formulas)}
+     data-locale={lang === 'es' ? 'es-ES' : 'en-GB'}>
+  <h3 class="err-titulo" set:html={o('titulo')} />
+  <p class="err-entrada" set:html={o('entrada')} />
+
+  <!-- Sin JS: las lecturas, tal como están en la base -->
+  <div class="err-estatico fig-desliza" tabindex="0" role="region" aria-labelledby={`${campo}-tabla`}>
+    <table class="fig-tabla err-tabla">
+      <caption id={`${campo}-tabla`}><span class="fig-rotulo-tabla" set:html={o('tabla')} /></caption>
+      <thead>
+        <tr>
+          <th scope="col" set:html={o('tabla.col.leyo')} />
+          <th scope="col" set:html={o('tabla.col.debe')} />
+          <th scope="col" class="num" set:html={o('tabla.col.filas')} />
+        </tr>
+      </thead>
+      <tbody>
+        {rondas.map((x) => (
+          <tr>
+            <th scope="row"><code translate="no">{x.mal}</code></th>
+            <td>{x.bien ? <code translate="no">{x.bien}</code> : <em set:html={o('tabla.no_errata')} />}</td>
+            <td class="num" set:html={fmt.dato(x.filas, n(x.filas), `erratas.${x.clave}.filas`, 'v3')} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Con JS: el juego -->
+  <div class="err-juego" hidden>
+    <p class="asiento err-cuenta" data-err-cuenta></p>
+    <div class="err-hoja" data-err-hoja>
+      <p class="err-rotulo" set:html={o('leyo')} />
+      <p class="err-mal" data-err-mal translate="no"></p>
+      <p class="err-debe" data-err-debe><span class="err-rotulo" set:html={o('debe')} /> <span class="err-bien" data-err-bien translate="no"></span></p>
+      <p class="err-trampa" data-err-trampa hidden></p>
+    </div>
+    <form class="err-form" data-err-form novalidate>
+      <label class="err-rotulo" for={campo} set:html={o('campo')} />
+      <input id={campo} class="err-campo" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" translate="no" data-err-campo />
+      <p class="botones">
+        <button type="submit" class="boton" set:html={r('corregir')} />
+        <button type="button" class="boton sec" data-err-dejar hidden set:html={r('dejar')} />
+        <button type="button" class="boton sec" data-err-rendirse set:html={r('rendirse')} />
+      </p>
+    </form>
+    <p class="err-aviso" role="status" data-err-aviso></p>
+    <p class="sr-only" aria-live="polite" data-err-sr></p>
+    <div class="err-final" data-err-final hidden>
+      <p class="err-resumen" data-err-resumen></p>
+    </div>
+  </div>
+
+  <div class="err-remate">
+    <p set:html={dimension} />
+    <p set:html={o('leccion')} />
+    <p class="botones err-otra-p" hidden><button type="button" class="boton sec" data-err-otra set:html={r('otra')} /></p>
+  </div>
+</div>
+)}
+
+<script>
+  import '../../scripts/erratas.ts';
+</script>
+
+<style>
+  .err { margin: var(--e6) 0 var(--e6); padding: var(--e5) 0 0; border-top: 1px solid var(--hair-2); max-width: 46rem; min-width: 0; }
+  .err [hidden] { display: none !important; }
+  .err-titulo { font: italic 500 1.55rem/1.1 var(--display); margin: 0 0 var(--e3); }
+  .err-entrada { color: var(--ink-2); margin: 0 0 var(--e4); max-width: 40rem; }
+  .err-tabla code { font-size: .86rem; }
+  .err-tabla em { color: var(--ink-2); }
+
+  /* La hoja: una tira del Diario tal como la leyó la máquina. */
+  .err-cuenta { margin: 0 0 var(--e3); color: var(--mute); }
+  .err-hoja {
+    position: relative; background: var(--bg-2); border: 1px solid var(--hair-2); border-radius: var(--radio);
+    padding: var(--e4) var(--e5); margin: 0 0 var(--e4); overflow: hidden;
+  }
+  .err-hoja::after {
+    /* el filete de la «página» leída: una línea de escaneo que pasa cuando llega otra errata */
+    content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--accent); opacity: 0;
+  }
+  .err-rotulo { display: block; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); margin: 0 0 .3rem; }
+  .err-mal { font: 500 clamp(1.35rem, 3.6vw, 1.9rem)/1.2 var(--text); letter-spacing: .01em; color: var(--ink); margin: 0 0 var(--e3); overflow-wrap: anywhere; }
+  .err-debe { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .6rem; }
+  .err-debe .err-rotulo { display: inline; margin: 0; }
+  .err-bien { font: 400 1rem/1.4 var(--mono); color: var(--ink); }
+  .err-trampa { margin: 0; font-style: italic; color: var(--ink); }
+  .err-hoja.corregida .err-mal { color: var(--ink-2); text-decoration: line-through; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+
+  .err-form { display: grid; gap: .35rem; margin: 0 0 var(--e3); }
+  .err-campo {
+    font: 400 1.05rem/1.3 var(--mono); color: var(--ink); background: var(--bg); width: 100%; max-width: 30rem;
+    border: 1px solid var(--hair-2); border-radius: var(--radio); padding: .6rem .7rem; min-height: 2.75rem;
+  }
+  .err-campo:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .err-campo[aria-invalid='true'] { border-color: var(--accent); }
+  .err-form .botones { margin: .5rem 0 0; }
+  .err-aviso { min-height: 1.5em; margin: 0 0 var(--e3); color: var(--ink); max-width: 40rem; }
+  .err-resumen { font: 500 1.1rem/1.45 var(--text); margin: 0 0 var(--e3); }
+  .err-remate { margin-top: var(--e4); color: var(--ink-2); }
+  .err-remate p { margin: 0 0 .6rem; max-width: 40rem; }
+
+  /* Con JS: el juego sustituye a la tabla; el remate espera al final. */
+  :global(.err.err--juego) .err-estatico { display: none; }
+  :global(.err.err--juego:not(.err--fin)) .err-remate { display: none; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .err-hoja.entra { animation: err-entra 420ms cubic-bezier(.2, .7, .1, 1); }
+    .err-hoja.entra::after { animation: err-escaneo 700ms ease-out; }
+    .err-campo.mal { animation: err-no 360ms ease-in-out; }
+    @keyframes err-entra { from { transform: translateY(.6rem) rotate(-.4deg); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes err-escaneo { from { left: 0; opacity: .9; } to { left: 100%; opacity: 0; } }
+    @keyframes err-no { 0%, 100% { transform: none; } 20% { transform: translateX(-6px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(2px); } }
+  }
+</style>

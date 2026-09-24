@@ -52,7 +52,6 @@ const nombreRotulo = (f: Fila) => (atribuida(f) ? f.rotulo.replace(/^El Sr\.\s*/
 // Los atributos HTML no distinguen mayúsculas: el hueco de la V2 se llama `v2` (data-v-v2).
 const huecos = ['fragmento', 'fecha', 'orador', 'preside', 'v2', 'v3'];
 const notaT = plantillaNota(lang, `${fam}.nota.t`, huecos);
-const notaB = plantillaNota(lang, `${fam}.nota.b`, huecos);
 const notaD = (f: Fila) => plantillaNota(lang, es27 ? 'fig.F27.nota' : `fig.F28.nota.${f.tipo}`, huecos);
 
 // Rótulos directos (escritorio): ancho supuesto en columnas de ~13 px (la más estrecha: una figura de 48 rem).
@@ -106,7 +105,7 @@ const datosNota = (f: Fila) => ({
 });
 const tipoTexto = (f: Fila) => (f.tipo ? o(`fig.F28.tipo.${f.tipo}`) : '');
 ---
-<FiguraMarco lang={lang} id={id} plantilla={notaD(filas[0] ?? ({ tipo: 'orden' } as Fila))} plantillaT={notaT} plantillaB={notaB}>
+<FiguraMarco lang={lang} id={id} plantilla={notaD(filas[0] ?? ({ tipo: 'orden' } as Fila))} plantillaT={notaT}>
   <div slot="grafico" class:list={['cr', { 'cr-f28': !es27 }]}>
     {!D || !M ? (
       <p class="nota" set:html={marcaPendiente(!D ? 'diario.json' : 'meses.json', 'dato')} />
@@ -238,8 +237,6 @@ const tipoTexto = (f: Fila) => (f.tipo ? o(`fig.F28.tipo.${f.tipo}`) : '');
               <td class="cr-t-cita"><q set:html={fragmento(f)} /></td>
               <td class="num cr-t-ids">
                 <span set:html={fmt.dato(f.id_v2, fmt.id(f.id_v2, lang), `${id}.${f.tipo ?? 'fila'}.${f.n}.V2`, 'V2')} />
-                <span class="cr-t-sep" aria-hidden="true"> · </span>
-                <span set:html={fmt.dato(f.id_v3, fmt.id(f.id_v3, lang), `${id}.${f.tipo ?? 'fila'}.${f.n}.v3`, 'v3')} />
               </td>
             </tr>
           ))}

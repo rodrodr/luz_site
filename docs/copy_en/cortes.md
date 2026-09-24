@@ -5,12 +5,114 @@
 
 ---
 
+## 3 bis. This one or that one? (game)
+
+> [design note] Game requested by the researcher (24-09-2026): `components/cortes/EstaOEsta.astro`. The twelve approved pairs come from `src/data/esta.json`, letter for letter from their rows; each game draws ten and shuffles the sides. Without JS, a table.
+
+<!-- cortes.esta.titulo -->
+This one or that one?
+
+<!-- cortes.esta.entrada -->
+Two sentences spoken in the chamber on the same issue, without their author. Pick the one you would sign. At the end you will see which family of parties you side with.
+
+<!-- cortes.esta.juego.tema.iglesia -->
+Church and State, October 1931
+
+<!-- cortes.esta.juego.tema.ordenes -->
+Religious orders and schools, October 1931
+
+<!-- cortes.esta.juego.tema.mujer -->
+Votes for women, 1 October 1931
+
+<!-- cortes.esta.juego.tema.divorcio -->
+Divorce, 1931
+
+<!-- cortes.esta.juego.tema.renta -->
+Land: work or rent?
+
+<!-- cortes.esta.juego.tema.tierra -->
+Land: for whom?
+
+<!-- cortes.esta.juego.tema.cataluna -->
+Catalonia and its Statute, 1932
+
+<!-- cortes.esta.juego.tema.parlamento -->
+Parliament and the vote
+
+<!-- cortes.esta.juego.tema.clases -->
+Social classes
+
+<!-- cortes.esta.juego.tema.espana -->
+«Red Spain, broken Spain», December 1935
+
+<!-- cortes.esta.juego.tema.octubre -->
+After October 1934
+
+<!-- cortes.esta.juego.tema.orden -->
+Public order, spring 1936
+
+<!-- cortes.esta.juego.cuenta -->
+Pair {{i}} of {{n}}
+
+<!-- cortes.esta.juego.firmo -->
+[I would sign this]
+
+<!-- cortes.esta.juego.su_firma -->
+Your signature
+
+<!-- cortes.esta.juego.quien -->
+{{orador}} · {{partido}} · {{familia}} · {{ideologia}} · {{fecha}}
+
+<!-- cortes.esta.juego.fila -->
+Row {{id}}
+
+<!-- cortes.esta.juego.siguiente -->
+[Next]
+
+<!-- cortes.esta.juego.ver -->
+[See my seat]
+
+<!-- cortes.esta.juego.perfil.titulo -->
+Your seat
+
+<!-- cortes.esta.juego.perfil.familia -->
+Your family of parties: {{familia}}.
+
+<!-- cortes.esta.juego.perfil.eje -->
+Your place on the axis: {{ideologia}}.
+
+<!-- cortes.esta.juego.perfil.companero -->
+Your seat neighbour: {{diputado}}.
+
+<!-- cortes.esta.juego.perfil.firmo -->
+You signed sentences by: {{lista}}.
+
+<!-- cortes.esta.juego.perfil.salvedad -->
+Family and ideology are those of each speaker's party in the dataset, not yours or theirs: this is a game, not a test.
+
+<!-- cortes.esta.juego.otra -->
+[Another game]
+
+<!-- cortes.esta.juego.tabla -->
+The game's pairs
+
+<!-- cortes.esta.juego.tabla.col.tema -->
+Issue
+
+<!-- cortes.esta.juego.tabla.col.a -->
+One sentence
+
+<!-- cortes.esta.juego.tabla.col.b -->
+The other
+
+---
+
 ## 1. The Cortes · index (`/[lang]/cortes/`)
 
 <!-- cortes.meta.titulo --> The Cortes, 1931–1945
 <!-- cortes.meta.descripcion --> The {{sesiones}} sessions of the Congress between 1931 and 1945, month by month, and the stages of its legislatures: what each one holds and what it lacks.
 
-<!-- cortes.antetitulo --> V2 · {{sesiones}} sessions · {{sesion.primera|fecha_corta}} → {{sesion.ultima|fecha_corta}}
+<!-- cortes.antetitulo --> {{sesiones}} sessions · {{sesion.primera|fecha_corta}} → {{sesion.ultima|fecha_corta}}
 <!-- cortes.titulo --> Which Cortes are here, and when did they meet?
 
 <!-- cortes.entrada -->
@@ -86,20 +188,17 @@ For the war and for Mexico there is no full Diario, only official extracts. The 
 <!-- cortes.etapas.tabla.col.sesiones --> Sessions
 <!-- cortes.etapas.tabla.col.fechas --> Dates
 <!-- cortes.etapas.tabla.col.serie --> Diario series
-<!-- cortes.etapas.tabla.col.filas --> Rows (V2)
-<!-- cortes.etapas.tabla.col.palabras --> Words (V2)
+<!-- cortes.etapas.tabla.col.filas --> Rows
+<!-- cortes.etapas.tabla.col.palabras --> Words
 <!-- cortes.etapas.tabla.col.pct --> Share of corpus
 <!-- cortes.etapas.tabla.col.diputados --> Deputies who speak
-<!-- cortes.etapas.tabla.col.filas_v3 --> Rows (v3)
+<!-- cortes.etapas.tabla.col.filas_v3 --> Rows
 
 <!-- cortes.etapas.tabla.pie -->
 ‘Deputies who speak’ counts distinct deputy identifiers, including whoever is in the Chair. Across the whole corpus there are {{diputados.V2}}.
 
 <!-- cortes.etapas.tabla.pie_leg -->
 By CSV legislature there are {{leg.1931-1933.diputados}}, {{leg.1933-1935.diputados}} and {{leg.1936-1939.diputados}}: the sum by stage counts twice anyone who speaks in more than one.
-
-<!-- ↺ comun.fija.notabases -->
-This number comes from the explorer edition (v3, {{filas.v3}} rows, not deposited); the deposited edition is V2 ({{filas.V2}} rows). Why there are two →
 
 ### 1.4 What is not here
 
@@ -115,7 +214,7 @@ Its meetings are not in the corpus.
 The title page of the Mexico volume lists those it held there, from 1939 to 1943. And it adds: «sólo tenemos noticia de ellas por citas bibliográficas pero no se dispone de los textos ni en forma de fotocopia».
 
 <!-- cortes.ausente.caratula_fila -->
-That title page opens the summary of 10 January 1945, and it is only in the explorer edition (v3 {{fila.mexico_caratula.v3|id}}).
+That title page opens the summary of 10 January 1945, and it is.
 
 <!-- cortes.ausente.discursos -->
 Nor are the speeches made outside Parliament.
@@ -177,12 +276,6 @@ The explorer cannot open a search from a link: copy the query and paste it into 
 <!-- cortes.ficha.cifras.titulo --> In numbers
 <!-- cortes.ficha.contexto.titulo --> What happened in the Chamber
 
-<!-- cortes.ficha.contexto.ids -->
-Each event in the Chamber carries its row: ‘V2’ is the identifier in the deposited edition; ‘v3’, in the explorer edition.
-
-<!-- ↺ comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
-
 <!-- cortes.ficha.contexto.externas --> External sources for this section
 <!-- cortes.ficha.contexto.puerta --> It has its own reading gateway →
 
@@ -242,9 +335,9 @@ Calendar of {{sesiones}} sessions, from July 1931 to November 1945, grouped by s
 <!-- fig.F01.leyenda.puerta --> Session with a reading gateway
 <!-- fig.F01.leyenda.doble --> Two sessions on the same day
 <!-- fig.F01.leyenda.salto --> Gap: no month with a session between 1939 and 1944
-<!-- fig.F01.leyenda.tono --> Words printed in the month (V2), in five classes of {{f01.clase.4.meses|letra}} or {{f01.clase.0.meses|letra}} months with a session
-<!-- fig.F01.leyenda.altura --> Bar height: words in the session (V2). The highest, {{f01.sesion_max.palabras}}.
-<!-- fig.F01.leyenda.altura_dip --> Bar height: deputies who speak, including the Chair (V2). The highest, {{f01.sesion_max.diputados}}.
+<!-- fig.F01.leyenda.tono --> Words printed in the month, in five classes of {{f01.clase.4.meses|letra}} or {{f01.clase.0.meses|letra}} months with a session
+<!-- fig.F01.leyenda.altura --> Bar height: words in the session. The highest, {{f01.sesion_max.palabras}}.
+<!-- fig.F01.leyenda.altura_dip --> Bar height: deputies who speak, including the Chair. The highest, {{f01.sesion_max.diputados}}.
 <!-- fig.F01.leyenda.barra --> One session
 
 <!-- fig.F01.salto -->
@@ -260,19 +353,19 @@ one session · {{filas}} rows · {{palabras}} words · {{diputados}} deputies sp
 no session in the corpus, within its stage
 
 <!-- fig.F01.nota.base -->
-V2 · 2REP_Diaries.csv · the deputies include the Chair
+2REP_Diaries.csv · the deputies include the Chair
 
 <!-- fig.F01.nota.base_vacio -->
-V2 · 2REP_Diaries.csv · the cause does not come from the corpus
+2REP_Diaries.csv · the cause does not come from the corpus
 
 <!-- fig.F01.nota.sesion -->
 session {{num}} · {{filas}} rows · {{palabras}} words · {{diputados}} deputies speak
 
 <!-- fig.F01.nota.sesion.base -->
-V2 · {{sigla}} no. {{diario}}, pp. {{p1}}–{{p2}} (project metadata)
+{{sigla}} no. {{diario}}, pp. {{p1}}–{{p2}} (project metadata)
 
 <!-- fig.F01.nota.sesion_sin_paginas.base -->
-V2 · {{sigla}} no. {{diario}}, pages not verified (project metadata)
+{{sigla}} no. {{diario}}, pages not verified (project metadata)
 
 <!-- fig.F01.nota.puerta --> It has a reading gateway: select to open it.
 
@@ -285,9 +378,9 @@ To open it in the explorer, enter that date in «Desde» (from) and «Hasta» (t
 <!-- fig.F01.tabla.col.mes --> Month
 <!-- fig.F01.tabla.col.etapa --> Stage
 <!-- fig.F01.tabla.col.sesiones --> Sessions
-<!-- fig.F01.tabla.col.filas --> Rows (V2)
-<!-- fig.F01.tabla.col.palabras --> Words (V2)
-<!-- fig.F01.tabla.col.diputados --> Deputies who speak (V2)
+<!-- fig.F01.tabla.col.filas --> Rows
+<!-- fig.F01.tabla.col.palabras --> Words
+<!-- fig.F01.tabla.col.diputados --> Deputies who speak
 <!-- fig.F01.tabla.hueco --> {{desde}} → {{hasta}} · {{n}} months without a session
 <!-- fig.F01.tabla.hueco_uno --> {{mes}} · no session
 <!-- fig.F01.tabla.sesiones.resumen --> The sessions of this stage, one by one
@@ -312,7 +405,7 @@ Shading shows how many words were printed, not how much they mattered. The cause
 <!-- fig.F01.breve.mes --> The sessions of {{mes}}
 
 <!-- fig.F01.leame.que_mide -->
-The sessions of the Congress from 1931 to 1945, one per row in sesiones.csv, and the months with their status in meses.csv. They count rows, words and deputies in the deposited edition (V2).
+The sessions of the Congress from 1931 to 1945, one per row in sesiones.csv, and the months with their status in meses.csv. They count rows, words and deputies in the dataset.
 
 <!-- fig.F01.leame.denominador -->
 These are counts, with no denominator: rows, the sum of nwords and distinct rep_id values per session or per month. The shading class divides the {{meses.con_sesion}} months with a session into five quantile groups.
@@ -366,28 +459,28 @@ Project metadata · to be verified
 <!-- fig.F16.tabla.col.sesiones --> Sessions
 
 <!-- fig.F16.salvedad -->
-The band gives the President of the Cortes for the session (project metadata). In {{pres.vice_ses}} of {{sesiones}} sessions a Vice-President was in the Chair for some stretch (V2). Days when the Government changed count for the incoming one.
+The band gives the President of the Cortes for the session (project metadata). In {{pres.vice_ses}} of {{sesiones}} sessions a Vice-President was in the Chair for some stretch. Days when the Government changed count for the incoming one.
 
 ### F05 · Who took the floor in the stage
 
 <!-- fig.F05.titulo --> The ten who spoke most
 <!-- fig.F05.pregunta --> Who spoke most in this stage, leaving out the Chair?
 <!-- fig.F05.alt -->
-Horizontal bars with the ten deputies with the most spoken words in the stage, leaving out the Chair, in the explorer edition.
+Horizontal bars with the ten deputies with the most spoken words in the stage, leaving out the Chair, in the explorer.
 
 <!-- fig.F05.nota -->
-{{nombre}} · {{n}} of {{den}} spoken words in the stage, leaving out the Chair (v3)
+{{nombre}} · {{n}} of {{den}} spoken words in the stage, leaving out the Chair
 
 <!-- fig.F05.nota_partido --> {{partido}} · {{familia}}
 
 <!-- fig.F05.tabla.col.puesto --> Rank
 <!-- fig.F05.tabla.col.nombre --> Deputy
 <!-- fig.F05.tabla.col.partido --> Party
-<!-- fig.F05.tabla.col.palabras --> Spoken words (v3)
+<!-- fig.F05.tabla.col.palabras --> Spoken words
 <!-- fig.F05.tabla.col.pct --> Share of stage
 
 <!-- fig.F05.salvedad -->
-Spoken words in the explorer edition, leaving out the Chair, summaries and documents. Speaking a lot is not the same as carrying weight.
+Spoken words in the explorer, leaving out the Chair, summaries and documents. Speaking a lot is not the same as carrying weight.
 
 <!-- fig.F05.datos -->
 The figure data include all {{diputados.V2}} deputies who speak, stage by stage.
@@ -404,15 +497,15 @@ A strip at one hundred per cent, divided by political family, with each family's
 <!-- fig.F09.conmuta.filas --> Rows
 
 <!-- fig.F09.nota.palabras -->
-{{familia}} · {{pct}} · {{n}} of {{den}} words outside the Chair (V2)
+{{familia}} · {{pct}} · {{n}} of {{den}} words outside the Chair
 
 <!-- fig.F09.nota.filas -->
-{{familia}} · {{pct}} · {{n}} of {{den}} rows outside the Chair (V2)
+{{familia}} · {{pct}} · {{n}} of {{den}} rows outside the Chair
 
 <!-- fig.F09.tabla.col.familia --> Family
-<!-- fig.F09.tabla.col.palabras --> Words outside the Chair (V2)
+<!-- fig.F09.tabla.col.palabras --> Words outside the Chair
 <!-- fig.F09.tabla.col.pct_palabras --> Share of words outside the Chair
-<!-- fig.F09.tabla.col.filas --> Rows outside the Chair (V2)
+<!-- fig.F09.tabla.col.filas --> Rows outside the Chair
 <!-- fig.F09.tabla.col.pct_filas --> Share of rows outside the Chair
 
 <!-- fig.F09.salvedad -->

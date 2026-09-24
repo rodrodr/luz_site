@@ -39,13 +39,13 @@ It is the last session before the summer: the next one is on {{puerta.pistola-19
 «Entre los Sres. Tirado y Oriol de la Puerta se produjo un violento altercado, llegando a agredirse dichos Sres. Diputados.—Esto determinó un verdadero tumulto en la Cámara.»
 
 <!-- sesiones.pistola-1934.diario.cita.tumulto.pie -->
-The shorthand writer's bracketed note, inside Gil Robles's row · V2 {{cita.pistola.tumulto.V2|id}} · v3 {{cita.pistola.tumulto.v3|id}}
+The shorthand writer's bracketed note, inside Gil Robles's row
 
 <!-- sesiones.pistola-1934.diario.cita.golpes -->
 «Estos incidentes limitados a palabras son corrientes; el de hoy se ha convertido en golpes.»
 
 <!-- sesiones.pistola-1934.diario.cita.golpes.pie -->
-Indalecio Prieto · V2 {{cita.pistola.prieto.golpes.V2|id}} · v3 {{cita.pistola.prieto.golpes.v3|id}} · {{cita.pistola.prieto.golpes.palabras}} words (V2)
+Indalecio Prieto · {{cita.pistola.prieto.golpes.palabras}} words
 
 <!-- sesiones.pistola-1934.diario.cita.pistola -->
 «…es exacto, Sr. Presidente, que ha salido a luz alguna pistola, por lo menos la mía…»
@@ -57,7 +57,7 @@ Indalecio Prieto, in the same row
 «Invito al Sr. Prieto a que diga quien ha sacado la pistola; lo que es un hecho completamente cierto, que saben todos los presentes, es que el Sr. Prieto la tenía.»
 
 <!-- sesiones.pistola-1934.diario.cita.oriol.pie -->
-Jaime Oriol de la Puerta · V2 {{cita.pistola.oriol.V2|id}} · v3 {{cita.pistola.oriol.v3|id}}
+Jaime Oriol de la Puerta
 
 ## The session, turn by turn
 
@@ -67,7 +67,7 @@ After the suspension, the figure shows the consecutive turns of the Chair, Priet
 ## How to find it in the explorer
 
 <!-- sesiones.pistola-1934.explorador.fecha -->
-«Filtros › Fecha y sesión»: «Desde» and «Hasta» 04/07/1934. This gives {{sesion.1934-07-04-112.filas_v3}} interventions in the explorer edition (v3); with «Solo lo que se habla», {{sesion.1934-07-04-112.habla_v3}}.
+«Filtros › Fecha y sesión»: «Desde» and «Hasta» 04/07/1934. This gives {{sesion.1934-07-04-112.filas_v3}} interventions in the explorer; with «Solo lo que se habla», {{sesion.1934-07-04-112.habla_v3}}.
 
 <!-- sesiones.pistola-1934.explorador.consulta -->
 pistola
@@ -76,7 +76,7 @@ pistola
 Desde 04/07/1934 · Hasta 04/07/1934
 
 <!-- sesiones.pistola-1934.explorador.recuento -->
-Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.pistola.dia}} interventions in the explorer edition (v3).
+Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.pistola.dia}} interventions in the explorer.
 
 <!-- sesiones.pistola-1934.explorador.consulta.nota -->
 With «Desde» and «Hasta» 04/07/1934, there are {{busqueda.ses.pistola.dia|letra}} interventions: Prieto, Oriol de la Puerta and Muñoz Martínez. Without dates, {{busqueda.ses.pistola.n}} in the whole corpus.
@@ -89,18 +89,15 @@ The Diario does not say who drew a pistol first. It gives two versions: Prieto's
 ## Sources
 
 <!-- sesiones.pistola-1934.fuentes.texto -->
-Everything on this page comes from the Diario de Sesiones, read in both editions of the dataset. No fact is stated here that the Diario does not record.
+Everything on this page comes from the Diario de Sesiones, read in the dataset. No fact is stated here that the Diario does not record.
 
 ## How to cite a passage
 
 <!-- sesiones.pistola-1934.citar.texto -->
-Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id and its edition.
+Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id.
 
 <!-- sesiones.pistola-1934.citar.cita -->
-Diario de las Sesiones de Cortes. Congreso de los Diputados, no. {{sesion.1934-07-04-112.diario_num|id}}, 4 July 1934, pp. {{sesion.1934-07-04-112.paginas}} (project metadata). Luz y Taquígrafos, deposited edition (V2), row {{cita.pistola.prieto.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
+Diario de las Sesiones de Cortes. Congreso de los Diputados, no. {{sesion.1934-07-04-112.diario_num|id}}, 4 July 1934, pp. {{sesion.1934-07-04-112.paginas}} (project metadata). Luz y Taquígrafos, row {{cita.pistola.prieto.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 A derived edition for research: wherever it differs, the *Diario de Sesiones* prevails.

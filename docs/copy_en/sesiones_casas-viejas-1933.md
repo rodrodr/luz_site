@@ -38,7 +38,7 @@ The village's name comes back again and again: the search finds it from February
 «…por mucho que se hurgue no se encontrará un atisbo de responsabilidad para el Gobierno.»
 
 <!-- sesiones.casas-viejas-1933.diario.cita.hurgue.pie -->
-Manuel Azaña · V2 {{cita.casasviejas.azana.hurgue.V2|id}} · v3 {{cita.casasviejas.azana.hurgue.v3|id}} · {{cita.casasviejas.azana.hurgue.palabras}} words (V2)
+Manuel Azaña · {{cita.casasviejas.azana.hurgue.palabras}} words
 
 <!-- sesiones.casas-viejas-1933.diario.cita.azana -->
 «En Casas Viejas no ha ocurrido sino lo que tenía que ocurrir. (Fuertes rumores y protestas en los bancos de las minorías; contraprotestas en la mayoría.)»
@@ -50,7 +50,7 @@ Manuel Azaña, in the same row, with the shorthand writer's bracketed note (acot
 «…nos dijo: “En los sucesos de Casas Viejas, Sres. Diputados, por mucho que se hurgue…”»
 
 <!-- sesiones.casas-viejas-1933.diario.cita.martinezbarrio.pie -->
-Diego Martínez Barrio, 23 February 1933 · V2 {{cita.casasviejas.martinezbarrio.V2|id}} · v3 {{cita.casasviejas.martinezbarrio.v3|id}}
+Diego Martínez Barrio, 23 February 1933
 
 ## The session, turn by turn
 
@@ -60,13 +60,13 @@ The tallest row is Azaña's; he speaks several times in the session.
 ## How to find it in the explorer
 
 <!-- sesiones.casas-viejas-1933.explorador.fecha -->
-«Filtros › Fecha y sesión»: «Desde» and «Hasta» 02/02/1933. This gives {{sesion.1933-02-02-288.filas_v3}} interventions in the explorer edition (v3); with «Solo lo que se habla», {{sesion.1933-02-02-288.habla_v3}}.
+«Filtros › Fecha y sesión»: «Desde» and «Hasta» 02/02/1933. This gives {{sesion.1933-02-02-288.filas_v3}} interventions in the explorer; with «Solo lo que se habla», {{sesion.1933-02-02-288.habla_v3}}.
 
 <!-- sesiones.casas-viejas-1933.explorador.consulta -->
 "casas viejas"
 
 <!-- sesiones.casas-viejas-1933.explorador.recuento -->
-Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.casas_viejas.n}} interventions in the explorer edition (v3).
+Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.casas_viejas.n}} interventions in the explorer.
 
 <!-- sesiones.casas-viejas-1933.explorador.consulta.meses -->
 Counting all rows, there are {{busqueda.casas_viejas.m1933_02}} interventions in February 1933 and {{busqueda.ses.casas_viejas.m1933_03}} in March.
@@ -81,7 +81,7 @@ Azaña's phrase, in quotation marks, appears in {{busqueda.ses.tenia_que_ocurrir
 "no ha ocurrido sino lo que tenía que ocurrir"
 
 <!-- sesiones.casas-viejas-1933.explorador.frase.recuento -->
-Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.tenia_que_ocurrir.n|letra}} interventions in the explorer edition (v3).
+Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.tenia_que_ocurrir.n|letra}} interventions in the explorer.
 
 <!-- sesiones.casas-viejas-1933.explorador.biblioteca -->
 The ready-made debate «Casas Viejas» gathers {{bib.casas_viejas.entradas}} interventions from {{bib.casas_viejas.sesiones|letra}} sessions, in February and March 1933.
@@ -95,7 +95,7 @@ Searched for in the corpus, «tiros a la barriga» (‘shots to the belly’) do
 «Casas Viejas! Casas Viejas! Tiros a la barriga, a la barriga!»
 
 <!-- sesiones.casas-viejas-1933.no_esta.cita.barriga.pie -->
-Several deputies, in a bracketed note in the row of José Tomás y Piera · V2 {{cita.casasviejas.barriga.V2|id}} · v3 {{cita.casasviejas.barriga.v3|id}}
+Several deputies, in a bracketed note in the row of José Tomás y Piera
 
 <!-- ↺ comun.fija.contar -->
 Counting a word does not tell you who defends it or in what tone.
@@ -103,18 +103,15 @@ Counting a word does not tell you who defends it or in what tone.
 ## Sources
 
 <!-- sesiones.casas-viejas-1933.fuentes.texto -->
-Everything on this page comes from the Diario de Sesiones, read in both editions of the dataset. No fact is stated here that the Diario does not record.
+Everything on this page comes from the Diario de Sesiones, read in the dataset. No fact is stated here that the Diario does not record.
 
 ## How to cite a passage
 
 <!-- sesiones.casas-viejas-1933.citar.texto -->
-Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id and its edition.
+Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id.
 
 <!-- sesiones.casas-viejas-1933.citar.cita -->
-Diario de Sesiones de las Cortes Constituyentes de la República Española, no. {{sesion.1933-02-02-288.diario_num|id}}, 2 February 1933, pp. {{sesion.1933-02-02-288.paginas}} (project metadata). Luz y Taquígrafos, deposited edition (V2), row {{cita.casasviejas.azana.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
+Diario de Sesiones de las Cortes Constituyentes de la República Española, no. {{sesion.1933-02-02-288.diario_num|id}}, 2 February 1933, pp. {{sesion.1933-02-02-288.paginas}} (project metadata). Luz y Taquígrafos, row {{cita.casasviejas.azana.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 A derived edition for research: wherever it differs, the *Diario de Sesiones* prevails.

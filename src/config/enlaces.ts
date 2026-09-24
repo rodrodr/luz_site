@@ -49,16 +49,16 @@ export const PENDIENTES_DEL_INVESTIGADOR: Record<string, string | null> = {
   'D-3': 'CGOCUS V1.1 con su sello; v2 en preparación (se reexporta al depositarse)',
   /** D-4: sin enlaces profundos (`ENLACES_PROFUNDOS = false`): [Copiar la consulta] + [Abrir el explorador ↗]. */
   'D-4': 'Copiar la consulta + Abrir el explorador; el manejador #q= queda como petición al explorador',
-  /** D-18: la cita «V2» que el explorador pone sobre datos v3 se resuelve con el aviso de la página Explorador (opción b). */
-  'D-18': 'aviso en la página Explorador (opción b)',
-  /** D-19: sin V2.1 de THQCMI; la frase fija ↺ 11 dice que el README describe la primera versión. */
-  'D-19': 'se deja como está, con la frase fija ↺ 11',
+  /** D-18 y D-19 (la cita del explorador; el README de la primera versión): superadas el 24-09-2026. El sitio presenta la
+   *  base corregida y no habla de ediciones (docs/REDISENO_23-09.md). */
+  'D-18': 'superada: el sitio no habla de ediciones',
+  'D-19': 'superada: el sitio no habla de ediciones',
   /** D-21: la URL definitiva (astro.config: SITE + BASE `/luz`). */
   'D-21': 'https://rodrodr.github.io/luz/',
   /** D-22: grafías confirmadas y probables adoptadas; las «por revisar», con la forma del Diario (exportador/modulos/base.py). */
   'D-22': 'adoptadas; por revisar con la forma que imprime el Diario (docs/02c_GRAFIAS.md)',
-  /** D-25: los pendientes de datos se declaran con su cifra en Versiones (#fechas), no se corrigen en origen. */
-  'D-25': 'declarados en Versiones con su cifra',
+  /** D-25: superada el 24-09-2026 con la página Versiones: las correcciones van en la base corregida. */
+  'D-25': 'superada: las correcciones van en la base corregida',
   /**
    * Vía de [Escribirnos] del pie: el correo institucional del investigador principal, el mismo que dio para ParlaIbero
    * (21-09-2026). Fijado por la integración de la fase 2 (REVISION_FASE1 P2-12); si prefiere otra vía, se cambia aquí.

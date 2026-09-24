@@ -13,8 +13,8 @@
  *     (la de check-i18n: años de un hecho, fechas de sesión, artículos, versiones, literales de docs/marcadores/);
  *  2. todo <data> y todo `[data-k]` trae `data-base` de una base conocida (V2 · v3 · proyecto · afin · dv · explorador ·
  *     croquis); si su clave está en `src/data/cifras.json`, su `value` es el del dato y su base, la del dato;
- *  3. NotaBases: toda página con una cifra de la v3 (`data-base="v3"`) lleva `[data-notabases]`; un id de fila v3
- *     (`t: "id"`) puesto junto a su par V2 no la exige si la página lleva ↺ 4 (`comun.fija.ids`), que ya explica el doble
+ *  3. (retirada el 24-09-2026: la NotaBases de las ediciones. El sitio presenta la base corregida y no habla de
+ *     ediciones; la base de cada cifra sigue en su `data-base`, para esta auditoría y para procedencia.csv)
  *     id (peticiones/inicio_cortes.md A.1: Inicio no cabe con ↺ 13 dentro de sus topes);
  *  4. la lista negra del prototipo de 1931 y de las cifras superadas (scripts/vetos.mjs), en el texto visible;
  *  5. ningún recurso de terceros (scripts, estilos, imágenes, fuentes, iframes): lo que hace cierta la línea de
@@ -31,8 +31,8 @@ import { VETOS, literalesBlancos, tecleados } from './vetos.mjs';
 const RAIZ = fileURLToPath(new URL('../', import.meta.url));
 const ESTRICTO = process.env.STRICT === '1' || process.argv.includes('--strict');
 const BASES = new Set(['V2', 'v3', 'proyecto', 'afin', 'dv', 'explorador', 'croquis']);
-/** 22 páginas por lengua en la edición 0.1, más la raíz y el 404 (plan § Mapa del sitio · Recuento). */
-const PAGINAS_MINIMAS = 22 * 2 + 2;
+/** 21 páginas por lengua en la edición 0.1 (sin Versiones desde el 24-09-2026), más la raíz y el 404. */
+const PAGINAS_MINIMAS = 21 * 2 + 2;
 
 // ── HTML mínimo: un árbol suficiente para auditar la salida (bien formada) de Astro ──────────────
 const VACIOS = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
@@ -120,10 +120,6 @@ function main() {
   const fCifras = join(RAIZ, 'src/data/cifras.json');
   const CIFRAS = existsSync(fCifras) ? JSON.parse(readFileSync(fCifras, 'utf8')) : {};
   const LITERALES = literalesBlancos(RAIZ);
-  // ↺ 4 en cada lengua, en texto plano: si la página la lleva, los ids v3 no exigen NotaBases (regla 3).
-  const fijaIds = ['es', 'en'].map((l) => join(RAIZ, `src/i18n/${l}.json`)).filter(existsSync)
-    .map((f) => JSON.parse(readFileSync(f, 'utf8'))['comun.fija.ids']).filter(Boolean)
-    .map((h) => norm(decodifica(String(h).replace(/<[^>]+>/g, ''))).slice(0, 60));
   const errores = [], avisos = [];
   const pendientes = new Map(), largas = [];
   let nDatos = 0;
@@ -138,12 +134,6 @@ function main() {
     const doc = analiza(readFileSync(ruta, 'utf8'));
 
     // 2 · cifras con su base
-    let hayV3 = false;
-    const bodyTxt = textoDe(doc);
-    const llevaIds = fijaIds.some((f) => f && bodyTxt.includes(f));
-    // El pie rotula en la misma línea las dos ediciones con su base («Explorador: v3 sin depositar (N filas)»): su cifra
-    // v3 no obliga a pintar NotaBases en cada página.
-    const enPie = (n) => { for (let p = n.padre; p; p = p.padre) if (p.tag === 'footer') return true; return false; };
     for (const d of busca(doc, (n) => n.tag === 'data' || 'data-k' in n.attrs)) {
       nDatos++;
       const k = d.attrs['data-k'], base = d.attrs['data-base'] ?? '';
@@ -151,16 +141,12 @@ function main() {
       if (!BASES.has(base) && base !== '') { falla(rel, `[data-k="${k}"] con data-base desconocida «${base}»`); continue; }
       if (!base) { (ESTRICTO ? errores : avisos).push(`${rel}: [data-k="${k}"] sin data-base (toda cifra dice su base)`); continue; }
       porBase.set(base, (porBase.get(base) ?? 0) + 1);
-      if (base === 'v3' && !enPie(d) && !(llevaIds && CIFRAS[k]?.t === 'id')) hayV3 = true;
       const c = CIFRAS[k];
       if (c) {
         if (c.base && c.base !== base) falla(rel, `[data-k="${k}"] dice base «${base}» y el dato es de «${c.base}»`);
         if (d.tag === 'data' && typeof c.v !== 'object' && 'value' in d.attrs && String(d.attrs.value) !== String(c.v)) falla(rel, `<data data-k="${k}"> lleva value="${d.attrs.value}" y el dato es ${c.v}`);
       }
     }
-    // 3 · NotaBases donde hay v3 (los sellos de base no son cifras: solo cuentan <data> y [data-k])
-    if (hayV3 && !busca(doc, (n) => 'data-notabases' in n.attrs).length) falla(rel, 'pinta cifras de la edición del explorador (v3) y no lleva NotaBases (↺ 13)');
-
     // 6 · pendientes
     for (const m of busca(doc, (n) => n.tag === 'mark' && tieneClase(n, 'pendiente'))) anota(textoDe(m).replace(/[⟦⟧]/g, ''), rel);
     for (const n of busca(doc, (x) => 'data-todo-fig' in x.attrs)) anota(`figura ${n.attrs['data-todo-fig']}`, rel);
@@ -222,6 +208,6 @@ function main() {
   if (largas.length) { console.log(`\n${ESTRICTO ? '✗' : '⚠'} Descripciones demasiado largas:`); largas.forEach((l) => console.log('  · ' + l)); if (ESTRICTO) errores.push(...largas); }
   if (avisos.length) { console.log(`\n⚠ ${avisos.length} avisos:`); avisos.slice(0, 40).forEach((a) => console.log('  ⚠ ' + a)); if (avisos.length > 40) console.log(`  ⚠ …y ${avisos.length - 40} más`); }
   if (errores.length) { console.error(`\n✗ ${errores.length} problemas:`); errores.slice(0, 80).forEach((e) => console.error('  ✗ ' + e)); process.exit(1); }
-  console.log('\n✓ Toda cifra con su base; NotaBases donde hay v3; nada del prototipo; ningún recurso de terceros.');
+  console.log('\n✓ Toda cifra con su base; nada del prototipo; ningún recurso de terceros.');
 }
 main();

@@ -61,7 +61,7 @@ A bracketed note (acotación): what the shorthand writer hears in the Chamber.
 The two rows that come from that piece of paper
 
 <!-- diario.que_es.facsimil.filas.nota -->
-The same text, letter for letter, in the deposited edition and in the explorer edition. Method explains what each column holds.
+The same text, letter for letter, in the dataset and in the explorer. Method explains what each column holds.
 
 <!-- diario.que_es.facsimil.col.id -->
 Row
@@ -91,7 +91,7 @@ If someone interrupts, the shorthand writer notes it in brackets inside the turn
 «(El Sr. Guerra del Rio: Los cavernicolas hablan de pastel.)»
 
 <!-- diario.que_es.cita.interrupcion.pie -->
-In Victoria Kent's row, 1 October 1931 · V2 {{cita.diario.kent.interrupcion.V2|id}} · v3 {{cita.diario.kent.interrupcion.v3|id}}
+In Victoria Kent's row, 1 October 1931
 
 <!-- diario.que_es.interrupcion.2 -->
 That is why a row can contain other people's voices.
@@ -103,13 +103,13 @@ In roll-call votes, the Diario prints the list of who said yes and who said no, 
 Each session has its summary, and the Diario also prints documents read out or appended: motions, committee reports, letters.
 
 <!-- diario.que_es.v3 -->
-The explorer edition puts that material in rows of its own: {{v3.sumarios}} summaries and {{v3.comentarios}} rows of the Diario's comments (v3).
+The explorer puts that material in rows of its own: {{v3.sumarios}} summaries and {{v3.comentarios}} rows of the Diario's comments.
 
 <!-- diario.que_es.v2 -->
-The deposited edition has no summary rows; the rest of that material sits inside the speakers' rows, often the Chair's.
+The dataset has no summary rows; the rest of that material sits inside the speakers' rows, often the Chair's.
 
 <!-- diario.que_es.ejemplo -->
-Example: the list of 1 October 1931 sits, in V2, inside a row of the Chair (V2 {{voto.161-121.V2|id}}). In v3 it has a row of its own, a comments row (v3 {{voto.161-121.v3|id}}).
+Example: the list of the vote of 1 October 1931 has a row of its own, one of the Diario's comments.
 
 <!-- ↺ comun.fija.ocr -->
 The text comes from optical character recognition and has not been corrected by hand.
@@ -174,7 +174,7 @@ On 8 June 1934 the Chamber is discussing a request to waive a deputy's immunity.
 «Con arreglo al Reglamento, los suplicatorios han de tratarse en sesión secreta;»
 
 <!-- diario.luz.cita.secreta.pie -->
-The Chair (Alba) · V2 {{cita.diario.alba.secreta.V2|id}} · v3 {{cita.diario.alba.secreta.v3|id}}
+The Chair (Alba)
 
 <!-- diario.luz.escena.2 -->
 A voice interrupts with {{cita.diario.grito.palabras|letra}} words, which make up a whole row:
@@ -183,7 +183,7 @@ A voice interrupts with {{cita.diario.grito.palabras|letra}} words, which make u
 «Luz y taquigrafos.»
 
 <!-- diario.luz.cita.grito.pie -->
-The Diario attributes it to «El Sr. JIMÉNEZ FERNÁNDEZ» · V2 {{cita.diario.grito.V2|id}} · v3 {{cita.diario.grito.v3|id}}. Without the accent, as in the row: this is how optical character recognition read it.
+The Diario attributes it to «El Sr. JIMÉNEZ FERNÁNDEZ». Without the accent, as in the row: this is how optical character recognition read it.
 
 <!-- diario.luz.escena.3 -->
 The dataset identifies that speaker as the CEDA deputy for Badajoz Manuel Giménez Fernández. The Chair replies:
@@ -192,7 +192,7 @@ The dataset identifies that speaker as the CEDA deputy for Badajoz Manuel Gimén
 «El Reglamento, señores Diputados—no he visto quién ha interrumpido—, ampara principalmente a las minorías…»
 
 <!-- diario.luz.cita.reglamento.pie -->
-The Chair (Alba) · V2 {{cita.diario.alba.reglamento.V2|id}} · v3 {{cita.diario.alba.reglamento.v3|id}}
+The Chair (Alba)
 
 <!-- diario.luz.escena.4 -->
 Prieto answers for the Socialists:
@@ -201,7 +201,7 @@ Prieto answers for the Socialists:
 «La minoría socialista no tiene inconveniente en que esto se discuta públicamente.»
 
 <!-- diario.luz.cita.prieto.pie -->
-Indalecio Prieto · V2 {{cita.diario.prieto.publica.V2|id}} · v3 {{cita.diario.prieto.publica.v3|id}}
+Indalecio Prieto
 
 <!-- diario.luz.royo -->
 In August 1933, Royo Villanova had attributed it to Maura:
@@ -210,7 +210,7 @@ In August 1933, Royo Villanova had attributed it to Maura:
 «…aquí se liquida todo con luz y taquigrafos, como decía Maura…»
 
 <!-- diario.luz.cita.royo.pie -->
-Antonio Royo Villanova, 3 August 1933 · V2 {{cita.diario.royo.V2|id}} · v3 {{cita.diario.royo.v3|id}}
+Antonio Royo Villanova, 3 August 1933
 
 <!-- diario.luz.royo.salvedad -->
 The attribution is his. This site does not claim to know where the phrase comes from.
@@ -222,13 +222,114 @@ The last time is on 8 July 1936, and it draws a reply from the benches:
 «Hay luz y taquigrafos, los taquigrafos recogeran eso. (El señor Comín: Pobres taquigrafos.)»
 
 <!-- diario.luz.cita.maurin.pie -->
-Joaquín Maurín · V2 {{cita.diario.maurin.V2|id}} · v3 {{cita.diario.maurin.v3|id}}
+Joaquín Maurín
 
 <!-- diario.luz.balbontin -->
 No one repeats it as often as José Antonio Balbontín: {{f27.balbontin|letra}} of the {{f27.n|letra}} rows are his.
 
 <!-- diario.luz.lectura -->
 Read one by one, in all {{f27.n|letra}} the phrase asks for the same thing: that something be said or done in full view, and put on record.
+
+---
+
+## 3 bis. The applause meter (game)
+
+> [design note] Game requested by the researcher (24-09-2026): `components/diario/Aplausometro.astro`. The twenty
+> sentences and their bracketed notes come from `src/data/aplausos.json`, letter for letter from their rows; each game
+> draws two of each note. No counts of bracketed notes by class (D-11). Without JS, a table.
+
+<!-- diario.indice.aplausos -->
+The applause meter
+
+<!-- diario.aplausos.titulo -->
+The applause meter
+
+<!-- diario.aplausos.entrada -->
+In brackets, the shorthand writer notes how the Chamber receives what it hears. These sentences are real, each with its row: guess what he noted.
+
+<!-- diario.aplausos.juego.pregunta -->
+What did the shorthand writer note?
+
+<!-- diario.aplausos.juego.op.aplausos -->
+[Applause]
+
+<!-- diario.aplausos.juego.op.muy_bien -->
+[Hear, hear]
+
+<!-- diario.aplausos.juego.op.risas -->
+[Laughter]
+
+<!-- diario.aplausos.juego.op.rumores -->
+[Murmurs]
+
+<!-- diario.aplausos.juego.op.protestas -->
+[Protests]
+
+<!-- diario.aplausos.juego.cuenta -->
+Sentence {{i}} of {{n}} · Right: {{a}}
+
+<!-- diario.aplausos.juego.quien -->
+{{orador}} ({{partido}}), {{fecha}}
+
+<!-- diario.aplausos.juego.exacto -->
+Spot on!
+
+<!-- diario.aplausos.juego.cerca -->
+Close: the mood was right.
+
+<!-- diario.aplausos.juego.fallo -->
+No.
+
+<!-- diario.aplausos.juego.anoto -->
+The shorthand writer noted:
+
+<!-- diario.aplausos.juego.fila -->
+Row {{id}} of the dataset
+
+<!-- diario.aplausos.juego.siguiente -->
+[Next]
+
+<!-- diario.aplausos.juego.ver -->
+[See the result]
+
+<!-- diario.aplausos.juego.resumen -->
+You got {{n}} of {{total}}.
+
+<!-- diario.aplausos.juego.dedica -->
+The Chamber responds:
+
+<!-- diario.aplausos.juego.veredicto.0 -->
+(Protests.)
+
+<!-- diario.aplausos.juego.veredicto.1 -->
+(Murmurs.)
+
+<!-- diario.aplausos.juego.veredicto.2 -->
+(Hear, hear.)
+
+<!-- diario.aplausos.juego.veredicto.3 -->
+(Applause.)
+
+<!-- diario.aplausos.juego.veredicto.4 -->
+(Loud and prolonged applause.)
+
+<!-- diario.aplausos.juego.otra -->
+[Another sitting]
+
+<!-- diario.aplausos.juego.tabla -->
+The game's sentences and what the shorthand writer noted
+
+<!-- diario.aplausos.juego.tabla.col.frase -->
+Sentence
+
+<!-- diario.aplausos.juego.tabla.col.quien -->
+Who and when
+
+<!-- diario.aplausos.juego.tabla.col.acotacion -->
+Bracketed note
+
+<!-- diario.aplausos.juego.leccion -->
+No column of the dataset records these reactions: they are in the text, in brackets, as the shorthand writer noted them.
 
 ---
 
@@ -244,7 +345,7 @@ A deputy recalls it in 1934, speaking about the Standing Orders of the Chamber:
 «…ese Reglamento determina que el Presidente puede incluso mandar callar a un Diputado, puede ordenar que no consten en el Diario de Sesiones sus palabras…»
 
 <!-- diario.calla.cita.sainz.pie -->
-Pedro Sainz Rodríguez, 5 December 1934 · V2 {{cita.diario.sainz.V2|id}} · v3 {{cita.diario.sainz.v3|id}}
+Pedro Sainz Rodríguez, 5 December 1934
 
 <!-- diario.calla.formula -->
 «No constará» or «no constarán» (‘will not be recorded’), followed by «el Diario» in the same sentence, appear in {{f28.formula.filas|letra}} rows of the dataset.
@@ -262,7 +363,7 @@ On 15 April 1936, after a protest by Calvo Sotelo, the Chair gives the order {{f
 «Eso no basta.»
 
 <!-- diario.calla.cita.abril.pie -->
-Several deputies · V2 {{cita.diario.eso_no_basta.V2|id}}, inside the Chair's row · v3 {{cita.diario.eso_no_basta.v3|id}}
+Several deputies
 
 <!-- diario.calla.peticion -->
 Another is a deputy's request: on 3 June 1936, Calvo Sotelo asks that some words against the «hermanas de la Caridad» (Sisters of Charity) not be recorded.
@@ -283,7 +384,7 @@ Not everyone wanted that silence. On 7 February 1933, Besteiro orders that some 
 «Por mí, que consten.»
 
 <!-- diario.calla.cita.prieto.pie -->
-Indalecio Prieto · V2 {{cita.diario.prieto.consten.V2|id}} · v3 {{cita.diario.prieto.consten.v3|id}}
+Indalecio Prieto
 
 <!-- diario.calla.tachado -->
 Not everything that is removed leaves a trace. In February 1935, a deputy protests because he cannot find in the Diario what he said:
@@ -292,7 +393,7 @@ Not everything that is removed leaves a trace. In February 1935, a deputy protes
 «…eso se ha tachado en el Diario de Sesiones.»
 
 <!-- diario.calla.cita.tachado.pie -->
-Dionisio Cano López, 19 February 1935 · V2 {{cita.diario.cano.tachado.V2|id}} · v3 {{cita.diario.cano.tachado.v3|id}}
+Dionisio Cano López, 19 February 1935
 
 <!-- diario.calla.tachado.2 -->
 It is his complaint; the Diario does not allow it to be checked.
@@ -307,7 +408,7 @@ On 6 May 1936 both things happen in a single passage:
 «(Un Sr. Diputado pronuncia palabras que no se perciben)» … «Un Sr. Diputado pronuncia palabras que producen protestas de las minorías y que no constan por orden del Sr. Presidente.»
 
 <!-- diario.calla.cita.no_oye.pie -->
-Bracketed notes in Calvo Sotelo's row · V2 {{cita.diario.perciben.y.constan.V2|id}} · v3 {{cita.diario.perciben.y.constan.v3|id}}
+Bracketed notes in Calvo Sotelo's row
 
 <!-- diario.calla.ausencias -->
 What the Diario does not record does not exist for any count in the dataset.
@@ -338,7 +439,7 @@ The war volume opens with a note:
 «EN ESTE VOLUMEN FIGURAN LOS EXTRACTOS DE LAS SESIONES CELEBRADAS POR LAS CORTES DE 1.936, CON POSTERIORIDAD AL 18 DE JULIO.»
 
 <!-- diario.habla.cita.volumen.pie -->
-Volume note, in the summary of 1 October 1936 · only in the explorer edition, v3 {{cita.diario.nota.volumen.v3|id}}
+Volume note, in the summary of 1 October 1936
 
 <!-- diario.habla.figueras -->
 It goes on to say that of the Figueres session «NO EXISTE DATO ALGUNO» (‘no record whatsoever exists’). Another note, at the end of the summary of that session, corrects it:
@@ -347,7 +448,7 @@ It goes on to say that of the Figueres session «NO EXISTE DATO ALGUNO» (‘no 
 «Después de prolijas y constantes gestiones, se ha podido obtener fotocopia del ejemplar del Extracto de dicha sesión…»
 
 <!-- diario.habla.cita.fotocopia.pie -->
-Closing note of the summary of 1 February 1939 · V2 {{cita.figueres.fotocopia.V2|id}} · v3 {{cita.figueres.fotocopia.v3|id}}
+Closing note of the summary of 1 February 1939
 
 <!-- diario.habla.liberacion -->
 The first note also speaks of the «LIBERACION DE BARCELONA» (‘liberation of Barcelona’) of 26 January 1939. Who wrote it, and when, has yet to be checked against the printed volume.
@@ -356,7 +457,7 @@ The first note also speaks of the «LIBERACION DE BARCELONA» (‘liberation of 
 The cover of the Mexico volume warns of what is missing: of the meetings of the Standing Committee (Diputación Permanente) there, «no se dispone de los textos ni en forma de fotocopia» (‘the texts are not available, not even as photocopies’).
 
 <!-- diario.habla.mexico.pie -->
-Cover of the Mexico volume · only in the explorer edition, v3 {{cita.mexico.permanente.v3|id}}
+Cover of the Mexico volume
 
 <!-- diario.habla.censura -->
 Deputies also defended the Diario outside the Chamber. In February 1935, Honorio Maura asks the Minister of the Interior in writing to have the censorship comply with a resolution of the Cortes:
@@ -365,7 +466,7 @@ Deputies also defended the Diario outside the Chamber. In February 1935, Honorio
 «…que los textos integros tomados del Diario de Sesiones no sean tachados ni mutilados por aquélla…»
 
 <!-- diario.habla.cita.censura.pie -->
-Written request by Honorio Maura, 20 February 1935 · V2 {{cita.diario.maura.censura.V2|id}}, inside a row of the Chair · v3 {{cita.diario.maura.censura.v3|id}}
+Written request by Honorio Maura, 20 February 1935
 
 <!-- diario.habla.registro -->
 Deputies also read the Diario and cite it: the «Diario de Sesiones» appears in {{fuente.cita_diario.filas}} rows of the dataset.
@@ -377,7 +478,7 @@ On 1 October 1931, Campoamor answers a speech she did not hear:
 «En ausencia mía y leyendo el Diario de Sesiones, pude ver en él que un doctor hablaba aquí de que no había ecuación posible…»
 
 <!-- diario.habla.cita.campoamor.pie -->
-Clara Campoamor · V2 {{cita.diario.campoamor.lee.V2|id}} · v3 {{cita.diario.campoamor.lee.v3|id}}
+Clara Campoamor
 
 ---
 
@@ -387,22 +488,16 @@ Clara Campoamor · V2 {{cita.diario.campoamor.lee.V2|id}} · v3 {{cita.diario.ca
 How to cite a passage
 
 <!-- diario.citar.entrada -->
-Cite the Diario, not the dataset. Give the series, the number, the date and the pages. If you have worked with the dataset, add the row id and its edition.
+Cite the Diario, not the dataset. Give the series, the number, the date and the pages. If you have worked with the dataset, add the row id.
 
 <!-- diario.citar.paginas -->
 Number and pages come from the project metadata. The explorer does not show them, and after July 1936 the pages are unverified.
-
-<!-- diario.citar.explorador -->
-If you copy a passage from the explorer, note that the row is from v3: the citation the explorer adds when copying does not state the edition.
 
 <!-- diario.citar.ejemplo -->
 Example, with Campoamor's row:
 
 <!-- diario.citar.cita -->
-Diario de Sesiones de las Cortes Constituyentes de la República Española, no. {{sesion.1931-10-01-48.diario_num|id}}, 1 October 1931, pp. {{sesion.1931-10-01-48.paginas}} (project metadata). Luz y Taquígrafos, deposited edition (V2), row {{cita.sufragio.campoamor.ciudadana.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
+Diario de Sesiones de las Cortes Constituyentes de la República Española, no. {{sesion.1931-10-01-48.diario_num|id}}, 1 October 1931, pp. {{sesion.1931-10-01-48.paginas}} (project metadata). Luz y Taquígrafos, row {{cita.sufragio.campoamor.ciudadana.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 A derived edition for research: wherever it differs, the *Diario de Sesiones* prevails.
@@ -425,9 +520,6 @@ One mark per row of the Diario in which «luz y taquígrafos» appears, from 193
 
 <!-- fig.F27.nota -->
 {{fecha}} · {{orador}}
-
-<!-- fig.F27.nota.b -->
-V2 {{v2}} · v3 {{v3}}
 
 <!-- fig.F27.orador.atribuido -->
 «El Sr. JIMÉNEZ FERNÁNDEZ», according to the Diario
@@ -457,28 +549,28 @@ Who, according to the dataset
 What it says
 
 <!-- fig.F27.tabla.col.filas -->
-Rows V2 · v3
+Row
 
 <!-- fig.F27.cita.1 --> «…fechorias, que no suelen hacerse con luz y taquigrafos…»
-<!-- fig.F27.cita.1.pie --> 20-VII-1931 · Gabriel Franco · V2 {{cita.f27.1.V2|id}} · v3 {{cita.f27.1.v3|id}}
+<!-- fig.F27.cita.1.pie --> 20-VII-1931 · Gabriel Franco
 <!-- fig.F27.cita.2 --> «…se discutiese ampliamente con luz y taquigrafos y en presencia de todos los Sres. Diputados de las demás minorías…»
-<!-- fig.F27.cita.2.pie --> 9-IV-1932 · José Antonio Balbontín · V2 {{cita.f27.2.V2|id}} · v3 {{cita.f27.2.v3|id}}
+<!-- fig.F27.cita.2.pie --> 9-IV-1932 · José Antonio Balbontín
 <!-- fig.F27.cita.3 --> «…la máxima garantía es la oposición libre, con luz y taquigrafos…»
-<!-- fig.F27.cita.3.pie --> 3-V-1932 · José Antonio Balbontín · V2 {{cita.f27.3.V2|id}} · v3 {{cita.f27.3.v3|id}}
+<!-- fig.F27.cita.3.pie --> 3-V-1932 · José Antonio Balbontín
 <!-- fig.F27.cita.4 --> «…yo aquí he levantado mi voz, con luz y taquigrafos, contra los pistoleros…»
-<!-- fig.F27.cita.4.pie --> 19-VII-1933 · José Antonio Balbontín · V2 {{cita.f27.4.V2|id}} · v3 {{cita.f27.4.v3|id}}
+<!-- fig.F27.cita.4.pie --> 19-VII-1933 · José Antonio Balbontín
 <!-- fig.F27.cita.5 --> «…aquí se liquida todo con luz y taquigrafos, como decía Maura…»
-<!-- fig.F27.cita.5.pie --> 3-VIII-1933 · Antonio Royo Villanova · V2 {{cita.f27.5.V2|id}} · v3 {{cita.f27.5.v3|id}}
+<!-- fig.F27.cita.5.pie --> 3-VIII-1933 · Antonio Royo Villanova
 <!-- fig.F27.cita.6 --> «Luz y taquigrafos.»
-<!-- fig.F27.cita.6.pie --> 8-VI-1934 · the Diario attributes it to «El Sr. JIMÉNEZ FERNÁNDEZ» · V2 {{cita.f27.6.V2|id}} · v3 {{cita.f27.6.v3|id}}
+<!-- fig.F27.cita.6.pie --> 8-VI-1934 · the Diario attributes it to «El Sr. JIMÉNEZ FERNÁNDEZ»
 <!-- fig.F27.cita.7 --> «…no hay ningún reparo, ningún obstaculo ni ninguna dificultad para que se examine el presupuesto con luz y taquigrafos…»
-<!-- fig.F27.cita.7.pie --> 13-XI-1934 · Abilio Calderón · V2 {{cita.f27.7.V2|id}} · v3 {{cita.f27.7.v3|id}}
+<!-- fig.F27.cita.7.pie --> 13-XI-1934 · Abilio Calderón
 <!-- fig.F27.cita.8 --> «…que realiza el Parlamento suele decir que hacen falta “luz y taquigrafos”…»
-<!-- fig.F27.cita.8.pie --> 29-I-1935 · Santiago Fuentes Pila · V2 {{cita.f27.8.V2|id}} · v3 {{cita.f27.8.v3|id}}
+<!-- fig.F27.cita.8.pie --> 29-I-1935 · Santiago Fuentes Pila
 <!-- fig.F27.cita.9 --> «El que está agazapado en su escaño, con luz y taquigrafos, naturalmente que no quiere valerse de nocturnidad ni de obscuridad de ninguna clase.»
-<!-- fig.F27.cita.9.pie --> 22-XI-1935 · José Calvo Sotelo · V2 {{cita.f27.9.V2|id}} · v3 {{cita.f27.9.v3|id}}
+<!-- fig.F27.cita.9.pie --> 22-XI-1935 · José Calvo Sotelo
 <!-- fig.F27.cita.10 --> «Hay luz y taquigrafos, los taquigrafos recogeran eso.»
-<!-- fig.F27.cita.10.pie --> 8-VII-1936 · Joaquín Maurín · V2 {{cita.f27.10.V2|id}} · v3 {{cita.f27.10.v3|id}}
+<!-- fig.F27.cita.10.pie --> 8-VII-1936 · Joaquín Maurín
 
 <!-- fig.F27.salvedad -->
 A search for the phrase in the text without accents; variants misread by optical character recognition are not counted. The origin of the phrase is not claimed here.
@@ -490,7 +582,7 @@ Timeline from 1931 to 1936 with {{f27.n|letra}} marks, one for each row in which
 The rows of the dataset in which the phrase «luz y taquígrafos» appears, with their date, their speaker according to the dataset and the fragment.
 
 <!-- fig.F27.leame.denominador -->
-There is no denominator: it is a list. The same rows in both editions, with their two ids.
+There is no denominator: it is a list of rows.
 
 <!-- fig.F27.leame.columnas -->
 fecha, num_session, orador_rotulo, rep_id, rep_name, party, fragmento, id_V2, id_v3.
@@ -529,9 +621,6 @@ In outline, a deputy who asks for it.
 <!-- fig.F28.nota.peticion -->
 {{fecha}} · requested by {{orador}}
 
-<!-- fig.F28.nota.b -->
-V2 {{v2}} · v3 {{v3}}
-
 <!-- fig.F28.lupa -->
 From 16 March to 10 July 1936, day by day
 
@@ -554,7 +643,7 @@ In the Chair · in the row of
 What the Diario says
 
 <!-- fig.F28.tabla.col.filas -->
-Rows V2 · v3
+Row
 
 <!-- fig.F28.tipo.orden -->
 Order from the Chair
@@ -569,35 +658,35 @@ A deputy's request
 The phrase in another sense; not drawn
 
 <!-- fig.F28.cita.orden.1 --> «Que no constaran en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.1.pie --> 10-XII-1931 · Besteiro · V2 {{cita.f28.orden.1.V2|id}} · v3 {{cita.f28.orden.1.v3|id}}
+<!-- fig.F28.cita.orden.1.pie --> 10-XII-1931 · Besteiro
 <!-- fig.F28.cita.orden.2 --> «Esas palabras, que no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.2.pie --> 7-II-1933 · Besteiro · V2 {{cita.f28.orden.2.V2|id}} · v3 {{cita.f28.orden.2.v3|id}}
+<!-- fig.F28.cita.orden.2.pie --> 7-II-1933 · Besteiro
 <!-- fig.F28.cita.orden.3 --> «…le aseguro que las palabras que ha pronunciado no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.3.pie --> 9-II-1933 · Besteiro · V2 {{cita.f28.orden.3.V2|id}} · v3 {{cita.f28.orden.3.v3|id}}
+<!-- fig.F28.cita.orden.3.pie --> 9-II-1933 · Besteiro
 <!-- fig.F28.cita.orden.4 --> «Esas palabras no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.4.pie --> 15-IV-1936 · Jiménez de Asúa · V2 {{cita.f28.orden.4.V2|id}} · v3 {{cita.f28.orden.4.v3|id}}
+<!-- fig.F28.cita.orden.4.pie --> 15-IV-1936 · Jiménez de Asúa
 <!-- fig.F28.cita.orden.5 --> «Ya se ha dicho que no constarán esas palabras en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.5.pie --> 15-IV-1936 · Jiménez de Asúa · V2 {{cita.f28.orden.5.V2|id}} · v3 {{cita.f28.orden.5.v3|id}}
+<!-- fig.F28.cita.orden.5.pie --> 15-IV-1936 · Jiménez de Asúa
 <!-- fig.F28.cita.orden.6 --> «Ya ha advertido la Presidencia que no constarán en el Diario de Sesiones esas palabras.»
-<!-- fig.F28.cita.orden.6.pie --> 15-IV-1936 · Jiménez de Asúa · V2 {{cita.f28.orden.6.V2|id}} · v3 {{cita.f28.orden.6.v3|id}}
+<!-- fig.F28.cita.orden.6.pie --> 15-IV-1936 · Jiménez de Asúa
 <!-- fig.F28.cita.orden.7 --> «No constará en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.7.pie --> 6-V-1936 · Jiménez de Asúa · V2 {{cita.f28.orden.7.V2|id}} · v3 {{cita.f28.orden.7.v3|id}}
+<!-- fig.F28.cita.orden.7.pie --> 6-V-1936 · Jiménez de Asúa
 <!-- fig.F28.cita.orden.8 --> «Las palabras de S. S., en lo que a eso respecta, no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.8.pie --> 1-VII-1936 · Martínez Barrio · V2 {{cita.f28.orden.8.V2|id}} · v3 {{cita.f28.orden.8.v3|id}}
+<!-- fig.F28.cita.orden.8.pie --> 1-VII-1936 · Martínez Barrio
 <!-- fig.F28.cita.acotacion.1 --> «(El Sr. Muñoz de Zafra pronuncia palabras que no se consignan por orden del Sr. Presidente…»
-<!-- fig.F28.cita.acotacion.1.pie --> 6-V-1936 · in the row of Jesús Pabón · V2 {{cita.f28.acotacion.1.V2|id}} · v3 {{cita.f28.acotacion.1.v3|id}}
+<!-- fig.F28.cita.acotacion.1.pie --> 6-V-1936 · in the row of Jesús Pabón
 <!-- fig.F28.cita.acotacion.2 --> «Un Sr. Diputado pronuncia palabras que producen protestas de las minorías y que no constan por orden del Sr. Presidente.»
-<!-- fig.F28.cita.acotacion.2.pie --> 6-V-1936 · in the row of Calvo Sotelo · V2 {{cita.f28.acotacion.2.V2|id}} · v3 {{cita.f28.acotacion.2.v3|id}}
+<!-- fig.F28.cita.acotacion.2.pie --> 6-V-1936 · in the row of Calvo Sotelo
 <!-- fig.F28.cita.acotacion.3 --> «(El orador pronuncia palabras que no constan por orden del Sr. Presidente…»
-<!-- fig.F28.cita.acotacion.3.pie --> 16-VI-1936 · in the row of Calvo Sotelo · V2 {{cita.f28.acotacion.3.V2|id}} · v3 {{cita.f28.acotacion.3.v3|id}}
+<!-- fig.F28.cita.acotacion.3.pie --> 16-VI-1936 · in the row of Calvo Sotelo
 <!-- fig.F28.cita.acotacion.4 --> «(El Sr. Carrillo replica con palabras que levantan grandes protestas y que no se consignan por orden de la Presidencia.)»
-<!-- fig.F28.cita.acotacion.4.pie --> 16-VI-1936 · in the row of Fernando Suárez de Tangil · V2 {{cita.f28.acotacion.4.V2|id}} · v3 {{cita.f28.acotacion.4.v3|id}}
+<!-- fig.F28.cita.acotacion.4.pie --> 16-VI-1936 · in the row of Fernando Suárez de Tangil
 <!-- fig.F28.cita.acotacion.5 --> «(El final de la frase no se consigna por orden del Sr. Presidente.—Aplausos.—Rumores.)»
-<!-- fig.F28.cita.acotacion.5.pie --> 1-VII-1936 · in the row of Ángel Galarza · V2 {{cita.f28.acotacion.5.V2|id}} · v3 {{cita.f28.acotacion.5.v3|id}}
+<!-- fig.F28.cita.acotacion.5.pie --> 1-VII-1936 · in the row of Ángel Galarza
 <!-- fig.F28.cita.peticion --> «…ciertas palabras insultantes e incalificables con que se ha injuriado a las hermanas de la Caridad no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.peticion.pie --> 3-VI-1936 · José Calvo Sotelo · V2 {{cita.f28.peticion.V2|id}} · v3 {{cita.f28.peticion.v3|id}}
+<!-- fig.F28.cita.peticion.pie --> 3-VI-1936 · José Calvo Sotelo
 <!-- fig.F28.cita.ajena --> «…por parecerne injusto que no constara en el Diario de Sesión…»
-<!-- fig.F28.cita.ajena.pie --> 21-II-1934 · Luis Rodríguez de Viguri · the phrase in another sense; not drawn · V2 {{cita.f28.ajena.V2|id}} · v3 {{cita.f28.ajena.v3|id}}
+<!-- fig.F28.cita.ajena.pie --> 21-II-1934 · Luis Rodríguez de Viguri · the phrase in another sense; not drawn
 
 <!-- fig.F28.salvedad -->
 At least: variants produced by optical character recognition are not detected. An exact search for the phrase in the plural returns {{f28.fts_plural|letra}} rows, which are not the same as the {{f28.ordenes|letra}}.

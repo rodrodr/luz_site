@@ -130,6 +130,11 @@ FAMILIA_NORM = {"Republicanoses": "Republicanos", "Repubicanos": "Republicanos",
 FAMILIA_ETIQ = {"Catizq": "Catalanista de izquierda", "Catder": "Catalanista de derecha", "RE": "Renovación Española"}
 
 
+
+# Archivos de las figuras retiradas el 24-09-2026 (F07 quien_habla, F12 despiece y fila_larga, F18 destino_filas,
+# F25 fechas_corregidas, F33 palabras): ya no se escriben (Ctx.escribir_json · Ctx.escribir_datos).
+RETIRADOS = {"quien_habla", "destino_filas", "fechas_corregidas", "palabras", "despiece", "fila_larga"}
+
 class Falla(Exception):
     """Una puerta del exportador no se cumple: se para sin escribir en src/data/."""
 
@@ -303,11 +308,15 @@ class Contexto:
         return c
 
     # ── escritura (siempre al área de preparación; exportar.py la vuelca si todo pasa) ──────────────────────────
+    # Las figuras retiradas el 24-09-2026 (F07, F12, F18, F25, F33) comparaban ediciones de la base: sus módulos aún las
+    # calculan (sus cifras sirven de control), pero sus archivos ya no se escriben. El sitio presenta la base corregida.
     def _registra(self, rel: str) -> None:
         exige(rel not in self.escritos, f"{rel}: lo escriben dos módulos ({self.escritos.get(rel)} y {self.modulo})")
         self.escritos[rel] = self.modulo
 
     def escribir_json(self, nombre: str, datos) -> Path:
+        if Path(nombre).stem in RETIRADOS:
+            return self.data / nombre
         rel = f"data/{nombre}"
         self._registra(rel)
         p = self.data / nombre
@@ -334,6 +343,8 @@ class Contexto:
 
     def escribir_datos(self, nombre: str, cabecera: list[str], filas: list[list], xlsx: bool = True) -> Path:
         """`public/datos/<nombre>.csv` (coma, UTF-8, cabecera, como ParlaIbero) y, si `xlsx`, el .xlsx gemelo."""
+        if nombre in RETIRADOS:
+            return self.datos / f"{nombre}.csv"
         rel = f"datos/{nombre}.csv"
         self._registra(rel)
         buf = io.StringIO()

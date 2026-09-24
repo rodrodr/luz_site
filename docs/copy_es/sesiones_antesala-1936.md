@@ -36,7 +36,7 @@ El 16 de junio se enfrentan Calvo Sotelo y el Presidente del Consejo de Ministro
 El 1 de julio, la Presidencia corta a Galarza a media frase y ordena que sus palabras no consten.
 
 <!-- sesiones.antesala-1936.que_paso.4 -->
-Es la sesión con más palabras de todo el corpus: {{sesion.1936-07-01-54.palabras}} en la edición depositada.
+Es la sesión con más palabras de todo el corpus: {{sesion.1936-07-01-54.palabras}} en la base.
 
 > [nota de diseño] «Pocas semanas antes de la guerra»: la nota que abre el volumen de la guerra fecha el corte en el
 > 18 de julio (v3 121110). «Con más palabras»: lo es en la V2 y en la v3 (comprobado). Martínez Barrio preside según
@@ -48,31 +48,31 @@ Es la sesión con más palabras de todo el corpus: {{sesion.1936-07-01-54.palabr
 «Yo digo lo que Santo Domingo de Silos contestó a un rey castellano: “Señor, la vida podéis quitarme, pero más no podéis.”»
 
 <!-- sesiones.antesala-1936.diario.cita.calvo.pie -->
-José Calvo Sotelo, 16 de junio · V2 {{cita.antesala.calvo.V2|id}} · v3 {{cita.antesala.calvo.v3|id}} · {{cita.antesala.calvo.palabras}} palabras (V2)
+José Calvo Sotelo, 16 de junio · {{cita.antesala.calvo.palabras}} palabras
 
 <!-- sesiones.antesala-1936.diario.cita.casares -->
 «…haré responsable ante el país a S. S.»
 
 <!-- sesiones.antesala-1936.diario.cita.casares.pie -->
-Santiago Casares Quiroga, 16 de junio · V2 {{cita.antesala.casares.V2|id}} · v3 {{cita.antesala.casares.v3|id}}
+Santiago Casares Quiroga, 16 de junio
 
 <!-- sesiones.antesala-1936.diario.cita.galarza -->
 «¡Ah!, pero yo proclamo una cosa: la violencia... (El final de la frase no se consigna por orden del Sr. Presidente.—Aplausos.—Rumores.)»
 
 <!-- sesiones.antesala-1936.diario.cita.galarza.pie -->
-Ángel Galarza, 1 de julio · V2 {{cita.antesala.galarza.V2|id}} · v3 {{cita.antesala.galarza.v3|id}}
+Ángel Galarza, 1 de julio
 
 <!-- sesiones.antesala-1936.diario.cita.presidencia -->
 «Las palabras de S. S., en lo que a eso respecta, no constarán en el Diario de Sesiones.»
 
 <!-- sesiones.antesala-1936.diario.cita.presidencia.pie -->
-La Presidencia (Martínez Barrio), en la fila siguiente · V2 {{cita.antesala.presidencia.V2|id}} · v3 {{cita.antesala.presidencia.v3|id}}
+La Presidencia (Martínez Barrio), en la fila siguiente
 
 <!-- sesiones.antesala-1936.diario.cita.galarza2 -->
 «…esas palabras, que en el Diario de Sesiones no figurarán, el país las conocerá…»
 
 <!-- sesiones.antesala-1936.diario.cita.galarza2.pie -->
-Ángel Galarza, en la fila siguiente · V2 {{cita.antesala.galarza2.V2|id}} · v3 {{cita.antesala.galarza2.v3|id}}
+Ángel Galarza, en la fila siguiente
 
 > [nota de diseño] Los tres «...» de la cita de Galarza son del texto, no un corte nuestro. Las tres filas del
 > 1 de julio van seguidas, como en el Diario, con un filete fino entre ellas.
@@ -80,12 +80,12 @@ La Presidencia (Martínez Barrio), en la fila siguiente · V2 {{cita.antesala.pr
 ## La sesión, turno a turno
 
 <!-- sesiones.antesala-1936.turnos.texto -->
-Dos figuras, una por sesión. Entre las dos suman {{puerta.antesala-1936.filas}} filas de la edición depositada.
+Dos figuras, una por sesión. Entre las dos suman {{puerta.antesala-1936.filas}} filas de la base.
 
 ## Cómo encontrarla en el explorador
 
 <!-- sesiones.antesala-1936.explorador.fecha.1 -->
-Filtros › Fecha y sesión: Desde y Hasta 16/06/1936. Salen {{sesion.1936-06-16-45.filas_v3}} intervenciones en la edición del explorador (v3); con «Solo lo que se habla», {{sesion.1936-06-16-45.habla_v3}}.
+Filtros › Fecha y sesión: Desde y Hasta 16/06/1936. Salen {{sesion.1936-06-16-45.filas_v3}} intervenciones en el explorador; con «Solo lo que se habla», {{sesion.1936-06-16-45.habla_v3}}.
 
 <!-- sesiones.antesala-1936.explorador.fecha.2 -->
 Para la segunda, Desde y Hasta 01/07/1936: {{sesion.1936-07-01-54.filas_v3}} intervenciones; con «Solo lo que se habla», {{sesion.1936-07-01-54.habla_v3}}.
@@ -94,7 +94,7 @@ Para la segunda, Desde y Hasta 01/07/1936: {{sesion.1936-07-01-54.filas_v3}} int
 "no constan por orden" | "no se consigna por orden" | "no se consignan por orden"
 
 <!-- sesiones.antesala-1936.explorador.recuento -->
-Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.suprimidas.n}} intervenciones en la edición del explorador (v3).
+Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.suprimidas.n}} intervenciones en el explorador.
 
 <!-- sesiones.antesala-1936.explorador.consulta.nota -->
 Busca las acotaciones de palabras suprimidas por la Presidencia. En todo el corpus salen {{busqueda.ses.suprimidas.n|letra}}, y {{busqueda.ses.suprimidas.puerta|letra}} son de estas dos sesiones.
@@ -115,7 +115,7 @@ La frase que a veces se atribuye a Dolores Ibárruri el 16 de junio no aparece e
 > hablado por última vez” no aparece en ninguna fila».
 
 <!-- sesiones.antesala-1936.no_esta.pie -->
-Dolores Ibárruri, 16 de junio · V2 {{fuente.ibarruri.V2|id}}
+Dolores Ibárruri, 16 de junio
 
 <!-- sesiones.antesala-1936.no_esta.2 -->
 Lo que la Presidencia mandó quitar tampoco está: el Diario solo deja constancia de que se quitó.
@@ -123,18 +123,15 @@ Lo que la Presidencia mandó quitar tampoco está: el Diario solo deja constanci
 ## Fuentes
 
 <!-- sesiones.antesala-1936.fuentes.texto -->
-Todo lo que dice esta página sale del Diario de Sesiones, leído en las dos ediciones de la base. No se afirma aquí ningún hecho que el Diario no recoja.
+Todo lo que dice esta página sale del Diario de Sesiones, leído en la base. No se afirma aquí ningún hecho que el Diario no recoja.
 
 ## Cómo citar un pasaje
 
 <!-- sesiones.antesala-1936.citar.texto -->
-Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila y su edición.
+Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila.
 
 <!-- sesiones.antesala-1936.citar.cita -->
-Diario de las Sesiones de Cortes. Congreso de los Diputados, núm. {{sesion.1936-07-01-54.diario_num|id}}, 1 de julio de 1936, pp. {{sesion.1936-07-01-54.paginas}} (metadatos del proyecto). Luz y Taquígrafos, edición depositada (V2), fila {{cita.antesala.galarza.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
+Diario de las Sesiones de Cortes. Congreso de los Diputados, núm. {{sesion.1936-07-01-54.diario_num|id}}, 1 de julio de 1936, pp. {{sesion.1936-07-01-54.paginas}} (metadatos del proyecto). Luz y Taquígrafos, fila {{cita.antesala.galarza.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.

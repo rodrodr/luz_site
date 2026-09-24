@@ -18,7 +18,7 @@ Search, read and cite what was said in the Cortes of the Republic, without progr
 ## 8.1 Header
 
 <!-- explorador.antetitulo -->
-v3 · {{filas.v3}} interventions · about {{explorador.gz.bytes|peso_dec0}} compressed · dataset built on {{explorador.construido|fecha_corta}}
+{{filas.v3}} interventions · about {{explorador.gz.bytes|peso_dec0}} compressed · dataset built on {{explorador.construido|fecha_corta}}
 
 <!-- explorador.titulo -->
 What does the explorer do, and what does it not do?
@@ -32,9 +32,6 @@ It opens in your browser; what you search for and save stays on your device.
 <!-- ↺ comun.boton.explorador -->
 [Open the explorer ↗]
 
-<!-- ↺ comun.fija.notabases -->
-This number comes from the explorer edition (v3, {{filas.v3}} rows, not deposited); the deposited edition is V2 ({{filas.V2}} rows). Why there are two →
-
 <!-- explorador.idioma -->
 The explorer is in Spanish only.
 
@@ -43,6 +40,9 @@ Finding
 
 <!-- explorador.indice.busquedas -->
 Sample searches
+
+<!-- explorador.indice.pico -->
+When was the peak?
 
 <!-- explorador.indice.leer -->
 Reading
@@ -68,7 +68,7 @@ What it does not do
 ## 8.2 First, finding
 
 <!-- explorador.encontrar.antetitulo -->
-v3 · {{habla.v3}} of the {{filas.v3}} interventions are speech
+{{habla.v3}} of the {{filas.v3}} interventions are speech
 
 <!-- explorador.encontrar.titulo -->
 First, finding
@@ -108,14 +108,13 @@ Counting a word does not tell you who defends it or in what tone.
 
 ## 8.2 bis · Sample searches (F29)
 
-<!-- explorador.busquedas.antetitulo -->
-v3 {{v3.huella}} · counts of {{busquedas.fecha|fecha_corta}}
+<!-- explorador.busquedas.antetitulo -->counts of {{busquedas.fecha|fecha_corta}}
 
 <!-- explorador.busquedas.titulo -->
 Sample searches
 
 <!-- explorador.busquedas.entrada -->
-These are real queries, counted in the explorer edition. Copy them, paste them into the search box and compare the count.
+These are real queries, counted in the explorer. Copy them, paste them into the search box and compare the count.
 
 <!-- ↺ comun.fija.enlace -->
 The explorer cannot open a search from a link: copy the query and paste it into its search box (/ key).
@@ -130,7 +129,7 @@ What does the search box return for real queries?
 How many interventions each query returns in the explorer's search box, with and without «Solo lo que se habla».
 
 <!-- fig.F29.denominador -->
-The {{filas.v3}} interventions of the explorer edition (v3); with «Solo lo que se habla», {{habla.v3}}.
+The {{filas.v3}} interventions of the explorer; with «Solo lo que se habla», {{habla.v3}}.
 
 <!-- fig.F29.voto_femenino.consulta -->
 "voto femenino"
@@ -237,6 +236,87 @@ Summaries and comments
 <!-- fig.F29.tabla.col.fechas -->
 First and last
 
+## 2 bis. When was the peak? (game)
+
+> [design note] Game requested by the researcher (24-09-2026): `components/explorador/Pico.astro`, with the laboratory data. Ten terms; five per game. Without JS, a table.
+
+<!-- explorador.pico.titulo -->
+When was the peak?
+
+<!-- explorador.pico.entrada -->
+The explorer's Trend counts, month by month, how often a term appears. Guess in which month each one was talked about most.
+
+<!-- explorador.pico.juego.reglas -->
+Three points for the exact month; two if you are two months off or less; one if six or less.
+
+<!-- explorador.pico.juego.cuenta -->
+Term {{i}} of {{n}} · Points: {{p}}
+
+<!-- explorador.pico.juego.pregunta -->
+In which month was «{{termino}}» talked about most?
+
+<!-- explorador.pico.juego.anio -->
+The year
+
+<!-- explorador.pico.juego.mes -->
+The month
+
+<!-- explorador.pico.juego.exacto -->
+The exact month!
+
+<!-- explorador.pico.juego.distancia -->
+You were {{n}} months off.
+
+<!-- explorador.pico.juego.distancia.uno -->
+You were one month off.
+
+<!-- explorador.pico.juego.pico -->
+The peak: {{mes}}, with {{n}} appearances.
+
+<!-- explorador.pico.juego.leyenda -->
+Appearances per month. In colour, the peak; in black, your guess.
+
+<!-- explorador.pico.juego.siguiente -->
+[Next]
+
+<!-- explorador.pico.juego.ver -->
+[See the result]
+
+<!-- explorador.pico.juego.resumen -->
+You scored {{p}} of {{max}} points.
+
+<!-- explorador.pico.juego.nivel.0 -->
+Heard it on the radio.
+
+<!-- explorador.pico.juego.nivel.1 -->
+Reads the Diario a few months late.
+
+<!-- explorador.pico.juego.nivel.2 -->
+A good nose for parliamentary news.
+
+<!-- explorador.pico.juego.nivel.3 -->
+A walking newspaper archive.
+
+<!-- explorador.pico.juego.otra -->
+[Another game]
+
+<!-- explorador.pico.juego.salvedad -->
+Appearances are counted as the explorer's Trend counts them: without accents or capitals, and phrases as exact phrases.
+
+<!-- explorador.pico.juego.tabla -->
+The game's terms and their peak
+
+<!-- explorador.pico.juego.tabla.col.termino -->
+Term
+
+<!-- explorador.pico.juego.tabla.col.pico -->
+Month with most appearances
+
+<!-- explorador.pico.juego.tabla.col.n -->
+Appearances that month
+
+---
+
 ## 8.3 Reading as in the Diario
 
 <!-- explorador.leer.antetitulo -->
@@ -269,7 +349,7 @@ These are suggestions, not proven exchanges, and the explorer itself warns of th
 ## 8.4 Then, focusing: the libraries
 
 <!-- explorador.bibliotecas.antetitulo -->
-v3 · {{bib.n}} libraries · {{bib.entradas}} entries
+{{bib.n}} libraries · {{bib.entradas}} entries
 
 <!-- explorador.bibliotecas.titulo -->
 Then, focusing: the libraries
@@ -468,14 +548,8 @@ Each file carries the corpus citation. In the CSV it is in the header lines and 
 <!-- explorador.llevar.copiar_pasaje -->
 If you copy a passage with the keyboard, the clipboard also takes the source.
 
-<!-- explorador.llevar.aviso -->
-The citation the explorer adds says ‘V2’, but its data and identifiers are those of v3. To go back to the deposited file, note the date and the session number.
-
-<!-- ↺ comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
-
 <!-- explorador.llevar.enlace -->
-[See how to cite each edition]
+[See how to cite]
 
 ## 8.8 How to start
 
@@ -602,9 +676,3 @@ Exporting a search: the CSV carries the citation in its header lines and in ever
 
 <!-- explorador.img.exportar.alt -->
 The explorer's export dialogue: CSV with the full text, and a box explaining that the file carries the citation at the start and in every row.
-
-<!-- explorador.img.sobre.pie -->
-The «Sobre este corpus» (about this corpus) panel: the citation says V2, and the file it serves is v3, which the panel calls «sin publicar».
-
-<!-- explorador.img.sobre.alt -->
-The explorer's «Sobre este corpus» panel: the citation ends in ‘Harvard Dataverse, V2’ and, below, the file served is version v3, resegmented and described as «sin publicar».

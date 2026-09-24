@@ -34,6 +34,75 @@
 
 ---
 
+## 2 bis. ¿Quién lo dijo? (juego)
+
+> [nota de diseño] Juego de la petición del investigador (24-09-2026): `components/sesiones/QuienLoDijo.astro`. Reutiliza las frases ya comprobadas de «El aplausómetro» y «¿Esta o esta?» (solo las de los oradores más conocidos). Ocho citas por partida. Sin JS, una tabla.
+
+<!-- sesiones.quien.titulo -->
+¿Quién lo dijo?
+
+<!-- sesiones.quien.entrada -->
+Cada cita sale, letra a letra, de una fila de la base. Elija a su autor entre cuatro diputados.
+
+<!-- sesiones.quien.juego.pregunta -->
+¿De quién es?
+
+<!-- sesiones.quien.juego.cuenta -->
+Cita {{i}} de {{n}} · Aciertos: {{a}}
+
+<!-- sesiones.quien.juego.bien -->
+¡Exacto!
+
+<!-- sesiones.quien.juego.mal -->
+No: es de {{orador}}.
+
+<!-- sesiones.quien.juego.quien -->
+{{orador}} · {{partido}} · {{fecha}}
+
+<!-- sesiones.quien.juego.fila -->
+Fila {{id}}
+
+<!-- sesiones.quien.juego.siguiente -->
+[Siguiente]
+
+<!-- sesiones.quien.juego.ver -->
+[Ver el resultado]
+
+<!-- sesiones.quien.juego.resumen -->
+Ha acertado {{n}} de {{total}}.
+
+<!-- sesiones.quien.juego.puesto -->
+Su puesto en la Cámara:
+
+<!-- sesiones.quien.juego.nivel.0 -->
+público de la tribuna, que aplaude cuando no toca.
+
+<!-- sesiones.quien.juego.nivel.1 -->
+ujier: conoce las caras, no siempre las voces.
+
+<!-- sesiones.quien.juego.nivel.2 -->
+cronista de la tribuna de prensa.
+
+<!-- sesiones.quien.juego.nivel.3 -->
+taquígrafo: lo ha oído todo.
+
+<!-- sesiones.quien.juego.nivel.4 -->
+presidente de la Cámara: sabe quién habla sin mirar.
+
+<!-- sesiones.quien.juego.otra -->
+[Otra ronda]
+
+<!-- sesiones.quien.juego.tabla -->
+Las citas del juego y su autor
+
+<!-- sesiones.quien.juego.tabla.col.cita -->
+Cita
+
+<!-- sesiones.quien.juego.tabla.col.quien -->
+Quién y cuándo
+
+---
+
 ## 1. Sesiones y votaciones · índice (`/es/cortes/sesiones/`)
 
 > [nota de diseño] Unas 700 palabras de copy en `<main>`, con el registro de puertas (tope de la plantilla D: 500–700;
@@ -74,7 +143,7 @@ Lo que se votó en voz alta
 En una votación nominal, el Diario imprime dos listas, «Señores que dijeron sí» y «Señores que dijeron no», cada una con su total.
 
 <!-- sesiones.votos.cuantas -->
-Hay listas así en al menos {{voto.listas.sesiones}} de las {{sesiones.n}} sesiones de la edición depositada.
+Hay listas así en al menos {{voto.listas.sesiones}} de las {{sesiones.n}} sesiones de la base.
 
 <!-- sesiones.votos.seleccion -->
 Aquí van {{voto.n|letra}}, en {{voto.sesiones|letra}} sesiones, escogidas porque cierran debates que este sitio cuenta.
@@ -118,9 +187,6 @@ El artículo del Reglamento que se lee en la sesión la trata como destitución 
 <!-- sesiones.votos.destitucion.no -->
 Votan no {{voto.238-5.no|letra}} diputados, y la lista los nombra: Becerra, Portela, Benítez de Lugo, Canals y Rosado.
 
-<!-- sesiones.votos.destitucion.pie -->
-Proposición: V2 {{voto.238-5.proposicion.V2|id}} · v3 {{voto.238-5.proposicion.v3|id}}. Reglamento: V2 {{voto.238-5.reglamento.V2|id}} · v3 {{voto.238-5.reglamento.v3|id}}. Lista: V2 {{voto.238-5.V2|id}} · v3 {{voto.238-5.v3|id}}.
-
 <!-- sesiones.votos.mas -->
 Las listas completas llegarán a esta misma figura en la edición 0.2, con un punto por nombre impreso.
 
@@ -153,42 +219,42 @@ Que estén no valida su contenido.
 <!-- sesiones.lista.sufragio-1931.fecha --> 1-X-1931
 <!-- sesiones.lista.sufragio-1931.titulo --> El voto de las mujeres
 <!-- sesiones.lista.sufragio-1931.linea --> Kent pide aplazarlo; Campoamor, que se reconozca ya. La votación nominal lo aprueba.
-<!-- sesiones.lista.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} filas (V2)
+<!-- sesiones.lista.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} filas
 
 <!-- sesiones.lista.cuestion-religiosa-1931.fecha --> 13-X-1931
 <!-- sesiones.lista.cuestion-religiosa-1931.titulo --> «España ha dejado de ser católica»
 <!-- sesiones.lista.cuestion-religiosa-1931.linea --> Azaña habla del artículo religioso. La sesión acaba a la mañana siguiente.
-<!-- sesiones.lista.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} filas (V2)
+<!-- sesiones.lista.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} filas
 
 <!-- sesiones.lista.estatuto-1932.fecha --> 27-V-1932
-<!-- sesiones.lista.estatuto-1932.titulo --> El discurso de Azaña, a nombre de otro
-<!-- sesiones.lista.estatuto-1932.linea --> Azaña defiende el Estatuto de Cataluña. En la V2, su discurso va dentro de una fila de la Presidencia.
-<!-- sesiones.lista.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} filas (V2)
+<!-- sesiones.lista.estatuto-1932.titulo --> El Estatuto de Cataluña
+<!-- sesiones.lista.estatuto-1932.linea --> Azaña lo defiende en la intervención de habla más larga del corpus.
+<!-- sesiones.lista.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} filas
 
 <!-- sesiones.lista.casas-viejas-1933.fecha --> 2-II-1933
 <!-- sesiones.lista.casas-viejas-1933.titulo --> Casas Viejas
 <!-- sesiones.lista.casas-viejas-1933.linea --> Azaña responde en la Cámara por los sucesos. Las minorías protestan.
-<!-- sesiones.lista.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} filas (V2)
+<!-- sesiones.lista.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} filas
 
 <!-- sesiones.lista.pistola-1934.fecha --> 4-VII-1934
 <!-- sesiones.lista.pistola-1934.titulo --> La pistola de Prieto
 <!-- sesiones.lista.pistola-1934.linea --> Un incidente acaba en golpes, y Prieto admite que sacó su pistola. Es la última sesión antes del verano.
-<!-- sesiones.lista.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} filas (V2)
+<!-- sesiones.lista.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} filas
 
 <!-- sesiones.lista.antesala-1936.fecha --> 16-VI y 1-VII-1936
 <!-- sesiones.lista.antesala-1936.titulo --> La antesala
 <!-- sesiones.lista.antesala-1936.linea --> Dos debates sobre el orden público, semanas antes de la guerra. Hay palabras que no constan en el Diario.
-<!-- sesiones.lista.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} y {{sesion.1936-07-01-54.filas}} filas (V2)
+<!-- sesiones.lista.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} y {{sesion.1936-07-01-54.filas}} filas
 
 <!-- sesiones.lista.figueres-1939.fecha --> 1-II-1939
 <!-- sesiones.lista.figueres-1939.titulo --> Figueres
 <!-- sesiones.lista.figueres-1939.linea --> La última sesión de las Cortes en España, en el castillo de Figueras. Solo queda el extracto oficial.
-<!-- sesiones.lista.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} filas (V2)
+<!-- sesiones.lista.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} filas
 
 <!-- sesiones.lista.mexico-1945.fecha --> 17-VIII y 7–9-XI-1945
 <!-- sesiones.lista.mexico-1945.titulo --> México
 <!-- sesiones.lista.mexico-1945.linea --> En {{puerta.mexico-1945.sesiones|letra}} sesiones, Martínez Barrio promete como Presidente interino de la República y Giral presenta su Gobierno.
-<!-- sesiones.lista.mexico-1945.filas --> {{puerta.mexico-1945.filas}} filas (V2)
+<!-- sesiones.lista.mexico-1945.filas --> {{puerta.mexico-1945.filas}} filas
 
 > [nota de diseño] Las fechas del registro son de sesión y van tecleadas, como las de ParlaIbero; los números de fila
 > salen de marcadores. Los títulos van sin corchetes: toda la fila es el enlace (`RegistroPuertas`).
@@ -211,10 +277,7 @@ Abra Filtros › Fecha y sesión y ponga la misma fecha en Desde y en Hasta. La 
 Algunos días hubo dos sesiones; pasa en {{sesiones.fechas_dobles|letra}} fechas. Para separarlas, escriba además el número en Nº de sesión.
 
 <!-- sesiones.otra.habla -->
-Si marca «Solo lo que se habla», desaparecen el sumario y los comentarios del Diario, que en esa edición van en filas propias.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
+Si marca «Solo lo que se habla», desaparecen el sumario y los comentarios del Diario, que van en filas propias.
 
 <!-- sesiones.otra.citar -->
 Para citar una sesión, basta con su fecha y su número. Para citar un pasaje, añada el Diario, sus páginas y la fila.
@@ -237,14 +300,8 @@ Cada sesión está en la base tal como salió del reconocimiento óptico. Tres c
 <!-- sesiones.entera.s48 -->
 El acta del 1 de octubre de 1931 perdió su final: las últimas {{ses.s48.cola|letra}} filas repiten «Pido la palabra.», y la última termina en «El Sr. Ministro de».
 
-<!-- sesiones.entera.s48.pie -->
-V2 {{ses.s48.cola.V2.desde|id}}–{{ses.s48.cola.V2.hasta|id}} · v3 {{ses.s48.cola.v3.desde|id}}–{{ses.s48.cola.v3.hasta|id}}
-
 <!-- sesiones.entera.s9 -->
 En la sesión del 27 de julio de 1931, una misma fila repite {{ses.s9.bucle.veces|letra}} veces seguidas «Sánchez Guerra, Ossorio y Gallardo».
-
-<!-- sesiones.entera.s9.pie -->
-V2 {{ses.s9.bucle.V2|id}} · v3 {{ses.s9.bucle.v3|id}}
 
 <!-- sesiones.entera.paginas -->
 En las {{ses.paginas_sin_verificar|letra}} sesiones posteriores a julio de 1936, las páginas del Diario están sin verificar.
@@ -314,12 +371,10 @@ Cómo citar un pasaje
 ### 2.1 Las cifras al margen de F30
 
 <!-- sesiones.puerta.cifras.titulo --> La sesión en cifras
-<!-- sesiones.puerta.cifras.filas --> filas (V2)
-<!-- sesiones.puerta.cifras.palabras --> palabras (V2)
-<!-- sesiones.puerta.cifras.diputados --> diputados que hablan fuera de la Presidencia (V2)
-<!-- sesiones.puerta.cifras.largas --> filas de más de {{ses.umbral.largas}} palabras (V2)
-<!-- sesiones.puerta.cifras.v3 --> filas en la edición del explorador (v3)
-
+<!-- sesiones.puerta.cifras.filas --> filas
+<!-- sesiones.puerta.cifras.palabras --> palabras
+<!-- sesiones.puerta.cifras.diputados --> diputados que hablan fuera de la Presidencia
+<!-- sesiones.puerta.cifras.largas --> filas de más de {{ses.umbral.largas}} palabras
 > [nota de diseño] Cinco cifras en columna, cada una con su marcador de la sesión: `sesion.<fecha>-<num>.filas`,
 > `.palabras`, `.diputados_sp`, `.largas` y `.filas_v3`. La última lleva el sello v3. «Diputados» cuenta `rep_id`
 > distintos fuera de la Presidencia, con el analizador de rótulos del explorador.
@@ -327,13 +382,13 @@ Cómo citar un pasaje
 ### 2.2 El pie de cada cita
 
 <!-- sesiones.puerta.cita.pie -->
-{{orador}} · V2 {{V2}} · v3 {{v3}}
+{{orador}}
 
 <!-- sesiones.puerta.cita.pie.palabras -->
-{{orador}} · V2 {{V2}} · v3 {{v3}} · {{palabras}} palabras (V2)
+{{orador}} · {{palabras}} palabras
 
 <!-- sesiones.puerta.cita.pie.solo_v3 -->
-{{orador}} · solo en la edición del explorador, v3 {{v3}}
+{{orador}}
 
 <!-- sesiones.puerta.cita.sic -->
 [sic]: así en el texto digitalizado.
@@ -352,13 +407,13 @@ Cómo citar un pasaje
 En el explorador: Filtros › Fecha y sesión, Desde y Hasta {{fecha}}.
 
 <!-- sesiones.puerta.fecha.recuento -->
-Salen {{n}} intervenciones en la edición del explorador (v3); con «Solo lo que se habla», {{habla}}.
+Salen {{n}} intervenciones en el explorador; con «Solo lo que se habla», {{habla}}.
 
 <!-- sesiones.puerta.biblioteca -->
 El debate preparado «{{nombre}}» está en Mis bibliotecas › Añadir bibliotecas del proyecto…
 
 <!-- sesiones.puerta.biblioteca.recuento -->
-Reúne {{n}} intervenciones de {{sesiones}} sesiones (v3).
+Reúne {{n}} intervenciones de {{sesiones}} sesiones.
 
 <!-- sesiones.puerta.biblioteca.donde -->
 Los debates preparados están en el explorador, en Mis bibliotecas › Añadir bibliotecas del proyecto…, con su nombre precedido de «Debate · ».
@@ -366,7 +421,7 @@ Los debates preparados están en el explorador, en Mis bibliotecas › Añadir b
 ### 2.4 Cómo citar un pasaje
 
 <!-- sesiones.puerta.citar.entrada -->
-Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila y su edición.
+Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila.
 
 <!-- sesiones.puerta.citar.sinpaginas -->
 {{diario}}, {{fecha}}. Luz y Taquígrafos, {{edicion}}, fila {{id}}.
@@ -399,7 +454,7 @@ Lo que se votó en voz alta
 ¿Qué se votó con nombre y apellido, y por cuánto?
 
 <!-- fig.F26.asiento -->
-{{voto.n}} votaciones escogidas · listas nominales en al menos {{voto.listas.sesiones}} de las {{sesiones.n}} sesiones (V2)
+{{voto.n}} votaciones escogidas · listas nominales en al menos {{voto.listas.sesiones}} de las {{sesiones.n}} sesiones
 
 <!-- fig.F26.leyenda.aria --> Cómo se lee cada fila
 
@@ -448,7 +503,7 @@ mitad más uno: {{mitad}}
 votación ordinaria, sin lista · {{si}} a {{no}} · {{fecha}}
 
 <!-- fig.F26.nota.b -->
-«{{literal}}» · V2 {{v2}} · v3 {{v3}}
+«{{literal}}»
 
 > [nota de diseño] `{{literal}}` es el texto del resultado tal como está en la fila, de `citas.json`
 > (`voto.<clave>`, en `docs/marcadores/citas.md`); no se reescribe. La fila entera es la marca: clic o segundo
@@ -462,15 +517,14 @@ votación ordinaria, sin lista · {{si}} a {{no}} · {{fecha}}
 <!-- fig.F26.tabla.si --> Sí
 <!-- fig.F26.tabla.no --> No
 <!-- fig.F26.tabla.mitad --> Mitad más uno
-<!-- fig.F26.tabla.V2 --> Fila V2
-<!-- fig.F26.tabla.v3 --> Fila v3
+<!-- fig.F26.tabla.V2 --> Fila
 <!-- fig.F26.tabla.literal --> Texto del resultado en el Diario
 <!-- fig.F26.tabla.ordinaria --> ordinaria
 
 <!-- fig.F26.minima.tabla --> La tabla, con el texto del resultado en el Diario
 
 <!-- fig.F26.salvedad -->
-Son {{voto.n|letra}} votaciones escogidas, no todas: el Diario imprime listas nominales en al menos {{voto.listas.sesiones}} sesiones. Las listas están en el texto de las filas, no en una columna: la base no trae el voto como variable. En la V2, las de estas seis van dentro de filas de la Presidencia.
+Son {{voto.n|letra}} votaciones escogidas, no todas: el Diario imprime listas nominales en al menos {{voto.listas.sesiones}} sesiones. Las listas están en el texto, no en una columna: la base no trae el voto como variable.
 
 <!-- fig.F26.alt -->
 Barras de {{voto.n|letra}} votaciones nominales y una ordinaria, de 1931 a 1936, con los votos a favor y en contra de cada una. Los valores están en la pestaña «Tabla».
@@ -479,7 +533,7 @@ Barras de {{voto.n|letra}} votaciones nominales y una ordinaria, de 1931 a 1936,
 Las votaciones de la figura, con sus totales y el texto del resultado.
 
 <!-- fig.F26.datos.listas -->
-Todas las sesiones con listas nominales: fecha, número, filas con lista y sus ids en la V2.
+Todas las sesiones con listas nominales: fecha, número, filas con lista y sus ids.
 
 <!-- fig.F26.leame.que_mide -->
 Los votos a favor y en contra de {{voto.n|letra}} votaciones nominales y una ordinaria, tal como los imprime el Diario de Sesiones.
@@ -491,7 +545,7 @@ No hay denominador común. Donde el Diario imprime el número de diputados y la 
 votacion, fecha, num_session, legislatura, si, no, total, mitad_mas_uno, nominal (sí/no), id_V2, id_v3, literal.
 
 <!-- fig.F26.leame.salvedad -->
-Selección editorial de {{voto.n|letra}} votaciones escogidas: el Diario imprime listas nominales en al menos {{voto.listas.sesiones}} sesiones. Los totales se leen en el texto de la fila; la base no trae el voto como columna. Los ids V2 y v3 no son intercambiables.
+Selección editorial de {{voto.n|letra}} votaciones escogidas: el Diario imprime listas nominales en al menos {{voto.listas.sesiones}} sesiones. Los totales se leen en el texto de la fila; la base no trae el voto como columna.
 
 ---
 
@@ -526,8 +580,6 @@ Las filas de la sesión: quien habla, encima; la Presidencia, debajo
 
 <!-- fig.F30.rotulo.truncada --> final repetido
 
-<!-- fig.F30.rotulo.estatuto --> Presidencia en la V2: el discurso de Azaña
-
 <!-- fig.F30.cifras.aria --> La sesión en cifras
 
 <!-- fig.F30.panel -->
@@ -547,9 +599,6 @@ Sesión núm. {{num}}
 <!-- fig.F30.nota -->
 orden {{orden}} · {{palabras}} palabras
 
-<!-- fig.F30.nota.b -->
-V2 {{fila}}
-
 <!-- fig.F30.nota.truncada -->
 Final repetido del acta: «Pido la palabra.»
 
@@ -557,14 +606,14 @@ Final repetido del acta: «Pido la palabra.»
 A nombre de «El Sr. PRESIDENTE»: dentro va el discurso de Azaña
 
 <!-- fig.F30.tabla.caption --> Las filas de la sesión, en su orden
-<!-- fig.F30.tabla.orden --> Orden (V2)
+<!-- fig.F30.tabla.orden --> Orden
 <!-- fig.F30.tabla.orador --> Quién habla
 <!-- fig.F30.tabla.palabras --> Palabras
-<!-- fig.F30.tabla.V2 --> Fila V2
+<!-- fig.F30.tabla.V2 --> Fila
 <!-- fig.F30.tabla.rotulo --> Sin diputado: rótulo del Diario
 
 <!-- fig.F30.salvedad -->
-Una fila cada vez que el etiquetado reconoce la fórmula impresa de un orador. En la V2, algunas filas contienen documentos o turnos de otros; el orden cambia entre ediciones.
+Una fila cada vez que el etiquetado reconoce la fórmula impresa de un orador.
 
 <!-- fig.F30.alt -->
 Barras de las {{n}} filas de la sesión del {{fecha}}, en su orden, con la altura según sus palabras. Los valores están en la pestaña «Tabla».
@@ -573,16 +622,16 @@ Barras de las {{n}} filas de la sesión del {{fecha}}, en su orden, con la altur
 Esta figura no tiene descarga propia: serían las filas de una sesión, no datos agregados.
 
 <!-- fig.F30.datos.explorador -->
-La sesión entera, con su texto, está en el explorador: Filtros › Fecha y sesión, con la misma fecha en Desde y en Hasta. Desde esa lista, Exportar la descarga con su cita; sus ids son los de la edición del explorador (v3).
+La sesión entera, con su texto, está en el explorador: Filtros › Fecha y sesión, con la misma fecha en Desde y en Hasta. Desde esa lista, Exportar la descarga con su cita; sus ids son los del explorador.
 
 <!-- fig.F30.leame.que_mide -->
-Las palabras de cada fila de una sesión, en el orden del Diario, según la edición depositada (V2).
+Las palabras de cada fila de una sesión, en el orden del Diario, según la base.
 
 <!-- fig.F30.leame.denominador -->
-Las filas V2 de la sesión. El papel de la Presidencia sale del mismo analizador de rótulos que usa el explorador.
+Las filas de la sesión. El papel de la Presidencia sale del mismo analizador de rótulos que usa el explorador.
 
 <!-- fig.F30.leame.salvedad -->
-Orden y id son los de la V2; en el explorador (v3) cambian. Una fila larga puede llevar dentro un documento leído o la réplica de otro orador.
+Orden e id de cada fila, tal como están en la base.
 
 > [nota de diseño] La tabla lleva cuatro columnas (plan, anexo V3): orden, quién habla, palabras y fila V2. Quién
 > habla: el nombre con su grafía; si la fila es de la Presidencia, «Presidencia · <apellido>»; si no tiene diputado,

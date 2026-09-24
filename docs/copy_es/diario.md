@@ -88,7 +88,7 @@ Una acotación: lo que el taquígrafo oye en la sala.
 Las dos filas que salen de ese trozo de papel
 
 <!-- diario.que_es.facsimil.filas.nota -->
-Mismo texto, letra a letra, en la edición depositada y en la del explorador. Método cuenta qué trae cada columna.
+Mismo texto, letra a letra, en la base y en la del explorador. Método cuenta qué trae cada columna.
 
 <!-- diario.que_es.facsimil.col.id -->
 Fila
@@ -118,7 +118,7 @@ Si alguien interrumpe, el taquígrafo lo anota entre paréntesis dentro del turn
 «(El Sr. Guerra del Rio: Los cavernicolas hablan de pastel.)»
 
 <!-- diario.que_es.cita.interrupcion.pie -->
-En la fila de Victoria Kent, 1 de octubre de 1931 · V2 {{cita.diario.kent.interrupcion.V2|id}} · v3 {{cita.diario.kent.interrupcion.v3|id}}
+En la fila de Victoria Kent, 1 de octubre de 1931
 
 <!-- diario.que_es.interrupcion.2 -->
 Por eso una fila puede llevar dentro la voz de otros.
@@ -130,17 +130,17 @@ En las votaciones nominales, el Diario imprime la lista de quién dijo sí y qui
 Cada sesión lleva su sumario, y el Diario imprime también documentos leídos o adjuntos: proposiciones, dictámenes, cartas.
 
 <!-- diario.que_es.v3 -->
-La edición del explorador pone ese material en filas propias: {{v3.sumarios}} sumarios y {{v3.comentarios}} filas de comentarios del Diario (v3).
+El explorador pone ese material en filas propias: {{v3.sumarios}} sumarios y {{v3.comentarios}} filas de comentarios del Diario.
 
 <!-- diario.que_es.v2 -->
-La edición depositada no tiene filas de sumario; el resto de ese material va dentro de las filas de los oradores, a menudo de la Presidencia.
+La base no tiene filas de sumario; el resto de ese material va dentro de las filas de los oradores, a menudo de la Presidencia.
 
 > [nota de diseño] «Las votaciones nominales» enlaza a `/{lang}/cortes/sesiones/#votaciones` ([Ver las votaciones],
 > `comun.boton.ver_votaciones`). Ejemplo al margen, en mono: «V2 5453 · la lista del 1 de octubre de 1931, dentro de
 > una fila de la Presidencia» (`diario.que_es.ejemplo`).
 
 <!-- diario.que_es.ejemplo -->
-Ejemplo: la lista del 1 de octubre de 1931 va, en la V2, dentro de una fila de la Presidencia (V2 {{voto.161-121.V2|id}}). En la v3 tiene fila propia, de comentarios (v3 {{voto.161-121.v3|id}}).
+Ejemplo: la lista de la votación del 1 de octubre de 1931 tiene fila propia, de comentarios del Diario.
 
 <!-- ↺ comun.fija.ocr -->
 El texto sale del reconocimiento óptico y no está corregido a mano.
@@ -210,7 +210,7 @@ El 8 de junio de 1934 se discute un suplicatorio. La Presidencia recuerda la reg
 «Con arreglo al Reglamento, los suplicatorios han de tratarse en sesión secreta;»
 
 <!-- diario.luz.cita.secreta.pie -->
-La Presidencia (Alba) · V2 {{cita.diario.alba.secreta.V2|id}} · v3 {{cita.diario.alba.secreta.v3|id}}
+La Presidencia (Alba)
 
 <!-- diario.luz.escena.2 -->
 Una voz interrumpe con {{cita.diario.grito.palabras|letra}} palabras, que son una fila entera:
@@ -219,7 +219,7 @@ Una voz interrumpe con {{cita.diario.grito.palabras|letra}} palabras, que son un
 «Luz y taquigrafos.»
 
 <!-- diario.luz.cita.grito.pie -->
-El Diario la atribuye a «El Sr. JIMÉNEZ FERNÁNDEZ» · V2 {{cita.diario.grito.V2|id}} · v3 {{cita.diario.grito.v3|id}}. Sin tilde, como en la fila: así salió del reconocimiento óptico.
+El Diario la atribuye a «El Sr. JIMÉNEZ FERNÁNDEZ». Sin tilde, como en la fila: así salió del reconocimiento óptico.
 
 <!-- diario.luz.escena.3 -->
 La base identifica a ese orador con el diputado de la CEDA por Badajoz Manuel Giménez Fernández. La Presidencia contesta:
@@ -228,7 +228,7 @@ La base identifica a ese orador con el diputado de la CEDA por Badajoz Manuel Gi
 «El Reglamento, señores Diputados—no he visto quién ha interrumpido—, ampara principalmente a las minorías…»
 
 <!-- diario.luz.cita.reglamento.pie -->
-La Presidencia (Alba) · V2 {{cita.diario.alba.reglamento.V2|id}} · v3 {{cita.diario.alba.reglamento.v3|id}}
+La Presidencia (Alba)
 
 <!-- diario.luz.escena.4 -->
 Prieto responde por los socialistas:
@@ -237,7 +237,7 @@ Prieto responde por los socialistas:
 «La minoría socialista no tiene inconveniente en que esto se discuta públicamente.»
 
 <!-- diario.luz.cita.prieto.pie -->
-Indalecio Prieto · V2 {{cita.diario.prieto.publica.V2|id}} · v3 {{cita.diario.prieto.publica.v3|id}}
+Indalecio Prieto
 
 > [nota de diseño] La escena va entera, en cuatro filas seguidas del Diario (V2 71329–71332 · v3 80305–80308), con un
 > filete fino entre ellas. El nombre de `diario.luz.escena.3` sale de la tabla de grafías (`rep_id` 456; D-22, adoptada
@@ -252,7 +252,7 @@ En agosto de 1933, Royo Villanova la había atribuido a Maura:
 «…aquí se liquida todo con luz y taquigrafos, como decía Maura…»
 
 <!-- diario.luz.cita.royo.pie -->
-Antonio Royo Villanova, 3 de agosto de 1933 · V2 {{cita.diario.royo.V2|id}} · v3 {{cita.diario.royo.v3|id}}
+Antonio Royo Villanova, 3 de agosto de 1933
 
 <!-- diario.luz.royo.salvedad -->
 La atribución es suya. De dónde viene la fórmula, este sitio no lo afirma.
@@ -264,7 +264,7 @@ La última vez es del 8 de julio de 1936, y la contestan desde los escaños:
 «Hay luz y taquigrafos, los taquigrafos recogeran eso. (El señor Comín: Pobres taquigrafos.)»
 
 <!-- diario.luz.cita.maurin.pie -->
-Joaquín Maurín · V2 {{cita.diario.maurin.V2|id}} · v3 {{cita.diario.maurin.v3|id}}
+Joaquín Maurín
 
 <!-- diario.luz.balbontin -->
 Nadie la repite tanto como José Antonio Balbontín: {{f27.balbontin|letra}} de las {{f27.n|letra}} filas son suyas.
@@ -274,6 +274,107 @@ Leídas una a una, en las {{f27.n|letra}} la fórmula pide lo mismo: que algo se
 
 > [nota de diseño] Aquí va F27 (§ 7 de este archivo). Las citas van sin tildes en «taquigrafos», como en el texto
 > digitalizado; el título y la prosa las llevan.
+
+---
+
+## 3 bis. El aplausómetro (juego)
+
+> [nota de diseño] Juego de la petición del investigador (24-09-2026): `components/diario/Aplausometro.astro`. Las
+> veinte frases y sus acotaciones salen de `src/data/aplausos.json` (exportador/modulos/aplausos.py), letra a letra de
+> su fila; cada partida saca dos de cada acotación. Sin cuentas de acotaciones por clase (D-11). Sin JS, una tabla.
+
+<!-- diario.indice.aplausos -->
+El aplausómetro
+
+<!-- diario.aplausos.titulo -->
+El aplausómetro
+
+<!-- diario.aplausos.entrada -->
+Entre paréntesis, el taquígrafo anota cómo recibe la Cámara lo que oye. Estas frases son reales, cada una con su fila: adivine qué anotó.
+
+<!-- diario.aplausos.juego.pregunta -->
+¿Qué anotó el taquígrafo?
+
+<!-- diario.aplausos.juego.op.aplausos -->
+[Aplausos]
+
+<!-- diario.aplausos.juego.op.muy_bien -->
+[Muy bien]
+
+<!-- diario.aplausos.juego.op.risas -->
+[Risas]
+
+<!-- diario.aplausos.juego.op.rumores -->
+[Rumores]
+
+<!-- diario.aplausos.juego.op.protestas -->
+[Protestas]
+
+<!-- diario.aplausos.juego.cuenta -->
+Frase {{i}} de {{n}} · Aciertos: {{a}}
+
+<!-- diario.aplausos.juego.quien -->
+{{orador}} ({{partido}}), {{fecha}}
+
+<!-- diario.aplausos.juego.exacto -->
+¡Exacto!
+
+<!-- diario.aplausos.juego.cerca -->
+Casi: el sentido era ese.
+
+<!-- diario.aplausos.juego.fallo -->
+No.
+
+<!-- diario.aplausos.juego.anoto -->
+El taquígrafo anotó:
+
+<!-- diario.aplausos.juego.fila -->
+Fila {{id}} de la base
+
+<!-- diario.aplausos.juego.siguiente -->
+[Siguiente]
+
+<!-- diario.aplausos.juego.ver -->
+[Ver el resultado]
+
+<!-- diario.aplausos.juego.resumen -->
+Ha acertado {{n}} de {{total}}.
+
+<!-- diario.aplausos.juego.dedica -->
+La Cámara le dedica:
+
+<!-- diario.aplausos.juego.veredicto.0 -->
+(Protestas.)
+
+<!-- diario.aplausos.juego.veredicto.1 -->
+(Rumores.)
+
+<!-- diario.aplausos.juego.veredicto.2 -->
+(Muy bien.)
+
+<!-- diario.aplausos.juego.veredicto.3 -->
+(Aplausos.)
+
+<!-- diario.aplausos.juego.veredicto.4 -->
+(Grandes y prolongados aplausos.)
+
+<!-- diario.aplausos.juego.otra -->
+[Otra sesión]
+
+<!-- diario.aplausos.juego.tabla -->
+Las frases del juego y lo que anotó el taquígrafo
+
+<!-- diario.aplausos.juego.tabla.col.frase -->
+Frase
+
+<!-- diario.aplausos.juego.tabla.col.quien -->
+Quién y cuándo
+
+<!-- diario.aplausos.juego.tabla.col.acotacion -->
+Acotación
+
+<!-- diario.aplausos.juego.leccion -->
+Ninguna columna de la base guarda estas reacciones: están en el texto, entre paréntesis, tal como las anotó el taquígrafo.
 
 ---
 
@@ -289,7 +390,7 @@ Un diputado lo recuerda en 1934, al hablar del Reglamento de la Cámara:
 «…ese Reglamento determina que el Presidente puede incluso mandar callar a un Diputado, puede ordenar que no consten en el Diario de Sesiones sus palabras…»
 
 <!-- diario.calla.cita.sainz.pie -->
-Pedro Sainz Rodríguez, 5 de diciembre de 1934 · V2 {{cita.diario.sainz.V2|id}} · v3 {{cita.diario.sainz.v3|id}}
+Pedro Sainz Rodríguez, 5 de diciembre de 1934
 
 <!-- diario.calla.formula -->
 «No constará» o «no constarán», seguidas de «el Diario» en la misma frase, aparecen en {{f28.formula.filas|letra}} filas de la base.
@@ -307,7 +408,7 @@ El 15 de abril de 1936, tras una protesta de Calvo Sotelo, la Presidencia da la 
 «Eso no basta.»
 
 <!-- diario.calla.cita.abril.pie -->
-Varios diputados · V2 {{cita.diario.eso_no_basta.V2|id}}, dentro de la fila de la Presidencia · v3 {{cita.diario.eso_no_basta.v3|id}}
+Varios diputados
 
 <!-- diario.calla.peticion -->
 Otra es la petición de un diputado: Calvo Sotelo, el 3 de junio de 1936, pide que no consten unas palabras contra las «hermanas de la Caridad».
@@ -328,7 +429,7 @@ No todos querían ese silencio. El 7 de febrero de 1933, Besteiro ordena que una
 «Por mí, que consten.»
 
 <!-- diario.calla.cita.prieto.pie -->
-Indalecio Prieto · V2 {{cita.diario.prieto.consten.V2|id}} · v3 {{cita.diario.prieto.consten.v3|id}}
+Indalecio Prieto
 
 > [nota de diseño] Aquí va F28 (§ 8 de este archivo). «La antesala» enlaza a `/{lang}/cortes/sesiones/antesala-1936/` (sin corchetes: no es un rótulo único).
 
@@ -339,7 +440,7 @@ No todo lo que se quita deja rastro. En febrero de 1935, un diputado protesta po
 «…eso se ha tachado en el Diario de Sesiones.»
 
 <!-- diario.calla.cita.tachado.pie -->
-Dionisio Cano López, 19 de febrero de 1935 · V2 {{cita.diario.cano.tachado.V2|id}} · v3 {{cita.diario.cano.tachado.v3|id}}
+Dionisio Cano López, 19 de febrero de 1935
 
 <!-- diario.calla.tachado.2 -->
 Es su queja; el Diario no permite comprobarla.
@@ -354,7 +455,7 @@ El 6 de mayo de 1936 pasan las dos cosas en un mismo pasaje:
 «(Un Sr. Diputado pronuncia palabras que no se perciben)» … «Un Sr. Diputado pronuncia palabras que producen protestas de las minorías y que no constan por orden del Sr. Presidente.»
 
 <!-- diario.calla.cita.no_oye.pie -->
-Acotaciones en la fila de Calvo Sotelo · V2 {{cita.diario.perciben.y.constan.V2|id}} · v3 {{cita.diario.perciben.y.constan.v3|id}}
+Acotaciones en la fila de Calvo Sotelo
 
 <!-- diario.calla.ausencias -->
 Lo que el Diario no recoge no existe para ninguna cuenta de la base.
@@ -390,7 +491,7 @@ El volumen de la guerra se abre con una nota:
 «EN ESTE VOLUMEN FIGURAN LOS EXTRACTOS DE LAS SESIONES CELEBRADAS POR LAS CORTES DE 1.936, CON POSTERIORIDAD AL 18 DE JULIO.»
 
 <!-- diario.habla.cita.volumen.pie -->
-Nota del volumen, en el sumario del 1 de octubre de 1936 · solo en la edición del explorador, v3 {{cita.diario.nota.volumen.v3|id}}
+Nota del volumen, en el sumario del 1 de octubre de 1936
 
 <!-- diario.habla.figueras -->
 Sigue diciendo que de la sesión de Figueras «NO EXISTE DATO ALGUNO». Otra nota, al final del extracto de esa sesión, lo corrige:
@@ -399,7 +500,7 @@ Sigue diciendo que de la sesión de Figueras «NO EXISTE DATO ALGUNO». Otra not
 «Después de prolijas y constantes gestiones, se ha podido obtener fotocopia del ejemplar del Extracto de dicha sesión…»
 
 <!-- diario.habla.cita.fotocopia.pie -->
-Nota final del extracto del 1 de febrero de 1939 · V2 {{cita.figueres.fotocopia.V2|id}} · v3 {{cita.figueres.fotocopia.v3|id}}
+Nota final del extracto del 1 de febrero de 1939
 
 <!-- diario.habla.liberacion -->
 La primera nota habla además de la «LIBERACION DE BARCELONA» del 26 de enero de 1939. Quién la escribió, y cuándo, está por cotejar en el volumen impreso.
@@ -408,7 +509,7 @@ La primera nota habla además de la «LIBERACION DE BARCELONA» del 26 de enero 
 La carátula del volumen de México avisa de lo que falta: de las reuniones de la Diputación Permanente allí, «no se dispone de los textos ni en forma de fotocopia».
 
 <!-- diario.habla.mexico.pie -->
-Carátula del volumen de México · solo en la edición del explorador, v3 {{cita.mexico.permanente.v3|id}}
+Carátula del volumen de México
 
 <!-- diario.habla.censura -->
 Los diputados también defendían el Diario fuera de la Cámara. En febrero de 1935, Honorio Maura pide por escrito al ministro de la Gobernación que la censura cumpla un acuerdo de las Cortes:
@@ -417,7 +518,7 @@ Los diputados también defendían el Diario fuera de la Cámara. En febrero de 1
 «…que los textos integros tomados del Diario de Sesiones no sean tachados ni mutilados por aquélla…»
 
 <!-- diario.habla.cita.censura.pie -->
-Ruego escrito de Honorio Maura, 20 de febrero de 1935 · V2 {{cita.diario.maura.censura.V2|id}}, dentro de una fila de la Presidencia · v3 {{cita.diario.maura.censura.v3|id}}
+Ruego escrito de Honorio Maura, 20 de febrero de 1935
 
 <!-- diario.habla.registro -->
 Los diputados también leen el Diario y lo citan: el «Diario de Sesiones» aparece en {{fuente.cita_diario.filas}} filas de la base.
@@ -429,7 +530,7 @@ Campoamor, el 1 de octubre de 1931, responde a un discurso que no oyó:
 «En ausencia mía y leyendo el Diario de Sesiones, pude ver en él que un doctor hablaba aquí de que no había ecuación posible…»
 
 <!-- diario.habla.cita.campoamor.pie -->
-Clara Campoamor · V2 {{cita.diario.campoamor.lee.V2|id}} · v3 {{cita.diario.campoamor.lee.v3|id}}
+Clara Campoamor
 
 > [nota de diseño] Las dos notas del volumen se pintan una frente a otra, en mayúsculas como en el original. La
 > puerta «Figueres» cuenta la sesión. `diario.habla.registro` cuenta filas V2 con «diario de sesiones» sobre el texto sin
@@ -443,27 +544,21 @@ Clara Campoamor · V2 {{cita.diario.campoamor.lee.V2|id}} · v3 {{cita.diario.ca
 Cómo citar un pasaje
 
 <!-- diario.citar.entrada -->
-Cite el Diario, no la base. Dé la serie, el número, la fecha y las páginas. Si ha trabajado con la base, añada el id de la fila y su edición.
+Cite el Diario, no la base. Dé la serie, el número, la fecha y las páginas. Si ha trabajado con la base, añada el id de la fila.
 
 <!-- diario.citar.paginas -->
 Número y páginas salen de los metadatos del proyecto. El explorador no los muestra, y después de julio de 1936 las páginas están sin verificar.
-
-<!-- diario.citar.explorador -->
-Si copia un pasaje desde el explorador, anote que la fila es de la v3: la cita que el explorador añade al copiar no dice la edición.
 
 <!-- diario.citar.ejemplo -->
 Ejemplo, con la fila de Campoamor:
 
 <!-- diario.citar.cita -->
-Diario de Sesiones de las Cortes Constituyentes de la República Española, núm. {{sesion.1931-10-01-48.diario_num|id}}, 1 de octubre de 1931, pp. {{sesion.1931-10-01-48.paginas}} (metadatos del proyecto). Luz y Taquígrafos, edición depositada (V2), fila {{cita.sufragio.campoamor.ciudadana.V2|id}}.
+Diario de Sesiones de las Cortes Constituyentes de la República Española, núm. {{sesion.1931-10-01-48.diario_num|id}}, 1 de octubre de 1931, pp. {{sesion.1931-10-01-48.paginas}} (metadatos del proyecto). Luz y Taquígrafos, fila {{cita.sufragio.campoamor.ciudadana.V2|id}}.
 
 > [nota de diseño] `diario.citar.cita` se pinta como cita copiable. Es `comun.cita.pasaje` rellenado con: diario = «Diario de Sesiones de
 > las Cortes Constituyentes de la República Española»; numero = `sesion.1931-10-01-48.diario_num`; fecha = «1 de
 > octubre de 1931»; paginas = `sesion.1931-10-01-48.paginas`; edicion = «edición depositada (V2)»; id =
 > `cita.sufragio.campoamor.ciudadana.V2`. Con [Copiar la cita] (`comun.boton.cita`). Debajo, ↺ 4 y ↺ 1.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.
@@ -491,9 +586,6 @@ Una marca por fila del Diario en que aparece «luz y taquígrafos», de 1931 a 1
 
 <!-- fig.F27.nota -->
 {{fecha}} · {{orador}}
-
-<!-- fig.F27.nota.b -->
-V2 {{v2}} · v3 {{v3}}
 
 <!-- fig.F27.orador.atribuido -->
 «El Sr. JIMÉNEZ FERNÁNDEZ», según el Diario
@@ -523,28 +615,28 @@ Quién, según la base
 Lo que dice
 
 <!-- fig.F27.tabla.col.filas -->
-Filas V2 · v3
+Fila
 
 <!-- fig.F27.cita.1 --> «…fechorias, que no suelen hacerse con luz y taquigrafos…»
-<!-- fig.F27.cita.1.pie --> 20-VII-1931 · Gabriel Franco · V2 {{cita.f27.1.V2|id}} · v3 {{cita.f27.1.v3|id}}
+<!-- fig.F27.cita.1.pie --> 20-VII-1931 · Gabriel Franco
 <!-- fig.F27.cita.2 --> «…se discutiese ampliamente con luz y taquigrafos y en presencia de todos los Sres. Diputados de las demás minorías…»
-<!-- fig.F27.cita.2.pie --> 9-IV-1932 · José Antonio Balbontín · V2 {{cita.f27.2.V2|id}} · v3 {{cita.f27.2.v3|id}}
+<!-- fig.F27.cita.2.pie --> 9-IV-1932 · José Antonio Balbontín
 <!-- fig.F27.cita.3 --> «…la máxima garantía es la oposición libre, con luz y taquigrafos…»
-<!-- fig.F27.cita.3.pie --> 3-V-1932 · José Antonio Balbontín · V2 {{cita.f27.3.V2|id}} · v3 {{cita.f27.3.v3|id}}
+<!-- fig.F27.cita.3.pie --> 3-V-1932 · José Antonio Balbontín
 <!-- fig.F27.cita.4 --> «…yo aquí he levantado mi voz, con luz y taquigrafos, contra los pistoleros…»
-<!-- fig.F27.cita.4.pie --> 19-VII-1933 · José Antonio Balbontín · V2 {{cita.f27.4.V2|id}} · v3 {{cita.f27.4.v3|id}}
+<!-- fig.F27.cita.4.pie --> 19-VII-1933 · José Antonio Balbontín
 <!-- fig.F27.cita.5 --> «…aquí se liquida todo con luz y taquigrafos, como decía Maura…»
-<!-- fig.F27.cita.5.pie --> 3-VIII-1933 · Antonio Royo Villanova · V2 {{cita.f27.5.V2|id}} · v3 {{cita.f27.5.v3|id}}
+<!-- fig.F27.cita.5.pie --> 3-VIII-1933 · Antonio Royo Villanova
 <!-- fig.F27.cita.6 --> «Luz y taquigrafos.»
-<!-- fig.F27.cita.6.pie --> 8-VI-1934 · el Diario lo atribuye a «El Sr. JIMÉNEZ FERNÁNDEZ» · V2 {{cita.f27.6.V2|id}} · v3 {{cita.f27.6.v3|id}}
+<!-- fig.F27.cita.6.pie --> 8-VI-1934 · el Diario lo atribuye a «El Sr. JIMÉNEZ FERNÁNDEZ»
 <!-- fig.F27.cita.7 --> «…no hay ningún reparo, ningún obstaculo ni ninguna dificultad para que se examine el presupuesto con luz y taquigrafos…»
-<!-- fig.F27.cita.7.pie --> 13-XI-1934 · Abilio Calderón · V2 {{cita.f27.7.V2|id}} · v3 {{cita.f27.7.v3|id}}
+<!-- fig.F27.cita.7.pie --> 13-XI-1934 · Abilio Calderón
 <!-- fig.F27.cita.8 --> «…que realiza el Parlamento suele decir que hacen falta “luz y taquigrafos”…»
-<!-- fig.F27.cita.8.pie --> 29-I-1935 · Santiago Fuentes Pila · V2 {{cita.f27.8.V2|id}} · v3 {{cita.f27.8.v3|id}}
+<!-- fig.F27.cita.8.pie --> 29-I-1935 · Santiago Fuentes Pila
 <!-- fig.F27.cita.9 --> «El que está agazapado en su escaño, con luz y taquigrafos, naturalmente que no quiere valerse de nocturnidad ni de obscuridad de ninguna clase.»
-<!-- fig.F27.cita.9.pie --> 22-XI-1935 · José Calvo Sotelo · V2 {{cita.f27.9.V2|id}} · v3 {{cita.f27.9.v3|id}}
+<!-- fig.F27.cita.9.pie --> 22-XI-1935 · José Calvo Sotelo
 <!-- fig.F27.cita.10 --> «Hay luz y taquigrafos, los taquigrafos recogeran eso.»
-<!-- fig.F27.cita.10.pie --> 8-VII-1936 · Joaquín Maurín · V2 {{cita.f27.10.V2|id}} · v3 {{cita.f27.10.v3|id}}
+<!-- fig.F27.cita.10.pie --> 8-VII-1936 · Joaquín Maurín
 
 <!-- fig.F27.salvedad -->
 Búsqueda de la expresión sobre el texto sin acentos; las variantes mal leídas por el reconocimiento óptico no se cuentan. El origen de la fórmula no se afirma aquí.
@@ -556,7 +648,7 @@ Línea de tiempo de 1931 a 1936 con {{f27.n|letra}} marcas, una por cada fila en
 Las filas de la base en que aparece la expresión «luz y taquígrafos», con su fecha, su orador según la base y el fragmento.
 
 <!-- fig.F27.leame.denominador -->
-No hay denominador: es una lista. Las mismas filas en las dos ediciones, con sus dos ids.
+No hay denominador: es una lista de filas.
 
 <!-- fig.F27.leame.columnas -->
 fecha, num_session, orador_rotulo, rep_id, rep_name, party, fragmento, id_V2, id_v3.
@@ -602,9 +694,6 @@ En contorno, un diputado que lo pide.
 <!-- fig.F28.nota.peticion -->
 {{fecha}} · lo pide {{orador}}
 
-<!-- fig.F28.nota.b -->
-V2 {{v2}} · v3 {{v3}}
-
 <!-- fig.F28.lupa -->
 Del 16 de marzo al 10 de julio de 1936, día a día
 
@@ -627,7 +716,7 @@ Preside · en la fila de
 Lo que dice el Diario
 
 <!-- fig.F28.tabla.col.filas -->
-Filas V2 · v3
+Fila
 
 <!-- fig.F28.tipo.orden -->
 Orden de la Presidencia
@@ -642,35 +731,35 @@ Petición de un diputado
 La fórmula en otro sentido; no se dibuja
 
 <!-- fig.F28.cita.orden.1 --> «Que no constaran en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.1.pie --> 10-XII-1931 · Besteiro · V2 {{cita.f28.orden.1.V2|id}} · v3 {{cita.f28.orden.1.v3|id}}
+<!-- fig.F28.cita.orden.1.pie --> 10-XII-1931 · Besteiro
 <!-- fig.F28.cita.orden.2 --> «Esas palabras, que no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.2.pie --> 7-II-1933 · Besteiro · V2 {{cita.f28.orden.2.V2|id}} · v3 {{cita.f28.orden.2.v3|id}}
+<!-- fig.F28.cita.orden.2.pie --> 7-II-1933 · Besteiro
 <!-- fig.F28.cita.orden.3 --> «…le aseguro que las palabras que ha pronunciado no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.3.pie --> 9-II-1933 · Besteiro · V2 {{cita.f28.orden.3.V2|id}} · v3 {{cita.f28.orden.3.v3|id}}
+<!-- fig.F28.cita.orden.3.pie --> 9-II-1933 · Besteiro
 <!-- fig.F28.cita.orden.4 --> «Esas palabras no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.4.pie --> 15-IV-1936 · Jiménez de Asúa · V2 {{cita.f28.orden.4.V2|id}} · v3 {{cita.f28.orden.4.v3|id}}
+<!-- fig.F28.cita.orden.4.pie --> 15-IV-1936 · Jiménez de Asúa
 <!-- fig.F28.cita.orden.5 --> «Ya se ha dicho que no constarán esas palabras en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.5.pie --> 15-IV-1936 · Jiménez de Asúa · V2 {{cita.f28.orden.5.V2|id}} · v3 {{cita.f28.orden.5.v3|id}}
+<!-- fig.F28.cita.orden.5.pie --> 15-IV-1936 · Jiménez de Asúa
 <!-- fig.F28.cita.orden.6 --> «Ya ha advertido la Presidencia que no constarán en el Diario de Sesiones esas palabras.»
-<!-- fig.F28.cita.orden.6.pie --> 15-IV-1936 · Jiménez de Asúa · V2 {{cita.f28.orden.6.V2|id}} · v3 {{cita.f28.orden.6.v3|id}}
+<!-- fig.F28.cita.orden.6.pie --> 15-IV-1936 · Jiménez de Asúa
 <!-- fig.F28.cita.orden.7 --> «No constará en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.7.pie --> 6-V-1936 · Jiménez de Asúa · V2 {{cita.f28.orden.7.V2|id}} · v3 {{cita.f28.orden.7.v3|id}}
+<!-- fig.F28.cita.orden.7.pie --> 6-V-1936 · Jiménez de Asúa
 <!-- fig.F28.cita.orden.8 --> «Las palabras de S. S., en lo que a eso respecta, no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.orden.8.pie --> 1-VII-1936 · Martínez Barrio · V2 {{cita.f28.orden.8.V2|id}} · v3 {{cita.f28.orden.8.v3|id}}
+<!-- fig.F28.cita.orden.8.pie --> 1-VII-1936 · Martínez Barrio
 <!-- fig.F28.cita.acotacion.1 --> «(El Sr. Muñoz de Zafra pronuncia palabras que no se consignan por orden del Sr. Presidente…»
-<!-- fig.F28.cita.acotacion.1.pie --> 6-V-1936 · en la fila de Jesús Pabón · V2 {{cita.f28.acotacion.1.V2|id}} · v3 {{cita.f28.acotacion.1.v3|id}}
+<!-- fig.F28.cita.acotacion.1.pie --> 6-V-1936 · en la fila de Jesús Pabón
 <!-- fig.F28.cita.acotacion.2 --> «Un Sr. Diputado pronuncia palabras que producen protestas de las minorías y que no constan por orden del Sr. Presidente.»
-<!-- fig.F28.cita.acotacion.2.pie --> 6-V-1936 · en la fila de Calvo Sotelo · V2 {{cita.f28.acotacion.2.V2|id}} · v3 {{cita.f28.acotacion.2.v3|id}}
+<!-- fig.F28.cita.acotacion.2.pie --> 6-V-1936 · en la fila de Calvo Sotelo
 <!-- fig.F28.cita.acotacion.3 --> «(El orador pronuncia palabras que no constan por orden del Sr. Presidente…»
-<!-- fig.F28.cita.acotacion.3.pie --> 16-VI-1936 · en la fila de Calvo Sotelo · V2 {{cita.f28.acotacion.3.V2|id}} · v3 {{cita.f28.acotacion.3.v3|id}}
+<!-- fig.F28.cita.acotacion.3.pie --> 16-VI-1936 · en la fila de Calvo Sotelo
 <!-- fig.F28.cita.acotacion.4 --> «(El Sr. Carrillo replica con palabras que levantan grandes protestas y que no se consignan por orden de la Presidencia.)»
-<!-- fig.F28.cita.acotacion.4.pie --> 16-VI-1936 · en la fila de Fernando Suárez de Tangil · V2 {{cita.f28.acotacion.4.V2|id}} · v3 {{cita.f28.acotacion.4.v3|id}}
+<!-- fig.F28.cita.acotacion.4.pie --> 16-VI-1936 · en la fila de Fernando Suárez de Tangil
 <!-- fig.F28.cita.acotacion.5 --> «(El final de la frase no se consigna por orden del Sr. Presidente.—Aplausos.—Rumores.)»
-<!-- fig.F28.cita.acotacion.5.pie --> 1-VII-1936 · en la fila de Ángel Galarza · V2 {{cita.f28.acotacion.5.V2|id}} · v3 {{cita.f28.acotacion.5.v3|id}}
+<!-- fig.F28.cita.acotacion.5.pie --> 1-VII-1936 · en la fila de Ángel Galarza
 <!-- fig.F28.cita.peticion --> «…ciertas palabras insultantes e incalificables con que se ha injuriado a las hermanas de la Caridad no constarán en el Diario de Sesiones.»
-<!-- fig.F28.cita.peticion.pie --> 3-VI-1936 · José Calvo Sotelo · V2 {{cita.f28.peticion.V2|id}} · v3 {{cita.f28.peticion.v3|id}}
+<!-- fig.F28.cita.peticion.pie --> 3-VI-1936 · José Calvo Sotelo
 <!-- fig.F28.cita.ajena --> «…por parecerne injusto que no constara en el Diario de Sesión…»
-<!-- fig.F28.cita.ajena.pie --> 21-II-1934 · Luis Rodríguez de Viguri · la fórmula en otro sentido; no se dibuja · V2 {{cita.f28.ajena.V2|id}} · v3 {{cita.f28.ajena.v3|id}}
+<!-- fig.F28.cita.ajena.pie --> 21-II-1934 · Luis Rodríguez de Viguri · la fórmula en otro sentido; no se dibuja
 
 <!-- fig.F28.salvedad -->
 Al menos: las variantes del reconocimiento óptico no se detectan. La búsqueda exacta de la frase en plural devuelve {{f28.fts_plural|letra}} filas, que no son las mismas {{f28.ordenes|letra}}.

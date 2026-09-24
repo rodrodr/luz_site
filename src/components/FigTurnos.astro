@@ -13,10 +13,9 @@
  * Sin CSV por fila (plan, anexo V10; D-23): la pestaña Datos remite a la exportación del explorador.
  */
 import FiguraMarco from './FiguraMarco.astro';
-import Sello from './Sello.astro';
 import { t, plano, plantillaNota, existe } from '../lib/i18n';
 import { dato } from '../lib/datos';
-import { fmt, cifra, marcaPendiente } from '../lib/cifras';
+import { fmt, marcaPendiente } from '../lib/cifras';
 import { huella } from '../lib/cita';
 import { fechaLarga } from '../lib/formato';
 import { escala, barras, yArriba, marcasArriba, destacadas, ALTO, type SesionTurnos } from '../viz/geom/turnos';
@@ -39,11 +38,9 @@ const nota = (k: string) => corta(plantillaNota(lang, k, huecos));
 const esc = (x: string) => x.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const n = (x: number) => fmt.n(x, lang);
 const presi = plano(lang, `${F}.presidencia`);
-const idEstatuto = Number(cifra('cita.estatuto.azana.V2')?.v ?? 0);
 const limpia = (r: string) => r.replace(/^El Sr\.\s*/, '').replace(/:\s*$/, '').trim();
 const quien = (s: SesionTurnos, x: SesionTurnos['turnos'][number]) => {
   if (s.truncadas.includes(x.id)) return plano(lang, `${F}.nota.truncada`);
-  if (x.id === idEstatuto) return plano(lang, `${F}.nota.estatuto`);
   if (x.pres) return `${presi} · ${x.corto ?? limpia(x.rotulo)}`;
   return x.nombre ?? limpia(x.rotulo);
 };
@@ -54,14 +51,13 @@ const CIFRAS = [
   { k: 'palabras', c: 'sesiones.puerta.cifras.palabras', base: 'V2' },
   { k: 'diputados_sp', c: 'sesiones.puerta.cifras.diputados', base: 'V2' },
   { k: 'largas', c: 'sesiones.puerta.cifras.largas', base: 'V2' },
-  { k: 'filas_v3', c: 'sesiones.puerta.cifras.v3', base: 'v3' },
 ] as const;
 const hayTruncadas = sesiones.some((s) => s.truncadas.length);
 ---
 {!e ? (
   <div class="fig-hueco" data-todo-fig="F30"><p set:html={marcaPendiente('puertas.json', 'dato')} /></div>
 ) : (
-<FiguraMarco lang={lang} id="F30" pregunta={varias && existe(`${F}.pregunta.varias`) ? `${F}.pregunta.varias` : undefined} plantillaT={nota(`${F}.nota.t`)} plantilla={nota(`${F}.nota`)} plantillaB={nota(`${F}.nota.b`)}>
+<FiguraMarco lang={lang} id="F30" pregunta={varias && existe(`${F}.pregunta.varias`) ? `${F}.pregunta.varias` : undefined} plantillaT={nota(`${F}.nota.t`)} plantilla={nota(`${F}.nota`)}>
   <div slot="grafico" class:list={['f30', { varias }]} style={`--ancho: ${e.ancho}`}>
     <ul class="f30-leyenda" role="list" aria-label={plano(lang, `${F}.leyenda.aria`)}>
       <li><svg class="mue" viewBox="0 0 24 14" aria-hidden="true"><rect class="m-or" x="2" y="1" width="4" height="10" /><rect class="m-or" x="9" y="6" width="4" height="5" /><rect class="m-or" x="16" y="3" width="4" height="8" /><line class="m-base" x1="0" x2="24" y1="12" y2="12" /></svg><span set:html={o(`${F}.leyenda.orador`)} /></li>
@@ -71,7 +67,7 @@ const hayTruncadas = sesiones.some((s) => s.truncadas.length);
     </ul>
     {sesiones.map((s, k) => {
       const bs = barras(s, e);
-      const dest = destacadas(s, e, varias ? 2 : 3, s.turnos.some((x) => x.id === idEstatuto) ? [idEstatuto] : []);
+      const dest = destacadas(s, e, varias ? 2 : 3, []);
       const trunc = bs.filter((b) => s.truncadas.includes(b.t.id));
       const idPanel = `turnos-${s.clave}`;
       return (
@@ -105,7 +101,7 @@ const hayTruncadas = sesiones.some((s) => s.truncadas.length);
                 // La barra de abajo se rotula por dentro, a la altura de su final, para no pisar el eje de órdenes.
                 const top = arriba ? (b.y / ALTO) * 100 : ((b.y + b.h) / ALTO) * 100;
                 const rango = [...dest].sort((a, z) => bs[z].t.p - bs[a].t.p).indexOf(i);
-                const nombre = b.t.id === idEstatuto ? plano(lang, `${F}.rotulo.estatuto`) : corto(b.t);
+                const nombre = corto(b.t);
                 return (
                   <span class:list={['f30-dest', `r${rango}`, { abajo: !arriba, izq: x > 62 }]} style={`left: ${x.toFixed(2)}%; top: ${top.toFixed(2)}%`}>
                     <span class="nom">{nombre}</span> <span class="pal">{n(b.t.p)}</span>
@@ -165,7 +161,7 @@ const hayTruncadas = sesiones.some((s) => s.truncadas.length);
         <dt set:html={t(lang, 'comun.leame.salvedad')} /><dd set:html={o(`${F}.leame.salvedad`)} />
         <dt set:html={t(lang, 'comun.fig.base')} />
         <dd>
-          <Sello lang={lang} base="V2" /> <span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
+          <span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
           {h.fecha && <><br /><span set:html={t(lang, 'comun.sello.exportado', { vars: { fecha: `<time datetime="${h.fecha}">${h.fecha}</time>` } })} /></>}
         </dd>
       </dl>
