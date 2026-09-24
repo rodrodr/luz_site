@@ -470,6 +470,70 @@ Some labels are pending review by the author:
 - the «Liberal» family, with {{familias.liberal.filas}} rows, which the explorer merges with «Liberales»;
 - the Lliga, which is CD in the CSV and D in the README.
 
+> [design note] Game «Left or right?» (requested by the researcher, 24-09-2026): `components/metodo/IzqDer.astro`. Data: `src/data/izqder.json`. Twelve words; six per game. Without JS, a table.
+
+<!-- metodo.07.juego.titulo -->
+Left or right?
+
+<!-- metodo.07.juego.entrada -->
+A word and seven benches, from the far left to the far right. Where did it sound most, per ten thousand words?
+
+<!-- metodo.07.juego.reglas -->
+Three points for the right bench; two if you are next to it; one if two benches away.
+
+<!-- metodo.07.juego.cuenta -->
+Word {{i}} of {{n}} · Points: {{p}}
+
+<!-- metodo.07.juego.pregunta -->
+Where did «{{palabra}}» sound most?
+
+<!-- metodo.07.juego.exacto -->
+That very bench!
+
+<!-- metodo.07.juego.cerca -->
+{{n}} benches away.
+
+<!-- metodo.07.juego.cerca.uno -->
+Next door: one bench away.
+
+<!-- metodo.07.juego.mas -->
+Most: {{ideologia}}, {{tasa}} per ten thousand words.
+
+<!-- metodo.07.juego.leyenda -->
+Appearances per ten thousand words, in the rows of each ideology, without the Chair.
+
+<!-- metodo.07.juego.siguiente -->
+[Next]
+
+<!-- metodo.07.juego.ver -->
+[See the result]
+
+<!-- metodo.07.juego.resumen -->
+You scored {{p}} of {{max}} points.
+
+<!-- metodo.07.juego.nivel.0 -->
+Casts a blank vote.
+
+<!-- metodo.07.juego.nivel.1 -->
+Sat down in the wrong seat.
+
+<!-- metodo.07.juego.nivel.2 -->
+Knows the benches of the Chamber.
+
+<!-- metodo.07.juego.nivel.3 -->
+Knows every bench's hobbyhorse.
+
+<!-- metodo.07.juego.otra -->
+[Another game]
+
+<!-- metodo.07.juego.salvedad -->
+The ideology is that of each speaker's party, not their own. The far left speaks little in the dataset: with few appearances, its rate jumps. And a word sounding more on one bench says nothing about the tone or the side.
+
+<!-- metodo.07.juego.tabla -->
+The game's words: appearances per ten thousand words, by ideology
+
+<!-- metodo.07.juego.tabla.col.palabra -->
+Word
 <!-- metodo.07.salvedad -->
 A broad category serves to compare blocs, not to classify a person.
 

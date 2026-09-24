@@ -65,6 +65,7 @@ FAMILIAS: list[tuple[str, str, str, str]] = [
     (r"^aplausos\.", "tabla", "aplausos.json", "frases del juego «El aplausómetro» (El Diario): fila de cada una"),
     (r"^esta\.", "tabla", "esta.json", "frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una"),
     (r"^pico\.", "tabla", "public/datos/laboratorio.json", "pico de apariciones por mes de los términos del juego «¿Cuándo fue el pico?» (Explorador)"),
+    (r"^izqder\.", "tabla", "izqder.json", "apariciones por 10.000 palabras de cada ideología (juego «¿Izquierda o derecha?», Método 07)"),
     (r"^erratas\.", "tabla", "erratas.json", "lecturas dañadas de las fórmulas de orador y sus filas (juego «Corrija al Diario», Método 03)"),
     (r"^meses\.csv$", "F01", "meses.json", "celda de la tabla del calendario, la misma que public/datos/meses.csv (FigCalendario)"),
     (r"^presidencia_gobierno\.csv$", "F16", "sesiones.json", "celda de la tabla de Presidencia y Gobierno, la misma que public/datos/presidencia_gobierno.csv"),

@@ -539,6 +539,70 @@ Quedan etiquetas pendientes de revisión por el autor:
 - la familia «Liberal», con {{familias.liberal.filas}} filas, que el explorador funde con «Liberales»;
 - la Lliga, que es CD en el CSV y D en el README.
 
+> [nota de diseño] Juego «¿Izquierda o derecha?» (petición del investigador, 24-09-2026): `components/metodo/IzqDer.astro`. Datos: `src/data/izqder.json` (exportador/modulos/izqder.py). Doce palabras; seis por partida. Sin JS, una tabla.
+
+<!-- metodo.07.juego.titulo -->
+¿Izquierda o derecha?
+
+<!-- metodo.07.juego.entrada -->
+Una palabra y siete bancos, de la extrema izquierda a la extrema derecha. ¿En cuál sonó más, por cada diez mil palabras?
+
+<!-- metodo.07.juego.reglas -->
+Tres puntos si acierta el banco; dos si se queda al lado; uno si se queda a dos.
+
+<!-- metodo.07.juego.cuenta -->
+Palabra {{i}} de {{n}} · Puntos: {{p}}
+
+<!-- metodo.07.juego.pregunta -->
+¿Dónde sonó más «{{palabra}}»?
+
+<!-- metodo.07.juego.exacto -->
+¡En ese banco!
+
+<!-- metodo.07.juego.cerca -->
+A {{n}} bancos.
+
+<!-- metodo.07.juego.cerca.uno -->
+Al lado: a un banco.
+
+<!-- metodo.07.juego.mas -->
+Donde más: {{ideologia}}, {{tasa}} por cada diez mil palabras.
+
+<!-- metodo.07.juego.leyenda -->
+Apariciones por cada diez mil palabras, en las filas de cada ideología, sin la Presidencia.
+
+<!-- metodo.07.juego.siguiente -->
+[Siguiente]
+
+<!-- metodo.07.juego.ver -->
+[Ver el resultado]
+
+<!-- metodo.07.juego.resumen -->
+Ha sumado {{p}} de {{max}} puntos.
+
+<!-- metodo.07.juego.nivel.0 -->
+Vota en blanco.
+
+<!-- metodo.07.juego.nivel.1 -->
+Se ha sentado en el escaño equivocado.
+
+<!-- metodo.07.juego.nivel.2 -->
+Conoce los bancos de la Cámara.
+
+<!-- metodo.07.juego.nivel.3 -->
+Sabe de qué pie cojea cada bancada.
+
+<!-- metodo.07.juego.otra -->
+[Otra partida]
+
+<!-- metodo.07.juego.salvedad -->
+La ideología es la del partido de cada orador, no la suya. La extrema izquierda habla poco en la base: con pocas apariciones, su tasa se dispara. Y que una palabra suene más en un banco no dice en qué tono ni a favor de qué.
+
+<!-- metodo.07.juego.tabla -->
+Las palabras del juego: apariciones por cada diez mil palabras, por ideología
+
+<!-- metodo.07.juego.tabla.col.palabra -->
+Palabra
 <!-- metodo.07.salvedad -->
 Una categoría gruesa sirve para comparar bloques, no para clasificar a una persona.
 

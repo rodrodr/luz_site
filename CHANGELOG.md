@@ -1,5 +1,16 @@
 # Cambios · Luz y Taquígrafos (sitio)
 
+## 24-09-2026 · «¿Izquierda o derecha?» en Método 07
+
+- Nuevo juego en «¿Qué significan partido, familia e ideología?»: una palabra («patria», «Iglesia», «Cataluña»,
+  «monarquía», «caciques», «fascismo», «España»…) y siete bancos, de EI a ED; el lector elige dónde sonó más y ve las
+  siete barras (apariciones por cada 10.000 palabras de las filas de cada ideología, sin la Presidencia). 3 puntos el
+  banco justo, 2 al lado, 1 a dos; seis palabras por partida, de doce. La salvedad dice que la ideología es la del
+  partido, que la extrema izquierda habla poco y su tasa se dispara, y que contar no dice el tono.
+- Datos: `exportador/modulos/izqder.py` → `src/data/izqder.json` (texto plegado, límites de palabra, denominador
+  `nwords`; se para si una palabra aparece menos de 100 veces). Familia `izqder.*` en `claves_figura.py`. Sin JS, una
+  tabla con las doce palabras y sus siete tasas. Pruebas: `tests/izqder.spec.ts`.
+
 ## 24-09-2026 · «¿Cuándo fue el pico?» en el Explorador
 
 - Nuevo apartado del Explorador, tras las búsquedas de muestra: un término («Casas Viejas», «amnistía», «Frente

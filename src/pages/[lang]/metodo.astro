@@ -18,6 +18,7 @@ import FigFila from '../../components/FigFila.astro';
 import FigPasos from '../../components/FigPasos.astro';
 import FigLongitud from '../../components/FigLongitud.astro';
 import Erratas from '../../components/metodo/Erratas.astro';
+import IzqDer from '../../components/metodo/IzqDer.astro';
 import { meta } from '../../lib/pagina';
 import { t, tBloques, plano, existe } from '../../lib/i18n';
 import { marcaPendiente } from '../../lib/cifras';
@@ -55,11 +56,12 @@ const CAJAS = ['tema', 'tono', 'posicion', 'voto'].map((c) => `inicio.falta.${c}
     <div class="lectura">
       {NN.map((n) => (
         <Seccion lang={lang} id={`m${n}`} prefijo={`metodo.${n}`} espera={['titulo', 'entrada']}
-                 excluir={['pruebelo', ...(n === '03' ? ['cola', 'juego', 'incidencias'] : [])]} indice>
+                 excluir={['pruebelo', ...(n === '03' ? ['cola', 'juego', 'incidencias'] : n === '07' ? ['juego'] : [])]} indice>
           <p slot="antes" class="asiento apartado-n" aria-hidden="true" data-audit-exento="numeración del apartado">{n}</p>
           {n === '01' && <FigFila lang={lang} />}
           {n === '02' && <FigPasos lang={lang} />}
           {n === '03' && <Erratas lang={lang} />}
+          {n === '07' && <IzqDer lang={lang} />}
           {n === '03' && existe('metodo.03.incidencias') && <div class="prosa incidencias" set:html={remata(tBloques(lang, 'metodo.03.incidencias'))} />}
           {n === '03' && trasIncidencias && <Fragment set:html={trasIncidencias} />}
           {n === '03' && cola.length > 0 && (
