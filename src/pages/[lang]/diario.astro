@@ -7,14 +7,12 @@
  *  · § 2 pinta las cuatro series como un registro (nombre y fechas · recuento al margen), sin tarjetas.
  *  · § 3 lleva F27 y § 4 F28 (FigCronologia), la figura protagonista; F28 va a mitad del apartado, tras las órdenes y
  *    la respuesta de Prieto, y antes de lo que se tacha, lo que no se oye y lo que el corpus no trae.
- *  · NotaBases: la página cita cifras de la v3.
  *  · Los ids de apartado no repiten las anclas de F27 y F28 (`luz-y-taquigrafos`, `lo-que-calla`, lib/figuras.ts).
  */
 import Base from '../../layouts/Base.astro';
 import CabezaPagina from '../../components/CabezaPagina.astro';
 import IndiceLateral from '../../components/IndiceLateral.astro';
 import Seccion from '../../components/Seccion.astro';
-import NotaBases from '../../components/NotaBases.astro';
 import SinSitio from '../../components/SinSitio.astro';
 import DiarioAFila from '../../components/DiarioAFila.astro';
 import FigCronologia from '../../components/FigCronologia.astro';
@@ -43,7 +41,7 @@ const series = claves('diario.series.serie.', true).filter(existe).map((k) => {
 });
 ---
 <Base lang={lang} ruta={PAGINAS.diario} titulo={titulo} descripcion={descripcion}>
-  <CabezaPagina lang={lang} prefijo="diario" bases={['V2', 'v3']} />
+  <CabezaPagina lang={lang} prefijo="diario" />
   <div class="contenedor con-indice" style={`timeline-scope: ${S.map((s) => `--${s.id}`).join(', ')}`}>
     <IndiceLateral lang={lang} titulo={t(lang, 'comun.indice.titulo')} entradas={S.map((s) => ({ id: s.id, rotulo: primera(lang, [`diario.indice.${s.x}`, `diario.${s.x}.titulo`]) }))} />
     <div class="lectura">
@@ -70,7 +68,6 @@ const series = claves('diario.series.serie.', true).filter(existe).map((k) => {
 
       <Seccion lang={lang} id="calla" prefijo="diario.calla" espera={['titulo', 'entrada']} excluir={CALLA_DESPUES} indice>
         <FigCronologia lang={lang} id="F28" />
-        <NotaBases lang={lang} compacta />
         <div class="prosa" set:html={callaDespues.html} />
       </Seccion>
 

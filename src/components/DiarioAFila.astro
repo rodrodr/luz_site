@@ -98,7 +98,6 @@ const inicio = (s: string) => { const w = s.split(/\s+/); return w.length > 22 ?
                 <tr class="daf-fila" data-fila={f.v2.id} tabindex="0" style={`--k: ${k}`}>
                   <td><span class="daf-ids">
                     <span set:html={fmt.dato(Number(f.v2.id), String(f.v2.id), `fila.${f.clave}.id.V2`, 'V2')} />
-                    <span class="daf-v3">v3 <span set:html={fmt.dato(Number(f.v3.id), String(f.v3.id), `fila.${f.clave}.id.v3`, 'v3')} /></span>
                   </span></td>
                   <td class="daf-rotulo"><span class="llamada-n" data-audit-exento="llamada" aria-hidden="true">3</span> <code>{f.v2.speaker}</code></td>
                   <td>{f.uso}</td>
@@ -152,7 +151,6 @@ const inicio = (s: string) => { const w = s.split(/\s+/); return w.length > 22 ?
   .daf-tabla { font-family: var(--text); }
   .daf-tabla td { vertical-align: top; font-size: var(--fs-small); }
   .daf-ids { white-space: nowrap; font-family: var(--mono); display: grid; gap: .1rem; }
-  .daf-v3 { color: var(--mute); font-size: var(--fs-mono-s); }
   .daf-rotulo { white-space: nowrap; }
   .daf-rotulo code { font: 400 .82rem/1.4 var(--mono); color: var(--ink); }
   .daf-speech { font: italic 400 var(--fs-small)/1.45 var(--text); color: var(--ink); min-width: 16rem; max-width: 30rem; }

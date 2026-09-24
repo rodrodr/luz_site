@@ -37,13 +37,13 @@ El corpus no tiene el Diario de esa noche, sino un extracto oficial. La proposic
 Preside Diego Martínez Barrio. Juan Negrín, Presidente del Consejo de Ministros, hace su declaración ante la Cámara.
 
 <!-- sesiones.figueres-1939.que_paso.4 -->
-La proposición se aprueba en votación nominal. El extracto imprime la lista de los que dijeron sí (V2 {{puerta.figueres-1939.lista.V2|id}} · v3 {{puerta.figueres-1939.lista.v3|id}}) y, después, el resultado:
+La proposición se aprueba en votación nominal. El extracto imprime la lista de los que dijeron sí y, después, el resultado:
 
 <!-- sesiones.figueres-1939.que_paso.cita.votacion -->
 «Han votado afirmativamente los sesenta y dos señores Diputados.»
 
 <!-- sesiones.figueres-1939.que_paso.cita.votacion.pie -->
-La Presidencia (Martínez Barrio) · V2 {{cita.figueres.votacion.V2|id}} · v3 {{cita.figueres.votacion.v3|id}}
+La Presidencia (Martínez Barrio)
 
 > [nota de diseño] «La siguiente será en México»: la sesión 70, del 10-I-1945 (V2). Esta votación no entra en F26,
 > que es una selección de 1931 a 1936. **Fase 2 (corrector del copy):** la fase 1 decía que el extracto no imprime la
@@ -56,19 +56,19 @@ La Presidencia (Martínez Barrio) · V2 {{cita.figueres.votacion.V2|id}} · v3 {
 «Señores Diputados, se reúne hoy la Cámara en un severo ambiente de guerra.»
 
 <!-- sesiones.figueres-1939.diario.cita.negrin.pie -->
-Juan Negrín · V2 {{cita.figueres.negrin.V2|id}} · v3 {{cita.figueres.negrin.v3|id}} · {{cita.figueres.negrin.palabras}} palabras (V2)
+Juan Negrín · {{cita.figueres.negrin.palabras}} palabras
 
 <!-- sesiones.figueres-1939.diario.cita.martinezbarrio -->
 «Lo hacemos en un trozo de la tierra catalana que, como otras distintas de España, se encuentra actualmente nuancilada [sic] y hollada por la planta de los invasores extranjeros…»
 
 <!-- sesiones.figueres-1939.diario.cita.martinezbarrio.pie -->
-Diego Martínez Barrio, dentro de la fila del sumario · solo en la edición del explorador, v3 {{cita.figueres.martinezbarrio.v3|id}}
+Diego Martínez Barrio, dentro de la fila del sumario
 
 <!-- sesiones.figueres-1939.diario.cita.castillo -->
 «Castillo de Figueras, a primero de Febrero, de mil novceientos treinta y nueve.»
 
 <!-- sesiones.figueres-1939.diario.cita.castillo.pie -->
-Al pie de la proposición · V2 {{cita.figueres.castillo.V2|id}} · v3 {{cita.figueres.castillo.v3|id}}
+Al pie de la proposición
 
 <!-- sesiones.figueres-1939.diario.cita.horas -->
 El extracto no coincide consigo mismo en la hora: el sumario abre la sesión «a las veintidos horas treinta minutos», y el texto, «a las 22 horas 39».
@@ -79,18 +79,18 @@ El extracto no coincide consigo mismo en la hora: el sumario abre la sesión «a
 ## La sesión, turno a turno
 
 <!-- sesiones.figueres-1939.turnos.texto -->
-En la V2 son {{sesion.1939-02-01-69.filas|letra}} filas. La más alta es la de Negrín; la de Martínez Barrio no está, porque va dentro del sumario, que la V2 no trae.
+La barra más alta es la de Negrín. Las palabras de Martínez Barrio van dentro del sumario del extracto.
 
 ## Cómo encontrarla en el explorador
 
 <!-- sesiones.figueres-1939.explorador.fecha -->
-Filtros › Fecha y sesión: Desde y Hasta 01/02/1939, sin «Solo lo que se habla». Salen {{sesion.1939-02-01-69.filas_v3|letra}} intervenciones en la edición del explorador (v3); con el filtro, {{sesion.1939-02-01-69.habla_v3|letra}}, y el discurso de Martínez Barrio desaparece.
+Filtros › Fecha y sesión: Desde y Hasta 01/02/1939, sin «Solo lo que se habla». Salen {{sesion.1939-02-01-69.filas_v3|letra}} intervenciones en el explorador; con el filtro, {{sesion.1939-02-01-69.habla_v3|letra}}, y el discurso de Martínez Barrio desaparece.
 
 <!-- sesiones.figueres-1939.explorador.consulta -->
 "trozo de la tierra catalana"
 
 <!-- sesiones.figueres-1939.explorador.recuento -->
-Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.tierra_catalana.n|letra}} intervención en la edición del explorador (v3).
+Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.tierra_catalana.n|letra}} intervención en el explorador.
 
 <!-- sesiones.figueres-1939.explorador.consulta.nota -->
 Sin filtros sale {{busqueda.ses.tierra_catalana.n|letra}} intervención: el sumario. Con «Solo lo que se habla», ninguna.
@@ -110,7 +110,7 @@ La nota que abre el volumen de la guerra dice de esta sesión:
 «DE LA ULTILLA SESION QUE TUVO LUGAR EN LA CIUDAD DE FIGUERAS A RAIZ DE LA LIBERACION DE BARCELONA EL 26 DE ENERO DE 1.939, NO EXISTE DATO ALGUNO.»
 
 <!-- sesiones.figueres-1939.no_esta.cita.nota.pie -->
-Nota del volumen, en el sumario del 1 de octubre de 1936 · solo en la edición del explorador, v3 {{cita.figueres.nota.v3|id}}
+Nota del volumen, en el sumario del 1 de octubre de 1936
 
 <!-- sesiones.figueres-1939.no_esta.2 -->
 Otra nota, al final del extracto, lo explica: el número no se había podido obtener, y apareció después.
@@ -119,7 +119,7 @@ Otra nota, al final del extracto, lo explica: el número no se había podido obt
 «Después de prolijas y constantes gestiones, se ha podido obtener fotocopia del ejemplar del Extracto de dicha sesión…»
 
 <!-- sesiones.figueres-1939.no_esta.cita.fotocopia.pie -->
-Nota final · V2 {{cita.figueres.fotocopia.V2|id}}, dentro de la última fila de la Presidencia · v3 {{cita.figueres.fotocopia.v3|id}}
+Nota final, dentro de la última fila de la Presidencia
 
 <!-- sesiones.figueres-1939.no_esta.3 -->
 Quién escribió cada nota, y cuándo, no lo dice el corpus.
@@ -127,18 +127,15 @@ Quién escribió cada nota, y cuándo, no lo dice el corpus.
 ## Fuentes
 
 <!-- sesiones.figueres-1939.fuentes.texto -->
-Todo lo que dice esta página sale del extracto oficial y de las notas del volumen, leídos en las dos ediciones de la base. No se afirma aquí ningún hecho que no recojan.
+Todo lo que dice esta página sale del extracto oficial y de las notas del volumen, leídos en la base. No se afirma aquí ningún hecho que no recojan.
 
 ## Cómo citar un pasaje
 
 <!-- sesiones.figueres-1939.citar.texto -->
-Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila y su edición.
+Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila.
 
 <!-- sesiones.figueres-1939.citar.cita -->
-Extracto oficial de las sesiones. Congreso de los Diputados, núm. {{sesion.1939-02-01-69.diario_num|id}}, 1 de febrero de 1939, páginas sin verificar (metadatos del proyecto). Luz y Taquígrafos, edición depositada (V2), fila {{cita.figueres.negrin.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
+Extracto oficial de las sesiones. Congreso de los Diputados, núm. {{sesion.1939-02-01-69.diario_num|id}}, 1 de febrero de 1939, páginas sin verificar (metadatos del proyecto). Luz y Taquígrafos, fila {{cita.figueres.negrin.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.

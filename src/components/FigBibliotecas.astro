@@ -48,7 +48,7 @@ const sesionTexto = (s: { f: string; s: number; e: number }) =>
 const cuentaGrupo = (g: string) => B.filter((b) => b.grupo === g).length;
 const claveGrupo: Record<string, string> = { debates: 'bib.debates' };
 ---
-<FiguraMarco lang={lang} id="F17" plantillaT="{nombre}" plantilla={notaCarril} plantillaB={`v3 · ${plano(lang, 'fig.F17.abrir')}`}>
+<FiguraMarco lang={lang} id="F17" plantillaT="{nombre}" plantilla={notaCarril} plantillaB={plano(lang, 'fig.F17.abrir')}>
   <div slot="grafico" class="f17">
     <div class="f17-leyenda">
       <p class="f17-clave">
@@ -105,7 +105,7 @@ const claveGrupo: Record<string, string> = { debates: 'bib.debates' };
     {B.map((b) => (
       <div popover id={`f17-f-${b.id}`} class="f17-ficha" role="dialog" aria-labelledby={`f17-f-${b.id}-t`}>
         <div class="f17-ficha-cabeza">
-          <p class="asiento"><span set:html={grupoRotulo(b.grupo)} /> · v3</p>
+          <p class="asiento"><span set:html={grupoRotulo(b.grupo)} /></p>
           <button type="button" class="f17-cerrar" popovertarget={`f17-f-${b.id}`} popovertargetaction="hide">
             <svg class="icono" aria-hidden="true" focusable="false"><use href="#i-cerrar"></use></svg>
             <span class="sr-only" set:html={t(lang, 'fig.F17.ficha.cerrar')} />

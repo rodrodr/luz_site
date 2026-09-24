@@ -71,6 +71,9 @@ Los Diarios de Sesiones se imprimieron enteros, con luz y taquígrafos, y por es
 6. Las figuras de Inicio se juegan: el lector manipula (escribe una palabra, apuesta una votación, mueve una red) y la
    base contesta. Cada juego funciona también sin JavaScript en su estado estático. *(Petición del investigador,
    23-09-2026.)*
+7. El sitio presenta la base corregida y no habla de ediciones: ni «V2» ni «v3», ni sus problemas ya resueltos. La base
+   de cada cifra sigue en su `data-base` y en `procedencia.csv`, para la auditoría, no para el lector. Las variables se
+   describen, sin «trampas». *(Petición del investigador, 24-09-2026.)*
 
 ## Accessibility & Inclusion
 

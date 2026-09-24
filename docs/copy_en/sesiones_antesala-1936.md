@@ -30,7 +30,7 @@ On 16 June, Calvo Sotelo clashes with the President of the Council of Ministers,
 On 1 July, the Chair cuts Galarza off mid-sentence and orders that his words be struck from the record.
 
 <!-- sesiones.antesala-1936.que_paso.4 -->
-It is the session with the most words in the whole corpus: {{sesion.1936-07-01-54.palabras}} in the deposited edition.
+It is the session with the most words in the whole corpus: {{sesion.1936-07-01-54.palabras}} in the dataset.
 
 ## What the Diario says
 
@@ -38,41 +38,41 @@ It is the session with the most words in the whole corpus: {{sesion.1936-07-01-5
 «Yo digo lo que Santo Domingo de Silos contestó a un rey castellano: “Señor, la vida podéis quitarme, pero más no podéis.”»
 
 <!-- sesiones.antesala-1936.diario.cita.calvo.pie -->
-José Calvo Sotelo, 16 June · V2 {{cita.antesala.calvo.V2|id}} · v3 {{cita.antesala.calvo.v3|id}} · {{cita.antesala.calvo.palabras}} words (V2)
+José Calvo Sotelo, 16 June · {{cita.antesala.calvo.palabras}} words
 
 <!-- sesiones.antesala-1936.diario.cita.casares -->
 «…haré responsable ante el país a S. S.»
 
 <!-- sesiones.antesala-1936.diario.cita.casares.pie -->
-Santiago Casares Quiroga, 16 June · V2 {{cita.antesala.casares.V2|id}} · v3 {{cita.antesala.casares.v3|id}}
+Santiago Casares Quiroga, 16 June
 
 <!-- sesiones.antesala-1936.diario.cita.galarza -->
 «¡Ah!, pero yo proclamo una cosa: la violencia... (El final de la frase no se consigna por orden del Sr. Presidente.—Aplausos.—Rumores.)»
 
 <!-- sesiones.antesala-1936.diario.cita.galarza.pie -->
-Ángel Galarza, 1 July · V2 {{cita.antesala.galarza.V2|id}} · v3 {{cita.antesala.galarza.v3|id}}
+Ángel Galarza, 1 July
 
 <!-- sesiones.antesala-1936.diario.cita.presidencia -->
 «Las palabras de S. S., en lo que a eso respecta, no constarán en el Diario de Sesiones.»
 
 <!-- sesiones.antesala-1936.diario.cita.presidencia.pie -->
-The Chair (Martínez Barrio), in the next row · V2 {{cita.antesala.presidencia.V2|id}} · v3 {{cita.antesala.presidencia.v3|id}}
+The Chair (Martínez Barrio), in the next row
 
 <!-- sesiones.antesala-1936.diario.cita.galarza2 -->
 «…esas palabras, que en el Diario de Sesiones no figurarán, el país las conocerá…»
 
 <!-- sesiones.antesala-1936.diario.cita.galarza2.pie -->
-Ángel Galarza, in the next row · V2 {{cita.antesala.galarza2.V2|id}} · v3 {{cita.antesala.galarza2.v3|id}}
+Ángel Galarza, in the next row
 
 ## The session, turn by turn
 
 <!-- sesiones.antesala-1936.turnos.texto -->
-Two figures, one per session. Together they add up to {{puerta.antesala-1936.filas}} rows of the deposited edition.
+Two figures, one per session. Together they add up to {{puerta.antesala-1936.filas}} rows of the dataset.
 
 ## How to find it in the explorer
 
 <!-- sesiones.antesala-1936.explorador.fecha.1 -->
-«Filtros › Fecha y sesión»: «Desde» and «Hasta» 16/06/1936. This gives {{sesion.1936-06-16-45.filas_v3}} interventions in the explorer edition (v3); with «Solo lo que se habla», {{sesion.1936-06-16-45.habla_v3}}.
+«Filtros › Fecha y sesión»: «Desde» and «Hasta» 16/06/1936. This gives {{sesion.1936-06-16-45.filas_v3}} interventions in the explorer; with «Solo lo que se habla», {{sesion.1936-06-16-45.habla_v3}}.
 
 <!-- sesiones.antesala-1936.explorador.fecha.2 -->
 For the second, «Desde» and «Hasta» 01/07/1936: {{sesion.1936-07-01-54.filas_v3}} interventions; with «Solo lo que se habla», {{sesion.1936-07-01-54.habla_v3}}.
@@ -81,7 +81,7 @@ For the second, «Desde» and «Hasta» 01/07/1936: {{sesion.1936-07-01-54.filas
 "no constan por orden" | "no se consigna por orden" | "no se consignan por orden"
 
 <!-- sesiones.antesala-1936.explorador.recuento -->
-Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.suprimidas.n}} interventions in the explorer edition (v3).
+Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.suprimidas.n}} interventions in the explorer.
 
 <!-- sesiones.antesala-1936.explorador.consulta.nota -->
 It finds the bracketed notes on words struck out by the Chair. In the whole corpus there are {{busqueda.ses.suprimidas.n|letra}}, and {{busqueda.ses.suprimidas.puerta|letra}} are from these two sessions.
@@ -95,7 +95,7 @@ The ready-made debate «Orden público en la primavera de 1936» (public order i
 The phrase sometimes attributed to Dolores Ibárruri on 16 June does not appear in any row: «Este hombre ha hablado por última vez» (‘This man has spoken for the last time’). She did speak that day.
 
 <!-- sesiones.antesala-1936.no_esta.pie -->
-Dolores Ibárruri, 16 June · V2 {{fuente.ibarruri.V2|id}}
+Dolores Ibárruri, 16 June
 
 <!-- sesiones.antesala-1936.no_esta.2 -->
 What the Chair ordered removed is not there either: the Diario only records that it was removed.
@@ -103,18 +103,15 @@ What the Chair ordered removed is not there either: the Diario only records that
 ## Sources
 
 <!-- sesiones.antesala-1936.fuentes.texto -->
-Everything on this page comes from the Diario de Sesiones, read in both editions of the dataset. No fact is stated here that the Diario does not record.
+Everything on this page comes from the Diario de Sesiones, read in the dataset. No fact is stated here that the Diario does not record.
 
 ## How to cite a passage
 
 <!-- sesiones.antesala-1936.citar.texto -->
-Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id and its edition.
+Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id.
 
 <!-- sesiones.antesala-1936.citar.cita -->
-Diario de las Sesiones de Cortes. Congreso de los Diputados, no. {{sesion.1936-07-01-54.diario_num|id}}, 1 July 1936, pp. {{sesion.1936-07-01-54.paginas}} (project metadata). Luz y Taquígrafos, deposited edition (V2), row {{cita.antesala.galarza.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
+Diario de las Sesiones de Cortes. Congreso de los Diputados, no. {{sesion.1936-07-01-54.diario_num|id}}, 1 July 1936, pp. {{sesion.1936-07-01-54.paginas}} (project metadata). Luz y Taquígrafos, row {{cita.antesala.galarza.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 A derived edition for research: wherever it differs, the *Diario de Sesiones* prevails.

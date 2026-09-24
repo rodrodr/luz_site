@@ -1,5 +1,47 @@
 # Cambios · Luz y Taquígrafos (sitio)
 
+## 2026-09-24 · la base corregida, sin ediciones; y «Corrija al Diario»
+
+**Huella del copy:** `src/i18n/es.json`, SHA-256 `779c96d8ee040475ebf74739a36718176b8a3544d74f0e66e7ae283d1e5010bc` (2.167 claves; antes,
+2.453).
+
+El investigador: «Sigues señalando la V2 como problemática. Esos son errores ya corregidos en la v3. "Cada columna, con
+su trampa" eso no es un titular. Solo describe las variables. No menciones siempre que hay problemas en la versión 2.»
+Y: «Cuando actualice la base con las correcciones, esos problemas ya no existirán.» El sitio presenta ahora UNA base, la
+corregida: no nombra ediciones (ni «V2» ni «v3», ni «edición depositada/del explorador») ni cuenta sus problemas.
+
+- **Fuera:** la página Versiones (y F07, F18, F25, F35), Método 06 «¿Por qué hay dos ediciones?» (y F12; Método queda en
+  nueve apartados, renumerados), Datos «Cinco maneras de contar "palabra"» (F33) y las decisiones 4 y 6 (quedan cuatro),
+  la sección «Dos ediciones, dos oradores» de la puerta del Estatuto (ahora «Azaña y el Estatuto de Cataluña»), las
+  chapas de edición (cabeceras y figuras), NotaBases (y su regla 3 en `audit-cifras.mjs`), la captura «Sobre este
+  corpus» del Explorador y las frases fijas ↺ 2 (V2/v3), ↺ 4, ↺ 11 y ↺ 13.
+- **Reescrito en neutro (es y en):** unas 380 unidades por reglas (`limpia_ediciones.py`, en el área de trabajo) y 130 a
+  mano. Las columnas de Datos se describen sin «trampas» («Qué dice cada columna»; F32 sin la columna «Dónde engaña»).
+  Método 06 (antes 07) cuenta cómo se fechó cada sesión, sin la V1. El pie ya no dice versiones. Las citas de un pasaje:
+  «Luz y Taquígrafos, fila N».
+- **Un id por fila:** F20 es una sola vista (el CSV); F26, F27, F28 y F30 enseñan un solo identificador.
+- **Juego nuevo, «Corrija al Diario»** (Método 03, petición del investigador): el lector corrige una fórmula de orador tal
+  como la leyó la máquina y, al corregirla, llega otra; nueve lecturas reales («El Sr PRESIDENTE:», «El Sr, PRESIDENTE:»,
+  «El Sr. PRESIDENT7E:», «La Srta. COMPOAMOR:», «El Sr. QL ROBLES:»…) y una trampa que no es errata («El señor
+  PRESIDENTE:», como la escriben los extractos de 1938 y 1939 y las sesiones de México). Remate con el tiempo del lector
+  y cuánto le llevaría revisar a ese ritmo las 2.460 fórmulas distintas; la de la Presidencia sale escrita de 32 maneras.
+  Sin JS, una tabla con las lecturas. Datos: `exportador/modulos/erratas.py` → `src/data/erratas.json` (sobre la base del
+  explorador; cada lectura se comprueba en ella). Componentes: `components/metodo/Erratas.astro` + `scripts/erratas.ts`.
+- **Exportador:** los archivos de las figuras retiradas ya no se escriben (`comun.py › RETIRADOS`); `claves_figura.py`,
+  con la familia `erratas.*` y sin las de las figuras retiradas; `procedencia.csv` rehecho.
+- **Pruebas:** la guarda «sin ediciones» recorre ahora TODAS las páginas en las dos lenguas (solo exime la cita oficial de
+  Dataverse, que lleva su versión, y el código); dos pruebas nuevas del juego (con y sin JS).
+
+Verificado: `astro check` (0 errores, 0 avisos) · check-i18n · formatos · build (46 páginas: 21 por lengua) ·
+`npm run audit` · `claves_figura.py` · Playwright 243/243.
+
+**Mientras no se deposite la base corregida** (y antes de publicar): las cifras salen de los datos exportados hoy, unas de
+la V2 depositada y otras de la base del explorador, así que conviven dos totales de filas (107.551 y 121.700) y algunas
+figuras aún reflejan la segmentación antigua (p. ej., F30 del Estatuto). Al depositarla: apuntar el exportador a ella y
+reexportar; revisar los nombres de columna y los ids literales de los fragmentos de código; retirar de `datos.py` y
+`metodo.py` los cálculos de las figuras retiradas. Bloqueos de publicación que ya estaban: siete frases del inglés de más
+de 30 palabras (`check-i18n --strict`) y el LÉAME de F05, F09, F19 y F20 sin `que_mide`/`denominador`.
+
 ## 2026-09-23 · rediseño de Inicio: una infraestructura que se juega
 
 **Huella del copy:** `src/i18n/es.json`, SHA-256 `162c9aa22b398bd716ca528841b998b3619005eb587b9efa7aff42815d785582` (2.453 claves). Cambia `docs/copy_es/inicio.md` (y su borrador

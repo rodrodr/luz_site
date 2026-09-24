@@ -51,13 +51,13 @@ Entre julio y diciembre de 1931 escribió la Constitución; hasta octubre de 193
 <!-- cortes.1931.hoy.buscar.consulta --> divorcio
 
 <!-- cortes.1931.hoy.buscar.recuento -->
-Con esa faceta, «divorcio» da {{busqueda.divorcio.1931-1933}} intervenciones (v3), contando todas las filas. Recuento del {{cortes.fichas.recuento.fecha|fecha_larga}}.
+Con esa faceta, «divorcio» da {{busqueda.divorcio.1931-1933}} intervenciones, contando todas las filas. Recuento del {{cortes.fichas.recuento.fecha|fecha_larga}}.
 
 <!-- cortes.1931.hoy.sesion -->
 **Abrir una sesión.** Ponga el 1 de octubre de 1931 en Desde y en Hasta, abra una intervención y pulse `s`: tendrá la sesión corrida.
 
 <!-- cortes.1931.hoy.debate -->
-**Añadir un debate preparado.** En Mis bibliotecas, pulse «Añadir bibliotecas del proyecto…» y elija «Sufragio femenino»: {{biblioteca.sufragio.entradas}} intervenciones (v3).
+**Añadir un debate preparado.** En Mis bibliotecas, pulse «Añadir bibliotecas del proyecto…» y elija «Sufragio femenino»: {{biblioteca.sufragio.entradas}} intervenciones.
 
 <!-- cortes.1931.hoy.tendencia -->
 **Seguir una palabra en el tiempo.** Busque «divorcio» (la consulta de la primera tarea), pulse `t` para abrir Tendencia y elija el periodo «Constituyentes».
@@ -75,7 +75,7 @@ Con esa faceta, «divorcio» da {{busqueda.divorcio.1931-1933}} intervenciones (
 {{etapa.I.sesiones}} sesiones, numeradas de la {{etapa.I.num.desde|id}} a la {{etapa.I.num.hasta|id}} sin que falte ningún número.
 
 <!-- cortes.1931.cifras.palabras -->
-{{etapa.I.palabras}} palabras en la edición depositada: el {{etapa.I.palabras.pct}} del corpus.
+{{etapa.I.palabras}} palabras en la base: el {{etapa.I.palabras.pct}} del corpus.
 
 <!-- cortes.1931.cifras.diputados -->
 {{etapa.I.diputados}} diputados intervienen, contando a quien preside.
@@ -90,13 +90,13 @@ Con esa faceta, «divorcio» da {{busqueda.divorcio.1931-1933}} intervenciones (
 El 14 de abril de 1931, el comité de las fuerzas políticas coaligadas designó a Niceto Alcalá-Zamora Presidente del Gobierno provisional de la República. Ese Gobierno convocó unas Cortes Constituyentes de una sola Cámara, elegida por sufragio directo, para el 14 de julio. Las elecciones se celebrarían el 28 de junio.
 
 <!-- cortes.1931.contexto.1.b -->
-La primera sesión la abre una Mesa de edad, que preside Narciso Vázquez Lemus (V2 {{fila.I.mesa_edad.V2|id}} · v3 {{fila.I.mesa_edad.v3|id}}). Alcalá-Zamora toma la palabra como Presidente del Gobierno provisional; su discurso ocupa {{fila.I.alcala_resigna.palabras}} palabras.
+La primera sesión la abre una Mesa de edad, que preside Narciso Vázquez Lemus. Alcalá-Zamora toma la palabra como Presidente del Gobierno provisional; su discurso ocupa {{fila.I.alcala_resigna.palabras}} palabras.
 
 <!-- cortes.1931.contexto.1.c -->
-Viene a «resignar sus Poderes en fecha próxima» ante la Cámara (V2 {{fila.I.alcala_resigna.V2|id}} · v3 {{fila.I.alcala_resigna.v3|id}}).
+Viene a «resignar sus Poderes en fecha próxima» ante la Cámara.
 
 <!-- cortes.1931.contexto.1.d -->
-Esa misma sesión elige Presidente interino a Julián Besteiro, con {{eleccion.besteiro1931.votos}} votos de {{eleccion.besteiro1931.votantes}} (V2 {{fila.I.besteiro_elegido.V2|id}} · v3 {{fila.I.besteiro_elegido.v3|id}}). El Diario anota que ocupa su sitial «acogido con una gran ovación» (V2 {{fila.I.besteiro_ovacion.V2|id}} · v3 {{fila.I.besteiro_ovacion.v3|id}}).
+Esa misma sesión elige Presidente interino a Julián Besteiro, con {{eleccion.besteiro1931.votos}} votos de {{eleccion.besteiro1931.votantes}}. El Diario anota que ocupa su sitial «acogido con una gran ovación».
 
 <!-- cortes.1931.contexto.1.fuentes -->
 [I] Decreto del Comité político, Madrid, 14 de abril de 1931. *Gaceta de Madrid*, núm. 105, 15 de abril de 1931, pp. 193–194. · [I] Decretos del Gobierno provisional sobre las Cortes Constituyentes y las elecciones. *Gaceta de Madrid*, núm. 155, 4 de junio de 1931, pp. 1174–1175 y 1181.
@@ -106,25 +106,25 @@ Esa misma sesión elige Presidente interino a Julián Besteiro, con {{eleccion.b
 <!-- cortes.1931.contexto.2.titulo --> La Constitución (agosto–diciembre de 1931)
 
 <!-- cortes.1931.contexto.2.a -->
-El 27 de agosto, Luis Jiménez de Asúa presenta el proyecto «en nombre de la Comisión», en {{fila.I.asua_proyecto.palabras}} palabras (V2 {{fila.I.asua_proyecto.V2|id}} · v3 {{fila.I.asua_proyecto.v3|id}}). Lo define así: «es una Constitución de izquierda».
+El 27 de agosto, Luis Jiménez de Asúa presenta el proyecto «en nombre de la Comisión», en {{fila.I.asua_proyecto.palabras}} palabras. Lo define así: «es una Constitución de izquierda».
 
 <!-- cortes.1931.contexto.2.b -->
 El 1 de octubre, la Cámara aprueba el voto de las mujeres.
 
 <!-- cortes.1931.contexto.2.c -->
-El 13 de octubre, tras el debate de la cuestión religiosa, el artículo 24 del proyecto sale por {{voto.178-59.si}} votos contra {{voto.178-59.no}} (V2 {{fila.I.art24.V2|id}} · v3 {{fila.I.art24.v3|id}}).
+El 13 de octubre, tras el debate de la cuestión religiosa, el artículo 24 del proyecto sale por {{voto.178-59.si}} votos contra {{voto.178-59.no}}.
 
 <!-- cortes.1931.contexto.2.d -->
 La lista de los que votan no empieza por dos apellidos: Alcalá-Zamora y Maura. Eran el Presidente y el ministro de la Gobernación del Gobierno provisional.
 
 <!-- cortes.1931.contexto.2.e -->
-Al día siguiente, Manuel Azaña habla ya como Presidente del Gobierno. Lamenta «la sensible baja que nos ha forzado hoy a este cambio ministerial» (V2 {{fila.I.azana_baja.V2|id}} · v3 {{fila.I.azana_baja.v3|id}}).
+Al día siguiente, Manuel Azaña habla ya como Presidente del Gobierno. Lamenta «la sensible baja que nos ha forzado hoy a este cambio ministerial».
 
 <!-- cortes.1931.contexto.2.f -->
-El 9 de diciembre se aprueba la Constitución. De los {{voto.constitucion.prometidos}} diputados que habían prometido el cargo, votan {{voto.constitucion.si}}, y todos dicen sí (V2 {{fila.I.constitucion.V2|id}} · v3 {{fila.I.constitucion.v3|id}}).
+El 9 de diciembre se aprueba la Constitución. De los {{voto.constitucion.prometidos}} diputados que habían prometido el cargo, votan {{voto.constitucion.si}}, y todos dicen sí.
 
 <!-- cortes.1931.contexto.2.g -->
-Al día siguiente, la Cámara elige Presidente de la República a Niceto Alcalá-Zamora, con {{eleccion.presidente1931.votos}} votos de {{eleccion.presidente1931.votantes}} (V2 {{fila.I.presidente_republica.V2|id}} · v3 {{fila.I.presidente_republica.v3|id}}).
+Al día siguiente, la Cámara elige Presidente de la República a Niceto Alcalá-Zamora, con {{eleccion.presidente1931.votos}} votos de {{eleccion.presidente1931.votantes}}.
 
 > [nota de diseño] `2.b` enlaza con `cortes.ficha.contexto.puerta` a `/es/cortes/sesiones/sufragio-1931/`; `2.c`, a
 > `cuestion-religiosa-1931/`. En `2.d`, la lista del Diario da solo apellidos: «Alcalá-Zamora» y «Maura» son los dos
@@ -139,28 +139,28 @@ Al día siguiente, la Cámara elige Presidente de la República a Niceto Alcalá
 <!-- cortes.1931.contexto.3.titulo --> Gobernar con la Constitución (1932)
 
 <!-- cortes.1931.contexto.3.a -->
-El 9 de marzo de 1932 habla Azaña, ya Presidente del Consejo de Ministros (V2 {{fila.I.centro_gravedad.V2|id}} · v3 {{fila.I.centro_gravedad.v3|id}}). Dice: «El centro de gravedad de la política de la República española está en el Parlamento, aquí en este salón».
+El 9 de marzo de 1932 habla Azaña, ya Presidente del Consejo de Ministros. Dice: «El centro de gravedad de la política de la República española está en el Parlamento, aquí en este salón».
 
 <!-- cortes.1931.contexto.3.b -->
-El 13 de mayo, José Ortega y Gasset dice del problema catalán que «es un problema que no se puede resolver, que sólo se puede conllevar» (V2 {{fila.I.conllevar.V2|id}} · v3 {{fila.I.conllevar.v3|id}}).
+El 13 de mayo, José Ortega y Gasset dice del problema catalán que «es un problema que no se puede resolver, que sólo se puede conllevar».
 
 <!-- cortes.1931.contexto.3.c -->
-En la misma sesión le contesta Rafael Campaláns, que pide la palabra «después de hacerlo el ilustre maestro de todos» (V2 {{fila.I.campalans.V2|id}} · v3 {{fila.I.campalans.v3|id}}).
+En la misma sesión le contesta Rafael Campaláns, que pide la palabra «después de hacerlo el ilustre maestro de todos».
 
 <!-- cortes.1931.contexto.3.d -->
 El 27 de mayo, Azaña defiende el Estatuto de Cataluña en un discurso que tiene su propia puerta de lectura.
 
 <!-- cortes.1931.contexto.3.e -->
-El 10 de agosto, Azaña acude a la Cámara por «los sucesos acaecidos esta madrugada en Madrid» (V2 {{fila.I.sanjurjo.V2|id}} · v3 {{fila.I.sanjurjo.v3|id}}). Cuenta cómo supo que el general Sanjurjo se había presentado en Sevilla.
+El 10 de agosto, Azaña acude a la Cámara por «los sucesos acaecidos esta madrugada en Madrid». Cuenta cómo supo que el general Sanjurjo se había presentado en Sevilla.
 
 <!-- cortes.1931.contexto.3.f -->
-El 9 de septiembre, en votación nominal, la Reforma agraria sale por {{voto.318-19.si}} votos contra {{voto.318-19.no}} (V2 {{fila.I.agraria.V2|id}} · v3 {{fila.I.agraria.v3|id}}).
+El 9 de septiembre, en votación nominal, la Reforma agraria sale por {{voto.318-19.si}} votos contra {{voto.318-19.no}}.
 
 <!-- cortes.1931.contexto.3.g -->
-El mismo día, el Estatuto de Cataluña sale por {{voto.314-24.si}} votos contra {{voto.314-24.no}} (V2 {{fila.I.estatuto_voto.V2|id}} · v3 {{fila.I.estatuto_voto.v3|id}}).
+El mismo día, el Estatuto de Cataluña sale por {{voto.314-24.si}} votos contra {{voto.314-24.no}}.
 
 <!-- cortes.1931.contexto.3.h -->
-No son excepciones: en esta etapa, al menos {{etapa.I.listas_nominales.filas}} filas de la edición depositada traen una lista de votación nominal, nombre por nombre.
+No son excepciones: en esta etapa, al menos {{etapa.I.listas_nominales.filas}} filas de la base traen una lista de votación nominal, nombre por nombre.
 
 <!-- cortes.1931.contexto.3.i -->
 Esas listas están en {{etapa.I.listas_nominales.sesiones}} sesiones. Van dentro del texto de las filas, no en una columna de la base.
@@ -178,7 +178,7 @@ Esas listas están en {{etapa.I.listas_nominales.sesiones}} sesiones. Van dentro
 En enero de 1933 no hubo sesión. El debate sobre Casas Viejas llega el 1 de febrero, en la primera sesión del mes.
 
 <!-- cortes.1931.contexto.4.b -->
-El debate preparado del explorador lo sigue durante {{biblioteca.casas_viejas.sesiones|letra}} sesiones, hasta el 16 de marzo (v3).
+El debate preparado del explorador lo sigue durante {{biblioteca.casas_viejas.sesiones|letra}} sesiones, hasta el 16 de marzo.
 
 <!-- cortes.1931.contexto.4.c -->
 Del 4 al 6 de julio, la Cámara discute la nueva ley electoral; es el debate preparado «Ley Electoral de 1933».
@@ -195,19 +195,19 @@ Cuando las Cortes vuelven a reunirse, el 2 de octubre, gobierna Alejandro Lerrou
 <!-- cortes.1931.contexto.5.titulo --> El final (octubre de 1933)
 
 <!-- cortes.1931.contexto.5.a -->
-El 2 de octubre, Lerroux presenta su Gobierno a la Cámara (V2 {{fila.I.lerroux_gobierno.V2|id}} · v3 {{fila.I.lerroux_gobierno.v3|id}}). Azaña le contesta en {{fila.I.azana_1933.palabras}} palabras (V2 {{fila.I.azana_1933.V2|id}} · v3 {{fila.I.azana_1933.v3|id}}).
+El 2 de octubre, Lerroux presenta su Gobierno a la Cámara. Azaña le contesta en {{fila.I.azana_1933.palabras}} palabras.
 
 <!-- cortes.1931.contexto.5.b -->
-Al día siguiente, Lerroux abre su réplica así: «Señores Diputados, los que van a morir os saludan.» (V2 {{fila.I.van_a_morir.V2|id}} · v3 {{fila.I.van_a_morir.v3|id}}).
+Al día siguiente, Lerroux abre su réplica así: «Señores Diputados, los que van a morir os saludan.».
 
 <!-- cortes.1931.contexto.5.c -->
-La minoría socialista mantiene su proposición, defendida por Indalecio Prieto. El Gobierno abandona el banco azul antes de que se vote (V2 {{fila.I.gobierno_se_retira.V2|id}} · v3 {{fila.I.gobierno_se_retira.v3|id}}).
+La minoría socialista mantiene su proposición, defendida por Indalecio Prieto. El Gobierno abandona el banco azul antes de que se vote.
 
 <!-- cortes.1931.contexto.5.d -->
-La proposición sale por {{voto.187-91.si}} votos contra {{voto.187-91.no}}, en votación nominal (V2 {{fila.I.voto_187.V2|id}} · v3 {{fila.I.voto_187.v3|id}}).
+La proposición sale por {{voto.187-91.si}} votos contra {{voto.187-91.no}}, en votación nominal.
 
 <!-- cortes.1931.contexto.5.e -->
-Besteiro cierra: «En vista de la declaración del Gobierno, se suspenden las sesiones de Cortes» (V2 {{fila.I.suspenden.V2|id}} · v3 {{fila.I.suspenden.v3|id}}).
+Besteiro cierra: «En vista de la declaración del Gobierno, se suspenden las sesiones de Cortes».
 
 <!-- cortes.1931.contexto.5.f -->
 Fue la última sesión de las Constituyentes. Un decreto del 9 de octubre, firmado por Alcalá-Zamora y Diego Martínez Barrio, las declaró disueltas.
@@ -234,7 +234,7 @@ Bajo el calendario van dos bandas de los metadatos del proyecto. Julián Besteir
 Francisco Barnés lo es de {{etapa.I.pres.barnes|letra}} y Antonio Lara, de {{etapa.I.pres.lara|letra}}.
 
 <!-- cortes.1931.calendario.vice -->
-Aun así, un vicepresidente ocupó la Presidencia algún tramo en {{etapa.I.vice_ses}} sesiones de la etapa (V2).
+Aun así, un vicepresidente ocupó la Presidencia algún tramo en {{etapa.I.vice_ses}} sesiones de la etapa.
 
 <!-- cortes.1931.calendario.gobiernos -->
 La banda de Gobiernos va del Provisional a Lerroux I, con Azaña I, II y III entre medias.
@@ -242,13 +242,13 @@ La banda de Gobiernos va del Provisional a Lerroux I, con Azaña I, II y III ent
 ## Quién tomó la palabra
 
 <!-- cortes.1931.palabra.f05 -->
-Sin contar la Presidencia, Manuel Azaña encabeza la palabra de la etapa: {{oradores.etapa.I.1.pal}} palabras de habla (v3).
+Sin contar la Presidencia, Manuel Azaña encabeza la palabra de la etapa: {{oradores.etapa.I.1.pal}} palabras de habla.
 
 <!-- cortes.1931.palabra.f05_siguen -->
 Le siguen Antonio Royo Villanova, Indalecio Prieto, José Antonio Balbontín y Eduardo Ortega y Gasset.
 
 <!-- cortes.1931.palabra.f09 -->
-Por familias, los republicanos se llevan el {{familias.etapa.I.republicanos.pct|pct1}} de las palabras sin Presidencia (V2).
+Por familias, los republicanos se llevan el {{familias.etapa.I.republicanos.pct|pct1}} de las palabras sin Presidencia.
 
 > [nota de diseño] F05 (v3) lleva NotaBases (↺ 13) al pie; F09 (V2), no. Los cinco nombres de `f05_siguen` deben
 > coincidir con los puestos 2 a 5 de `oradores_etapa.json` (el exportador lo comprueba). Aquí está Royo Villanova
@@ -258,7 +258,7 @@ Por familias, los republicanos se llevan el {{familias.etapa.I.republicanos.pct|
 
 <!-- cortes.1931.puertas.sufragio --> 1-X-1931 · El voto de las mujeres
 <!-- cortes.1931.puertas.religiosa --> 13 y 14-X-1931 · «España ha dejado de ser católica»
-<!-- cortes.1931.puertas.estatuto --> 27-V-1932 · El discurso de Azaña, a nombre de otro
+<!-- cortes.1931.puertas.estatuto --> 27-V-1932 · El Estatuto de Cataluña
 <!-- cortes.1931.puertas.casas_viejas --> 2-II-1933 · Casas Viejas
 
 > [nota de diseño] Registro de calendario, fecha en mono, cada línea enlazada a su puerta. Los títulos son los H1 de
@@ -268,7 +268,7 @@ Por familias, los republicanos se llevan el {{familias.etapa.I.republicanos.pct|
 ## Debates preparados en el explorador
 
 <!-- cortes.1931.debates.entrada -->
-El explorador trae {{etapa.I.debates}} debates preparados de esta etapa (v3):
+El explorador trae {{etapa.I.debates}} debates preparados de esta etapa:
 
 <!-- cortes.1931.debates.lista -->
 - La Cámara se constituye (1931)
@@ -295,13 +295,7 @@ El explorador trae {{etapa.I.debates}} debates preparados de esta etapa (v3):
 La sesión 48 tal como está en el corpus: el final del acta digitalizada se perdió en el reconocimiento óptico.
 
 <!-- cortes.1931.antes.bucle -->
-La sesión 9 repite una y otra vez el mismo par de nombres, por un bucle del reconocimiento óptico (V2 {{fila.I.bucle9.V2|id}} · v3 {{fila.I.bucle9.v3|id}}).
-
-<!-- cortes.1931.antes.fechas -->
-De las {{correcciones.fechas.n|letra}} fechas de sesión que corrigió la V2, {{correcciones.fechas.I|letra}} son de esta etapa.
-
-<!-- cortes.1931.antes.estatuto -->
-En la V2, el discurso de Azaña del 27 de mayo de 1932 va dentro de una fila de la Presidencia (V2 {{fila.I.estatuto_presidencia.V2|id}}). La v3 lo separa (v3 {{fila.I.estatuto_presidencia.v3|id}}).
+La sesión 9 repite una y otra vez el mismo par de nombres, por un bucle del reconocimiento óptico.
 
 <!-- cortes.1931.antes.listas -->
 Las listas de votación dan solo apellidos: para saber quién votó, hay que cotejarlos con el censo de diputados.
@@ -336,7 +330,7 @@ El partido de Diego Martínez Barrio figura como AR en esta legislatura, y está
 ## Cómo citar
 
 <!-- cortes.1931.citar.sesion -->
-*Diario de Sesiones de las Cortes Constituyentes de la República Española*, núm. {{sesion.1931-12-09-88.diario|id}}, 9 de diciembre de 1931, pp. {{sesion.1931-12-09-88.pag.desde|id}}–{{sesion.1931-12-09-88.pag.hasta|id}}. En Luz y Taquígrafos (V2), filas {{sesion.1931-12-09-88.id.desde|id}} a {{sesion.1931-12-09-88.id.hasta|id}}.
+*Diario de Sesiones de las Cortes Constituyentes de la República Española*, núm. {{sesion.1931-12-09-88.diario|id}}, 9 de diciembre de 1931, pp. {{sesion.1931-12-09-88.pag.desde|id}}–{{sesion.1931-12-09-88.pag.hasta|id}}. En Luz y Taquígrafos, filas {{sesion.1931-12-09-88.id.desde|id}} a {{sesion.1931-12-09-88.id.hasta|id}}.
 
 > [nota de diseño] Debajo, `cortes.ficha.citar.paginas` (el número de Diario y las páginas son del proyecto), ↺ 4, la
 > cita del conjunto y [Copiar la cita]. Vecinas: sin anterior; siguiente, la ficha II; en el centro, Todas las etapas.

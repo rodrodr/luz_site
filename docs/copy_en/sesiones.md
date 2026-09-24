@@ -40,7 +40,7 @@ What was voted aloud
 In a roll-call vote, the Diario prints two lists, «Señores que dijeron sí» and «Señores que dijeron no» (‘Members who said yes’ and ‘Members who said no’), each with its total.
 
 <!-- sesiones.votos.cuantas -->
-There are lists of this kind in at least {{voto.listas.sesiones}} of the {{sesiones.n}} sessions of the deposited edition.
+There are lists of this kind in at least {{voto.listas.sesiones}} of the {{sesiones.n}} sessions of the dataset.
 
 <!-- sesiones.votos.seleccion -->
 Here are {{voto.n|letra}} of them, in {{voto.sesiones|letra}} sessions, chosen because they close debates that this site tells.
@@ -76,9 +76,6 @@ The article of the Standing Orders read out in the session treats it as the remo
 <!-- sesiones.votos.destitucion.no -->
 {{voto.238-5.no|letra}} deputies vote no, and the list names them: Becerra, Portela, Benítez de Lugo, Canals and Rosado.
 
-<!-- sesiones.votos.destitucion.pie -->
-Motion: V2 {{voto.238-5.proposicion.V2|id}} · v3 {{voto.238-5.proposicion.v3|id}}. Standing Orders: V2 {{voto.238-5.reglamento.V2|id}} · v3 {{voto.238-5.reglamento.v3|id}}. List: V2 {{voto.238-5.V2|id}} · v3 {{voto.238-5.v3|id}}.
-
 <!-- sesiones.votos.mas -->
 The full lists will reach this same figure in edition 0.2, with one dot per printed name.
 
@@ -102,42 +99,42 @@ Their presence here does not validate their content.
 <!-- sesiones.lista.sufragio-1931.fecha --> 1-X-1931
 <!-- sesiones.lista.sufragio-1931.titulo --> Votes for women
 <!-- sesiones.lista.sufragio-1931.linea --> Kent asks for it to be postponed; Campoamor, for it to be recognised now. The roll-call vote approves it.
-<!-- sesiones.lista.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} rows (V2)
+<!-- sesiones.lista.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} rows
 
 <!-- sesiones.lista.cuestion-religiosa-1931.fecha --> 13-X-1931
 <!-- sesiones.lista.cuestion-religiosa-1931.titulo --> «España ha dejado de ser católica»
 <!-- sesiones.lista.cuestion-religiosa-1931.linea --> ‘Spain has ceased to be Catholic’ (our translation). Azaña speaks on the religious article. The session ends the next morning.
-<!-- sesiones.lista.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} rows (V2)
+<!-- sesiones.lista.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} rows
 
 <!-- sesiones.lista.estatuto-1932.fecha --> 27-V-1932
-<!-- sesiones.lista.estatuto-1932.titulo --> Azaña's speech, under another speaker's name
-<!-- sesiones.lista.estatuto-1932.linea --> Azaña defends the Statute of Catalonia. In V2, his speech sits inside a row of the Chair.
-<!-- sesiones.lista.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} rows (V2)
+<!-- sesiones.lista.estatuto-1932.titulo --> The Statute of Catalonia
+<!-- sesiones.lista.estatuto-1932.linea --> Azaña defends it in the longest spoken intervention in the corpus.
+<!-- sesiones.lista.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} rows
 
 <!-- sesiones.lista.casas-viejas-1933.fecha --> 2-II-1933
 <!-- sesiones.lista.casas-viejas-1933.titulo --> Casas Viejas
 <!-- sesiones.lista.casas-viejas-1933.linea --> Azaña answers in the Chamber for the events. The minorities protest.
-<!-- sesiones.lista.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} rows (V2)
+<!-- sesiones.lista.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} rows
 
 <!-- sesiones.lista.pistola-1934.fecha --> 4-VII-1934
 <!-- sesiones.lista.pistola-1934.titulo --> Prieto's pistol
 <!-- sesiones.lista.pistola-1934.linea --> An incident ends in blows, and Prieto admits that he drew his pistol. It is the last session before the summer.
-<!-- sesiones.lista.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} rows (V2)
+<!-- sesiones.lista.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} rows
 
 <!-- sesiones.lista.antesala-1936.fecha --> 16-VI and 1-VII-1936
 <!-- sesiones.lista.antesala-1936.titulo --> The prelude
 <!-- sesiones.lista.antesala-1936.linea --> Two debates on public order, weeks before the war. Some words are not recorded in the Diario.
-<!-- sesiones.lista.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} and {{sesion.1936-07-01-54.filas}} rows (V2)
+<!-- sesiones.lista.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} and {{sesion.1936-07-01-54.filas}} rows
 
 <!-- sesiones.lista.figueres-1939.fecha --> 1-II-1939
 <!-- sesiones.lista.figueres-1939.titulo --> Figueres
 <!-- sesiones.lista.figueres-1939.linea --> The last session of the Cortes in Spain, in the castle of Figueres. Only the official summary survives.
-<!-- sesiones.lista.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} rows (V2)
+<!-- sesiones.lista.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} rows
 
 <!-- sesiones.lista.mexico-1945.fecha --> 17-VIII and 7–9-XI-1945
 <!-- sesiones.lista.mexico-1945.titulo --> Mexico
 <!-- sesiones.lista.mexico-1945.linea --> In {{puerta.mexico-1945.sesiones|letra}} sessions, Martínez Barrio takes the oath as acting President of the Republic and Giral presents his Government.
-<!-- sesiones.lista.mexico-1945.filas --> {{puerta.mexico-1945.filas}} rows (V2)
+<!-- sesiones.lista.mexico-1945.filas --> {{puerta.mexico-1945.filas}} rows
 
 ### 1.3 Any other session
 
@@ -157,10 +154,7 @@ Open «Filtros › Fecha y sesión» (filters › date and session) and enter th
 On some days there were two sessions; this happens on {{sesiones.fechas_dobles|letra}} dates. To separate them, also type the number in «Nº de sesión» (session no.).
 
 <!-- sesiones.otra.habla -->
-If you tick «Solo lo que se habla» (speech only), the summary and the Diario's comments disappear; in that edition they sit in rows of their own.
-
-<!-- ↺ comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
+If you tick «Solo lo que se habla» (speech only), the summary and the Diario's comments disappear; they sit in rows of their own.
 
 <!-- sesiones.otra.citar -->
 To cite a session, its date and number are enough. To cite a passage, add the Diario, its pages and the row.
@@ -179,14 +173,8 @@ Each session is in the dataset as it came out of optical character recognition. 
 <!-- sesiones.entera.s48 -->
 The minutes of 1 October 1931 lost their end: the last {{ses.s48.cola|letra}} rows repeat «Pido la palabra.» (‘I ask for the floor.’), and the last one ends in «El Sr. Ministro de».
 
-<!-- sesiones.entera.s48.pie -->
-V2 {{ses.s48.cola.V2.desde|id}}–{{ses.s48.cola.V2.hasta|id}} · v3 {{ses.s48.cola.v3.desde|id}}–{{ses.s48.cola.v3.hasta|id}}
-
 <!-- sesiones.entera.s9 -->
 In the session of 27 July 1931, a single row repeats «Sánchez Guerra, Ossorio y Gallardo» {{ses.s9.bucle.veces|letra}} times in a row.
-
-<!-- sesiones.entera.s9.pie -->
-V2 {{ses.s9.bucle.V2|id}} · v3 {{ses.s9.bucle.v3|id}}
 
 <!-- sesiones.entera.paginas -->
 In the {{ses.paginas_sin_verificar|letra}} sessions after July 1936, the Diario's page numbers are unverified.
@@ -237,22 +225,20 @@ How to cite a passage
 ### 2.1 The numbers beside F30
 
 <!-- sesiones.puerta.cifras.titulo --> The session in numbers
-<!-- sesiones.puerta.cifras.filas --> rows (V2)
-<!-- sesiones.puerta.cifras.palabras --> words (V2)
-<!-- sesiones.puerta.cifras.diputados --> deputies who speak outside the Chair (V2)
-<!-- sesiones.puerta.cifras.largas --> rows of more than {{ses.umbral.largas}} words (V2)
-<!-- sesiones.puerta.cifras.v3 --> rows in the explorer edition (v3)
-
+<!-- sesiones.puerta.cifras.filas --> rows
+<!-- sesiones.puerta.cifras.palabras --> words
+<!-- sesiones.puerta.cifras.diputados --> deputies who speak outside the Chair
+<!-- sesiones.puerta.cifras.largas --> rows of more than {{ses.umbral.largas}} words
 ### 2.2 The caption of each quotation
 
 <!-- sesiones.puerta.cita.pie -->
-{{orador}} · V2 {{V2}} · v3 {{v3}}
+{{orador}}
 
 <!-- sesiones.puerta.cita.pie.palabras -->
-{{orador}} · V2 {{V2}} · v3 {{v3}} · {{palabras}} words (V2)
+{{orador}} · {{palabras}} words
 
 <!-- sesiones.puerta.cita.pie.solo_v3 -->
-{{orador}} · only in the explorer edition, v3 {{v3}}
+{{orador}}
 
 <!-- sesiones.puerta.cita.sic -->
 [sic]: as in the digitised text.
@@ -263,13 +249,13 @@ How to cite a passage
 In the explorer: «Filtros › Fecha y sesión», «Desde» and «Hasta» {{fecha}}.
 
 <!-- sesiones.puerta.fecha.recuento -->
-This gives {{n}} interventions in the explorer edition (v3); with «Solo lo que se habla», {{habla}}.
+This gives {{n}} interventions in the explorer; with «Solo lo que se habla», {{habla}}.
 
 <!-- sesiones.puerta.biblioteca -->
 The ready-made debate «{{nombre}}» is under «Mis bibliotecas › Añadir bibliotecas del proyecto…».
 
 <!-- sesiones.puerta.biblioteca.recuento -->
-It gathers {{n}} interventions from {{sesiones}} sessions (v3).
+It gathers {{n}} interventions from {{sesiones}} sessions.
 
 <!-- sesiones.puerta.biblioteca.donde -->
 The ready-made debates are in the explorer, under «Mis bibliotecas › Añadir bibliotecas del proyecto…», with their names preceded by «Debate · ».
@@ -277,7 +263,7 @@ The ready-made debates are in the explorer, under «Mis bibliotecas › Añadir 
 ### 2.4 How to cite a passage
 
 <!-- sesiones.puerta.citar.entrada -->
-Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id and its edition.
+Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id.
 
 <!-- sesiones.puerta.citar.sinpaginas -->
 {{diario}}, {{fecha}}. Luz y Taquígrafos, {{edicion}}, row {{id}}.
@@ -296,7 +282,7 @@ What was voted aloud
 What was voted on by name, and by how much?
 
 <!-- fig.F26.asiento -->
-{{voto.n}} selected votes · roll-call lists in at least {{voto.listas.sesiones}} of the {{sesiones.n}} sessions (V2)
+{{voto.n}} selected votes · roll-call lists in at least {{voto.listas.sesiones}} of the {{sesiones.n}} sessions
 
 <!-- fig.F26.leyenda.aria --> How to read each row
 
@@ -345,7 +331,7 @@ half plus one: {{mitad}}
 ordinary vote, no list · {{si}} to {{no}} · {{fecha}}
 
 <!-- fig.F26.nota.b -->
-«{{literal}}» · V2 {{v2}} · v3 {{v3}}
+«{{literal}}»
 
 <!-- fig.F26.tabla.caption --> The votes in the figure, with the text of the result as the Diario prints it
 <!-- fig.F26.tabla.votacion --> Vote
@@ -354,15 +340,14 @@ ordinary vote, no list · {{si}} to {{no}} · {{fecha}}
 <!-- fig.F26.tabla.si --> Yes
 <!-- fig.F26.tabla.no --> No
 <!-- fig.F26.tabla.mitad --> Half plus one
-<!-- fig.F26.tabla.V2 --> V2 row
-<!-- fig.F26.tabla.v3 --> v3 row
+<!-- fig.F26.tabla.V2 --> Row
 <!-- fig.F26.tabla.literal --> Text of the result in the Diario
 <!-- fig.F26.tabla.ordinaria --> ordinary
 
 <!-- fig.F26.minima.tabla --> The table, with the text of the result in the Diario
 
 <!-- fig.F26.salvedad -->
-These are {{voto.n|letra}} selected votes, not all of them: the Diario prints roll-call lists in at least {{voto.listas.sesiones}} sessions. The lists are in the text of the rows, not in a column: the dataset does not hold the vote as a variable. In V2, the lists for these six sit inside rows of the Chair.
+These are {{voto.n|letra}} selected votes, not all of them: the Diario prints roll-call lists in at least {{voto.listas.sesiones}} sessions. The lists are in the text, not in a column: the dataset does not hold the vote as a variable.
 
 <!-- fig.F26.alt -->
 Bars for {{voto.n|letra}} roll-call votes and one ordinary vote, from 1931 to 1936, with the votes for and against in each. The values are in the ‘Table’ tab.
@@ -371,7 +356,7 @@ Bars for {{voto.n|letra}} roll-call votes and one ordinary vote, from 1931 to 19
 The votes in the figure, with their totals and the text of the result.
 
 <!-- fig.F26.datos.listas -->
-All sessions with roll-call lists: date, number, rows with a list and their V2 ids.
+All sessions with roll-call lists: date, number, rows with a list and their ids.
 
 <!-- fig.F26.leame.que_mide -->
 The votes for and against in {{voto.n|letra}} roll-call votes and one ordinary vote, as printed in the Diario de Sesiones.
@@ -383,7 +368,7 @@ There is no common denominator. Where the Diario prints the number of deputies a
 votacion, fecha, num_session, legislatura, si, no, total, mitad_mas_uno, nominal (sí/no), id_V2, id_v3, literal.
 
 <!-- fig.F26.leame.salvedad -->
-An editorial selection of {{voto.n|letra}} votes: the Diario prints roll-call lists in at least {{voto.listas.sesiones}} sessions. The totals are read in the text of the row; the dataset does not hold the vote as a column. V2 and v3 ids are not interchangeable.
+An editorial selection of {{voto.n|letra}} votes: the Diario prints roll-call lists in at least {{voto.listas.sesiones}} sessions. The totals are read in the text of the row; the dataset does not hold the vote as a column.
 
 ---
 
@@ -410,8 +395,6 @@ How was the floor shared in these sessions?
 
 <!-- fig.F30.rotulo.truncada --> repeated end
 
-<!-- fig.F30.rotulo.estatuto --> The Chair in V2: Azaña's speech
-
 <!-- fig.F30.cifras.aria --> The session in numbers
 
 <!-- fig.F30.panel -->
@@ -431,9 +414,6 @@ Session no. {{num}}
 <!-- fig.F30.nota -->
 order {{orden}} · {{palabras}} words
 
-<!-- fig.F30.nota.b -->
-V2 {{fila}}
-
 <!-- fig.F30.nota.truncada -->
 Repeated end of the minutes: «Pido la palabra.»
 
@@ -441,14 +421,14 @@ Repeated end of the minutes: «Pido la palabra.»
 Under «El Sr. PRESIDENTE»: inside is Azaña's speech
 
 <!-- fig.F30.tabla.caption --> The rows of the session, in order
-<!-- fig.F30.tabla.orden --> Order (V2)
+<!-- fig.F30.tabla.orden --> Order
 <!-- fig.F30.tabla.orador --> Who speaks
 <!-- fig.F30.tabla.palabras --> Words
-<!-- fig.F30.tabla.V2 --> V2 row
+<!-- fig.F30.tabla.V2 --> Row
 <!-- fig.F30.tabla.rotulo --> No deputy: heading from the Diario
 
 <!-- fig.F30.salvedad -->
-One row each time the tagging recognises the printed speaker heading. In V2, some rows contain documents or other speakers' turns; the order changes between editions.
+One row each time the tagging recognises the printed speaker heading.
 
 <!-- fig.F30.alt -->
 Bars for the {{n}} rows of the session of {{fecha}}, in order, with height by number of words. The values are in the ‘Table’ tab.
@@ -457,13 +437,13 @@ Bars for the {{n}} rows of the session of {{fecha}}, in order, with height by nu
 This figure has no download of its own: it would be the rows of one session, not aggregate data.
 
 <!-- fig.F30.datos.explorador -->
-The whole session, with its text, is in the explorer: «Filtros › Fecha y sesión», with the same date in «Desde» and «Hasta». From that list, «Exportar» downloads it with its citation; its ids are those of the explorer edition (v3).
+The whole session, with its text, is in the explorer: «Filtros › Fecha y sesión», with the same date in «Desde» and «Hasta». From that list, «Exportar» downloads it with its citation; its ids are those of the explorer.
 
 <!-- fig.F30.leame.que_mide -->
-The words in each row of a session, in the Diario's order, according to the deposited edition (V2).
+The words in each row of a session, in the Diario's order, according to the dataset.
 
 <!-- fig.F30.leame.denominador -->
-The V2 rows of the session. The Chair's role comes from the same heading parser that the explorer uses.
+The rows of the session. The Chair's role comes from the same heading parser that the explorer uses.
 
 <!-- fig.F30.leame.salvedad -->
-Order and id are those of V2; in the explorer (v3) they change. A long row may contain a document read aloud or another speaker's reply.
+The order and id of each row, as they stand in the dataset.

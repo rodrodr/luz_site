@@ -81,18 +81,15 @@ Quién habla
 Habla y no habla
 
 <!-- metodo.indice.06 -->
-Dos ediciones
+Las fechas
 
 <!-- metodo.indice.07 -->
-Fechas corregidas
-
-<!-- metodo.indice.08 -->
 Partido, familia e ideología
 
-<!-- metodo.indice.09 -->
+<!-- metodo.indice.08 -->
 Lo que no afirma
 
-<!-- metodo.indice.10 -->
+<!-- metodo.indice.09 -->
 Documentación
 
 ## Cabecera
@@ -157,14 +154,11 @@ Cada fila lleva {{columnas.V2|letra}} columnas. Dicen la sesión y el lugar de l
 > [nota de diseño] Aquí va **F20** (`fig.F20.*`): V2 {{fila.presidencia.id.V2|id}} y {{fila.campoamor.id.V2|id}} frente a v3
 > {{fila.presidencia.id.v3|id}} y {{fila.campoamor.id.v3|id}}. Al pie de la figura, `fig.F20.enlace` → `datos/#columnas`.
 
-<!-- metodo.01.salvedad -->
-Una fila puede llevar dentro más de un turno, o un documento que nadie leyó en voz alta. Lo explica «Dos ediciones», más abajo.
-
 <!-- metodo.01.pruebelo.consulta -->
 "me escuche en silencio"
 
 <!-- metodo.01.pruebelo.explorador -->
-Busque la frase entre comillas y abra el resultado. El lector la numera «Orden {{fila.campoamor.orden.pantalla|id}} de {{sesion.1931-10-01-48.filas_v3}}»: es la misma fila, contada en la edición del explorador. [Abrir el explorador ↗]
+Busque la frase entre comillas y abra el resultado. El lector la numera «Orden {{fila.campoamor.orden.pantalla|id}} de {{sesion.1931-10-01-48.filas_v3}}»: es la misma fila, contada en el explorador. [Abrir el explorador ↗]
 
 <!-- metodo.01.pruebelo.codigo -->
 ```python
@@ -233,28 +227,139 @@ GLM-OCR recuperó {{ocr.recuperadas}} al reintentarlas. Las {{ocr.tesseract.pagi
 
 Esas páginas de Tesseract están en {{ocr.tesseract.sesiones}} sesiones. Ninguna pasó después por una corrección automática.
 
-<!-- metodo.03.texto.2 -->
-Las erratas de lectura están en el texto y también en las fórmulas de orador: «El Sr. PERSIDENTE:», «El Sr. VICFPRESIDENTE».
-
-Los metadatos de sesión del proyecto declaran {{ocr.incidencias|letra}} incidencias. Las dos se ven en el corpus:
-
-- La sesión 9, del 27 de julio de 1931, acaba en un bucle: repite «Sánchez Guerra, Ossorio y Gallardo» {{ocr.bucle9.repeticiones|letra}} veces, dentro de la fila {{fila.bucle9.id.V2|id}} de la V2.
-- La sesión 48, del 1 de octubre de 1931, perdió el final. Sus {{ses.s48.cola|letra}} últimas filas repiten «Pido la palabra», y la última se corta en «El Sr. Ministro de».
-
-Esas filas son las {{ses.s48.cola.V2.desde|id}}–{{ses.s48.cola.V2.hasta|id}} de la V2 y las {{ses.s48.cola.v3.desde|id}}–{{ses.s48.cola.v3.hasta|id}} de la v3. La resegmentación de la v3 no arregla ese final.
-
-> [nota de diseño] Orden de la plantilla: `metodo.03.texto` · ↺ `comun.fija.ocr` (destacada) · `metodo.03.texto.2`
-> · cita tipográfica con el texto literal de las cinco filas finales (de `citas.json`, leído letra a letra en V2 y
-> v3) · pie ↺ 8 (`comun.fija.sesion48`).
-
 <!-- ↺ comun.fija.ocr -->
 El texto sale del reconocimiento óptico y no está corregido a mano.
+
+<!-- metodo.03.texto.2 -->
+Las erratas de lectura están en el texto y también en las fórmulas de orador, que son las que dicen quién habla. Corrija usted unas cuantas.
+
+> [nota de diseño] Orden de la plantilla (24-09-2026): `metodo.03.texto` · ↺ `comun.fija.ocr` · `metodo.03.texto.2` ·
+> el juego «Corrija al Diario» (`metodo.03.juego.*`, `components/metodo/Erratas.astro`; las lecturas y sus filas salen
+> de `src/data/erratas.json`, exportador/modulos/erratas.py) · `metodo.03.incidencias` · ↺ 8 (`comun.fija.sesion48`) ·
+> las cinco filas finales de la sesión 48, literales. Sin JS, el juego es una tabla con las lecturas y sus filas.
+
+<!-- metodo.03.juego.titulo -->
+Corrija al Diario
+
+<!-- metodo.03.juego.entrada -->
+Así leyó la máquina la fórmula de un orador. Corríjala: cada lectura está, tal cual, en la base.
+
+<!-- metodo.03.juego.leyo -->
+Leyó la máquina
+
+<!-- metodo.03.juego.debe -->
+Debe decir
+
+<!-- metodo.03.juego.campo -->
+Su corrección
+
+<!-- metodo.03.juego.corregir -->
+[Corregir]
+
+<!-- metodo.03.juego.dejar -->
+[Dejarla]
+
+<!-- metodo.03.juego.rendirse -->
+[Me rindo]
+
+<!-- metodo.03.juego.cuenta -->
+Fórmula {{i}} de {{formulas}}
+
+<!-- metodo.03.juego.filas -->
+Así está en {{n}} filas de la base.
+
+<!-- metodo.03.juego.filas.una -->
+Así está en una fila de la base.
+
+<!-- metodo.03.juego.casi -->
+Todavía no. Compare letra a letra desde «{{desde}}».
+
+<!-- metodo.03.juego.bien -->
+Corregida.
+
+<!-- metodo.03.juego.r.punto -->
+Un punto. Fácil. Pero el Diario tiene más páginas.
+
+<!-- metodo.03.juego.r.coma -->
+Una coma donde iba un punto. La máquina tiene sus manías, y las repite.
+
+<!-- metodo.03.juego.r.ei -->
+En el papel gastado, la ele y la i se parecen demasiado.
+
+<!-- metodo.03.juego.r.persidente -->
+Dos letras que cambian de sitio: le pasa a cualquiera, también a la máquina.
+
+<!-- metodo.03.juego.r.siete -->
+Un siete en mitad de la palabra. Nadie sabe de dónde salió.
+
+<!-- metodo.03.juego.r.articulo -->
+Una sola letra, y el presidente cambia de artículo.
+
+<!-- metodo.03.juego.r.residente -->
+Sin la pe, el presidente se queda en residente.
+
+<!-- metodo.03.juego.r.campoamor -->
+Los nombres tampoco se salvan: Campoamor, con o.
+
+<!-- metodo.03.juego.r.gil_robles -->
+De «GIL», la máquina solo reconoció la ele.
+
+<!-- metodo.03.juego.trampa -->
+¿Y esta? ¿La corrige o la deja como está?
+
+<!-- metodo.03.juego.trampa.cayo -->
+¡Alto! No era una errata: los extractos de 1938 y 1939 y las sesiones de México escriben «señor» con todas sus letras. Acaba de corregir al Diario.
+
+<!-- metodo.03.juego.trampa.bien -->
+Bien visto: no era una errata. Los extractos de 1938 y 1939 y las sesiones de México escriben «señor» con todas sus letras.
+
+<!-- metodo.03.juego.resumen.hechas -->
+Ha corregido {{n}} fórmulas en {{tiempo}}.
+
+<!-- metodo.03.juego.resumen.una -->
+Ha corregido una fórmula en {{tiempo}}.
+
+<!-- metodo.03.juego.resumen.cero -->
+No ha corregido ninguna. No se lo reprochamos.
+
+<!-- metodo.03.juego.resumen.dimension -->
+Solo la fórmula de la Presidencia sale escrita de {{formas}} maneras en la base, y hay {{formulas}} fórmulas de orador distintas.
+
+<!-- metodo.03.juego.resumen.ritmo -->
+A su ritmo, revisarlas todas le llevaría {{total}}.
+
+<!-- metodo.03.juego.leccion -->
+Por eso el texto no se corrige a mano. El etiquetado admite las variantes de lectura, y la vinculación de cada fórmula con su diputado se revisó fila a fila.
+
+<!-- metodo.03.juego.otra -->
+[Volver a empezar]
+
+<!-- metodo.03.juego.tabla -->
+Algunas lecturas de la máquina, tal como están en la base
+
+<!-- metodo.03.juego.tabla.col.leyo -->
+Leyó la máquina
+
+<!-- metodo.03.juego.tabla.col.debe -->
+Debe decir
+
+<!-- metodo.03.juego.tabla.col.filas -->
+Filas
+
+<!-- metodo.03.juego.tabla.no_errata -->
+no es errata
+
+<!-- metodo.03.incidencias -->
+Los metadatos de sesión del proyecto declaran {{ocr.incidencias|letra}} incidencias. Las dos se ven en el corpus:
+
+- La sesión 9, del 27 de julio de 1931, acaba en un bucle: repite «Sánchez Guerra, Ossorio y Gallardo» {{ocr.bucle9.repeticiones|letra}} veces.
+- La sesión 48, del 1 de octubre de 1931, perdió el final. Sus {{ses.s48.cola|letra}} últimas filas repiten «Pido la palabra», y la última se corta en «El Sr. Ministro de».
 
 <!-- ↺ comun.fija.sesion48 -->
 La sesión 48 tal como está en el corpus: el final del acta digitalizada se perdió en el reconocimiento óptico.
 
 <!-- metodo.03.cola.rotulo -->
-Las {{ses.s48.cola|letra}} últimas filas de la sesión 48, tal como están en las dos ediciones
+Las {{ses.s48.cola|letra}} últimas filas de la sesión 48, tal como están en la base
 
 <!-- metodo.03.salvedad -->
 Estas cifras salen de los archivos de trabajo del proyecto, que no están depositados. Las incidencias constan en sus metadatos de sesión.
@@ -305,9 +410,6 @@ Las demás son de secretarios, de la Presidencia sin nombre o de fórmulas que l
 
 Por eso los presidentes de la Cámara encabezan cualquier recuento de palabras sin filtrar.
 
-<!-- metodo.04.enlace -->
-[Ver quién habla más según la edición]
-
 > [nota de diseño] `metodo.04.enlace` → `datos/versiones/#quien-habla` (F07). La cifra de
 > vicepresidentes cuenta sesiones por (fecha, número); son 584 fechas (nota 2 de la cabecera).
 
@@ -336,7 +438,7 @@ d[d.rep_id.isna()].speaker.value_counts()   # las filas sin diputado
 Una fila corta suele ser trámite; una fila larga puede no ser habla.
 
 <!-- metodo.05.texto -->
-El {{longitud.hasta50.pct}} de las filas de la V2 tiene {{longitud.umbral}} palabras o menos. La mediana es de {{longitud.mediana|letra}} palabras.
+El {{longitud.hasta50.pct}} de las filas tiene {{longitud.umbral}} palabras o menos. La mediana es de {{longitud.mediana|letra}} palabras.
 
 Más de la mitad de esas filas breves son de la Presidencia: el {{longitud.hasta50.presidencia.pct}}.
 
@@ -346,9 +448,7 @@ Longitud no es importancia. Una fila breve puede ser una votación o una interru
 
 **Lo que no es habla.** El Diario imprime también lo que nadie dijo en voz alta: listas de votación, dictámenes, ruegos por escrito, tablas y el relato de la sesión.
 
-La V2 deja ese material dentro de la fila anterior. La mayoría de las veces es la fila de quien presidía: el {{v3.comentarios.en_presidencia|pct0}}.
-
-La v3 lo separa en {{v3.comentarios}} filas de «Comentarios del Diario». Añade además al principio de cada sesión su sumario, que la V2 no traía.
+La base lo guarda en {{v3.comentarios}} filas propias, de «Comentarios del Diario». Cada sesión abre, además, con su sumario.
 
 En el explorador, la casilla «Solo lo que se habla» deja fuera sumarios y comentarios. Quedan {{habla.v3}} de las {{filas.v3}} intervenciones.
 
@@ -356,9 +456,6 @@ La separación sigue una auditoría del proyecto. Que una fila quede como habla 
 
 > [nota de diseño] Aquí va **F10/F11** (`fig.F10.*`). Las cifras de este apartado son de la V2 salvo las de la v3,
 > rotuladas en su frase; la página lleva `<NotaBases>`.
-
-<!-- metodo.05.salvedad -->
-Con la v3, la proporción de filas breves cambia: el {{longitud.hasta50.pct.v3}} tiene {{longitud.umbral}} palabras o menos. Cada figura dice qué edición cuenta.
 
 <!-- metodo.05.pruebelo.consulta -->
 "casas viejas"
@@ -368,74 +465,20 @@ Busque la frase dos veces, con la casilla «Solo lo que se habla» y sin ella. L
 
 <!-- metodo.05.pruebelo.codigo -->
 ```python
-(d.nwords <= 50).mean()   # la parte de filas breves en la V2
+(d.nwords <= 50).mean()   # la parte de filas breves
 ```
 
 ---
 
-## 06 · ¿Por qué hay dos ediciones?
+## 06 · ¿Cómo se fechó cada sesión?
 
 <!-- metodo.06.titulo -->
-¿Por qué hay dos ediciones?
+¿Cómo se fechó cada sesión?
 
 <!-- metodo.06.entrada -->
-La V2 depositada tiene dos defectos de segmentación. La v3 del explorador los corrige sin cambiar una letra del texto.
+Cada fecha se comprobó cruzando cuatro fuentes, una sesión tras otra.
 
 <!-- metodo.06.texto -->
-**Turnos enterrados.** Cuando el etiquetador no reconoció una fórmula, el turno siguiente quedó dentro de la fila anterior. La v3 rescata {{v3.turnos}} turnos.
-
-La mayoría estaban dentro de una fila de la Presidencia: el {{v3.turnos.en_presidencia|pct0}}.
-
-**Material impreso dentro de las filas.** Tablas, listas de votación y documentos iban en la fila de quien hablaba antes. La v3 los pasa a filas de comentarios del Diario.
-
-Las tres filas de la figura lo enseñan.
-
-- La fila más larga de la V2, la {{fila.prieto.id.V2|id}}, suma {{fila.prieto.nwords}} palabras a nombre de Indalecio Prieto, el 12 de julio de 1933.
-- Su discurso son {{fila.prieto.habla}} palabras. El resto, {{fila.prieto.documentos}}, son tablas y «documentos complementarios» que el Diario imprime con él.
-- El discurso de Manuel Azaña sobre el Estatuto de Cataluña, el 27 de mayo de 1932, va en la V2 dentro de una fila de la Presidencia, la {{fila.estatuto.id.V2|id}}.
-- La v3 le da fila propia, la {{fila.estatuto.id.v3|id}}, con {{fila.estatuto.nwords.v3}} palabras.
-- El discurso de Azaña del 20 de marzo de 1935 ya estaba bien en la V2: {{fila.azana1935.nwords}} palabras en una sola fila, igual en las dos ediciones.
-
-**El texto no cambia.** Cada pieza de la v3 es un tramo literal de una fila de la V2. Juntas, en orden y con las fórmulas que se separaron, reconstruyen las {{filas.V2}} filas.
-
-Las palabras de cada fila de la V2 se reparten entre sus piezas y suman lo mismo: {{palabras.V2}}. Lo que añade la v3 son los sumarios.
-
-La v3 no está depositada.
-
-<!-- metodo.06.enlace -->
-[Ver adónde va cada fila de la V2]
-
-> [nota de diseño] Aquí va **F12** (`fig.F12.*`). Orden de la plantilla: `metodo.06.texto` · F12 · ↺
-> `comun.fija.ids` · `metodo.06.enlace`, que va a `datos/versiones/#destino-filas` (F18).
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
-
-<!-- metodo.06.salvedad -->
-La correspondencia fila a fila entre las dos ediciones no está publicada. Las cifras de la v3 de este apartado se leyeron en ella, con su huella.
-
-<!-- metodo.06.pruebelo.consulta -->
-"es preciso reconocer sres diputados que en esta campaña"
-
-<!-- metodo.06.pruebelo.explorador -->
-Busque la frase y abra el resultado: es Azaña, el 27 de mayo de 1932, en fila propia. En la V2, ese texto va a nombre de la Presidencia. [Abrir el explorador ↗]
-
-<!-- metodo.06.pruebelo.codigo -->
-```python
-print(d.loc[d.id == 25979, "speech"].iloc[0][:400])   # Presidencia y, dentro, Azaña
-```
-
----
-
-## 07 · ¿Qué fechas se corrigieron?
-
-<!-- metodo.07.titulo -->
-¿Qué fechas se corrigieron?
-
-<!-- metodo.07.entrada -->
-La primera versión fechaba mal algunas sesiones. La V2 las corrigió después de auditar todas, una a una.
-
-<!-- metodo.07.texto -->
 La auditoría cruzó cuatro fuentes independientes para cada sesión:
 
 - las cabeceras corridas de cada página impresa;
@@ -443,48 +486,37 @@ La auditoría cruzó cuatro fuentes independientes para cada sesión:
 - las fechas que cita el propio texto;
 - la secuencia de números del Diario, con el día de la semana.
 
-Para corregir una fecha pidió dos indicios independientes, o una cabecera impresa sin ambigüedad.
+Para fijar una fecha pidió dos indicios independientes, o una cabecera impresa sin ambigüedad.
 
-Cambiaron {{fechas.sesiones|letra}} sesiones. Suman {{fechas.filas}} filas.
-
-Solo cambian las columnas `date` y `legislature`; el texto y las demás columnas quedan igual.
-
-Una sesión cambió también de legislatura. La sesión 77, que la V1 fechaba el 1 de junio de 1933, es del 4 de mayo de 1934.
-
-La V1 fechaba la sesión 321 el 14 de julio de 1931: tomó la fecha de la portada del Tomo XX, que dice cuándo empezaron esas Cortes. Es del 31 de marzo de 1933.
-
-En varias, el error venía de la cabecera de la sesión: una errata de imprenta o una cifra dañada que la lectura óptica leyó mal.
+El papel también se equivoca. La portada de un tomo puede dar la fecha en que empezaron esas Cortes, no la de la sesión. Y en algunas cabeceras hay una errata de imprenta o una cifra dañada que la lectura óptica leyó mal.
 
 La auditoría tiene un límite: no detecta un error de fecha coherente con la secuencia.
 
-<!-- metodo.07.enlace -->
-[Ver las fechas corregidas]
-
-> [nota de diseño] `metodo.07.enlace` → `datos/versiones/#fechas` (F25). «Cuatro fuentes» es la estructura
+> [nota de diseño] `metodo.06.enlace` → `datos/versiones/#fechas` (F25). «Cuatro fuentes» es la estructura
 > del método de la auditoría (`AUDITORIA_FECHAS.md`, proyecto), no una cifra del corpus.
 
-<!-- metodo.07.salvedad -->
-El changelog depositado da los rangos de filas corregidas. La tabla de pruebas que cita, `erratas_fechas_V1.csv`, no está depositada.
+<!-- metodo.06.salvedad -->
+La tabla de pruebas de la auditoría no está depositada.
 
-<!-- metodo.07.pruebelo.explorador -->
+<!-- metodo.06.pruebelo.explorador -->
 Sin texto de búsqueda, elija la legislatura 1933-1935 y escriba 77 en «Nº de sesión». Todas sus intervenciones son del 4 de mayo de 1934. [Abrir el explorador ↗]
 
-<!-- metodo.07.pruebelo.codigo -->
+<!-- metodo.06.pruebelo.codigo -->
 ```python
 d[(d.legislature == "1933-1935") & (d.num_session == 77)].date.unique()
 ```
 
 ---
 
-## 08 · ¿Qué significan partido, familia e ideología?
+## 07 · ¿Qué significan partido, familia e ideología?
 
-<!-- metodo.08.titulo -->
+<!-- metodo.07.titulo -->
 ¿Qué significan partido, familia e ideología?
 
-<!-- metodo.08.entrada -->
+<!-- metodo.07.entrada -->
 Las tres columnas describen al diputado, no la fila. Vienen de la tabla de diputados del proyecto.
 
-<!-- metodo.08.texto -->
+<!-- metodo.07.texto -->
 **El partido** va por diputado y legislatura. Quien cambió de partido entre legislaturas cambia también en la base.
 
 **La familia** agrupa partidos. En el CSV tiene {{familias.V2}} valores distintos, con variantes de grafía como «Repubicanos» o «Republicanoses».
@@ -507,112 +539,94 @@ Quedan etiquetas pendientes de revisión por el autor:
 - la familia «Liberal», con {{familias.liberal.filas}} filas, que el explorador funde con «Liberales»;
 - la Lliga, que es CD en el CSV y D en el README.
 
-<!-- metodo.08.salvedad -->
+<!-- metodo.07.salvedad -->
 Una categoría gruesa sirve para comparar bloques, no para clasificar a una persona.
 
-<!-- metodo.08.pruebelo.explorador -->
+<!-- metodo.07.pruebelo.explorador -->
 Elija el partido CEDA en los filtros y despliegue la faceta Ideología. Verá más de un código. [Abrir el explorador ↗]
 
-<!-- metodo.08.pruebelo.codigo -->
+<!-- metodo.07.pruebelo.codigo -->
 ```python
 d[d.party == "CEDA"].ideology.value_counts()
 ```
 
 ---
 
-## 09 · ¿Qué no afirma el corpus, y cómo comparar?
+## 08 · ¿Qué no afirma el corpus, y cómo comparar?
 
-<!-- metodo.09.titulo -->
+<!-- metodo.08.titulo -->
 ¿Qué no afirma el corpus, y cómo comparar?
 
-<!-- metodo.09.entrada -->
+<!-- metodo.08.entrada -->
 La base dice quién habló, cuándo y cuánto. No dice de qué, en qué tono, desde qué posición ni qué votó.
 
 > [nota de diseño] Tras el texto, las cuatro cajas vacías de Inicio, en pequeño, con las mismas claves:
 > `inicio.falta.tema` · `.tono` · `.posicion` · `.voto`. Aquí no se redactan.
 
-<!-- metodo.09.texto -->
-**Las legislaturas son desiguales.** La primera reúne el {{leg.1931-1933.palabras.pct}} de las palabras de la V2.
+<!-- metodo.08.texto -->
+**Las legislaturas son desiguales.** La primera reúne el {{leg.1931-1933.palabras.pct}} de las palabras.
 
 Compare tasas, no volúmenes: palabras por sesión, o la parte de cada grupo dentro de su legislatura.
 
-**El voto no es una columna.** Las votaciones nominales van en el texto, como listas de nombres.
-
-En la V2, la lista del {{voto.161-121.si}} a {{voto.161-121.no}} del 1 de octubre de 1931 va dentro de una fila de la Presidencia, la {{voto.161-121.V2|id}}.
-
-Esa fila marca {{fila.lista.nwords}} palabras en `nwords`. Los nombres van en líneas separadas, y `nwords` solo corta por espacios (Datos, «Cinco maneras de contar “palabra”»).
+**El voto no es una columna.** Las votaciones nominales van en el texto, como listas de nombres, en filas de comentarios del Diario.
 
 **El tono no se mide.** Las acotaciones del taquígrafo, «(Rumores.)», «(Aplausos.)», están en el texto. Nadie las ha convertido en una variable de la base.
 
-> [nota de diseño] Tras `metodo.09.texto` va ↺ `comun.fija.contar`, destacada. «Cinco maneras…» enlaza a
+> [nota de diseño] Tras `metodo.08.texto` va ↺ `comun.fija.contar`, destacada. «Cinco maneras…» enlaza a
 > `datos/#palabra`.
 
 <!-- ↺ comun.fija.contar -->
 Contar una palabra no dice quién la defiende ni en qué tono.
 
-<!-- metodo.09.salvedad -->
+<!-- metodo.08.salvedad -->
 Que el Diario lo recoja no lo hace cierto: la base transcribe lo impreso, no lo verifica.
 
-<!-- metodo.09.pruebelo.consulta -->
+<!-- metodo.08.pruebelo.consulta -->
 "total 161"
 
-<!-- metodo.09.pruebelo.explorador -->
-Busque la frase con la casilla «Solo lo que se habla» y sin ella. Con la casilla marcada, la lista desaparece: la v3 la guarda como comentario del Diario. [Abrir el explorador ↗]
+<!-- metodo.08.pruebelo.explorador -->
+Busque la frase con la casilla «Solo lo que se habla» y sin ella. Con la casilla marcada, la lista desaparece: es un comentario del Diario. [Abrir el explorador ↗]
 
-<!-- metodo.09.pruebelo.codigo -->
+<!-- metodo.08.pruebelo.codigo -->
 ```python
 print(d.loc[d.id == 5453, "speech"].iloc[0])   # la lista, dentro de la Presidencia
 ```
 
 ---
 
-## 10 · ¿Dónde está la documentación completa?
+## 09 · ¿Dónde está la documentación completa?
 
-<!-- metodo.10.titulo -->
+<!-- metodo.09.titulo -->
 ¿Dónde está la documentación completa?
 
-<!-- metodo.10.entrada -->
+<!-- metodo.09.entrada -->
 Lo depositado, lo que no lo está y lo que publica este sitio.
 
-<!-- metodo.10.texto -->
-**Depositado en Harvard Dataverse**, con la V2.0: el CSV, los changelogs en español y en inglés, y el README.
+<!-- metodo.09.texto -->
+**Depositado en Harvard Dataverse:** el CSV, el README y los registros de cambios, en español y en inglés.
 
-<!-- metodo.10.texto.2 -->
-Su tabla de cobertura es la de la V1. Llama Jaro-Winkler al parecido entre apellidos, que el código calcula con `difflib`.
+<!-- metodo.09.texto.2 -->
+**Sin depositar.** Los metadatos de sesión (Diario, páginas, presidente titular y Gobierno) y la tabla de diputados con la que se vinculó cada fórmula, que el README ofrece a petición.
 
-Habla de una instrucción estructurada al modelo de lectura, que el código no envía: GLM-OCR usa su propia plantilla.
-
-Y llama exilio a las sesiones de Valencia y Barcelona. En esta base, el exilio son las sesiones de México, en 1945.
-
-**Sin depositar.** Estas piezas del proyecto no están en Dataverse:
-
-- la v3 que sirve el explorador;
-- la correspondencia fila a fila entre la V2 y la v3;
-- los metadatos de sesión: Diario, páginas, presidente titular y Gobierno;
-- la tabla de diputados con la que se vinculó cada fórmula, que el README ofrece a petición.
-
-**En este sitio:** el exportador que calcula cada cifra y un archivo, `procedencia.csv`, con la base, la fórmula y la fecha de todas.
+**En este sitio:** el exportador que calcula cada cifra y un archivo, `procedencia.csv`, con la fórmula y la fecha de todas.
 
 Lo que no tiene dirección pública no se enlaza.
 
-<!-- metodo.10.enlace -->
+<!-- metodo.09.enlace -->
 [De dónde sale cada cifra]
 
-> [nota de diseño] Orden: `metodo.10.texto` · ↺ `comun.fija.readme` · `metodo.10.texto.2` · `metodo.10.enlace` →
+> [nota de diseño] Orden: `metodo.09.texto` · ↺ `comun.fija.readme` · `metodo.09.texto.2` · `metodo.09.enlace` →
 > `datos/procedencia.csv` (el mismo destino que el pie). Sin URL pública, no se pinta nada más.
-
-<!-- ↺ comun.fija.readme -->
-El README depositado describe la primera versión; las diferencias, aquí.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.
 
 > [nota de diseño] `comun.fija.diario` es la salvedad al margen del apartado 10.
 
-<!-- metodo.10.pruebelo.explorador -->
-Abra «Sobre este corpus», en el panel lateral del explorador. Dice qué edición sirve: la v3, sin publicar. [Abrir el explorador ↗]
+<!-- metodo.09.pruebelo.explorador -->
+Abra «Sobre este corpus», en el panel lateral del explorador: da la cita de la base. [Abrir el explorador ↗]
 
-<!-- metodo.10.pruebelo.codigo -->
+<!-- metodo.09.pruebelo.codigo -->
 ```python
 d.shape   # compárelo con el README: filas y columnas
 ```
@@ -632,44 +646,8 @@ Anatomía de una fila
 <!-- fig.F20.que_mide -->
 Dos filas seguidas de la sesión del 1 de octubre de 1931, con sus {{columnas.V2}} columnas, tal como están en el CSV depositado.
 
-<!-- fig.F20.conmutador.csv -->
-Como en el CSV
-
-<!-- fig.F20.conmutador.explorador -->
-Como en el explorador
-
-<!-- fig.F20.conmutador.leyenda -->
-Ver la fila
-
 <!-- fig.F20.nota.columna -->
 {{columna}} · {{definicion}}
-
-<!-- fig.F20.explorador.texto -->
-La edición del explorador guarda las mismas filas con otro número y otro orden. Añade la fórmula y el nombre sin tildes ni mayúsculas, para buscar, y conserva la familia y la ideología tal como venían.
-
-<!-- fig.F20.explorador.ordenes -->
-En la V2, las órdenes son {{fila.presidencia.orden.V2|id}} y {{fila.campoamor.orden.V2|id}}, porque empiezan en cero. En la v3 son {{fila.presidencia.orden.v3|id}} y {{fila.campoamor.orden.v3|id}}: la sesión abre con su sumario y la v3 rescata turnos anteriores.
-
-<!-- fig.F20.explorador.pantalla -->
-La pantalla del explorador cuenta desde uno: «Orden {{fila.campoamor.orden.pantalla|id}}».
-
-<!-- fig.F20.campo.ord -->
-Posición en la sesión, en la v3. Cuenta desde cero; la pantalla, desde uno.
-
-<!-- fig.F20.campo.speaker_fold -->
-La fórmula impresa, sin tildes ni mayúsculas, para buscar.
-
-<!-- fig.F20.campo.rep_name_fold -->
-El nombre del diputado, sin tildes ni mayúsculas, para buscar.
-
-<!-- fig.F20.campo.party_family_raw -->
-La familia tal como viene en el CSV, antes de normalizar la grafía.
-
-<!-- fig.F20.campo.ideology_raw -->
-La ideología tal como viene en el CSV, con sus espacios.
-
-<!-- fig.F20.campo.year -->
-El año de la sesión, para filtrar.
 
 <!-- fig.F20.enlace -->
 [Ver qué trae cada columna]
@@ -678,7 +656,7 @@ El año de la sesión, para filtrar.
 El texto sigue; aquí va solo su comienzo.
 
 <!-- fig.F20.salvedad -->
-El número de fila cambia entre ediciones; la sesión, no. La ideología de Campoamor es C porque es la de su partido, el radical.
+La ideología de Campoamor es C porque es la de su partido, el radical.
 
 > [nota de diseño] F20 es una tabla ARIA clave–valor, dos columnas de datos (5423 · 5424). La definición de cada
 > columna **no se redacta aquí**: se reutiliza `datos.columnas.<columna>.definicion` (F32), para que las dos figuras
@@ -698,9 +676,6 @@ Lo impreso
 
 <!-- fig.F20.grupo.diputado -->
 El diputado, si se identificó
-
-<!-- fig.F20.solo_v3 -->
-solo en la v3
 
 <!-- fig.F20.tabla.col.columna -->
 Columna
@@ -727,7 +702,7 @@ Los números del Diario
 {{sesiones}} números, uno por sesión
 
 <!-- fig.F19.paso1.detalle -->
-Escaneados en PDF desde el archivo histórico del Congreso. Son las sesiones de las tres legislaturas y las de México, en 1945. Base: V2.
+Escaneados en PDF desde el archivo histórico del Congreso. Son las sesiones de las tres legislaturas y las de México, en 1945.
 
 <!-- fig.F19.paso2.titulo -->
 Las páginas, leídas
@@ -784,10 +759,10 @@ Trámite frente a discurso
 ¿Cuántas filas son breves, y cuánto texto se llevan las largas?
 
 <!-- fig.F10.que_mide -->
-Cuántas filas de la V2 caen en cada tramo de longitud, o cuántas palabras suman, separando las de la Presidencia.
+Cuántas filas caen en cada tramo de longitud, o cuántas palabras suman, separando las de la Presidencia.
 
 <!-- fig.F10.denominador -->
-Las {{filas.V2}} filas de la V2, o sus {{palabras.V2}} palabras contadas con `nwords`.
+Las {{filas.V2}} filas, o sus {{palabras.V2}} palabras contadas con `nwords`.
 
 <!-- fig.F10.conmutador.leyenda -->
 Contar
@@ -867,14 +842,11 @@ Palabras de la Presidencia
 <!-- fig.F10.tabla.col.pal_resto -->
 Palabras del resto
 
-<!-- fig.F10.v3 -->
-En la v3, que separa sumarios y comentarios, el {{longitud.hasta50.pct.v3}} de las filas tiene {{longitud.umbral}} palabras o menos.
-
 <!-- fig.F10.salvedad -->
 Se mide la longitud; «de trámite» es una interpretación. La Presidencia se reconoce por su fórmula impresa, con el analizador del explorador.
 
 <!-- fig.F10.alt -->
-Histograma de la longitud de las filas de la V2. La mayoría son breves y de la Presidencia; al contar palabras, la masa pasa a las filas largas.
+Histograma de la longitud de las filas. La mayoría son breves y de la Presidencia; al contar palabras, la masa pasa a las filas largas.
 
 > [nota de diseño] Diez tramos (`longitud.json`, del exportador): 0–5 · 6–10 · 11–20 · 21–50 · 51–100 · 101–300 ·
 > 301–1.000 · 1.001–3.000 · 3.001–10.000 · más de 10.000; sus rótulos los escribe el componente con `fmt.n`. La
@@ -884,72 +856,6 @@ Histograma de la longitud de las filas de la V2. La mayoría son breves y de la 
 > Pestañas: Gráfico · Tabla · Datos; Datos lleva ↺ 12.
 
 ### F12 · La fila más larga no es un discurso (apartado 06)
-
-<!-- fig.F12.titulo -->
-La fila más larga no es un discurso
-
-<!-- fig.F12.pregunta -->
-¿Por qué hacía falta la v3?
-
-<!-- fig.F12.que_mide -->
-Tres filas de la V2, partidas en las piezas en que las divide la v3, con las palabras de cada pieza.
-
-<!-- fig.F12.denominador -->
-Las palabras de cada fila de la V2, repartidas entre sus piezas de la v3.
-
-<!-- fig.F12.fila.prieto -->
-Prieto, 12 de julio de 1933 · fila {{fila.prieto.id.V2|id}} de la V2
-
-<!-- fig.F12.fila.estatuto -->
-Azaña, 27 de mayo de 1932 · fila {{fila.estatuto.id.V2|id}} de la V2
-
-<!-- fig.F12.fila.azana1935 -->
-Azaña, 20 de marzo de 1935 · fila {{fila.azana1935.id.V2|id}} de la V2
-
-<!-- fig.F12.leyenda.habla -->
-Habla del orador
-
-<!-- fig.F12.leyenda.documento -->
-Comentario del Diario: tablas, documentos, listas
-
-<!-- fig.F12.leyenda.turno -->
-Turno rescatado
-
-<!-- fig.F12.leyenda.presidencia -->
-Presidencia
-
-<!-- fig.F12.nota -->
-{{tipo}} · fila {{id_v3}} de la v3 · {{n}} palabras · «{{comienzo}}»
-
-<!-- fig.F12.tabla.col.v2 -->
-Fila de la V2
-
-<!-- fig.F12.tabla.col.v3 -->
-Pieza en la v3
-
-<!-- fig.F12.tabla.col.tipo -->
-Qué es
-
-<!-- fig.F12.tabla.col.orador -->
-A nombre de
-
-<!-- fig.F12.tabla.col.palabras -->
-Palabras
-
-<!-- fig.F12.anota.prieto -->
-De las {{fila.prieto.nwords}} palabras de la fila de Prieto, {{fila.prieto.documentos}} son tablas y documentos que el Diario imprime con su discurso.
-
-<!-- fig.F12.anota.estatuto -->
-El discurso de Azaña iba a nombre de la Presidencia.
-
-<!-- fig.F12.anota.azana1935 -->
-Un discurso largo de verdad: la misma fila en las dos ediciones.
-
-<!-- fig.F12.salvedad -->
-Las palabras de la v3 se reparten en proporción al texto de cada pieza. La correspondencia fila a fila no está publicada.
-
-<!-- fig.F12.alt -->
-Tres barras, una por fila de la V2. La de Prieto se parte en discurso y documentos; la del Estatuto, en Presidencia y el discurso de Azaña; la de 1935 queda entera.
 
 > [nota de diseño] Datos de `ediciones.json › F12` (el exportador lee `mapa_v2_v3.json`, local, y la v3): V2 55221 →
 > v3 61929 habla · 61930 comentario · 61931 habla · 61932 comentario; V2 25979 → v3 29041 Presidencia · 29042

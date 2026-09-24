@@ -179,7 +179,6 @@ The data are published. Ask your questions.
 
 > The home page no longer shows them; kept as they were on 23-09-2026.
 
-
 <!-- inicio.f01c.titulo --> The sessions, month by month, by stage
 
 <!-- inicio.f01c.nota.etapa --> {{etapa}} · {{n}} sessions · opens its page
@@ -217,16 +216,16 @@ What is a row?
 «Ruego a la Cámara que guarde silencio.»
 
 <!-- inicio.fila.presidencia.pie -->
-The Chair · V2 {{fila.presidencia.id.V2|id}} · v3 {{fila.presidencia.id.v3|id}}
+The Chair
 
 <!-- inicio.fila.campoamor -->
 «Yo ruego a la Cámara que me escuche en silencio…»
 
 <!-- inicio.fila.campoamor.pie -->
-Clara Campoamor · V2 {{fila.campoamor.id.V2|id}} · v3 {{fila.campoamor.id.v3|id}}
+Clara Campoamor
 
 <!-- inicio.fila.dos -->
-They are two of the {{filas.V2}} rows of the deposited edition, one after the other in the session of 1 October 1931.
+They are two of the {{filas.V2}} rows of the dataset, one after the other in the session of 1 October 1931.
 
 <!-- inicio.fila.palabras -->
 The Chair's row has {{fila.presidencia.nwords|letra}} words; Campoamor's, {{fila.campoamor.nwords}}.
@@ -244,49 +243,49 @@ Each moment has its own page, with its quotations and how to read it in full in 
 
 <!-- inicio.puertas.sufragio-1931.que --> Votes for women
 
-<!-- inicio.puertas.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} rows (V2)
+<!-- inicio.puertas.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} rows
 
 <!-- inicio.puertas.cuestion-religiosa-1931.fecha --> 13-X-1931
 
 <!-- inicio.puertas.cuestion-religiosa-1931.que --> «España ha dejado de ser católica»
 
-<!-- inicio.puertas.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} rows (V2)
+<!-- inicio.puertas.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} rows
 
 <!-- inicio.puertas.estatuto-1932.fecha --> 27-V-1932
 
-<!-- inicio.puertas.estatuto-1932.que --> Azaña's speech, under another speaker's name
+<!-- inicio.puertas.estatuto-1932.que --> The Statute of Catalonia
 
-<!-- inicio.puertas.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} rows (V2)
+<!-- inicio.puertas.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} rows
 
 <!-- inicio.puertas.casas-viejas-1933.fecha --> 2-II-1933
 
 <!-- inicio.puertas.casas-viejas-1933.que --> Casas Viejas
 
-<!-- inicio.puertas.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} rows (V2)
+<!-- inicio.puertas.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} rows
 
 <!-- inicio.puertas.pistola-1934.fecha --> 4-VII-1934
 
 <!-- inicio.puertas.pistola-1934.que --> Prieto's pistol
 
-<!-- inicio.puertas.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} rows (V2)
+<!-- inicio.puertas.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} rows
 
 <!-- inicio.puertas.antesala-1936.fecha --> 16-VI and 1-VII-1936
 
 <!-- inicio.puertas.antesala-1936.que --> The prelude
 
-<!-- inicio.puertas.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} and {{sesion.1936-07-01-54.filas}} rows (V2)
+<!-- inicio.puertas.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} and {{sesion.1936-07-01-54.filas}} rows
 
 <!-- inicio.puertas.figueres-1939.fecha --> 1-II-1939
 
 <!-- inicio.puertas.figueres-1939.que --> Figueres
 
-<!-- inicio.puertas.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} rows (V2)
+<!-- inicio.puertas.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} rows
 
 <!-- inicio.puertas.mexico-1945.fecha --> 17-VIII and 7–9-XI-1945
 
 <!-- inicio.puertas.mexico-1945.que --> Mexico
 
-<!-- inicio.puertas.mexico-1945.filas --> {{puerta.mexico-1945.filas}} rows (V2)
+<!-- inicio.puertas.mexico-1945.filas --> {{puerta.mexico-1945.filas}} rows
 
 <!-- inicio.puertas.salvedad -->
 Their presence here does not validate their content: the digitised minutes of 1 October 1931 lost their end in optical character recognition.

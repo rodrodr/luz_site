@@ -5,25 +5,21 @@
  * Dueño: grupo 5 (datos). Los textos se COLOCAN A MANO, en el orden de `docs/copy_es/datos.md`, con la gramática de
  * sección de DESIGN.md: asiento · H2 · entrada · cuerpo en seis columnas · nota al margen en las tres de la derecha
  * (la rejilla la sube a la fila de su párrafo; en el móvil va detrás) · llamada.
- * Figura protagonista: F32 (las columnas). F33 y F34 son figuras de apoyo de su apartado.
- * Anclas fijas que otras páginas enlazan: #empezar · #columnas · #palabra · #unir · #codigo · #citar (comun.md § 3).
+ * Figura protagonista: F32 (las columnas). F34 es la figura de apoyo de su apartado.
+ * Anclas fijas que otras páginas enlazan: #empezar · #columnas · #decision-3 · #unir · #codigo · #citar (comun.md § 3).
  * Las figuras llevan el sufijo «-fig»: el ancla del registro (`lib/figuras.ts`) es la del APARTADO, que las contiene.
  */
 import Base from '../../../layouts/Base.astro';
-import SubNav from '../../../components/SubNav.astro';
 import CabezaPagina from '../../../components/CabezaPagina.astro';
 import IndiceLateral from '../../../components/IndiceLateral.astro';
 import VolverIndice from '../../../components/VolverIndice.astro';
-import NotaBases from '../../../components/NotaBases.astro';
 import Sello from '../../../components/Sello.astro';
 import FigColumnas from '../../../components/datos/FigColumnas.astro';
-import FigRecuentos from '../../../components/datos/FigRecuentos.astro';
 import FigUnion from '../../../components/datos/FigUnion.astro';
 import CitaPestanas from '../../../components/datos/CitaPestanas.astro';
 import { meta } from '../../../lib/pagina';
 import { t, tBloques, rotulo, plano, existe } from '../../../lib/i18n';
 import { fmt, marcaPendiente } from '../../../lib/cifras';
-import { enlaceFinal } from '../../../lib/lectura';
 import { remata } from '../../../lib/remata';
 import { dato } from '../../../lib/datos';
 import { url, recurso, PAGINAS } from '../../../lib/rutas';
@@ -42,21 +38,19 @@ const R = (k: string) => (existe(k) ? rotulo(lang, k) : marcaPendiente(k, 'copy'
 
 const S = [
   { id: 'empezar', x: 'empezar' }, { id: 'camino', x: 'camino' }, { id: 'columnas', x: 'columnas' },
-  { id: 'decisiones', x: 'decisiones' }, { id: 'palabra', x: 'palabra' }, { id: 'unir', x: 'unir' },
+  { id: 'decisiones', x: 'decisiones' }, { id: 'unir', x: 'unir' },
   { id: 'codigo', x: 'codigo' }, { id: 'citar', x: 'citar' }, { id: 'erratas', x: 'erratas' },
 ];
 const LEGS = ['1931-1933', '1933-1935', '1936-1939'];
 const ARCH: Record<string, string> = { '2REP_Diaries.csv': 'csv', 'changelog_es_09_2026.txt': 'changelog_es', 'changelog_en_09_2026.txt': 'changelog_en', 'Luz_y_Taquigrafos_README.txt': 'readme' };
 const dep = dato<{ archivos: { nombre: string; bytes: number; md5: string }[] }>('depositos');
 const frag = dato<{ _meta: { ejecutado: string; python: string; pandas: string; r: string }; python: { salida: string }; r: { salida: string } }>('fragmentos');
-const DEC = ['1', '2', '3', '4', '5', '6'];
+const DEC = ['1', '2', '3', '4'];
 const ext = (href: string | null, clave: string, primario = false) => href
   ? remata(`<a class="boton${primario ? '' : ' sec'}" href="${href}"${/^https?:/.test(href) ? ' rel="noopener external"' : ''}>${R(clave)}</a>`)
   : `<span class="boton sec">${marcaPendiente(clave, 'dato')}</span>`;
-const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
 ---
 <Base lang={lang} ruta={PAGINAS.datos} titulo={titulo} descripcion={descripcion} jsonld={jsonldDe('thqcmi', lang)}>
-  <SubNav lang={lang} grupo="datos" actual={PAGINAS.datos} />
   <CabezaPagina lang={lang} prefijo="datos">
     <!-- La descarga, en la primera pantalla (pulido fase 2): ↺ 3 encima del botón de Dataverse, como en la escalera. -->
     <div class="cabeza-descarga">
@@ -78,7 +72,6 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
               <h3 set:html={L('datos.empezar.s1.titulo')} />
               <p set:html={L('datos.empezar.s1.texto')} />
               <p class="fija-p" set:html={t(lang, 'comun.fija.sin_formulario')} />
-              <p class="accion"><a class="boton sec" href={aVersionesBases} set:html={R('datos.empezar.s1.accion')} /></p>
             </li>
             <li class="peldano">
               <h3 set:html={L('datos.empezar.s2.titulo')} />
@@ -101,7 +94,6 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
             </li>
           </ol>
           <p class="cierre" set:html={L('datos.empezar.cierre')} />
-          <aside class="al-margen"><p set:html={t(lang, 'comun.fija.ids')} /></aside>
           <VolverIndice lang={lang} />
         </div>
       </section>
@@ -173,13 +165,12 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
             </table>
           </div>
           <p set:html={L('datos.camino.integridad')} />
-          <aside class="al-margen"><p set:html={enlaceFinal(lang, 'comun.fija.readme', url(lang, PAGINAS.versiones))} /></aside>
           <p class="excel" set:html={L('datos.camino.excel')} />
           <VolverIndice lang={lang} />
         </div>
       </section>
 
-      <!-- 3 · Las 14 columnas (F32, la figura protagonista): definición, valor en V2 5423 y 5424, trampa al margen -->
+      <!-- 3 · Las columnas (F32, la figura protagonista): definición y valor en dos filas reales -->
       <section class="seccion" id="columnas" aria-labelledby="columnas-titulo" style="view-timeline-name: --columnas">
         <div class="seccion-cuerpo">
           <h2 id="columnas-titulo" set:html={L('datos.columnas.titulo')} />
@@ -191,7 +182,7 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
         </div>
       </section>
 
-      <!-- 4 · Antes de contar: seis decisiones, cada una con su cifra y su línea de código -->
+      <!-- 4 · Antes de contar: cuatro decisiones, cada una con su cifra y su línea de código -->
       <section class="seccion" id="decisiones" aria-labelledby="decisiones-titulo" style="view-timeline-name: --decisiones">
         <div class="seccion-cuerpo">
           <h2 id="decisiones-titulo" set:html={L('datos.decisiones.titulo')} />
@@ -202,7 +193,6 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
                 <h3 set:html={L(`datos.decisiones.${n}.titulo`)} />
                 <div class="texto" set:html={B(`datos.decisiones.${n}.texto`)} />
                 <div class="codigo" set:html={B(`datos.decisiones.${n}.codigo`).replace('<pre>', '<pre translate="no" tabindex="0">')} />
-                {n === '6' && <p class="nota" set:html={t(lang, 'comun.fija.ids')} />}
               </li>
             ))}
           </ol>
@@ -210,19 +200,7 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
         </div>
       </section>
 
-      <!-- 5 · Cinco maneras de contar «palabra» (F33) -->
-      <section class="seccion" id="palabra" aria-labelledby="palabra-titulo" style="view-timeline-name: --palabra">
-        <div class="seccion-cuerpo">
-          <h2 id="palabra-titulo" set:html={L('datos.palabra.titulo')} />
-          <p class="lede" set:html={L('datos.palabra.entrada')} />
-          <div class="prosa" set:html={B('datos.palabra.texto')} />
-          <NotaBases lang={lang} />
-          <FigRecuentos lang={lang} sufijo="-fig" />
-          <VolverIndice lang={lang} />
-        </div>
-      </section>
-
-      <!-- 6 · Unir con Afinidades Elegidas (F34): la regla en el texto, las cifras solo en la figura (D-3) -->
+      <!-- 5 · Unir con Afinidades Elegidas (F34): la regla en el texto, las cifras solo en la figura (D-3) -->
       <section class="seccion" id="unir" aria-labelledby="unir-titulo" style="view-timeline-name: --unir">
         <div class="seccion-cuerpo">
           <h2 id="unir-titulo" set:html={L('datos.unir.titulo')} />
@@ -238,7 +216,7 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
         </div>
       </section>
 
-      <!-- 7 · Dos fragmentos, en R y en Python: el exportador los vuelve a ejecutar en cada compilación -->
+      <!-- 6 · Dos fragmentos, en R y en Python: el exportador los vuelve a ejecutar en cada compilación -->
       <section class="seccion" id="codigo" aria-labelledby="codigo-titulo" style="view-timeline-name: --codigo">
         <div class="seccion-cuerpo">
           <h2 id="codigo-titulo" set:html={L('datos.codigo.titulo')} />
@@ -276,7 +254,7 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
         </div>
       </section>
 
-      <!-- 8 · Cómo citar: THQCMI y CGOCUS tal como los da Dataverse (texto · BibTeX · RIS), una figura, un pasaje -->
+      <!-- 7 · Cómo citar: THQCMI y CGOCUS tal como los da Dataverse (texto · BibTeX · RIS), una figura, un pasaje -->
       <section class="seccion" id="citar" aria-labelledby="citar-titulo" style="view-timeline-name: --citar">
         <div class="seccion-cuerpo">
           <h2 id="citar-titulo" set:html={L('datos.citar.titulo')} />
@@ -288,14 +266,13 @@ const aVersionesBases = url(lang, `${PAGINAS.versiones}#bases`);
           <p set:html={L('datos.citar.figura')} />
           <p set:html={L('datos.citar.pasaje')} />
           <aside class="al-margen"><p set:html={L('datos.citar.pasaje.2')} /></aside>
-          <p set:html={L('datos.citar.explorador')} />
           <p set:html={L('datos.citar.licencia')} />
           <aside class="al-margen"><p set:html={t(lang, 'comun.fija.diario')} /></aside>
           <VolverIndice lang={lang} />
         </div>
       </section>
 
-      <!-- 9 · Erratas y contacto -->
+      <!-- 8 · Erratas y contacto -->
       <section class="seccion" id="erratas" aria-labelledby="erratas-titulo" style="view-timeline-name: --erratas">
         <div class="seccion-cuerpo">
           <h2 id="erratas-titulo" set:html={L('datos.erratas.titulo')} />

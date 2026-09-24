@@ -2,7 +2,7 @@
  * Registro ÚNICO de las figuras (plan § Figuras · Contrato común). De aquí salen:
  *  · el `id` y el ancla con que cada componente monta su figura;
  *  · la URL que imprime su LÉAME y la cita de la figura;
- *  · la tabla «Qué base usa cada figura» de Versiones (F35), con la huella y la fecha de su base (sello del exportador).
+ *  · la huella y la fecha de su base en la pestaña Datos (sello del exportador).
  * Si cada componente escribiera la suya, la cita, el LÉAME y la tabla acabarían diciendo cosas distintas.
  *
  * `archivos`: los nombres base de `public/datos/` (el exportador escribe `<archivo>.csv`, `<archivo>.xlsx`; el sitio
@@ -44,14 +44,8 @@ export const FIGURAS: FiguraReg[] = [
   F('F20', { ancla: 'fila', ruta: PAGINAS.metodo, base: ['V2', 'v3'], interactiva: true, archivos: ['fila_ejemplo'] }),
   F('F19', { ancla: 'pasos', ruta: PAGINAS.metodo, base: ['V2', 'proyecto'], interactiva: true, archivos: ['pasos'] }),
   F('F10', { ancla: 'tramite', ruta: PAGINAS.metodo, base: ['V2'], interactiva: true, archivos: ['longitud'] }),
-  F('F12', { ancla: 'fila-larga', ruta: PAGINAS.metodo, base: ['V2', 'v3'], interactiva: true, archivos: ['fila_larga'] }),
   F('F32', { ancla: 'columnas', ruta: PAGINAS.datos, base: ['V2'], interactiva: true, archivos: ['columnas'] }),
-  F('F33', { ancla: 'palabra', ruta: PAGINAS.datos, base: ['V2', 'v3'], interactiva: true, archivos: ['palabras'] }),
   F('F34', { ancla: 'unir', ruta: PAGINAS.datos, base: ['V2', 'afin'], interactiva: false, archivos: ['union'] }),
-  F('F25', { ancla: 'fechas', ruta: PAGINAS.versiones, base: ['V2'], interactiva: true, archivos: ['fechas_corregidas'] }),
-  F('F18', { ancla: 'destino-filas', ruta: PAGINAS.versiones, base: ['V2', 'v3'], interactiva: false, archivos: ['destino_filas'] }),
-  F('F07', { ancla: 'quien-habla', ruta: PAGINAS.versiones, base: ['V2', 'v3'], interactiva: true, archivos: ['quien_habla'] }),
-  F('F35', { ancla: 'bases', ruta: PAGINAS.versiones, base: ['V2', 'v3', 'proyecto', 'afin'], interactiva: false, archivos: [] }),
   F('F17', { ancla: 'bibliotecas', ruta: PAGINAS.explorador, base: ['v3'], interactiva: true, archivos: ['bibliotecas'] }),
   F('F29', { ancla: 'busquedas', ruta: PAGINAS.explorador, base: ['v3'], interactiva: true, archivos: ['busquedas'] }),
   F('F22', { ancla: 'cruces', ruta: PAGINAS.afinidades, base: ['afin'], interactiva: true, archivos: ['cruces'] }),

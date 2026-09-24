@@ -151,6 +151,9 @@ components:
 # Design System: Luz y Taquígrafos
 
 > **Rediseño del 23-09-2026** (`docs/REDISENO_23-09.md`). Manda sobre lo que sigue donde choque:
+> - **Sin ediciones (24-09-2026), en todo el sitio:** ni chapas V2/v3 (`Sello` queda para las otras fuentes: proyecto,
+>   Afinidades, Dataverse, explorador, croquis), ni NotaBases, ni asientos con dos ids. Donde abajo se hable de ellas, no
+>   rige.
 > - **Inicio: «El Diario, abierto».** La misma tipografía de impreso, sin el aparato de márgenes: ni asientos V2/v3, ni
 >   chapas de edición, ni salvedades. La «regla del margen vivo» queda para las citas (orador y fecha) y para la
 >   documentación (Método, Datos).

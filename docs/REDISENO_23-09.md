@@ -8,6 +8,10 @@
 > entra en Inicio. **Hecha la fase 1: la nueva Inicio** (`CHANGELOG.md`). Pendiente: la cabecera y las seis páginas (§ 5)
 > y el inglés. Cambio sobre este texto: la banda dice «más de 20 millones de palabras» (formato `|redondo`, una cifra
 > significativa), porque «24 millones» está vetado como cifra de la ayuda del explorador.
+>
+> **24-09-2026.** El sitio presenta la base corregida y no habla de ediciones: fuera la página Versiones (el § 5 ya no
+> la cuenta) y las comparaciones V2/v3 de todas las páginas; juego «Corrija al Diario» en Método 03 (`CHANGELOG.md`).
+> Siguen: los juegos pedidos (`docs/ESTADO_TRABAJO.md`), la cabecera y las páginas del § 5, y el inglés.
 
 ## En una frase
 

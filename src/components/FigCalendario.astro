@@ -19,7 +19,7 @@
 import Pestanas from './Pestanas.astro';
 import Sello from './Sello.astro';
 import { t, plano, rotulo, existe, plantillaNota } from '../lib/i18n';
-import { fmt, escapa, marcaPendiente } from '../lib/cifras';
+import { fmt, escapa, marcaPendiente, esEdicion } from '../lib/cifras';
 import { dato } from '../lib/datos';
 import { rutaDatos, rutaLeame, rutaImagen } from '../lib/figuras';
 import { url, recurso, PAGINAS, ETAPAS } from '../lib/rutas';
@@ -238,7 +238,6 @@ const breve = {
     data-plantilla={PL.mes} data-plantilla-t="{m}" data-plantilla-b={PL.base} data-posicion={posicion} data-cerrar={cerrar} aria-labelledby={tituloId}>
     <Pestanas lang={lang} id={ANCLA} etiquetadoPor={tituloId}>
       <header class="fig-cabeza" slot="cabeza">
-        <p class="fig-sellos"><Sello lang={lang} base="V2" /><Sello lang={lang} base="proyecto" /></p>
         <h3 class="fig-titulo" id={tituloId}><span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">{CODIGO}</span><Fragment set:html={o(`${FAM}.titulo`)} /></h3>
       </header>
       {existe(`${FAM}.pregunta`) && <p class="fig-pregunta" slot="pregunta" set:html={t(lang, `${FAM}.pregunta`)} />}
@@ -348,7 +347,7 @@ const breve = {
           <dl class="fig-leame">
             <dt set:html={t(lang, 'comun.fig.base')} />
             <dd>
-              {bases.map((b) => { const h = huella(b); return <><Sello lang={lang} base={b} />{h.huella && <> · <span set:html={t(lang, 'comun.sello.huella')} />: <code>{h.huella}</code></>}<br /></>; })}
+              {bases.map((b) => { const h = huella(b); return <>{esEdicion(b) ? <span set:html={t(lang, 'comun.sello.base')} /> : <Sello lang={lang} base={b} />}{h.huella && <> · <span set:html={t(lang, 'comun.sello.huella')} />: <code>{h.huella}</code></>}<br /></>; })}
               {huella('V2').fecha && <span set:html={t(lang, 'comun.sello.exportado', { vars: { fecha: `<time datetime="${huella('V2').fecha}">${huella('V2').fecha}</time>` } })} />}
             </dd>
             <dt set:html={t(lang, 'comun.cita.titulo')} />
@@ -382,7 +381,6 @@ const breve = {
 <style>
   .fig-cal { --g: 3px; --anio: 2.6rem; --alto: clamp(1.45rem, 2.4vw, 1.9rem); }
   .fig-cal--completa, .fig-cal--etapa { --alto: clamp(2.1rem, 3.6vw, 3.1rem); }
-  .fig-sellos { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .6rem; }
   .fig-salvedad-rotulo { display: block; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); margin-bottom: .2rem; }
   .fig-salvedad b { font-weight: 600; color: var(--ink); }
 

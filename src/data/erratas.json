@@ -1,0 +1,28 @@
+{
+ "_meta": {
+  "base": "v3",
+  "fuente": "corpus.sqlite del explorador, columna speaker",
+  "huella": "3a0d8b2dea42",
+  "fecha": "2026-09-24",
+  "distancia": 2
+ },
+ "formulas": 2460,
+ "presidencia": {
+  "canon": "El Sr. PRESIDENTE:",
+  "filas": 38027,
+  "formas": 32,
+  "filas_danadas": 64
+ },
+ "rondas": [
+  {"clave":"punto","mal":"El Sr PRESIDENTE:","bien":"El Sr. PRESIDENTE:","filas":1,"filas_bien":38027},
+  {"clave":"coma","mal":"El Sr, PRESIDENTE:","bien":"El Sr. PRESIDENTE:","filas":13,"filas_bien":38027},
+  {"clave":"ei","mal":"Ei Sr. PRESIDENTE:","bien":"El Sr. PRESIDENTE:","filas":1,"filas_bien":38027},
+  {"clave":"persidente","mal":"El Sr. PERSIDENTE:","bien":"El Sr. PRESIDENTE:","filas":6,"filas_bien":38027},
+  {"clave":"siete","mal":"El Sr. PRESIDENT7E:","bien":"El Sr. PRESIDENTE:","filas":1,"filas_bien":38027},
+  {"clave":"articulo","mal":"La Sr. PRESIDENTE:","bien":"El Sr. PRESIDENTE:","filas":1,"filas_bien":38027},
+  {"clave":"residente","mal":"El Sr. RESIDENTE:","bien":"El Sr. PRESIDENTE:","filas":1,"filas_bien":38027},
+  {"clave":"campoamor","mal":"La Srta. COMPOAMOR:","bien":"La Srta. CAMPOAMOR:","filas":1,"filas_bien":190},
+  {"clave":"gil_robles","mal":"El Sr. QL ROBLES:","bien":"El Sr. GIL ROBLES:","filas":1,"filas_bien":512},
+  {"clave":"senor","mal":"El señor PRESIDENTE:","bien":null,"filas":141,"filas_bien":null}
+ ]
+}

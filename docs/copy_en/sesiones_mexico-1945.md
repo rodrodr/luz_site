@@ -39,25 +39,25 @@ The first of the Mexico sessions, that of 10 January 1945, is on the stage page.
 «…de la sesión extraordinaria celebrada en la Ciudad de México el viernes 17 de agosto de 1945»
 
 <!-- sesiones.mexico-1945.diario.cita.lugar.pie -->
-Cover of the summary · only in the explorer edition, v3 {{cita.mexico.lugar.v3|id}}
+Cover of the summary
 
 <!-- sesiones.mexico-1945.diario.cita.orden -->
 «Promesa del Excmo. señor don Diego Martínez Barrio, Presidente de las Cortes, como Presidente interino de la República Española.»
 
 <!-- sesiones.mexico-1945.diario.cita.orden.pie -->
-The Chair reads the order of the day · V2 {{cita.mexico.orden.V2|id}} · v3 {{cita.mexico.orden.v3|id}}
+The Chair reads the order of the day
 
 <!-- sesiones.mexico-1945.diario.cita.promesa -->
 «¿Prometéis solemnemente fidelidad a la República y a la Constitución?» … «Si, prometo.»
 
 <!-- sesiones.mexico-1945.diario.cita.promesa.pie -->
-The Chair and Martínez Barrio, in the same row · V2 {{cita.mexico.promesa.V2|id}} · v3 {{cita.mexico.promesa.v3|id}}
+The Chair and Martínez Barrio, in the same row
 
 <!-- sesiones.mexico-1945.diario.cita.giral -->
 «…al presentarse ante las Cortes españolas el primer Gobierno de la República que ha sido posible instrumentar constitucionalmente desde el día en que el infortunio nos hizo cruzar la frontera…»
 
 <!-- sesiones.mexico-1945.diario.cita.giral.pie -->
-José Giral, 7 November · V2 {{cita.mexico.giral.V2|id}} · v3 {{cita.mexico.giral.v3|id}} · {{cita.mexico.giral.palabras}} words (V2)
+José Giral, 7 November · {{cita.mexico.giral.palabras}} words
 
 ## The session, turn by turn
 
@@ -65,12 +65,12 @@ José Giral, 7 November · V2 {{cita.mexico.giral.V2|id}} · v3 {{cita.mexico.gi
 Four figures, one per session. The one for 17 August has {{sesion.1945-08-17-71.filas|letra}} rows, all of them the Chair's.
 
 <!-- sesiones.mexico-1945.turnos.total -->
-Together the four add up to {{puerta.mexico-1945.filas}} rows of the deposited edition.
+Together the four add up to {{puerta.mexico-1945.filas}} rows of the dataset.
 
 ## How to find it in the explorer
 
 <!-- sesiones.mexico-1945.explorador.fecha -->
-«Filtros › Fecha y sesión»: «Desde» 17/08/1945, with no «Hasta». This gives {{puerta.mexico-1945.filas_v3}} interventions in the explorer edition (v3); with «Solo lo que se habla», {{puerta.mexico-1945.habla_v3}}.
+«Filtros › Fecha y sesión»: «Desde» 17/08/1945, with no «Hasta». This gives {{puerta.mexico-1945.filas_v3}} interventions in the explorer; with «Solo lo que se habla», {{puerta.mexico-1945.habla_v3}}.
 
 <!-- sesiones.mexico-1945.explorador.consulta -->
 "presidente interino de la república"
@@ -79,7 +79,7 @@ Together the four add up to {{puerta.mexico-1945.filas}} rows of the deposited e
 Desde 01/01/1945
 
 <!-- sesiones.mexico-1945.explorador.recuento -->
-Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.presidente_interino.n}} interventions in the explorer edition (v3).
+Count of {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.presidente_interino.n}} interventions in the explorer.
 
 <!-- sesiones.mexico-1945.explorador.consulta.nota -->
 With «Desde» 01/01/1945, there are {{busqueda.ses.presidente_interino.n|letra}} interventions, from August and November 1945.
@@ -96,23 +96,20 @@ Between Figueres and Mexico, the Standing Committee (Diputación Permanente) als
 «…sólo tenemos noticia de ellas por citas bibliográficas pero no se dispone de los textos ni en forma de fotocopia.»
 
 <!-- sesiones.mexico-1945.no_esta.cita.permanente.pie -->
-Cover of the volume, in the summary of 10 January 1945 · only in the explorer edition, v3 {{cita.mexico.permanente.v3|id}}
+Cover of the volume, in the summary of 10 January 1945
 
 ## Sources
 
 <!-- sesiones.mexico-1945.fuentes.texto -->
-Everything on this page comes from the official summary of the sessions held in Mexico, published in Mexico City by B. Costa i Amic, read in both editions of the dataset.
+Everything on this page comes from the official summary of the sessions held in Mexico, published in Mexico City by B. Costa i Amic, read in the dataset.
 
 ## How to cite a passage
 
 <!-- sesiones.mexico-1945.citar.texto -->
-Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id and its edition.
+Give the Diario, its number, the date and the pages. If you work with the dataset, add the row id.
 
 <!-- sesiones.mexico-1945.citar.cita -->
-Extracto oficial de las sesiones de Cortes celebradas en México, no. {{sesion.1945-08-17-71.diario_num|id}}, 17 August 1945, pages unverified (project metadata). Luz y Taquígrafos, deposited edition (V2), row {{cita.mexico.promesa.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Row identifiers differ between the deposited edition (V2) and the explorer edition (v3); the session – date and number – is the same in both.
+Extracto oficial de las sesiones de Cortes celebradas en México, no. {{sesion.1945-08-17-71.diario_num|id}}, 17 August 1945, pages unverified (project metadata). Luz y Taquígrafos, row {{cita.mexico.promesa.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 A derived edition for research: wherever it differs, the *Diario de Sesiones* prevails.

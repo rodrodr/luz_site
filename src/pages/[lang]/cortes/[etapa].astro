@@ -6,7 +6,7 @@
  *    llamada (`lib/margen.ts`); en el móvil, detrás de su párrafo.
  *  · Índice lateral numerado con los H2 y los H3 de «Lo que pasó en la Cámara» y de «Quién tomó la palabra».
  *  · Figuras: F01e con las bandas F16 (protagonista, del grupo 1: `<FigCalendario escala="etapa">`; mientras no exista,
- *    su hueco) · F05 (v3, con NotaBases) · F09 (V2).
+ *    su hueco) · F05 · F09.
  * Copy: `cortes.<slug>.*` (docs/copy_es/cortes_<slug>.md), la plantilla común `cortes.ficha.*` (cortes.md, grupo 1) y
  * las piezas propias de esta plantilla (cortes_fichas.md). Cifras: exportador (base, cortes → fichas).
  *
@@ -22,10 +22,8 @@ import Seccion from '../../../components/Seccion.astro';
 import FigHueco from '../../../components/FigHueco.astro';
 import FigOradores from '../../../components/FigOradores.astro';
 import FigFamilias from '../../../components/FigFamilias.astro';
-import NotaBases from '../../../components/NotaBases.astro';
 import RegistroPuertas from '../../../components/RegistroPuertas.astro';
 import CifraFrase from '../../../components/CifraFrase.astro';
-import Sello from '../../../components/Sello.astro';
 import Cita from '../../../components/Cita.astro';
 import Vecinas from '../../../components/ficha/Vecinas.astro';
 import SinSitio from '../../../components/SinSitio.astro';
@@ -193,7 +191,7 @@ const citaResto = citar.filter((x) => !/\.citar\.sesion$/.test(x));
 ---
 <Base lang={lang} ruta={`${PAGINAS.cortes}/${e.slug}`} titulo={titulo} descripcion={descripcion}>
   <SubNav lang={lang} grupo="cortes" actual={`${PAGINAS.cortes}/${e.slug}`} />
-  <CabezaPagina lang={lang} prefijo={P} miga={miga} marca={e.id} ctx={ctx} extras={['tension']} bases={['V2', 'proyecto', 'v3']} />
+  <CabezaPagina lang={lang} prefijo={P} miga={miga} marca={e.id} ctx={ctx} extras={['tension']} />
   <div class="contenedor con-indice ficha" style={`timeline-scope: ${ids.map((x) => `--${x}`).join(', ')}`}>
     <IndiceLateral lang={lang} titulo={t(lang, 'comun.indice.titulo')} entradas={entradas} />
     <div class="lectura">
@@ -209,17 +207,12 @@ const citaResto = citar.filter((x) => !/\.citar\.sesion$/.test(x));
       <Seccion lang={lang} id="cifras" prefijo={k('cifras')} titulo={`${F}.cifras.titulo`} indice ctx={ctx} resto={false}>
         <CifraFrase frases={cifrasFrases} />
         <aside class="nota-m">
-          <p class="asiento"><Sello lang={lang} base="V2" /></p>
           {existe(`${F}.cifras.base`) && <p set:html={t(lang, `${F}.cifras.base`)} />}
         </aside>
       </Seccion>
 
       <!-- 3 · Lo que pasó en la Cámara: el contexto amplio, anotado al margen -->
       <Seccion lang={lang} id="contexto" prefijo={k('contexto')} titulo={`${F}.contexto.titulo`} indice ctx={ctx} resto={false} clase="ficha-contexto">
-        <aside class="nota-m arranque" slot="antes">
-          <p set:html={t(lang, `${F}.contexto.ids`)} />
-          <p set:html={t(lang, 'comun.fija.ids')} />
-        </aside>
         {apartados.map((a) => (
           <div class="prosa apartado">
             <h3 id={a.id} set:html={a.titulo} />
@@ -240,7 +233,6 @@ const citaResto = citar.filter((x) => !/\.citar\.sesion$/.test(x));
       <!-- 5 · Quién tomó la palabra: F05 (v3) y F09 (V2) -->
       <Seccion lang={lang} id="quien" prefijo={k('palabra')} titulo={`${F}.palabra.titulo`} indice ctx={ctx} resto={false}>
         <div class="prosa" set:html={textoF05} />
-        <NotaBases lang={lang} />
         <FigOradores lang={lang} etapa={e.id} slug={e.slug} />
         <div class="prosa" set:html={textoF09} />
         <FigFamilias lang={lang} etapa={e.id} slug={e.slug} />

@@ -210,7 +210,6 @@ Los datos están publicados. Haga sus preguntas.
 > `RegistroPuertas`, Método (las cuatro cajas de lo que la base no trae) y la página de componentes. Se conservan tal
 > cual estaban el 23-09-2026.
 
-
 <!-- inicio.f01c.titulo --> Las sesiones, mes a mes, por etapa
 
 <!-- inicio.f01c.nota.etapa --> {{etapa}} · {{n}} sesiones · abre su página
@@ -248,16 +247,16 @@ Barras horizontales con los síes y los noes de cada votación nominal, por orde
 «Ruego a la Cámara que guarde silencio.»
 
 <!-- inicio.fila.presidencia.pie -->
-La Presidencia · V2 {{fila.presidencia.id.V2|id}} · v3 {{fila.presidencia.id.v3|id}}
+La Presidencia
 
 <!-- inicio.fila.campoamor -->
 «Yo ruego a la Cámara que me escuche en silencio…»
 
 <!-- inicio.fila.campoamor.pie -->
-Clara Campoamor · V2 {{fila.campoamor.id.V2|id}} · v3 {{fila.campoamor.id.v3|id}}
+Clara Campoamor
 
 <!-- inicio.fila.dos -->
-Son dos de las {{filas.V2}} filas de la edición depositada, una detrás de otra en la sesión del 1 de octubre de 1931.
+Son dos de las {{filas.V2}} filas de la base, una detrás de otra en la sesión del 1 de octubre de 1931.
 
 <!-- inicio.fila.palabras -->
 La de la Presidencia tiene {{fila.presidencia.nwords|letra}} palabras; la de Campoamor, {{fila.campoamor.nwords}}.
@@ -275,49 +274,49 @@ Cada momento tiene su página, con sus citas y cómo leerlo entero en el explora
 
 <!-- inicio.puertas.sufragio-1931.que --> El voto de las mujeres
 
-<!-- inicio.puertas.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} filas (V2)
+<!-- inicio.puertas.sufragio-1931.filas --> {{sesion.1931-10-01-48.filas}} filas
 
 <!-- inicio.puertas.cuestion-religiosa-1931.fecha --> 13-X-1931
 
 <!-- inicio.puertas.cuestion-religiosa-1931.que --> «España ha dejado de ser católica»
 
-<!-- inicio.puertas.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} filas (V2)
+<!-- inicio.puertas.cuestion-religiosa-1931.filas --> {{sesion.1931-10-13-55.filas}} filas
 
 <!-- inicio.puertas.estatuto-1932.fecha --> 27-V-1932
 
-<!-- inicio.puertas.estatuto-1932.que --> El discurso de Azaña, a nombre de otro
+<!-- inicio.puertas.estatuto-1932.que --> El Estatuto de Cataluña
 
-<!-- inicio.puertas.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} filas (V2)
+<!-- inicio.puertas.estatuto-1932.filas --> {{sesion.1932-05-27-173.filas}} filas
 
 <!-- inicio.puertas.casas-viejas-1933.fecha --> 2-II-1933
 
 <!-- inicio.puertas.casas-viejas-1933.que --> Casas Viejas
 
-<!-- inicio.puertas.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} filas (V2)
+<!-- inicio.puertas.casas-viejas-1933.filas --> {{sesion.1933-02-02-288.filas}} filas
 
 <!-- inicio.puertas.pistola-1934.fecha --> 4-VII-1934
 
 <!-- inicio.puertas.pistola-1934.que --> La pistola de Prieto
 
-<!-- inicio.puertas.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} filas (V2)
+<!-- inicio.puertas.pistola-1934.filas --> {{sesion.1934-07-04-112.filas}} filas
 
 <!-- inicio.puertas.antesala-1936.fecha --> 16-VI y 1-VII-1936
 
 <!-- inicio.puertas.antesala-1936.que --> La antesala
 
-<!-- inicio.puertas.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} y {{sesion.1936-07-01-54.filas}} filas (V2)
+<!-- inicio.puertas.antesala-1936.filas --> {{sesion.1936-06-16-45.filas}} y {{sesion.1936-07-01-54.filas}} filas
 
 <!-- inicio.puertas.figueres-1939.fecha --> 1-II-1939
 
 <!-- inicio.puertas.figueres-1939.que --> Figueres
 
-<!-- inicio.puertas.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} filas (V2)
+<!-- inicio.puertas.figueres-1939.filas --> {{sesion.1939-02-01-69.filas}} filas
 
 <!-- inicio.puertas.mexico-1945.fecha --> 17-VIII y 7–9-XI-1945
 
 <!-- inicio.puertas.mexico-1945.que --> México
 
-<!-- inicio.puertas.mexico-1945.filas --> {{puerta.mexico-1945.filas}} filas (V2)
+<!-- inicio.puertas.mexico-1945.filas --> {{puerta.mexico-1945.filas}} filas
 
 <!-- inicio.puertas.salvedad -->
 Que estén no valida su contenido: el acta digitalizada del 1 de octubre de 1931 perdió su final en el reconocimiento óptico.

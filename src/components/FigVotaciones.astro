@@ -15,7 +15,6 @@
  * todas las listas (listas_nominales.csv|xlsx), el LÉAME y la imagen en SVG y PNG (`src/pages/datos/F26-[lang].*`).
  */
 import FiguraMarco from './FiguraMarco.astro';
-import Sello from './Sello.astro';
 import { t, plano, plantillaNota, existe, rotulo } from '../lib/i18n';
 import { dato } from '../lib/datos';
 import { fmt, marcaPendiente } from '../lib/cifras';
@@ -64,7 +63,6 @@ const valores = (v: Voto) => {
   return { pie, tot };
 };
 const h = huella('V2');
-const h3 = huella('v3');
 const archivos = [rutaDatos('votaciones', 'csv'), rutaDatos('votaciones', 'xlsx'), rutaLeame('F26', 'es'), rutaLeame('F26', 'en')];
 const listas = [rutaDatos('listas_nominales', 'csv'), rutaDatos('listas_nominales', 'xlsx')];
 ---
@@ -130,7 +128,6 @@ const listas = [rutaDatos('listas_nominales', 'csv'), rutaDatos('listas_nominale
               <th scope="col" class="num" set:html={o(`${F}.tabla.si`)} />
               <th scope="col" class="num" set:html={o(`${F}.tabla.no`)} />
               <th scope="col" class="num" set:html={o(`${F}.tabla.V2`)} />
-              <th scope="col" class="num" set:html={o(`${F}.tabla.v3`)} />
               <th scope="col" set:html={o(`${F}.tabla.literal`)} />
             </tr></thead>
             <tbody>
@@ -140,7 +137,6 @@ const listas = [rutaDatos('listas_nominales', 'csv'), rutaDatos('listas_nominale
                   <td class="num" set:html={d(v.si, n(v.si), `voto.${v.clave}.si`, 'V2')} />
                   <td class="num" set:html={d(v.no, n(v.no), `voto.${v.clave}.no`, 'V2')} />
                   <td class="num" set:html={d(v.v2, String(v.v2), `voto.${v.clave}.V2`, 'V2')} />
-                  <td class="num" set:html={d(v.v3, String(v.v3), `voto.${v.clave}.v3`, 'v3')} />
                   <td class="f26-literal" data-audit-exento="cita literal del Diario"><q>{v.literal}</q></td>
                 </tr>
               ))}
@@ -166,7 +162,6 @@ const listas = [rutaDatos('listas_nominales', 'csv'), rutaDatos('listas_nominale
             <th scope="col" class="num" set:html={o(`${F}.tabla.no`)} />
             <th scope="col" class="num" set:html={o(`${F}.tabla.mitad`)} />
             <th scope="col" class="num" set:html={o(`${F}.tabla.V2`)} />
-            <th scope="col" class="num" set:html={o(`${F}.tabla.v3`)} />
             <th scope="col" set:html={o(`${F}.tabla.literal`)} />
           </tr>
         </thead>
@@ -183,7 +178,6 @@ const listas = [rutaDatos('listas_nominales', 'csv'), rutaDatos('listas_nominale
               <td class="num" set:html={d(v.no, n(v.no), `voto.${v.clave}.no`, 'V2')} />
               <td class="num" set:html={v.mitad ? `${d(v.mitad, n(v.mitad), `voto.${v.clave}.mitad`, 'V2')} / ${d(v.total!, n(v.total!), `voto.${v.clave}.total`, 'V2')}` : '—'} />
               <td class="num" set:html={d(v.v2, String(v.v2), `voto.${v.clave}.V2`, 'V2')} />
-              <td class="num" set:html={d(v.v3, String(v.v3), `voto.${v.clave}.v3`, 'v3')} />
               <td class="f26-literal" data-audit-exento="cita literal del Diario"><q>{v.literal}</q></td>
             </tr>
           ))}
@@ -220,8 +214,7 @@ const listas = [rutaDatos('listas_nominales', 'csv'), rutaDatos('listas_nominale
         <dt set:html={t(lang, 'comun.leame.salvedad')} /><dd set:html={o(`${F}.leame.salvedad`)} />
         <dt set:html={t(lang, 'comun.fig.base')} />
         <dd>
-          <Sello lang={lang} base="V2" /> <span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
-          <br /><Sello lang={lang} base="v3" /> <span set:html={t(lang, 'comun.sello.huella')} />: {h3.huella ? <code>{h3.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
+          <span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
           {h.fecha && <><br /><span set:html={t(lang, 'comun.sello.exportado', { vars: { fecha: `<time datetime="${h.fecha}">${h.fecha}</time>` } })} /></>}
         </dd>
         <dt set:html={t(lang, 'comun.cita.titulo')} /><dd set:html={citaFigura(lang, 'F26', Astro.site)} />

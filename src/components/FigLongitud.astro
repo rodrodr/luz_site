@@ -97,7 +97,6 @@ const rotuloLeg = (lg: string) => (lg === 'todas' ? plano(lang, 'fig.F10.filtro.
             })}
           </div>
         ))}
-        <p class="f10-v3 nota" set:html={o('fig.F10.v3')} />
 
         <section class="f11" aria-labelledby="f11-titulo">
           <h4 id="f11-titulo" class="f11-titulo" set:html={o('fig.F11.titulo')} />
@@ -209,7 +208,6 @@ const rotuloLeg = (lg: string) => (lg === 'todas' ? plano(lang, 'fig.F10.filtro.
   .f10-eje-x { margin: .3rem 0 0 calc(var(--etiq) + .7rem); font: 400 var(--fs-mono-s)/1.3 var(--mono); color: var(--mute); max-width: none; }
   .f10-anota { position: relative; margin: var(--e4) 0 0 calc(var(--etiq) + .7rem); padding-left: 1.4rem; max-width: 26rem; color: var(--ink-2); }
   .f10-anota-trazo { position: absolute; left: 0; top: .72em; width: .9rem; border-top: 1px solid var(--accent); }
-  .f10-v3 { margin: var(--e5) 0 0; max-width: 40rem; color: var(--ink-2); }
 
   /* ── F11 ── */
   .f11 { margin-top: var(--e7); padding-top: var(--e5); border-top: 1px solid var(--hair-2); }

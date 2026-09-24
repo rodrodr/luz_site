@@ -25,7 +25,7 @@ import { t, plano, rotulo, existe } from '../lib/i18n';
 import { figura, rutaDatos, rutaLeame, rutaImagen } from '../lib/figuras';
 import { recurso } from '../lib/rutas';
 import { citaFigura, huella } from '../lib/cita';
-import { marcaPendiente } from '../lib/cifras';
+import { marcaPendiente, esEdicion } from '../lib/cifras';
 import { LANGS, type Lang } from '../lib/idiomas';
 
 interface Props {
@@ -53,7 +53,7 @@ interface Props {
   teclado?: boolean;
   /** Salvedad rotulada al pie (por omisión, sí). */
   salvedad?: boolean;
-  /** Versión de escaparate (Inicio, rediseño del 23-09-2026): sin sellos de base, sin código de figura, sin salvedad y
+  /** Versión de escaparate (Inicio, rediseño del 23-09-2026): sin código de figura, sin salvedad y
    *  sin pestañas; la barra de conmutación (`barra`) se conserva. */
   escaparate?: boolean;
 }
@@ -86,7 +86,6 @@ const hayPregunta = existe(clavePregunta);
 <figure class="figura" id={ancla} data-figura={f.id} data-base={f.base.join(' ')} data-plantilla={plantilla} data-plantilla-t={plantillaT} data-plantilla-b={plantillaB} data-posicion={posicion} data-cerrar={cerrar} aria-labelledby={tituloId}>
   {!conPestanas && (
     <header class="fig-cabeza">
-      {!escaparate && <p class="fig-sellos">{f.base.filter((b) => b !== 'croquis').map((b) => <Sello lang={lang} base={b} />)}</p>}
       <h3 class={`fig-titulo${escaparate ? ' sr-only' : ''}`} id={tituloId}>{!escaparate && <span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">{f.id}</span>}<Fragment set:html={o(claveTitulo)} /></h3>
       {hayPregunta && !escaparate && <p class="fig-pregunta" set:html={t(lang, clavePregunta)} />}
       {hayBarra && <div class="fig-barra-sola"><slot name="barra" /></div>}
@@ -95,7 +94,6 @@ const hayPregunta = existe(clavePregunta);
   {conPestanas ? (
     <Pestanas lang={lang} id={ancla} etiquetadoPor={tituloId}>
       <header class="fig-cabeza" slot="cabeza">
-        <p class="fig-sellos">{f.base.filter((b) => b !== 'croquis').map((b) => <Sello lang={lang} base={b} />)}</p>
         <h3 class="fig-titulo" id={tituloId}><span class="fig-id" aria-hidden="true" data-audit-exento="código de figura">{f.id}</span><Fragment set:html={o(claveTitulo)} /></h3>
       </header>
       {hayPregunta && <p class="fig-pregunta" slot="pregunta" set:html={t(lang, clavePregunta)} />}
@@ -125,8 +123,9 @@ const hayPregunta = existe(clavePregunta);
             <dl class="fig-leame">
               <dt set:html={t(lang, 'comun.fig.base')} />
               <dd>
-                {f.base.map((b) => <Sello lang={lang} base={b} />)}
-                <br /><span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
+                {f.base.some(esEdicion) && <><span set:html={t(lang, 'comun.sello.base')} /><br /></>}
+                {f.base.filter((b) => !esEdicion(b)).map((b) => <><Sello lang={lang} base={b} /><br /></>)}
+                <span set:html={t(lang, 'comun.sello.huella')} />: {h.huella ? <code>{h.huella}</code> : <Fragment set:html={marcaPendiente('sello.json')} />}
                 {h.fecha && <><br /><span set:html={t(lang, 'comun.sello.exportado', { vars: { fecha: `<time datetime="${h.fecha}">${h.fecha}</time>` } })} /></>}
               </dd>
               <dt set:html={t(lang, 'comun.cita.titulo')} /><dd set:html={citaFigura(lang, f.id, Astro.site, sub)} />
@@ -150,7 +149,5 @@ const hayPregunta = existe(clavePregunta);
 </script>
 
 <style>
-  .fig-sellos { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .6rem; }
-  .fig-sellos:empty { display: none; }
   .fig-salvedad-rotulo { font-weight: 600; color: var(--ink); margin-right: .25rem; }
 </style>

@@ -31,7 +31,7 @@ Las Constituyentes debaten el artículo 24 del proyecto de Constitución. El Sec
 «Art. 24. Todas las confesiones religiosas serán consideradas como Asociaciones sometidas a una ley especial.»
 
 <!-- sesiones.cuestion-religiosa-1931.que_paso.cita.articulo.pie -->
-El Secretario (Ramos) · V2 {{cita.religiosa.art24.V2|id}} · v3 {{cita.religiosa.art24.v3|id}}
+El Secretario (Ramos)
 
 <!-- sesiones.cuestion-religiosa-1931.que_paso.2 -->
 La sesión empieza por la tarde y dura toda la noche. Habla Manuel Azaña, entonces ministro de la Guerra.
@@ -53,25 +53,25 @@ Al día siguiente, el Diario ya rotula a Azaña como «Presidente del Gobierno»
 «España ha dejado de ser católica: el problema político consiguiente es organizar el Estado en forma tal que puede adecuado a esta fase nueva e histórica del pueblo español.»
 
 <!-- sesiones.cuestion-religiosa-1931.diario.cita.azana.pie -->
-Manuel Azaña, ministro de la Guerra · V2 {{cita.religiosa.azana.V2|id}} · v3 {{cita.religiosa.azana.v3|id}} · {{cita.religiosa.azana.palabras}} palabras (V2)
+Manuel Azaña, ministro de la Guerra · {{cita.religiosa.azana.palabras}} palabras
 
 <!-- sesiones.cuestion-religiosa-1931.diario.cita.resultado -->
 «…quedó aprobado el artículo 24 por 178 votos contra 59…»
 
 <!-- sesiones.cuestion-religiosa-1931.diario.cita.resultado.pie -->
-Diario · V2 {{cita.religiosa.resultado.V2|id}} · v3 {{cita.religiosa.resultado.v3|id}}
+Diario
 
 <!-- sesiones.cuestion-religiosa-1931.diario.cita.apertura -->
 «Abierta la sesión a las cuatro y treinta minutos de la tarde…»
 
 <!-- sesiones.cuestion-religiosa-1931.diario.cita.apertura.pie -->
-Sumario de la sesión · solo en la edición del explorador, v3 {{cita.religiosa.apertura.v3|id}}
+Sumario de la sesión
 
 <!-- sesiones.cuestion-religiosa-1931.diario.cita.cierre -->
 «Eran las siete y treinta y cinco minutos de la mañana del día 14.»
 
 <!-- sesiones.cuestion-religiosa-1931.diario.cita.cierre.pie -->
-Diario, al final de la sesión · V2 {{cita.religiosa.cierre.V2|id}} · v3 {{cita.religiosa.cierre.v3|id}}
+Diario, al final de la sesión
 
 > [nota de diseño] El [sic] marca «puede» donde el sentido pide otra palabra; la nota emergente es
 > `sesiones.puerta.cita.sic`. La apertura solo está en el sumario, que la V2 no trae como fila.
@@ -92,13 +92,13 @@ Una sola barra: el artículo 24, aprobado por {{voto.178-59.si}} votos contra {{
 ## Cómo encontrarla en el explorador
 
 <!-- sesiones.cuestion-religiosa-1931.explorador.fecha -->
-Filtros › Fecha y sesión: Desde y Hasta 13/10/1931. Salen {{sesion.1931-10-13-55.filas_v3}} intervenciones en la edición del explorador (v3); con «Solo lo que se habla», {{sesion.1931-10-13-55.habla_v3}}.
+Filtros › Fecha y sesión: Desde y Hasta 13/10/1931. Salen {{sesion.1931-10-13-55.filas_v3}} intervenciones en el explorador; con «Solo lo que se habla», {{sesion.1931-10-13-55.habla_v3}}.
 
 <!-- sesiones.cuestion-religiosa-1931.explorador.consulta -->
 "España ha dejado de ser católica"
 
 <!-- sesiones.cuestion-religiosa-1931.explorador.recuento -->
-Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.catolica.n}} intervenciones en la edición del explorador (v3).
+Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.catolica.n}} intervenciones en el explorador.
 
 <!-- sesiones.cuestion-religiosa-1931.explorador.consulta.nota -->
 La de Azaña sale en el puesto {{busqueda.catolica.puesto_azana}} por relevancia. Las demás son de diputados que repiten la frase después, entre 1931 y 1934.
@@ -118,18 +118,15 @@ Por qué Azaña pasa a presidir el Gobierno no lo cuenta esta sesión. El Diario
 ## Fuentes
 
 <!-- sesiones.cuestion-religiosa-1931.fuentes.texto -->
-Todo lo que dice esta página sale del Diario de Sesiones, leído en las dos ediciones de la base. No se afirma aquí ningún hecho que el Diario no recoja.
+Todo lo que dice esta página sale del Diario de Sesiones, leído en la base. No se afirma aquí ningún hecho que el Diario no recoja.
 
 ## Cómo citar un pasaje
 
 <!-- sesiones.cuestion-religiosa-1931.citar.texto -->
-Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila y su edición.
+Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila.
 
 <!-- sesiones.cuestion-religiosa-1931.citar.cita -->
-Diario de Sesiones de las Cortes Constituyentes de la República Española, núm. {{sesion.1931-10-13-55.diario_num|id}}, 13 de octubre de 1931, pp. {{sesion.1931-10-13-55.paginas}} (metadatos del proyecto). Luz y Taquígrafos, edición depositada (V2), fila {{cita.religiosa.azana.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
+Diario de Sesiones de las Cortes Constituyentes de la República Española, núm. {{sesion.1931-10-13-55.diario_num|id}}, 13 de octubre de 1931, pp. {{sesion.1931-10-13-55.paginas}} (metadatos del proyecto). Luz y Taquígrafos, fila {{cita.religiosa.azana.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.

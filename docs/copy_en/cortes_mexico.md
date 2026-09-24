@@ -29,7 +29,7 @@ An oath, a Government and the list of those who were gone, told in the words of 
 <!-- cortes.mexico.hoy.buscar.consulta --> "Diputación Permanente"
 
 <!-- cortes.mexico.hoy.buscar.recuento -->
-With those filters, the query returns {{cortes.mexico.consulta.diputacion_permanente.n}} interventions (v3), counting every row. They appear in {{cortes.mexico.consulta.diputacion_permanente.sesiones|letra}} of the {{etapa.V.sesiones|letra}} sessions.
+With those filters, the query returns {{cortes.mexico.consulta.diputacion_permanente.n}} interventions, counting every row. They appear in {{cortes.mexico.consulta.diputacion_permanente.sesiones|letra}} of the {{etapa.V.sesiones|letra}} sessions.
 
 <!-- cortes.mexico.hoy.sesion -->
 **Open a session.** Enter 17 August 1945 in «Desde» (from) and «Hasta» (to), open an intervention and press `s`: you will have the whole session of the oath.
@@ -46,7 +46,7 @@ With those filters, the query returns {{cortes.mexico.consulta.diputacion_perman
 {{etapa.V.sesiones}} sessions, from January to November 1945, in Mexico City.
 
 <!-- cortes.mexico.cifras.palabras -->
-{{etapa.V.palabras}} words in the deposited edition: {{etapa.V.palabras.pct|pct2}} of the corpus.
+{{etapa.V.palabras}} words in the dataset: {{etapa.V.palabras.pct|pct2}} of the corpus.
 
 <!-- cortes.mexico.cifras.diputados -->
 {{etapa.V.diputados}} deputies take the floor, counting whoever is in the Chair.
@@ -58,55 +58,55 @@ With those filters, the query returns {{cortes.mexico.consulta.diputacion_perman
 <!-- cortes.mexico.contexto.1.titulo --> Meeting again (10 January)
 
 <!-- cortes.mexico.contexto.1.a -->
-The first session hears the list of resolutions of the Standing Committee (Diputación Permanente) «de 2 de febrero de 1939 a 9 de enero de 1945». There are {{cortes.mexico.dp.acuerdos}} resolutions, from Paris to Mexico (v3 {{fila.mexico.relacion.v3|id}}, only in the v3).
+The first session hears the list of resolutions of the Standing Committee (Diputación Permanente) «de 2 de febrero de 1939 a 9 de enero de 1945». There are {{cortes.mexico.dp.acuerdos}} resolutions, from Paris to Mexico.
 
 <!-- cortes.mexico.contexto.1.b -->
-In the first, the Committee takes note («por enterada») of Azaña's resignation as President of the Republic (v3 {{fila.mexico.dimision_azana.v3|id}}, only in the v3).
+In the first, the Committee takes note («por enterada») of Azaña's resignation as President of the Republic.
 
 <!-- cortes.mexico.contexto.1.c -->
-Then the list of deputies who have died since July 1936 is read out: {{cortes.mexico.fallecidos.n}} names. The first is Azaña's (V2 {{fila.mexico.fallecidos.V2|id}} · v3 {{fila.mexico.fallecidos.v3|id}}).
+Then the list of deputies who have died since July 1936 is read out: {{cortes.mexico.fallecidos.n}} names. The first is Azaña's.
 
 <!-- cortes.mexico.contexto.1.d -->
-Martínez Barrio recalls the night in Figueres: «celebrábamos las exequias temporales de la República Española» (V2 {{fila.mexico.exequias.V2|id}} · v3 {{fila.mexico.exequias.v3|id}}).
+Martínez Barrio recalls the night in Figueres: «celebrábamos las exequias temporales de la República Española».
 
 ### An oath (17 August)
 
 <!-- cortes.mexico.contexto.2.titulo --> An oath (17 August)
 
 <!-- cortes.mexico.contexto.2.a -->
-Fernández Clérigo is in the Chair. The order of the day reads: «Promesa del Excmo. señor don Diego Martínez Barrio, Presidente de las Cortes, como Presidente interino de la República Española» (V2 {{fila.mexico.orden_promesa.V2|id}} · v3 {{fila.mexico.orden_promesa.v3|id}}).
+Fernández Clérigo is in the Chair. The order of the day reads: «Promesa del Excmo. señor don Diego Martínez Barrio, Presidente de las Cortes, como Presidente interino de la República Española».
 
 <!-- cortes.mexico.contexto.2.b -->
-To the words of the oath, Martínez Barrio replies: «Si, prometo» (V2 {{fila.mexico.si_prometo.V2|id}} · v3 {{fila.mexico.si_prometo.v3|id}}).
+To the words of the oath, Martínez Barrio replies: «Si, prometo».
 
 ### A Government (7 and 8 November)
 
 <!-- cortes.mexico.contexto.3.titulo --> A Government (7 and 8 November)
 
 <!-- cortes.mexico.contexto.3.a -->
-Giral presents «el primer Gobierno de la República que ha sido posible instrumentar constitucionalmente» since they left Spain. He speaks {{cortes.mexico.giral.palabras}} words (V2 {{fila.mexico.giral.V2|id}} · v3 {{fila.mexico.giral.v3|id}}).
+Giral presents «el primer Gobierno de la República que ha sido posible instrumentar constitucionalmente» since they left Spain. He speaks {{cortes.mexico.giral.palabras}} words.
 
 <!-- cortes.mexico.contexto.3.b -->
-Lamoneda announces a vote against: «No otorgaremos, pues, la confianza al Gobierno» (V2 {{fila.mexico.lamoneda.V2|id}} · v3 {{fila.mexico.lamoneda.v3|id}}). Confidence is approved «por aclamación» (V2 {{fila.mexico.aclamacion.V2|id}} · v3 {{fila.mexico.aclamacion.v3|id}}).
+Lamoneda announces a vote against: «No otorgaremos, pues, la confianza al Gobierno». Confidence is approved «por aclamación».
 
 <!-- cortes.mexico.contexto.3.c -->
-The next day brings the second item on the order of the day. It concerns «las circunstancias que impiden con carácter de fuerza mayor la convocatoria de elecciones» for the presidency (V2 {{fila.mexico.fuerza_mayor.V2|id}} · v3 {{fila.mexico.fuerza_mayor.v3|id}}).
+The next day brings the second item on the order of the day. It concerns «las circunstancias que impiden con carácter de fuerza mayor la convocatoria de elecciones» for the presidency.
 
 <!-- cortes.mexico.contexto.3.d -->
-The proposal approving the Government's statement on that item is carried by {{cortes.mexico.voto_8nov.si}} votes in favour and none against. It was an ordinary vote (by standing and sitting) (V2 {{fila.mexico.voto_8nov.V2|id}} · v3 {{fila.mexico.voto_8nov.v3|id}}).
+The proposal approving the Government's statement on that item is carried by {{cortes.mexico.voto_8nov.si}} votes in favour and none against. It was an ordinary vote (by standing and sitting).
 
 ### The Galician Statute and the close (9 November)
 
 <!-- cortes.mexico.contexto.4.titulo --> The Galician Statute and the close (9 November)
 
 <!-- cortes.mexico.contexto.4.a -->
-The last session debates whether to form a committee for the Statute of Galicia (V2 {{fila.mexico.comision_estatuto.V2|id}} · v3 {{fila.mexico.comision_estatuto.v3|id}}). Suárez Picallo relates that he set out «de Santiago de Chile para asistir a estas sesiones» (V2 {{fila.mexico.santiago_chile.V2|id}} · v3 {{fila.mexico.santiago_chile.v3|id}}).
+The last session debates whether to form a committee for the Statute of Galicia. Suárez Picallo relates that he set out «de Santiago de Chile para asistir a estas sesiones».
 
 <!-- cortes.mexico.contexto.4.b -->
-Prieto opposes forming it. In the end, Giral pleads for «esta satisfacción moral a nuestros compañeros los Diputados gallegos»; the Socialist minority agrees (V2 {{fila.mexico.satisfaccion.V2|id}} · v3 {{fila.mexico.satisfaccion.v3|id}}; V2 {{fila.mexico.accede.V2|id}} · v3 {{fila.mexico.accede.v3|id}}).
+Prieto opposes forming it. In the end, Giral pleads for «esta satisfacción moral a nuestros compañeros los Diputados gallegos»; the Socialist minority agrees.
 
 <!-- cortes.mexico.contexto.4.c -->
-Jiménez de Asúa closes by thanking «a México, a su Gobierno, a su Prensa y a su pueblo» (V2 {{fila.mexico.gracias_mexico.V2|id}} · v3 {{fila.mexico.gracias_mexico.v3|id}}).
+Jiménez de Asúa closes by thanking «a México, a su Gobierno, a su Prensa y a su pueblo».
 
 ## The sessions, one by one
 
@@ -132,20 +132,20 @@ The Governments band passes from Negrín's to Giral's. The corpus says only that
 ## Who took the floor
 
 <!-- cortes.mexico.palabra.f05 -->
-Leaving out the Chair, José Giral leads the stage in words spoken: {{oradores.etapa.V.1.pal}} spoken words (v3).
+Leaving out the Chair, José Giral leads the stage in words spoken: {{oradores.etapa.V.1.pal}} spoken words.
 
 <!-- cortes.mexico.palabra.f05_siguen -->
 He is followed by Indalecio Prieto and Luis Fernández Clérigo.
 
 <!-- cortes.mexico.palabra.f09 -->
-By family, the republicans take {{familias.etapa.V.republicanos.pct|pct1}} of the words spoken outside the Chair (V2), and the socialists {{familias.etapa.V.socialista.pct|pct1}}.
+By family, the republicans take {{familias.etapa.V.republicanos.pct|pct1}} of the words spoken outside the Chair, and the socialists {{familias.etapa.V.socialista.pct|pct1}}.
 
 ## Reading gateways for this stage
 
 ## Ready-made debates in the explorer
 
 <!-- cortes.mexico.debates.entrada -->
-The explorer offers one ready-made debate from this stage (v3), under its name in the explorer:
+The explorer offers one ready-made debate from this stage, under its name in the explorer:
 
 <!-- cortes.mexico.debates.lista -->
 Las Cortes en el exilio
@@ -153,16 +153,13 @@ Las Cortes en el exilio
 ## Before you use it
 
 <!-- cortes.mexico.antes.cuadernillos -->
-These are official extracts, printed as booklets in Mexico by «B. Costa i Amic», according to the volume's title page (v3 {{fila.mexico.costa_amic.v3|id}}, only in the v3). Their pages are not verified.
-
-<!-- cortes.mexico.antes.prieto -->
-Prieto's speech of 8 November is a single row in V2, with {{cortes.mexico.prieto_8nov.palabras}} words. The v3 splits it in two (V2 {{fila.mexico.prieto_8nov.V2|id}} · v3 {{fila.mexico.prieto_8nov.v3|id}} and {{fila.mexico.prieto_8nov_b.v3|id}}).
+These are official extracts, printed as booklets in Mexico by «B. Costa i Amic», according to the volume's title page. Their pages are not verified.
 
 <!-- cortes.mexico.antes.no_esta -->
-What is not here: the title page lists meetings of the Standing Committee in Mexico. It warns that «no se dispone de los textos ni en forma de fotocopia» (v3 {{fila.mexico.dp_sin_textos.v3|id}}, only in the v3).
+What is not here: the title page lists meetings of the Standing Committee in Mexico. It warns that «no se dispone de los textos ni en forma de fotocopia».
 
 <!-- cortes.mexico.antes.paris -->
-Nor are those it held in Paris. A note in the war volume says that the book gathered «las cuatro de la Diputación Permanente, celebradas en París» (V2 {{fila.guerra.paris.V2|id}} · v3 {{fila.guerra.paris.v3|id}}).
+Nor are those it held in Paris. A note in the war volume says that the book gathered «las cuatro de la Diputación Permanente, celebradas en París».
 
 <!-- ↺ comun.fija.ocr -->
 The text comes from optical character recognition and has not been corrected by hand.
@@ -178,7 +175,7 @@ The text comes from optical character recognition and has not been corrected by 
 ## How to cite
 
 <!-- cortes.mexico.citar.sesion -->
-*Extracto oficial de las sesiones de Cortes celebradas en México*, no. {{sesion.1945-08-17-71.diario|id}}, 17 August 1945. In Luz y Taquígrafos (V2), rows {{sesion.1945-08-17-71.id.desde|id}} to {{sesion.1945-08-17-71.id.hasta|id}}.
+*Extracto oficial de las sesiones de Cortes celebradas en México*, no. {{sesion.1945-08-17-71.diario|id}}, 17 August 1945. In Luz y Taquígrafos, rows {{sesion.1945-08-17-71.id.desde|id}} to {{sesion.1945-08-17-71.id.hasta|id}}.
 
 <!-- ↺ cortes.guerra.citar.sin_paginas -->
 These extracts have no verified pages: cite them by their number and date.

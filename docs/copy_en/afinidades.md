@@ -479,7 +479,7 @@ The description of each field.
 The signatures file contains the text of each measure: it lets you read what was signed, not only who signed it.
 
 <!-- afinidades.datos.trampa -->
-A pitfall when joining: `2REP_cosponsorship` calls the second legislature «1933-1935», and the other files call it «1933-1936».
+When joining, note that `2REP_cosponsorship` calls the second legislature «1933-1935», and the other files call it «1933-1936».
 
 <!-- ↺ comun.fija.formulario -->
 Before you download, Harvard Dataverse will ask for your name, email address and institution.

@@ -564,7 +564,7 @@ La descripción de cada campo.
 El archivo de firmas trae el texto de cada medida: sirve para leer qué se firmó, no solo quién.
 
 <!-- afinidades.datos.trampa -->
-Una trampa al unir: `2REP_cosponsorship` llama «1933-1935» a la segunda legislatura, y los demás archivos, «1933-1936».
+Al unir, tenga en cuenta que `2REP_cosponsorship` llama «1933-1935» a la segunda legislatura, y los demás archivos, «1933-1936».
 
 <!-- ↺ comun.fija.formulario -->
 Antes de descargar, Harvard Dataverse le pedirá nombre, correo e institución.

@@ -105,7 +105,7 @@ export function imagenCalendario(lang: Lang, site?: URL): string {
   y += 24;
   const h = huella('V2');
   const enlace = site ? new URL(url(lang, 'cortes#calendario'), site).href : url(lang, 'cortes#calendario');
-  texto(X0, y, `${p('comun.sello.V2')}${h.huella ? ` · ${h.huella}` : ''} · ${p('comun.sello.proyecto')}${h.fecha ? ` · ${h.fecha}` : ''}`, { font: MONO, size: 12, color: C.apagado });
+  texto(X0, y, `${p('comun.sello.base')}${h.huella ? ` · ${h.huella}` : ''} · ${p('comun.sello.proyecto')}${h.fecha ? ` · ${h.fecha}` : ''}`, { font: MONO, size: 12, color: C.apagado });
   y += 20;
   texto(X0, y, `${p('fig.F01.titulo')} · ${p('comun.cabecera.nombre')} · ${enlace}`, { font: MONO, size: 12, color: C.apagado });
   y += 30;

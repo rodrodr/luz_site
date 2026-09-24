@@ -28,6 +28,11 @@ import { formatea, tipo, agrupado, sinAgrupar, porcentaje, peso, pesoDecimal, fe
 export type { Tipo };
 export type Base = 'V2' | 'v3' | 'proyecto' | 'afin' | 'dv' | 'explorador' | 'croquis';
 export const BASES: Base[] = ['V2', 'v3', 'proyecto', 'afin', 'dv', 'explorador', 'croquis'];
+/**
+ * Las dos ediciones de la base (la depositada y la del explorador). Siguen en `data-base` y en procedencia.csv, pero el
+ * sitio no las nombra: presenta la base corregida (24-09-2026, docs/REDISENO_23-09.md).
+ */
+export const esEdicion = (b: string) => b === 'V2' || b === 'v3';
 export interface Cifra { v: unknown; t: Tipo; base?: Base; clave?: string; f?: string; d?: string; dec?: number; n?: number; den?: number; alias_de?: string }
 export interface Contexto {
   /** Sustituciones de comodines en la CLAVE: `{{etapa.<etapa>.sesiones}}` con `{ sub: { etapa: 'I' } }`. */

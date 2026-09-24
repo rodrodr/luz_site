@@ -33,7 +33,7 @@
 Usar los datos
 
 <!-- datos.meta.descripcion -->
-Por dónde empezar, cómo abrir el CSV, qué significa cada columna y dónde engaña, cómo unirlo con Afinidades Elegidas y cómo citarlo.
+Por dónde empezar, cómo abrir el CSV, qué significa cada columna, cómo unirlo con Afinidades Elegidas y cómo citarlo.
 
 > [nota de diseño] Subnavegación «Usar los datos · Versiones» (`comun.md`). Índice lateral con los nueve apartados
 > (`datos.indice.*`). Sin banda fija (solo Método y Explorador). La página lleva `<NotaBases>`: F33 y la decisión 4
@@ -56,9 +56,6 @@ Las columnas
 <!-- datos.indice.decisiones -->
 Antes de contar
 
-<!-- datos.indice.palabra -->
-Contar «palabra»
-
 <!-- datos.indice.unir -->
 Unir con Afinidades
 
@@ -74,16 +71,16 @@ Erratas y contacto
 ## Cabecera
 
 <!-- datos.antetitulo -->
-THQCMI {{dv.version}} · {{filas.V2}} filas · {{columnas.V2}} columnas · {{dv.csv.bytes|peso}}
+CSV · {{filas.V2}} filas · {{columnas.V2}} columnas · {{dv.csv.bytes|peso}}
 
 <!-- datos.titulo -->
 ¿Cómo lo abro, qué significa cada columna, cómo lo uno y cómo lo cito?
 
 <!-- datos.entrada -->
-Quien descarga quiere contar. Antes conviene saber dónde engañan las columnas: el orden empieza en cero, la sesión se reinicia, la Presidencia tiene partido y la palabra se cuenta de cinco maneras.
+Todo lo necesario para trabajar con la base: cómo se abre, qué dice cada columna, qué decidir antes de contar, cómo se une con Afinidades Elegidas y cómo se cita.
 
 <!-- datos.entrada.2 -->
-Cada trampa va aquí con su cifra y con la línea de código que la resuelve.
+Cada paso lleva su línea de código.
 
 ---
 
@@ -99,13 +96,10 @@ Elija por lo que ya sabe hacer.
 Sin programar
 
 <!-- datos.empezar.s1.texto -->
-Llévese los datos de cada figura de este sitio, en CSV y en Excel, con su LÉAME y su cita. Pesan unos KB.
+Cada figura de este sitio lleva sus datos en la pestaña «Datos»: CSV y Excel, con su LÉAME y su cita. Pesan unos KB.
 
 <!-- ↺ comun.fija.sin_formulario -->
 Sin formulario: son datos agregados.
-
-<!-- datos.empezar.s1.accion -->
-[Ver los datos de cada figura]
 
 <!-- datos.empezar.s2.titulo -->
 Sin programar, con el texto
@@ -117,7 +111,7 @@ Abra el explorador: trae los Diarios ya cargados. Busque, lea cada sesión como 
 La primera vez descarga unos {{explorador.gz.bytes|peso_dec0}} comprimidos, sin formulario.
 
 <!-- ↺ comun.fija.explorador -->
-Sirve la edición v3, sin depositar; pide un ordenador.
+Funciona en el navegador de un ordenador.
 
 <!-- ↺ comun.fija.local -->
 Se abre en su navegador; lo que busca y guarda se queda en su equipo.
@@ -129,7 +123,7 @@ Se abre en su navegador; lo que busca y guarda se queda en su equipo.
 Con R o Python
 
 <!-- datos.empezar.s3.texto -->
-El CSV depositado, THQCMI V2.0: {{filas.V2}} filas y {{columnas.V2}} columnas. Los dos fragmentos de esta página lo cargan, lo cuentan y lo unen.
+El CSV depositado: {{filas.V2}} filas y {{columnas.V2}} columnas. Los dos fragmentos de esta página lo cargan, lo cuentan y lo unen.
 
 <!-- datos.empezar.s3.peso -->
 Un archivo de {{dv.csv.bytes|peso}}.
@@ -151,9 +145,6 @@ Dos personas con la misma base pueden llegar a resultados distintos sin que ning
 
 <!-- ↺ comun.fija.formulario -->
 Antes de descargar, Harvard Dataverse le pedirá nombre, correo e institución.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
 
 > [nota de diseño] La escalera va en registro de calendario, sin tarjetas: cuatro peldaños a dos columnas desde 64 rem.
 > Peldaño 1: `s1.*` + ↺ 12 (`comun.fija.sin_formulario`); [Ver los datos de cada figura] → `datos/versiones/#bases`
@@ -222,7 +213,7 @@ Sesiones, filas y palabras de cada legislatura en el CSV depositado
 [Descargar en Dataverse ↗]
 
 <!-- datos.camino.tabla.titulo -->
-Los archivos de la versión {{dv.version}}
+Los archivos del depósito
 
 <!-- datos.camino.tabla.col.archivo -->
 Archivo
@@ -240,16 +231,13 @@ Qué es
 Los datos: una fila por turno impreso.
 
 <!-- datos.camino.archivo.changelog_es -->
-Qué cambió de la V1 a la V2, en español.
+El registro de cambios, en español.
 
 <!-- datos.camino.archivo.changelog_en -->
 Lo mismo, en inglés.
 
 <!-- datos.camino.archivo.readme -->
-La documentación, en inglés. Describe la primera versión.
-
-<!-- ↺ comun.fija.readme -->
-El README depositado describe la primera versión; las diferencias, aquí.
+La documentación, en inglés.
 
 <!-- datos.camino.integridad -->
 Si quiere comprobar que su copia es la depositada, compare su MD5 con el de la tabla.
@@ -275,94 +263,52 @@ Si quiere comprobar que su copia es la depositada, compare su MD5 con el de la t
 Las {{columnas.V2}} columnas
 
 <!-- datos.columnas.entrada -->
-Cada columna, con su definición, su valor en dos filas reales y su trampa.
+Cada columna, con su definición y su valor en dos filas reales.
 
 <!-- datos.columnas.texto -->
-Las filas de ejemplo son la {{fila.presidencia.id.V2|id}} y la {{fila.campoamor.id.V2|id}}, seguidas en la sesión del 1 de octubre de 1931. En la primera, la Presidencia pide silencio; en la segunda, Clara Campoamor empieza a hablar.
+Las dos filas de ejemplo van seguidas en la sesión del 1 de octubre de 1931. En la primera, la Presidencia pide silencio; en la segunda, Clara Campoamor empieza a hablar.
 
 <!-- datos.columnas.id.definicion -->
-Número de la fila en la V2, del uno al {{filas.V2}}, sin huecos. Sigue el orden de lectura: fecha, sesión y lugar en la sesión.
-
-<!-- datos.columnas.id.trampa -->
-Solo vale dentro de la V2. La v3 renumera: la {{fila.campoamor.id.V2|id}} es allí la {{fila.campoamor.id.v3|id}}. Para citar, dé también la fecha y el número de sesión.
+Número de la fila, del uno al {{filas.V2}}, sin huecos. Sigue el orden de lectura: fecha, sesión y lugar en la sesión.
 
 <!-- datos.columnas.num_session.definicion -->
-Número de la sesión dentro de su legislatura, como lo imprime el Diario.
-
-<!-- datos.columnas.num_session.trampa -->
-Vuelve a empezar en cada legislatura: la sesión 1 existe {{sesiones.num1|letra}} veces. Una sesión se identifica por la fecha y el número juntos.
+Número de la sesión dentro de su legislatura, como lo imprime el Diario. Vuelve a empezar en cada legislatura: la sesión se identifica por la fecha y el número juntos.
 
 <!-- datos.columnas.order.definicion -->
-Lugar de la fila en su sesión.
-
-<!-- datos.columnas.order.trampa -->
-Empieza en cero. Campoamor es la {{fila.campoamor.orden.V2|id}} en la V2, la {{fila.campoamor.orden.v3|id}} en la v3 y «Orden {{fila.campoamor.orden.pantalla|id}}» en la pantalla del explorador.
+Lugar de la fila en su sesión, contado desde cero.
 
 <!-- datos.columnas.date.definicion -->
-Fecha de la sesión, en formato AAAA-MM-DD.
-
-<!-- datos.columnas.date.trampa -->
-{{fechas.sesiones|letra}} sesiones cambiaron de fecha de la V1 a la V2. Hay {{sesiones.fechas_dobles|letra}} días con dos sesiones, así que la fecha sola no identifica una sesión.
+Fecha de la sesión, en formato AAAA-MM-DD. Algunos días hubo dos sesiones.
 
 <!-- datos.columnas.speaker.definicion -->
-La fórmula impresa del orador, tal como la leyó el reconocimiento óptico.
-
-<!-- datos.columnas.speaker.trampa -->
-Solo esta columna dice el cargo: «El Sr. PRESIDENTE:», «El Sr. Ministro de HACIENDA:». Conserva las erratas de lectura, como «PERSIDENTE».
+La fórmula impresa del orador, tal como la leyó el reconocimiento óptico: «El Sr. PRESIDENTE:», «La Srta. CAMPOAMOR:». Es la única columna que dice el cargo.
 
 <!-- datos.columnas.speech.definicion -->
-El texto de la fila, sin resumir ni corregir a mano.
-
-<!-- datos.columnas.speech.trampa -->
-Incluye acotaciones, interrupciones, documentos y listas de votación. La lista nominal del 1 de octubre de 1931 va dentro de una fila de la Presidencia, la {{voto.161-121.V2|id}}.
+El texto de la fila, sin resumir ni corregir a mano, con las acotaciones del taquígrafo.
 
 <!-- datos.columnas.rep_id.definicion -->
-El diputado, según la tabla de diputados del proyecto.
-
-<!-- datos.columnas.rep_id.trampa -->
-Es una persona, no un escaño. La Presidencia va al diputado que preside. Hay {{filas.sin_diputado}} filas vacías, y el identificador {{rep836.id|id}} lleva dos nombres distintos, pendiente del autor.
+El diputado, según la tabla de diputados del proyecto. Es una persona, no un escaño; en las filas de la Presidencia, el diputado que presidía.
 
 <!-- datos.columnas.rep_name.definicion -->
-Nombre completo del diputado.
-
-<!-- datos.columnas.rep_name.trampa -->
-Va sin tildes y con mayúscula en cada palabra: «Clara Campoamor Y Rodriguez». No lo copie en un texto; use la grafía del Diario o de la bibliografía.
+Nombre completo del diputado, sin tildes y con mayúscula en cada palabra.
 
 <!-- datos.columnas.district.definicion -->
 Circunscripción por la que salió elegido el diputado.
 
-<!-- datos.columnas.district.trampa -->
-Tiene {{distritos.V2}} valores. Uno, «Agrarios», es una errata en {{distritos.agrarios.filas|letra}} filas. Es el distrito electoral, no el lugar de nacimiento.
-
 <!-- datos.columnas.party.definicion -->
 Siglas del partido del diputado en esa legislatura.
-
-<!-- datos.columnas.party.trampa -->
-Va por diputado y legislatura, no por fila. «Indep.» aquí es «Independiente» en Afinidades Elegidas.
 
 <!-- datos.columnas.party_family.definicion -->
 Familia de partidos del diputado.
 
-<!-- datos.columnas.party_family.trampa -->
-Tiene {{familias.V2}} valores escritos a mano, con variantes como «Repubicanos» o «Republicanoses». Faltan en {{familias.vacias}} filas. El explorador los reduce a {{familias.v3}} familias.
-
 <!-- datos.columnas.ideology.definicion -->
-Posición del partido, de EI, extrema izquierda, a ED, extrema derecha.
-
-<!-- datos.columnas.ideology.trampa -->
-Es la del partido del diputado, no la de la persona. En {{ideologia.partidos_varios|letra}} partidos conviven códigos distintos. Además, {{ideologia.c_espacio}} filas llevan «C » con un espacio detrás.
+Posición del partido del diputado, de EI, extrema izquierda, a ED, extrema derecha.
 
 <!-- datos.columnas.nwords.definicion -->
-Palabras del texto.
-
-<!-- datos.columnas.nwords.trampa -->
-Cuenta trozos separados por el carácter espacio: un salto de línea no separa. Con `split()` salen {{palabras.split.V2}}, no {{palabras.V2}}.
+Palabras del texto, separadas por el carácter espacio.
 
 <!-- datos.columnas.legislature.definicion -->
-Legislatura: 1931-1933, 1933-1935 o 1936-1939.
-
-<!-- datos.columnas.legislature.trampa -->
-La segunda no se llama igual en Afinidades Elegidas. La tercera incluye las sesiones de la guerra y las de México.
+Legislatura: 1931-1933, 1933-1935 o 1936-1939. La tercera incluye las sesiones de la guerra y las de México.
 
 > [nota de diseño] **F32** es la tabla ARIA `Columnas.astro` **sin tira de llenado**. Filas en el orden del CSV; cada
 > una con ancla `#col-<columna>` (`:target` la resalta), su `.definicion`, sus valores en V2 5423 y 5424 (de
@@ -379,10 +325,10 @@ Las palabras que el Diario partía con guion al final de línea están recompues
 El censo y las relaciones de Afinidades Elegidas llaman 1933-1936 a la legislatura que esta base llama 1933-1935; las sesiones del Diario terminan el 10 de diciembre de 1935.
 
 <!-- fig.F32.titulo -->
-Cada columna, con su trampa
+Qué dice cada columna
 
 <!-- fig.F32.pregunta -->
-¿Qué significa cada columna, y dónde engaña?
+¿Qué significa cada columna?
 
 <!-- fig.F32.tabla.col.columna -->
 Columna
@@ -391,13 +337,10 @@ Columna
 Qué es
 
 <!-- fig.F32.tabla.col.silencio -->
-Fila {{fila.presidencia.id.V2|id}}
+La Presidencia
 
 <!-- fig.F32.tabla.col.campoamor -->
-Fila {{fila.campoamor.id.V2|id}}
-
-<!-- fig.F32.tabla.col.trampa -->
-Dónde engaña
+Clara Campoamor
 
 <!-- fig.F32.vacio -->
 vacío
@@ -439,20 +382,20 @@ Distintos
 Las {{columnas.V2}} columnas del CSV depositado: su tipo, sus celdas vacías, sus valores distintos y su valor en dos filas reales.
 
 <!-- fig.F32.denominador -->
-Las {{filas.V2}} filas de la V2.
+Las {{filas.V2}} filas.
 
 <!-- fig.F32.salvedad -->
-Definiciones del README depositado, que describe la V1, corregidas donde la V2 cambió.
+Definiciones del README depositado.
 
 <!-- fig.F32.alt -->
-Tabla de las columnas del CSV depositado, con su definición, su valor en dos filas de ejemplo y su trampa.
+Tabla de las columnas del CSV depositado, con su definición y su valor en dos filas de ejemplo.
 
 ---
 
 ## 4 · Antes de contar (`#decisiones`)
 
 <!-- datos.decisiones.titulo -->
-Antes de contar: seis decisiones que cambian el resultado
+Antes de contar: cuatro decisiones que cambian el resultado
 
 <!-- datos.decisiones.entrada -->
 Ninguna tiene una respuesta correcta para todos. Cada una lleva su cifra y la línea que la aplica.
@@ -494,7 +437,7 @@ largas = d[d.nwords > 300]
 Qué es una palabra
 
 <!-- datos.decisiones.3.texto -->
-Hay otras maneras de contar que `nwords`, y cada una da otra cifra. Se explica justo debajo.
+`nwords` corta el texto por espacios; `split()` corta también por saltos de línea y da más palabras. Diga cuál usa.
 
 <!-- datos.decisiones.3.codigo -->
 ```python
@@ -502,24 +445,9 @@ d.speech.str.split().str.len().sum()   # frente a d.nwords.sum()
 ```
 
 <!-- datos.decisiones.4.titulo -->
-El material impreso dentro de las filas
-
-<!-- datos.decisiones.4.texto -->
-En la V2, las listas de votación, las tablas y los documentos van dentro de la fila anterior. La v3 separó {{v3.comentarios}} bloques de ese material.
-
-La fila más larga de la V2, la {{fila.prieto.id.V2|id}}, es sobre todo tablas. Antes de elegir las filas más largas, léalas.
-
-El explorador separa ese material con la casilla «Solo lo que se habla». El CSV depositado no lo separa.
-
-<!-- datos.decisiones.4.codigo -->
-```python
-print(d.loc[d.id == 5453, "speech"].iloc[0][:600])   # una votación nominal, dentro de la Presidencia
-```
-
-<!-- datos.decisiones.5.titulo -->
 Las legislaturas desiguales
 
-<!-- datos.decisiones.5.texto -->
+<!-- datos.decisiones.4.texto -->
 La primera legislatura reúne el {{leg.1931-1933.palabras.pct}} de las palabras. Compare tasas, no volúmenes: palabras por sesión, o la parte de cada grupo dentro de su legislatura.
 
 La tasa puede invertir el orden. Por sesión, la primera legislatura suma {{leg.1931-1933.palabras_por_sesion}} palabras.
@@ -530,143 +458,16 @@ La tercera legislatura, 1936-1939, reúne tres etapas muy distintas. Para separa
 
 Las sesiones 61 a 69 son las Cortes en guerra, de octubre de 1936 a febrero de 1939. Las sesiones 70 a 74 son las de México, en 1945.
 
-<!-- datos.decisiones.5.codigo -->
+<!-- datos.decisiones.4.codigo -->
 ```python
 d.groupby("legislature").nwords.sum() / d.nwords.sum()
 etapa = pd.cut(d.num_session, [0, 60, 69, 74], labels=["1936", "guerra", "México"])
 d[d.legislature == "1936-1939"].groupby(etapa).nwords.sum()
 ```
 
-<!-- datos.decisiones.6.titulo -->
-Los ids entre ediciones
-
-<!-- datos.decisiones.6.texto -->
-Un id de la V2 no sirve en el explorador. Para cruzar ediciones o citar, use la fecha y el número de sesión.
-
-Para llevar al CSV algo que encontró en el explorador, busque la sesión por fecha y número. Dentro de ella, localice el comienzo del texto.
-
-<!-- datos.decisiones.6.codigo -->
-```python
-d.groupby(["date", "num_session"]).ngroups   # una clave por sesión, igual en la v3
-```
-
 > [nota de diseño] Las seis decisiones van como lista numerada de seis bloques cortos (título en mono, texto y código
 > en `<details>` abierto a 1.440 y cerrado en el móvil). Bajo la sexta, ↺ 4 (`comun.fija.ids`). «Seis» es la
 > estructura de la sección, no una cifra del corpus. La decisión 4 cita una cifra v3: la página ya lleva `<NotaBases>`.
-
----
-
-## 5 · Cinco maneras de contar «palabra» (F33, `#palabra`)
-
-<!-- datos.palabra.titulo -->
-Cinco maneras de contar «palabra»
-
-<!-- datos.palabra.entrada -->
-¿Cuántas palabras hay? Depende de qué cuente y en qué edición.
-
-<!-- datos.palabra.texto -->
-`nwords` separa por el carácter espacio. `split()` separa también por saltos de línea, y por eso da más: {{palabras.split.V2}}.
-
-La diferencia se concentra en las listas, con un nombre por línea. En la votación nominal del 1 de octubre de 1931, `nwords` marca {{fila.lista.nwords}} palabras.
-
-En esa misma fila, `split()` cuenta {{fila.lista.split}}.
-
-El explorador cuenta sobre la v3, que reparte las palabras de la V2 y añade los sumarios. Su Tendencia divide por otra cifra: los tokens de su índice de búsqueda.
-
-<!-- fig.F33.titulo -->
-La misma base, cinco cifras de palabras
-
-<!-- fig.F33.pregunta -->
-¿Cuántas palabras hay?
-
-<!-- fig.F33.nwords.rotulo -->
-`nwords` · V2
-
-<!-- fig.F33.nwords.valor -->
-{{palabras.V2}}
-
-<!-- fig.F33.nwords.def -->
-La columna del CSV: trozos separados por el carácter espacio.
-
-<!-- fig.F33.nwords.codigo -->
-d.nwords.sum()
-
-<!-- fig.F33.split.rotulo -->
-`split()` · V2
-
-<!-- fig.F33.split.valor -->
-{{palabras.split.V2}}
-
-<!-- fig.F33.split.def -->
-Trozos separados por cualquier espacio en blanco, saltos de línea incluidos.
-
-<!-- fig.F33.split.codigo -->
-d.speech.str.split().str.len().sum()
-
-<!-- fig.F33.total.rotulo -->
-Todas las filas · v3
-
-<!-- fig.F33.total.valor -->
-{{palabras.v3}}
-
-<!-- fig.F33.total.def -->
-Las palabras de la V2, repartidas entre las piezas de la v3, más las de los sumarios que la V2 no traía.
-
-<!-- fig.F33.habla.rotulo -->
-Solo lo que se habla · v3
-
-<!-- fig.F33.habla.valor -->
-{{palabras.habla.v3}}
-
-<!-- fig.F33.habla.def -->
-Lo mismo sin sumarios ni comentarios del Diario: lo que cuenta el explorador con la casilla «Solo lo que se habla».
-
-<!-- fig.F33.tendencia.rotulo -->
-Tokens del índice · v3
-
-<!-- fig.F33.tendencia.valor -->
-{{palabras.tendencia.v3}}
-
-<!-- fig.F33.tendencia.def -->
-Lo que cuenta el índice de búsqueda del explorador. Es el denominador de su Tendencia.
-
-<!-- fig.F33.eje -->
-Millones de palabras
-
-<!-- fig.F33.nota -->
-{{rotulo}} · {{valor}} · {{def}}
-
-<!-- fig.F33.tabla.col.recuento -->
-Recuento
-
-<!-- fig.F33.tabla.col.valor -->
-Palabras
-
-<!-- fig.F33.tabla.col.edicion -->
-Edición
-
-<!-- fig.F33.tabla.col.def -->
-Qué cuenta
-
-<!-- fig.F33.tabla.col.diferencia -->
-Frente a `nwords`
-
-<!-- fig.F33.que_mide -->
-Palabras del corpus contadas de cinco maneras: dos sobre la edición depositada y tres sobre la del explorador.
-
-<!-- fig.F33.denominador -->
-Ninguno: son totales. Cada fila del CSV dice su edición y cómo se cuenta.
-
-<!-- fig.F33.salvedad -->
-Cada figura de este sitio dice cuál usa. Una cifra de palabras sin su definición no se compara con otra.
-
-<!-- fig.F33.alt -->
-Cinco barras horizontales con cinco recuentos de palabras: dos sobre la edición depositada y tres sobre la del explorador.
-
-> [nota de diseño] **F33**: cinco barras horizontales con su rótulo y su valor en HTML encima; la nota emergente
-> (`fig.F33.nota`) da la definición y, en las dos de la V2, la línea de código (`fig.F33.<k>.codigo`, en `<code>`).
-> Las barras de la v3 llevan otro trazo y el sello «Edición del explorador» (↺ 2). Pestaña Tabla. Sin JS: la tabla.
-> Una sola base por frase: `datos.palabra.texto` rotula V2 y v3 donde las compara.
 
 ---
 
@@ -701,7 +502,7 @@ La tabla de diputados de Afinidades Elegidas se descarga como `representative_me
 Por diputado y legislatura, nunca solo por el diputado
 
 <!-- fig.F34.pregunta -->
-¿Cómo se une la V2 con Afinidades Elegidas sin multiplicar filas?
+¿Cómo se une la base con Afinidades Elegidas sin multiplicar filas?
 
 <!-- fig.F34.tabla.col.paso -->
 Paso
@@ -761,16 +562,16 @@ Unido solo por el diputado
 De ellas, sin ficha en Afinidades
 
 <!-- fig.F34.que_mide -->
-Los pares de diputado y legislatura de la V2 que no tienen ficha en Afinidades Elegidas y los que la tienen con otro rótulo de partido.
+Los pares de diputado y legislatura de la base que no tienen ficha en Afinidades Elegidas y los que la tienen con otro rótulo de partido.
 
 <!-- fig.F34.denominador -->
-Los {{union.pares}} pares de diputado y legislatura de la V2, con la legislatura recodificada como la llama el censo.
+Los {{union.pares}} pares de diputado y legislatura de la base, con la legislatura recodificada como la llama el censo.
 
 <!-- fig.F34.otros.resumen -->
 Los pares con otro rótulo de partido, uno a uno
 
 <!-- fig.F34.otros.col.v2 -->
-Partido en la V2
+Partido en la base
 
 <!-- fig.F34.otros.col.afin -->
 Partido en Afinidades
@@ -927,25 +728,22 @@ El exportador del sitio vuelve a ejecutar los dos fragmentos en cada compilació
 Cómo citar
 
 <!-- datos.citar.entrada -->
-Cite lo que usó y su edición. La cita de una figura lleva, además, su base y su fecha.
+Cite lo que usó. La cita de una figura lleva, además, su fecha.
 
 <!-- datos.citar.thqcmi -->
-**La base.** La cita oficial de Harvard Dataverse, en texto, BibTeX o RIS. Termina en «Harvard Dataverse, V2».
+**La base.** La cita oficial de Harvard Dataverse, en texto, BibTeX o RIS.
 
 <!-- datos.citar.cgocus -->
 **Afinidades Elegidas.** Cópiela tal como la da Dataverse: dice «V1» y lleva un UNF, pero corresponde a la versión depositada, CGOCUS V1.1.
 
 <!-- datos.citar.figura -->
-**Una figura.** Su título, la dirección de su ancla, la edición de sus datos y la fecha de cálculo. Cada figura trae la suya en la pestaña Datos.
+**Una figura.** Su título, la dirección de su ancla y la fecha de cálculo. Cada figura trae la suya en la pestaña Datos.
 
 <!-- datos.citar.pasaje -->
-**Un pasaje.** La fecha y el número de la sesión, y el id de la fila con su edición. Por ejemplo: Diario de Sesiones, 1 de octubre de 1931, sesión 48; THQCMI V2, fila {{fila.campoamor.id.V2|id}}.
+**Un pasaje.** La fecha y el número de la sesión, y el id de la fila. Por ejemplo: Diario de Sesiones, 1 de octubre de 1931, sesión 48; Luz y Taquígrafos, fila {{fila.campoamor.id.V2|id}}.
 
 <!-- datos.citar.pasaje.2 -->
 Si cita el Diario impreso, añada su número y la página. El explorador no da ni lo uno ni lo otro.
-
-<!-- datos.citar.explorador -->
-**El explorador.** Diga que sirve la edición v3, sin depositar. Su cita automática dice «V2», pero sus identificadores son de la v3.
 
 <!-- datos.citar.pestana.texto -->
 Texto
@@ -1010,38 +808,23 @@ Valor en la fila {{fila.presidencia.id.V2|id}}: la Presidencia pide silencio (1 
 <!-- fig.F32.leame.col.fila_5424 -->
 Valor en la fila {{fila.campoamor.id.V2|id}}: Clara Campoamor empieza a hablar, en la misma sesión.
 
-<!-- fig.F33.leame.col.recuento -->
-Manera de contar: nwords, split, total, habla o tendencia.
-
-<!-- fig.F33.leame.col.palabras -->
-Palabras que da ese recuento.
-
-<!-- fig.F33.leame.col.edicion -->
-Edición sobre la que se cuenta: V2 (depositada) o v3 (explorador, sin depositar).
-
-<!-- fig.F33.leame.col.diferencia_con_nwords -->
-Diferencia con la suma de la columna nwords de la V2.
-
-<!-- fig.F33.leame.col.codigo -->
-Línea de pandas que lo reproduce sobre el CSV depositado, cuando la hay.
-
 <!-- fig.F34.leame.col.caso -->
 sin_ficha: el par no tiene ficha en Afinidades Elegidas; otro_partido: la tiene, con otro rótulo de partido.
 
 <!-- fig.F34.leame.col.rep_id -->
-Identificador del diputado (rep_id en la V2, id_dip en Afinidades Elegidas).
+Identificador del diputado (rep_id en la base, id_dip en Afinidades Elegidas).
 
 <!-- fig.F34.leame.col.nombre -->
 Nombre del diputado según la tabla de grafías del sitio.
 
 <!-- fig.F34.leame.col.legislatura_cgocus -->
-Legislatura con el rótulo del censo de Afinidades Elegidas (1933-1936 donde la V2 dice 1933-1935).
+Legislatura con el rótulo del censo de Afinidades Elegidas (1933-1936 donde la base dice 1933-1935).
 
 <!-- fig.F34.leame.col.filas_v2 -->
-Filas de la V2 de ese par que quedan sin atributos de Afinidades.
+Filas de la base de ese par que quedan sin atributos de Afinidades.
 
 <!-- fig.F34.leame.col.party_v2 -->
-Partido más frecuente del diputado en esa legislatura, en la V2.
+Partido más frecuente del diputado en esa legislatura, en la base.
 
 <!-- fig.F34.leame.col.partido_cgocus -->
 Partido del diputado en esa legislatura, en Afinidades Elegidas.
@@ -1054,7 +837,7 @@ Partido del diputado en esa legislatura, en Afinidades Elegidas.
 Erratas y contacto
 
 <!-- datos.erratas.texto -->
-Si encuentra un error, díganos la fecha, el número de sesión, el id de la fila con su edición y lo que dice el Diario impreso. Si no sabe por dónde empezar, escriba también.
+Si encuentra un error, díganos la fecha, el número de sesión, el id de la fila y lo que dice el Diario impreso. Si no sabe por dónde empezar, escriba también.
 
 <!-- datos.erratas.acciones -->
 [Avisar de una errata] [Escribirnos]

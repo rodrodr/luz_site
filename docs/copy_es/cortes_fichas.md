@@ -15,17 +15,17 @@
 > («Fila 3»). El número es el orden de la llamada en la página, no una cifra.
 
 <!-- cortes.ficha.cifras.base -->
-Las tres cifras son de la edición depositada, la que se descarga.
+Las tres cifras son de la base, la que se descarga.
 
 <!-- cortes.ficha.sesiones.entrada -->
 Cada línea es una sesión: su fecha, dónde se reunió la Cámara si el texto lo dice, y qué pasó.
 
-<!-- cortes.ficha.sesiones.filas --> filas V2
+<!-- cortes.ficha.sesiones.filas --> filas
 
 ## F05 · Quién tomó la palabra
 
 <!-- fig.F05.leyenda -->
-Cada barra, las palabras de habla de un diputado en la edición del explorador. Cuenta palabras: no es una medida de importancia.
+Cada barra, las palabras de habla de un diputado en el explorador. Cuenta palabras: no es una medida de importancia.
 
 <!-- fig.F05.anotacion -->
 Los diez primeros suman el {{oradores.etapa.<etapa>.diez.pct}} de las palabras de habla de la etapa, sin la Presidencia.

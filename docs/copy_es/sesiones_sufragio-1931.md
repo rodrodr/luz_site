@@ -38,7 +38,7 @@ Kent vota no; Campoamor, sí. Dos meses después, Campoamor lee en la Cámara el
 «Los ciudadanos de uno y otro sexo, mayores de veintitrés años, tendrán los mismos derechos electorales…»
 
 <!-- sesiones.sufragio-1931.que_paso.cita.articulo.pie -->
-Clara Campoamor, 1 de diciembre de 1931 · V2 {{cita.sufragio.art34.texto.V2|id}} · v3 {{cita.sufragio.art34.texto.v3|id}}
+Clara Campoamor, 1 de diciembre de 1931
 
 ## Lo que dice el Diario
 
@@ -46,19 +46,19 @@ Clara Campoamor, 1 de diciembre de 1931 · V2 {{cita.sufragio.art34.texto.V2|id}
 «…que creo que el voto femenino debe aplazarse.»
 
 <!-- sesiones.sufragio-1931.diario.cita.kent.pie -->
-Victoria Kent · V2 {{cita.sufragio.kent.V2|id}} · v3 {{cita.sufragio.kent.v3|id}} · {{cita.sufragio.kent.palabras}} palabras (V2)
+Victoria Kent · {{cita.sufragio.kent.palabras}} palabras
 
 <!-- sesiones.sufragio-1931.diario.cita.presidencia -->
 «Ruego a la Cámara que guarde silencio.»
 
 <!-- sesiones.sufragio-1931.diario.cita.presidencia.pie -->
-La Presidencia (Besteiro) · V2 {{cita.sufragio.presidencia.V2|id}} · v3 {{cita.sufragio.presidencia.v3|id}}
+La Presidencia (Besteiro)
 
 <!-- sesiones.sufragio-1931.diario.cita.silencio -->
 «Yo ruego a la Cámara que me escuche en silencio…»
 
 <!-- sesiones.sufragio-1931.diario.cita.silencio.pie -->
-Clara Campoamor · V2 {{cita.sufragio.campoamor.silencio.V2|id}} · v3 {{cita.sufragio.campoamor.silencio.v3|id}} · {{cita.sufragio.campoamor.silencio.palabras}} palabras (V2)
+Clara Campoamor · {{cita.sufragio.campoamor.silencio.palabras}} palabras
 
 <!-- sesiones.sufragio-1931.diario.cita.ciudadana -->
 «Yo, Sres. Diputados, me siento ciudadana antes que mujer, y considero que sería un profundo error político dejar a la mujer al margen de ese derecho…»
@@ -70,14 +70,14 @@ Clara Campoamor, en la misma fila
 «Total, 161.» … «Total, 121.»
 
 <!-- sesiones.sufragio-1931.diario.cita.resultado.pie -->
-Los totales de las dos listas · V2 {{cita.sufragio.resultado.V2|id}} · v3 {{cita.sufragio.resultado.v3|id}}
+Los totales de las dos listas
 
 > [nota de diseño] Las dos primeras de Campoamor van seguidas de la de la Presidencia, como en el Diario: son dos
 > filas consecutivas (V2 5423 y 5424), la misma pareja que abre la fila en Inicio. Campoamor ya había contestado a
 > Kent unos turnos antes (`sesiones.sufragio-1931.diario.nota`).
 
 <!-- sesiones.sufragio-1931.diario.nota -->
-Campoamor ya había contestado a Kent unos turnos antes, en la fila V2 {{cita.sufragio.campoamor.antes.V2|id}} · v3 {{cita.sufragio.campoamor.antes.v3|id}}.
+Campoamor ya había contestado a Kent unos turnos antes.
 
 ## La sesión, turno a turno
 
@@ -93,7 +93,7 @@ El mismo día hubo dos votaciones: la ordinaria, que el Diario da sin nombres, y
 «En votación ordinaria fue desechada la proposición del grupo socialista por 141 votos contra 106.»
 
 <!-- sesiones.sufragio-1931.votacion.cita.ordinaria.pie -->
-Diario · V2 {{cita.sufragio.ordinaria.V2|id}} · v3 {{cita.sufragio.ordinaria.v3|id}}
+Diario
 
 > [nota de diseño] F26 mínima: la barra del 161–121 y, con otro trazo, la ordinaria. En la V2 las dos van dentro de
 > una fila de la Presidencia; en la v3, en una fila de comentarios del Diario.
@@ -101,13 +101,13 @@ Diario · V2 {{cita.sufragio.ordinaria.V2|id}} · v3 {{cita.sufragio.ordinaria.v
 ## Cómo encontrarla en el explorador
 
 <!-- sesiones.sufragio-1931.explorador.fecha -->
-Filtros › Fecha y sesión: Desde y Hasta 01/10/1931. Salen {{sesion.1931-10-01-48.filas_v3}} intervenciones en la edición del explorador (v3); con «Solo lo que se habla», {{sesion.1931-10-01-48.habla_v3}}.
+Filtros › Fecha y sesión: Desde y Hasta 01/10/1931. Salen {{sesion.1931-10-01-48.filas_v3}} intervenciones en el explorador; con «Solo lo que se habla», {{sesion.1931-10-01-48.habla_v3}}.
 
 <!-- sesiones.sufragio-1931.explorador.consulta -->
 "voto femenino" | "voto de la mujer"
 
 <!-- sesiones.sufragio-1931.explorador.recuento -->
-Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.voto_union.n}} intervenciones en la edición del explorador (v3).
+Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.voto_union.n}} intervenciones en el explorador.
 
 <!-- sesiones.sufragio-1931.explorador.consulta.nota -->
 Busca en todo el corpus. De esas intervenciones, {{busqueda.ses.voto_union.campoamor|letra}} son de Campoamor.
@@ -124,17 +124,13 @@ El debate preparado «Sufragio femenino» reúne {{bib.sufragio.entradas}} inter
 <!-- sesiones.sufragio-1931.no_esta.texto -->
 Las últimas {{ses.s48.cola|letra}} filas repiten «Pido la palabra.», y la última termina en «El Sr. Ministro de».
 
-<!-- sesiones.sufragio-1931.no_esta.pie -->
-V2 {{ses.s48.cola.V2.desde|id}}–{{ses.s48.cola.V2.hasta|id}} · v3 {{ses.s48.cola.v3.desde|id}}–{{ses.s48.cola.v3.hasta|id}}
-
 <!-- ↺ comun.fija.sesion48 -->
 La sesión 48 tal como está en el corpus: el final del acta digitalizada se perdió en el reconocimiento óptico.
-
 
 ## Fuentes
 
 <!-- sesiones.sufragio-1931.fuentes.texto -->
-Todo lo que dice esta página sale del Diario de Sesiones, leído en las dos ediciones de la base. No se afirma aquí ningún hecho que el Diario no recoja.
+Todo lo que dice esta página sale del Diario de Sesiones, leído en la base. No se afirma aquí ningún hecho que el Diario no recoja.
 
 > [nota de diseño] Lo externo que pedía la narrativa (el número definitivo del artículo en la Constitución y las
 > primeras elecciones con voto femenino) queda fuera hasta que la puerta de bibliografía dé su referencia [A] o [I]
@@ -143,13 +139,10 @@ Todo lo que dice esta página sale del Diario de Sesiones, leído en las dos edi
 ## Cómo citar un pasaje
 
 <!-- sesiones.sufragio-1931.citar.texto -->
-Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila y su edición.
+Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila.
 
 <!-- sesiones.sufragio-1931.citar.cita -->
-Diario de Sesiones de las Cortes Constituyentes de la República Española, núm. {{sesion.1931-10-01-48.diario_num|id}}, 1 de octubre de 1931, pp. {{sesion.1931-10-01-48.paginas}} (metadatos del proyecto). Luz y Taquígrafos, edición depositada (V2), fila {{cita.sufragio.campoamor.ciudadana.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
+Diario de Sesiones de las Cortes Constituyentes de la República Española, núm. {{sesion.1931-10-01-48.diario_num|id}}, 1 de octubre de 1931, pp. {{sesion.1931-10-01-48.paginas}} (metadatos del proyecto). Luz y Taquígrafos, fila {{cita.sufragio.campoamor.ciudadana.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.

@@ -46,13 +46,13 @@ Es la última sesión antes del verano: la siguiente es la del {{puerta.pistola-
 «Entre los Sres. Tirado y Oriol de la Puerta se produjo un violento altercado, llegando a agredirse dichos Sres. Diputados.—Esto determinó un verdadero tumulto en la Cámara.»
 
 <!-- sesiones.pistola-1934.diario.cita.tumulto.pie -->
-Acotación del taquígrafo, dentro de la fila de Gil Robles · V2 {{cita.pistola.tumulto.V2|id}} · v3 {{cita.pistola.tumulto.v3|id}}
+Acotación del taquígrafo, dentro de la fila de Gil Robles
 
 <!-- sesiones.pistola-1934.diario.cita.golpes -->
 «Estos incidentes limitados a palabras son corrientes; el de hoy se ha convertido en golpes.»
 
 <!-- sesiones.pistola-1934.diario.cita.golpes.pie -->
-Indalecio Prieto · V2 {{cita.pistola.prieto.golpes.V2|id}} · v3 {{cita.pistola.prieto.golpes.v3|id}} · {{cita.pistola.prieto.golpes.palabras}} palabras (V2)
+Indalecio Prieto · {{cita.pistola.prieto.golpes.palabras}} palabras
 
 <!-- sesiones.pistola-1934.diario.cita.pistola -->
 «…es exacto, Sr. Presidente, que ha salido a luz alguna pistola, por lo menos la mía…»
@@ -64,7 +64,7 @@ Indalecio Prieto, en la misma fila
 «Invito al Sr. Prieto a que diga quien ha sacado la pistola; lo que es un hecho completamente cierto, que saben todos los presentes, es que el Sr. Prieto la tenía.»
 
 <!-- sesiones.pistola-1934.diario.cita.oriol.pie -->
-Jaime Oriol de la Puerta · V2 {{cita.pistola.oriol.V2|id}} · v3 {{cita.pistola.oriol.v3|id}}
+Jaime Oriol de la Puerta
 
 ## La sesión, turno a turno
 
@@ -74,7 +74,7 @@ Tras la suspensión, la figura enseña los turnos seguidos de la Presidencia, Pr
 ## Cómo encontrarla en el explorador
 
 <!-- sesiones.pistola-1934.explorador.fecha -->
-Filtros › Fecha y sesión: Desde y Hasta 04/07/1934. Salen {{sesion.1934-07-04-112.filas_v3}} intervenciones en la edición del explorador (v3); con «Solo lo que se habla», {{sesion.1934-07-04-112.habla_v3}}.
+Filtros › Fecha y sesión: Desde y Hasta 04/07/1934. Salen {{sesion.1934-07-04-112.filas_v3}} intervenciones en el explorador; con «Solo lo que se habla», {{sesion.1934-07-04-112.habla_v3}}.
 
 <!-- sesiones.pistola-1934.explorador.consulta -->
 pistola
@@ -83,7 +83,7 @@ pistola
 Desde 04/07/1934 · Hasta 04/07/1934
 
 <!-- sesiones.pistola-1934.explorador.recuento -->
-Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.pistola.dia}} intervenciones en la edición del explorador (v3).
+Recuento del {{busquedas.fecha|fecha_larga}}: {{busqueda.ses.pistola.dia}} intervenciones en el explorador.
 
 <!-- sesiones.pistola-1934.explorador.consulta.nota -->
 Con Desde y Hasta 04/07/1934, salen {{busqueda.ses.pistola.dia|letra}} intervenciones: Prieto, Oriol de la Puerta y Muñoz Martínez. Sin fechas, {{busqueda.ses.pistola.n}} en todo el corpus.
@@ -100,18 +100,15 @@ El Diario no dice quién sacó primero una pistola. Da dos versiones: la de Prie
 ## Fuentes
 
 <!-- sesiones.pistola-1934.fuentes.texto -->
-Todo lo que dice esta página sale del Diario de Sesiones, leído en las dos ediciones de la base. No se afirma aquí ningún hecho que el Diario no recoja.
+Todo lo que dice esta página sale del Diario de Sesiones, leído en la base. No se afirma aquí ningún hecho que el Diario no recoja.
 
 ## Cómo citar un pasaje
 
 <!-- sesiones.pistola-1934.citar.texto -->
-Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila y su edición.
+Dé el Diario, su número, la fecha y las páginas. Si trabaja con la base, añada el id de la fila.
 
 <!-- sesiones.pistola-1934.citar.cita -->
-Diario de las Sesiones de Cortes. Congreso de los Diputados, núm. {{sesion.1934-07-04-112.diario_num|id}}, 4 de julio de 1934, pp. {{sesion.1934-07-04-112.paginas}} (metadatos del proyecto). Luz y Taquígrafos, edición depositada (V2), fila {{cita.pistola.prieto.V2|id}}.
-
-<!-- ↺ comun.fija.ids -->
-Los identificadores de fila cambian entre la edición depositada (V2) y la del explorador (v3); la sesión —fecha y número— es la misma en las dos.
+Diario de las Sesiones de Cortes. Congreso de los Diputados, núm. {{sesion.1934-07-04-112.diario_num|id}}, 4 de julio de 1934, pp. {{sesion.1934-07-04-112.paginas}} (metadatos del proyecto). Luz y Taquígrafos, fila {{cita.pistola.prieto.V2|id}}.
 
 <!-- ↺ comun.fija.diario -->
 Edición derivada para investigación: ante cualquier discrepancia, vale el Diario de Sesiones.

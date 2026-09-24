@@ -7,17 +7,17 @@
 <!-- cortes.ficha.nota.fila --> Row
 
 <!-- cortes.ficha.cifras.base -->
-All three numbers come from the deposited edition, the one you download.
+All three numbers come from the dataset, the one you download.
 
 <!-- cortes.ficha.sesiones.entrada -->
 Each line is a session: its date, where the Chamber met if the text says so, and what happened.
 
-<!-- cortes.ficha.sesiones.filas --> V2 rows
+<!-- cortes.ficha.sesiones.filas --> rows
 
 ## F05 · Who took the floor
 
 <!-- fig.F05.leyenda -->
-Each bar shows one deputy's spoken words in the explorer edition. It counts words: it is not a measure of importance.
+Each bar shows one deputy's spoken words in the explorer. It counts words: it is not a measure of importance.
 
 <!-- fig.F05.anotacion -->
 The top ten account for {{oradores.etapa.<etapa>.diez.pct}} of the spoken words in the stage, leaving out the Chair.
