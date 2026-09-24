@@ -493,7 +493,7 @@ No siempre coinciden con los de esta base: a veces el partido se escribe distint
 Si usa esos atributos, diga de qué base salen.
 
 <!-- datos.unir.archivo -->
-La tabla de diputados de Afinidades Elegidas se descarga como `representative_metadata.tab`, separada por tabuladores, del depósito CGOCUS V1.1.
+La tabla de diputados de Afinidades Elegidas se descarga como `representative_metadata.tab`, separada por tabuladores, del depósito CGOCUS.
 
 <!-- datos.unir.accion -->
 [Descargar en Dataverse ↗]
@@ -589,7 +589,7 @@ Legislatura
 Filas
 
 <!-- fig.F34.salvedad -->
-Cifras de la versión depositada de Afinidades Elegidas, CGOCUS V1.1. Cambiarán si se deposita otra.
+Cifras del depósito de Afinidades Elegidas (CGOCUS).
 
 <!-- fig.F34.alt -->
 Tabla con los pasos para unir las dos bases: recodificar la legislatura, unir por diputado y legislatura, y lo que pasa si se une solo por el diputado.
@@ -644,7 +644,7 @@ feb <- d[mes == "1933-02", ]
 cat("febrero de 1933:", nrow(unique(feb[, c("date", "num_session")])), "sesiones,",
     nrow(feb), "filas,", sum(feb$nwords), "palabras\n")
 
-# Afinidades Elegidas (CGOCUS V1.1): una ficha por diputado Y legislatura.
+# Afinidades Elegidas (CGOCUS): una ficha por diputado Y legislatura.
 a <- read.delim("representative_metadata.tab", fileEncoding = "UTF-8")
 names(a)[names(a) == "id_dip"] <- "rep_id"
 
@@ -686,7 +686,7 @@ feb = d[mes == "1933-02"]
 print("febrero de 1933:", len(feb[["date", "num_session"]].drop_duplicates()), "sesiones,",
       len(feb), "filas,", feb["nwords"].sum(), "palabras")
 
-# Afinidades Elegidas (CGOCUS V1.1): una ficha por diputado Y legislatura.
+# Afinidades Elegidas (CGOCUS): una ficha por diputado Y legislatura.
 a = pd.read_csv("representative_metadata.tab", sep="\t").rename(columns={"id_dip": "rep_id"})
 
 # MAL: solo por el diputado. Cada fila se repite una vez por legislatura de su diputado.
@@ -734,7 +734,7 @@ Cite lo que usó. La cita de una figura lleva, además, su fecha.
 **La base.** La cita oficial de Harvard Dataverse, en texto, BibTeX o RIS.
 
 <!-- datos.citar.cgocus -->
-**Afinidades Elegidas.** Cópiela tal como la da Dataverse: dice «V1» y lleva un UNF, pero corresponde a la versión depositada, CGOCUS V1.1.
+**Afinidades Elegidas.** Cópiela tal como la da Dataverse, con su UNF.
 
 <!-- datos.citar.figura -->
 **Una figura.** Su título, la dirección de su ancla y la fecha de cálculo. Cada figura trae la suya en la pestaña Datos.

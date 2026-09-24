@@ -432,7 +432,7 @@ They do not always match those of this dataset: sometimes the party is written d
 If you use those attributes, say which dataset they come from.
 
 <!-- datos.unir.archivo -->
-The Afinidades Elegidas table of deputies is downloaded as `representative_metadata.tab`, tab-separated, from the CGOCUS V1.1 deposit.
+The Afinidades Elegidas table of deputies is downloaded as `representative_metadata.tab`, tab-separated, from the CGOCUS deposit.
 
 <!-- datos.unir.accion -->
 [Download from Dataverse ↗]
@@ -528,7 +528,7 @@ Legislature
 Rows
 
 <!-- fig.F34.salvedad -->
-Numbers from the deposited version of Afinidades Elegidas, CGOCUS V1.1. They will change if another version is deposited.
+Numbers from the Afinidades Elegidas deposit (CGOCUS).
 
 <!-- fig.F34.alt -->
 Table with the steps for joining the two datasets: recode the legislature, join by deputy and legislature, and what happens if you join by the deputy alone.
@@ -577,7 +577,7 @@ feb <- d[mes == "1933-02", ]
 cat("febrero de 1933:", nrow(unique(feb[, c("date", "num_session")])), "sesiones,",
     nrow(feb), "filas,", sum(feb$nwords), "palabras\n")
 
-# Afinidades Elegidas (CGOCUS V1.1): one record per deputy AND legislature.
+# Afinidades Elegidas (CGOCUS): one record per deputy AND legislature.
 a <- read.delim("representative_metadata.tab", fileEncoding = "UTF-8")
 names(a)[names(a) == "id_dip"] <- "rep_id"
 
@@ -619,7 +619,7 @@ feb = d[mes == "1933-02"]
 print("febrero de 1933:", len(feb[["date", "num_session"]].drop_duplicates()), "sesiones,",
       len(feb), "filas,", feb["nwords"].sum(), "palabras")
 
-# Afinidades Elegidas (CGOCUS V1.1): one record per deputy AND legislature.
+# Afinidades Elegidas (CGOCUS): one record per deputy AND legislature.
 a = pd.read_csv("representative_metadata.tab", sep="\t").rename(columns={"id_dip": "rep_id"})
 
 # WRONG: by the deputy alone. Each row is repeated once for every legislature of its deputy.
@@ -660,7 +660,7 @@ Cite what you used. The citation of a figure also gives its date.
 **The dataset.** The official Harvard Dataverse citation, as text, BibTeX or RIS.
 
 <!-- datos.citar.cgocus -->
-**Afinidades Elegidas.** Copy it as Dataverse gives it: it says ‘V1’ and carries a UNF, but it corresponds to the deposited version, CGOCUS V1.1.
+**Afinidades Elegidas.** Copy it as Dataverse gives it, with its UNF.
 
 <!-- datos.citar.figura -->
 **A figure.** Its title, the address of its anchor and the date of calculation. Each figure gives its own in the Data tab.

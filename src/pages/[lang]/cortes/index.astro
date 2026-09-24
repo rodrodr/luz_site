@@ -16,6 +16,7 @@ import FigCalendario from '../../../components/FigCalendario.astro';
 import Registro from '../../../components/Registro.astro';
 import RegistroPuertas from '../../../components/RegistroPuertas.astro';
 import SinSitio from '../../../components/SinSitio.astro';
+import EstaOEsta from '../../../components/cortes/EstaOEsta.astro';
 import { meta } from '../../../lib/pagina';
 import { url, PAGINAS, ETAPAS } from '../../../lib/rutas';
 import { t, existe } from '../../../lib/i18n';
@@ -105,9 +106,13 @@ const NUM = new Set(['sesiones', 'filas', 'palabras', 'pct', 'diputados', 'filas
     </Seccion>
 
     <!-- 5 · Lo que no está aquí -->
+    <Seccion lang={lang} id="esta-o-esta" prefijo="cortes.esta" espera={['titulo', 'entrada']} excluir={['juego']}>
+      <EstaOEsta lang={lang} />
+    </Seccion>
+
     <Seccion lang={lang} id="no-esta" prefijo="cortes.ausente" espera={['titulo']} />
   </div>
-  <SinSitio lang={lang} prefijo="cortes" usados={['cortes.antetitulo', 'cortes.titulo', 'cortes.entrada', 'cortes.leer', 'cortes.calendario', 'cortes.etapas', 'cortes.ausente', 'cortes.margen', 'cortes.etapa', 'cortes.puertas', 'cortes.subnav']} ignorar={['ficha', '1931', '1933', '1936', 'guerra', 'mexico', 'meta']} />
+  <SinSitio lang={lang} prefijo="cortes" usados={['cortes.antetitulo', 'cortes.titulo', 'cortes.entrada', 'cortes.leer', 'cortes.calendario', 'cortes.etapas', 'cortes.ausente', 'cortes.esta', 'cortes.margen', 'cortes.etapa', 'cortes.puertas', 'cortes.subnav']} ignorar={['ficha', '1931', '1933', '1936', 'guerra', 'mexico', 'meta']} />
 </Base>
 
 <style>

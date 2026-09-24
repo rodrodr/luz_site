@@ -27,6 +27,108 @@
 
 ---
 
+## 3 bis. ¿Esta o esta? (juego)
+
+> [nota de diseño] Juego de la petición del investigador (24-09-2026): `components/cortes/EstaOEsta.astro`. Las doce parejas aprobadas (docs/juegos/ESTA_O_ESTA_candidatas.md) salen de `src/data/esta.json` (exportador/modulos/esta.py), letra a letra de su fila; cada partida saca diez y baraja los lados. Sin JS, una tabla.
+
+<!-- cortes.esta.titulo -->
+¿Esta o esta?
+
+<!-- cortes.esta.entrada -->
+Dos frases dichas en el pleno sobre el mismo asunto, sin su autor. Elija la que firmaría. Al final verá con qué familia de partidos coincide.
+
+<!-- cortes.esta.juego.tema.iglesia -->
+La Iglesia y el Estado, octubre de 1931
+
+<!-- cortes.esta.juego.tema.ordenes -->
+Las órdenes religiosas y la escuela, octubre de 1931
+
+<!-- cortes.esta.juego.tema.mujer -->
+El voto de la mujer, 1 de octubre de 1931
+
+<!-- cortes.esta.juego.tema.divorcio -->
+El divorcio, 1931
+
+<!-- cortes.esta.juego.tema.renta -->
+La tierra: ¿trabajo o renta?
+
+<!-- cortes.esta.juego.tema.tierra -->
+La tierra: ¿para quién?
+
+<!-- cortes.esta.juego.tema.cataluna -->
+Cataluña y su Estatuto, 1932
+
+<!-- cortes.esta.juego.tema.parlamento -->
+El Parlamento y el voto
+
+<!-- cortes.esta.juego.tema.clases -->
+Las clases
+
+<!-- cortes.esta.juego.tema.espana -->
+«España roja, España rota», diciembre de 1935
+
+<!-- cortes.esta.juego.tema.octubre -->
+Después de octubre de 1934
+
+<!-- cortes.esta.juego.tema.orden -->
+El orden público, primavera de 1936
+
+<!-- cortes.esta.juego.cuenta -->
+Pareja {{i}} de {{n}}
+
+<!-- cortes.esta.juego.firmo -->
+[Firmo esta]
+
+<!-- cortes.esta.juego.su_firma -->
+Su firma
+
+<!-- cortes.esta.juego.quien -->
+{{orador}} · {{partido}} · {{familia}} · {{ideologia}} · {{fecha}}
+
+<!-- cortes.esta.juego.fila -->
+Fila {{id}}
+
+<!-- cortes.esta.juego.siguiente -->
+[Siguiente]
+
+<!-- cortes.esta.juego.ver -->
+[Ver mi escaño]
+
+<!-- cortes.esta.juego.perfil.titulo -->
+Su escaño
+
+<!-- cortes.esta.juego.perfil.familia -->
+Su familia de partidos: {{familia}}.
+
+<!-- cortes.esta.juego.perfil.eje -->
+Su lugar en el eje: {{ideologia}}.
+
+<!-- cortes.esta.juego.perfil.companero -->
+Su compañero de escaño: {{diputado}}.
+
+<!-- cortes.esta.juego.perfil.firmo -->
+Firmó frases de: {{lista}}.
+
+<!-- cortes.esta.juego.perfil.salvedad -->
+Familia e ideología son las del partido de cada orador en la base, no las de usted ni las de ellos: es un juego, no un test.
+
+<!-- cortes.esta.juego.otra -->
+[Otra partida]
+
+<!-- cortes.esta.juego.tabla -->
+Las parejas del juego
+
+<!-- cortes.esta.juego.tabla.col.tema -->
+Asunto
+
+<!-- cortes.esta.juego.tabla.col.a -->
+Una frase
+
+<!-- cortes.esta.juego.tabla.col.b -->
+La otra
+
+---
+
 ## 1. Las Cortes · índice (`/[lang]/cortes/`)
 
 <!-- cortes.meta.titulo --> Las Cortes, 1931–1945

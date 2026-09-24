@@ -5,6 +5,108 @@
 
 ---
 
+## 3 bis. This one or that one? (game)
+
+> [design note] Game requested by the researcher (24-09-2026): `components/cortes/EstaOEsta.astro`. The twelve approved pairs come from `src/data/esta.json`, letter for letter from their rows; each game draws ten and shuffles the sides. Without JS, a table.
+
+<!-- cortes.esta.titulo -->
+This one or that one?
+
+<!-- cortes.esta.entrada -->
+Two sentences spoken in the chamber on the same issue, without their author. Pick the one you would sign. At the end you will see which family of parties you side with.
+
+<!-- cortes.esta.juego.tema.iglesia -->
+Church and State, October 1931
+
+<!-- cortes.esta.juego.tema.ordenes -->
+Religious orders and schools, October 1931
+
+<!-- cortes.esta.juego.tema.mujer -->
+Votes for women, 1 October 1931
+
+<!-- cortes.esta.juego.tema.divorcio -->
+Divorce, 1931
+
+<!-- cortes.esta.juego.tema.renta -->
+Land: work or rent?
+
+<!-- cortes.esta.juego.tema.tierra -->
+Land: for whom?
+
+<!-- cortes.esta.juego.tema.cataluna -->
+Catalonia and its Statute, 1932
+
+<!-- cortes.esta.juego.tema.parlamento -->
+Parliament and the vote
+
+<!-- cortes.esta.juego.tema.clases -->
+Social classes
+
+<!-- cortes.esta.juego.tema.espana -->
+«Red Spain, broken Spain», December 1935
+
+<!-- cortes.esta.juego.tema.octubre -->
+After October 1934
+
+<!-- cortes.esta.juego.tema.orden -->
+Public order, spring 1936
+
+<!-- cortes.esta.juego.cuenta -->
+Pair {{i}} of {{n}}
+
+<!-- cortes.esta.juego.firmo -->
+[I would sign this]
+
+<!-- cortes.esta.juego.su_firma -->
+Your signature
+
+<!-- cortes.esta.juego.quien -->
+{{orador}} · {{partido}} · {{familia}} · {{ideologia}} · {{fecha}}
+
+<!-- cortes.esta.juego.fila -->
+Row {{id}}
+
+<!-- cortes.esta.juego.siguiente -->
+[Next]
+
+<!-- cortes.esta.juego.ver -->
+[See my seat]
+
+<!-- cortes.esta.juego.perfil.titulo -->
+Your seat
+
+<!-- cortes.esta.juego.perfil.familia -->
+Your family of parties: {{familia}}.
+
+<!-- cortes.esta.juego.perfil.eje -->
+Your place on the axis: {{ideologia}}.
+
+<!-- cortes.esta.juego.perfil.companero -->
+Your seat neighbour: {{diputado}}.
+
+<!-- cortes.esta.juego.perfil.firmo -->
+You signed sentences by: {{lista}}.
+
+<!-- cortes.esta.juego.perfil.salvedad -->
+Family and ideology are those of each speaker's party in the dataset, not yours or theirs: this is a game, not a test.
+
+<!-- cortes.esta.juego.otra -->
+[Another game]
+
+<!-- cortes.esta.juego.tabla -->
+The game's pairs
+
+<!-- cortes.esta.juego.tabla.col.tema -->
+Issue
+
+<!-- cortes.esta.juego.tabla.col.a -->
+One sentence
+
+<!-- cortes.esta.juego.tabla.col.b -->
+The other
+
+---
+
 ## 1. The Cortes · index (`/[lang]/cortes/`)
 
 <!-- cortes.meta.titulo --> The Cortes, 1931–1945

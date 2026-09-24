@@ -44,7 +44,7 @@ A derived edition for research: wherever it differs, the *Diario de Sesiones* pr
 Project metadata (not deposited; not shown in the explorer)
 
 <!-- comun.sello.afin -->
-Afinidades Elegidas (CGOCUS V1.1, deposited)
+Afinidades Elegidas (CGOCUS)
 
 <!-- comun.fija.formulario -->
 Before you download, Harvard Dataverse will ask for your name, email address and institution.
@@ -177,7 +177,7 @@ Preview. Awaiting the researcher's decision:
 <!-- comun.cita.ris --> RIS
 <!-- comun.cita.copiada --> Citation copied.
 <!-- comun.cita.dataverse --> As given by Harvard Dataverse.
-<!-- comun.cita.cgocus.nota --> Harvard Dataverse cites the major version, ‘V1’; the current one is V1.1.
+<!-- comun.cita.cgocus.nota --> Cite it as Harvard Dataverse gives it.
 
 <!-- comun.cita.figura -->
 {{dv.thqcmi.autores}}. ‘{{titulo}}’. Figure from Luz y Taquígrafos. {{url}}. Source: {{base}}. Exported on {{fecha}}.

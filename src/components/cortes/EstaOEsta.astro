@@ -1,0 +1,149 @@
+---
+/**
+ * «¿Esta o esta?» (Las Cortes; petición del investigador, 24-09-2026). La mecánica de SexyMP, con ideas: dos frases
+ * dichas en el pleno sobre el mismo asunto, sin autor; el lector elige la que firmaría y se descubre quién dijo cada
+ * una. Al final, su escaño: familia de partidos, lugar en el eje de EI a ED (media de las frases elegidas) y los
+ * diputados con los que más coincidió.
+ *  · Datos: `src/data/esta.json` (exportador/modulos/esta.py): las doce parejas que aprobó el investigador, letra a
+ *    letra de su fila, con el partido, la familia y la ideología que trae la base. Cada partida saca diez y baraja
+ *    los lados (en la lista, la primera suele ser la de la izquierda).
+ *  · Sin JS: una tabla con las doce parejas y sus autores. Con JS (`scripts/esta.ts`): el juego y el escaño.
+ */
+import { t, plano, rotulo, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import type { Lang } from '../../lib/idiomas';
+
+interface Lado { id: number; fecha: string; orador: string; partido: string; familia: string; ideologia: string; frase: string }
+interface Datos { eje: string[]; parejas: { clave: string; lados: Lado[] }[] }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<Datos>('esta');
+const K = (s: string) => `cortes.esta.juego.${s}`;
+const o = (s: string, ctx = {}) => (existe(K(s)) ? t(lang, K(s), ctx) : marcaPendiente(K(s), 'copy'));
+const p = (s: string, vars: Record<string, string> = {}) => (existe(K(s)) ? plano(lang, K(s), { vars }) : '');
+const r = (s: string) => (existe(K(s)) ? rotulo(lang, K(s)) : marcaPendiente(K(s), 'copy'));
+// El nombre de cada ideología: el de la leyenda de la red de Afinidades (F21), el mismo en todo el sitio.
+const ideo = (c: string) => (existe(`fig.F21.leyenda.${c}`) ? plano(lang, `fig.F21.leyenda.${c}`) : c);
+const parejas = (D?.parejas ?? []).map((x) => ({
+  clave: x.clave, tema: p(`tema.${x.clave}`),
+  lados: x.lados.map((l) => ({ ...l, cuando: fmt.fechaLarga(l.fecha, lang), ideo: ideo(l.ideologia) })),
+}));
+// Plantillas en texto plano, con sus huecos entre llaves: las rellena el script.
+const textos = D && {
+  cuenta: p('cuenta', { i: '{i}', n: '{n}' }),
+  quien: p('quien', { orador: '{orador}', partido: '{partido}', familia: '{familia}', ideologia: '{ideologia}', fecha: '{fecha}' }),
+  fila: p('fila', { id: '{id}' }), siguiente: r('siguiente'), ver: r('ver'),
+  familia: p('perfil.familia', { familia: '{familia}' }), ejeFrase: p('perfil.eje', { ideologia: '{ideologia}' }),
+  companero: p('perfil.companero', { diputado: '{diputado}' }), firmo: p('perfil.firmo', { lista: '{lista}' }),
+  eje: D.eje, ejeNombres: D.eje.map(ideo),
+};
+const tabla = `est-tabla-${lang}`;
+---
+{!D ? <p class="nota" set:html={marcaPendiente('esta.json', 'dato')} /> : (
+<div class="est" data-esta data-textos={JSON.stringify(textos)} data-parejas={JSON.stringify(parejas)}>
+  <!-- Sin JS: las doce parejas, con sus autores -->
+  <div class="est-estatico fig-desliza" tabindex="0" role="region" aria-labelledby={tabla}>
+    <table class="fig-tabla est-tabla">
+      <caption id={tabla}><span class="fig-rotulo-tabla" set:html={o('tabla')} /></caption>
+      <thead>
+        <tr>
+          <th scope="col" set:html={o('tabla.col.tema')} />
+          <th scope="col" set:html={o('tabla.col.a')} />
+          <th scope="col" set:html={o('tabla.col.b')} />
+        </tr>
+      </thead>
+      <tbody>
+        {parejas.map((x) => (
+          <tr>
+            <th scope="row">{x.tema}</th>
+            {x.lados.map((l, k) => (
+              <td>
+                <span class="est-frase-t" lang="es">«{l.frase}»</span>
+                <span class="est-quien-t">{l.orador} · {l.partido} · <time datetime={l.fecha}>{fmt.fechaCorta(l.fecha)}</time> · <span set:html={o('fila', { vars: { id: fmt.dato(l.id, String(l.id), `esta.${x.clave}.${k ? 'b' : 'a'}.id`, 'v3') } })} /></span>
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Con JS: el juego -->
+  <div class="est-juego" hidden>
+    <p class="asiento est-cuenta" data-est-cuenta></p>
+    <p class="est-tema" data-est-tema></p>
+    <div class="est-par" data-est-par>
+      {[0, 1].map((k) => (
+        <div class="est-carta" data-est-carta>
+          <blockquote class="est-frase cita" lang="es" id={`est-frase-${lang}-${k}`} data-est-frase></blockquote>
+          <p class="est-quien" data-est-quien hidden></p>
+          <p class="est-marca" data-est-marca hidden set:html={o('su_firma')} />
+          <button type="button" class="boton sec est-firmo" aria-describedby={`est-frase-${lang}-${k}`} data-est-firmo set:html={r('firmo')} />
+        </div>
+      ))}
+    </div>
+    <p class="sr-only" aria-live="polite" data-est-sr></p>
+    <p class="botones"><button type="button" class="boton" data-est-siguiente hidden></button></p>
+    <div class="est-final" data-est-final hidden>
+      <p class="est-final-titulo" set:html={o('perfil.titulo')} />
+      <div class="est-eje" data-est-eje aria-hidden="true"></div>
+      <p class="est-dato" data-est-p-eje></p>
+      <p class="est-dato" data-est-p-familia></p>
+      <p class="est-dato" data-est-p-companero></p>
+      <p class="est-lista" data-est-p-firmo></p>
+      <p class="est-salvedad" set:html={o('perfil.salvedad')} />
+      <p class="botones"><button type="button" class="boton sec" data-est-otra set:html={r('otra')} /></p>
+    </div>
+  </div>
+</div>
+)}
+
+<script>
+  import '../../scripts/esta.ts';
+</script>
+
+<style>
+  .est { margin: var(--e5) 0 var(--e6); max-width: 52rem; min-width: 0; }
+  .est [hidden] { display: none !important; }
+  .est-tabla td { vertical-align: top; min-width: 14rem; }
+  .est-frase-t { display: block; font-style: italic; }
+  .est-quien-t { display: block; margin-top: .3rem; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .est-cuenta { margin: 0 0 var(--e2); color: var(--mute); }
+  .est-tema { font: italic 500 1.3rem/1.3 var(--display); margin: 0 0 var(--e3); }
+  .est-par { display: grid; grid-template-columns: 1fr 1fr; gap: var(--e4); margin: 0 0 var(--e3); }
+  @media (max-width: 40rem) { .est-par { grid-template-columns: minmax(0, 1fr); } }
+  .est-carta {
+    display: flex; flex-direction: column; gap: .7rem; min-width: 0; padding: var(--e4);
+    background: var(--bg-2); border: 1px solid var(--hair-2); border-radius: var(--radio);
+  }
+  .est-carta.firmada { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .est-frase { margin: 0; flex: 1; font: italic 400 1.15rem/1.45 var(--text); color: var(--ink); text-wrap: pretty; }
+  .est-quien { margin: 0; font: 400 var(--fs-mono-s)/1.45 var(--mono); color: var(--ink-2); }
+  .est-marca { margin: 0; font: italic 500 1.15rem/1.2 var(--display); color: var(--accent); }
+  .est-firmo { align-self: flex-start; }
+  .est-final-titulo { font: italic 500 1.6rem/1.1 var(--display); margin: 0 0 var(--e2); }
+  .est-dato { margin: 0 0 .35rem; font: 500 1.08rem/1.45 var(--text); }
+  .est-lista { margin: .6rem 0 .6rem; color: var(--ink-2); }
+  .est-salvedad { margin: 0 0 var(--e3); color: var(--ink-2); font-size: .95rem; max-width: 40rem; }
+
+  /* El eje: de la extrema izquierda a la extrema derecha; un punto por frase firmada y el escaño del lector. */
+  .est-eje { position: relative; height: 3.6rem; margin: var(--e4) 1rem var(--e3); max-width: 34rem; }
+  .est-eje :global(.linea) { position: absolute; left: 0; right: 0; top: 1.7rem; border-top: 1px solid var(--hair-2); }
+  .est-eje :global(.marca) { position: absolute; top: 2.1rem; transform: translateX(-50%); font: 400 var(--fs-mono-s)/1 var(--mono); color: var(--mute); }
+  .est-eje :global(.voto) { position: absolute; width: .5rem; height: .5rem; border-radius: 50%; background: var(--ink-2); opacity: .5; transform: translateX(-50%); }
+  .est-eje :global(.usted) {
+    position: absolute; top: 1.2rem; width: 1rem; height: 1rem; border-radius: 50%; transform: translateX(-50%);
+    background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  /* Con JS: el juego sustituye a la tabla. */
+  :global(.est.est--juego) .est-estatico { display: none; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .est-par.entra .est-carta { animation: est-entra 380ms cubic-bezier(.2, .7, .1, 1) both; }
+    .est-par.entra .est-carta + .est-carta { animation-delay: 90ms; }
+    .est-eje :global(.usted) { transition: left 600ms cubic-bezier(.2, .7, .1, 1); }
+    @keyframes est-entra { from { transform: translateY(.5rem); opacity: 0; } to { transform: none; opacity: 1; } }
+  }
+</style>

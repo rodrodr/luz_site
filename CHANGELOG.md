@@ -1,5 +1,18 @@
 # Cambios · Luz y Taquígrafos (sitio)
 
+## 24-09-2026 · «¿Esta o esta?» en Las Cortes; Afinidades sin versiones
+
+- Nuevo apartado de Las Cortes, antes de «Lo que no está»: dos frases del pleno sobre el mismo asunto, sin autor; el
+  lector firma una y se descubre quién dijo cada una (partido, familia, ideología, fecha y fila). Diez de las doce
+  parejas aprobadas por partida, con los lados barajados. Al final, «Su escaño»: el lugar en el eje de EI a ED (media
+  de las frases firmadas), la familia más firmada, el compañero de escaño y la lista de firmados, con la salvedad de
+  que familia e ideología son las del partido en la base. Sin JS, una tabla con las doce parejas.
+- Datos: `exportador/modulos/esta.py` → `src/data/esta.json`; cada trozo de frase se comprueba letra a letra en su
+  fila. Familia `esta.*` en `claves_figura.py`. Pruebas: `tests/esta.spec.ts`.
+- Afinidades Elegidas ya no nombra versiones en el texto: el sello es «Afinidades Elegidas (CGOCUS)», los pies de
+  figura dicen «CGOCUS · …» y desaparece «hay una versión corregida en preparación». La cita oficial de Dataverse no
+  se toca. La prueba de menciones de ediciones vigila también «V1.1».
+
 ## 24-09-2026 · «El aplausómetro» en El Diario
 
 - Nuevo apartado entre «Luz y taquígrafos» y «Lo que el Diario calla»: una frase real, con su orador, su fecha y su

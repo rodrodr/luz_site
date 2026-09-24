@@ -2013,6 +2013,30 @@ erratas.punto.filas,1,n,v3,FIG,"lecturas dañadas de las fórmulas de orador y s
 erratas.residente.filas,1,n,v3,FIG,"lecturas dañadas de las fórmulas de orador y sus filas (juego «Corrija al Diario», Método 03); src/data/erratas.json · en es/metodo",2026-09-23,1,figura:tabla
 erratas.senor.filas,141,n,v3,FIG,"lecturas dañadas de las fórmulas de orador y sus filas (juego «Corrija al Diario», Método 03); src/data/erratas.json · en es/metodo",2026-09-23,141,figura:tabla
 erratas.siete.filas,1,n,v3,FIG,"lecturas dañadas de las fórmulas de orador y sus filas (juego «Corrija al Diario», Método 03); src/data/erratas.json · en es/metodo",2026-09-23,1,figura:tabla
+esta.cataluna.a.id,28735,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,28735,figura:tabla
+esta.cataluna.b.id,32314,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,32314,figura:tabla
+esta.clases.a.id,69308,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,69308,figura:tabla
+esta.clases.b.id,99834,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,99834,figura:tabla
+esta.divorcio.a.id,8076,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,8076,figura:tabla
+esta.divorcio.b.id,3356,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,3356,figura:tabla
+esta.espana.a.id,114168,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,114168,figura:tabla
+esta.espana.b.id,114317,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,114317,figura:tabla
+esta.iglesia.a.id,7531,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,7531,figura:tabla
+esta.iglesia.b.id,7280,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,7280,figura:tabla
+esta.mujer.a.id,6079,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,6079,figura:tabla
+esta.mujer.b.id,6074,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,6074,figura:tabla
+esta.octubre.a.id,86178,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,86178,figura:tabla
+esta.octubre.b.id,84395,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,84395,figura:tabla
+esta.orden.a.id,115567,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,115567,figura:tabla
+esta.orden.b.id,115885,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,115885,figura:tabla
+esta.ordenes.a.id,7366,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,7366,figura:tabla
+esta.ordenes.b.id,7557,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,7557,figura:tabla
+esta.parlamento.a.id,72101,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,72101,figura:tabla
+esta.parlamento.b.id,69232,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,69232,figura:tabla
+esta.renta.a.id,28240,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,28240,figura:tabla
+esta.renta.b.id,90393,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,90393,figura:tabla
+esta.tierra.a.id,29080,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,29080,figura:tabla
+esta.tierra.b.id,29390,id,v3,FIG,frases del juego «¿Esta o esta?» (Las Cortes): fila de cada una; src/data/esta.json · en es/cortes,2026-09-23,29390,figura:tabla
 familias.etapa.I.agrarios.filas,279,n,V2,FIG,filas y palabras de cada familia de partidos por etapa (FigFamilias); src/data/familias_etapa.json · en es/cortes/1931,2026-09-23,279,figura:F09
 familias.etapa.I.agrarios.palabras,84328,n,V2,FIG,filas y palabras de cada familia de partidos por etapa (FigFamilias); src/data/familias_etapa.json · en es/cortes/1931,2026-09-23,84.328,figura:F09
 familias.etapa.I.carlistas.filas,717,n,V2,FIG,filas y palabras de cada familia de partidos por etapa (FigFamilias); src/data/familias_etapa.json · en es/cortes/1931,2026-09-23,717,figura:F09

@@ -11,7 +11,7 @@ import { LANGS, RUTAS } from './rutas';
  *  · juego 2: sin JS, los resultados a la vista; con JS, la barra se apuesta con el teclado y se comprueba;
  *  · «Corrija al Diario» (Método 03): sin JS, la tabla de lecturas; con JS, se corrige, llega otra, y se remata.
  */
-const EDICIONES = /\b(?:V2|v3)\b|edici[oó]n (?:depositada|del explorador)|dos ediciones|deposited edition|explorer(?:'s)? edition|two editions|trampa|pitfall/gi;
+const EDICIONES = /\b(?:V2|v3|V1\.1)\b|edici[oó]n (?:depositada|del explorador)|dos ediciones|deposited edition|explorer(?:'s)? edition|two editions|trampa|pitfall/gi;
 for (const lang of LANGS) {
   test(`rediseño · /${lang}/ · ninguna página nombra ediciones de la base`, async ({ page }) => {
     const halladas: string[] = [];

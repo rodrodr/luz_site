@@ -67,7 +67,7 @@ Edición derivada para investigación: ante cualquier discrepancia, vale el Diar
 Metadatos del proyecto (no depositados; el explorador no los muestra)
 
 <!-- comun.sello.afin -->
-Afinidades Elegidas (CGOCUS V1.1, depositada)
+Afinidades Elegidas (CGOCUS)
 
 <!-- comun.fija.formulario -->
 Antes de descargar, Harvard Dataverse le pedirá nombre, correo e institución.
@@ -305,7 +305,7 @@ Vista previa. Pendiente de decisión del investigador:
 <!-- comun.cita.ris --> RIS
 <!-- comun.cita.copiada --> Cita copiada.
 <!-- comun.cita.dataverse --> Tal como la da Harvard Dataverse.
-<!-- comun.cita.cgocus.nota --> Harvard Dataverse cita la versión mayor, «V1»; la vigente es la V1.1.
+<!-- comun.cita.cgocus.nota --> Cítela tal como la da Harvard Dataverse.
 
 <!-- comun.cita.figura -->
 {{dv.thqcmi.autores}}. «{{titulo}}». Figura de Luz y Taquígrafos. {{url}}. Base: {{base}}. Exportada el {{fecha}}.
