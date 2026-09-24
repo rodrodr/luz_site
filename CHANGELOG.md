@@ -1,5 +1,18 @@
 # Cambios · Luz y Taquígrafos (sitio)
 
+## 24-09-2026 · «El aplausómetro» en El Diario
+
+- Nuevo apartado entre «Luz y taquígrafos» y «Lo que el Diario calla»: una frase real, con su orador, su fecha y su
+  fila; el lector adivina qué anotó el taquígrafo (aplausos, «Muy bien», risas, rumores o protestas). Diez frases por
+  partida, dos de cada acotación, sacadas de un conjunto de veinte; al final, la Cámara le dedica una acotación según
+  sus aciertos. Sin JS, una tabla con las veinte frases y su acotación.
+- Datos: `exportador/modulos/aplausos.py` → `src/data/aplausos.json`. Cada frase se comprueba letra a letra en su fila,
+  con la acotación justo detrás y fuera de la Presidencia; si no cuadra, el exportador se para. Familia `aplausos.*`
+  en `claves_figura.py`.
+- Sin recuentos de acotaciones por clase ni podios: quedan para la 0.2 (D-11).
+- Pruebas: `tests/aplausos.spec.ts` (sin JS, la tabla; con JS, una partida entera en es y en; otra partida).
+- `docs/juegos/ESTA_O_ESTA_candidatas.md`: las parejas de «¿Esta o esta?» aprobadas por el investigador (las doce ★).
+
 ## 2026-09-24 · la base corregida, sin ediciones; y «Corrija al Diario»
 
 **Huella del copy:** `src/i18n/es.json`, SHA-256 `779c96d8ee040475ebf74739a36718176b8a3544d74f0e66e7ae283d1e5010bc` (2.167 claves; antes,

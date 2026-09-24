@@ -232,6 +232,107 @@ Read one by one, in all {{f27.n|letra}} the phrase asks for the same thing: that
 
 ---
 
+## 3 bis. The applause meter (game)
+
+> [design note] Game requested by the researcher (24-09-2026): `components/diario/Aplausometro.astro`. The twenty
+> sentences and their bracketed notes come from `src/data/aplausos.json`, letter for letter from their rows; each game
+> draws two of each note. No counts of bracketed notes by class (D-11). Without JS, a table.
+
+<!-- diario.indice.aplausos -->
+The applause meter
+
+<!-- diario.aplausos.titulo -->
+The applause meter
+
+<!-- diario.aplausos.entrada -->
+In brackets, the shorthand writer notes how the Chamber receives what it hears. These sentences are real, each with its row: guess what he noted.
+
+<!-- diario.aplausos.juego.pregunta -->
+What did the shorthand writer note?
+
+<!-- diario.aplausos.juego.op.aplausos -->
+[Applause]
+
+<!-- diario.aplausos.juego.op.muy_bien -->
+[Hear, hear]
+
+<!-- diario.aplausos.juego.op.risas -->
+[Laughter]
+
+<!-- diario.aplausos.juego.op.rumores -->
+[Murmurs]
+
+<!-- diario.aplausos.juego.op.protestas -->
+[Protests]
+
+<!-- diario.aplausos.juego.cuenta -->
+Sentence {{i}} of {{n}} · Right: {{a}}
+
+<!-- diario.aplausos.juego.quien -->
+{{orador}} ({{partido}}), {{fecha}}
+
+<!-- diario.aplausos.juego.exacto -->
+Spot on!
+
+<!-- diario.aplausos.juego.cerca -->
+Close: the mood was right.
+
+<!-- diario.aplausos.juego.fallo -->
+No.
+
+<!-- diario.aplausos.juego.anoto -->
+The shorthand writer noted:
+
+<!-- diario.aplausos.juego.fila -->
+Row {{id}} of the dataset
+
+<!-- diario.aplausos.juego.siguiente -->
+[Next]
+
+<!-- diario.aplausos.juego.ver -->
+[See the result]
+
+<!-- diario.aplausos.juego.resumen -->
+You got {{n}} of {{total}}.
+
+<!-- diario.aplausos.juego.dedica -->
+The Chamber responds:
+
+<!-- diario.aplausos.juego.veredicto.0 -->
+(Protests.)
+
+<!-- diario.aplausos.juego.veredicto.1 -->
+(Murmurs.)
+
+<!-- diario.aplausos.juego.veredicto.2 -->
+(Hear, hear.)
+
+<!-- diario.aplausos.juego.veredicto.3 -->
+(Applause.)
+
+<!-- diario.aplausos.juego.veredicto.4 -->
+(Loud and prolonged applause.)
+
+<!-- diario.aplausos.juego.otra -->
+[Another sitting]
+
+<!-- diario.aplausos.juego.tabla -->
+The game's sentences and what the shorthand writer noted
+
+<!-- diario.aplausos.juego.tabla.col.frase -->
+Sentence
+
+<!-- diario.aplausos.juego.tabla.col.quien -->
+Who and when
+
+<!-- diario.aplausos.juego.tabla.col.acotacion -->
+Bracketed note
+
+<!-- diario.aplausos.juego.leccion -->
+No column of the dataset records these reactions: they are in the text, in brackets, as the shorthand writer noted them.
+
+---
+
 ## 4. What the Diario leaves out (F28)
 
 <!-- diario.calla.titulo -->

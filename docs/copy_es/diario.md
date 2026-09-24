@@ -277,6 +277,107 @@ Leídas una a una, en las {{f27.n|letra}} la fórmula pide lo mismo: que algo se
 
 ---
 
+## 3 bis. El aplausómetro (juego)
+
+> [nota de diseño] Juego de la petición del investigador (24-09-2026): `components/diario/Aplausometro.astro`. Las
+> veinte frases y sus acotaciones salen de `src/data/aplausos.json` (exportador/modulos/aplausos.py), letra a letra de
+> su fila; cada partida saca dos de cada acotación. Sin cuentas de acotaciones por clase (D-11). Sin JS, una tabla.
+
+<!-- diario.indice.aplausos -->
+El aplausómetro
+
+<!-- diario.aplausos.titulo -->
+El aplausómetro
+
+<!-- diario.aplausos.entrada -->
+Entre paréntesis, el taquígrafo anota cómo recibe la Cámara lo que oye. Estas frases son reales, cada una con su fila: adivine qué anotó.
+
+<!-- diario.aplausos.juego.pregunta -->
+¿Qué anotó el taquígrafo?
+
+<!-- diario.aplausos.juego.op.aplausos -->
+[Aplausos]
+
+<!-- diario.aplausos.juego.op.muy_bien -->
+[Muy bien]
+
+<!-- diario.aplausos.juego.op.risas -->
+[Risas]
+
+<!-- diario.aplausos.juego.op.rumores -->
+[Rumores]
+
+<!-- diario.aplausos.juego.op.protestas -->
+[Protestas]
+
+<!-- diario.aplausos.juego.cuenta -->
+Frase {{i}} de {{n}} · Aciertos: {{a}}
+
+<!-- diario.aplausos.juego.quien -->
+{{orador}} ({{partido}}), {{fecha}}
+
+<!-- diario.aplausos.juego.exacto -->
+¡Exacto!
+
+<!-- diario.aplausos.juego.cerca -->
+Casi: el sentido era ese.
+
+<!-- diario.aplausos.juego.fallo -->
+No.
+
+<!-- diario.aplausos.juego.anoto -->
+El taquígrafo anotó:
+
+<!-- diario.aplausos.juego.fila -->
+Fila {{id}} de la base
+
+<!-- diario.aplausos.juego.siguiente -->
+[Siguiente]
+
+<!-- diario.aplausos.juego.ver -->
+[Ver el resultado]
+
+<!-- diario.aplausos.juego.resumen -->
+Ha acertado {{n}} de {{total}}.
+
+<!-- diario.aplausos.juego.dedica -->
+La Cámara le dedica:
+
+<!-- diario.aplausos.juego.veredicto.0 -->
+(Protestas.)
+
+<!-- diario.aplausos.juego.veredicto.1 -->
+(Rumores.)
+
+<!-- diario.aplausos.juego.veredicto.2 -->
+(Muy bien.)
+
+<!-- diario.aplausos.juego.veredicto.3 -->
+(Aplausos.)
+
+<!-- diario.aplausos.juego.veredicto.4 -->
+(Grandes y prolongados aplausos.)
+
+<!-- diario.aplausos.juego.otra -->
+[Otra sesión]
+
+<!-- diario.aplausos.juego.tabla -->
+Las frases del juego y lo que anotó el taquígrafo
+
+<!-- diario.aplausos.juego.tabla.col.frase -->
+Frase
+
+<!-- diario.aplausos.juego.tabla.col.quien -->
+Quién y cuándo
+
+<!-- diario.aplausos.juego.tabla.col.acotacion -->
+Acotación
+
+<!-- diario.aplausos.juego.leccion -->
+Ninguna columna de la base guarda estas reacciones: están en el texto, entre paréntesis, tal como las anotó el taquígrafo.
+
+---
+
 ## 4. Lo que el Diario calla (F28)
 
 <!-- diario.calla.titulo -->

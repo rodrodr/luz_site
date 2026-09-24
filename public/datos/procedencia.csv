@@ -1862,6 +1862,26 @@ F28.orden.6.V2,102492,id,V2,FIG,órdenes de no constar en el Diario: id V2 y v3 
 F28.orden.7.V2,103251,id,V2,FIG,órdenes de no constar en el Diario: id V2 y v3 de cada fila (FigCronologia); src/data/diario.json · en es/diario,2026-09-23,103251,figura:F28
 F28.orden.8.V2,106290,id,V2,FIG,órdenes de no constar en el Diario: id V2 y v3 de cada fila (FigCronologia); src/data/diario.json · en es/diario,2026-09-23,106290,figura:F28
 F28.peticion.1.V2,104406,id,V2,FIG,órdenes de no constar en el Diario: id V2 y v3 de cada fila (FigCronologia); src/data/diario.json · en es/diario,2026-09-23,104406,figura:F28
+aplausos.asua.id,3006,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,3006,figura:tabla
+aplausos.azana.id,50380,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,50380,figura:tabla
+aplausos.balbontin.id,68865,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,68865,figura:tabla
+aplausos.besteiro.id,73492,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,73492,figura:tabla
+aplausos.calvo_sotelo.id,83992,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,83992,figura:tabla
+aplausos.campoamor_ateneo.id,6077,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,6077,figura:tabla
+aplausos.campoamor_enmienda.id,18816,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,18816,figura:tabla
+aplausos.casares.id,116867,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,116867,figura:tabla
+aplausos.chapaprieta.id,105702,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,105702,figura:tabla
+aplausos.companys.id,6093,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,6093,figura:tabla
+aplausos.fuentes_pila.id,84218,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,84218,figura:tabla
+aplausos.gil_robles.id,69230,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,69230,figura:tabla
+aplausos.ibarruri.id,118178,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,118178,figura:tabla
+aplausos.maura.id,21037,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,21037,figura:tabla
+aplausos.nelken.id,52163,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,52163,figura:tabla
+aplausos.ortega.id,63526,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,63526,figura:tabla
+aplausos.prieto.id,3674,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,3674,figura:tabla
+aplausos.royo_caspe.id,3622,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,3622,figura:tabla
+aplausos.royo_siento.id,4319,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,4319,figura:tabla
+aplausos.unamuno.id,8905,id,v3,FIG,frases del juego «El aplausómetro» (El Diario): fila de cada una; src/data/aplausos.json · en es/diario,2026-09-23,8905,figura:tabla
 bibliotecas.json › anecdotas,1,n,v3,FIG,bibliotecas del explorador: entradas y oradores (FigBibliotecas); src/data/bibliotecas.json · en es/explorador,2026-09-23,1,figura:F17
 bibliotecas.json › discursos,1,n,v3,FIG,bibliotecas del explorador: entradas y oradores (FigBibliotecas); src/data/bibliotecas.json · en es/explorador,2026-09-23,1,figura:F17
 bibliotecas.json › l1.entradas,29,n,v3,FIG,bibliotecas del explorador: entradas y oradores (FigBibliotecas); src/data/bibliotecas.json · en es/explorador,2026-09-23,29,figura:F17

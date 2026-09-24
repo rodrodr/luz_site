@@ -1,0 +1,143 @@
+---
+/**
+ * «El aplausómetro» (El Diario; petición del investigador, 24-09-2026). Una frase real de un diputado, con su fila; el
+ * lector adivina qué anotó el taquígrafo entre paréntesis: aplausos, «Muy bien», risas, rumores o protestas. Al final,
+ * la Cámara le dedica una acotación según sus aciertos.
+ *  · Datos: `src/data/aplausos.json` (exportador/modulos/aplausos.py): veinte frases, letra a letra de su fila, con la
+ *    acotación que las sigue. Cada partida saca dos de cada acotación. Sin cuentas de acotaciones por clase (D-11).
+ *  · Sin JS: una tabla con las frases, quién y cuándo, y lo que anotó el taquígrafo. Con JS (`scripts/aplausometro.ts`):
+ *    el juego, con su cuenta, sus avisos en una región viva y el veredicto.
+ */
+import { t, plano, rotulo, existe } from '../../lib/i18n';
+import { fmt, marcaPendiente } from '../../lib/cifras';
+import { dato } from '../../lib/datos';
+import type { Lang } from '../../lib/idiomas';
+
+interface Ronda { clave: string; cat: string; id: number; fecha: string; orador: string; partido: string; frase: string; acotacion: string }
+interface Datos { categorias: string[]; rondas: Ronda[] }
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const D = dato<Datos>('aplausos');
+const K = (s: string) => `diario.aplausos.juego.${s}`;
+const o = (s: string, ctx = {}) => (existe(K(s)) ? t(lang, K(s), ctx) : marcaPendiente(K(s), 'copy'));
+const p = (s: string, vars: Record<string, string> = {}) => (existe(K(s)) ? plano(lang, K(s), { vars }) : '');
+const r = (s: string) => (existe(K(s)) ? rotulo(lang, K(s)) : marcaPendiente(K(s), 'copy'));
+const cats = D?.categorias ?? [];
+const rondas = (D?.rondas ?? []).map((x) => ({ ...x, cuando: fmt.fechaLarga(x.fecha, lang) }));
+// Plantillas en texto plano, con sus huecos entre llaves: las rellena el script.
+const textos = D && {
+  cuenta: p('cuenta', { i: '{i}', n: '{n}', a: '{a}' }),
+  quien: p('quien', { orador: '{orador}', partido: '{partido}', fecha: '{fecha}' }),
+  exacto: p('exacto'), cerca: p('cerca'), fallo: p('fallo'), anoto: p('anoto'),
+  fila: p('fila', { id: '{id}' }), siguiente: r('siguiente'), ver: r('ver'),
+  resumen: p('resumen', { n: '{n}', total: '{total}' }),
+  veredicto: [0, 1, 2, 3, 4].map((k) => p(`veredicto.${k}`)),
+};
+const pregunta = `apl-pregunta-${lang}`;
+const tabla = `apl-tabla-${lang}`;
+---
+{!D ? <p class="nota" set:html={marcaPendiente('aplausos.json', 'dato')} /> : (
+<div class="apl" data-aplausos data-textos={JSON.stringify(textos)} data-rondas={JSON.stringify(rondas)}>
+  <!-- Sin JS: las frases, con lo que anotó el taquígrafo -->
+  <div class="apl-estatico fig-desliza" tabindex="0" role="region" aria-labelledby={tabla}>
+    <table class="fig-tabla apl-tabla">
+      <caption id={tabla}><span class="fig-rotulo-tabla" set:html={o('tabla')} /></caption>
+      <thead>
+        <tr>
+          <th scope="col" set:html={o('tabla.col.frase')} />
+          <th scope="col" set:html={o('tabla.col.quien')} />
+          <th scope="col" set:html={o('tabla.col.acotacion')} />
+        </tr>
+      </thead>
+      <tbody>
+        {rondas.map((x) => (
+          <tr>
+            <td class="apl-frase-t" lang="es">«{x.frase}»</td>
+            <td>
+              <span set:html={o('quien', { vars: { orador: x.orador, partido: x.partido, fecha: `<time datetime="${x.fecha}">${x.cuando}</time>` } })} />
+              <span class="apl-fila-t" set:html={o('fila', { vars: { id: fmt.dato(x.id, String(x.id), `aplausos.${x.clave}.id`, 'v3') } })} />
+            </td>
+            <td lang="es"><em>{x.acotacion}</em></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Con JS: el juego -->
+  <div class="apl-juego" hidden>
+    <p class="asiento apl-cuenta" data-apl-cuenta></p>
+    <ol class="apl-metro" aria-hidden="true" data-apl-metro></ol>
+    <figure class="apl-hoja" data-apl-hoja>
+      <blockquote class="apl-frase cita" lang="es" data-apl-frase></blockquote>
+      <figcaption class="apl-quien" data-apl-quien></figcaption>
+    </figure>
+    <p class="apl-pregunta" id={pregunta} set:html={o('pregunta')} />
+    <div class="apl-opciones" role="group" aria-labelledby={pregunta}>
+      {cats.map((c) => <button type="button" class="boton sec apl-op" data-cat={c} set:html={r(`op.${c}`)} />)}
+    </div>
+    <div class="apl-revela" data-apl-revela hidden>
+      <p class="apl-aviso" data-apl-aviso></p>
+      <p class="apl-acot" lang="es" data-apl-acot></p>
+      <p class="apl-fila" data-apl-fila></p>
+    </div>
+    <p class="sr-only" aria-live="polite" data-apl-sr></p>
+    <p class="botones"><button type="button" class="boton" data-apl-siguiente hidden></button></p>
+    <div class="apl-final" data-apl-final hidden>
+      <p class="apl-resumen" data-apl-resumen></p>
+      <p class="apl-veredicto"><span class="apl-rotulo" set:html={o('dedica')} /> <em data-apl-veredicto></em></p>
+      <p class="botones"><button type="button" class="boton sec" data-apl-otra set:html={r('otra')} /></p>
+    </div>
+  </div>
+  <p class="apl-leccion" set:html={o('leccion')} />
+</div>
+)}
+
+<script>
+  import '../../scripts/aplausometro.ts';
+</script>
+
+<style>
+  .apl { margin: var(--e5) 0 var(--e6); max-width: 46rem; min-width: 0; }
+  .apl [hidden] { display: none !important; }
+  .apl-frase-t { font-style: italic; }
+  .apl-fila-t { display: block; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .apl-cuenta { margin: 0 0 var(--e2); color: var(--mute); }
+
+  /* El aplausómetro: una casilla por frase; se llena al acertar, a medias si el sentido era ese. */
+  .apl-metro { list-style: none; display: flex; gap: 4px; margin: 0 0 var(--e4); padding: 0; max-width: 24rem; }
+  .apl-metro :global(li) { flex: 1; height: .55rem; border: 1px solid var(--hair-2); border-radius: 2px; background: transparent; }
+  .apl-metro :global(li.acierto) { background: var(--accent); border-color: var(--accent); }
+  .apl-metro :global(li.cerca) { background: linear-gradient(90deg, var(--accent) 50%, transparent 50%); border-color: var(--accent); }
+  .apl-metro :global(li.fallo) { border-style: dashed; }
+  .apl-metro :global(li.ahora) { border-color: var(--ink); }
+
+  .apl-hoja { margin: 0 0 var(--e4); padding: var(--e4) var(--e5); background: var(--bg-2); border: 1px solid var(--hair-2); border-radius: var(--radio); }
+  .apl-frase { margin: 0 0 var(--e3); font: italic 400 clamp(1.2rem, 3vw, 1.5rem)/1.4 var(--text); color: var(--ink); text-wrap: pretty; }
+  .apl-quien { font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--ink-2); }
+  .apl-pregunta { margin: 0 0 var(--e2); font-weight: 500; }
+  .apl-opciones { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 var(--e3); }
+  .apl-op[aria-pressed='true'] { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .apl-op.correcta { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .apl-op:disabled { cursor: default; }
+  .apl-op:disabled:not(.correcta):not([aria-pressed='true']) { opacity: .55; }
+  .apl-revela { margin: 0 0 var(--e3); }
+  .apl-aviso { margin: 0 0 .2rem; color: var(--ink); font-weight: 500; }
+  .apl-acot { margin: 0; font: italic 500 1.35rem/1.3 var(--display); color: var(--ink); }
+  .apl-fila { margin: .2rem 0 0; font: 400 var(--fs-mono-s)/1.4 var(--mono); color: var(--mute); }
+  .apl-resumen { font: 500 1.1rem/1.45 var(--text); margin: 0 0 .4rem; }
+  .apl-veredicto { margin: 0 0 var(--e3); }
+  .apl-veredicto em { font: italic 500 1.5rem/1.3 var(--display); color: var(--ink); }
+  .apl-rotulo { color: var(--ink-2); }
+  .apl-leccion { margin: var(--e4) 0 0; color: var(--ink-2); max-width: 40rem; }
+
+  /* Con JS: el juego sustituye a la tabla. */
+  :global(.apl.apl--juego) .apl-estatico { display: none; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .apl-hoja.entra { animation: apl-entra 380ms cubic-bezier(.2, .7, .1, 1); }
+    .apl-acot.sale { animation: apl-sello 420ms cubic-bezier(.2, .9, .2, 1.2); }
+    @keyframes apl-entra { from { transform: translateY(.5rem); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes apl-sello { from { transform: scale(1.35) rotate(-2deg); opacity: 0; } to { transform: none; opacity: 1; } }
+  }
+</style>

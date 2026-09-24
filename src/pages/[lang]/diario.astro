@@ -5,6 +5,7 @@
  *  · § 1 abre con el momento «Del Diario impreso a la fila» (DiarioAFila): el papel de verdad y las dos filas que salen
  *    de él. Es la única pieza con movimiento de la página, y solo si el navegador y el lector lo admiten.
  *  · § 2 pinta las cuatro series como un registro (nombre y fechas · recuento al margen), sin tarjetas.
+ *  · Entre § 3 y § 4, el juego «El aplausómetro» (components/diario/Aplausometro.astro; petición del 24-09-2026).
  *  · § 3 lleva F27 y § 4 F28 (FigCronologia), la figura protagonista; F28 va a mitad del apartado, tras las órdenes y
  *    la respuesta de Prieto, y antes de lo que se tacha, lo que no se oye y lo que el corpus no trae.
  *  · Los ids de apartado no repiten las anclas de F27 y F28 (`luz-y-taquigrafos`, `lo-que-calla`, lib/figuras.ts).
@@ -16,6 +17,7 @@ import Seccion from '../../components/Seccion.astro';
 import SinSitio from '../../components/SinSitio.astro';
 import DiarioAFila from '../../components/DiarioAFila.astro';
 import FigCronologia from '../../components/FigCronologia.astro';
+import Aplausometro from '../../components/diario/Aplausometro.astro';
 import { meta } from '../../lib/pagina';
 import { t, claves, existe } from '../../lib/i18n';
 import { primera, restoDe } from '../../lib/lectura';
@@ -26,7 +28,7 @@ export const getStaticPaths = rutasPorIdioma;
 const lang = Astro.params.lang as Lang;
 const { titulo, descripcion } = meta(lang, 'diario');
 const S = [
-  { id: 'que-es', x: 'que_es' }, { id: 'series', x: 'series' }, { id: 'formula', x: 'luz' },
+  { id: 'que-es', x: 'que_es' }, { id: 'series', x: 'series' }, { id: 'formula', x: 'luz' }, { id: 'aplausometro', x: 'aplausos' },
   { id: 'calla', x: 'calla' }, { id: 'habla-de-si', x: 'habla' }, { id: 'citar', x: 'citar' },
 ];
 // § 4 se parte en dos alrededor de F28: lo de antes (la fórmula, las órdenes, la petición, Prieto) y lo de después.
@@ -64,6 +66,10 @@ const series = claves('diario.series.serie.', true).filter(existe).map((k) => {
 
       <Seccion lang={lang} id="formula" prefijo="diario.luz" espera={['titulo', 'entrada']} indice>
         <FigCronologia lang={lang} id="F27" />
+      </Seccion>
+
+      <Seccion lang={lang} id="aplausometro" prefijo="diario.aplausos" espera={['titulo', 'entrada']} excluir={['juego']} indice>
+        <Aplausometro lang={lang} />
       </Seccion>
 
       <Seccion lang={lang} id="calla" prefijo="diario.calla" espera={['titulo', 'entrada']} excluir={CALLA_DESPUES} indice>
